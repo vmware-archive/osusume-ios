@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AECA9B531C0EC90E00C30BA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */; };
 		AECA9B5A1C0EC90E00C30BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */; };
 		AECA9B5D1C0EC90E00C30BA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B5B1C0EC90E00C30BA4 /* LaunchScreen.storyboard */; };
 		AECA9B761C0ED7E000C30BA4 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B751C0ED7E000C30BA4 /* Cartfile */; };
-		AECA9B7A1C0ED8DC00C30BA4 /* OSUNewRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECA9B791C0ED8DC00C30BA4 /* OSUNewRestaurantViewControllerSpec.swift */; };
+		AECA9B7A1C0ED8DC00C30BA4 /* NewRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECA9B791C0ED8DC00C30BA4 /* NewRestaurantViewControllerSpec.swift */; };
 		AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B771C0ED81500C30BA4 /* Nimble.framework */; };
 		AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B721C0ED6FA00C30BA4 /* Quick.framework */; };
+		AECA9B811C0EEA6000C30BA4 /* NewRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECA9B801C0EEA6000C30BA4 /* NewRestaurantViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osusume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,7 +40,8 @@
 		AECA9B721C0ED6FA00C30BA4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		AECA9B751C0ED7E000C30BA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		AECA9B771C0ED81500C30BA4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		AECA9B791C0ED8DC00C30BA4 /* OSUNewRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSUNewRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
+		AECA9B791C0ED8DC00C30BA4 /* NewRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
+		AECA9B801C0EEA6000C30BA4 /* NewRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +68,7 @@
 		AECA9B461C0EC90E00C30BA4 = {
 			isa = PBXGroup;
 			children = (
+				AE2978111C1012B400751DD3 /* PureLayout.framework */,
 				AECA9B771C0ED81500C30BA4 /* Nimble.framework */,
 				AECA9B751C0ED7E000C30BA4 /* Cartfile */,
 				AECA9B721C0ED6FA00C30BA4 /* Quick.framework */,
@@ -84,6 +90,7 @@
 		AECA9B511C0EC90E00C30BA4 /* Osusume */ = {
 			isa = PBXGroup;
 			children = (
+				AECA9B7E1C0EEA2A00C30BA4 /* Controllers */,
 				AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */,
 				AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */,
 				AECA9B5B1C0EC90E00C30BA4 /* LaunchScreen.storyboard */,
@@ -96,9 +103,25 @@
 			isa = PBXGroup;
 			children = (
 				AECA9B691C0EC90E00C30BA4 /* Info.plist */,
-				AECA9B791C0ED8DC00C30BA4 /* OSUNewRestaurantViewControllerSpec.swift */,
+				AECA9B791C0ED8DC00C30BA4 /* NewRestaurantViewControllerSpec.swift */,
 			);
 			path = OsusumeTests;
+			sourceTree = "<group>";
+		};
+		AECA9B7E1C0EEA2A00C30BA4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AECA9B7F1C0EEA2A00C30BA4 /* NewRestaurantVC */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AECA9B7F1C0EEA2A00C30BA4 /* NewRestaurantVC */ = {
+			isa = PBXGroup;
+			children = (
+				AECA9B801C0EEA6000C30BA4 /* NewRestaurantViewController.swift */,
+			);
+			path = NewRestaurantVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,6 +134,7 @@
 				AECA9B4B1C0EC90E00C30BA4 /* Sources */,
 				AECA9B4C1C0EC90E00C30BA4 /* Frameworks */,
 				AECA9B4D1C0EC90E00C30BA4 /* Resources */,
+				AE2978131C10159200751DD3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -153,6 +177,7 @@
 				TargetAttributes = {
 					AECA9B4E1C0EC90E00C30BA4 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 4LFKG3J295;
 					};
 					AECA9B621C0EC90E00C30BA4 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -200,6 +225,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AE2978131C10159200751DD3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/PureLayout.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		AECA9B7B1C0ED97900C30BA4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -208,6 +247,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Quick.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PureLayout.framework",
 			);
 			outputPaths = (
 			);
@@ -222,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AECA9B811C0EEA6000C30BA4 /* NewRestaurantViewController.swift in Sources */,
 				AECA9B531C0EC90E00C30BA4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AECA9B7A1C0ED8DC00C30BA4 /* OSUNewRestaurantViewControllerSpec.swift in Sources */,
+				AECA9B7A1C0ED8DC00C30BA4 /* NewRestaurantViewControllerSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +382,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -356,6 +398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -421,6 +464,7 @@
 				AECA9B6E1C0EC90E00C30BA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AECA9B6F1C0EC90E00C30BA4 /* Build configuration list for PBXNativeTarget "OsusumeTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +473,7 @@
 				AECA9B711C0EC90E00C30BA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
