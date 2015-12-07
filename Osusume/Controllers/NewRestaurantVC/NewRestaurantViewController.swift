@@ -9,6 +9,12 @@ class NewRestaurantViewController : UIViewController {
         return textField
     }()
 
+    let restaurantNameLabel : UILabel = {
+        let label = UILabel()
+        label.text = "restaurant name"
+        return label
+    }()
+
     let backgroundImage : UIImageView = {
         let bgImage = UIImage(named: "Jeana")
         let imageView = UIImageView(image: bgImage)
@@ -23,6 +29,7 @@ class NewRestaurantViewController : UIViewController {
         
         view.addSubview(backgroundImage)
         view.addSubview(restaurantNameTextField)
+        view.addSubview(restaurantNameLabel)
         
         view.setNeedsUpdateConstraints()
     }
@@ -31,10 +38,13 @@ class NewRestaurantViewController : UIViewController {
         if (!didSetupConstraints) {
             backgroundImage.autoCenterInSuperview()
             
-            restaurantNameTextField.autoPinEdgeToSuperviewEdge(.Top, withInset: 30.0)
-            restaurantNameTextField.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
-            restaurantNameTextField.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
-            restaurantNameTextField.autoSetDimension(.Height, toSize: 44.0)
+            restaurantNameLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
+            restaurantNameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
+            restaurantNameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
+
+            restaurantNameTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: restaurantNameLabel)
+            restaurantNameTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: restaurantNameLabel)
+            restaurantNameTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantNameLabel)
             
             didSetupConstraints = true
         }

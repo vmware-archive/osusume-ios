@@ -65,13 +65,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AECA9B461C0EC90E00C30BA4 = {
+		AE1CEF6C1C15605B0006073F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				AE2978111C1012B400751DD3 /* PureLayout.framework */,
 				AECA9B771C0ED81500C30BA4 /* Nimble.framework */,
-				AECA9B751C0ED7E000C30BA4 /* Cartfile */,
 				AECA9B721C0ED6FA00C30BA4 /* Quick.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AECA9B461C0EC90E00C30BA4 = {
+			isa = PBXGroup;
+			children = (
+				AECA9B751C0ED7E000C30BA4 /* Cartfile */,
+				AE1CEF6C1C15605B0006073F /* Frameworks */,
 				AECA9B511C0EC90E00C30BA4 /* Osusume */,
 				AECA9B661C0EC90E00C30BA4 /* OsusumeTests */,
 				AECA9B501C0EC90E00C30BA4 /* Products */,
@@ -177,7 +185,7 @@
 				TargetAttributes = {
 					AECA9B4E1C0EC90E00C30BA4 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 4LFKG3J295;
+						DevelopmentTeam = BVZYXK966R;
 					};
 					AECA9B621C0EC90E00C30BA4 = {
 						CreatedOnToolsVersion = 7.1.1;
