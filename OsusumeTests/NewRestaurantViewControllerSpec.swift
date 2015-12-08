@@ -73,6 +73,20 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.restaurantDishNameTextField.text = "Sushi"
                 expect(subject.restaurantDishNameTextField.text).to(equal("Sushi"))
             }
+
+            it("can update not saved text when save button is pressed") {
+                let view = subject.view
+
+                expect(view.subviews.contains(subject.saveTextLabel)).to(beTrue())
+                expect(subject.saveTextLabel.text).to(equal("Not Saved"))
+                expect(subject.saveTextLabel.frame).notTo(equal(CGRect.zero))
+
+                expect(view.subviews.contains(subject.saveButton)).to(beTrue())
+                expect(subject.saveButton.titleLabel!.text).to(equal("Save"))
+
+                subject.saveButtonTapped(subject.saveButton)
+                expect(subject.saveTextLabel.text).to(equal("Saved"))
+            }
         }
     }
 }
