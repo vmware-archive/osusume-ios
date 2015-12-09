@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import PureLayout
 
-class NewRestaurantViewController : UIViewController {
+class NewRestaurantViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     let restaurantNameTextField : UITextField = {
         let textField = UITextField.newAutoLayoutView()
         textField.borderStyle = .Line
@@ -64,6 +64,12 @@ class NewRestaurantViewController : UIViewController {
         return button
     }()
 
+    let selectedImageView : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .ScaleAspectFit
+        return imageView
+    }()
+
     let saveTextLabel : UILabel = {
         let label = UILabel()
         label.text = "Not Saved"
@@ -83,6 +89,9 @@ class NewRestaurantViewController : UIViewController {
         return picker
     }()
 
+    var imageViewHeightConstraint : NSLayoutConstraint!
+    var imageViewWidthConstraint : NSLayoutConstraint!
+
     var didSetupConstraints = false
     
     override func loadView() {
@@ -98,6 +107,7 @@ class NewRestaurantViewController : UIViewController {
         view.addSubview(restaurantDishNameTextField)
         view.addSubview(restaurantDishNameLabel)
         view.addSubview(addPhotoFromAlbumButton)
+        view.addSubview(selectedImageView)
         view.addSubview(saveTextLabel)
         view.addSubview(saveButton)
 
@@ -109,12 +119,26 @@ class NewRestaurantViewController : UIViewController {
         saveButton.addTarget(self, action:Selector("saveButtonTapped:"), forControlEvents: .TouchUpInside)
     }
 
+    // MARK: - UIImagePickerControllerDelegate Methods
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedImageView.image = pickedImage
+
+            // Adjust the constraint to display more of the image.
+            imageViewWidthConstraint.constant = 150.0
+            imageViewHeightConstraint.constant = 150.0
+        }
+
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
     // MARK: actions
     @IBAction func saveButtonTapped(sender: UIButton) {
         saveTextLabel.text = "Saved"
     }
 
     @IBAction func addPhotoFromAlbumButtonTapped(sender: UIButton) {
+        imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
     }
 
@@ -158,7 +182,12 @@ class NewRestaurantViewController : UIViewController {
             addPhotoFromAlbumButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantDishNameTextField)
             addPhotoFromAlbumButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
-            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addPhotoFromAlbumButton)
+            selectedImageView.autoPinEdge(.Top, toEdge: .Bottom, ofView: addPhotoFromAlbumButton)
+            imageViewWidthConstraint = selectedImageView.autoSetDimension(.Width, toSize: 0.0)
+            imageViewHeightConstraint = selectedImageView.autoSetDimension(.Height, toSize: 0.0)
+            selectedImageView.autoAlignAxis(.Vertical, toSameAxisOfView: view)
+
+            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: selectedImageView)
             saveTextLabel.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
             saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: saveTextLabel)

@@ -97,6 +97,15 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(subject.presentedViewController).toEventually(beAnInstanceOf(UIImagePickerController))
             }
 
+            it("displays the selected image") {
+                expect(subject.selectedImageView.image).to(beNil())
+
+                let sampleImage : UIImage! = UIImage(named: "Jeana")
+                let imagePickerInfoDictionary = [ UIImagePickerControllerOriginalImage : sampleImage ]
+                subject.imagePickerController(UIImagePickerController(), didFinishPickingMediaWithInfo: imagePickerInfoDictionary)
+
+                expect(subject.selectedImageView.image).to(equal(sampleImage))
+            }
 
             it("can update not saved text when save button is pressed") {
                 let view = subject.view
