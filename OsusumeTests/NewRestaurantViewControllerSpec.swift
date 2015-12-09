@@ -4,6 +4,8 @@ import Nimble
 @testable import Osusume
 
 class NewRestaurantViewControllerSpec: QuickSpec {
+    var window: UIWindow?
+
     override func spec() {
 
         describe("New Restaurant Page") {
@@ -11,7 +13,17 @@ class NewRestaurantViewControllerSpec: QuickSpec {
 
             beforeEach {
                 subject = NewRestaurantViewController()
+
+                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                self.window!.rootViewController = subject
+                self.window!.makeKeyAndVisible()
+
                 subject.view.layoutSubviews()
+            }
+
+            afterEach {
+                self.window?.hidden = true
+                self.window = nil
             }
 
             it("can enter restaurant name") {
@@ -73,6 +85,18 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.restaurantDishNameTextField.text = "Sushi"
                 expect(subject.restaurantDishNameTextField.text).to(equal("Sushi"))
             }
+
+            it("displays the camera roll when 'Add Photo from Album' button is tapped") {
+                let view = subject.view
+
+                expect(view.subviews.contains(subject.addPhotoFromAlbumButton)).to(beTrue())
+                expect(subject.addPhotoFromAlbumButton.titleLabel!.text).to(equal("Add Photo From Album"))
+
+                subject.addPhotoFromAlbumButtonTapped(subject.addPhotoFromAlbumButton)
+
+                expect(subject.presentedViewController).toEventually(beAnInstanceOf(UIImagePickerController))
+            }
+
 
             it("can update not saved text when save button is pressed") {
                 let view = subject.view

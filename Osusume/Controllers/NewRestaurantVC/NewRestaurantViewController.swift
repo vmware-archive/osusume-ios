@@ -58,6 +58,12 @@ class NewRestaurantViewController : UIViewController {
         return imageView
     }()
 
+    let addPhotoFromAlbumButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("Add Photo From Album", forState: .Normal)
+        return button
+    }()
+
     let saveTextLabel : UILabel = {
         let label = UILabel()
         label.text = "Not Saved"
@@ -69,7 +75,14 @@ class NewRestaurantViewController : UIViewController {
         button.setTitle("Save", forState: .Normal)
         return button
     }()
-    
+
+    lazy var imagePicker : UIImagePickerController = {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = false
+        picker.sourceType = .PhotoLibrary
+        return picker
+    }()
+
     var didSetupConstraints = false
     
     override func loadView() {
@@ -84,6 +97,7 @@ class NewRestaurantViewController : UIViewController {
         view.addSubview(restaurantCuisineTypeLabel)
         view.addSubview(restaurantDishNameTextField)
         view.addSubview(restaurantDishNameLabel)
+        view.addSubview(addPhotoFromAlbumButton)
         view.addSubview(saveTextLabel)
         view.addSubview(saveButton)
 
@@ -91,12 +105,17 @@ class NewRestaurantViewController : UIViewController {
     }
 
     override func viewDidLoad() {
+        addPhotoFromAlbumButton.addTarget(self, action:Selector("addPhotoFromAlbumButtonTapped:"), forControlEvents: .TouchUpInside)
         saveButton.addTarget(self, action:Selector("saveButtonTapped:"), forControlEvents: .TouchUpInside)
     }
 
     // MARK: actions
-    func saveButtonTapped(sender: UIButton) {
+    @IBAction func saveButtonTapped(sender: UIButton) {
         saveTextLabel.text = "Saved"
+    }
+
+    @IBAction func addPhotoFromAlbumButtonTapped(sender: UIButton) {
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
 
     // MARK: auto layout
@@ -136,7 +155,10 @@ class NewRestaurantViewController : UIViewController {
             restaurantDishNameTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: restaurantNameLabel)
             restaurantDishNameTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantDishNameLabel)
 
-            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantDishNameTextField)
+            addPhotoFromAlbumButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantDishNameTextField)
+            addPhotoFromAlbumButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
+
+            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addPhotoFromAlbumButton)
             saveTextLabel.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
             saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: saveTextLabel)
