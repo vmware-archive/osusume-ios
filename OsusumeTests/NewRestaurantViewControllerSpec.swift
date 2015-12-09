@@ -114,6 +114,13 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(subject.offersEnglishMenuSwitch.frame.origin).notTo(equal(CGPoint.zero))
             }
 
+            it("can indicate that the restaurant accepts reservations") {
+                let view = subject.view
+
+                expect(view.subviews.contains(subject.requiresReservationsSwitch)).to(beTrue())
+                expect(subject.requiresReservationsSwitch.frame.origin).notTo(equal(CGPoint.zero))
+            }
+
             it("can update not saved text when save button is pressed") {
                 let view = subject.view
 

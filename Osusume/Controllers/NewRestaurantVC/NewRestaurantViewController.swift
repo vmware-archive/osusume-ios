@@ -82,6 +82,16 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         return menuSwitch
     }()
 
+    let requiresReservationsLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Requires Reservation"
+        return label
+    }()
+
+    let requiresReservationsSwitch : UISwitch = {
+        return UISwitch()
+    }()
+
     let saveTextLabel : UILabel = {
         let label = UILabel()
         label.text = "Not Saved"
@@ -122,6 +132,8 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         view.addSubview(selectedImageView)
         view.addSubview(offersEnglishMenuLabel)
         view.addSubview(offersEnglishMenuSwitch)
+        view.addSubview(requiresReservationsLabel)
+        view.addSubview(requiresReservationsSwitch)
         view.addSubview(saveTextLabel)
         view.addSubview(saveButton)
 
@@ -207,7 +219,13 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             offersEnglishMenuLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: offersEnglishMenuSwitch)
 
-            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuSwitch)
+            requiresReservationsSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            requiresReservationsSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuSwitch, withOffset: 8.0)
+
+            requiresReservationsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            requiresReservationsLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: requiresReservationsSwitch)
+
+            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: requiresReservationsSwitch)
             saveTextLabel.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
             saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: saveTextLabel)
