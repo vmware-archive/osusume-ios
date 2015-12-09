@@ -92,6 +92,16 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         return UISwitch()
     }()
 
+    let acceptsCreditCardsLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Accepts Credit Cards"
+        return label
+    }()
+
+    let acceptsCreditCardsSwitch : UISwitch = {
+        return UISwitch()
+    }()
+
     let saveTextLabel : UILabel = {
         let label = UILabel()
         label.text = "Not Saved"
@@ -134,6 +144,8 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         view.addSubview(offersEnglishMenuSwitch)
         view.addSubview(requiresReservationsLabel)
         view.addSubview(requiresReservationsSwitch)
+        view.addSubview(acceptsCreditCardsLabel)
+        view.addSubview(acceptsCreditCardsSwitch)
         view.addSubview(saveTextLabel)
         view.addSubview(saveButton)
 
@@ -225,7 +237,13 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             requiresReservationsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             requiresReservationsLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: requiresReservationsSwitch)
 
-            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: requiresReservationsSwitch)
+            acceptsCreditCardsSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            acceptsCreditCardsSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: requiresReservationsSwitch, withOffset: 8.0)
+
+            acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            acceptsCreditCardsLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: acceptsCreditCardsSwitch)
+
+            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsSwitch)
             saveTextLabel.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
             saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: saveTextLabel)
