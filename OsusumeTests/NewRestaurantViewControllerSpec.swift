@@ -29,61 +29,61 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             it("can enter restaurant name") {
                 let view = subject.view
 
-                expect(view.subviews.contains(subject.restaurantNameLabel)).to(beTrue())
-                expect(subject.restaurantNameLabel.text).to(equal("Restaurant Name"))
-                expect(subject.restaurantNameLabel.frame).notTo(equal(CGRect.zero))
+                expect(view.subviews.contains(subject.nameLabel)).to(beTrue())
+                expect(subject.nameLabel.text).to(equal("Restaurant Name"))
+                expect(subject.nameLabel.frame).notTo(equal(CGRect.zero))
 
-                expect(view.subviews.contains(subject.restaurantNameTextField)).to(beTrue())
-                expect(subject.restaurantNameTextField.borderStyle) == UITextBorderStyle.Line
-                expect(subject.restaurantNameTextField.frame.origin).notTo(equal(CGPoint.zero))
+                expect(view.subviews.contains(subject.nameTextField)).to(beTrue())
+                expect(subject.nameTextField.borderStyle) == UITextBorderStyle.Line
+                expect(subject.nameTextField.frame.origin).notTo(equal(CGPoint.zero))
 
-                subject.restaurantNameTextField.text = "Some Restaurant"
-                expect(subject.restaurantNameTextField.text).to(equal("Some Restaurant"))
+                subject.nameTextField.text = "Some Restaurant"
+                expect(subject.nameTextField.text).to(equal("Some Restaurant"))
             }
 
             it("can enter address") {
                 let view = subject.view
 
-                expect(view.subviews.contains(subject.restaurantAddressLabel)).to(beTrue())
-                expect(subject.restaurantAddressLabel.text).to(equal("Address"))
-                expect(subject.restaurantAddressLabel.frame).notTo(equal(CGRect.zero))
+                expect(view.subviews.contains(subject.addressLabel)).to(beTrue())
+                expect(subject.addressLabel.text).to(equal("Address"))
+                expect(subject.addressLabel.frame).notTo(equal(CGRect.zero))
 
-                expect(view.subviews.contains(subject.restaurantAddressTextField)).to(beTrue())
-                expect(subject.restaurantAddressTextField.borderStyle) == UITextBorderStyle.Line
-                expect(subject.restaurantAddressTextField.frame.origin).notTo(equal(CGPoint.zero))
+                expect(view.subviews.contains(subject.addressTextField)).to(beTrue())
+                expect(subject.addressTextField.borderStyle) == UITextBorderStyle.Line
+                expect(subject.addressTextField.frame.origin).notTo(equal(CGPoint.zero))
 
-                subject.restaurantAddressTextField.text = "Restaurant address"
-                expect(subject.restaurantAddressTextField.text).to(equal("Restaurant address"))
+                subject.addressTextField.text = "Restaurant address"
+                expect(subject.addressTextField.text).to(equal("Restaurant address"))
             }
 
             it("can enter cuisine type") {
                 let view = subject.view
 
-                expect(view.subviews.contains(subject.restaurantCuisineTypeLabel)).to(beTrue())
-                expect(subject.restaurantCuisineTypeLabel.text).to(equal("Cuisine Type"))
-                expect(subject.restaurantCuisineTypeLabel.frame).notTo(equal(CGRect.zero))
+                expect(view.subviews.contains(subject.cuisineTypeLabel)).to(beTrue())
+                expect(subject.cuisineTypeLabel.text).to(equal("Cuisine Type"))
+                expect(subject.cuisineTypeLabel.frame).notTo(equal(CGRect.zero))
 
-                expect(view.subviews.contains(subject.restaurantCuisineTypeTextField)).to(beTrue())
-                expect(subject.restaurantCuisineTypeTextField.borderStyle) == UITextBorderStyle.Line
-                expect(subject.restaurantCuisineTypeTextField.frame.origin).notTo(equal(CGPoint.zero))
+                expect(view.subviews.contains(subject.cuisineTypeTextField)).to(beTrue())
+                expect(subject.cuisineTypeTextField.borderStyle) == UITextBorderStyle.Line
+                expect(subject.cuisineTypeTextField.frame.origin).notTo(equal(CGPoint.zero))
 
-                subject.restaurantCuisineTypeTextField.text = "Restaurant Cuisine Type"
-                expect(subject.restaurantCuisineTypeTextField.text).to(equal("Restaurant Cuisine Type"))
+                subject.cuisineTypeTextField.text = "Restaurant Cuisine Type"
+                expect(subject.cuisineTypeTextField.text).to(equal("Restaurant Cuisine Type"))
             }
 
             it("can enter name of a dish") {
                 let view = subject.view
 
-                expect(view.subviews.contains(subject.restaurantDishNameLabel)).to(beTrue())
-                expect(subject.restaurantDishNameLabel.text).to(equal("Name of a Dish"))
-                expect(subject.restaurantDishNameLabel.frame).notTo(equal(CGRect.zero))
+                expect(view.subviews.contains(subject.dishNameLabel)).to(beTrue())
+                expect(subject.dishNameLabel.text).to(equal("Name of a Dish"))
+                expect(subject.dishNameLabel.frame).notTo(equal(CGRect.zero))
 
-                expect(view.subviews.contains(subject.restaurantDishNameTextField)).to(beTrue())
-                expect(subject.restaurantDishNameTextField.borderStyle) == UITextBorderStyle.Line
-                expect(subject.restaurantDishNameTextField.frame.origin).notTo(equal(CGPoint.zero))
+                expect(view.subviews.contains(subject.dishNameTextField)).to(beTrue())
+                expect(subject.dishNameTextField.borderStyle) == UITextBorderStyle.Line
+                expect(subject.dishNameTextField.frame.origin).notTo(equal(CGPoint.zero))
 
-                subject.restaurantDishNameTextField.text = "Sushi"
-                expect(subject.restaurantDishNameTextField.text).to(equal("Sushi"))
+                subject.dishNameTextField.text = "Sushi"
+                expect(subject.dishNameTextField.text).to(equal("Sushi"))
             }
 
             it("displays the camera roll when 'Add Photo from Album' button is tapped") {
@@ -105,6 +105,13 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.imagePickerController(UIImagePickerController(), didFinishPickingMediaWithInfo: imagePickerInfoDictionary)
 
                 expect(subject.selectedImageView.image).to(equal(sampleImage))
+            }
+
+            it("can indicate that the restaurant offers english menu") {
+                let view = subject.view
+
+                expect(view.subviews.contains(subject.offersEnglishMenuSwitch)).to(beTrue())
+                expect(subject.offersEnglishMenuSwitch.frame.origin).notTo(equal(CGPoint.zero))
             }
 
             it("can update not saved text when save button is pressed") {

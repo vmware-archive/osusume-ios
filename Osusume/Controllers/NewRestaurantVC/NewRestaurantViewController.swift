@@ -2,50 +2,51 @@ import Foundation
 import UIKit
 import PureLayout
 
+
 class NewRestaurantViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    let restaurantNameTextField : UITextField = {
+    let nameTextField : UITextField = {
         let textField = UITextField.newAutoLayoutView()
         textField.borderStyle = .Line
         return textField
     }()
 
-    let restaurantNameLabel : UILabel = {
+    let nameLabel : UILabel = {
         let label = UILabel()
         label.text = "Restaurant Name"
         return label
     }()
 
-    let restaurantAddressTextField : UITextField = {
+    let addressTextField : UITextField = {
         let textField = UITextField.newAutoLayoutView()
         textField.borderStyle = .Line
         return textField
     }()
 
-    let restaurantAddressLabel : UILabel = {
+    let addressLabel : UILabel = {
         let label = UILabel()
         label.text = "Address"
         return label
     }()
 
-    let restaurantCuisineTypeTextField : UITextField = {
+    let cuisineTypeTextField : UITextField = {
         let textField = UITextField.newAutoLayoutView()
         textField.borderStyle = .Line
         return textField
     }()
 
-    let restaurantCuisineTypeLabel : UILabel = {
+    let cuisineTypeLabel : UILabel = {
         let label = UILabel()
         label.text = "Cuisine Type"
         return label
     }()
 
-    let restaurantDishNameTextField : UITextField = {
+    let dishNameTextField : UITextField = {
         let textField = UITextField.newAutoLayoutView()
         textField.borderStyle = .Line
         return textField
     }()
 
-    let restaurantDishNameLabel : UILabel = {
+    let dishNameLabel : UILabel = {
         let label = UILabel()
         label.text = "Name of a Dish"
         return label
@@ -68,6 +69,17 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         let imageView = UIImageView()
         imageView.contentMode = .ScaleAspectFit
         return imageView
+    }()
+
+    let offersEnglishMenuLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Offers English Menu"
+        return label
+    }()
+
+    let offersEnglishMenuSwitch : UISwitch = {
+        let menuSwitch = UISwitch()
+        return menuSwitch
     }()
 
     let saveTextLabel : UILabel = {
@@ -98,16 +110,18 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         view = UIView()
         
         view.addSubview(backgroundImage)
-        view.addSubview(restaurantNameTextField)
-        view.addSubview(restaurantNameLabel)
-        view.addSubview(restaurantAddressTextField)
-        view.addSubview(restaurantAddressLabel)
-        view.addSubview(restaurantCuisineTypeTextField)
-        view.addSubview(restaurantCuisineTypeLabel)
-        view.addSubview(restaurantDishNameTextField)
-        view.addSubview(restaurantDishNameLabel)
+        view.addSubview(nameTextField)
+        view.addSubview(nameLabel)
+        view.addSubview(addressTextField)
+        view.addSubview(addressLabel)
+        view.addSubview(cuisineTypeTextField)
+        view.addSubview(cuisineTypeLabel)
+        view.addSubview(dishNameTextField)
+        view.addSubview(dishNameLabel)
         view.addSubview(addPhotoFromAlbumButton)
         view.addSubview(selectedImageView)
+        view.addSubview(offersEnglishMenuLabel)
+        view.addSubview(offersEnglishMenuSwitch)
         view.addSubview(saveTextLabel)
         view.addSubview(saveButton)
 
@@ -147,39 +161,39 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         if (!didSetupConstraints) {
             backgroundImage.autoCenterInSuperview()
             
-            restaurantNameLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
-            restaurantNameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
-            restaurantNameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
+            nameLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
+            nameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
+            nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
 
-            restaurantNameTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: restaurantNameLabel)
-            restaurantNameTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: restaurantNameLabel)
-            restaurantNameTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantNameLabel)
+            nameTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            nameTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            nameTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
             
-            restaurantAddressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: restaurantNameLabel)
-            restaurantAddressLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: restaurantNameLabel)
-            restaurantAddressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantNameTextField)
+            addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            addressLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameTextField)
 
-            restaurantAddressTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: restaurantNameLabel)
-            restaurantAddressTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: restaurantNameLabel)
-            restaurantAddressTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantAddressLabel)
+            addressTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            addressTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            addressTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
 
-            restaurantCuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: restaurantNameLabel)
-            restaurantCuisineTypeLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: restaurantNameLabel)
-            restaurantCuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantAddressTextField)
+            cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            cuisineTypeLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressTextField)
 
-            restaurantCuisineTypeTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: restaurantNameLabel)
-            restaurantCuisineTypeTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: restaurantNameLabel)
-            restaurantCuisineTypeTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantCuisineTypeLabel)
+            cuisineTypeTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            cuisineTypeTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            cuisineTypeTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
 
-            restaurantDishNameLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: restaurantNameLabel)
-            restaurantDishNameLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: restaurantNameLabel)
-            restaurantDishNameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantCuisineTypeTextField)
+            dishNameLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            dishNameLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            dishNameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeTextField)
 
-            restaurantDishNameTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: restaurantNameLabel)
-            restaurantDishNameTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: restaurantNameLabel)
-            restaurantDishNameTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantDishNameLabel)
+            dishNameTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            dishNameTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            dishNameTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: dishNameLabel)
 
-            addPhotoFromAlbumButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantDishNameTextField)
+            addPhotoFromAlbumButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: dishNameTextField)
             addPhotoFromAlbumButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
             selectedImageView.autoPinEdge(.Top, toEdge: .Bottom, ofView: addPhotoFromAlbumButton)
@@ -187,7 +201,13 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             imageViewHeightConstraint = selectedImageView.autoSetDimension(.Height, toSize: 0.0)
             selectedImageView.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
-            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: selectedImageView)
+            offersEnglishMenuSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: selectedImageView)
+
+            offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            offersEnglishMenuLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: offersEnglishMenuSwitch)
+
+            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuSwitch)
             saveTextLabel.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
             saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: saveTextLabel)
