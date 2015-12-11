@@ -12,6 +12,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             var subject: NewRestaurantViewController!
 
             beforeEach {
+                UIView.setAnimationsEnabled(false)
                 subject = NewRestaurantViewController()
 
                 self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
