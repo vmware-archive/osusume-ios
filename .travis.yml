@@ -6,7 +6,7 @@ before_install:
   - brew upgrade xctool
   - brew install carthage
 xcode_scheme: Osusume
-xcode_sdk: iphonesimulator9.1
+xcode_sdk: iphonesimulator9.1, iPhone 6s
 branches:
   only:
     - master
