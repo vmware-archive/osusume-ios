@@ -95,7 +95,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
 
                 subject.addPhotoFromAlbumButtonTapped(subject.addPhotoFromAlbumButton)
 
-                expect(subject.presentedViewController).toEventually(beAnInstanceOf(UIImagePickerController), timeout: 5, pollInterval: 0.5, description: "")
+                expect(subject.presentedViewController).to(beAKindOf(UIImagePickerController))
             }
 
             it("displays the selected image") {
