@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         router = NavigationRouter(navigationController: navController)
 
-        router!.showNewRestaurantScreen()
+        router!.showRestaurantListScreen()
 
         window!.rootViewController = router!.navigationController
         window!.makeKeyAndVisible()

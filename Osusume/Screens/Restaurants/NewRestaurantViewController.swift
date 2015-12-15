@@ -153,6 +153,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         addPhotoFromAlbumButton.addTarget(self, action:Selector("addPhotoFromAlbumButtonTapped:"), forControlEvents: .TouchUpInside)
         saveButton.addTarget(self, action:Selector("saveButtonTapped:"), forControlEvents: .TouchUpInside)
     }
