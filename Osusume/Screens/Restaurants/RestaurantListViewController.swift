@@ -5,12 +5,14 @@ import PureLayout
 class RestaurantListViewController : UITableViewController {
 
     unowned let router : Router
+    let repo : Repo
 
     let cellIdentifier = "RestaurantListItemCell"
-    let restaurantNames: [String] = ["R1", "R2", "R3"]
+    var restaurants: [Restaurant] = []
 
-    init(router: Router) {
+    init(router: Router, repo: Repo) {
         self.router = router
+        self.repo = repo
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -21,6 +23,12 @@ class RestaurantListViewController : UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        repo.getAll()
+            .onSuccess { [unowned self] returnedRestaurants in
+                self.restaurants = returnedRestaurants
+                self.tableView.reloadData()
+        }
 
         self.navigationItem.rightBarButtonItem =
                 UIBarButtonItem(title: "add restaurant", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("addRestaurantButtonTapped:"))
@@ -40,12 +48,12 @@ class RestaurantListViewController : UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurantNames.count
+        return restaurants.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
-        cell.textLabel?.text = restaurantNames[indexPath.row]
+        cell.textLabel?.text = restaurants[indexPath.row].name
         return cell
     }
 }

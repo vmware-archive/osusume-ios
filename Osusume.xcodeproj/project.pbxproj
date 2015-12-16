@@ -14,11 +14,18 @@
 		AECA9B761C0ED7E000C30BA4 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B751C0ED7E000C30BA4 /* Cartfile */; };
 		AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B771C0ED81500C30BA4 /* Nimble.framework */; };
 		AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B721C0ED6FA00C30BA4 /* Quick.framework */; };
+		AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */; };
+		AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
+		AEDE88C51C21342000AF8DA1 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C41C21342000AF8DA1 /* SwiftyJSON.framework */; };
+		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
 		DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CF23833B1E11CEDEBB5E /* RestaurantListViewController.swift */; };
 		DE99C1BD8A703F77AFD777D0 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAA9114682DAC8B2446F /* NavigationRouter.swift */; };
 		DE99C1D285014C69A9EA7733 /* NewRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CB4FBE6F93BF8C2F53C2 /* NewRestaurantViewControllerSpec.swift */; };
+		DE99C31DEBFAA0B8F57FCCAA /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C0274BFF2D834CED98C7 /* Repo.swift */; };
 		DE99C5E5D4769EC1E07F36DC /* NavigationRouterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C54E9CE45026BBFFFC90 /* NavigationRouterSpec.swift */; };
 		DE99C674E82B6B17CDB36A4B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAB71B3ED7401BC1C3D2 /* Router.swift */; };
+		DE99C76AD03A5F6287E76BFC /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAF596314CE5FFBC2D2A /* Restaurant.swift */; };
+		DE99C997532445D21A048C31 /* RestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C4FEFB518E9E4B2E635F /* RestaurantRepo.swift */; };
 		DE99CAAB65BC8243F5B84D01 /* NewRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CFD1D44DEE333A4B91FC /* NewRestaurantViewController.swift */; };
 		DE99CC10A1B0561CC90A8B1C /* RestaurantListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C23FE283046930A2B5EC /* RestaurantListViewControllerSpec.swift */; };
 /* End PBXBuildFile section */
@@ -45,10 +52,17 @@
 		AECA9B721C0ED6FA00C30BA4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		AECA9B751C0ED7E000C30BA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		AECA9B771C0ED81500C30BA4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
+		AEDE88C21C1FA57700AF8DA1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		AEDE88C41C21342000AF8DA1 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		DE99C0274BFF2D834CED98C7 /* Repo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		DE99C23FE283046930A2B5EC /* RestaurantListViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListViewControllerSpec.swift; sourceTree = "<group>"; };
+		DE99C4FEFB518E9E4B2E635F /* RestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantRepo.swift; sourceTree = "<group>"; };
 		DE99C54E9CE45026BBFFFC90 /* NavigationRouterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouterSpec.swift; sourceTree = "<group>"; };
 		DE99CAA9114682DAC8B2446F /* NavigationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
 		DE99CAB71B3ED7401BC1C3D2 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		DE99CAF596314CE5FFBC2D2A /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		DE99CB4FBE6F93BF8C2F53C2 /* NewRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
 		DE99CF23833B1E11CEDEBB5E /* RestaurantListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListViewController.swift; sourceTree = "<group>"; };
 		DE99CFD1D44DEE333A4B91FC /* NewRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewController.swift; sourceTree = "<group>"; };
@@ -59,7 +73,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEDE88C51C21342000AF8DA1 /* SwiftyJSON.framework in Frameworks */,
 				AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */,
+				AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */,
+				AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */,
+				AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +96,10 @@
 		AE1CEF6C1C15605B0006073F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AEDE88C61C21342900AF8DA1 /* Alamofire.framework */,
+				AEDE88C41C21342000AF8DA1 /* SwiftyJSON.framework */,
+				AEDE88C21C1FA57700AF8DA1 /* Result.framework */,
+				AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */,
 				AE2978111C1012B400751DD3 /* PureLayout.framework */,
 				AECA9B771C0ED81500C30BA4 /* Nimble.framework */,
 				AECA9B721C0ED6FA00C30BA4 /* Quick.framework */,
@@ -114,6 +136,8 @@
 				AECA9B5E1C0EC90E00C30BA4 /* Info.plist */,
 				DE99C129438C34333056125D /* Screens */,
 				DE99CA211B4A8B02AE29C911 /* Navigation */,
+				DE99C1FFFE3D1142AD7A070E /* Repos */,
+				DE99C0044C71DF22E5E51328 /* Models */,
 			);
 			path = Osusume;
 			sourceTree = "<group>";
@@ -124,8 +148,24 @@
 				AECA9B691C0EC90E00C30BA4 /* Info.plist */,
 				DE99CF05F4A7BB5B048FC5BB /* Screens */,
 				DE99CE4BF4B09C4C96211B54 /* Navigation */,
+				DE99C0BA111E2B9203B0C73C /* Repos */,
 			);
 			path = OsusumeTests;
+			sourceTree = "<group>";
+		};
+		DE99C0044C71DF22E5E51328 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DE99CAF596314CE5FFBC2D2A /* Restaurant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DE99C0BA111E2B9203B0C73C /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repos;
 			sourceTree = "<group>";
 		};
 		DE99C129438C34333056125D /* Screens */ = {
@@ -134,6 +174,15 @@
 				DE99C54688E7F01FE6A3777D /* Restaurants */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		DE99C1FFFE3D1142AD7A070E /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				DE99C0274BFF2D834CED98C7 /* Repo.swift */,
+				DE99C4FEFB518E9E4B2E635F /* RestaurantRepo.swift */,
+			);
+			path = Repos;
 			sourceTree = "<group>";
 		};
 		DE99C27815A58B229380223E /* Restaurants */ = {
@@ -287,6 +336,10 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/PureLayout.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
 			outputPaths = (
 			);
@@ -303,6 +356,10 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Quick.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PureLayout.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
 			);
 			outputPaths = (
 			);
@@ -322,6 +379,9 @@
 				DE99C674E82B6B17CDB36A4B /* Router.swift in Sources */,
 				DE99C1BD8A703F77AFD777D0 /* NavigationRouter.swift in Sources */,
 				DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */,
+				DE99C31DEBFAA0B8F57FCCAA /* Repo.swift in Sources */,
+				DE99C997532445D21A048C31 /* RestaurantRepo.swift in Sources */,
+				DE99C76AD03A5F6287E76BFC /* Restaurant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

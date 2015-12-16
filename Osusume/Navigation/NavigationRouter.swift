@@ -14,7 +14,7 @@ class NavigationRouter : Router {
     }
 
     func showRestaurantListScreen() {
-        let restaurantListViewController = RestaurantListViewController(router: self)
+        let restaurantListViewController = RestaurantListViewController(router: self, repo: RestaurantRepo())
 
         navigationController.setViewControllers([restaurantListViewController], animated: true)
     }
