@@ -10,7 +10,7 @@ class NavigationRouter : Router {
     func showNewRestaurantScreen() {
         let newRestaurantController = NewRestaurantViewController()
 
-        navigationController.setViewControllers([newRestaurantController], animated: true)
+        navigationController.pushViewController(newRestaurantController, animated: true)
     }
 
     func showRestaurantListScreen() {

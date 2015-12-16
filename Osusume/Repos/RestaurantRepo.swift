@@ -6,7 +6,7 @@ class RestaurantRepo : Repo {
     func getAll() -> Future<[Restaurant], RepoError> {
         let promise = Promise<[Restaurant], RepoError>()
 
-        Alamofire.request(.GET, "http://localhost:3000/restaurants")
+        Alamofire.request(.GET, "http://osusume.cfapps.io/restaurants")
             .responseJSON { response in
                 switch response.result {
                 case .Success:
