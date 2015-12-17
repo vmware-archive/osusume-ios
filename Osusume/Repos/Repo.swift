@@ -1,7 +1,7 @@
 import BrightFutures
 
 enum RepoError : ErrorType {
-    case Sorry
+    case GetFailed
 }
 
 protocol Repo : class {

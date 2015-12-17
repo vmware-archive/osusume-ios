@@ -14,10 +14,10 @@ class RestaurantRepo : Repo {
                     if let value = response.result.value {
                         promise.success(self.converter.perform(value as! NSArray as? [NSDictionary]))
                     } else {
-                        promise.failure(RepoError.Sorry)
+                        promise.failure(RepoError.GetFailed)
                     }
                 case .Failure(let error):
-                    print(error)
+                    promise.failure(RepoError.GetFailed)
                 }
         }
 
