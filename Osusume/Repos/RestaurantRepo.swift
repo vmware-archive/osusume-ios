@@ -1,8 +1,9 @@
 import BrightFutures
 import Alamofire
-import SwiftyJSON
 
 class RestaurantRepo : Repo {
+    var converter: RestaurantConverter = RestaurantConverter()
+
     func getAll() -> Future<[Restaurant], RepoError> {
         let promise = Promise<[Restaurant], RepoError>()
 
@@ -11,20 +12,7 @@ class RestaurantRepo : Repo {
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
-                        let maybeArr: [JSON]? = JSON(value).array
-
-                        if let realJsonRests = maybeArr {
-                            let restaurantArray: [Restaurant] = realJsonRests.map { (restaurant: JSON) in
-                                if let name = restaurant["name"].string {
-                                    return Restaurant(name: name)
-                                }
-
-                                return Restaurant(name: "had problem")
-                            }
-
-                            promise.success(restaurantArray)
-                        }
-
+                        promise.success(self.converter.perform(value as! NSArray as? [NSDictionary]))
                     } else {
                         promise.failure(RepoError.Sorry)
                     }
@@ -32,8 +20,6 @@ class RestaurantRepo : Repo {
                     print(error)
                 }
         }
-
-
 
         return promise.future
     }
