@@ -187,7 +187,16 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
 
     // MARK: actions
     @IBAction func saveButtonTapped(sender: UIButton) {
-        saveTextLabel.text = "Saved"
+        if let nameText = nameTextField.text {
+            let params = ["name": nameText]
+            repo.create(params)
+                .onSuccess { [unowned self] _ in
+                    self.saveTextLabel.text = "Saved"
+                    self.router.showRestaurantListScreen()
+            }
+        } else {
+            saveTextLabel.text = "No Restaurant Name Provided"
+        }
     }
 
     @IBAction func addPhotoFromAlbumButtonTapped(sender: UIButton) {

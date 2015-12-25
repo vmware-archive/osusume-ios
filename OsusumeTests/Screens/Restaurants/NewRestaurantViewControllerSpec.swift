@@ -1,6 +1,8 @@
 import Foundation
 import Quick
 import Nimble
+import BrightFutures
+import Result
 @testable import Osusume
 
 class NewRestaurantViewControllerSpec: QuickSpec {
@@ -134,7 +136,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(subject.acceptsCreditCardsSwitch.frame.origin).notTo(equal(CGPoint.zero))
             }
 
-            it("can update not saved text when save button is pressed") {
+            fit("can update not saved text when save button is pressed, and return to listing screen") {
                 let view = subject.view
 
                 expect(view.subviews.contains(subject.saveTextLabel)).to(beTrue())
@@ -144,8 +146,10 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(view.subviews.contains(subject.saveButton)).to(beTrue())
                 expect(subject.saveButton.titleLabel!.text).to(equal("Save"))
 
+                subject.nameTextField.text = "New Restaurant"
                 subject.saveButtonTapped(subject.saveButton)
-                expect(subject.saveTextLabel.text).to(equal("Saved"))
+                expect(subject.saveTextLabel.text).toEventually(equal("Saved"))
+                expect(router.restaurantListScreenIsShowing).toEventually(equal(true))
             }
         }
     }

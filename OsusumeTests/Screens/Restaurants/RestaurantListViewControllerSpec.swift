@@ -7,12 +7,13 @@ import Result
 
 class FakeRouter : Router {
     var newRestaurantScreenIsShowing = false
+    var restaurantListScreenIsShowing = false
 
     func showNewRestaurantScreen() {
         newRestaurantScreenIsShowing = true
     }
     func showRestaurantListScreen() {
-
+        restaurantListScreenIsShowing = true
     }
 }
 
@@ -26,6 +27,12 @@ class FakeRestaurantRepo : Repo {
         ])
         return promise.future
     }
+
+    var stringPromise = Promise<String, RepoError>()
+    func create(params: [String : String]) -> Future<String, RepoError> {
+        stringPromise.success("OK")
+        return stringPromise.future
+    }
 }
 
 class RestaurantListViewControllerSpec: QuickSpec {
@@ -35,7 +42,8 @@ class RestaurantListViewControllerSpec: QuickSpec {
             var router: FakeRouter!
             var repo: FakeRestaurantRepo!
 
-            beforeEach {
+            beforeSuite {
+                UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
                 subject = RestaurantListViewController(router: router, repo: repo)
