@@ -8,7 +8,7 @@ class NavigationRouter : Router {
     }
 
     func showNewRestaurantScreen() {
-        let newRestaurantController = NewRestaurantViewController()
+        let newRestaurantController = NewRestaurantViewController(router: self, repo: RestaurantRepo())
 
         navigationController.pushViewController(newRestaurantController, animated: true)
     }
