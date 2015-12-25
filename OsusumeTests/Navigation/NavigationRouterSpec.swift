@@ -26,6 +26,11 @@ class NavigationRouterSpec : QuickSpec {
 
                 expect(navController.topViewController).to(beAKindOf(RestaurantListViewController))
             }
+
+            it("shows the restaurant detail screen") {
+                subject.showRestaurantDetailScreen(1)
+                expect(navController.topViewController).to(beAKindOf(RestaurantDetailViewController))
+            }
         }
     }
 }

@@ -41,4 +41,13 @@ class RestaurantRepo : Repo {
         return promise.future
     }
 
+    func getOne(id: Int) -> Future<Restaurant, RepoError> {
+        let promise = Promise<Restaurant, RepoError>()
+
+        Alamofire.request(.GET, basePath)
+            .responseJSON { response in
+                promise.success(Restaurant(name: "new one"))
+        }
+    return promise.future
+    }
 }

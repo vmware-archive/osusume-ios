@@ -136,7 +136,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(subject.acceptsCreditCardsSwitch.frame.origin).notTo(equal(CGPoint.zero))
             }
 
-            fit("can update not saved text when save button is pressed, and return to listing screen") {
+            it("can update not saved text when save button is pressed, and return to listing screen") {
                 let view = subject.view
 
                 expect(view.subviews.contains(subject.saveTextLabel)).to(beTrue())

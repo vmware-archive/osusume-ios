@@ -41,6 +41,10 @@ class RestaurantListViewController : UITableViewController {
         router.showNewRestaurantScreen()
     }
 
+    func listedRestaurantTapped(sender: UIBarButtonItem) {
+        router.showRestaurantDetailScreen(5)
+    }
+
     //MARK: UITableView
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -55,5 +59,10 @@ class RestaurantListViewController : UITableViewController {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
         cell.textLabel?.text = restaurants[indexPath.row].name
         return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
+//        cell.targetForAction("listedRestaurantTapped:", withSender: self)
     }
 }
