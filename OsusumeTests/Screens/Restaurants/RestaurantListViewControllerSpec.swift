@@ -19,6 +19,11 @@ class FakeRouter : Router {
 class FakeRestaurantRepo : Repo {
     var promise = Promise<[Restaurant], RepoError>()
     func getAll() -> Future<[Restaurant], RepoError> {
+        promise.success([
+            Restaurant(name: "つけめんTETSU"),
+            Restaurant(name: "とんかつ 豚組食堂"),
+            Restaurant(name: "Coco Curry"),
+        ])
         return promise.future
     }
 }
@@ -38,15 +43,6 @@ class RestaurantListViewControllerSpec: QuickSpec {
             }
 
             it("displays a list of restaurants") {
-                repo.promise.complete(Result.Success(
-                    [
-                            Restaurant(name: "つけめんTETSU"),
-                            Restaurant(name: "とんかつ 豚組食堂"),
-                            Restaurant(name: "Coco Curry"),
-                    ]
-                    )
-                )
-
                 let tableView = subject.tableView
 
                 expect(tableView.numberOfSections).to(equal(1))

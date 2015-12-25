@@ -4,6 +4,20 @@ import PureLayout
 
 
 class NewRestaurantViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    unowned let router: Router
+    let repo: Repo
+
+    init(router: Router, repo: Repo) {
+        self.router = router
+        self.repo = repo
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) is not supported for NewRestaurantViewController")
+    }
+
     let nameTextField : UITextField = {
         let textField = UITextField.newAutoLayoutView()
         textField.borderStyle = .Line

@@ -10,10 +10,14 @@ class NewRestaurantViewControllerSpec: QuickSpec {
 
         describe("New Restaurant Page") {
             var subject: NewRestaurantViewController!
+            var router: FakeRouter!
+            var repo: FakeRestaurantRepo!
 
-            beforeEach {
+            beforeSuite {
                 UIView.setAnimationsEnabled(false)
-                subject = NewRestaurantViewController()
+                router = FakeRouter()
+                repo = FakeRestaurantRepo()
+                subject = NewRestaurantViewController(router: router, repo: repo)
 
                 self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
                 self.window!.rootViewController = subject
@@ -22,8 +26,9 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.view.layoutSubviews()
             }
 
-            afterEach {
+            afterSuite {
                 self.window?.hidden = true
+                self.window!.rootViewController = nil
                 self.window = nil
             }
 
