@@ -136,7 +136,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(subject.acceptsCreditCardsSwitch.frame.origin).notTo(equal(CGPoint.zero))
             }
 
-            it("can update not saved text when save button is pressed, and return to listing screen") {
+            it("can update not saved text when save button is pressed") {
                 let view = subject.view
 
                 expect(view.subviews.contains(subject.saveTextLabel)).to(beTrue())
@@ -149,6 +149,11 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.nameTextField.text = "New Restaurant"
                 subject.saveButtonTapped(subject.saveButton)
                 expect(subject.saveTextLabel.text).toEventually(equal("Saved"))
+            }
+
+            it("can save restaurant and return to listing screen") {
+                subject.nameTextField.text = "New Restaurant"
+                subject.saveButtonTapped(subject.saveButton)
                 expect(router.restaurantListScreenIsShowing).toEventually(equal(true))
             }
         }
