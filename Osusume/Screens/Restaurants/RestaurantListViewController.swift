@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import PureLayout
 
-class RestaurantListViewController : UITableViewController {
+class RestaurantListViewController: UITableViewController {
 
     unowned let router : Router
     let repo : Repo
@@ -41,7 +41,8 @@ class RestaurantListViewController : UITableViewController {
         router.showNewRestaurantScreen()
     }
 
-    func listedRestaurantTapped(sender: UIBarButtonItem) {
+    func listedRestaurantTapped(sender: UITableViewCell) {
+        print("method was called")
         router.showRestaurantDetailScreen(5)
     }
 
@@ -58,11 +59,21 @@ class RestaurantListViewController : UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
         cell.textLabel?.text = restaurants[indexPath.row].name
+        print(cell.textLabel!)
         return cell
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
-//        cell.targetForAction("listedRestaurantTapped:", withSender: self)
+        let cell: UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
+        print(cell.textLabel!.text)
+        cell.tag = indexPath.row
+        cell.targetForAction("testFunc", withSender: self)
+        cell.targetForAction("listedRestaurantTapped:", withSender: self)
+        print("after methhod")
     }
+
+    func testFunc(sender: UITableViewCell!) {
+        print("helllllo!")
+    }
+
 }
