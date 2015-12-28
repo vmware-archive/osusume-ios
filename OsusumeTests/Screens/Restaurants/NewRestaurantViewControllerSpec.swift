@@ -15,7 +15,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             var router: FakeRouter!
             var repo: FakeRestaurantRepo!
 
-            beforeSuite {
+            beforeEach {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
@@ -28,7 +28,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.view.layoutSubviews()
             }
 
-            afterSuite {
+            afterEach {
                 self.window?.hidden = true
                 self.window!.rootViewController = nil
                 self.window = nil
