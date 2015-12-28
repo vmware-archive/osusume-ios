@@ -16,7 +16,7 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
-                subject = RestaurantDetailViewController(router: router, repo: repo)
+                subject = RestaurantDetailViewController(router: router, repo: repo, id: 1)
                 subject.view.layoutSubviews()
             }
 
