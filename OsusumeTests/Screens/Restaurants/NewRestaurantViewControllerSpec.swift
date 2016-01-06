@@ -148,13 +148,13 @@ class NewRestaurantViewControllerSpec: QuickSpec {
 
                 subject.nameTextField.text = "New Restaurant"
                 subject.saveButtonTapped(subject.saveButton)
-                expect(subject.saveTextLabel.text).toEventually(equal("Saved"))
+                expect(subject.saveTextLabel.text).to(equal("Saved"))
             }
 
             it("can save restaurant and return to listing screen") {
                 subject.nameTextField.text = "New Restaurant"
                 subject.saveButtonTapped(subject.saveButton)
-                expect(router.restaurantListScreenIsShowing).toEventually(equal(true))
+                expect(router.restaurantListScreenIsShowing).to(equal(true))
             }
         }
     }

@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 import PureLayout
-
+import BrightFutures
 
 class NewRestaurantViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -190,7 +190,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         if let nameText = nameTextField.text {
             let params = ["name": nameText]
             repo.create(params)
-                .onSuccess { [unowned self] _ in
+                .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
                     self.saveTextLabel.text = "Saved"
                     self.router.showRestaurantListScreen()
             }

@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import PureLayout
+import BrightFutures
 
 class RestaurantListViewController: UITableViewController {
 
@@ -25,7 +26,7 @@ class RestaurantListViewController: UITableViewController {
         super.viewDidLoad()
 
         repo.getAll()
-            .onSuccess { [unowned self] returnedRestaurants in
+            .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurants in
                 self.restaurants = returnedRestaurants
                 self.tableView.reloadData()
         }
