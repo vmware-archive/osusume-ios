@@ -4,12 +4,14 @@ import Alamofire
 class RestaurantRepo : Repo {
     var converter: RestaurantConverter = RestaurantConverter()
 
-    let basePath = "http://localhost:3000/restaurants"
+    static let basePath = NSBundle.mainBundle().objectForInfoDictionaryKey("ServerURL") as! String
+
+    let path = "\(basePath)/restaurants"
 
     func getAll() -> Future<[Restaurant], RepoError> {
         let promise = Promise<[Restaurant], RepoError>()
 
-        Alamofire.request(.GET, basePath)
+        Alamofire.request(.GET, path)
             .responseJSON { response in
                 switch response.result {
                 case .Success:
@@ -29,7 +31,7 @@ class RestaurantRepo : Repo {
     func create(params: [String: String]) -> Future<String, RepoError> {
         let promise = Promise<String, RepoError>()
         let restaurantParams = ["restaurant": params]
-        Alamofire.request(.POST, basePath, parameters: restaurantParams)
+        Alamofire.request(.POST, path, parameters: restaurantParams)
             .responseJSON { response in
                 switch response.result {
                 case .Success:
@@ -44,10 +46,11 @@ class RestaurantRepo : Repo {
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
         let promise = Promise<Restaurant, RepoError>()
 
-        Alamofire.request(.GET, basePath)
+        Alamofire.request(.GET, path)
             .responseJSON { response in
                 promise.success(Restaurant(name: "new one"))
         }
     return promise.future
     }
+
 }
