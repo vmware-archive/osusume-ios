@@ -11,6 +11,7 @@ class RestaurantListViewController: UITableViewController {
     let cellIdentifier = "RestaurantListItemCell"
     var restaurants: [Restaurant] = []
 
+    //MARK: - Initializers
     init(router: Router, repo: Repo) {
         self.router = router
         self.repo = repo
@@ -22,6 +23,7 @@ class RestaurantListViewController: UITableViewController {
         fatalError("init(coder:) is not supported for RestaurantListViewController")
     }
 
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,16 +40,16 @@ class RestaurantListViewController: UITableViewController {
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
 
+    //MARK: - Actions
     func addRestaurantButtonTapped(sender: UIBarButtonItem) {
         router.showNewRestaurantScreen()
     }
 
-    func listedRestaurantTapped(sender: UITableViewCell) {
-        print("method was called")
-        router.showRestaurantDetailScreen(5)
+    func listedRestaurantTapped(id: Int) {
+        router.showRestaurantDetailScreen(id)
     }
 
-    //MARK: UITableView
+    //MARK: - UITableView
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -64,16 +66,7 @@ class RestaurantListViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell: UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
-        print(cell.textLabel!.text)
-        cell.tag = indexPath.row
-        cell.targetForAction("testFunc", withSender: self)
-        cell.targetForAction("listedRestaurantTapped:", withSender: self)
-        print("after methhod")
+        let id = restaurants[indexPath.row].id
+        self.listedRestaurantTapped(id)
     }
-
-    func testFunc(sender: UITableViewCell!) {
-        print("helllllo!")
-    }
-
 }

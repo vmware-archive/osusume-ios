@@ -12,7 +12,7 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
             var router: FakeRouter!
             var repo: FakeRestaurantRepo!
 
-            beforeSuite {
+            beforeEach {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
@@ -21,6 +21,10 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
             }
 
             it("displays details of a given restaurant") {
+                let view = subject.view
+                expect(view.subviews.contains(subject.nameLabel)).to(beTrue())
+                expect(subject.nameLabel.frame).notTo(equal(CGRect.zero))
+                expect(subject.nameLabel.text).to(equal("Restaurant Number 1"))
             }
         }
     }

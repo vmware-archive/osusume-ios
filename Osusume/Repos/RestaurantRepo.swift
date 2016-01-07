@@ -46,9 +46,20 @@ class RestaurantRepo : Repo {
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
         let promise = Promise<Restaurant, RepoError>()
 
-        Alamofire.request(.GET, path)
+        let memberPath = "\(path)/\(id)"
+        Alamofire.request(.GET, memberPath)
             .responseJSON { response in
-                promise.success(Restaurant(name: "new one"))
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        promise.success(self.converter.perform(value as! NSDictionary))
+                    } else {
+                        promise.failure(RepoError.GetFailed)
+                    }
+                case .Failure(let _):
+                    promise.failure(RepoError.GetFailed)
+                }
+
         }
     return promise.future
     }

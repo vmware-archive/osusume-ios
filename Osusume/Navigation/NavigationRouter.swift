@@ -19,7 +19,7 @@ class NavigationRouter : Router {
 
     func showRestaurantDetailScreen(id: Int) {
         let restaurantDetailViewController = RestaurantDetailViewController(router: self, repo: RestaurantRepo(), id: id)
-        navigationController.setViewControllers([restaurantDetailViewController], animated: true)
+        navigationController.pushViewController(restaurantDetailViewController, animated: true)
     }
 
 }

@@ -28,9 +28,9 @@ class FakeRestaurantRepo : Repo {
     var restaurantsPromise = Promise<[Restaurant], RepoError>()
     func getAll() -> Future<[Restaurant], RepoError> {
         restaurantsPromise.success([
-            Restaurant(name: "つけめんTETSU"),
-            Restaurant(name: "とんかつ 豚組食堂"),
-            Restaurant(name: "Coco Curry"),
+            Restaurant(id: 1, name: "つけめんTETSU"),
+            Restaurant(id: 2, name: "とんかつ 豚組食堂"),
+            Restaurant(id: 3, name: "Coco Curry"),
             ])
         return restaurantsPromise.future
     }
@@ -43,7 +43,8 @@ class FakeRestaurantRepo : Repo {
 
     var restaurantPromise = Promise<Restaurant, RepoError>()
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
-        restaurantPromise.success(Restaurant(name: "First Restaurant"))
+        let name = "Restaurant Number \(id)"
+        restaurantPromise.success(Restaurant(id: id, name: name))
         return restaurantPromise.future
     }
 }
