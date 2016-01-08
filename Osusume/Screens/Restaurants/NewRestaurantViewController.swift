@@ -66,13 +66,6 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         return label
     }()
 
-    let backgroundImage : UIImageView = {
-        let bgImage = UIImage(named: "Jeana")
-        let imageView = UIImageView(image: bgImage)
-        
-        return imageView
-    }()
-
     let addPhotoFromAlbumButton : UIButton = {
         let button = UIButton()
         button.setTitle("Add Photo From Album", forState: .Normal)
@@ -142,8 +135,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     
     override func loadView() {
         view = UIView()
-        
-        view.addSubview(backgroundImage)
+        view.backgroundColor = UIColor.lightGrayColor()
         view.addSubview(nameTextField)
         view.addSubview(nameLabel)
         view.addSubview(addressTextField)
@@ -214,8 +206,6 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     // MARK: auto layout
     override func updateViewConstraints() {
         if (!didSetupConstraints) {
-            backgroundImage.autoCenterInSuperview()
-            
             nameLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
             nameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
             nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
