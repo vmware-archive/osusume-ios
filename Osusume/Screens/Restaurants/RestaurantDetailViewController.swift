@@ -22,18 +22,21 @@ class RestaurantDetailViewController : UIViewController {
     }
 
     let nameLabel = UILabel()
-
-    let backgroundImage : UIImageView = {
-        let bgImage = UIImage(named: "showImage")
-        let imageView = UIImageView(image: bgImage)
-
-        return imageView
-    }()
+    let addressLabel = UILabel()
+    let cuisineTypeLabel = UILabel()
+    let offersEnglishMenuLabel = UILabel()
+    let walkInsOkLabel = UILabel()
+    let acceptsCreditCardsLabel = UILabel()
 
     override func loadView() {
         view = UIView()
-        view.addSubview(backgroundImage)
+        view.backgroundColor = UIColor.whiteColor()
         view.addSubview(nameLabel)
+        view.addSubview(addressLabel)
+        view.addSubview(cuisineTypeLabel)
+        view.addSubview(offersEnglishMenuLabel)
+        view.addSubview(walkInsOkLabel)
+        view.addSubview(acceptsCreditCardsLabel)
         view.setNeedsUpdateConstraints()
     }
 
@@ -43,6 +46,11 @@ class RestaurantDetailViewController : UIViewController {
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurant in
                 self.restaurant = returnedRestaurant
                 self.nameLabel.text = self.restaurant!.name
+                self.addressLabel.text = self.restaurant!.address
+                self.cuisineTypeLabel.text = self.restaurant!.cuisineType
+                self.offersEnglishMenuLabel.text = self.restaurant!.offersEnglishMenu ? "Offers English menu" : "Does not offer English menu"
+                self.walkInsOkLabel.text = self.restaurant!.walkInsOk ? "Walk-ins ok" : "Walk-ins not recommended"
+                self.acceptsCreditCardsLabel.text = self.restaurant!.acceptsCreditCards ? "Accepts credit cards" : "Does not accept credit cards"
         }
     }
 
@@ -50,11 +58,29 @@ class RestaurantDetailViewController : UIViewController {
 
     override func updateViewConstraints() {
         if (!didSetupConstraints) {
-            backgroundImage.autoCenterInSuperview()
-
             nameLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
             nameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
             nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
+
+            addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            addressLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
+
+            cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: addressLabel)
+            cuisineTypeLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: addressLabel)
+            cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
+
+            offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: cuisineTypeLabel)
+            offersEnglishMenuLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: cuisineTypeLabel)
+            offersEnglishMenuLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
+
+            walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: offersEnglishMenuLabel)
+            walkInsOkLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: offersEnglishMenuLabel)
+            walkInsOkLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuLabel)
+
+            acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: walkInsOkLabel)
+            acceptsCreditCardsLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: walkInsOkLabel)
+            acceptsCreditCardsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkLabel)
 
             didSetupConstraints = true
         }

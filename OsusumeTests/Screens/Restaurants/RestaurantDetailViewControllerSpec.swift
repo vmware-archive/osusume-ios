@@ -16,15 +16,18 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
+                repo.createdRestaurant = Restaurant(id: 1, name: "My Restaurant", address: "Roppongi", cuisineType: "Sushi", offersEnglishMenu: true, walkInsOk: false, acceptsCreditCards: true)
                 subject = RestaurantDetailViewController(router: router, repo: repo, id: 1)
                 subject.view.layoutSubviews()
             }
 
             it("displays details of a given restaurant") {
-                let view = subject.view
-                expect(view.subviews.contains(subject.nameLabel)).to(beTrue())
-                expect(subject.nameLabel.frame).notTo(equal(CGRect.zero))
-                expect(subject.nameLabel.text).to(equal("Restaurant Number 1"))
+                expect(subject.nameLabel.text).to(equal("My Restaurant"))
+                expect(subject.addressLabel.text).to(equal("Roppongi"))
+                expect(subject.cuisineTypeLabel.text).to(equal("Sushi"))
+                expect(subject.offersEnglishMenuLabel.text).to(equal("Offers English menu"))
+                expect(subject.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
+                expect(subject.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
             }
         }
     }

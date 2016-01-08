@@ -96,13 +96,13 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         return menuSwitch
     }()
 
-    let requiresReservationsLabel : UILabel = {
+    let walkInsOkLabel : UILabel = {
         let label = UILabel()
-        label.text = "Requires Reservation"
+        label.text = "Walk-ins Ok"
         return label
     }()
 
-    let requiresReservationsSwitch : UISwitch = {
+    let walkInsOkSwitch : UISwitch = {
         return UISwitch()
     }()
 
@@ -156,8 +156,8 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         view.addSubview(selectedImageView)
         view.addSubview(offersEnglishMenuLabel)
         view.addSubview(offersEnglishMenuSwitch)
-        view.addSubview(requiresReservationsLabel)
-        view.addSubview(requiresReservationsSwitch)
+        view.addSubview(walkInsOkLabel)
+        view.addSubview(walkInsOkSwitch)
         view.addSubview(acceptsCreditCardsLabel)
         view.addSubview(acceptsCreditCardsSwitch)
         view.addSubview(saveTextLabel)
@@ -188,7 +188,14 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     // MARK: actions
     @IBAction func saveButtonTapped(sender: UIButton) {
         if let nameText = nameTextField.text {
-            let params = ["name": nameText]
+            let params: [String: AnyObject] = [
+                "name": nameText,
+                "address": addressTextField.text!,
+                "cuisine_type": cuisineTypeTextField.text!,
+                "offers_english_menu": offersEnglishMenuSwitch.on,
+                "walk_ins_ok": walkInsOkSwitch.on,
+                "accepts_credit_cards": acceptsCreditCardsSwitch.on
+            ]
             repo.create(params)
                 .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
                     self.saveTextLabel.text = "Saved"
@@ -255,14 +262,14 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             offersEnglishMenuLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: offersEnglishMenuSwitch)
 
-            requiresReservationsSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-            requiresReservationsSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuSwitch, withOffset: 8.0)
+            walkInsOkSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+            walkInsOkSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuSwitch, withOffset: 8.0)
 
-            requiresReservationsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-            requiresReservationsLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: requiresReservationsSwitch)
+            walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            walkInsOkLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: walkInsOkSwitch)
 
             acceptsCreditCardsSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-            acceptsCreditCardsSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: requiresReservationsSwitch, withOffset: 8.0)
+            acceptsCreditCardsSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkSwitch, withOffset: 8.0)
 
             acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             acceptsCreditCardsLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: acceptsCreditCardsSwitch)

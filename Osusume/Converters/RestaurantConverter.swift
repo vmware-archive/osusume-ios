@@ -14,12 +14,30 @@ class RestaurantConverter {
     }
 
     func perform(json: NSDictionary) -> Restaurant {
-        if let name = json["name"], let id = json["id"] {
-            return Restaurant(id: id as! Int, name: name as! String)
+        return Restaurant(
+            id: json["id"] as! Int,
+            name: json["name"] as! String,
+            address: valueOrEmptyString(json["address"]),
+            cuisineType: valueOrEmptyString(json["cuisine_type"]),
+            offersEnglishMenu: valueOrFalse(json["offers_english_menu"]),
+            walkInsOk: valueOrFalse(json["walk_ins_ok"]),
+            acceptsCreditCards: valueOrFalse(json["accepts_credit_cards"])
+        )
+    }
+
+    func valueOrEmptyString(attribute: AnyObject?) -> String {
+        if !(attribute is NSNull) {
+            return attribute as! String
         } else {
-            return Restaurant(id: 0, name: "had problem")
+            return ""
         }
     }
 
-
+    func valueOrFalse(attribute: AnyObject?) -> Bool {
+        if !(attribute is NSNull) {
+            return attribute as! Bool
+        } else {
+            return false
+        }
+    }
 }

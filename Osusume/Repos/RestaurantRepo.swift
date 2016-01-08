@@ -28,7 +28,7 @@ class RestaurantRepo : Repo {
         return promise.future
     }
 
-    func create(params: [String: String]) -> Future<String, RepoError> {
+    func create(params: [String: AnyObject]) -> Future<String, RepoError> {
         let promise = Promise<String, RepoError>()
         let restaurantParams = ["restaurant": params]
         Alamofire.request(.POST, path, parameters: restaurantParams)

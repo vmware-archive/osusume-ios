@@ -25,6 +25,8 @@ class FakeRouter : Router {
 }
 
 class FakeRestaurantRepo : Repo {
+    var createdRestaurant : Restaurant? = nil
+
     var restaurantsPromise = Promise<[Restaurant], RepoError>()
     func getAll() -> Future<[Restaurant], RepoError> {
         restaurantsPromise.success([
@@ -36,15 +38,21 @@ class FakeRestaurantRepo : Repo {
     }
 
     var stringPromise = Promise<String, RepoError>()
-    func create(params: [String : String]) -> Future<String, RepoError> {
+    func create(params: [String : AnyObject]) -> Future<String, RepoError> {
         stringPromise.success("OK")
+        createdRestaurant = Restaurant(id: 0,
+            name: params["name"]! as! String,
+            address: params["address"]! as! String,
+            cuisineType: params["cuisine_type"]! as! String,
+            offersEnglishMenu: params["offers_english_menu"] as! Bool,
+            walkInsOk: params["walk_ins_ok"] as! Bool,
+            acceptsCreditCards: params["accepts_credit_cards"] as! Bool)
         return stringPromise.future
     }
 
     var restaurantPromise = Promise<Restaurant, RepoError>()
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
-        let name = "Restaurant Number \(id)"
-        restaurantPromise.success(Restaurant(id: id, name: name))
+        restaurantPromise.success(createdRestaurant!)
         return restaurantPromise.future
     }
 }
