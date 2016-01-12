@@ -31,7 +31,6 @@ class EditRestaurantViewController: UIViewController {
         view.backgroundColor = UIColor.grayColor()
         formView = RestaurantFormView(restaurant: self.restaurant)
         view.addSubview(self.formView)
-        view.addSubview(updateTextLabel)
         view.addSubview(updateButton)
     }
 
@@ -54,7 +53,6 @@ class EditRestaurantViewController: UIViewController {
             ]
             repo.update(self.id, params: params)
                 .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
-                    self.updateTextLabel.text = "Updated"
                     self.router.showRestaurantListScreen()
             }
         }
@@ -70,13 +68,10 @@ class EditRestaurantViewController: UIViewController {
             formView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
             formView.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
             formView.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-            formView.autoSetDimension(.Height, toSize: 300.0) // This is hard-coded. Should set to natural height.
 
-            updateTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: formView)
-            updateTextLabel.autoAlignAxis(.Vertical, toSameAxisOfView: view)
-
-            updateButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: updateTextLabel)
+            updateButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: formView)
             updateButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
+            updateButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10.0)
 
             didSetupConstraints = true
         }
@@ -84,12 +79,6 @@ class EditRestaurantViewController: UIViewController {
     }
 
     //MARK: - View Elements
-    let updateTextLabel : UILabel = {
-        let label = UILabel()
-        label.text = "Not Updated"
-        return label
-    }()
-
     let updateButton : UIButton = {
         let button = UIButton()
         button.setTitle("Update", forState: .Normal)

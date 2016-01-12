@@ -34,41 +34,6 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 self.window = nil
             }
 
-            it("displays the camera roll when 'Add Photo from Album' button is tapped") {
-                let view = subject.view
-
-                expect(view.subviews.contains(subject.addPhotoFromAlbumButton)).to(beTrue())
-                expect(subject.addPhotoFromAlbumButton.titleLabel!.text).to(equal("Add Photo From Album"))
-
-                subject.addPhotoFromAlbumButtonTapped(subject.addPhotoFromAlbumButton)
-
-                expect(subject.presentedViewController).to(beAKindOf(UIImagePickerController))
-            }
-
-            it("displays the selected image") {
-                expect(subject.selectedImageView.image).to(beNil())
-
-                let sampleImage : UIImage! = UIImage(named: "Jeana")
-                let imagePickerInfoDictionary = [ UIImagePickerControllerOriginalImage : sampleImage ]
-                subject.imagePickerController(UIImagePickerController(), didFinishPickingMediaWithInfo: imagePickerInfoDictionary)
-
-                expect(subject.selectedImageView.image).to(equal(sampleImage))
-            }
-
-            it("can update not saved text when save button is pressed") {
-                let view = subject.view
-
-                expect(view.subviews.contains(subject.saveTextLabel)).to(beTrue())
-                expect(subject.saveTextLabel.text).to(equal("Not Saved"))
-                expect(subject.saveTextLabel.frame).notTo(equal(CGRect.zero))
-
-                expect(view.subviews.contains(subject.saveButton)).to(beTrue())
-                expect(subject.saveButton.titleLabel!.text).to(equal("Save"))
-
-                subject.saveButtonTapped(subject.saveButton)
-                expect(subject.saveTextLabel.text).to(equal("Saved"))
-            }
-
             it("can save restaurant and return to listing screen") {
                 subject.saveButtonTapped(subject.saveButton)
                 expect(router.restaurantListScreenIsShowing).to(equal(true))
