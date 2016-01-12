@@ -65,20 +65,18 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(view.subviews.contains(subject.saveButton)).to(beTrue())
                 expect(subject.saveButton.titleLabel!.text).to(equal("Save"))
 
-                subject.nameTextField.text = "New Restaurant"
                 subject.saveButtonTapped(subject.saveButton)
                 expect(subject.saveTextLabel.text).to(equal("Saved"))
             }
 
             it("can save restaurant and return to listing screen") {
-                subject.nameTextField.text = "New Restaurant"
                 subject.saveButtonTapped(subject.saveButton)
                 expect(router.restaurantListScreenIsShowing).to(equal(true))
             }
 
             it("makes an API call with all fields") {
-                subject.nameTextField.text = "Some Restaurant"
-                subject.cuisineTypeTextField.text = "Restaurant Cuisine Type"
+                subject.formView.nameTextField.text = "Some Restaurant"
+                subject.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
 
                 subject.saveButtonTapped(subject.saveButton)
                 let restaurant: Restaurant = repo.createdRestaurant!

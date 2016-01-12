@@ -18,42 +18,6 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         fatalError("init(coder:) is not supported for NewRestaurantViewController")
     }
 
-//    let addressTextField : UITextField = {
-//        let textField = UITextField.newAutoLayoutView()
-//        textField.borderStyle = .Line
-//        return textField
-//    }()
-//
-//    let addressLabel : UILabel = {
-//        let label = UILabel()
-//        label.text = "Address"
-//        return label
-//    }()
-//
-//    let cuisineTypeTextField : UITextField = {
-//        let textField = UITextField.newAutoLayoutView()
-//        textField.borderStyle = .Line
-//        return textField
-//    }()
-//
-//    let cuisineTypeLabel : UILabel = {
-//        let label = UILabel()
-//        label.text = "Cuisine Type"
-//        return label
-//    }()
-//
-//    let dishNameTextField : UITextField = {
-//        let textField = UITextField.newAutoLayoutView()
-//        textField.borderStyle = .Line
-//        return textField
-//    }()
-//
-//    let dishNameLabel : UILabel = {
-//        let label = UILabel()
-//        label.text = "Name of a Dish"
-//        return label
-//    }()
-//
     let addPhotoFromAlbumButton : UIButton = {
         let button = UIButton()
         button.setTitle("Add Photo From Album", forState: .Normal)
@@ -66,36 +30,6 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         return imageView
     }()
 
-    let offersEnglishMenuLabel : UILabel = {
-        let label = UILabel()
-        label.text = "Offers English Menu"
-        return label
-    }()
-
-    let offersEnglishMenuSwitch : UISwitch = {
-        let menuSwitch = UISwitch()
-        return menuSwitch
-    }()
-
-    let walkInsOkLabel : UILabel = {
-        let label = UILabel()
-        label.text = "Walk-ins Ok"
-        return label
-    }()
-
-    let walkInsOkSwitch : UISwitch = {
-        return UISwitch()
-    }()
-
-    let acceptsCreditCardsLabel : UILabel = {
-        let label = UILabel()
-        label.text = "Accepts Credit Cards"
-        return label
-    }()
-
-    let acceptsCreditCardsSwitch : UISwitch = {
-        return UISwitch()
-    }()
 
     let saveTextLabel : UILabel = {
         let label = UILabel()
@@ -125,22 +59,11 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     
     override func loadView() {
         view = UIView()
-        view.addSubview(formView)
         view.backgroundColor = UIColor.lightGrayColor()
-//        view.addSubview(addressTextField)
-//        view.addSubview(addressLabel)
-//        view.addSubview(cuisineTypeTextField)
-//        view.addSubview(cuisineTypeLabel)
-//        view.addSubview(dishNameTextField)
-//        view.addSubview(dishNameLabel)
+
+        view.addSubview(formView)
         view.addSubview(addPhotoFromAlbumButton)
         view.addSubview(selectedImageView)
-        view.addSubview(offersEnglishMenuLabel)
-        view.addSubview(offersEnglishMenuSwitch)
-        view.addSubview(walkInsOkLabel)
-        view.addSubview(walkInsOkSwitch)
-        view.addSubview(acceptsCreditCardsLabel)
-        view.addSubview(acceptsCreditCardsSwitch)
         view.addSubview(saveTextLabel)
         view.addSubview(saveButton)
 
@@ -149,6 +72,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         addPhotoFromAlbumButton.addTarget(self, action:Selector("addPhotoFromAlbumButtonTapped:"), forControlEvents: .TouchUpInside)
         saveButton.addTarget(self, action:Selector("saveButtonTapped:"), forControlEvents: .TouchUpInside)
     }
@@ -166,16 +90,16 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    // MARK: actions
+    // MARK: - actions
     @IBAction func saveButtonTapped(sender: UIButton) {
         if let nameText = formView.getNameText() {
             let params: [String: AnyObject] = [
                 "name": nameText,
                 "address": formView.getAddressText()!,
                 "cuisine_type": formView.getCuisineTypeText()!,
-                "offers_english_menu": offersEnglishMenuSwitch.on,
-                "walk_ins_ok": walkInsOkSwitch.on,
-                "accepts_credit_cards": acceptsCreditCardsSwitch.on
+                "offers_english_menu": formView.getOffersEnglishMenuState()!,
+                "walk_ins_ok": formView.getWalkInsOkState()!,
+                "accepts_credit_cards": formView.getAcceptsCreditCardsState()!
             ]
             repo.create(params)
                 .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
@@ -192,40 +116,15 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         presentViewController(imagePicker, animated: true, completion: nil)
     }
 
-    // MARK: auto layout
+    // MARK: - auto layout
     override func updateViewConstraints() {
         if (!didSetupConstraints) {
             formView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
             formView.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
             formView.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-            formView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10.0)
+            formView.autoSetDimension(.Height, toSize: 300.0) // This is hard-coded. Should set to natural height.
 
-//
-//            addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-//            addressLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-//            addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameTextField)
-//
-//            addressTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-//            addressTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-//            addressTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
-//
-//            cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-//            cuisineTypeLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-//            cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressTextField)
-//
-//            cuisineTypeTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-//            cuisineTypeTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-//            cuisineTypeTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
-//
-//            dishNameLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-//            dishNameLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-//            dishNameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeTextField)
-//
-//            dishNameTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-//            dishNameTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-//            dishNameTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: dishNameLabel)
-//
-            addPhotoFromAlbumButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: formView)
+            addPhotoFromAlbumButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: formView, withOffset: 8.0)
             addPhotoFromAlbumButton.autoAlignAxis(.Vertical, toSameAxisOfView: formView)
 
             selectedImageView.autoPinEdge(.Top, toEdge: .Bottom, ofView: addPhotoFromAlbumButton)
@@ -233,25 +132,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             imageViewHeightConstraint = selectedImageView.autoSetDimension(.Height, toSize: 0.0)
             selectedImageView.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
-            offersEnglishMenuSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: formView)
-            offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: selectedImageView)
-
-            offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: formView)
-            offersEnglishMenuLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: offersEnglishMenuSwitch)
-
-            walkInsOkSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: formView)
-            walkInsOkSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuSwitch, withOffset: 8.0)
-
-            walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: formView)
-            walkInsOkLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: walkInsOkSwitch)
-
-            acceptsCreditCardsSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: formView)
-            acceptsCreditCardsSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkSwitch, withOffset: 8.0)
-
-            acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: formView)
-            acceptsCreditCardsLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: acceptsCreditCardsSwitch)
-
-            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsSwitch)
+            saveTextLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: selectedImageView)
             saveTextLabel.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
             saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: saveTextLabel)
