@@ -8,6 +8,10 @@ class RestaurantDetailViewController : UIViewController {
     let repo: Repo
     let id: Int
     var restaurant: Restaurant? = nil
+    var didSetupConstraints = false
+
+
+    //MARK: - Initializers
 
     init(router: Router, repo: Repo, id: Int) {
         self.router = router
@@ -21,6 +25,7 @@ class RestaurantDetailViewController : UIViewController {
         fatalError("init(coder:) is not supported for RestaurantDetailViewController")
     }
 
+    //MARK: - View Elements
     let nameLabel = UILabel()
     let addressLabel = UILabel()
     let cuisineTypeLabel = UILabel()
@@ -28,6 +33,8 @@ class RestaurantDetailViewController : UIViewController {
     let walkInsOkLabel = UILabel()
     let acceptsCreditCardsLabel = UILabel()
 
+
+    //MARK: - View Lifecycle
     override func loadView() {
         view = UIView()
         view.backgroundColor = UIColor.whiteColor()
@@ -52,10 +59,19 @@ class RestaurantDetailViewController : UIViewController {
                 self.walkInsOkLabel.text = self.restaurant!.walkInsOk ? "Walk-ins ok" : "Walk-ins not recommended"
                 self.acceptsCreditCardsLabel.text = self.restaurant!.acceptsCreditCards ? "Accepts credit cards" : "Does not accept credit cards"
         }
+
+        let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("editRestaurantButtonTapped:"))
+        navigationItem.rightBarButtonItem = editButton
     }
 
-    var didSetupConstraints = false
+    //MARK: - Actions
+    func editRestaurantButtonTapped(sender: UIBarButtonItem) {
+        if let currentRestaurant = self.restaurant {
+            router.showEditRestaurantScreen(currentRestaurant)
+        }
+    }
 
+    //MARK: - Constraints
     override func updateViewConstraints() {
         if (!didSetupConstraints) {
             nameLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)

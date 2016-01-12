@@ -64,4 +64,21 @@ class RestaurantRepo : Repo {
     return promise.future
     }
 
+    func update(id: Int, params: [String: AnyObject]) -> Future<String, RepoError> {
+        let promise = Promise<String, RepoError>()
+        let memberPath = "\(path)/\(id)"
+        let restaurantParams = ["restaurant": params]
+        Alamofire.request(.PATCH, memberPath, parameters: restaurantParams)
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    promise.success("OK")
+                case .Failure(let error):
+                    promise.failure(RepoError.PostFailed)
+                }
+        }
+        return promise.future
+    }
+
+
 }

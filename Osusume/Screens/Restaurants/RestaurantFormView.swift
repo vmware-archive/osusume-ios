@@ -2,9 +2,12 @@ import UIKit
 
 class RestaurantFormView : UIView {
 
+    let restaurant: Restaurant? = nil
+
     // MARK: - Initializers
-    init() {
+    init(restaurant: Restaurant?) {
         super.init(frame: CGRect())
+
         self.addSubview(nameLabel)
         self.addSubview(nameTextField)
         self.addSubview(addressLabel)
@@ -18,11 +21,24 @@ class RestaurantFormView : UIView {
         self.addSubview(acceptsCreditCardsLabel)
         self.addSubview(acceptsCreditCardsSwitch)
 
+        if let thisRestaurant = restaurant {
+            setRestaurantValues(thisRestaurant)
+        }
+
         updateSubviewConstraints()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func setRestaurantValues(restaurant: Restaurant) {
+        nameTextField.text = restaurant.name
+        addressTextField.text = restaurant.address
+        cuisineTypeTextField.text = restaurant.cuisineType
+        offersEnglishMenuSwitch.on = restaurant.offersEnglishMenu
+        walkInsOkSwitch.on = restaurant.walkInsOk
+        acceptsCreditCardsSwitch.on = restaurant.acceptsCreditCards
     }
 
 

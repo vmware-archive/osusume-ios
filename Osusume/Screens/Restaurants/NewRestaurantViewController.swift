@@ -43,7 +43,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         return button
     }()
 
-    let formView = RestaurantFormView()
+    let formView = RestaurantFormView(restaurant: nil)
 
     lazy var imagePicker : UIImagePickerController = {
         let picker = UIImagePickerController()

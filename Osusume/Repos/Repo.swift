@@ -11,4 +11,6 @@ protocol Repo : class {
     func create(params: [String: AnyObject]) -> Future<String, RepoError>
 
     func getOne(id: Int) -> Future<Restaurant, RepoError>
+
+    func update(id: Int, params: [String: AnyObject]) -> Future<String, RepoError>
 }

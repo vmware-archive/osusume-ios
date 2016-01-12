@@ -47,7 +47,7 @@ class RestaurantListViewControllerSpec: QuickSpec {
 
             it("displays a detail view when a restaurant row is selected") {
                 subject.listedRestaurantTapped(1)
-                expect(router.RestaurantDetailScreenIsShowing).to(equal(true))
+                expect(router.restaurantDetailScreenIsShowing).to(equal(true))
             }
         }
     }

@@ -31,6 +31,13 @@ class NavigationRouterSpec : QuickSpec {
                 subject.showRestaurantDetailScreen(1)
                 expect(navController.topViewController).to(beAKindOf(RestaurantDetailViewController))
             }
+
+            it("shows the edit restaurant screen") {
+                let restaurant = Restaurant(id: 1, name: "Existing Restaurant")
+                subject.showEditRestaurantScreen(restaurant)
+                expect(navController.topViewController).to(beAKindOf(EditRestaurantViewController))
+            }
+
         }
     }
 }

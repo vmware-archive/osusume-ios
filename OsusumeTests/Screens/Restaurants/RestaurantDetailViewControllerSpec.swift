@@ -29,6 +29,17 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
                 expect(subject.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
                 expect(subject.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
             }
+
+            describe("Editing") {
+                it("has Edit button on top right") {
+                    expect(subject.navigationItem.rightBarButtonItem!.title).to(equal("Edit"))
+                }
+
+                it("shows the edit screen when the edit button is clicked") {
+                    subject.editRestaurantButtonTapped(subject.navigationItem.rightBarButtonItem!)
+                    expect(router.editRestaurantScreenIsShowing).to(equal(true))
+                }
+            }
         }
     }
 }

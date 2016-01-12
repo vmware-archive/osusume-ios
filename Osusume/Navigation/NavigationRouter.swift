@@ -22,4 +22,9 @@ class NavigationRouter : Router {
         navigationController.pushViewController(restaurantDetailViewController, animated: true)
     }
 
+    func showEditRestaurantScreen(restaurant: Restaurant) {
+        let editRestaurantViewController = EditRestaurantViewController(router: self, repo: RestaurantRepo(), restaurant: restaurant)
+        navigationController.pushViewController(editRestaurantViewController, animated: true)
+    }
+
 }

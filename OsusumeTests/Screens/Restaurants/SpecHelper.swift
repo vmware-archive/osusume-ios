@@ -9,7 +9,8 @@ import Result
 class FakeRouter : Router {
     var newRestaurantScreenIsShowing = false
     var restaurantListScreenIsShowing = false
-    var RestaurantDetailScreenIsShowing = false
+    var restaurantDetailScreenIsShowing = false
+    var editRestaurantScreenIsShowing = false
 
     func showNewRestaurantScreen() {
         newRestaurantScreenIsShowing = true
@@ -20,7 +21,11 @@ class FakeRouter : Router {
     }
 
     func showRestaurantDetailScreen(id: Int) {
-        RestaurantDetailScreenIsShowing = true
+        restaurantDetailScreenIsShowing = true
+    }
+
+    func showEditRestaurantScreen(restaurant: Restaurant) {
+        editRestaurantScreenIsShowing = true
     }
 }
 
@@ -54,5 +59,17 @@ class FakeRestaurantRepo : Repo {
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
         restaurantPromise.success(createdRestaurant!)
         return restaurantPromise.future
+    }
+
+    func update(id: Int, params: [String: AnyObject]) -> Future<String, RepoError> {
+        stringPromise.success("OK")
+        createdRestaurant = Restaurant(id: 0,
+            name: params["name"]! as! String,
+            address: params["address"]! as! String,
+            cuisineType: params["cuisine_type"]! as! String,
+            offersEnglishMenu: params["offers_english_menu"] as! Bool,
+            walkInsOk: params["walk_ins_ok"] as! Bool,
+            acceptsCreditCards: params["accepts_credit_cards"] as! Bool)
+        return stringPromise.future
     }
 }
