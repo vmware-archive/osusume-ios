@@ -35,7 +35,9 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             }
 
             it("can save restaurant and return to listing screen") {
-                subject.saveButtonTapped(subject.saveButton)
+                expect(subject.navigationItem.rightBarButtonItem!.title).to(equal("Done"))
+
+                subject.doneButtonTapped(subject.navigationItem.rightBarButtonItem)
                 expect(router.restaurantListScreenIsShowing).to(equal(true))
             }
 
@@ -43,7 +45,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.formView.nameTextField.text = "Some Restaurant"
                 subject.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
 
-                subject.saveButtonTapped(subject.saveButton)
+                subject.doneButtonTapped(subject.navigationItem.rightBarButtonItem)
                 let restaurant: Restaurant = repo.createdRestaurant!
 
                 expect(restaurant.name).to(equal("Some Restaurant"))

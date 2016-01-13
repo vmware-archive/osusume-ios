@@ -20,12 +20,6 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     }
 
     //MARK: View Elements
-    let saveButton : UIButton = {
-        let button = UIButton()
-        button.setTitle("Save", forState: .Normal)
-        return button
-    }()
-
     let formView = RestaurantFormView(restaurant: nil)
 
     let selectedImageView : UIImageView = {
@@ -54,7 +48,6 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
 
         view.addSubview(formView)
         view.addSubview(selectedImageView)
-        view.addSubview(saveButton)
 
         view.setNeedsUpdateConstraints()
     }
@@ -66,11 +59,12 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         selectedImageView.userInteractionEnabled = true
         selectedImageView.addGestureRecognizer(tapGestureRecognizer)
 
-        saveButton.addTarget(self, action:Selector("saveButtonTapped:"), forControlEvents: .TouchUpInside)
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("doneButtonTapped:"))
+        navigationItem.rightBarButtonItem = doneButton
     }
 
     // MARK: - Actions
-    func saveButtonTapped(sender: UIButton) {
+    func doneButtonTapped(sender: UIBarButtonItem?) {
         let params: [String: AnyObject] = [
             "name": formView.getNameText()!,
             "address": formView.getAddressText()!,
@@ -109,9 +103,6 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             selectedImageView.autoAlignAxis(.Vertical, toSameAxisOfView: view)
             selectedImageView.autoSetDimension(.Height, toSize: 100.0)
             selectedImageView.autoSetDimension(.Width, toSize: 100.0)
-
-            saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: selectedImageView, withOffset: 10.0)
-            saveButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
             didSetupConstraints = true
         }
