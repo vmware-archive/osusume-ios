@@ -68,10 +68,10 @@ class EditRestaurantViewController: UIViewController {
             formView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
             formView.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
             formView.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
+            formView.autoSetDimension(.Height, toSize: 300.0)
 
             updateButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: formView)
             updateButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
-            updateButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10.0)
 
             didSetupConstraints = true
         }
