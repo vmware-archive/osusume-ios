@@ -29,7 +29,7 @@ class FakeRouter : Router {
     }
 }
 
-class FakeRestaurantRepo : Repo {
+class FakeRestaurantRepo : RestaurantRepo {
     var createdRestaurant : Restaurant? = nil
 
     var restaurantsPromise = Promise<[Restaurant], RepoError>()

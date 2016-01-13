@@ -8,22 +8,22 @@ class NavigationRouter : Router {
     }
 
     func showNewRestaurantScreen() {
-        let newRestaurantController = NewRestaurantViewController(router: self, repo: RestaurantRepo())
+        let newRestaurantController = NewRestaurantViewController(router: self, repo: HttpRestaurantRepo())
         navigationController.pushViewController(newRestaurantController, animated: true)
     }
 
     func showRestaurantListScreen() {
-        let restaurantListViewController = RestaurantListViewController(router: self, repo: RestaurantRepo())
+        let restaurantListViewController = RestaurantListViewController(router: self, repo: HttpRestaurantRepo())
         navigationController.setViewControllers([restaurantListViewController], animated: true)
     }
 
     func showRestaurantDetailScreen(id: Int) {
-        let restaurantDetailViewController = RestaurantDetailViewController(router: self, repo: RestaurantRepo(), id: id)
+        let restaurantDetailViewController = RestaurantDetailViewController(router: self, repo: HttpRestaurantRepo(), id: id)
         navigationController.pushViewController(restaurantDetailViewController, animated: true)
     }
 
     func showEditRestaurantScreen(restaurant: Restaurant) {
-        let editRestaurantViewController = EditRestaurantViewController(router: self, repo: RestaurantRepo(), restaurant: restaurant)
+        let editRestaurantViewController = EditRestaurantViewController(router: self, repo: HttpRestaurantRepo(), restaurant: restaurant)
         navigationController.pushViewController(editRestaurantViewController, animated: true)
     }
 

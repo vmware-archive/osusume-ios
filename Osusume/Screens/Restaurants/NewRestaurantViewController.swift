@@ -6,10 +6,10 @@ import BrightFutures
 class NewRestaurantViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     unowned let router: Router
-    let repo: Repo
+    let repo: RestaurantRepo
 
     //MARK: - Initializers
-    init(router: Router, repo: Repo) {
+    init(router: Router, repo: RestaurantRepo) {
         self.router = router
         self.repo = repo
         super.init(nibName: nil, bundle: nil)

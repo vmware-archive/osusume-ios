@@ -6,13 +6,13 @@ import BrightFutures
 class RestaurantListViewController: UITableViewController {
 
     unowned let router : Router
-    let repo : Repo
+    let repo : RestaurantRepo
 
     let cellIdentifier = "RestaurantListItemCell"
     var restaurants: [Restaurant] = []
 
     //MARK: - Initializers
-    init(router: Router, repo: Repo) {
+    init(router: Router, repo: RestaurantRepo) {
         self.router = router
         self.repo = repo
 

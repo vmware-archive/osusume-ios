@@ -6,14 +6,14 @@ import BrightFutures
 class EditRestaurantViewController: UIViewController {
 
     unowned let router: Router
-    let repo: Repo
+    let repo: RestaurantRepo
     var restaurant: Restaurant? = nil
     var didSetupConstraints = false
     var formView: RestaurantFormView!
     var id: Int!
 
     //MARK: - Initializers
-    init(router: Router, repo: Repo, restaurant: Restaurant) {
+    init(router: Router, repo: RestaurantRepo, restaurant: Restaurant) {
         self.router = router
         self.repo = repo
         self.restaurant = restaurant
