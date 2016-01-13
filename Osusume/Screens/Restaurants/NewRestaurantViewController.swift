@@ -8,6 +8,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     unowned let router: Router
     let repo: Repo
 
+    //MARK: - Initializers
     init(router: Router, repo: Repo) {
         self.router = router
         self.repo = repo
@@ -18,6 +19,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         fatalError("init(coder:) is not supported for NewRestaurantViewController")
     }
 
+    //MARK: View Elements
     let saveButton : UIButton = {
         let button = UIButton()
         button.setTitle("Save", forState: .Normal)
@@ -26,6 +28,15 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
 
     let formView = RestaurantFormView(restaurant: nil)
 
+    let selectedImageView : UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .ScaleAspectFit
+        imageView.layer.borderColor = UIColor.blackColor().CGColor
+        imageView.layer.borderWidth = 2.0
+        imageView.backgroundColor = UIColor.grayColor()
+        return imageView
+    }()
+
     lazy var imagePicker : UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.allowsEditing = false
@@ -33,16 +44,16 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         return picker
     }()
 
-    var imageViewHeightConstraint : NSLayoutConstraint!
-    var imageViewWidthConstraint : NSLayoutConstraint!
-
     var didSetupConstraints = false
-    
+
+
+    //MARK: - View Lifecycle
     override func loadView() {
         view = UIView()
         view.backgroundColor = UIColor.lightGrayColor()
 
         view.addSubview(formView)
+        view.addSubview(selectedImageView)
         view.addSubview(saveButton)
 
         view.setNeedsUpdateConstraints()
@@ -51,11 +62,15 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("selectedImageViewTapped:"))
+        selectedImageView.userInteractionEnabled = true
+        selectedImageView.addGestureRecognizer(tapGestureRecognizer)
+
         saveButton.addTarget(self, action:Selector("saveButtonTapped:"), forControlEvents: .TouchUpInside)
     }
 
-    // MARK: - actions
-    @IBAction func saveButtonTapped(sender: UIButton) {
+    // MARK: - Actions
+    func saveButtonTapped(sender: UIButton) {
         let params: [String: AnyObject] = [
             "name": formView.getNameText()!,
             "address": formView.getAddressText()!,
@@ -68,10 +83,16 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
                 self.router.showRestaurantListScreen()
         }
-
     }
 
-    @IBAction func addPhotoFromAlbumButtonTapped(sender: UIButton) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            selectedImageView.image = pickedImage
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func selectedImageViewTapped(sender: UITapGestureRecognizer) {
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
     }
@@ -82,9 +103,14 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             formView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
             formView.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
             formView.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-            formView.autoSetDimension(.Height, toSize: 300.0) // This is hard-coded. Should set to natural height.
+            formView.autoSetDimension(.Height, toSize: 250.0)
 
-            saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: formView)
+            selectedImageView.autoPinEdge(.Top, toEdge: .Bottom, ofView: formView, withOffset: 10.0)
+            selectedImageView.autoAlignAxis(.Vertical, toSameAxisOfView: view)
+            selectedImageView.autoSetDimension(.Height, toSize: 100.0)
+            selectedImageView.autoSetDimension(.Width, toSize: 100.0)
+
+            saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: selectedImageView, withOffset: 10.0)
             saveButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
             didSetupConstraints = true

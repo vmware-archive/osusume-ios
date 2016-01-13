@@ -53,6 +53,13 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(restaurant.walkInsOk).to(equal(false))
                 expect(restaurant.acceptsCreditCards).to(equal(false))
             }
+
+            it("displays the camera roll when 'Add Photo from Album' button is tapped") {
+                let view = subject.view
+                expect(view.subviews.contains(subject.selectedImageView)).to(beTrue())
+                subject.selectedImageViewTapped(UITapGestureRecognizer())
+                expect(subject.presentedViewController).to(beAKindOf(UIImagePickerController))
+            }
         }
     }
 }
