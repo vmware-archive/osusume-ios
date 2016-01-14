@@ -35,7 +35,7 @@ class FakeRestaurantRepo : RestaurantRepo {
     var restaurantsPromise = Promise<[Restaurant], RepoError>()
     func getAll() -> Future<[Restaurant], RepoError> {
         restaurantsPromise.success([
-            Restaurant(id: 1, name: "つけめんTETSU"),
+            Restaurant(id: 1, name: "つけめんTETSU", address: "", cuisineType: "つけめん", offersEnglishMenu: true, walkInsOk: true, acceptsCreditCards: true),
             Restaurant(id: 2, name: "とんかつ 豚組食堂"),
             Restaurant(id: 3, name: "Coco Curry"),
             ])

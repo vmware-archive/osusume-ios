@@ -28,6 +28,7 @@ class RestaurantListViewControllerSpec: QuickSpec {
 
                 let firstTableViewCell : UITableViewCell! = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0))
                 expect(firstTableViewCell.textLabel?.text).to(equal("つけめんTETSU"))
+                expect(firstTableViewCell.detailTextLabel?.text).to(equal("つけめん"))
 
                 let secondTableViewCell : UITableViewCell! = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 1, inSection: 0))
                 expect(secondTableViewCell.textLabel?.text).to(equal("とんかつ 豚組食堂"))
