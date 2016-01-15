@@ -20,6 +20,8 @@ class RestaurantFormView : UIView {
         self.addSubview(walkInsOkSwitch)
         self.addSubview(acceptsCreditCardsLabel)
         self.addSubview(acceptsCreditCardsSwitch)
+        self.addSubview(notesLabel)
+        self.addSubview(notesTextField)
 
         if let thisRestaurant = restaurant {
             setRestaurantValues(thisRestaurant)
@@ -81,7 +83,16 @@ class RestaurantFormView : UIView {
         acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         acceptsCreditCardsLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: acceptsCreditCardsSwitch)
 
-        acceptsCreditCardsSwitch.autoPinEdgeToSuperviewEdge(.Bottom)
+        notesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        notesLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+        notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsSwitch)
+
+        notesTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        notesTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+        notesTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
+        notesTextField.autoSetDimension(.Height, toSize: 33.0)
+
+        notesTextField.autoPinEdgeToSuperviewEdge(.Bottom)
     }
 
 
@@ -94,7 +105,7 @@ class RestaurantFormView : UIView {
     }()
 
     let nameLabel : UILabel = {
-        let label = UILabel()
+        let label = UILabel.newAutoLayoutView()
         label.text = "Restaurant Name"
         return label
     }()
@@ -106,7 +117,7 @@ class RestaurantFormView : UIView {
     }()
 
     let addressLabel : UILabel = {
-        let label = UILabel()
+        let label = UILabel.newAutoLayoutView()
         label.text = "Address"
         return label
     }()
@@ -118,40 +129,53 @@ class RestaurantFormView : UIView {
     }()
 
     let cuisineTypeLabel : UILabel = {
-        let label = UILabel()
+        let label = UILabel.newAutoLayoutView()
         label.text = "Cuisine Type"
         return label
     }()
 
     let offersEnglishMenuLabel : UILabel = {
-        let label = UILabel()
+        let label = UILabel.newAutoLayoutView()
         label.text = "Offers English Menu"
         return label
     }()
 
     let offersEnglishMenuSwitch : UISwitch = {
-        let menuSwitch = UISwitch()
+        let menuSwitch = UISwitch.newAutoLayoutView()
         return menuSwitch
     }()
 
     let walkInsOkLabel : UILabel = {
-        let label = UILabel()
+        let label = UILabel.newAutoLayoutView()
         label.text = "Walk-ins Ok"
         return label
     }()
 
     let walkInsOkSwitch : UISwitch = {
-        return UISwitch()
+        return UISwitch.newAutoLayoutView()
     }()
 
     let acceptsCreditCardsLabel : UILabel = {
-        let label = UILabel()
+        let label = UILabel.newAutoLayoutView()
         label.text = "Accepts Credit Cards"
         return label
     }()
 
     let acceptsCreditCardsSwitch : UISwitch = {
-        return UISwitch()
+        return UISwitch.newAutoLayoutView()
+    }()
+
+    let notesLabel : UILabel = {
+        let label = UILabel.newAutoLayoutView()
+        label.text = "Notes"
+        return label
+    }()
+
+    let notesTextField : UITextView = {
+        let textField = UITextView.newAutoLayoutView()
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.darkGrayColor().CGColor
+        return textField
     }()
 
 
