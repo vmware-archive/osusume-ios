@@ -58,7 +58,9 @@ class NewRestaurantViewControllerSpec: QuickSpec {
 
             it("displays the camera roll when 'Add Photo from Album' button is tapped") {
                 let view = subject.view
-                expect(view.subviews.contains(subject.selectedImageView)).to(beTrue())
+                let scrollView = view.subviews[0]
+                let contentInScrollView = scrollView.subviews[0]
+                expect(contentInScrollView.subviews.contains(subject.selectedImageView)).to(beTrue())
                 subject.selectedImageViewTapped(UITapGestureRecognizer())
                 expect(subject.presentedViewController).to(beAKindOf(UIImagePickerController))
             }

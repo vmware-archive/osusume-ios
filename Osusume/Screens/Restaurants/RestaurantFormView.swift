@@ -80,6 +80,8 @@ class RestaurantFormView : UIView {
         acceptsCreditCardsSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkSwitch, withOffset: 8.0)
         acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         acceptsCreditCardsLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: acceptsCreditCardsSwitch)
+
+        acceptsCreditCardsSwitch.autoPinEdgeToSuperviewEdge(.Bottom)
     }
 
 
