@@ -51,31 +51,31 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let formViewContainer = UIView.newAutoLayoutView()
+
         view.addSubview(scrollView)
+        scrollView.addSubview(contentInScrollView)
+        contentInScrollView.addSubview(formViewContainer)
+        formViewContainer.addSubview(formView)
+        contentInScrollView.addSubview(selectedImageView)
+
+        scrollView.backgroundColor = UIColor.whiteColor()
         scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
 
-        scrollView.addSubview(contentInScrollView)
         contentInScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         contentInScrollView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
         contentInScrollView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
 
-        let formViewContainer = UIView.newAutoLayoutView()
-
-        scrollView.backgroundColor = UIColor.whiteColor()
-
-        contentInScrollView.addSubview(formViewContainer)
         formViewContainer.autoPinEdgeToSuperviewEdge(.Top)
         formViewContainer.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
         formViewContainer.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
-
-        formViewContainer.addSubview(formView)
         formView.autoPinEdgesToSuperviewEdges()
 
-        contentInScrollView.addSubview(selectedImageView)
         selectedImageView.autoPinEdge(.Top, toEdge: .Bottom, ofView: formViewContainer, withOffset: 10.0)
         selectedImageView.autoAlignAxis(.Vertical, toSameAxisOfView: formViewContainer)
         selectedImageView.autoSetDimension(.Height, toSize: 100.0)
         selectedImageView.autoSetDimension(.Width, toSize: 100.0)
+
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("doneButtonTapped:"))
         navigationItem.rightBarButtonItem = doneButton
 
