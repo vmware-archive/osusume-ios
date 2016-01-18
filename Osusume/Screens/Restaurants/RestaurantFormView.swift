@@ -90,7 +90,7 @@ class RestaurantFormView : UIView {
         notesTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         notesTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
         notesTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
-        notesTextField.autoSetDimension(.Height, toSize: 33.0)
+        notesTextField.autoSetDimension(.Height, toSize: 66.0)
 
         notesTextField.autoPinEdgeToSuperviewEdge(.Bottom)
     }

@@ -7,9 +7,6 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
 
     unowned let router: Router
     let repo: RestaurantRepo
-    let scrollView  = UIScrollView.newAutoLayoutView()
-
-    let contentInScrollView = UIView.newAutoLayoutView()
 
     //MARK: - Initializers
     init(router: Router, repo: RestaurantRepo) {
@@ -23,7 +20,10 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     }
 
     //MARK: View Elements
-    let formView = RestaurantFormView.init(restaurant: nil)
+    let scrollView  = UIScrollView.newAutoLayoutView()
+    let contentInScrollView = UIView.newAutoLayoutView()
+    let formViewContainer = UIView.newAutoLayoutView()
+    let formView = RestaurantFormView(restaurant: nil)
 
     let selectedImageView : UIImageView = {
         let imageView = UIImageView.newAutoLayoutView()
@@ -41,17 +41,9 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         return picker
     }()
 
-    var didSetupConstraints = false
-
-
     //MARK: - View Lifecycle
-
-    var contentView = UIView.newAutoLayoutView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let formViewContainer = UIView.newAutoLayoutView()
 
         view.addSubview(scrollView)
         scrollView.addSubview(contentInScrollView)
