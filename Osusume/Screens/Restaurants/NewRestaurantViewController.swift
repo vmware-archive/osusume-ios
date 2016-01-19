@@ -88,7 +88,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         ]
         repo.create(params)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
-                self.router.showRestaurantListScreen()
+                self.router.didAddRestaurant(self)
         }
     }
 

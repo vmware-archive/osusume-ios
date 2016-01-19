@@ -27,6 +27,10 @@ class FakeRouter : Router {
     func showEditRestaurantScreen(restaurant: Restaurant) {
         editRestaurantScreenIsShowing = true
     }
+
+    func didAddRestaurant(controller: NewRestaurantViewController) {
+        restaurantListScreenIsShowing = true
+    }
 }
 
 class FakeRestaurantRepo : RestaurantRepo {

@@ -27,4 +27,7 @@ class NavigationRouter : Router {
         navigationController.pushViewController(editRestaurantViewController, animated: true)
     }
 
+    func didAddRestaurant(controller: NewRestaurantViewController) {
+        self.showRestaurantListScreen()
+    }
 }
