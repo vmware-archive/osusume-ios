@@ -54,12 +54,12 @@ class EditRestaurantViewController: UIViewController {
 
         formView.autoPinEdgesToSuperviewEdges()
 
-        let updateButton = UIBarButtonItem(title: "Update", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("updateButtonTapped:"))
+        let updateButton = UIBarButtonItem(title: "Update", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapUpdateButton:"))
         navigationItem.rightBarButtonItem = updateButton
     }
 
     //MARK: - Actions
-    func updateButtonTapped(sender: UIBarButtonItem?) {
+    func didTapUpdateButton(sender: UIBarButtonItem?) {
         let params: [String: AnyObject] = [
             "name": formView.getNameText()!,
             "address": formView.getAddressText()!,

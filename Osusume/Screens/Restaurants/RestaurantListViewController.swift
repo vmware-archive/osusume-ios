@@ -34,15 +34,15 @@ class RestaurantListViewController: UITableViewController {
         }
 
         self.navigationItem.rightBarButtonItem =
-                UIBarButtonItem(title: "add restaurant", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("addRestaurantButtonTapped:"))
+                UIBarButtonItem(title: "add restaurant", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapAddRestaurantButton:"))
     }
 
     //MARK: - Actions
-    func addRestaurantButtonTapped(sender: UIBarButtonItem) {
+    func didTapAddRestaurantButton(sender: UIBarButtonItem) {
         router.showNewRestaurantScreen()
     }
 
-    func listedRestaurantTapped(id: Int) {
+    func didTapRestaurant(id: Int) {
         router.showRestaurantDetailScreen(id)
     }
 
@@ -70,6 +70,6 @@ class RestaurantListViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let id = restaurants[indexPath.row].id
-        self.listedRestaurantTapped(id)
+        self.didTapRestaurant(id)
     }
 }

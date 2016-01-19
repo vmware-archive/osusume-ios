@@ -60,12 +60,12 @@ class RestaurantDetailViewController : UIViewController {
                 self.acceptsCreditCardsLabel.text = self.restaurant!.acceptsCreditCards ? "Accepts credit cards" : "Does not accept credit cards"
         }
 
-        let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("editRestaurantButtonTapped:"))
+        let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapEditRestaurantButton:"))
         navigationItem.rightBarButtonItem = editButton
     }
 
     //MARK: - Actions
-    func editRestaurantButtonTapped(sender: UIBarButtonItem) {
+    func didTapEditRestaurantButton(sender: UIBarButtonItem) {
         if let currentRestaurant = self.restaurant {
             router.showEditRestaurantScreen(currentRestaurant)
         }

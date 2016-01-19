@@ -25,7 +25,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     let formViewContainer = UIView.newAutoLayoutView()
     let formView = RestaurantFormView(restaurant: nil)
 
-    let selectedImageView : UIImageView = {
+    let imageView : UIImageView = {
         let imageView = UIImageView.newAutoLayoutView()
         imageView.contentMode = .ScaleAspectFit
         imageView.layer.borderColor = UIColor.blackColor().CGColor
@@ -49,7 +49,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         scrollView.addSubview(contentInScrollView)
         contentInScrollView.addSubview(formViewContainer)
         formViewContainer.addSubview(formView)
-        contentInScrollView.addSubview(selectedImageView)
+        contentInScrollView.addSubview(imageView)
 
         scrollView.backgroundColor = UIColor.whiteColor()
         scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
@@ -63,21 +63,21 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
         formViewContainer.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
         formView.autoPinEdgesToSuperviewEdges()
 
-        selectedImageView.autoPinEdge(.Top, toEdge: .Bottom, ofView: formViewContainer, withOffset: 10.0)
-        selectedImageView.autoAlignAxis(.Vertical, toSameAxisOfView: formViewContainer)
-        selectedImageView.autoSetDimension(.Height, toSize: 100.0)
-        selectedImageView.autoSetDimension(.Width, toSize: 100.0)
+        imageView.autoPinEdge(.Top, toEdge: .Bottom, ofView: formViewContainer, withOffset: 10.0)
+        imageView.autoAlignAxis(.Vertical, toSameAxisOfView: formViewContainer)
+        imageView.autoSetDimension(.Height, toSize: 100.0)
+        imageView.autoSetDimension(.Width, toSize: 100.0)
 
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("doneButtonTapped:"))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapDoneButton:"))
         navigationItem.rightBarButtonItem = doneButton
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("selectedImageViewTapped:"))
-        selectedImageView.userInteractionEnabled = true
-        selectedImageView.addGestureRecognizer(tapGestureRecognizer)
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("didTapImageView:"))
+        imageView.userInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
     }
 
     // MARK: - Actions
-    func doneButtonTapped(sender: UIBarButtonItem?) {
+    func didTapDoneButton(sender: UIBarButtonItem?) {
         let params: [String: AnyObject] = [
             "name": formView.getNameText()!,
             "address": formView.getAddressText()!,
@@ -94,12 +94,12 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            selectedImageView.image = pickedImage
+            imageView.image = pickedImage
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    func selectedImageViewTapped(sender: UITapGestureRecognizer) {
+    func didTapImageView(sender: UITapGestureRecognizer) {
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
     }

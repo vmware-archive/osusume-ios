@@ -37,7 +37,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             it("can save restaurant and return to listing screen") {
                 expect(subject.navigationItem.rightBarButtonItem!.title).to(equal("Done"))
 
-                subject.doneButtonTapped(subject.navigationItem.rightBarButtonItem)
+                subject.didTapDoneButton(subject.navigationItem.rightBarButtonItem)
                 expect(router.restaurantListScreenIsShowing).to(equal(true))
             }
 
@@ -45,7 +45,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.formView.nameTextField.text = "Some Restaurant"
                 subject.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
 
-                subject.doneButtonTapped(subject.navigationItem.rightBarButtonItem)
+                subject.didTapDoneButton(subject.navigationItem.rightBarButtonItem)
                 let restaurant: Restaurant = repo.createdRestaurant!
 
                 expect(restaurant.name).to(equal("Some Restaurant"))
@@ -60,8 +60,8 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 let view = subject.view
                 let scrollView = view.subviews[0]
                 let contentInScrollView = scrollView.subviews[0]
-                expect(contentInScrollView.subviews.contains(subject.selectedImageView)).to(beTrue())
-                subject.selectedImageViewTapped(UITapGestureRecognizer())
+                expect(contentInScrollView.subviews.contains(subject.imageView)).to(beTrue())
+                subject.didTapImageView(UITapGestureRecognizer())
                 expect(subject.presentedViewController).to(beAKindOf(UIImagePickerController))
             }
         }

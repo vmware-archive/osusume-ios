@@ -36,7 +36,7 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
                 }
 
                 it("shows the edit screen when the edit button is clicked") {
-                    subject.editRestaurantButtonTapped(subject.navigationItem.rightBarButtonItem!)
+                    subject.didTapEditRestaurantButton(subject.navigationItem.rightBarButtonItem!)
                     expect(router.editRestaurantScreenIsShowing).to(equal(true))
                 }
             }

@@ -39,7 +39,7 @@ class EditRestaurantViewControllerSpec: QuickSpec {
                 subject.formView.cuisineTypeTextField.text = "Updated Restaurant Cuisine Type"
                 subject.formView.walkInsOkSwitch.on = true
 
-                subject.updateButtonTapped(subject.navigationItem.rightBarButtonItem)
+                subject.didTapUpdateButton(subject.navigationItem.rightBarButtonItem)
                 let restaurant: Restaurant = repo.createdRestaurant!
 
                 expect(restaurant.name).to(equal("Updated Restaurant Name"))

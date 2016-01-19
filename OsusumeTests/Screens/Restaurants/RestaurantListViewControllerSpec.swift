@@ -41,13 +41,13 @@ class RestaurantListViewControllerSpec: QuickSpec {
                 expect(subject.navigationItem.rightBarButtonItem).toNot(beNil())
                 expect(subject.navigationItem.rightBarButtonItem!.title).to(equal("add restaurant"))
 
-                subject.addRestaurantButtonTapped(subject.navigationItem.rightBarButtonItem!)
+                subject.didTapAddRestaurantButton(subject.navigationItem.rightBarButtonItem!)
 
                 expect(router.newRestaurantScreenIsShowing).to(equal(true))
             }
 
             it("displays a detail view when a restaurant row is selected") {
-                subject.listedRestaurantTapped(1)
+                subject.didTapRestaurant(1)
                 expect(router.restaurantDetailScreenIsShowing).to(equal(true))
             }
         }
