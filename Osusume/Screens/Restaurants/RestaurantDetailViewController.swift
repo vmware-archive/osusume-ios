@@ -75,27 +75,21 @@ class RestaurantDetailViewController : UIViewController {
     override func updateViewConstraints() {
         if (!didSetupConstraints) {
             nameLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
-            nameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
-            nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
+            nameLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
 
             addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-            addressLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
             addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
 
             cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: addressLabel)
-            cuisineTypeLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: addressLabel)
             cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
 
             offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: cuisineTypeLabel)
-            offersEnglishMenuLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: cuisineTypeLabel)
             offersEnglishMenuLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
 
             walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: offersEnglishMenuLabel)
-            walkInsOkLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: offersEnglishMenuLabel)
             walkInsOkLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuLabel)
 
             acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: walkInsOkLabel)
-            acceptsCreditCardsLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: walkInsOkLabel)
             acceptsCreditCardsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkLabel)
 
             didSetupConstraints = true
