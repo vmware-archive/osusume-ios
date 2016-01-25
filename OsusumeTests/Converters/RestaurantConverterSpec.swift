@@ -12,7 +12,7 @@ class RestaurantConverterSpec : QuickSpec {
             }
 
             it("turns the json into an array of Restaurants") {
-                let json : [NSDictionary] = [
+                let json : [HttpJson] = [
                     ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false],
                     ["name": "second restaurant","id": 2, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false]
                 ]
@@ -32,7 +32,7 @@ class RestaurantConverterSpec : QuickSpec {
             }
 
             it("turns the json into a Restaurant") {
-                let json : NSDictionary = ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false]
+                let json : HttpJson = ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false]
 
                 let restaurant : Restaurant = subject.perform(json)
                 expect(restaurant.name).to(equal("first restaurant"))

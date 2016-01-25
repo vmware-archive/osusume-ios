@@ -7,9 +7,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var router: NavigationRouter?
     var sessionRepo: SessionRepo = SessionRepo()
 
+    static let basePath = NSBundle.mainBundle().objectForInfoDictionaryKey("ServerURL") as! String
 
     convenience override init() {
         let navController = UINavigationController()
+        let router: NavigationRouter = NavigationRouter(navigationController: navController, http: AlamofireHttp(basePath: AppDelegate.basePath))
 
         self.init(router: router)
     }

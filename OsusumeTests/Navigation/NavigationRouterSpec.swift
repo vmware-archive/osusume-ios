@@ -9,10 +9,12 @@ class NavigationRouterSpec : QuickSpec {
             var subject : NavigationRouter!
             var navController : UINavigationController!
 
+            let http: Http = AlamofireHttp(basePath: AppDelegate.basePath)
+
             beforeEach {
                 navController = UINavigationController()
 
-                subject = NavigationRouter(navigationController: navController)
+                subject = NavigationRouter(navigationController: navController, http: http)
             }
 
             it("shows the new restaurant screen") {

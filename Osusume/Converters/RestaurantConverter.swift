@@ -2,18 +2,14 @@ import Foundation
 
 class RestaurantConverter {
 
-    func perform(json: [NSDictionary]?) -> [Restaurant] {
-        if let realJsonRests = json {
-            let restaurantArray: [Restaurant] = realJsonRests.map { (restaurant: NSDictionary) in
-                perform(restaurant)
-            }
-            return restaurantArray
-        } else {
-            return []
+    func perform(json: [HttpJson]) -> [Restaurant] {
+        let restaurantArray: [Restaurant] = json.map { restaurant in
+            perform(restaurant)
         }
+        return restaurantArray
     }
 
-    func perform(json: NSDictionary) -> Restaurant {
+    func perform(json: HttpJson) -> Restaurant {
         return Restaurant(
             id: json["id"] as! Int,
             name: json["name"] as! String,
