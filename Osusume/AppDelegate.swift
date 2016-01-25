@@ -5,19 +5,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var router: NavigationRouter?
-    var sessionRepo: SessionRepo = SessionRepo()
+    var sessionRepo: SessionRepo?
 
     static let basePath = NSBundle.mainBundle().objectForInfoDictionaryKey("ServerURL") as! String
 
     convenience override init() {
         let navController = UINavigationController()
-        let router: NavigationRouter = NavigationRouter(navigationController: navController, http: AlamofireHttp(basePath: AppDelegate.basePath))
+        let sessionRepo = SessionRepo()
+        let router: NavigationRouter = NavigationRouter(navigationController: navController, http: AlamofireHttp(basePath: AppDelegate.basePath), sessionRepo: sessionRepo)
 
-        self.init(router: router)
+        self.init(router: router, sessionRepo: sessionRepo)
     }
 
-    init(router: NavigationRouter) {
+    init(router: NavigationRouter, sessionRepo: SessionRepo) {
         self.router = router
+        self.sessionRepo = sessionRepo
     }
 
     func application(
@@ -28,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window!.rootViewController = router?.navigationController
             window!.makeKeyAndVisible()
 
-            LaunchWorkflow(sessionRepo: sessionRepo).startWorkflow(router!)
+            LaunchWorkflow(sessionRepo: sessionRepo!).startWorkflow(router!)
 
             return true
     }

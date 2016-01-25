@@ -194,8 +194,8 @@
 		AECA9B661C0EC90E00C30BA4 /* OsusumeTests */ = {
 			isa = PBXGroup;
 			children = (
-				AE02DA241C3B6D1700A8F45B /* SpecHelper.swift */,
 				AECA9B691C0EC90E00C30BA4 /* Info.plist */,
+				AE02DA241C3B6D1700A8F45B /* SpecHelper.swift */,
 				DE99CF05F4A7BB5B048FC5BB /* Screens */,
 				DE99CE4BF4B09C4C96211B54 /* Navigation */,
 				DE99C0BA111E2B9203B0C73C /* Repos */,

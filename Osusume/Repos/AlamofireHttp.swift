@@ -33,7 +33,7 @@ struct AlamofireHttp: Http {
         request(.POST, path: path, parameters: parameters).responseJSON { response in
             switch response.result {
             case .Success:
-                promise.success(["status": "OK"])
+                promise.success(response.result.value as! HttpJson)
             case .Failure(_):
                 promise.failure(RepoError.PostFailed)
             }

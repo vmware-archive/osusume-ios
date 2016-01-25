@@ -3,10 +3,12 @@ import UIKit
 class NavigationRouter : Router {
     let navigationController : UINavigationController
     let http: Http
+    let sessionRepo: SessionRepo
 
-    init(navigationController: UINavigationController, http: Http) {
+    init(navigationController: UINavigationController, http: Http, sessionRepo: SessionRepo) {
         self.navigationController = navigationController
         self.http = http
+        self.sessionRepo = sessionRepo
     }
 
     func showNewRestaurantScreen() {
@@ -30,7 +32,7 @@ class NavigationRouter : Router {
     }
 
     func showLoginScreen() {
-        let loginViewController = LoginViewController(router: self, repo: HttpUserRepo(http: http))
+        let loginViewController = LoginViewController(router: self, repo: HttpUserRepo(http: http), sessionRepo: sessionRepo)
         navigationController.setViewControllers([loginViewController], animated: true)
     }
 }

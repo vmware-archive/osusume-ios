@@ -12,7 +12,7 @@ class HttpUserRepo: UserRepo {
 
     func login(email: String, password: String) -> Future<String, RepoError> {
         return http.post("/login", parameters: ["email": email, "password": password]).map { value in
-            return ((value as! NSDictionary)["token"] as! String)
+            return (value["token"] as! String)
         }
     }
 }

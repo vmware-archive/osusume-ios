@@ -27,17 +27,13 @@ class HttpRestaurantRepo : RestaurantRepo {
 
     //MARK: - POST Functions
 
-    func create(params: [String: AnyObject]) -> Future<String, RepoError> {
-        return http.post(path, parameters: ["restaurant": params]).map { value in
-            return value as! String
-        }
+    func create(params: [String: AnyObject]) -> Future<HttpJson, RepoError> {
+        return http.post(path, parameters: ["restaurant": params])
     }
 
     //MARK: - PATCH Functions
 
-    func update(id: Int, params: [String: AnyObject]) -> Future<String, RepoError> {
-        return http.patch("\(path)/\(id)", parameters: ["restaurant": params]).map { value in
-            return value as! String
-        }
+    func update(id: Int, params: [String: AnyObject]) -> Future<HttpJson, RepoError> {
+        return http.patch("\(path)/\(id)", parameters: ["restaurant": params])
     }
 }

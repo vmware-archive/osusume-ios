@@ -59,9 +59,10 @@ class FakeRestaurantRepo : RestaurantRepo {
         return restaurantsPromise.future
     }
 
-    var stringPromise = Promise<String, RepoError>()
-    func create(params: [String : AnyObject]) -> Future<String, RepoError> {
-        stringPromise.success("OK")
+    func create(params: [String : AnyObject]) -> Future<HttpJson, RepoError> {
+        let promise = Promise<HttpJson, RepoError>()
+        promise.success(HttpJson())
+
         createdRestaurant = Restaurant(id: 0,
             name: params["name"]! as! String,
             address: params["address"]! as! String,
@@ -69,7 +70,8 @@ class FakeRestaurantRepo : RestaurantRepo {
             offersEnglishMenu: params["offers_english_menu"] as! Bool,
             walkInsOk: params["walk_ins_ok"] as! Bool,
             acceptsCreditCards: params["accepts_credit_cards"] as! Bool)
-        return stringPromise.future
+
+        return promise.future
     }
 
     var restaurantPromise = Promise<Restaurant, RepoError>()
@@ -78,8 +80,10 @@ class FakeRestaurantRepo : RestaurantRepo {
         return restaurantPromise.future
     }
 
-    func update(id: Int, params: [String: AnyObject]) -> Future<String, RepoError> {
-        stringPromise.success("OK")
+    func update(id: Int, params: [String: AnyObject]) -> Future<HttpJson, RepoError> {
+        let promise = Promise<HttpJson, RepoError>()
+        promise.success(HttpJson())
+
         createdRestaurant = Restaurant(id: 0,
             name: params["name"]! as! String,
             address: params["address"]! as! String,
@@ -87,7 +91,8 @@ class FakeRestaurantRepo : RestaurantRepo {
             offersEnglishMenu: params["offers_english_menu"] as! Bool,
             walkInsOk: params["walk_ins_ok"] as! Bool,
             acceptsCreditCards: params["accepts_credit_cards"] as! Bool)
-        return stringPromise.future
+
+        return promise.future
     }
 }
 
@@ -98,7 +103,7 @@ class FakeUserRepo : UserRepo {
     var stringPromise = Promise<String, RepoError>()
 
     func login(email : String, password: String) -> Future<String, RepoError> {
-        stringPromise.success("OK")
+        stringPromise.success("token-value")
 
         self.submittedEmail = email
         self.submittedPassword = password

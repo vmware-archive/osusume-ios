@@ -1,14 +1,17 @@
 //import Foundation
 import UIKit
+import BrightFutures
 
 class LoginViewController: UIViewController {
     unowned let router : Router
     let repo : UserRepo
+    let sessionRepo: SessionRepo
 
     //MARK: - Initializers
-    init(router: Router, repo: UserRepo) {
+    init(router: Router, repo: UserRepo, sessionRepo: SessionRepo) {
         self.router = router
         self.repo = repo
+        self.sessionRepo = sessionRepo
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -86,5 +89,9 @@ class LoginViewController: UIViewController {
     //MARK: - Actions
     @objc private func didTapSubmitButton(button: UIButton) {
         repo.login(emailTextField.text!, password: passwordTextField.text!)
+            .onSuccess(ImmediateExecutionContext) { [unowned self] token in
+                self.sessionRepo.setToken(token)
+                self.router.showRestaurantListScreen()
+        }
     }
 }

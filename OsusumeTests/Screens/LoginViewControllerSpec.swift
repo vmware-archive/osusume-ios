@@ -10,13 +10,18 @@ class LoginViewControllerSpec: QuickSpec {
             var subject: LoginViewController!
             var router: FakeRouter!
             var repo: FakeUserRepo!
+            var sessionRepo: SessionRepo!
 
             beforeEach {
                 UIView.setAnimationsEnabled(false)
+
                 router = FakeRouter()
                 repo = FakeUserRepo()
-                subject = LoginViewController(router: router, repo: repo)
+                sessionRepo = SessionRepo()
+
+                subject = LoginViewController(router: router, repo: repo, sessionRepo: sessionRepo)
                 subject.view.layoutSubviews()
+                sessionRepo.deleteToken()
             }
 
             it("makes an API call with email and password") {
@@ -30,7 +35,7 @@ class LoginViewControllerSpec: QuickSpec {
 
                 expect(repo.submittedEmail).to(equal("test@email.com"))
                 expect(repo.submittedPassword).to(equal("secret"))
-
+                expect(subject.sessionRepo.getToken()).to(equal("token-value"))
             }
         }
     }
