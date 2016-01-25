@@ -1,10 +1,5 @@
 import BrightFutures
 
-enum RepoError : ErrorType {
-    case GetFailed
-    case PostFailed
-}
-
 protocol RestaurantRepo : class {
     func getAll() -> Future<[Restaurant], RepoError>
 
