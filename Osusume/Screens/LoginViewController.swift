@@ -21,27 +21,17 @@ class LoginViewController: UIViewController {
     }
 
     //MARK: - View Elements
-    let emailLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.text = "Email"
-        return label
-    }()
-
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .Line
+        textField.placeholder = "Email"
         return textField
-    }()
-
-    let passwordLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.text = "Password"
-        return label
     }()
 
     let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .Line
+        textField.placeholder = "Password"
         return textField
     }()
 
@@ -58,29 +48,20 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(emailLabel)
         view.addSubview(emailTextField)
-        view.addSubview(passwordLabel)
         view.addSubview(passwordTextField)
         view.addSubview(submitButton)
 
         view.backgroundColor = UIColor.whiteColor()
 
-        emailLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
-        emailLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
-        emailLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
+        emailTextField.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
+        emailTextField.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+        emailTextField.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
 
-        emailTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: emailLabel)
-        emailTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: emailLabel)
-        emailTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: emailLabel)
+        passwordTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: emailTextField, withOffset: 10.0)
 
-        passwordLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: emailTextField)
-        passwordLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: emailLabel)
-        passwordLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: emailLabel)
-
-        passwordTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: passwordLabel)
-        passwordTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: emailLabel)
-        passwordTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: emailLabel)
+        passwordTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: emailTextField)
+        passwordTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: emailTextField)
 
         submitButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: passwordTextField)
         submitButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
