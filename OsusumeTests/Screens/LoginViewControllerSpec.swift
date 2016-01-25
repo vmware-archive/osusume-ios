@@ -31,7 +31,7 @@ class LoginViewControllerSpec: QuickSpec {
                 expect(repo.submittedEmail).to(beNil())
                 expect(repo.submittedPassword).to(beNil())
 
-                subject.submitButton.sendActionsForControlEvents(.TouchUpInside)
+                subject.loginButton.sendActionsForControlEvents(.TouchUpInside)
 
                 expect(repo.submittedEmail).to(equal("test@email.com"))
                 expect(repo.submittedPassword).to(equal("secret"))

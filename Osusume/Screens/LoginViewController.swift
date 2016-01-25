@@ -35,12 +35,12 @@ class LoginViewController: UIViewController {
         return textField
     }()
 
-    lazy var submitButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = UIButton.newAutoLayoutView()
 
-        button.setTitle("Submit", forState: .Normal)
+        button.setTitle("Login", forState: .Normal)
         button.backgroundColor = UIColor.grayColor()
-        button.addTarget(self, action: Selector("didTapSubmitButton:"), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: Selector("didTapLoginButton:"), forControlEvents: .TouchUpInside)
         return button
     }()
 
@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
 
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
-        view.addSubview(submitButton)
+        view.addSubview(loginButton)
 
         view.backgroundColor = UIColor.whiteColor()
 
@@ -63,12 +63,12 @@ class LoginViewController: UIViewController {
         passwordTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: emailTextField)
         passwordTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: emailTextField)
 
-        submitButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: passwordTextField)
-        submitButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
+        loginButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: passwordTextField)
+        loginButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
     }
 
     //MARK: - Actions
-    @objc private func didTapSubmitButton(button: UIButton) {
+    @objc private func didTapLoginButton(button: UIButton) {
         repo.login(emailTextField.text!, password: passwordTextField.text!)
             .onSuccess(ImmediateExecutionContext) { [unowned self] token in
                 self.sessionRepo.setToken(token)
