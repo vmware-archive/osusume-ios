@@ -26,8 +26,4 @@ class NavigationRouter : Router {
         let editRestaurantViewController = EditRestaurantViewController(router: self, repo: HttpRestaurantRepo(), restaurant: restaurant)
         navigationController.pushViewController(editRestaurantViewController, animated: true)
     }
-
-    func didAddRestaurant(controller: NewRestaurantViewController) {
-        self.showRestaurantListScreen()
-    }
 }

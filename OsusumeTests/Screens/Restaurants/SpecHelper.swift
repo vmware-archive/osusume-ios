@@ -13,23 +13,30 @@ class FakeRouter : Router {
     var editRestaurantScreenIsShowing = false
 
     func showNewRestaurantScreen() {
+        setAllToFalse()
         newRestaurantScreenIsShowing = true
     }
 
     func showRestaurantListScreen() {
+        setAllToFalse()
         restaurantListScreenIsShowing = true
     }
 
     func showRestaurantDetailScreen(id: Int) {
+        setAllToFalse()
         restaurantDetailScreenIsShowing = true
     }
 
     func showEditRestaurantScreen(restaurant: Restaurant) {
+        setAllToFalse()
         editRestaurantScreenIsShowing = true
     }
 
-    func didAddRestaurant(controller: NewRestaurantViewController) {
-        restaurantListScreenIsShowing = true
+    func setAllToFalse() {
+        newRestaurantScreenIsShowing = false
+        restaurantListScreenIsShowing = false
+        restaurantDetailScreenIsShowing = false
+        editRestaurantScreenIsShowing = false
     }
 }
 

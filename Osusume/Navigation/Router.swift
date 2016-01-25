@@ -3,5 +3,4 @@ protocol Router : class {
     func showRestaurantListScreen()
     func showRestaurantDetailScreen(id: Int)
     func showEditRestaurantScreen(restaurant: Restaurant)
-    func didAddRestaurant(controller: NewRestaurantViewController)
 }
