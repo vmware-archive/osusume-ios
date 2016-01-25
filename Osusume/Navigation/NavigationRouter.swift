@@ -28,4 +28,9 @@ class NavigationRouter : Router {
         let editRestaurantViewController = EditRestaurantViewController(router: self, repo: HttpRestaurantRepo(http: http), restaurant: restaurant)
         navigationController.pushViewController(editRestaurantViewController, animated: true)
     }
+
+    func showLoginScreen() {
+        let loginViewController = LoginViewController(router: self, repo: HttpUserRepo(http: http))
+        navigationController.setViewControllers([loginViewController], animated: true)
+    }
 }

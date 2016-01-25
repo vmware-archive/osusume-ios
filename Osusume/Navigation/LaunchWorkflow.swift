@@ -6,6 +6,10 @@ class LaunchWorkflow {
     }
 
     func startWorkflow(router: Router) {
-        router.showRestaurantListScreen()
+        if let token: String = sessionRepo.getToken() {
+            router.showRestaurantListScreen()
+        } else {
+            router.showLoginScreen()
+        }
     }
 }

@@ -5,12 +5,12 @@ import BrightFutures
 import Result
 @testable import Osusume
 
-
 class FakeRouter : Router {
     var newRestaurantScreenIsShowing = false
     var restaurantListScreenIsShowing = false
     var restaurantDetailScreenIsShowing = false
     var editRestaurantScreenIsShowing = false
+    var loginScreenIsShowing = false
 
     func showNewRestaurantScreen() {
         setAllToFalse()
@@ -32,11 +32,17 @@ class FakeRouter : Router {
         editRestaurantScreenIsShowing = true
     }
 
+    func showLoginScreen() {
+        setAllToFalse()
+        loginScreenIsShowing = true
+    }
+
     func setAllToFalse() {
         newRestaurantScreenIsShowing = false
         restaurantListScreenIsShowing = false
         restaurantDetailScreenIsShowing = false
         editRestaurantScreenIsShowing = false
+        loginScreenIsShowing = false
     }
 }
 
@@ -81,6 +87,22 @@ class FakeRestaurantRepo : RestaurantRepo {
             offersEnglishMenu: params["offers_english_menu"] as! Bool,
             walkInsOk: params["walk_ins_ok"] as! Bool,
             acceptsCreditCards: params["accepts_credit_cards"] as! Bool)
+        return stringPromise.future
+    }
+}
+
+class FakeUserRepo : UserRepo {
+    var submittedEmail : String? = nil
+    var submittedPassword : String? = nil
+
+    var stringPromise = Promise<String, RepoError>()
+
+    func login(email : String, password: String) -> Future<String, RepoError> {
+        stringPromise.success("OK")
+
+        self.submittedEmail = email
+        self.submittedPassword = password
+
         return stringPromise.future
     }
 }

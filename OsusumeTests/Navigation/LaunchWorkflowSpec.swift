@@ -22,6 +22,14 @@ class LaunchWorkflowSpec : QuickSpec {
                 subject = LaunchWorkflow(sessionRepo: session)
             }
 
+            it("logs shows the login screen if there is no session") {
+                session.deleteToken()
+
+                subject.startWorkflow(router)
+
+                expect(navController.topViewController).to(beAKindOf(LoginViewController))
+            }
+
             it("logs shows the restaurant list view screen if there is a session") {
                 session.setToken("some-token")
 
