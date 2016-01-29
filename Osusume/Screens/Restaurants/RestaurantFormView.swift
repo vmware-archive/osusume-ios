@@ -41,6 +41,7 @@ class RestaurantFormView : UIView {
         offersEnglishMenuSwitch.on = restaurant.offersEnglishMenu
         walkInsOkSwitch.on = restaurant.walkInsOk
         acceptsCreditCardsSwitch.on = restaurant.acceptsCreditCards
+        notesTextField.text = restaurant.notes
     }
 
 

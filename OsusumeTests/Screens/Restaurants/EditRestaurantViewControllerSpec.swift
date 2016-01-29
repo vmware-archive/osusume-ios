@@ -31,6 +31,7 @@ class EditRestaurantViewControllerSpec: QuickSpec {
                 expect(subject.formView.offersEnglishMenuSwitch.on).to(equal(true))
                 expect(subject.formView.walkInsOkSwitch.on).to(equal(false))
                 expect(subject.formView.acceptsCreditCardsSwitch.on).to(equal(true))
+                expect(subject.formView.notesTextField.text).to(equal("This place is great"))
             }
 
 
@@ -38,6 +39,7 @@ class EditRestaurantViewControllerSpec: QuickSpec {
                 subject.formView.nameTextField.text = "Updated Restaurant Name"
                 subject.formView.cuisineTypeTextField.text = "Updated Restaurant Cuisine Type"
                 subject.formView.walkInsOkSwitch.on = true
+                subject.formView.notesTextField.text = "Try the vegetables!"
 
                 subject.didTapUpdateButton(subject.navigationItem.rightBarButtonItem)
                 let restaurant: Restaurant = repo.createdRestaurant!
@@ -48,6 +50,7 @@ class EditRestaurantViewControllerSpec: QuickSpec {
                 expect(restaurant.offersEnglishMenu).to(equal(true))
                 expect(restaurant.walkInsOk).to(equal(true))
                 expect(restaurant.acceptsCreditCards).to(equal(true))
+                expect(restaurant.notes).to(equal("Try the vegetables!"))
             }
         }
     }
