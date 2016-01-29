@@ -44,6 +44,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             it("makes an API call with all fields") {
                 subject.formView.nameTextField.text = "Some Restaurant"
                 subject.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
+                subject.formView.notesTextField.text = "Notes"
 
                 subject.didTapDoneButton(subject.navigationItem.rightBarButtonItem)
                 let restaurant: Restaurant = repo.createdRestaurant!
@@ -54,6 +55,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(restaurant.offersEnglishMenu).to(equal(false))
                 expect(restaurant.walkInsOk).to(equal(false))
                 expect(restaurant.acceptsCreditCards).to(equal(false))
+                expect(restaurant.notes).to(equal("Notes"))
             }
 
             it("displays the camera roll when 'Add Photo from Album' button is tapped") {

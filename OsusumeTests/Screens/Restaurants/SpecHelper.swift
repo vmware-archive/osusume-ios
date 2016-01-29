@@ -52,7 +52,7 @@ class FakeRestaurantRepo : RestaurantRepo {
     var restaurantsPromise = Promise<[Restaurant], RepoError>()
     func getAll() -> Future<[Restaurant], RepoError> {
         restaurantsPromise.success([
-            Restaurant(id: 1, name: "つけめんTETSU", address: "", cuisineType: "つけめん", offersEnglishMenu: true, walkInsOk: true, acceptsCreditCards: true),
+            Restaurant(id: 1, name: "つけめんTETSU", address: "", cuisineType: "つけめん", offersEnglishMenu: true, walkInsOk: true, acceptsCreditCards: true, notes: "This place is great"),
             Restaurant(id: 2, name: "とんかつ 豚組食堂"),
             Restaurant(id: 3, name: "Coco Curry"),
             ])
@@ -64,12 +64,13 @@ class FakeRestaurantRepo : RestaurantRepo {
         promise.success(HttpJson())
 
         createdRestaurant = Restaurant(id: 0,
-            name: params["name"]! as! String,
-            address: params["address"]! as! String,
-            cuisineType: params["cuisine_type"]! as! String,
+            name: params["name"] as! String,
+            address: params["address"] as! String,
+            cuisineType: params["cuisine_type"] as! String,
             offersEnglishMenu: params["offers_english_menu"] as! Bool,
             walkInsOk: params["walk_ins_ok"] as! Bool,
-            acceptsCreditCards: params["accepts_credit_cards"] as! Bool)
+            acceptsCreditCards: params["accepts_credit_cards"] as! Bool,
+            notes: params["notes"] as! String)
 
         return promise.future
     }
@@ -85,12 +86,13 @@ class FakeRestaurantRepo : RestaurantRepo {
         promise.success(HttpJson())
 
         createdRestaurant = Restaurant(id: 0,
-            name: params["name"]! as! String,
-            address: params["address"]! as! String,
-            cuisineType: params["cuisine_type"]! as! String,
+            name: params["name"] as! String,
+            address: params["address"] as! String,
+            cuisineType: params["cuisine_type"] as! String,
             offersEnglishMenu: params["offers_english_menu"] as! Bool,
             walkInsOk: params["walk_ins_ok"] as! Bool,
-            acceptsCreditCards: params["accepts_credit_cards"] as! Bool)
+            acceptsCreditCards: params["accepts_credit_cards"] as! Bool,
+            notes: params["notes"] as! String)
 
         return promise.future
     }

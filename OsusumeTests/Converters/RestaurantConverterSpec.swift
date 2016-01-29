@@ -13,8 +13,8 @@ class RestaurantConverterSpec : QuickSpec {
 
             it("turns the json into an array of Restaurants") {
                 let json : [HttpJson] = [
-                    ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false],
-                    ["name": "second restaurant","id": 2, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false]
+                    ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false, "notes": "notes"],
+                    ["name": "second restaurant","id": 2, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false, "notes": "notes"]
                 ]
 
                 let restaurants : [Restaurant] = subject.perform(json)

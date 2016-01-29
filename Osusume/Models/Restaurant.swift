@@ -6,6 +6,7 @@ class Restaurant {
     var offersEnglishMenu: Bool
     var walkInsOk: Bool
     var acceptsCreditCards: Bool
+    var notes: String
 
     init(
         id: Int,
@@ -14,7 +15,8 @@ class Restaurant {
         cuisineType: String,
         offersEnglishMenu: Bool,
         walkInsOk: Bool,
-        acceptsCreditCards: Bool) {
+        acceptsCreditCards: Bool,
+        notes: String) {
             self.id = id
             self.name = name
             self.address = address
@@ -22,6 +24,7 @@ class Restaurant {
             self.offersEnglishMenu = offersEnglishMenu
             self.walkInsOk = walkInsOk
             self.acceptsCreditCards = acceptsCreditCards
+            self.notes = notes
     }
 
     init(id: Int, name: String) {
@@ -32,5 +35,6 @@ class Restaurant {
         self.offersEnglishMenu = false
         self.walkInsOk = false
         self.acceptsCreditCards = false
+        self.notes = ""
     }
 }

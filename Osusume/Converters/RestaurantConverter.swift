@@ -17,12 +17,13 @@ class RestaurantConverter {
             cuisineType: valueOrEmptyString(json["cuisine_type"]),
             offersEnglishMenu: valueOrFalse(json["offers_english_menu"]),
             walkInsOk: valueOrFalse(json["walk_ins_ok"]),
-            acceptsCreditCards: valueOrFalse(json["accepts_credit_cards"])
+            acceptsCreditCards: valueOrFalse(json["accepts_credit_cards"]),
+            notes: valueOrEmptyString(json["notes"])
         )
     }
 
     func valueOrEmptyString(attribute: AnyObject?) -> String {
-        if !(attribute is NSNull) {
+        if !(attribute is NSNull) && attribute != nil {
             return attribute as! String
         } else {
             return ""

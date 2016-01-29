@@ -32,6 +32,7 @@ class RestaurantDetailViewController : UIViewController {
     let offersEnglishMenuLabel = UILabel()
     let walkInsOkLabel = UILabel()
     let acceptsCreditCardsLabel = UILabel()
+    let notesLabel = UILabel()
 
 
     //MARK: - View Lifecycle
@@ -44,6 +45,7 @@ class RestaurantDetailViewController : UIViewController {
         view.addSubview(offersEnglishMenuLabel)
         view.addSubview(walkInsOkLabel)
         view.addSubview(acceptsCreditCardsLabel)
+        view.addSubview(notesLabel)
         view.setNeedsUpdateConstraints()
     }
 
@@ -58,6 +60,7 @@ class RestaurantDetailViewController : UIViewController {
                 self.offersEnglishMenuLabel.text = self.restaurant!.offersEnglishMenu ? "Offers English menu" : "Does not offer English menu"
                 self.walkInsOkLabel.text = self.restaurant!.walkInsOk ? "Walk-ins ok" : "Walk-ins not recommended"
                 self.acceptsCreditCardsLabel.text = self.restaurant!.acceptsCreditCards ? "Accepts credit cards" : "Does not accept credit cards"
+                self.notesLabel.text = self.restaurant!.notes
         }
 
         let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapEditRestaurantButton:"))
@@ -80,17 +83,20 @@ class RestaurantDetailViewController : UIViewController {
             addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
 
-            cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: addressLabel)
+            cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
 
-            offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: cuisineTypeLabel)
+            offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             offersEnglishMenuLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
 
-            walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: offersEnglishMenuLabel)
+            walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             walkInsOkLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuLabel)
 
-            acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: walkInsOkLabel)
+            acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             acceptsCreditCardsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkLabel)
+
+            notesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsLabel)
 
             didSetupConstraints = true
         }

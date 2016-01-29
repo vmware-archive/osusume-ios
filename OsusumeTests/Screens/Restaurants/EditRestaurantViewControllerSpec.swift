@@ -18,7 +18,7 @@ class EditRestaurantViewControllerSpec: QuickSpec {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
-                repo.createdRestaurant = Restaurant(id: 1, name: "Original Restaurant Name", address: "Original Address", cuisineType: "Original Cuisine Type", offersEnglishMenu: true, walkInsOk: false, acceptsCreditCards: true)
+                repo.createdRestaurant = Restaurant(id: 1, name: "Original Restaurant Name", address: "Original Address", cuisineType: "Original Cuisine Type", offersEnglishMenu: true, walkInsOk: false, acceptsCreditCards: true, notes: "This place is great")
                 subject = EditRestaurantViewController(router: router, repo: repo, restaurant: repo.createdRestaurant!)
 
                 subject.view.layoutSubviews()

@@ -66,7 +66,8 @@ class EditRestaurantViewController: UIViewController {
             "cuisine_type": formView.getCuisineTypeText()!,
             "offers_english_menu": formView.getOffersEnglishMenuState()!,
             "walk_ins_ok": formView.getWalkInsOkState()!,
-            "accepts_credit_cards": formView.getAcceptsCreditCardsState()!
+            "accepts_credit_cards": formView.getAcceptsCreditCardsState()!,
+            "notes": formView.getNotesText()!
         ]
         repo.update(self.id, params: params)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in

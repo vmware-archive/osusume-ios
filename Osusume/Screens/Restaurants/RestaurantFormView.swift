@@ -204,4 +204,8 @@ class RestaurantFormView : UIView {
     func getAcceptsCreditCardsState() -> Bool? {
         return acceptsCreditCardsSwitch.on
     }
+
+    func getNotesText() -> String? {
+        return notesTextField.text
+    }
 }
