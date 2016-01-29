@@ -10,6 +10,7 @@
 		248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */; };
 		248243A21C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248243A11C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift */; };
 		AE02DA251C3B6D1700A8F45B /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE02DA241C3B6D1700A8F45B /* SpecHelper.swift */; };
+		AE10E14C1C5AF079006749F4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE10E14B1C5AF079006749F4 /* main.swift */; };
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE331EF61C50879E007D37C2 /* AlamofireHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE331EF51C50879E007D37C2 /* AlamofireHttp.swift */; };
 		AE331EF81C5087AF007D37C2 /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE331EF71C5087AF007D37C2 /* Http.swift */; };
@@ -62,6 +63,7 @@
 		2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		248243A11C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewControllerSpec.swift; sourceTree = "<group>"; };
 		AE02DA241C3B6D1700A8F45B /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecHelper.swift; path = Screens/Restaurants/SpecHelper.swift; sourceTree = "<group>"; };
+		AE10E14B1C5AF079006749F4 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AE331EF51C50879E007D37C2 /* AlamofireHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireHttp.swift; path = Repos/AlamofireHttp.swift; sourceTree = "<group>"; };
 		AE331EF71C5087AF007D37C2 /* Http.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Http.swift; path = Repos/Http.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */,
+				AE10E14B1C5AF079006749F4 /* main.swift */,
 				AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */,
 				AECA9B5B1C0EC90E00C30BA4 /* LaunchScreen.storyboard */,
 				AECA9B5E1C0EC90E00C30BA4 /* Info.plist */,
@@ -478,6 +481,7 @@
 				AE331EF61C50879E007D37C2 /* AlamofireHttp.swift in Sources */,
 				AEFEF28C1C4CBA3F00005A59 /* UserRepo.swift in Sources */,
 				AEA712401C4F4BF600862B02 /* LaunchWorkflow.swift in Sources */,
+				AE10E14C1C5AF079006749F4 /* main.swift in Sources */,
 				DE99C674E82B6B17CDB36A4B /* Router.swift in Sources */,
 				AE331EF81C5087AF007D37C2 /* Http.swift in Sources */,
 				DE99C1BD8A703F77AFD777D0 /* NavigationRouter.swift in Sources */,
