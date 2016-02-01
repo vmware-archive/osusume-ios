@@ -31,6 +31,9 @@
 		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
 		AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */; };
+		AEF1B5251C5F088E00BEA75B /* FakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1B5241C5F088E00BEA75B /* FakeRouter.swift */; };
+		AEF1B5271C5F1BED00BEA75B /* FakeRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1B5261C5F1BED00BEA75B /* FakeRestaurantRepo.swift */; };
+		AEF1B5291C5F1C3300BEA75B /* FakeUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1B5281C5F1C3300BEA75B /* FakeUserRepo.swift */; };
 		AEFEF2871C4CA7D900005A59 /* LoginViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEF2861C4CA7D900005A59 /* LoginViewControllerSpec.swift */; };
 		AEFEF28A1C4CAFE400005A59 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEF2891C4CAFE400005A59 /* LoginViewController.swift */; };
 		AEFEF28C1C4CBA3F00005A59 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEF28B1C4CBA3F00005A59 /* UserRepo.swift */; };
@@ -89,6 +92,9 @@
 		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
 		AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
+		AEF1B5241C5F088E00BEA75B /* FakeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRouter.swift; sourceTree = "<group>"; };
+		AEF1B5261C5F1BED00BEA75B /* FakeRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRestaurantRepo.swift; sourceTree = "<group>"; };
+		AEF1B5281C5F1C3300BEA75B /* FakeUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeUserRepo.swift; sourceTree = "<group>"; };
 		AEFEF2861C4CA7D900005A59 /* LoginViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerSpec.swift; sourceTree = "<group>"; };
 		AEFEF2891C4CAFE400005A59 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AEFEF28B1C4CBA3F00005A59 /* UserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
@@ -197,6 +203,7 @@
 		AECA9B661C0EC90E00C30BA4 /* OsusumeTests */ = {
 			isa = PBXGroup;
 			children = (
+				AEF1B5231C5F080E00BEA75B /* Fakes */,
 				AECA9B691C0EC90E00C30BA4 /* Info.plist */,
 				AE02DA241C3B6D1700A8F45B /* SpecHelper.swift */,
 				DE99CF05F4A7BB5B048FC5BB /* Screens */,
@@ -205,6 +212,16 @@
 				DE99C6D9E900B2C60B8C67DA /* Converters */,
 			);
 			path = OsusumeTests;
+			sourceTree = "<group>";
+		};
+		AEF1B5231C5F080E00BEA75B /* Fakes */ = {
+			isa = PBXGroup;
+			children = (
+				AEF1B5241C5F088E00BEA75B /* FakeRouter.swift */,
+				AEF1B5261C5F1BED00BEA75B /* FakeRestaurantRepo.swift */,
+				AEF1B5281C5F1C3300BEA75B /* FakeUserRepo.swift */,
+			);
+			name = Fakes;
 			sourceTree = "<group>";
 		};
 		AEFEF2851C4CA7A300005A59 /* Users */ = {
@@ -502,10 +519,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE99C1D285014C69A9EA7733 /* NewRestaurantViewControllerSpec.swift in Sources */,
+				AEF1B5291C5F1C3300BEA75B /* FakeUserRepo.swift in Sources */,
+				AEF1B5251C5F088E00BEA75B /* FakeRouter.swift in Sources */,
 				DE99C5E5D4769EC1E07F36DC /* NavigationRouterSpec.swift in Sources */,
 				248243A21C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift in Sources */,
 				AEFEF2871C4CA7D900005A59 /* LoginViewControllerSpec.swift in Sources */,
 				DE99CC10A1B0561CC90A8B1C /* RestaurantListViewControllerSpec.swift in Sources */,
+				AEF1B5271C5F1BED00BEA75B /* FakeRestaurantRepo.swift in Sources */,
 				AE02DA251C3B6D1700A8F45B /* SpecHelper.swift in Sources */,
 				DE99C398B1B5A25B9D1AE5D8 /* RestaurantConverterSpec.swift in Sources */,
 				AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */,
