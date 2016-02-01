@@ -9,7 +9,6 @@ class NewRestaurantViewControllerSpec: QuickSpec {
     var window: UIWindow?
 
     override func spec() {
-
         describe("New Restaurant Page") {
             var subject: NewRestaurantViewController!
             var router: FakeRouter!

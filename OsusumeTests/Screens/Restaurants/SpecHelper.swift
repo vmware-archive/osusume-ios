@@ -5,6 +5,14 @@ import BrightFutures
 import Result
 @testable import Osusume
 
+class SetupAndTeardownSpec: QuickSpec {
+    override func spec() {
+        afterSuite {
+            SessionRepo().deleteToken()
+        }
+    }
+}
+
 class FakeRouter : Router {
     var newRestaurantScreenIsShowing = false
     var restaurantListScreenIsShowing = false
