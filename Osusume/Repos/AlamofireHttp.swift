@@ -3,9 +3,11 @@ import Alamofire
 
 struct AlamofireHttp: Http {
     let basePath: String
+    let sessionRepo: SessionRepo
 
-    init(basePath: String) {
+    init(basePath: String, sessionRepo: SessionRepo) {
         self.basePath = basePath
+        self.sessionRepo = sessionRepo
     }
 
     func get(path: String) -> Future<AnyObject, RepoError> {
@@ -65,6 +67,10 @@ struct AlamofireHttp: Http {
         let URL = NSURL(string: "\(basePath)\(path)")!
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = method.rawValue
+
+        if let token = sessionRepo.getToken() {
+            mutableURLRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
 
         do {
             if (method != .GET) {

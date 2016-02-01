@@ -10,6 +10,11 @@ class RestaurantConverter {
     }
 
     func perform(json: HttpJson) -> Restaurant {
+        var userName : String = ""
+        if let user = json["user"] {
+            userName = valueOrEmptyString(user["name"])
+        }
+
         return Restaurant(
             id: json["id"] as! Int,
             name: json["name"] as! String,
@@ -18,7 +23,8 @@ class RestaurantConverter {
             offersEnglishMenu: valueOrFalse(json["offers_english_menu"]),
             walkInsOk: valueOrFalse(json["walk_ins_ok"]),
             acceptsCreditCards: valueOrFalse(json["accepts_credit_cards"]),
-            notes: valueOrEmptyString(json["notes"])
+            notes: valueOrEmptyString(json["notes"]),
+            author: userName
         )
     }
 

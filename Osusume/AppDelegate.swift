@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     convenience override init() {
         let navController = UINavigationController()
         let sessionRepo = SessionRepo()
-        let router: NavigationRouter = NavigationRouter(navigationController: navController, http: AlamofireHttp(basePath: AppDelegate.basePath), sessionRepo: sessionRepo)
+        let router: NavigationRouter = NavigationRouter(navigationController: navController, http: AlamofireHttp(basePath: AppDelegate.basePath, sessionRepo: sessionRepo), sessionRepo: sessionRepo)
 
         self.init(router: router, sessionRepo: sessionRepo)
     }

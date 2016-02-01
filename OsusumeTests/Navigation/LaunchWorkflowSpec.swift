@@ -10,15 +10,14 @@ class LaunchWorkflowSpec : QuickSpec {
             var subject: LaunchWorkflow!
             var router: NavigationRouter!
             var navController: UINavigationController!
-            var session: SessionRepo!
+            let session: SessionRepo = SessionRepo()
 
-            let http: Http = AlamofireHttp(basePath: AppDelegate.basePath)
+            let http: Http = AlamofireHttp(basePath: AppDelegate.basePath, sessionRepo: session)
 
             beforeEach {
                 navController = UINavigationController()
-                router = NavigationRouter(navigationController: navController, http: http, sessionRepo: SessionRepo())
+                router = NavigationRouter(navigationController: navController, http: http, sessionRepo: session)
 
-                session = SessionRepo()
                 subject = LaunchWorkflow(sessionRepo: session)
             }
 

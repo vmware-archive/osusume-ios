@@ -32,10 +32,11 @@ class RestaurantConverterSpec : QuickSpec {
             }
 
             it("turns the json into a Restaurant") {
-                let json : HttpJson = ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false]
+                let json : HttpJson = ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false, "user": ["name": "Bambi"]]
 
                 let restaurant : Restaurant = subject.perform(json)
                 expect(restaurant.name).to(equal("first restaurant"))
+                expect(restaurant.author).to(equal("Bambi"))
             }
         }
     }

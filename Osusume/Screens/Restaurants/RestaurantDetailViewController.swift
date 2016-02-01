@@ -33,6 +33,7 @@ class RestaurantDetailViewController : UIViewController {
     let walkInsOkLabel = UILabel()
     let acceptsCreditCardsLabel = UILabel()
     let notesLabel = UILabel()
+    let authorLabel = UILabel()
 
 
     //MARK: - View Lifecycle
@@ -46,6 +47,7 @@ class RestaurantDetailViewController : UIViewController {
         view.addSubview(walkInsOkLabel)
         view.addSubview(acceptsCreditCardsLabel)
         view.addSubview(notesLabel)
+        view.addSubview(authorLabel)
         view.setNeedsUpdateConstraints()
     }
 
@@ -61,6 +63,7 @@ class RestaurantDetailViewController : UIViewController {
                 self.walkInsOkLabel.text = self.restaurant!.walkInsOk ? "Walk-ins ok" : "Walk-ins not recommended"
                 self.acceptsCreditCardsLabel.text = self.restaurant!.acceptsCreditCards ? "Accepts credit cards" : "Does not accept credit cards"
                 self.notesLabel.text = self.restaurant!.notes
+                self.authorLabel.text = "Added by \(self.restaurant!.author)"
         }
 
         let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapEditRestaurantButton:"))
@@ -97,6 +100,9 @@ class RestaurantDetailViewController : UIViewController {
 
             notesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
             notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsLabel)
+
+            authorLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            authorLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
 
             didSetupConstraints = true
         }
