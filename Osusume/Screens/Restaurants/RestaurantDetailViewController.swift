@@ -32,7 +32,11 @@ class RestaurantDetailViewController : UIViewController {
     let offersEnglishMenuLabel = UILabel()
     let walkInsOkLabel = UILabel()
     let acceptsCreditCardsLabel = UILabel()
-    let notesLabel = UILabel()
+    let notesLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
     let authorLabel = UILabel()
 
 
@@ -99,6 +103,7 @@ class RestaurantDetailViewController : UIViewController {
             acceptsCreditCardsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkLabel)
 
             notesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+            notesLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
             notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsLabel)
 
             authorLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
