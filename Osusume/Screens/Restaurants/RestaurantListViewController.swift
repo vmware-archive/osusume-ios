@@ -35,6 +35,11 @@ class RestaurantListViewController: UITableViewController {
 
         self.navigationItem.rightBarButtonItem =
                 UIBarButtonItem(title: "add restaurant", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapAddRestaurantButton:"))
+
+        self.tableView.estimatedRowHeight = 10.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+
+        tableView.registerClass(RestaurantTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
 
     //MARK: - Actions
@@ -57,14 +62,9 @@ class RestaurantListViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell? = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-
-        if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellIdentifier)
-        }
-
-        cell!.textLabel?.text = restaurants[indexPath.row].name
-        cell!.detailTextLabel?.text = restaurants[indexPath.row].cuisineType
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? RestaurantTableViewCell
+        cell?.nameLabel.text = restaurants[indexPath.row].name
+        cell?.cuisineTypeLabel.text = restaurants[indexPath.row].cuisineType
         return cell!
     }
 

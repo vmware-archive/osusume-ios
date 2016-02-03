@@ -32,6 +32,7 @@
 		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
 		AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */; };
+		AEFD19BB1C6185DC008809D5 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD19BA1C6185DC008809D5 /* RestaurantTableViewCell.swift */; };
 		AEFEF28C1C4CBA3F00005A59 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEF28B1C4CBA3F00005A59 /* UserRepo.swift */; };
 		AEFEF28E1C4CC3CC00005A59 /* HttpUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEF28D1C4CC3CC00005A59 /* HttpUserRepo.swift */; };
 		DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CF23833B1E11CEDEBB5E /* RestaurantListViewController.swift */; };
@@ -92,6 +93,7 @@
 		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
 		AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
+		AEFD19BA1C6185DC008809D5 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		AEFEF28B1C4CBA3F00005A59 /* UserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
 		AEFEF28D1C4CC3CC00005A59 /* HttpUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUserRepo.swift; sourceTree = "<group>"; };
 		DE99C0274BFF2D834CED98C7 /* RestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantRepo.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */,
 				AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */,
 				AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */,
+				AEFD19BA1C6185DC008809D5 /* RestaurantTableViewCell.swift */,
 			);
 			path = Restaurants;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				AEFEF28E1C4CC3CC00005A59 /* HttpUserRepo.swift in Sources */,
 				DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */,
 				DE99C31DEBFAA0B8F57FCCAA /* RestaurantRepo.swift in Sources */,
+				AEFD19BB1C6185DC008809D5 /* RestaurantTableViewCell.swift in Sources */,
 				DE99C997532445D21A048C31 /* HttpRestaurantRepo.swift in Sources */,
 				DE99C76AD03A5F6287E76BFC /* Restaurant.swift in Sources */,
 				DE99C785DEA75F18FF4965A3 /* RestaurantConverter.swift in Sources */,

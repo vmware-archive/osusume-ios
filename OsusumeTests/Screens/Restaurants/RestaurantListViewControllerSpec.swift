@@ -16,6 +16,12 @@ class RestaurantListViewControllerSpec: QuickSpec {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
+
+                repo.allRestaurants = [
+                    Restaurant(id: 1, name: "つけめんTETSU", address: "", cuisineType: "つけめん", offersEnglishMenu: true, walkInsOk: true, acceptsCreditCards: true, notes: "This place is great", author: "Simon"),
+                    Restaurant(id: 2, name: "とんかつ 豚組食堂"),
+                    Restaurant(id: 3, name: "Coco Curry"),
+                ]
                 subject = RestaurantListViewController(router: router, repo: repo)
                 subject.view.layoutSubviews()
             }
@@ -26,15 +32,15 @@ class RestaurantListViewControllerSpec: QuickSpec {
                 expect(tableView.numberOfSections).to(equal(1))
                 expect(tableView.numberOfRowsInSection(0)).to(equal(3))
 
-                let firstTableViewCell : UITableViewCell! = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0))
-                expect(firstTableViewCell.textLabel?.text).to(equal("つけめんTETSU"))
-                expect(firstTableViewCell.detailTextLabel?.text).to(equal("つけめん"))
+                let firstTableViewCell : RestaurantTableViewCell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) as! RestaurantTableViewCell
+                expect(firstTableViewCell.nameLabel.text).to(equal("つけめんTETSU"))
+                expect(firstTableViewCell.cuisineTypeLabel.text).to(equal("つけめん"))
 
-                let secondTableViewCell : UITableViewCell! = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 1, inSection: 0))
-                expect(secondTableViewCell.textLabel?.text).to(equal("とんかつ 豚組食堂"))
+                let secondTableViewCell : RestaurantTableViewCell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 1, inSection: 0)) as! RestaurantTableViewCell
+                expect(secondTableViewCell.nameLabel.text).to(equal("とんかつ 豚組食堂"))
 
-                let thirdTableViewCell : UITableViewCell! = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 2, inSection: 0))
-                expect(thirdTableViewCell.textLabel?.text).to(equal("Coco Curry"))
+                let thirdTableViewCell : RestaurantTableViewCell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 2, inSection: 0)) as! RestaurantTableViewCell
+                expect(thirdTableViewCell.nameLabel.text).to(equal("Coco Curry"))
             }
 
             it("shows the new restaurant screen when you click 'add restaurant'") {
