@@ -16,7 +16,7 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
-                repo.createdRestaurant = Restaurant(id: 1, name: "My Restaurant", address: "Roppongi", cuisineType: "Sushi", offersEnglishMenu: true, walkInsOk: false, acceptsCreditCards: true, notes: "This place is great", author: "Danny")
+                repo.createdRestaurant = Restaurant(id: 1, name: "My Restaurant", address: "Roppongi", cuisineType: "Sushi", offersEnglishMenu: true, walkInsOk: false, acceptsCreditCards: true, notes: "This place is great", author: "Danny", createdAt: NSDate())
                 subject = RestaurantDetailViewController(router: router, repo: repo, id: 1)
                 subject.view.layoutSubviews()
             }

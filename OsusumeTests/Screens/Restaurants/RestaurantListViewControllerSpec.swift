@@ -18,7 +18,7 @@ class RestaurantListViewControllerSpec: QuickSpec {
                 repo = FakeRestaurantRepo()
 
                 repo.allRestaurants = [
-                    Restaurant(id: 1, name: "つけめんTETSU", address: "", cuisineType: "つけめん", offersEnglishMenu: true, walkInsOk: true, acceptsCreditCards: true, notes: "This place is great", author: "Simon"),
+                    Restaurant(id: 1, name: "つけめんTETSU", address: "", cuisineType: "つけめん", offersEnglishMenu: true, walkInsOk: true, acceptsCreditCards: true, notes: "This place is great", author: "Simon", createdAt: NSDate(timeIntervalSince1970: 1454480320)),
                     Restaurant(id: 2, name: "とんかつ 豚組食堂"),
                     Restaurant(id: 3, name: "Coco Curry"),
                 ]
@@ -35,6 +35,8 @@ class RestaurantListViewControllerSpec: QuickSpec {
                 let firstTableViewCell : RestaurantTableViewCell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) as! RestaurantTableViewCell
                 expect(firstTableViewCell.nameLabel.text).to(equal("つけめんTETSU"))
                 expect(firstTableViewCell.cuisineTypeLabel.text).to(equal("つけめん"))
+                expect(firstTableViewCell.authorLabel.text).to(equal("Added by Simon"))
+                expect(firstTableViewCell.createdAtLabel.text).to(equal("Created on 2/3/16"))
 
                 let secondTableViewCell : RestaurantTableViewCell = tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 1, inSection: 0)) as! RestaurantTableViewCell
                 expect(secondTableViewCell.nameLabel.text).to(equal("とんかつ 豚組食堂"))

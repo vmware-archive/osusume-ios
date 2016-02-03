@@ -1,3 +1,4 @@
+import Foundation
 import BrightFutures
 @testable import Osusume
 
@@ -23,7 +24,8 @@ class FakeRestaurantRepo : RestaurantRepo {
             walkInsOk: params["walk_ins_ok"] as! Bool,
             acceptsCreditCards: params["accepts_credit_cards"] as! Bool,
             notes: params["notes"] as! String,
-            author: "Fake user")
+            author: "Fake user",
+            createdAt: NSDate())
 
         return promise.future
     }
@@ -46,7 +48,8 @@ class FakeRestaurantRepo : RestaurantRepo {
             walkInsOk: params["walk_ins_ok"] as! Bool,
             acceptsCreditCards: params["accepts_credit_cards"] as! Bool,
             notes: params["notes"] as! String,
-            author: "Fake user")
+            author: "Fake user",
+            createdAt: NSDate())
         
         return promise.future
     }

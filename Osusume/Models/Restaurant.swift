@@ -1,3 +1,5 @@
+import Foundation
+
 class Restaurant {
     var id: Int
     var name: String
@@ -8,6 +10,7 @@ class Restaurant {
     var acceptsCreditCards: Bool
     var notes: String
     var author: String
+    var createdAt: NSDate?
 
     init(
         id: Int,
@@ -18,7 +21,8 @@ class Restaurant {
         walkInsOk: Bool,
         acceptsCreditCards: Bool,
         notes: String,
-        author: String) {
+        author: String,
+        createdAt: NSDate?) {
             self.id = id
             self.name = name
             self.address = address
@@ -28,6 +32,7 @@ class Restaurant {
             self.acceptsCreditCards = acceptsCreditCards
             self.notes = notes
             self.author = author
+            self.createdAt = createdAt
     }
 
     init(id: Int, name: String) {
@@ -40,5 +45,6 @@ class Restaurant {
         self.acceptsCreditCards = false
         self.notes = ""
         self.author = ""
+        self.createdAt = nil
     }
 }

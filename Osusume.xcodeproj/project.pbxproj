@@ -33,6 +33,8 @@
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
 		AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */; };
 		AEFD19BB1C6185DC008809D5 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD19BA1C6185DC008809D5 /* RestaurantTableViewCell.swift */; };
+		AEFD19C11C61E660008809D5 /* DateConverterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD19C01C61E660008809D5 /* DateConverterSpec.swift */; };
+		AEFD19C31C61E6E7008809D5 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD19C21C61E6E7008809D5 /* DateConverter.swift */; };
 		AEFEF28C1C4CBA3F00005A59 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEF28B1C4CBA3F00005A59 /* UserRepo.swift */; };
 		AEFEF28E1C4CC3CC00005A59 /* HttpUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEF28D1C4CC3CC00005A59 /* HttpUserRepo.swift */; };
 		DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CF23833B1E11CEDEBB5E /* RestaurantListViewController.swift */; };
@@ -94,6 +96,8 @@
 		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
 		AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
 		AEFD19BA1C6185DC008809D5 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		AEFD19C01C61E660008809D5 /* DateConverterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverterSpec.swift; sourceTree = "<group>"; };
+		AEFD19C21C61E6E7008809D5 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		AEFEF28B1C4CBA3F00005A59 /* UserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
 		AEFEF28D1C4CC3CC00005A59 /* HttpUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUserRepo.swift; sourceTree = "<group>"; };
 		DE99C0274BFF2D834CED98C7 /* RestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantRepo.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				DE99CE0583D662B014365B8D /* RestaurantConverter.swift */,
+				AEFD19C21C61E6E7008809D5 /* DateConverter.swift */,
 			);
 			path = Converters;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				DE99C1CC473B79CFBC477999 /* RestaurantConverterSpec.swift */,
+				AEFD19C01C61E660008809D5 /* DateConverterSpec.swift */,
 			);
 			path = Converters;
 			sourceTree = "<group>";
@@ -496,6 +502,7 @@
 				AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */,
 				AEFEF28E1C4CC3CC00005A59 /* HttpUserRepo.swift in Sources */,
 				DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */,
+				AEFD19C31C61E6E7008809D5 /* DateConverter.swift in Sources */,
 				DE99C31DEBFAA0B8F57FCCAA /* RestaurantRepo.swift in Sources */,
 				AEFD19BB1C6185DC008809D5 /* RestaurantTableViewCell.swift in Sources */,
 				DE99C997532445D21A048C31 /* HttpRestaurantRepo.swift in Sources */,
@@ -521,6 +528,7 @@
 				AE02DA251C3B6D1700A8F45B /* SpecHelper.swift in Sources */,
 				DE99C398B1B5A25B9D1AE5D8 /* RestaurantConverterSpec.swift in Sources */,
 				AE0F65C31C60346600778E50 /* FakeRouter.swift in Sources */,
+				AEFD19C11C61E660008809D5 /* DateConverterSpec.swift in Sources */,
 				AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */,
 				AEA712441C4F4D5C00862B02 /* LaunchWorkflowSpec.swift in Sources */,
 				DE99CE8F0DB16A84EC8C2539 /* LoginViewControllerSpec.swift in Sources */,

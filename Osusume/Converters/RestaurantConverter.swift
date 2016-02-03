@@ -24,23 +24,32 @@ class RestaurantConverter {
             walkInsOk: valueOrFalse(json["walk_ins_ok"]),
             acceptsCreditCards: valueOrFalse(json["accepts_credit_cards"]),
             notes: valueOrEmptyString(json["notes"]),
-            author: userName
+            author: userName,
+            createdAt: dateOrNil(json["created_at"])
         )
     }
 
     func valueOrEmptyString(attribute: AnyObject?) -> String {
-        if !(attribute is NSNull) && attribute != nil {
-            return attribute as! String
+        if let string = attribute as? String {
+            return string
         } else {
             return ""
         }
     }
 
     func valueOrFalse(attribute: AnyObject?) -> Bool {
-        if !(attribute is NSNull) {
-            return attribute as! Bool
+        if let bool = attribute as? Bool {
+            return bool
         } else {
             return false
+        }
+    }
+
+    func dateOrNil(attribute: AnyObject?) -> NSDate? {
+        if let date = attribute as? Double {
+            return NSDate(timeIntervalSince1970: date)
+        } else {
+            return nil
         }
     }
 }

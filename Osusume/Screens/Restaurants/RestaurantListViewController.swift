@@ -10,6 +10,7 @@ class RestaurantListViewController: UITableViewController {
 
     let cellIdentifier = "RestaurantListItemCell"
     var restaurants: [Restaurant] = []
+    let dateConverter = DateConverter()
 
     //MARK: - Initializers
     init(router: Router, repo: RestaurantRepo) {
@@ -65,6 +66,8 @@ class RestaurantListViewController: UITableViewController {
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? RestaurantTableViewCell
         cell?.nameLabel.text = restaurants[indexPath.row].name
         cell?.cuisineTypeLabel.text = restaurants[indexPath.row].cuisineType
+        cell?.authorLabel.text = "Added by \(restaurants[indexPath.row].author)"
+        cell?.createdAtLabel.text = "Created on \(dateConverter.formattedDate(restaurants[indexPath.row].createdAt))"
         return cell!
     }
 
