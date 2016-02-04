@@ -1,4 +1,5 @@
 import UIKit
+import AWSCognito
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

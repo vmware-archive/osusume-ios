@@ -13,11 +13,14 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             var subject: NewRestaurantViewController!
             var router: FakeRouter!
             var repo: FakeRestaurantRepo!
+            var photoRepo: FakePhotoRepo!
 
             beforeEach {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
+                photoRepo = FakePhotoRepo()
+
                 subject = NewRestaurantViewController(router: router, repo: repo)
 
                 self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -64,6 +67,14 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(contentInScrollView.subviews.contains(subject.imageView)).to(beTrue())
                 subject.didTapImageView(UITapGestureRecognizer())
                 expect(subject.presentedViewController).to(beAKindOf(UIImagePickerController))
+            }
+
+            it("uploads to S3 with the photo") {
+                let jeana = UIImage(named: "Jeana")
+                subject.imageView.image = jeana
+                subject.didTapDoneButton(subject.navigationItem.rightBarButtonItem)
+
+//                expect(photoRepo.savedPhoto!).to(equal(jeana))
             }
         }
     }

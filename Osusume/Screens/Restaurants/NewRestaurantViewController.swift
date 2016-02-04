@@ -91,6 +91,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
                 self.router.showRestaurantListScreen()
         }
+        uploadPhoto()
     }
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -103,5 +104,31 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
     func didTapImageView(sender: UITapGestureRecognizer) {
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
+    }
+
+    func uploadPhoto() {
+        if let photo = self.imageView.image {
+            let UUID = NSUUID().UUIDString
+
+            let photoTempURL = NSURL(fileURLWithPath: NSTemporaryDirectory().stringByAppendingString(UUID))
+            UIImageJPEGRepresentation(photo, 1.0)?.writeToURL(photoTempURL, atomically: true)
+
+            let transferManager: AWSS3TransferManager = AWSS3TransferManager.defaultS3TransferManager()
+            let uploadRequest: AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
+
+            uploadRequest.bucket = "osusume-tokyo-dev"
+            uploadRequest.key = "user_id/\(UUID)"
+            uploadRequest.body = photoTempURL
+
+            transferManager.upload(uploadRequest).continueWithBlock { (AWSTask task) -> AnyObject! in
+                if task.error != nil {
+                    print("Error: \(task.error)")
+                } else {
+                    print("Upload successful")
+                }
+                
+                return nil
+            }
+        }
     }
 }
