@@ -27,6 +27,7 @@
 		AECA9B761C0ED7E000C30BA4 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B751C0ED7E000C30BA4 /* Cartfile */; };
 		AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B771C0ED81500C30BA4 /* Nimble.framework */; };
 		AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B721C0ED6FA00C30BA4 /* Quick.framework */; };
+		AED333AD1C634A5400127DC6 /* OsusumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */; };
 		AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */; };
 		AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
 		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
@@ -60,6 +61,13 @@
 			remoteGlobalIDString = AECA9B4E1C0EC90E00C30BA4;
 			remoteInfo = Osusume;
 		};
+		AED333AF1C634A5400127DC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AECA9B471C0EC90E00C30BA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AECA9B4E1C0EC90E00C30BA4;
+			remoteInfo = Osusume;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +95,9 @@
 		AECA9B721C0ED6FA00C30BA4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		AECA9B751C0ED7E000C30BA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		AECA9B771C0ED81500C30BA4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsusumeUITests.swift; sourceTree = "<group>"; };
+		AED333AE1C634A5400127DC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		AEDE88C21C1FA57700AF8DA1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -134,6 +145,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AED333A71C634A5400127DC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -165,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				AECA9B751C0ED7E000C30BA4 /* Cartfile */,
+				AED333AB1C634A5400127DC6 /* OsusumeUITests */,
 				AE1CEF6C1C15605B0006073F /* Frameworks */,
 				AECA9B511C0EC90E00C30BA4 /* Osusume */,
 				AECA9B661C0EC90E00C30BA4 /* OsusumeTests */,
@@ -177,6 +196,7 @@
 			children = (
 				AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */,
 				AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */,
+				AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,6 +230,15 @@
 				DE99C6D9E900B2C60B8C67DA /* Converters */,
 			);
 			path = OsusumeTests;
+			sourceTree = "<group>";
+		};
+		AED333AB1C634A5400127DC6 /* OsusumeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */,
+				AED333AE1C634A5400127DC6 /* Info.plist */,
+			);
+			path = OsusumeUITests;
 			sourceTree = "<group>";
 		};
 		DE99C0044C71DF22E5E51328 /* Models */ = {
@@ -374,6 +403,24 @@
 			productReference = AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		AED333A91C634A5400127DC6 /* OsusumeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AED333B41C634A5400127DC6 /* Build configuration list for PBXNativeTarget "OsusumeUITests" */;
+			buildPhases = (
+				AED333A61C634A5400127DC6 /* Sources */,
+				AED333A71C634A5400127DC6 /* Frameworks */,
+				AED333A81C634A5400127DC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AED333B01C634A5400127DC6 /* PBXTargetDependency */,
+			);
+			name = OsusumeUITests;
+			productName = OsusumeUITests;
+			productReference = AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -381,7 +428,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = OSU;
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = io.pivotal;
 				TargetAttributes = {
@@ -391,6 +438,10 @@
 					};
 					AECA9B621C0EC90E00C30BA4 = {
 						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = AECA9B4E1C0EC90E00C30BA4;
+					};
+					AED333A91C634A5400127DC6 = {
+						CreatedOnToolsVersion = 7.2;
 						TestTargetID = AECA9B4E1C0EC90E00C30BA4;
 					};
 				};
@@ -410,6 +461,7 @@
 			targets = (
 				AECA9B4E1C0EC90E00C30BA4 /* Osusume */,
 				AECA9B621C0EC90E00C30BA4 /* OsusumeTests */,
+				AED333A91C634A5400127DC6 /* OsusumeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -426,6 +478,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		AECA9B611C0EC90E00C30BA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AED333A81C634A5400127DC6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -523,6 +582,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AED333A61C634A5400127DC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AED333AD1C634A5400127DC6 /* OsusumeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -530,6 +597,11 @@
 			isa = PBXTargetDependency;
 			target = AECA9B4E1C0EC90E00C30BA4 /* Osusume */;
 			targetProxy = AECA9B641C0EC90E00C30BA4 /* PBXContainerItemProxy */;
+		};
+		AED333B01C634A5400127DC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AECA9B4E1C0EC90E00C30BA4 /* Osusume */;
+			targetProxy = AED333AF1C634A5400127DC6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -780,6 +852,48 @@
 			};
 			name = Release;
 		};
+		AED333B11C634A5400127DC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = OsusumeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				ServerURL = "http://localhost:3000";
+				TEST_TARGET_NAME = Osusume;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		AED333B21C634A5400127DC6 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = OsusumeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				ServerURL = "https://osusume.cfapps.io";
+				TEST_TARGET_NAME = Osusume;
+				USES_XCTRUNNER = YES;
+			};
+			name = Staging;
+		};
+		AED333B31C634A5400127DC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = OsusumeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				ServerURL = "";
+				TEST_TARGET_NAME = Osusume;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -809,6 +923,16 @@
 				AECA9B701C0EC90E00C30BA4 /* Debug */,
 				AE293BC81C3CBFC900E09ABC /* Staging */,
 				AECA9B711C0EC90E00C30BA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Staging;
+		};
+		AED333B41C634A5400127DC6 /* Build configuration list for PBXNativeTarget "OsusumeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AED333B11C634A5400127DC6 /* Debug */,
+				AED333B21C634A5400127DC6 /* Staging */,
+				AED333B31C634A5400127DC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Staging;
