@@ -34,6 +34,10 @@
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
 		AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */; };
 		AEFD19BB1C6185DC008809D5 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD19BA1C6185DC008809D5 /* RestaurantTableViewCell.swift */; };
+		AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF8BF8F1C61C263000677EB /* libz.tbd */; };
+		AEFCB7781C6191FB0096DD93 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
+		AEFCB77A1C6192020096DD93 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
+		AEFCB77C1C6194CE0096DD93 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */; };
 		AEFD19C11C61E660008809D5 /* DateConverterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD19C01C61E660008809D5 /* DateConverterSpec.swift */; };
 		AEFD19C31C61E6E7008809D5 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD19C21C61E6E7008809D5 /* DateConverter.swift */; };
 		AEFEF28C1C4CBA3F00005A59 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFEF28B1C4CBA3F00005A59 /* UserRepo.swift */; };
@@ -107,6 +111,11 @@
 		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
 		AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
 		AEFD19BA1C6185DC008809D5 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		AEF8BF8F1C61C263000677EB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		AEFCB7771C6191FB0096DD93 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSS3.framework"; sourceTree = "<group>"; };
+		AEFCB7791C6192020096DD93 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSCore.framework"; sourceTree = "<group>"; };
+		AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/extras/AWSCognito.framework"; sourceTree = "<group>"; };
+		AEFCB7801C6198C80096DD93 /* Osusume-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Osusume-Bridging-Header.h"; sourceTree = "<group>"; };
 		AEFD19C01C61E660008809D5 /* DateConverterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverterSpec.swift; sourceTree = "<group>"; };
 		AEFD19C21C61E6E7008809D5 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		AEFEF28B1C4CBA3F00005A59 /* UserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
@@ -134,11 +143,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */,
 				AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */,
 				AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */,
 				AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */,
 				AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */,
 				AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */,
+				AEFCB77A1C6192020096DD93 /* AWSCore.framework in Frameworks */,
+				AEFCB7781C6191FB0096DD93 /* AWSS3.framework in Frameworks */,
+				AEFCB77C1C6194CE0096DD93 /* AWSCognito.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +187,10 @@
 		AE1CEF6C1C15605B0006073F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AEF8BF8F1C61C263000677EB /* libz.tbd */,
+				AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */,
+				AEFCB7791C6192020096DD93 /* AWSCore.framework */,
+				AEFCB7771C6191FB0096DD93 /* AWSS3.framework */,
 				AEA712471C4F59B300862B02 /* KeychainAccess.framework */,
 				AEDE88C61C21342900AF8DA1 /* Alamofire.framework */,
 				AEDE88C21C1FA57700AF8DA1 /* Result.framework */,
@@ -188,6 +205,7 @@
 		AECA9B461C0EC90E00C30BA4 = {
 			isa = PBXGroup;
 			children = (
+				AEFCB7801C6198C80096DD93 /* Osusume-Bridging-Header.h */,
 				AECA9B751C0ED7E000C30BA4 /* Cartfile */,
 				AED333AB1C634A5400127DC6 /* OsusumeUITests */,
 				AE1CEF6C1C15605B0006073F /* Frameworks */,
@@ -682,12 +700,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
 				);
 				INFOPLIST_FILE = Osusume/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.Osusume;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
 				ServerURL = "https://osusume.cfapps.io";
 			};
 			name = Staging;
@@ -700,11 +721,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
 				);
 				INFOPLIST_FILE = OsusumeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
 			};
@@ -800,12 +824,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
 				);
 				INFOPLIST_FILE = Osusume/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.Osusume;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
 				ServerURL = "http://localhost:3000";
 			};
 			name = Debug;
@@ -819,12 +846,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
 				);
 				INFOPLIST_FILE = Osusume/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.Osusume;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
 				ServerURL = "";
 			};
 			name = Release;
@@ -837,11 +867,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
 				);
 				INFOPLIST_FILE = OsusumeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
 			};
@@ -855,11 +888,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
 				);
 				INFOPLIST_FILE = OsusumeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
 			};
 			name = Release;

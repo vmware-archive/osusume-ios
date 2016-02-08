@@ -59,11 +59,11 @@ struct AlamofireHttp: Http {
         return promise.future
     }
 
-    private func request(method: Method, path: String) -> Request {
+    private func request(method: Alamofire.Method, path: String) -> Request {
         return request(method, path: path, parameters: [:])
     }
 
-    private func request(method: Method, path: String, parameters: [String: AnyObject]) -> Request {
+    private func request(method: Alamofire.Method, path: String, parameters: [String: AnyObject]) -> Request {
         let URL = NSURL(string: "\(basePath)\(path)")!
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = method.rawValue
