@@ -4,8 +4,5 @@ before_install:
   - brew update
   - brew upgrade xctool
   - brew install carthage
-branches:
-  only:
-    - master
 script:
   - xctool -scheme Osusume -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.1,name=iPhone 6" test -only OsusumeTests
