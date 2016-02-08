@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>OsusumeUITests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Tests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>AECA9B621C0EC90E00C30BA4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AED333A91C634A5400127DC6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

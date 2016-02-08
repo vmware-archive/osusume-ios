@@ -38,6 +38,16 @@
                ReferencedContainer = "container:Osusume.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AED333A91C634A5400127DC6"
+               BuildableName = "OsusumeUITests.xctest"
+               BlueprintName = "OsusumeUITests"
+               ReferencedContainer = "container:Osusume.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
