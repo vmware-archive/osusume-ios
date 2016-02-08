@@ -56,7 +56,7 @@ class OsusumeUITests: XCTestCase {
         let tablesQuery = app.tables
 
         app.scrollViews.childrenMatchingType(.Other).element.childrenMatchingType(.Image).element.tap()
-        tablesQuery.buttons.elementBoundByIndex(0).tap()
+        app.tables.buttons["Camera Roll"].tap()
         app.collectionViews.cells.elementBoundByIndex(0).tap()
 
         app.navigationBars["Osusume.NewRestaurantView"].buttons["Done"].tap()
