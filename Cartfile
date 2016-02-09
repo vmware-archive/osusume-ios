@@ -4,3 +4,4 @@ github "PureLayout/PureLayout"
 github "Thomvis/BrightFutures"
 github "Alamofire/Alamofire" ~> 3.0
 github "kishikawakatsumi/KeychainAccess"
+github "rs/SDWebImage"

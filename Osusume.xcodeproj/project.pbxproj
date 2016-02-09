@@ -18,6 +18,7 @@
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE331EF91C50A01C007D37C2 /* RepoError.swift */; };
 		AE7CDA541C696E3200A2D6B3 /* PhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7CDA531C696E3200A2D6B3 /* PhotoRepo.swift */; };
+		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE7E5B801C6870CF0057A795 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7E5B7F1C6870CF0057A795 /* RestaurantTableViewCell.swift */; };
 		AE81888F1C3F87DA009D3DE7 /* RestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */; };
 		AEA712401C4F4BF600862B02 /* LaunchWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA7123F1C4F4BF600862B02 /* LaunchWorkflow.swift */; };
@@ -92,6 +93,7 @@
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AE331EF91C50A01C007D37C2 /* RepoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoError.swift; sourceTree = "<group>"; };
 		AE7CDA531C696E3200A2D6B3 /* PhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoRepo.swift; sourceTree = "<group>"; };
+		AE7CDA551C69835300A2D6B3 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		AE7E5B7F1C6870CF0057A795 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantFormView.swift; sourceTree = "<group>"; };
 		AEA7123F1C4F4BF600862B02 /* LaunchWorkflow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflow.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				AEFCB77A1C6192020096DD93 /* AWSCore.framework in Frameworks */,
 				AEFCB7781C6191FB0096DD93 /* AWSS3.framework in Frameworks */,
 				AEFCB77C1C6194CE0096DD93 /* AWSCognito.framework in Frameworks */,
+				AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +197,7 @@
 		AE1CEF6C1C15605B0006073F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE7CDA551C69835300A2D6B3 /* WebImage.framework */,
 				AEF8BF8F1C61C263000677EB /* libz.tbd */,
 				AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */,
 				AEFCB7791C6192020096DD93 /* AWSCore.framework */,
@@ -541,6 +545,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/WebImage.framework",
 			);
 			outputPaths = (
 			);
@@ -561,6 +566,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/WebImage.framework",
 			);
 			name = "Run Script";
 			outputPaths = (
