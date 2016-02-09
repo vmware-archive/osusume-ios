@@ -418,7 +418,7 @@
 				AECA9B5F1C0EC90E00C30BA4 /* Sources */,
 				AECA9B601C0EC90E00C30BA4 /* Frameworks */,
 				AECA9B611C0EC90E00C30BA4 /* Resources */,
-				AECA9B7B1C0ED97900C30BA4 /* ShellScript */,
+				AECA9B7B1C0ED97900C30BA4 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -539,7 +539,7 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
-		AECA9B7B1C0ED97900C30BA4 /* ShellScript */ = {
+		AECA9B7B1C0ED97900C30BA4 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -553,6 +553,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
