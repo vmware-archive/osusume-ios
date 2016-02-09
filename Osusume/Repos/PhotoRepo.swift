@@ -1,0 +1,3 @@
+protocol PhotoRepo {
+    func configureCredentials()
+}

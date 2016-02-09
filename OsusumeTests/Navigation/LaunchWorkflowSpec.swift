@@ -11,14 +11,14 @@ class LaunchWorkflowSpec : QuickSpec {
             var router: NavigationRouter!
             var navController: UINavigationController!
             let session: SessionRepo = SessionRepo()
+            let photoRepo: FakePhotoRepo = FakePhotoRepo()
 
             let http: Http = AlamofireHttp(basePath: AppDelegate.basePath, sessionRepo: session)
 
             beforeEach {
                 navController = UINavigationController()
                 router = NavigationRouter(navigationController: navController, http: http, sessionRepo: session)
-
-                subject = LaunchWorkflow(sessionRepo: session)
+                subject = LaunchWorkflow(sessionRepo: session, photoRepo: photoRepo)
             }
 
             it("logs shows the login screen if there is no session") {
@@ -35,6 +35,12 @@ class LaunchWorkflowSpec : QuickSpec {
                 subject.startWorkflow(router)
 
                 expect(navController.topViewController).to(beAKindOf(RestaurantListViewController))
+            }
+
+            it("configures PhotoRepo") {
+                subject.startWorkflow(router)
+
+                expect(photoRepo.configured).to(equal(true))
             }
         }
     }

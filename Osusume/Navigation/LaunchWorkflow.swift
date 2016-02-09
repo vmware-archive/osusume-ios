@@ -1,11 +1,15 @@
 class LaunchWorkflow {
     let sessionRepo: SessionRepo
+    let photoRepo: PhotoRepo
 
-    init (sessionRepo: SessionRepo) {
+    init (sessionRepo: SessionRepo, photoRepo: PhotoRepo) {
         self.sessionRepo = sessionRepo
+        self.photoRepo = photoRepo
     }
 
     func startWorkflow(router: Router) {
+        photoRepo.configureCredentials()
+
         if let token: String = sessionRepo.getToken() {
             router.showRestaurantListScreen()
         } else {
