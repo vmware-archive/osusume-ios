@@ -14,8 +14,8 @@ class RestaurantConverterSpec : QuickSpec {
 
             it("turns the json into an array of Restaurants") {
                 let json : [HttpJson] = [
-                    ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false, "notes": "notes", "created_at": 1454480320, "user": ["name": "Bambi"]],
-                    ["name": "second restaurant","id": 2, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false, "notes": "notes", "created_at": 1454480320, "user": ["name": "Bambi"]]
+                    ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false, "notes": "notes", "created_at": 1454480320, "user": ["name": "Bambi"], "photo_url": "http://www.example.com"],
+                    ["name": "second restaurant","id": 2, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false, "notes": "notes", "created_at": 1454480320, "user": ["name": "Bambi"], "photo_url": "http://www.example.com"]
                 ]
 
                 let restaurants : [Restaurant] = subject.perform(json)
@@ -33,7 +33,7 @@ class RestaurantConverterSpec : QuickSpec {
             }
 
             it("turns the json into a Restaurant") {
-                let json : HttpJson = ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false, "created_at": 1454480320, "user": ["name": "Bambi"]]
+                let json : HttpJson = ["name": "first restaurant", "id": 1, "address": "", "cuisine_type": "", "offers_english_menu": false, "walk_ins_ok": false, "accepts_credit_cards": false, "created_at": 1454480320, "user": ["name": "Bambi"], "photo_url": "http://www.example.com"]
 
 
 

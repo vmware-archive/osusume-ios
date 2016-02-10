@@ -25,7 +25,12 @@ class FakeRestaurantRepo : RestaurantRepo {
             acceptsCreditCards: params["accepts_credit_cards"] as! Bool,
             notes: params["notes"] as! String,
             author: "Fake user",
-            createdAt: NSDate())
+            createdAt: NSDate(),
+            photoUrl: NSURL(string: ""))
+
+        if let photoUrl = params["photo_url"] as? String {
+            createdRestaurant?.photoUrl = NSURL(string: photoUrl)
+        }
 
         return promise.future
     }
@@ -49,8 +54,9 @@ class FakeRestaurantRepo : RestaurantRepo {
             acceptsCreditCards: params["accepts_credit_cards"] as! Bool,
             notes: params["notes"] as! String,
             author: "Fake user",
-            createdAt: NSDate())
-        
+            createdAt: NSDate(),
+            photoUrl: NSURL(string: ""))
+
         return promise.future
     }
 }

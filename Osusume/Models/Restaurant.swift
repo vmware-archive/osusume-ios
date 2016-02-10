@@ -11,6 +11,7 @@ class Restaurant {
     var notes: String
     var author: String
     var createdAt: NSDate?
+    var photoUrl: NSURL?
 
     init(
         id: Int,
@@ -22,7 +23,8 @@ class Restaurant {
         acceptsCreditCards: Bool,
         notes: String,
         author: String,
-        createdAt: NSDate?) {
+        createdAt: NSDate?,
+        photoUrl: NSURL?) {
             self.id = id
             self.name = name
             self.address = address
@@ -33,6 +35,7 @@ class Restaurant {
             self.notes = notes
             self.author = author
             self.createdAt = createdAt
+            self.photoUrl = photoUrl
     }
 
     init(id: Int, name: String) {
@@ -46,5 +49,6 @@ class Restaurant {
         self.notes = ""
         self.author = ""
         self.createdAt = nil
+        self.photoUrl = nil
     }
 }

@@ -4,15 +4,17 @@ class NavigationRouter : Router {
     let navigationController : UINavigationController
     let http: Http
     let sessionRepo: SessionRepo
+    let photoRepo: PhotoRepo
 
-    init(navigationController: UINavigationController, http: Http, sessionRepo: SessionRepo) {
+    init(navigationController: UINavigationController, http: Http, sessionRepo: SessionRepo, photoRepo: PhotoRepo) {
         self.navigationController = navigationController
         self.http = http
         self.sessionRepo = sessionRepo
+        self.photoRepo = photoRepo
     }
 
     func showNewRestaurantScreen() {
-        let newRestaurantController = NewRestaurantViewController(router: self, repo: HttpRestaurantRepo(http: http))
+        let newRestaurantController = NewRestaurantViewController(router: self, restaurantRepo: HttpRestaurantRepo(http: http), photoRepo: photoRepo)
         navigationController.pushViewController(newRestaurantController, animated: true)
     }
 

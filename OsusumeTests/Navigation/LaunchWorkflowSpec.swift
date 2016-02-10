@@ -17,7 +17,7 @@ class LaunchWorkflowSpec : QuickSpec {
 
             beforeEach {
                 navController = UINavigationController()
-                router = NavigationRouter(navigationController: navController, http: http, sessionRepo: session)
+                router = NavigationRouter(navigationController: navController, http: http, sessionRepo: session, photoRepo: photoRepo)
                 subject = LaunchWorkflow(sessionRepo: session, photoRepo: photoRepo)
             }
 

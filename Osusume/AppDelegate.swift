@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navController = UINavigationController()
         let sessionRepo = SessionRepo()
         let photoRepo = S3PhotoRepo()
-        let router: NavigationRouter = NavigationRouter(navigationController: navController, http: AlamofireHttp(basePath: AppDelegate.basePath, sessionRepo: sessionRepo), sessionRepo: sessionRepo)
+        let router: NavigationRouter = NavigationRouter(navigationController: navController, http: AlamofireHttp(basePath: AppDelegate.basePath, sessionRepo: sessionRepo), sessionRepo: sessionRepo, photoRepo: photoRepo)
 
         self.init(router: router, sessionRepo: sessionRepo, photoRepo: photoRepo)
     }

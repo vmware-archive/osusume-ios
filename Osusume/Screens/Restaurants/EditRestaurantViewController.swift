@@ -29,7 +29,6 @@ class EditRestaurantViewController: UIViewController {
     let formViewContainer = UIView.newAutoLayoutView()
     var formView: RestaurantFormView!
 
-
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

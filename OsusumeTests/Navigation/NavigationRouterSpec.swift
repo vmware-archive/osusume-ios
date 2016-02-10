@@ -14,7 +14,7 @@ class NavigationRouterSpec : QuickSpec {
             beforeEach {
                 navController = UINavigationController()
 
-                subject = NavigationRouter(navigationController: navController, http: http, sessionRepo: SessionRepo())
+                subject = NavigationRouter(navigationController: navController, http: http, sessionRepo: SessionRepo(), photoRepo: FakePhotoRepo())
             }
 
             it("shows the new restaurant screen") {

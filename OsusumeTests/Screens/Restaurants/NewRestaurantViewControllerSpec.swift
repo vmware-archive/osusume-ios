@@ -13,12 +13,14 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             var subject: NewRestaurantViewController!
             var router: FakeRouter!
             var restaurantRepo: FakeRestaurantRepo!
+            var photoRepo: FakePhotoRepo!
 
             beforeEach {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 restaurantRepo = FakeRestaurantRepo()
-                subject = NewRestaurantViewController(router: router, restaurantRepo: restaurantRepo)
+                photoRepo = FakePhotoRepo()
+                subject = NewRestaurantViewController(router: router, restaurantRepo: restaurantRepo, photoRepo: photoRepo)
 
                 self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
                 self.window!.rootViewController = subject
@@ -45,6 +47,9 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
                 subject.formView.notesTextField.text = "Notes"
 
+                let image = UIImage(named: "Jeana")
+                subject.imageView.image = image
+
                 subject.didTapDoneButton(subject.navigationItem.rightBarButtonItem)
                 let restaurant: Restaurant = restaurantRepo.createdRestaurant!
 
@@ -55,6 +60,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(restaurant.walkInsOk).to(equal(false))
                 expect(restaurant.acceptsCreditCards).to(equal(false))
                 expect(restaurant.notes).to(equal("Notes"))
+                expect(restaurant.photoUrl!.absoluteString).to(equal(photoRepo.generatedUrlAbsoluteString))
             }
 
             it("displays the camera roll when 'Add Photo from Album' button is tapped") {

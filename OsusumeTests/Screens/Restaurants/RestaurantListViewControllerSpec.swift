@@ -18,7 +18,7 @@ class RestaurantListViewControllerSpec: QuickSpec {
                 repo = FakeRestaurantRepo()
 
                 repo.allRestaurants = [
-                    Restaurant(id: 1, name: "つけめんTETSU", address: "", cuisineType: "つけめん", offersEnglishMenu: true, walkInsOk: true, acceptsCreditCards: true, notes: "This place is great", author: "Simon", createdAt: NSDate(timeIntervalSince1970: 1454480320)),
+                    Restaurant(id: 1, name: "つけめんTETSU", address: "", cuisineType: "つけめん", offersEnglishMenu: true, walkInsOk: true, acceptsCreditCards: true, notes: "This place is great", author: "Simon", createdAt: NSDate(timeIntervalSince1970: 1454480320), photoUrl: NSURL(string: "")),
                     Restaurant(id: 2, name: "とんかつ 豚組食堂"),
                     Restaurant(id: 3, name: "Coco Curry"),
                 ]

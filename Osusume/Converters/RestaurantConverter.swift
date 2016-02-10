@@ -25,7 +25,8 @@ class RestaurantConverter {
             acceptsCreditCards: valueOrFalse(json["accepts_credit_cards"]),
             notes: valueOrEmptyString(json["notes"]),
             author: userName,
-            createdAt: dateOrNil(json["created_at"])
+            createdAt: dateOrNil(json["created_at"]),
+            photoUrl: optionalURL(json["photo_url"])
         )
     }
 
@@ -51,5 +52,10 @@ class RestaurantConverter {
         } else {
             return nil
         }
+    }
+
+    func optionalURL(string: AnyObject?) -> NSURL? {
+        guard let urlString = string as? String else { return nil }
+        return NSURL(string: urlString)
     }
 }

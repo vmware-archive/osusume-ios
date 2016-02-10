@@ -7,11 +7,13 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
 
     unowned let router: Router
     let restaurantRepo: RestaurantRepo
+    let photoRepo: PhotoRepo
 
     //MARK: - Initializers
-    init(router: Router, restaurantRepo: RestaurantRepo) {
+    init(router: Router, restaurantRepo: RestaurantRepo, photoRepo: PhotoRepo) {
         self.router = router
         self.restaurantRepo = restaurantRepo
+        self.photoRepo = photoRepo
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -79,7 +81,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
 
     // MARK: - Actions
     func didTapDoneButton(sender: UIBarButtonItem?) {
-        let params: [String: AnyObject] = [
+        var params: [String: AnyObject] = [
             "name": formView.getNameText()!,
             "address": formView.getAddressText()!,
             "cuisine_type": formView.getCuisineTypeText()!,
@@ -88,6 +90,14 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             "accepts_credit_cards": formView.getAcceptsCreditCardsState()!,
             "notes": formView.getNotesText()!
         ]
+
+        if let photo = self.imageView.image {
+            let key = "user_id/\(NSUUID().UUIDString)"
+
+            photoRepo.uploadPhotoWithKey(key, photo: photo)
+            params["photo_url"] = photoRepo.generatePhotoURLForKey(key).absoluteString
+        }
+
         restaurantRepo.create(params)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
                 self.router.showRestaurantListScreen()

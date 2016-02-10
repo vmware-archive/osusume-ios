@@ -66,6 +66,14 @@ class RestaurantDetailViewController : UIViewController {
         repo.getOne(self.id)
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurant in
                 self.restaurant = returnedRestaurant
+
+                let setAccessibilityTypeCompletionHandler: SDWebImageCompletionBlock = {(image: UIImage!, error: NSError!, cacheType: SDImageCacheType!, imageURL: NSURL!) -> Void in
+                    if error == nil {
+                        self.headerImageView.accessibilityLabel = "Picture of \(self.restaurant!.name)"
+                    }
+                }
+                self.headerImageView.sd_setImageWithURL(self.restaurant!.photoUrl, completed: setAccessibilityTypeCompletionHandler)
+
                 self.nameLabel.text = self.restaurant!.name
                 self.addressLabel.text = self.restaurant!.address
                 self.cuisineTypeLabel.text = self.restaurant!.cuisineType

@@ -1,6 +1,7 @@
 class S3PhotoRepo : PhotoRepo {
     static let regionType = AWSRegionType.APNortheast1
     static let identityPoolId = "ap-northeast-1:f65d8e6f-ac25-46b1-8106-f72026005681"
+    static let bucketName = "osusume-tokyo-dev"
 
     func configureCredentials() {
         // Initialize the Amazon Cognito credentials provider
@@ -8,5 +9,33 @@ class S3PhotoRepo : PhotoRepo {
         let configuration = AWSServiceConfiguration(region: S3PhotoRepo.regionType, credentialsProvider:credentialsProvider)
 
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+    }
+
+    func uploadPhotoWithKey(key: String, photo: UIImage) {
+        let fileName = key.componentsSeparatedByString("/").last
+        let photoTempURL = NSURL(fileURLWithPath: NSTemporaryDirectory().stringByAppendingString(fileName!))
+        UIImageJPEGRepresentation(photo, 1.0)?.writeToURL(photoTempURL, atomically: true)
+
+        let transferManager: AWSS3TransferManager = AWSS3TransferManager.defaultS3TransferManager()
+        let uploadRequest: AWSS3TransferManagerUploadRequest = AWSS3TransferManagerUploadRequest()
+
+        uploadRequest.bucket = S3PhotoRepo.bucketName
+        uploadRequest.key = key
+        uploadRequest.body = photoTempURL
+        uploadRequest.ACL = AWSS3ObjectCannedACL.PublicRead
+
+        transferManager.upload(uploadRequest).continueWithBlock { (AWSTask task) -> AnyObject! in
+            if task.error != nil {
+                print("Error: \(task.error)")
+            } else {
+                print("Upload successful")
+            }
+
+            return nil
+        }
+    }
+
+    func generatePhotoURLForKey(key: String) -> NSURL {
+        return NSURL(string: "https://s3-ap-northeast-1.amazonaws.com/\(S3PhotoRepo.bucketName)/\(key)")!
     }
 }

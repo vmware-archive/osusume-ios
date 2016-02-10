@@ -73,6 +73,7 @@ class OsusumeUITests: XCTestCase {
 
         tablesQuery.staticTexts[newName].tap()
 
+        XCTAssert(app.images["Picture of \(newName)"].exists)
         XCTAssert(app.staticTexts[newName].exists)
         XCTAssert(app.staticTexts["Does not offer English menu"].exists)
         XCTAssert(app.staticTexts["Walk-ins not recommended"].exists)
