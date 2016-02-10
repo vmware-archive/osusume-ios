@@ -8,8 +8,6 @@ class RestaurantDetailViewController : UIViewController {
     let repo: RestaurantRepo
     let id: Int
     var restaurant: Restaurant? = nil
-    var didSetupConstraints = false
-
 
     //MARK: - Initializers
 
@@ -26,6 +24,14 @@ class RestaurantDetailViewController : UIViewController {
     }
 
     //MARK: - View Elements
+    let scrollView  = UIScrollView.newAutoLayoutView()
+    let scrollViewContentView = UIView.newAutoLayoutView()
+
+    let headerImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .ScaleAspectFit
+        return imageView
+    }()
     let nameLabel = UILabel()
     let addressLabel = UILabel()
     let cuisineTypeLabel = UILabel()
@@ -39,24 +45,24 @@ class RestaurantDetailViewController : UIViewController {
     }()
     let authorLabel = UILabel()
 
-
-    //MARK: - View Lifecycle
-    override func loadView() {
-        view = UIView()
-        view.backgroundColor = UIColor.whiteColor()
-        view.addSubview(nameLabel)
-        view.addSubview(addressLabel)
-        view.addSubview(cuisineTypeLabel)
-        view.addSubview(offersEnglishMenuLabel)
-        view.addSubview(walkInsOkLabel)
-        view.addSubview(acceptsCreditCardsLabel)
-        view.addSubview(notesLabel)
-        view.addSubview(authorLabel)
-        view.setNeedsUpdateConstraints()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(scrollView)
+        scrollView.backgroundColor = UIColor.whiteColor()
+        scrollView.addSubview(scrollViewContentView)
+        scrollViewContentView.addSubview(headerImageView)
+        scrollViewContentView.addSubview(nameLabel)
+        scrollViewContentView.addSubview(addressLabel)
+        scrollViewContentView.addSubview(cuisineTypeLabel)
+        scrollViewContentView.addSubview(offersEnglishMenuLabel)
+        scrollViewContentView.addSubview(walkInsOkLabel)
+        scrollViewContentView.addSubview(acceptsCreditCardsLabel)
+        scrollViewContentView.addSubview(notesLabel)
+        scrollViewContentView.addSubview(authorLabel)
+
+        applyViewConstraints()
+
         repo.getOne(self.id)
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurant in
                 self.restaurant = returnedRestaurant
@@ -82,35 +88,40 @@ class RestaurantDetailViewController : UIViewController {
     }
 
     //MARK: - Constraints
-    override func updateViewConstraints() {
-        if (!didSetupConstraints) {
-            nameLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
-            nameLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+    func applyViewConstraints() {
+        scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
 
-            addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-            addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
+        scrollViewContentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        scrollViewContentView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
+        scrollViewContentView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
 
-            cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-            cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
+        headerImageView.autoPinEdge(.Top, toEdge: .Top, ofView: scrollViewContentView)
+        headerImageView.autoSetDimension(.Height, toSize: 150.0)
+        headerImageView.autoAlignAxis(.Vertical, toSameAxisOfView: view)
 
-            offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-            offersEnglishMenuLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
+        nameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: headerImageView)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
 
-            walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-            walkInsOkLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuLabel)
+        addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
 
-            acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-            acceptsCreditCardsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkLabel)
+        cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
 
-            notesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-            notesLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-            notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsLabel)
+        offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        offersEnglishMenuLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
 
-            authorLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-            authorLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
+        walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        walkInsOkLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuLabel)
 
-            didSetupConstraints = true
-        }
-        super.updateViewConstraints()
+        acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        acceptsCreditCardsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkLabel)
+
+        notesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        notesLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
+        notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsLabel)
+
+        authorLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        authorLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
     }
 }
