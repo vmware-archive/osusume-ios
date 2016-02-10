@@ -12,13 +12,13 @@ class NewRestaurantViewControllerSpec: QuickSpec {
         describe("New Restaurant Page") {
             var subject: NewRestaurantViewController!
             var router: FakeRouter!
-            var repo: FakeRestaurantRepo!
+            var restaurantRepo: FakeRestaurantRepo!
 
             beforeEach {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
-                repo = FakeRestaurantRepo()
-                subject = NewRestaurantViewController(router: router, repo: repo)
+                restaurantRepo = FakeRestaurantRepo()
+                subject = NewRestaurantViewController(router: router, restaurantRepo: restaurantRepo)
 
                 self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
                 self.window!.rootViewController = subject
@@ -46,7 +46,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 subject.formView.notesTextField.text = "Notes"
 
                 subject.didTapDoneButton(subject.navigationItem.rightBarButtonItem)
-                let restaurant: Restaurant = repo.createdRestaurant!
+                let restaurant: Restaurant = restaurantRepo.createdRestaurant!
 
                 expect(restaurant.name).to(equal("Some Restaurant"))
                 expect(restaurant.address).to(equal(""))

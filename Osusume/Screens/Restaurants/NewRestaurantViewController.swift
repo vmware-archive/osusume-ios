@@ -6,12 +6,13 @@ import BrightFutures
 class NewRestaurantViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     unowned let router: Router
-    let repo: RestaurantRepo
+    let restaurantRepo: RestaurantRepo
 
     //MARK: - Initializers
-    init(router: Router, repo: RestaurantRepo) {
+    init(router: Router, restaurantRepo: RestaurantRepo) {
         self.router = router
-        self.repo = repo
+        self.restaurantRepo = restaurantRepo
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -87,7 +88,7 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
             "accepts_credit_cards": formView.getAcceptsCreditCardsState()!,
             "notes": formView.getNotesText()!
         ]
-        repo.create(params)
+        restaurantRepo.create(params)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
                 self.router.showRestaurantListScreen()
         }
