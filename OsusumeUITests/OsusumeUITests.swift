@@ -44,12 +44,13 @@ class OsusumeUITests: XCTestCase {
         loginButton.tap()
 
         app.navigationBars["Osusume.RestaurantListView"].buttons["add restaurant"].tap()
-        
+
         let element = app.scrollViews.childrenMatchingType(.Other).element
         let textField = element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.TextField).elementBoundByIndex(0)
         textField.tap()
 
-        let restaurantName = "testAddingAndEditingARestaurant-\(NSDate())"
+//        let restaurantName = "testAddingAndEditingARestaurant-\(NSDate())"
+let restaurantName = "A"
         textField.typeText(restaurantName)
         textField.swipeUp()
 
