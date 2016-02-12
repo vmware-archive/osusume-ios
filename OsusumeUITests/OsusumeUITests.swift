@@ -7,6 +7,18 @@ extension XCUIElement {
      - Parameter text: the text to enter into the field
      */
     func clearAndEnterText(text: String) -> Void {
+        self.clearText()
+        self.typeText(text)
+    }
+
+    func typeStringAvoidingAutocorrect(text: String) -> Void {
+        guard text.characters.count > 0 else { return }
+
+        let stringAvoidingAutoCorrection: String = text + "\u{8}\(text.characters.last!)"
+        self.typeText(stringAvoidingAutoCorrection)
+    }
+
+    func clearText() -> Void {
         guard let stringValue = self.value as? String else {
             XCTFail("Tried to clear and enter text into a non string value")
             return
@@ -18,8 +30,8 @@ extension XCUIElement {
         }
 
         self.typeText(deleteString)
-        self.typeText(text)
     }
+
 }
 
 class OsusumeUITests: XCTestCase {
@@ -49,9 +61,8 @@ class OsusumeUITests: XCTestCase {
         let textField = element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.TextField).elementBoundByIndex(0)
         textField.tap()
 
-//        let restaurantName = "testAddingAndEditingARestaurant-\(NSDate())"
-let restaurantName = "A"
-        textField.typeText(restaurantName)
+        let restaurantName = "\(NSDate())-test"
+        textField.typeStringAvoidingAutocorrect(restaurantName)
         textField.swipeUp()
 
         let tablesQuery = app.tables
@@ -65,17 +76,17 @@ let restaurantName = "A"
         tablesQuery.staticTexts[restaurantName].tap()
 
         app.navigationBars["Osusume.RestaurantDetailView"].buttons["Edit"].tap()
-
-        let newName = "Something Else \(NSDate())"
-
         textField.tap()
-        textField.clearAndEnterText(newName)
+
+        let newRestaurantName = "\(NSDate())-new-name"
+        textField.clearText()
+        textField.typeStringAvoidingAutocorrect(newRestaurantName)
         app.navigationBars["Osusume.EditRestaurantView"].buttons["Update"].tap()
 
-        tablesQuery.staticTexts[newName].tap()
+        tablesQuery.staticTexts[newRestaurantName].tap()
 
-        XCTAssert(app.images["Picture of \(newName)"].exists)
-        XCTAssert(app.staticTexts[newName].exists)
+        XCTAssert(app.images["Picture of \(newRestaurantName)"].exists)
+        XCTAssert(app.staticTexts[newRestaurantName].exists)
         XCTAssert(app.staticTexts["Does not offer English menu"].exists)
         XCTAssert(app.staticTexts["Walk-ins not recommended"].exists)
         XCTAssert(app.staticTexts["Does not accept credit cards"].exists)
