@@ -5,4 +5,4 @@ before_install:
   - brew upgrade xctool
   - brew install carthage
 script:
-  - xcodebuild -project Osusume.xcodeproj -scheme "osusume staging" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.1,name=iPhone 6" test
+  - xcodebuild -project Osusume.xcodeproj -scheme "Osusume-Staging" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.1,name=iPhone 6" test
