@@ -467,7 +467,7 @@
 		AECA9B471C0EC90E00C30BA4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = OSU;
+				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = io.pivotal;
