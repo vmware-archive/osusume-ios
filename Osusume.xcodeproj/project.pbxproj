@@ -197,18 +197,18 @@
 		AE1CEF6C1C15605B0006073F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AE7CDA551C69835300A2D6B3 /* WebImage.framework */,
-				AEF8BF8F1C61C263000677EB /* libz.tbd */,
+				AEDE88C61C21342900AF8DA1 /* Alamofire.framework */,
 				AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */,
 				AEFCB7791C6192020096DD93 /* AWSCore.framework */,
 				AEFCB7771C6191FB0096DD93 /* AWSS3.framework */,
-				AEA712471C4F59B300862B02 /* KeychainAccess.framework */,
-				AEDE88C61C21342900AF8DA1 /* Alamofire.framework */,
-				AEDE88C21C1FA57700AF8DA1 /* Result.framework */,
 				AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */,
-				AE2978111C1012B400751DD3 /* PureLayout.framework */,
+				AEA712471C4F59B300862B02 /* KeychainAccess.framework */,
 				AECA9B771C0ED81500C30BA4 /* Nimble.framework */,
+				AE2978111C1012B400751DD3 /* PureLayout.framework */,
 				AECA9B721C0ED6FA00C30BA4 /* Quick.framework */,
+				AEDE88C21C1FA57700AF8DA1 /* Result.framework */,
+				AE7CDA551C69835300A2D6B3 /* WebImage.framework */,
+				AEF8BF8F1C61C263000677EB /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -216,12 +216,12 @@
 		AECA9B461C0EC90E00C30BA4 = {
 			isa = PBXGroup;
 			children = (
-				AEFCB7801C6198C80096DD93 /* Osusume-Bridging-Header.h */,
 				AECA9B751C0ED7E000C30BA4 /* Cartfile */,
-				AED333AB1C634A5400127DC6 /* OsusumeUITests */,
+				AEFCB7801C6198C80096DD93 /* Osusume-Bridging-Header.h */,
 				AE1CEF6C1C15605B0006073F /* Frameworks */,
 				AECA9B511C0EC90E00C30BA4 /* Osusume */,
 				AECA9B661C0EC90E00C30BA4 /* OsusumeTests */,
+				AED333AB1C634A5400127DC6 /* OsusumeUITests */,
 				AECA9B501C0EC90E00C30BA4 /* Products */,
 			);
 			sourceTree = "<group>";
