@@ -10,7 +10,7 @@ class LaunchWorkflow {
     func startWorkflow(router: Router) {
         photoRepo.configureCredentials()
 
-        if let token: String = sessionRepo.getToken() {
+        if let _ = sessionRepo.getToken() {
             router.showRestaurantListScreen()
         } else {
             router.showLoginScreen()
