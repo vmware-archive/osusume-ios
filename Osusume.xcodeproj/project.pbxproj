@@ -100,17 +100,17 @@
 		AEA712431C4F4D5C00862B02 /* LaunchWorkflowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflowSpec.swift; sourceTree = "<group>"; };
 		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		AEB2438F1C71666300959434 /* RestaurantListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListViewControllerTests.swift; sourceTree = "<group>"; };
-		AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osusume.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Osusume.app; path = "/Users/pivotal/workspace/osusume-ios/build/Debug-iphoneos/Osusume.app"; sourceTree = "<absolute>"; };
 		AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AECA9B5C1C0EC90E00C30BA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AECA9B5E1C0EC90E00C30BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = OsusumeTests.xctest; path = "/Users/pivotal/workspace/osusume-ios/build/Debug-iphoneos/OsusumeTests.xctest"; sourceTree = "<absolute>"; };
 		AECA9B691C0EC90E00C30BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AECA9B721C0ED6FA00C30BA4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		AECA9B771C0ED81500C30BA4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		AED333A41C62E8B200127DC6 /* FakePhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePhotoRepo.swift; sourceTree = "<group>"; };
-		AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = OsusumeUITests.xctest; path = "/Users/pivotal/workspace/osusume-ios/build/Debug-iphoneos/OsusumeUITests.xctest"; sourceTree = "<absolute>"; };
 		AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsusumeUITests.swift; sourceTree = "<group>"; };
 		AED333AE1C634A5400127DC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
@@ -218,18 +218,7 @@
 				AECA9B511C0EC90E00C30BA4 /* Osusume */,
 				AECA9B661C0EC90E00C30BA4 /* OsusumeTests */,
 				AED333AB1C634A5400127DC6 /* OsusumeUITests */,
-				AECA9B501C0EC90E00C30BA4 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		AECA9B501C0EC90E00C30BA4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */,
-				AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */,
-				AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		AECA9B511C0EC90E00C30BA4 /* Osusume */ = {
@@ -492,7 +481,7 @@
 				Base,
 			);
 			mainGroup = AECA9B461C0EC90E00C30BA4;
-			productRefGroup = AECA9B501C0EC90E00C30BA4 /* Products */;
+			productRefGroup = AECA9B461C0EC90E00C30BA4;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
