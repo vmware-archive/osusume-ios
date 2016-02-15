@@ -123,7 +123,7 @@
 		AEFCB7771C6191FB0096DD93 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSS3.framework"; sourceTree = "<group>"; };
 		AEFCB7791C6192020096DD93 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSCore.framework"; sourceTree = "<group>"; };
 		AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/extras/AWSCognito.framework"; sourceTree = "<group>"; };
-		AEFCB7801C6198C80096DD93 /* Osusume-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Osusume-Bridging-Header.h"; sourceTree = "<group>"; };
+		AEFCB7801C6198C80096DD93 /* OsusumeBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsusumeBridgingHeader.h; sourceTree = "<group>"; };
 		AEFD19C01C61E660008809D5 /* DateConverterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverterSpec.swift; sourceTree = "<group>"; };
 		AEFD19C21C61E6E7008809D5 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		AEFEF28B1C4CBA3F00005A59 /* UserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				AECA9B751C0ED7E000C30BA4 /* Cartfile */,
-				AEFCB7801C6198C80096DD93 /* Osusume-Bridging-Header.h */,
+				AEFCB7801C6198C80096DD93 /* OsusumeBridgingHeader.h */,
 				AE1CEF6C1C15605B0006073F /* Frameworks */,
 				AECA9B511C0EC90E00C30BA4 /* Osusume */,
 				AECA9B661C0EC90E00C30BA4 /* OsusumeTests */,
@@ -727,7 +727,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.Osusume;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = OsusumeBridgingHeader.h;
 				ServerURL = "https://osusume.cfapps.io";
 			};
 			name = Staging;
@@ -747,7 +747,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = OsusumeBridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
 			};
@@ -851,7 +851,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.Osusume;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = OsusumeBridgingHeader.h;
 				ServerURL = "http://localhost:3000";
 			};
 			name = Debug;
@@ -873,7 +873,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.Osusume;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = OsusumeBridgingHeader.h;
 				ServerURL = "";
 			};
 			name = Release;
@@ -893,7 +893,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = OsusumeBridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
 			};
@@ -914,7 +914,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Osusume-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = OsusumeBridgingHeader.h;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
 			};
 			name = Release;
