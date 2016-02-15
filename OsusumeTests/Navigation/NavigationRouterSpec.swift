@@ -3,41 +3,63 @@ import Nimble
 
 @testable import Osusume
 
-class NavigationRouterSpec : QuickSpec {
+class NavigationRouterSpec: QuickSpec {
     override func spec() {
         describe("the navigation router") {
-            var subject : NavigationRouter!
-            var navController : UINavigationController!
+            var navigationRouter: NavigationRouter!
+            var navController: UINavigationController!
+            let fakeSessionRepo = FakeSessionRepo()
 
-            let http: Http = AlamofireHttp(basePath: AppDelegate.basePath, sessionRepo: SessionRepo())
+            let http: Http = AlamofireHttp(
+                basePath: AppDelegate.basePath,
+                sessionRepo: fakeSessionRepo
+            )
 
             beforeEach {
                 navController = UINavigationController()
 
-                subject = NavigationRouter(navigationController: navController, http: http, sessionRepo: SessionRepo(), photoRepo: FakePhotoRepo())
+                navigationRouter = NavigationRouter(
+                    navigationController: navController,
+                    http: http,
+                    sessionRepo: fakeSessionRepo,
+                    photoRepo: FakePhotoRepo()
+                )
             }
 
             it("shows the new restaurant screen") {
-                subject.showNewRestaurantScreen()
+                navigationRouter.showNewRestaurantScreen()
 
                 expect(navController.topViewController).to(beAKindOf(NewRestaurantViewController))
             }
 
             it("shows the restaurant list screen") {
-                subject.showRestaurantListScreen()
+                navigationRouter.showRestaurantListScreen()
 
                 expect(navController.topViewController).to(beAKindOf(RestaurantListViewController))
             }
 
             it("shows the restaurant detail screen") {
-                subject.showRestaurantDetailScreen(1)
+                navigationRouter.showRestaurantDetailScreen(1)
                 expect(navController.topViewController).to(beAKindOf(RestaurantDetailViewController))
             }
 
             it("shows the edit restaurant screen") {
                 let restaurant = Restaurant(id: 1, name: "Existing Restaurant")
-                subject.showEditRestaurantScreen(restaurant)
+                navigationRouter.showEditRestaurantScreen(restaurant)
                 expect(navController.topViewController).to(beAKindOf(EditRestaurantViewController))
+            }
+
+            it("shows the login screen") {
+                navigationRouter.showLoginScreen()
+                expect(navController.topViewController).to(beAKindOf(LoginViewController))
+            }
+
+            it("passes the session to the login screen") {
+                navigationRouter.showLoginScreen()
+
+                let loginVC = navController.topViewController as! LoginViewController
+                let loginSessionRepo = loginVC.sessionRepo as? FakeSessionRepo
+                expect(fakeSessionRepo === loginSessionRepo).to(beTrue())
             }
 
         }

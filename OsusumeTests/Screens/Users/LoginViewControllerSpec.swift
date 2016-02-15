@@ -7,36 +7,38 @@ import Nimble
 class LoginViewControllerSpec: QuickSpec {
     override func spec() {
         describe("Login Page") {
-            var subject: LoginViewController!
-            var router: FakeRouter!
-            var repo: FakeUserRepo!
-            var sessionRepo: SessionRepo!
+            var loginVC: LoginViewController!
+            let fakeRouter = FakeRouter()
+            let fakeUserRepo = FakeUserRepo()
+            let fakeSessionRepo = FakeSessionRepo()
 
             beforeEach {
                 UIView.setAnimationsEnabled(false)
 
-                router = FakeRouter()
-                repo = FakeUserRepo()
-                sessionRepo = SessionRepo()
+                loginVC = LoginViewController(
+                    router: fakeRouter,
+                    repo: fakeUserRepo,
+                    sessionRepo: fakeSessionRepo
+                )
 
-                subject = LoginViewController(router: router, repo: repo, sessionRepo: sessionRepo)
-                subject.view.layoutSubviews()
-                sessionRepo.deleteToken()
+                loginVC.view.layoutSubviews()
             }
 
             it("makes an API call with email and password") {
-                subject.emailTextField.text = "test@email.com"
-                subject.passwordTextField.text = "secret"
+                loginVC.emailTextField.text = "test@email.com"
+                loginVC.passwordTextField.text = "secret"
 
-                expect(repo.submittedEmail).to(beNil())
-                expect(repo.submittedPassword).to(beNil())
+                expect(fakeUserRepo.submittedEmail).to(beNil())
+                expect(fakeUserRepo.submittedPassword).to(beNil())
 
-                subject.loginButton.sendActionsForControlEvents(.TouchUpInside)
+                loginVC.loginButton.sendActionsForControlEvents(.TouchUpInside)
 
-                expect(repo.submittedEmail).to(equal("test@email.com"))
-                expect(repo.submittedPassword).to(equal("secret"))
-                expect(subject.sessionRepo.getToken()).to(equal("token-value"))
+                expect(fakeUserRepo.submittedEmail).to(equal("test@email.com"))
+                expect(fakeUserRepo.submittedPassword).to(equal("secret"))
+
+                expect(fakeSessionRepo.getToken()).to(equal("token-value"))
+                expect(fakeRouter.restaurantListScreenIsShowing).to(beTrue())
             }
         }
-    }
+    }		
 }

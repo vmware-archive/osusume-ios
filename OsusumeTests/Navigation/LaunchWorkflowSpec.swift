@@ -7,40 +7,51 @@ import KeychainAccess
 class LaunchWorkflowSpec : QuickSpec {
     override func spec() {
         describe("the Launch Workflow") {
-            var subject: LaunchWorkflow!
+            var launchWorkflow: LaunchWorkflow!
             var router: NavigationRouter!
             var navController: UINavigationController!
-            let session: SessionRepo = SessionRepo()
-            let photoRepo: FakePhotoRepo = FakePhotoRepo()
+            let fakeSessionRepo = FakeSessionRepo()
+            let fakePhotoRepo = FakePhotoRepo()
 
-            let http: Http = AlamofireHttp(basePath: AppDelegate.basePath, sessionRepo: session)
+            let http: Http = AlamofireHttp(
+                basePath: AppDelegate.basePath,
+                sessionRepo: fakeSessionRepo
+            )
 
             beforeEach {
                 navController = UINavigationController()
-                router = NavigationRouter(navigationController: navController, http: http, sessionRepo: session, photoRepo: photoRepo)
-                subject = LaunchWorkflow(sessionRepo: session, photoRepo: photoRepo)
+
+                router = NavigationRouter(
+                    navigationController: navController,
+                    http: http,
+                    sessionRepo: fakeSessionRepo,
+                    photoRepo: fakePhotoRepo
+                )
+
+                launchWorkflow = LaunchWorkflow(
+                    sessionRepo: fakeSessionRepo,
+                    photoRepo: fakePhotoRepo
+                )
             }
 
-            it("logs shows the login screen if there is no session") {
-                session.deleteToken()
-
-                subject.startWorkflow(router)
+            it("shows the login screen if there is no session") {
+                launchWorkflow.startWorkflow(router)
 
                 expect(navController.topViewController).to(beAKindOf(LoginViewController))
             }
 
-            it("logs shows the restaurant list view screen if there is a session") {
-                session.setToken("some-token")
+            it("shows the restaurant list view screen if there is a session") {
+                fakeSessionRepo.setToken("some-token")
 
-                subject.startWorkflow(router)
+                launchWorkflow.startWorkflow(router)
 
                 expect(navController.topViewController).to(beAKindOf(RestaurantListViewController))
             }
 
             it("configures PhotoRepo") {
-                subject.startWorkflow(router)
+                launchWorkflow.startWorkflow(router)
 
-                expect(photoRepo.configured).to(equal(true))
+                expect(fakePhotoRepo.configured).to(equal(true))
             }
         }
     }

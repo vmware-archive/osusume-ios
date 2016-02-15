@@ -12,9 +12,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     convenience override init() {
         let navController = UINavigationController()
-        let sessionRepo = SessionRepo()
+        let sessionRepo = KeychainSessionRepo()
         let photoRepo = S3PhotoRepo()
-        let router: NavigationRouter = NavigationRouter(navigationController: navController, http: AlamofireHttp(basePath: AppDelegate.basePath, sessionRepo: sessionRepo), sessionRepo: sessionRepo, photoRepo: photoRepo)
+
+        let router: NavigationRouter = NavigationRouter(
+            navigationController: navController,
+            http: AlamofireHttp(
+                basePath: AppDelegate.basePath,
+                sessionRepo: sessionRepo
+            ),
+            sessionRepo: sessionRepo,
+            photoRepo: photoRepo
+        )
 
         self.init(router: router, sessionRepo: sessionRepo, photoRepo: photoRepo)
     }

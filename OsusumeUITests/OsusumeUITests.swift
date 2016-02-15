@@ -82,4 +82,3 @@ class OsusumeUITests: XCTestCase {
     }
 
 }
-    

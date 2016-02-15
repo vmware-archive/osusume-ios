@@ -34,7 +34,11 @@ class NavigationRouter : Router {
     }
 
     func showLoginScreen() {
-        let loginViewController = LoginViewController(router: self, repo: HttpUserRepo(http: http), sessionRepo: sessionRepo)
+        let loginViewController = LoginViewController(
+            router: self,
+            repo: HttpUserRepo(http: http),
+            sessionRepo: sessionRepo
+        )
         navigationController.setViewControllers([loginViewController], animated: true)
     }
 }
