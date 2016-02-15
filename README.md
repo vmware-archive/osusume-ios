@@ -1,4 +1,4 @@
-# Osusume iOS [![Build Status](https://travis-ci.org/pivotal-tokyo/osusume-ios.svg?branch=master)](https://travis-ci.org/pivotal-tokyo/osusume-ios)
+# Osusume iOS
 
 Setting up:
 
