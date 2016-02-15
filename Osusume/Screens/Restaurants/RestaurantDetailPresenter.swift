@@ -48,4 +48,8 @@ struct RestaurantDetailPresenter {
     var addedOnDate: String {
         return "on \(DateConverter().formattedDate(restaurant.createdAt))"
     }
+
+    var creationDate: String {
+        return "Created on \(DateConverter().formattedDate(restaurant.createdAt))"
+    }
 }

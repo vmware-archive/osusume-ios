@@ -35,12 +35,20 @@ class RestaurantListViewController: UITableViewController {
         }
 
         self.navigationItem.rightBarButtonItem =
-                UIBarButtonItem(title: "add restaurant", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapAddRestaurantButton:"))
+            UIBarButtonItem(
+                title: "add restaurant",
+                style: UIBarButtonItemStyle.Plain,
+                target: self,
+                action: Selector("didTapAddRestaurantButton:")
+        )
 
         self.tableView.estimatedRowHeight = 10.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
 
-        tableView.registerClass(RestaurantTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.registerClass(
+            RestaurantTableViewCell.self,
+            forCellReuseIdentifier: cellIdentifier
+        )
     }
 
     //MARK: - Actions
@@ -58,20 +66,43 @@ class RestaurantListViewController: UITableViewController {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(
+        tableView: UITableView,
+        numberOfRowsInSection section: Int
+        ) -> Int
+    {
         return restaurants.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? RestaurantTableViewCell
-        cell?.nameLabel.text = restaurants[indexPath.row].name
-        cell?.cuisineTypeLabel.text = restaurants[indexPath.row].cuisineType
-        cell?.authorLabel.text = "Added by \(restaurants[indexPath.row].author)"
-        cell?.createdAtLabel.text = "Created on \(dateConverter.formattedDate(restaurants[indexPath.row].createdAt))"
-        return cell!
+    override func tableView(
+        tableView: UITableView,
+        cellForRowAtIndexPath indexPath: NSIndexPath
+        ) -> UITableViewCell
+    {
+        if
+            let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+                as? RestaurantTableViewCell
+        {
+            let presenter = RestaurantDetailPresenter(
+                restaurant: restaurants[indexPath.row]
+            )
+
+            cell.nameLabel.text = presenter.name
+            cell.cuisineTypeLabel.text = presenter.cuisineType
+            cell.authorLabel.text = presenter.author
+            cell.createdAtLabel.text = presenter.creationDate
+
+            return cell
+        }
+
+        return UITableViewCell()
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(
+        tableView: UITableView,
+        didSelectRowAtIndexPath indexPath: NSIndexPath
+        )
+    {
         let id = restaurants[indexPath.row].id
         self.didTapRestaurant(id)
     }
