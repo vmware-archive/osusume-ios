@@ -1,0 +1,1082 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */; };
+		248243A21C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248243A11C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift */; };
+		AE017D661C7177D000788FDF /* KeychainSessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE017D651C7177D000788FDF /* KeychainSessionRepo.swift */; };
+		AE017D6A1C7179B400788FDF /* KeychainSessionRepoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE017D691C7179B400788FDF /* KeychainSessionRepoTests.swift */; };
+		AE0F65C21C60346600778E50 /* FakeRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65BF1C60346600778E50 /* FakeRestaurantRepo.swift */; };
+		AE0F65C31C60346600778E50 /* FakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65C01C60346600778E50 /* FakeRouter.swift */; };
+		AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65C11C60346600778E50 /* FakeUserRepo.swift */; };
+		AE10E14C1C5AF079006749F4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE10E14B1C5AF079006749F4 /* main.swift */; };
+		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
+		AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE331EF91C50A01C007D37C2 /* RepoError.swift */; };
+		AE74A6051C71727A00BD1C0C /* PhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74A5FB1C71727A00BD1C0C /* PhotoRepo.swift */; };
+		AE74A6061C71727A00BD1C0C /* S3PhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74A5FC1C71727A00BD1C0C /* S3PhotoRepo.swift */; };
+		AE74A6071C71727A00BD1C0C /* HttpRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74A5FE1C71727A00BD1C0C /* HttpRestaurantRepo.swift */; };
+		AE74A6081C71727A00BD1C0C /* RestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74A5FF1C71727A00BD1C0C /* RestaurantRepo.swift */; };
+		AE74A60A1C71727A00BD1C0C /* HttpUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74A6031C71727A00BD1C0C /* HttpUserRepo.swift */; };
+		AE74A60B1C71727A00BD1C0C /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74A6041C71727A00BD1C0C /* UserRepo.swift */; };
+		AE7623321C719036006272C3 /* SessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7623311C719036006272C3 /* SessionRepo.swift */; };
+		AE7623341C7190AA006272C3 /* FakeSessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7623331C7190AA006272C3 /* FakeSessionRepo.swift */; };
+		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
+		AE7E5B801C6870CF0057A795 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7E5B7F1C6870CF0057A795 /* RestaurantTableViewCell.swift */; };
+		AE81888F1C3F87DA009D3DE7 /* RestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */; };
+		AEA712401C4F4BF600862B02 /* LaunchWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA7123F1C4F4BF600862B02 /* LaunchWorkflow.swift */; };
+		AEA712441C4F4D5C00862B02 /* LaunchWorkflowSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA712431C4F4D5C00862B02 /* LaunchWorkflowSpec.swift */; };
+		AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA712471C4F59B300862B02 /* KeychainAccess.framework */; };
+		AEB243901C71666300959434 /* RestaurantListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB2438F1C71666300959434 /* RestaurantListViewControllerTests.swift */; };
+		AECA9B531C0EC90E00C30BA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */; };
+		AECA9B5A1C0EC90E00C30BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */; };
+		AECA9B5D1C0EC90E00C30BA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B5B1C0EC90E00C30BA4 /* LaunchScreen.storyboard */; };
+		AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B771C0ED81500C30BA4 /* Nimble.framework */; };
+		AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B721C0ED6FA00C30BA4 /* Quick.framework */; };
+		AED333A51C62E8B200127DC6 /* FakePhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED333A41C62E8B200127DC6 /* FakePhotoRepo.swift */; };
+		AED333AD1C634A5400127DC6 /* OsusumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */; };
+		AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */; };
+		AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
+		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
+		AEDEDC491C71935200E1A031 /* RestaurantDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEDC481C71935200E1A031 /* RestaurantDetailPresenter.swift */; };
+		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
+		AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */; };
+		AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF8BF8F1C61C263000677EB /* libz.tbd */; };
+		AEFCB7781C6191FB0096DD93 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
+		AEFCB77A1C6192020096DD93 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
+		AEFCB77C1C6194CE0096DD93 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */; };
+		AEFD19C11C61E660008809D5 /* DateConverterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD19C01C61E660008809D5 /* DateConverterSpec.swift */; };
+		AEFD19C31C61E6E7008809D5 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD19C21C61E6E7008809D5 /* DateConverter.swift */; };
+		DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CF23833B1E11CEDEBB5E /* RestaurantListViewController.swift */; };
+		DE99C1BD8A703F77AFD777D0 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAA9114682DAC8B2446F /* NavigationRouter.swift */; };
+		DE99C1D285014C69A9EA7733 /* NewRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CB4FBE6F93BF8C2F53C2 /* NewRestaurantViewControllerSpec.swift */; };
+		DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAE18A548DAFDFD0CE09 /* LoginViewController.swift */; };
+		DE99C398B1B5A25B9D1AE5D8 /* RestaurantConverterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C1CC473B79CFBC477999 /* RestaurantConverterSpec.swift */; };
+		DE99C5E5D4769EC1E07F36DC /* NavigationRouterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C54E9CE45026BBFFFC90 /* NavigationRouterSpec.swift */; };
+		DE99C674E82B6B17CDB36A4B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAB71B3ED7401BC1C3D2 /* Router.swift */; };
+		DE99C76AD03A5F6287E76BFC /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAF596314CE5FFBC2D2A /* Restaurant.swift */; };
+		DE99C785DEA75F18FF4965A3 /* RestaurantConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CE0583D662B014365B8D /* RestaurantConverter.swift */; };
+		DE99C7C1E73B412E900D494C /* AlamofireHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CC0BEA8795F1B35798F3 /* AlamofireHttp.swift */; };
+		DE99CAAB65BC8243F5B84D01 /* NewRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CFD1D44DEE333A4B91FC /* NewRestaurantViewController.swift */; };
+		DE99CDBDBD35F271954B99EC /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAD7F4ABA2ED123E25BF /* Http.swift */; };
+		DE99CE8F0DB16A84EC8C2539 /* LoginViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CC66C59B1979EF2B5CC0 /* LoginViewControllerSpec.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AECA9B641C0EC90E00C30BA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AECA9B471C0EC90E00C30BA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AECA9B4E1C0EC90E00C30BA4;
+			remoteInfo = Osusume;
+		};
+		AED333AF1C634A5400127DC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AECA9B471C0EC90E00C30BA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AECA9B4E1C0EC90E00C30BA4;
+			remoteInfo = Osusume;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
+		248243A11C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewControllerSpec.swift; sourceTree = "<group>"; };
+		AE017D651C7177D000788FDF /* KeychainSessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSessionRepo.swift; sourceTree = "<group>"; };
+		AE017D691C7179B400788FDF /* KeychainSessionRepoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSessionRepoTests.swift; sourceTree = "<group>"; };
+		AE0F65BF1C60346600778E50 /* FakeRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRestaurantRepo.swift; sourceTree = "<group>"; };
+		AE0F65C01C60346600778E50 /* FakeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRouter.swift; sourceTree = "<group>"; };
+		AE0F65C11C60346600778E50 /* FakeUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeUserRepo.swift; sourceTree = "<group>"; };
+		AE10E14B1C5AF079006749F4 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
+		AE331EF91C50A01C007D37C2 /* RepoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoError.swift; sourceTree = "<group>"; };
+		AE74A5FB1C71727A00BD1C0C /* PhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoRepo.swift; sourceTree = "<group>"; };
+		AE74A5FC1C71727A00BD1C0C /* S3PhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3PhotoRepo.swift; sourceTree = "<group>"; };
+		AE74A5FE1C71727A00BD1C0C /* HttpRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRestaurantRepo.swift; sourceTree = "<group>"; };
+		AE74A5FF1C71727A00BD1C0C /* RestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantRepo.swift; sourceTree = "<group>"; };
+		AE74A6031C71727A00BD1C0C /* HttpUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUserRepo.swift; sourceTree = "<group>"; };
+		AE74A6041C71727A00BD1C0C /* UserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
+		AE7623311C719036006272C3 /* SessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRepo.swift; sourceTree = "<group>"; };
+		AE7623331C7190AA006272C3 /* FakeSessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSessionRepo.swift; sourceTree = "<group>"; };
+		AE7CDA551C69835300A2D6B3 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
+		AE7E5B7F1C6870CF0057A795 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantFormView.swift; sourceTree = "<group>"; };
+		AEA7123F1C4F4BF600862B02 /* LaunchWorkflow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflow.swift; sourceTree = "<group>"; };
+		AEA712431C4F4D5C00862B02 /* LaunchWorkflowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflowSpec.swift; sourceTree = "<group>"; };
+		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
+		AEB2438F1C71666300959434 /* RestaurantListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListViewControllerTests.swift; sourceTree = "<group>"; };
+		AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osusume.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AECA9B5C1C0EC90E00C30BA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AECA9B5E1C0EC90E00C30BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AECA9B691C0EC90E00C30BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AECA9B721C0ED6FA00C30BA4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		AECA9B771C0ED81500C30BA4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		AED333A41C62E8B200127DC6 /* FakePhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePhotoRepo.swift; sourceTree = "<group>"; };
+		AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsusumeUITests.swift; sourceTree = "<group>"; };
+		AED333AE1C634A5400127DC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
+		AEDE88C21C1FA57700AF8DA1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		AEDEDC441C716D6900E1A031 /* OsusumeBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsusumeBridgingHeader.h; sourceTree = "<group>"; };
+		AEDEDC481C71935200E1A031 /* RestaurantDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailPresenter.swift; sourceTree = "<group>"; };
+		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
+		AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
+		AEF8BF8F1C61C263000677EB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		AEFCB7771C6191FB0096DD93 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSS3.framework"; sourceTree = "<group>"; };
+		AEFCB7791C6192020096DD93 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSCore.framework"; sourceTree = "<group>"; };
+		AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/extras/AWSCognito.framework"; sourceTree = "<group>"; };
+		AEFD19C01C61E660008809D5 /* DateConverterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverterSpec.swift; sourceTree = "<group>"; };
+		AEFD19C21C61E6E7008809D5 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
+		DE99C1CC473B79CFBC477999 /* RestaurantConverterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantConverterSpec.swift; sourceTree = "<group>"; };
+		DE99C54E9CE45026BBFFFC90 /* NavigationRouterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouterSpec.swift; sourceTree = "<group>"; };
+		DE99CAA9114682DAC8B2446F /* NavigationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		DE99CAB71B3ED7401BC1C3D2 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		DE99CAD7F4ABA2ED123E25BF /* Http.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
+		DE99CAE18A548DAFDFD0CE09 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DE99CAF596314CE5FFBC2D2A /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		DE99CB4FBE6F93BF8C2F53C2 /* NewRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
+		DE99CC0BEA8795F1B35798F3 /* AlamofireHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireHttp.swift; sourceTree = "<group>"; };
+		DE99CC66C59B1979EF2B5CC0 /* LoginViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerSpec.swift; sourceTree = "<group>"; };
+		DE99CE0583D662B014365B8D /* RestaurantConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantConverter.swift; sourceTree = "<group>"; };
+		DE99CF23833B1E11CEDEBB5E /* RestaurantListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListViewController.swift; sourceTree = "<group>"; };
+		DE99CFD1D44DEE333A4B91FC /* NewRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AECA9B4C1C0EC90E00C30BA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */,
+				AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */,
+				AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */,
+				AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */,
+				AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */,
+				AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */,
+				AEFCB77A1C6192020096DD93 /* AWSCore.framework in Frameworks */,
+				AEFCB7781C6191FB0096DD93 /* AWSS3.framework in Frameworks */,
+				AEFCB77C1C6194CE0096DD93 /* AWSCognito.framework in Frameworks */,
+				AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AECA9B601C0EC90E00C30BA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */,
+				AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AED333A71C634A5400127DC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AE017D671C71799D00788FDF /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				AE017D681C71799D00788FDF /* SessionRepo */,
+			);
+			path = Repos;
+			sourceTree = "<group>";
+		};
+		AE017D681C71799D00788FDF /* SessionRepo */ = {
+			isa = PBXGroup;
+			children = (
+				AE017D691C7179B400788FDF /* KeychainSessionRepoTests.swift */,
+			);
+			path = SessionRepo;
+			sourceTree = "<group>";
+		};
+		AE0F65BE1C60346600778E50 /* Fakes */ = {
+			isa = PBXGroup;
+			children = (
+				AED333A41C62E8B200127DC6 /* FakePhotoRepo.swift */,
+				AE0F65BF1C60346600778E50 /* FakeRestaurantRepo.swift */,
+				AE0F65C01C60346600778E50 /* FakeRouter.swift */,
+				AE0F65C11C60346600778E50 /* FakeUserRepo.swift */,
+				AE7623331C7190AA006272C3 /* FakeSessionRepo.swift */,
+			);
+			path = Fakes;
+			sourceTree = "<group>";
+		};
+		AE1CEF6C1C15605B0006073F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEDE88C61C21342900AF8DA1 /* Alamofire.framework */,
+				AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */,
+				AEFCB7791C6192020096DD93 /* AWSCore.framework */,
+				AEFCB7771C6191FB0096DD93 /* AWSS3.framework */,
+				AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */,
+				AEA712471C4F59B300862B02 /* KeychainAccess.framework */,
+				AECA9B771C0ED81500C30BA4 /* Nimble.framework */,
+				AE2978111C1012B400751DD3 /* PureLayout.framework */,
+				AECA9B721C0ED6FA00C30BA4 /* Quick.framework */,
+				AEDE88C21C1FA57700AF8DA1 /* Result.framework */,
+				AE7CDA551C69835300A2D6B3 /* WebImage.framework */,
+				AEF8BF8F1C61C263000677EB /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE74A5FA1C71727A00BD1C0C /* PhotoRepo */ = {
+			isa = PBXGroup;
+			children = (
+				AE74A5FB1C71727A00BD1C0C /* PhotoRepo.swift */,
+				AE74A5FC1C71727A00BD1C0C /* S3PhotoRepo.swift */,
+			);
+			path = PhotoRepo;
+			sourceTree = "<group>";
+		};
+		AE74A5FD1C71727A00BD1C0C /* RestaurantRepo */ = {
+			isa = PBXGroup;
+			children = (
+				AE74A5FE1C71727A00BD1C0C /* HttpRestaurantRepo.swift */,
+				AE74A5FF1C71727A00BD1C0C /* RestaurantRepo.swift */,
+			);
+			path = RestaurantRepo;
+			sourceTree = "<group>";
+		};
+		AE74A6001C71727A00BD1C0C /* SessionRepo */ = {
+			isa = PBXGroup;
+			children = (
+				AE017D651C7177D000788FDF /* KeychainSessionRepo.swift */,
+				AE7623311C719036006272C3 /* SessionRepo.swift */,
+			);
+			path = SessionRepo;
+			sourceTree = "<group>";
+		};
+		AE74A6021C71727A00BD1C0C /* UserRepo */ = {
+			isa = PBXGroup;
+			children = (
+				AE74A6031C71727A00BD1C0C /* HttpUserRepo.swift */,
+				AE74A6041C71727A00BD1C0C /* UserRepo.swift */,
+			);
+			path = UserRepo;
+			sourceTree = "<group>";
+		};
+		AECA9B461C0EC90E00C30BA4 = {
+			isa = PBXGroup;
+			children = (
+				AE1CEF6C1C15605B0006073F /* Frameworks */,
+				AECA9B511C0EC90E00C30BA4 /* Osusume */,
+				AECA9B661C0EC90E00C30BA4 /* OsusumeTests */,
+				AED333AB1C634A5400127DC6 /* OsusumeUITests */,
+				AECA9B501C0EC90E00C30BA4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AECA9B501C0EC90E00C30BA4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */,
+				AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */,
+				AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AECA9B511C0EC90E00C30BA4 /* Osusume */ = {
+			isa = PBXGroup;
+			children = (
+				AEDEDC441C716D6900E1A031 /* OsusumeBridgingHeader.h */,
+				AECA9B5E1C0EC90E00C30BA4 /* Info.plist */,
+				AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */,
+				AE10E14B1C5AF079006749F4 /* main.swift */,
+				AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */,
+				DE99C2BF2EFF40CFC71363D1 /* Api */,
+				DE99C419EF9848C3BDE9B291 /* Converters */,
+				AECA9B5B1C0EC90E00C30BA4 /* LaunchScreen.storyboard */,
+				DE99C0044C71DF22E5E51328 /* Models */,
+				DE99CA211B4A8B02AE29C911 /* Navigation */,
+				DE99C1FFFE3D1142AD7A070E /* Repos */,
+				DE99C129438C34333056125D /* Screens */,
+			);
+			path = Osusume;
+			sourceTree = "<group>";
+		};
+		AECA9B661C0EC90E00C30BA4 /* OsusumeTests */ = {
+			isa = PBXGroup;
+			children = (
+				DE99C6D9E900B2C60B8C67DA /* Converters */,
+				AE0F65BE1C60346600778E50 /* Fakes */,
+				AECA9B691C0EC90E00C30BA4 /* Info.plist */,
+				DE99CE4BF4B09C4C96211B54 /* Navigation */,
+				AE017D671C71799D00788FDF /* Repos */,
+				DE99CF05F4A7BB5B048FC5BB /* Screens */,
+			);
+			path = OsusumeTests;
+			sourceTree = "<group>";
+		};
+		AED333AB1C634A5400127DC6 /* OsusumeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */,
+				AED333AE1C634A5400127DC6 /* Info.plist */,
+			);
+			path = OsusumeUITests;
+			sourceTree = "<group>";
+		};
+		DE99C0044C71DF22E5E51328 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DE99CAF596314CE5FFBC2D2A /* Restaurant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DE99C129438C34333056125D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				DE99C54688E7F01FE6A3777D /* Restaurants */,
+				DE99C8E2D4573E447DF678D2 /* Users */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		DE99C1FFFE3D1142AD7A070E /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				AE74A5FA1C71727A00BD1C0C /* PhotoRepo */,
+				AE331EF91C50A01C007D37C2 /* RepoError.swift */,
+				AE74A5FD1C71727A00BD1C0C /* RestaurantRepo */,
+				AE74A6001C71727A00BD1C0C /* SessionRepo */,
+				AE74A6021C71727A00BD1C0C /* UserRepo */,
+			);
+			path = Repos;
+			sourceTree = "<group>";
+		};
+		DE99C27815A58B229380223E /* Restaurants */ = {
+			isa = PBXGroup;
+			children = (
+				AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */,
+				DE99CB4FBE6F93BF8C2F53C2 /* NewRestaurantViewControllerSpec.swift */,
+				248243A11C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift */,
+				AEB2438F1C71666300959434 /* RestaurantListViewControllerTests.swift */,
+			);
+			path = Restaurants;
+			sourceTree = "<group>";
+		};
+		DE99C2BF2EFF40CFC71363D1 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				DE99CC0BEA8795F1B35798F3 /* AlamofireHttp.swift */,
+				DE99CAD7F4ABA2ED123E25BF /* Http.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		DE99C419EF9848C3BDE9B291 /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				DE99CE0583D662B014365B8D /* RestaurantConverter.swift */,
+				AEFD19C21C61E6E7008809D5 /* DateConverter.swift */,
+			);
+			path = Converters;
+			sourceTree = "<group>";
+		};
+		DE99C54688E7F01FE6A3777D /* Restaurants */ = {
+			isa = PBXGroup;
+			children = (
+				AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */,
+				DE99CFD1D44DEE333A4B91FC /* NewRestaurantViewController.swift */,
+				2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */,
+				AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */,
+				DE99CF23833B1E11CEDEBB5E /* RestaurantListViewController.swift */,
+				AE7E5B7F1C6870CF0057A795 /* RestaurantTableViewCell.swift */,
+				AEDEDC481C71935200E1A031 /* RestaurantDetailPresenter.swift */,
+			);
+			path = Restaurants;
+			sourceTree = "<group>";
+		};
+		DE99C6D9E900B2C60B8C67DA /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				AEFD19C01C61E660008809D5 /* DateConverterSpec.swift */,
+				DE99C1CC473B79CFBC477999 /* RestaurantConverterSpec.swift */,
+			);
+			path = Converters;
+			sourceTree = "<group>";
+		};
+		DE99C8E2D4573E447DF678D2 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				DE99CAE18A548DAFDFD0CE09 /* LoginViewController.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		DE99CA211B4A8B02AE29C911 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				DE99CAB71B3ED7401BC1C3D2 /* Router.swift */,
+				DE99CAA9114682DAC8B2446F /* NavigationRouter.swift */,
+				AEA7123F1C4F4BF600862B02 /* LaunchWorkflow.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		DE99CB59BBE28BEC558F6267 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				DE99CC66C59B1979EF2B5CC0 /* LoginViewControllerSpec.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		DE99CE4BF4B09C4C96211B54 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				AEA712431C4F4D5C00862B02 /* LaunchWorkflowSpec.swift */,
+				DE99C54E9CE45026BBFFFC90 /* NavigationRouterSpec.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		DE99CF05F4A7BB5B048FC5BB /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				DE99C27815A58B229380223E /* Restaurants */,
+				DE99CB59BBE28BEC558F6267 /* Users */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AECA9B4E1C0EC90E00C30BA4 /* Osusume */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AECA9B6C1C0EC90E00C30BA4 /* Build configuration list for PBXNativeTarget "Osusume" */;
+			buildPhases = (
+				AECA9B4B1C0EC90E00C30BA4 /* Sources */,
+				AECA9B4C1C0EC90E00C30BA4 /* Frameworks */,
+				AECA9B4D1C0EC90E00C30BA4 /* Resources */,
+				AE2978131C10159200751DD3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Osusume;
+			productName = Osusume;
+			productReference = AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AECA9B621C0EC90E00C30BA4 /* OsusumeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AECA9B6F1C0EC90E00C30BA4 /* Build configuration list for PBXNativeTarget "OsusumeTests" */;
+			buildPhases = (
+				AECA9B5F1C0EC90E00C30BA4 /* Sources */,
+				AECA9B601C0EC90E00C30BA4 /* Frameworks */,
+				AECA9B611C0EC90E00C30BA4 /* Resources */,
+				AECA9B7B1C0ED97900C30BA4 /* Run Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AECA9B651C0EC90E00C30BA4 /* PBXTargetDependency */,
+			);
+			name = OsusumeTests;
+			productName = OsusumeTests;
+			productReference = AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AED333A91C634A5400127DC6 /* OsusumeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AED333B41C634A5400127DC6 /* Build configuration list for PBXNativeTarget "OsusumeUITests" */;
+			buildPhases = (
+				AED333A61C634A5400127DC6 /* Sources */,
+				AED333A71C634A5400127DC6 /* Frameworks */,
+				AED333A81C634A5400127DC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AED333B01C634A5400127DC6 /* PBXTargetDependency */,
+			);
+			name = OsusumeUITests;
+			productName = OsusumeUITests;
+			productReference = AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AECA9B471C0EC90E00C30BA4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = "";
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = io.pivotal;
+				TargetAttributes = {
+					AECA9B4E1C0EC90E00C30BA4 = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = BVZYXK966R;
+					};
+					AECA9B621C0EC90E00C30BA4 = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = AECA9B4E1C0EC90E00C30BA4;
+					};
+					AED333A91C634A5400127DC6 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = AECA9B4E1C0EC90E00C30BA4;
+					};
+				};
+			};
+			buildConfigurationList = AECA9B4A1C0EC90E00C30BA4 /* Build configuration list for PBXProject "Osusume" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AECA9B461C0EC90E00C30BA4;
+			productRefGroup = AECA9B501C0EC90E00C30BA4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AECA9B4E1C0EC90E00C30BA4 /* Osusume */,
+				AECA9B621C0EC90E00C30BA4 /* OsusumeTests */,
+				AED333A91C634A5400127DC6 /* OsusumeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AECA9B4D1C0EC90E00C30BA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AECA9B5D1C0EC90E00C30BA4 /* LaunchScreen.storyboard in Resources */,
+				AECA9B5A1C0EC90E00C30BA4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AECA9B611C0EC90E00C30BA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AED333A81C634A5400127DC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AE2978131C10159200751DD3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/PureLayout.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/WebImage.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		AECA9B7B1C0ED97900C30BA4 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Quick.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PureLayout.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/WebImage.framework",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AECA9B4B1C0EC90E00C30BA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+<<<<<<< 976c8e1953940526854bfed7c178e1e1ea916082
+				AEDEDC491C71935200E1A031 /* RestaurantDetailPresenter.swift in Sources */,
+				AE74A6091C71727A00BD1C0C /* SessionRepo.swift in Sources */,
+=======
+>>>>>>> Create Keychain and Fake Session objects.
+				AE74A6051C71727A00BD1C0C /* PhotoRepo.swift in Sources */,
+				AE81888F1C3F87DA009D3DE7 /* RestaurantFormView.swift in Sources */,
+				AECA9B531C0EC90E00C30BA4 /* AppDelegate.swift in Sources */,
+				DE99CAAB65BC8243F5B84D01 /* NewRestaurantViewController.swift in Sources */,
+				248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */,
+				AE7E5B801C6870CF0057A795 /* RestaurantTableViewCell.swift in Sources */,
+				AE74A6081C71727A00BD1C0C /* RestaurantRepo.swift in Sources */,
+				AEA712401C4F4BF600862B02 /* LaunchWorkflow.swift in Sources */,
+				AE10E14C1C5AF079006749F4 /* main.swift in Sources */,
+				AE74A60A1C71727A00BD1C0C /* HttpUserRepo.swift in Sources */,
+				DE99C674E82B6B17CDB36A4B /* Router.swift in Sources */,
+				DE99C1BD8A703F77AFD777D0 /* NavigationRouter.swift in Sources */,
+				AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */,
+				DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */,
+				AEFD19C31C61E6E7008809D5 /* DateConverter.swift in Sources */,
+				DE99C76AD03A5F6287E76BFC /* Restaurant.swift in Sources */,
+				AE74A6061C71727A00BD1C0C /* S3PhotoRepo.swift in Sources */,
+				AE74A60B1C71727A00BD1C0C /* UserRepo.swift in Sources */,
+				DE99C785DEA75F18FF4965A3 /* RestaurantConverter.swift in Sources */,
+				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
+				DE99C7C1E73B412E900D494C /* AlamofireHttp.swift in Sources */,
+				DE99CDBDBD35F271954B99EC /* Http.swift in Sources */,
+				AE7623321C719036006272C3 /* SessionRepo.swift in Sources */,
+				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
+				AE74A6071C71727A00BD1C0C /* HttpRestaurantRepo.swift in Sources */,
+				AE017D661C7177D000788FDF /* KeychainSessionRepo.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AECA9B5F1C0EC90E00C30BA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE99C1D285014C69A9EA7733 /* NewRestaurantViewControllerSpec.swift in Sources */,
+				AE7623341C7190AA006272C3 /* FakeSessionRepo.swift in Sources */,
+				AE017D6A1C7179B400788FDF /* KeychainSessionRepoTests.swift in Sources */,
+				DE99C5E5D4769EC1E07F36DC /* NavigationRouterSpec.swift in Sources */,
+				248243A21C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift in Sources */,
+				AE0F65C21C60346600778E50 /* FakeRestaurantRepo.swift in Sources */,
+				AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */,
+				DE99C398B1B5A25B9D1AE5D8 /* RestaurantConverterSpec.swift in Sources */,
+				AE0F65C31C60346600778E50 /* FakeRouter.swift in Sources */,
+				AEFD19C11C61E660008809D5 /* DateConverterSpec.swift in Sources */,
+				AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */,
+				AEB243901C71666300959434 /* RestaurantListViewControllerTests.swift in Sources */,
+				AED333A51C62E8B200127DC6 /* FakePhotoRepo.swift in Sources */,
+				AEA712441C4F4D5C00862B02 /* LaunchWorkflowSpec.swift in Sources */,
+				DE99CE8F0DB16A84EC8C2539 /* LoginViewControllerSpec.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AED333A61C634A5400127DC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AED333AD1C634A5400127DC6 /* OsusumeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AECA9B651C0EC90E00C30BA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AECA9B4E1C0EC90E00C30BA4 /* Osusume */;
+			targetProxy = AECA9B641C0EC90E00C30BA4 /* PBXContainerItemProxy */;
+		};
+		AED333B01C634A5400127DC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AECA9B4E1C0EC90E00C30BA4 /* Osusume */;
+			targetProxy = AED333AF1C634A5400127DC6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AECA9B5B1C0EC90E00C30BA4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AECA9B5C1C0EC90E00C30BA4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AE293BC61C3CBFC900E09ABC /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Staging;
+		};
+		AE293BC71C3CBFC900E09ABC /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
+				);
+				INFOPLIST_FILE = Osusume/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.Osusume;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = Osusume/OsusumeBridgingHeader.h;
+				ServerURL = "https://osusume.cfapps.io";
+			};
+			name = Staging;
+		};
+		AE293BC81C3CBFC900E09ABC /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
+				);
+				INFOPLIST_FILE = OsusumeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Osusume/OsusumeBridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
+			};
+			name = Staging;
+		};
+		AECA9B6A1C0EC90E00C30BA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AECA9B6B1C0EC90E00C30BA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AECA9B6D1C0EC90E00C30BA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
+				);
+				INFOPLIST_FILE = Osusume/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.Osusume;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = Osusume/OsusumeBridgingHeader.h;
+				ServerURL = "http://localhost:3000";
+			};
+			name = Debug;
+		};
+		AECA9B6E1C0EC90E00C30BA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
+				);
+				INFOPLIST_FILE = Osusume/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.Osusume;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = Osusume/OsusumeBridgingHeader.h;
+				ServerURL = "";
+			};
+			name = Release;
+		};
+		AECA9B701C0EC90E00C30BA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
+				);
+				INFOPLIST_FILE = OsusumeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Osusume/OsusumeBridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
+			};
+			name = Debug;
+		};
+		AECA9B711C0EC90E00C30BA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
+				);
+				INFOPLIST_FILE = OsusumeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Osusume/OsusumeBridgingHeader.h;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
+			};
+			name = Release;
+		};
+		AED333B11C634A5400127DC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = OsusumeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				ServerURL = "http://localhost:3000";
+				TEST_TARGET_NAME = Osusume;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		AED333B21C634A5400127DC6 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = OsusumeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				ServerURL = "https://osusume.cfapps.io";
+				TEST_TARGET_NAME = Osusume;
+				USES_XCTRUNNER = YES;
+			};
+			name = Staging;
+		};
+		AED333B31C634A5400127DC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = OsusumeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Pivotal.OsusumeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				ServerURL = "";
+				TEST_TARGET_NAME = Osusume;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AECA9B4A1C0EC90E00C30BA4 /* Build configuration list for PBXProject "Osusume" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AECA9B6A1C0EC90E00C30BA4 /* Debug */,
+				AE293BC61C3CBFC900E09ABC /* Staging */,
+				AECA9B6B1C0EC90E00C30BA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Staging;
+		};
+		AECA9B6C1C0EC90E00C30BA4 /* Build configuration list for PBXNativeTarget "Osusume" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AECA9B6D1C0EC90E00C30BA4 /* Debug */,
+				AE293BC71C3CBFC900E09ABC /* Staging */,
+				AECA9B6E1C0EC90E00C30BA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Staging;
+		};
+		AECA9B6F1C0EC90E00C30BA4 /* Build configuration list for PBXNativeTarget "OsusumeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AECA9B701C0EC90E00C30BA4 /* Debug */,
+				AE293BC81C3CBFC900E09ABC /* Staging */,
+				AECA9B711C0EC90E00C30BA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Staging;
+		};
+		AED333B41C634A5400127DC6 /* Build configuration list for PBXNativeTarget "OsusumeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AED333B11C634A5400127DC6 /* Debug */,
+				AED333B21C634A5400127DC6 /* Staging */,
+				AED333B31C634A5400127DC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Staging;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AECA9B471C0EC90E00C30BA4 /* Project object */;
+}
