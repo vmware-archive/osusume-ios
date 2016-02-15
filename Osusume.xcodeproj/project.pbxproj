@@ -29,7 +29,6 @@
 		AECA9B531C0EC90E00C30BA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */; };
 		AECA9B5A1C0EC90E00C30BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */; };
 		AECA9B5D1C0EC90E00C30BA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B5B1C0EC90E00C30BA4 /* LaunchScreen.storyboard */; };
-		AECA9B761C0ED7E000C30BA4 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B751C0ED7E000C30BA4 /* Cartfile */; };
 		AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B771C0ED81500C30BA4 /* Nimble.framework */; };
 		AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B721C0ED6FA00C30BA4 /* Quick.framework */; };
 		AED333A51C62E8B200127DC6 /* FakePhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED333A41C62E8B200127DC6 /* FakePhotoRepo.swift */; };
@@ -109,7 +108,6 @@
 		AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECA9B691C0EC90E00C30BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AECA9B721C0ED6FA00C30BA4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
-		AECA9B751C0ED7E000C30BA4 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		AECA9B771C0ED81500C30BA4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		AED333A41C62E8B200127DC6 /* FakePhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePhotoRepo.swift; sourceTree = "<group>"; };
 		AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,7 +214,6 @@
 		AECA9B461C0EC90E00C30BA4 = {
 			isa = PBXGroup;
 			children = (
-				AECA9B751C0ED7E000C30BA4 /* Cartfile */,
 				AEFCB7801C6198C80096DD93 /* OsusumeBridgingHeader.h */,
 				AE1CEF6C1C15605B0006073F /* Frameworks */,
 				AECA9B511C0EC90E00C30BA4 /* Osusume */,
@@ -513,7 +510,6 @@
 			files = (
 				AECA9B5D1C0EC90E00C30BA4 /* LaunchScreen.storyboard in Resources */,
 				AECA9B5A1C0EC90E00C30BA4 /* Assets.xcassets in Resources */,
-				AECA9B761C0ED7E000C30BA4 /* Cartfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

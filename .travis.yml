@@ -1,8 +1,0 @@
-language: objective-c
-osx_image: xcode7.1
-before_install:
-  - brew update
-  - brew upgrade xctool
-  - brew install carthage
-script:
-  - xcodebuild -project Osusume.xcodeproj -scheme "Osusume-Staging" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.1,name=iPhone 6" test
