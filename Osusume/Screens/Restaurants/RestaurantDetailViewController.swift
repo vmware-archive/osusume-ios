@@ -8,7 +8,6 @@ class RestaurantDetailViewController : UIViewController {
     let repo: RestaurantRepo
     let id: Int
     var restaurant: Restaurant? = nil
-    let dateConverter = DateConverter()
 
     //MARK: - Initializers
 
@@ -77,18 +76,24 @@ class RestaurantDetailViewController : UIViewController {
                 }
                 self.headerImageView.sd_setImageWithURL(self.restaurant!.photoUrl, completed: setAccessibilityTypeCompletionHandler)
 
-                self.nameLabel.text = self.restaurant!.name
-                self.addressLabel.text = self.restaurant!.address
-                self.cuisineTypeLabel.text = self.restaurant!.cuisineType
-                self.offersEnglishMenuLabel.text = self.restaurant!.offersEnglishMenu ? "Offers English menu" : "Does not offer English menu"
-                self.walkInsOkLabel.text = self.restaurant!.walkInsOk ? "Walk-ins ok" : "Walk-ins not recommended"
-                self.acceptsCreditCardsLabel.text = self.restaurant!.acceptsCreditCards ? "Accepts credit cards" : "Does not accept credit cards"
-                self.notesLabel.text = self.restaurant!.notes
-                self.authorLabel.text = "Added by \(self.restaurant!.author)"
-                self.addedOnDateLabel.text = "on \(self.dateConverter.formattedDate(self.restaurant!.createdAt))"
+                let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: returnedRestaurant)
+                self.nameLabel.text = restaurantDetailPresenter.name
+                self.addressLabel.text = restaurantDetailPresenter.address
+                self.cuisineTypeLabel.text = restaurantDetailPresenter.cuisineType
+                self.offersEnglishMenuLabel.text = restaurantDetailPresenter.offersEnglishMenu
+                self.walkInsOkLabel.text = restaurantDetailPresenter.walkInsOk
+                self.acceptsCreditCardsLabel.text = restaurantDetailPresenter.creditCardsOk
+                self.notesLabel.text = restaurantDetailPresenter.notes
+                self.authorLabel.text = restaurantDetailPresenter.author
+                self.addedOnDateLabel.text = restaurantDetailPresenter.addedOnDate
         }
 
-        let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapEditRestaurantButton:"))
+        let editButton = UIBarButtonItem(
+            title: "Edit",
+            style: .Plain,
+            target: self,
+            action: Selector("didTapEditRestaurantButton:")
+        )
         navigationItem.rightBarButtonItem = editButton
     }
 

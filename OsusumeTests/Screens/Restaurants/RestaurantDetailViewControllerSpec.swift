@@ -48,7 +48,7 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
 
             describe("Editing") {
                 it("has Edit button on top right") {
-                    expect(subject.navigationItem.rightBarButtonItem!.title).to(equal("Edit"))
+                    expect(subject.navigationItem.rightBarButtonItem?.title).to(equal("Edit"))
                 }
 
                 it("shows the edit screen when the edit button is clicked") {
