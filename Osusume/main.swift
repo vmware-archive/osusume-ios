@@ -1,21 +1,20 @@
 import Foundation
 import UIKit
 
-func isRunningTests() -> Bool {
-    let environment = NSProcessInfo.processInfo().environment
-    if let injectBundle = environment["XCInjectBundle"] as? NSString {
-        return injectBundle.pathExtension == "xctest"
-    }
-    return false
-}
+class NullAppDelegate: UIResponder, UIApplicationDelegate {}
 
-
-class UnitTestsAppDelegate: UIResponder, UIApplicationDelegate {
-
-}
-
-if isRunningTests() {
-    UIApplicationMain(Process.argc, Process.unsafeArgv, NSStringFromClass(UIApplication), NSStringFromClass(UnitTestsAppDelegate))
+if NSClassFromString("XCTestCase") != nil {
+    UIApplicationMain(
+        Process.argc,
+        Process.unsafeArgv,
+        NSStringFromClass(UIApplication),
+        NSStringFromClass(NullAppDelegate)
+    )
 } else {
-    UIApplicationMain(Process.argc, Process.unsafeArgv, NSStringFromClass(UIApplication), NSStringFromClass(AppDelegate))
+    UIApplicationMain(
+        Process.argc,
+        Process.unsafeArgv,
+        NSStringFromClass(UIApplication),
+        NSStringFromClass(AppDelegate)
+    )
 }
