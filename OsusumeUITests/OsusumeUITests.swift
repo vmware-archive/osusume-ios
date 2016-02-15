@@ -66,10 +66,6 @@ class OsusumeUITests: XCTestCase {
 
         XCTAssert(app.images["Picture of \(newName)"].exists)
         XCTAssert(app.staticTexts[newName].exists)
-        XCTAssert(app.staticTexts["Does not offer English menu"].exists)
-        XCTAssert(app.staticTexts["Walk-ins not recommended"].exists)
-        XCTAssert(app.staticTexts["Does not accept credit cards"].exists)
-        XCTAssert(app.staticTexts["Added by A"].exists)
     }
 
     func login(app: XCUIApplication) {

@@ -43,8 +43,7 @@ class RestaurantDetailViewController : UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    let authorLabel = UILabel()
-    let addedOnDateLabel = UILabel()
+    let creationInfoLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +59,7 @@ class RestaurantDetailViewController : UIViewController {
         scrollViewContentView.addSubview(walkInsOkLabel)
         scrollViewContentView.addSubview(acceptsCreditCardsLabel)
         scrollViewContentView.addSubview(notesLabel)
-        scrollViewContentView.addSubview(authorLabel)
-        scrollViewContentView.addSubview(addedOnDateLabel)
+        scrollViewContentView.addSubview(creationInfoLabel)
 
         applyViewConstraints()
 
@@ -84,8 +82,7 @@ class RestaurantDetailViewController : UIViewController {
                 self.walkInsOkLabel.text = restaurantDetailPresenter.walkInsOk
                 self.acceptsCreditCardsLabel.text = restaurantDetailPresenter.creditCardsOk
                 self.notesLabel.text = restaurantDetailPresenter.notes
-                self.authorLabel.text = restaurantDetailPresenter.author
-                self.addedOnDateLabel.text = restaurantDetailPresenter.addedOnDate
+                self.creationInfoLabel.text = restaurantDetailPresenter.creationInfo
         }
 
         let editButton = UIBarButtonItem(
@@ -138,10 +135,7 @@ class RestaurantDetailViewController : UIViewController {
         notesLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
         notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsLabel)
 
-        authorLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        authorLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
-
-        addedOnDateLabel.autoPinEdge(.Leading, toEdge: .Trailing, ofView: authorLabel, withOffset: 5.0)
-        addedOnDateLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
+        creationInfoLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        creationInfoLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
     }
 }

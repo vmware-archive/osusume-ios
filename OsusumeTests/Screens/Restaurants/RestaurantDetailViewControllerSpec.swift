@@ -42,8 +42,7 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
                 expect(subject.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
                 expect(subject.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
                 expect(subject.notesLabel.text).to(equal("This place is great"))
-                expect(subject.authorLabel.text).to(equal("Added by Danny"))
-                expect(subject.addedOnDateLabel.text).to(equal("on 1/1/70"))
+                expect(subject.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
             }
 
             describe("Editing") {

@@ -41,12 +41,12 @@ struct RestaurantDetailPresenter {
         return self.restaurant.notes
     }
 
-    var author: String {
-        return "Added by \(restaurant.author)"
+    var creationInfo: String {
+        return "Added by \(restaurant.author) on \(DateConverter().formattedDate(restaurant.createdAt))"
     }
 
-    var addedOnDate: String {
-        return "on \(DateConverter().formattedDate(restaurant.createdAt))"
+    var author: String {
+        return "Added by \(restaurant.author)"
     }
 
     var creationDate: String {
