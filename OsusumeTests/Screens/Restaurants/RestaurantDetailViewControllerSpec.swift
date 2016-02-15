@@ -1,60 +1,58 @@
-import Foundation
-import Quick
+import XCTest
 import Nimble
-import BrightFutures
-import Result
+
 @testable import Osusume
 
-class RestaurantDetailViewControllerSpec: QuickSpec {
-    override func spec() {
-        describe("Restaurant Detail Page") {
-            var subject: RestaurantDetailViewController!
-            var router: FakeRouter!
-            var repo: FakeRestaurantRepo!
-            let creationDate = NSDate(timeIntervalSince1970: 0)
+class RestaurantDetailViewControllerSpec: XCTestCase {
+    let creationDate = NSDate(timeIntervalSince1970: 0)
+    let router = FakeRouter()
+    let repo = FakeRestaurantRepo()
 
-            beforeEach {
-                UIView.setAnimationsEnabled(false)
-                router = FakeRouter()
-                repo = FakeRestaurantRepo()
-                repo.createdRestaurant = Restaurant(
-                    id: 1,
-                    name: "My Restaurant",
-                    address: "Roppongi",
-                    cuisineType: "Sushi",
-                    offersEnglishMenu: true,
-                    walkInsOk: false,
-                    acceptsCreditCards: true,
-                    notes: "This place is great",
-                    author: "Danny",
-                    createdAt: creationDate,
-                    photoUrl: NSURL(string: "")
-                )
-                subject = RestaurantDetailViewController(router: router, repo: repo, id: 1)
-                subject.view.layoutSubviews()
-            }
+    var controller: RestaurantDetailViewController!
 
-            it("displays details of a given restaurant") {
-                expect(subject.nameLabel.text).to(equal("My Restaurant"))
-                expect(subject.addressLabel.text).to(equal("Roppongi"))
-                expect(subject.cuisineTypeLabel.text).to(equal("Sushi"))
-                expect(subject.offersEnglishMenuLabel.text).to(equal("Offers English menu"))
-                expect(subject.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
-                expect(subject.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
-                expect(subject.notesLabel.text).to(equal("This place is great"))
-                expect(subject.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
-            }
+    override func setUp() {
+        repo.createdRestaurant = Restaurant(
+            id: 1,
+            name: "My Restaurant",
+            address: "Roppongi",
+            cuisineType: "Sushi",
+            offersEnglishMenu: true,
+            walkInsOk: false,
+            acceptsCreditCards: true,
+            notes: "This place is great",
+            author: "Danny",
+            createdAt: creationDate,
+            photoUrl: NSURL(string: "")
+        )
 
-            describe("Editing") {
-                it("has Edit button on top right") {
-                    expect(subject.navigationItem.rightBarButtonItem?.title).to(equal("Edit"))
-                }
+        controller = RestaurantDetailViewController(
+            router: router,
+            repo: repo,
+            id: 1
+        )
+    }
 
-                it("shows the edit screen when the edit button is clicked") {
-                    subject.didTapEditRestaurantButton(subject.navigationItem.rightBarButtonItem!)
-                    expect(router.editRestaurantScreenIsShowing).to(equal(true))
-                }
-            }
-        }
+    func test_viewDidLoad_displaysDetailsOfARestaurant() {
+        let _ = controller.view
+
+
+        expect(self.controller.nameLabel.text).to(equal("My Restaurant"))
+        expect(self.controller.addressLabel.text).to(equal("Roppongi"))
+        expect(self.controller.cuisineTypeLabel.text).to(equal("Sushi"))
+        expect(self.controller.offersEnglishMenuLabel.text).to(equal("Offers English menu"))
+        expect(self.controller.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
+        expect(self.controller.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
+        expect(self.controller.notesLabel.text).to(equal("This place is great"))
+        expect(self.controller.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
+    }
+
+    func test_tappingTheEditButton_showsTheEditScreen() {
+        let _ = controller.view
+
+        expect(self.controller.navigationItem.rightBarButtonItem?.title).to(equal("Edit"))
+
+        controller.didTapEditRestaurantButton(controller.navigationItem.rightBarButtonItem!)
+
+        expect(self.router.editRestaurantScreenIsShowing).to(equal(true))
     }
 }

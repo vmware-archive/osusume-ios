@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */; };
+<<<<<<< 9f6e065c633596adc8e0e7e3238d6d400fe09021
 		248243A21C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248243A11C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift */; };
 		AE017D661C7177D000788FDF /* KeychainSessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE017D651C7177D000788FDF /* KeychainSessionRepo.swift */; };
 		AE017D6A1C7179B400788FDF /* KeychainSessionRepoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE017D691C7179B400788FDF /* KeychainSessionRepoTests.swift */; };
+=======
+		AE02DA251C3B6D1700A8F45B /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE02DA241C3B6D1700A8F45B /* SpecHelper.swift */; };
+>>>>>>> Use XCTest instead of Quick in single test
 		AE0F65C21C60346600778E50 /* FakeRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65BF1C60346600778E50 /* FakeRestaurantRepo.swift */; };
 		AE0F65C31C60346600778E50 /* FakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65C01C60346600778E50 /* FakeRouter.swift */; };
 		AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65C11C60346600778E50 /* FakeUserRepo.swift */; };
@@ -43,6 +47,7 @@
 		AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
 		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
 		AEDEDC491C71935200E1A031 /* RestaurantDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEDC481C71935200E1A031 /* RestaurantDetailPresenter.swift */; };
+		AEDEDC5B1C71B9E500E1A031 /* RestaurantDetailViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerSpec.swift */; };
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
 		AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */; };
 		AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF8BF8F1C61C263000677EB /* libz.tbd */; };
@@ -85,9 +90,13 @@
 
 /* Begin PBXFileReference section */
 		2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
+<<<<<<< 9f6e065c633596adc8e0e7e3238d6d400fe09021
 		248243A11C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewControllerSpec.swift; sourceTree = "<group>"; };
 		AE017D651C7177D000788FDF /* KeychainSessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSessionRepo.swift; sourceTree = "<group>"; };
 		AE017D691C7179B400788FDF /* KeychainSessionRepoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSessionRepoTests.swift; sourceTree = "<group>"; };
+=======
+		AE02DA241C3B6D1700A8F45B /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecHelper.swift; path = Screens/Restaurants/SpecHelper.swift; sourceTree = "<group>"; };
+>>>>>>> Use XCTest instead of Quick in single test
 		AE0F65BF1C60346600778E50 /* FakeRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRestaurantRepo.swift; sourceTree = "<group>"; };
 		AE0F65C01C60346600778E50 /* FakeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRouter.swift; sourceTree = "<group>"; };
 		AE0F65C11C60346600778E50 /* FakeUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeUserRepo.swift; sourceTree = "<group>"; };
@@ -127,6 +136,7 @@
 		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AEDEDC441C716D6900E1A031 /* OsusumeBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsusumeBridgingHeader.h; sourceTree = "<group>"; };
 		AEDEDC481C71935200E1A031 /* RestaurantDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailPresenter.swift; sourceTree = "<group>"; };
+		AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewControllerSpec.swift; sourceTree = "<group>"; };
 		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
 		AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerSpec.swift; sourceTree = "<group>"; };
 		AEF8BF8F1C61C263000677EB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -366,8 +376,8 @@
 			children = (
 				AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */,
 				DE99CB4FBE6F93BF8C2F53C2 /* NewRestaurantViewControllerSpec.swift */,
-				248243A11C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift */,
 				AEB2438F1C71666300959434 /* RestaurantListViewControllerTests.swift */,
+				AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerSpec.swift */,
 			);
 			path = Restaurants;
 			sourceTree = "<group>";
@@ -635,11 +645,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< 976c8e1953940526854bfed7c178e1e1ea916082
 				AEDEDC491C71935200E1A031 /* RestaurantDetailPresenter.swift in Sources */,
 				AE74A6091C71727A00BD1C0C /* SessionRepo.swift in Sources */,
-=======
->>>>>>> Create Keychain and Fake Session objects.
 				AE74A6051C71727A00BD1C0C /* PhotoRepo.swift in Sources */,
 				AE81888F1C3F87DA009D3DE7 /* RestaurantFormView.swift in Sources */,
 				AECA9B531C0EC90E00C30BA4 /* AppDelegate.swift in Sources */,
@@ -677,7 +684,6 @@
 				AE7623341C7190AA006272C3 /* FakeSessionRepo.swift in Sources */,
 				AE017D6A1C7179B400788FDF /* KeychainSessionRepoTests.swift in Sources */,
 				DE99C5E5D4769EC1E07F36DC /* NavigationRouterSpec.swift in Sources */,
-				248243A21C2D2D4100D52D01 /* RestaurantDetailViewControllerSpec.swift in Sources */,
 				AE0F65C21C60346600778E50 /* FakeRestaurantRepo.swift in Sources */,
 				AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */,
 				DE99C398B1B5A25B9D1AE5D8 /* RestaurantConverterSpec.swift in Sources */,
@@ -685,6 +691,7 @@
 				AEFD19C11C61E660008809D5 /* DateConverterSpec.swift in Sources */,
 				AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */,
 				AEB243901C71666300959434 /* RestaurantListViewControllerTests.swift in Sources */,
+				AEDEDC5B1C71B9E500E1A031 /* RestaurantDetailViewControllerSpec.swift in Sources */,
 				AED333A51C62E8B200127DC6 /* FakePhotoRepo.swift in Sources */,
 				AEA712441C4F4D5C00862B02 /* LaunchWorkflowSpec.swift in Sources */,
 				DE99CE8F0DB16A84EC8C2539 /* LoginViewControllerSpec.swift in Sources */,
