@@ -1,7 +1,7 @@
 .PHONY: test bootstrap update
 
-test:
-	@xctool -scheme Osusume -sdk iphonesimulator test -only OsusumeTests
+tests:
+	./bin/runTests.sh
 
 bootstrap:
 	@carthage bootstrap --platform iOS
