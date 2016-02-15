@@ -32,16 +32,7 @@ class OsusumeUITests: XCTestCase {
     func testAddingAndEditingARestaurant() {
         let app = XCUIApplication()
 
-        let emailTextField = app.textFields["Email"]
-        emailTextField.tap()
-        emailTextField.typeText("A")
-
-        let passwordTextField = app.textFields["Password"]
-        passwordTextField.tap()
-        passwordTextField.typeText("A")
-
-        let loginButton = app.buttons["Login"]
-        loginButton.tap()
+        login(app)
 
         app.navigationBars["Osusume.RestaurantListView"].buttons["add restaurant"].tap()
         
@@ -79,6 +70,19 @@ class OsusumeUITests: XCTestCase {
         XCTAssert(app.staticTexts["Walk-ins not recommended"].exists)
         XCTAssert(app.staticTexts["Does not accept credit cards"].exists)
         XCTAssert(app.staticTexts["Added by A"].exists)
+    }
+
+    func login(app: XCUIApplication) {
+        let emailTextField = app.textFields["Email"]
+        emailTextField.tap()
+        emailTextField.typeText("A")
+
+        let passwordTextField = app.textFields["Password"]
+        passwordTextField.tap()
+        passwordTextField.typeText("A")
+
+        let loginButton = app.buttons["Login"]
+        loginButton.tap()
     }
 
 }
