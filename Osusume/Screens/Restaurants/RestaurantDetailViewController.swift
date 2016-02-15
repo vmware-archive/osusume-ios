@@ -8,6 +8,7 @@ class RestaurantDetailViewController : UIViewController {
     let repo: RestaurantRepo
     let id: Int
     var restaurant: Restaurant? = nil
+    let dateConverter = DateConverter()
 
     //MARK: - Initializers
 
@@ -44,6 +45,7 @@ class RestaurantDetailViewController : UIViewController {
         return label
     }()
     let authorLabel = UILabel()
+    let addedOnDateLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,7 @@ class RestaurantDetailViewController : UIViewController {
         scrollViewContentView.addSubview(acceptsCreditCardsLabel)
         scrollViewContentView.addSubview(notesLabel)
         scrollViewContentView.addSubview(authorLabel)
+        scrollViewContentView.addSubview(addedOnDateLabel)
 
         applyViewConstraints()
 
@@ -82,6 +85,7 @@ class RestaurantDetailViewController : UIViewController {
                 self.acceptsCreditCardsLabel.text = self.restaurant!.acceptsCreditCards ? "Accepts credit cards" : "Does not accept credit cards"
                 self.notesLabel.text = self.restaurant!.notes
                 self.authorLabel.text = "Added by \(self.restaurant!.author)"
+                self.addedOnDateLabel.text = "on \(self.dateConverter.formattedDate(self.restaurant!.createdAt))"
         }
 
         let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapEditRestaurantButton:"))
@@ -131,5 +135,8 @@ class RestaurantDetailViewController : UIViewController {
 
         authorLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         authorLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
+
+        addedOnDateLabel.autoPinEdge(.Leading, toEdge: .Trailing, ofView: authorLabel, withOffset: 5.0)
+        addedOnDateLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
     }
 }

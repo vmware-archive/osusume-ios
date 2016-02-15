@@ -11,12 +11,25 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
             var subject: RestaurantDetailViewController!
             var router: FakeRouter!
             var repo: FakeRestaurantRepo!
+            let creationDate = NSDate(timeIntervalSince1970: 0)
 
             beforeEach {
                 UIView.setAnimationsEnabled(false)
                 router = FakeRouter()
                 repo = FakeRestaurantRepo()
-                repo.createdRestaurant = Restaurant(id: 1, name: "My Restaurant", address: "Roppongi", cuisineType: "Sushi", offersEnglishMenu: true, walkInsOk: false, acceptsCreditCards: true, notes: "This place is great", author: "Danny", createdAt: NSDate(), photoUrl: NSURL(string: ""))
+                repo.createdRestaurant = Restaurant(
+                    id: 1,
+                    name: "My Restaurant",
+                    address: "Roppongi",
+                    cuisineType: "Sushi",
+                    offersEnglishMenu: true,
+                    walkInsOk: false,
+                    acceptsCreditCards: true,
+                    notes: "This place is great",
+                    author: "Danny",
+                    createdAt: creationDate,
+                    photoUrl: NSURL(string: "")
+                )
                 subject = RestaurantDetailViewController(router: router, repo: repo, id: 1)
                 subject.view.layoutSubviews()
             }
@@ -30,6 +43,7 @@ class RestaurantDetailViewControllerSpec: QuickSpec {
                 expect(subject.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
                 expect(subject.notesLabel.text).to(equal("This place is great"))
                 expect(subject.authorLabel.text).to(equal("Added by Danny"))
+                expect(subject.addedOnDateLabel.text).to(equal("on 1/1/70"))
             }
 
             describe("Editing") {
