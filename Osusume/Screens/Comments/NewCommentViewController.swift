@@ -25,7 +25,7 @@ class NewCommentViewController: UIViewController {
         view.addSubview(commentLabel)
         view.addSubview(commentTextField)
 
-        commentLabel.text = "Add Comment"
+        commentLabel.text = "add a comment"
 
         commentTextField.layer.borderWidth = 1.0
         commentTextField.layer.borderColor = UIColor.darkGrayColor().CGColor

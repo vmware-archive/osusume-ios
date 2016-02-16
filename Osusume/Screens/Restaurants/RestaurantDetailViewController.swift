@@ -103,7 +103,7 @@ class RestaurantDetailViewController : UIViewController {
             action: "didTapAddNewCommentButton",
             forControlEvents: .TouchUpInside
         )
-        addCommentButton.setTitle("New Comment", forState: .Normal)
+        addCommentButton.setTitle("Add comment", forState: .Normal)
         addCommentButton.backgroundColor = UIColor.grayColor()
     }
 
