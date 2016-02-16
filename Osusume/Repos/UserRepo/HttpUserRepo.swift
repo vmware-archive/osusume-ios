@@ -11,9 +11,11 @@ class HttpUserRepo: UserRepo {
 
     func login(email: String, password: String) -> Future<String, RepoError> {
         return http
-            .post("/login", parameters: ["email": email, "password": password])
-            .map { value in
-                return (value["token"] as! String)
-            }
+            .post(
+                "/login",
+                headers: [String: String](),
+                parameters: ["email": email, "password": password]
+            )
+            .map { value in value["token"] as! String }
     }
 }

@@ -3,17 +3,24 @@ import UIKit
 import PureLayout
 import BrightFutures
 
-class NewRestaurantViewController : UIViewController {
+class NewRestaurantViewController: UIViewController {
 
     unowned let router: Router
     let restaurantRepo: RestaurantRepo
     let photoRepo: PhotoRepo
+    let sessionRepo: SessionRepo
 
     //MARK: - Initializers
-    init(router: Router, restaurantRepo: RestaurantRepo, photoRepo: PhotoRepo) {
+    init(
+        router: Router,
+        restaurantRepo: RestaurantRepo,
+        photoRepo: PhotoRepo,
+        sessionRepo: SessionRepo)
+    {
         self.router = router
         self.restaurantRepo = restaurantRepo
         self.photoRepo = photoRepo
+        self.sessionRepo = sessionRepo
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -28,7 +35,7 @@ class NewRestaurantViewController : UIViewController {
     let formViewContainer = UIView.newAutoLayoutView()
     let formView = RestaurantFormView(restaurant: nil)
 
-    let imageView : UIImageView = {
+    let imageView: UIImageView = {
         let imageView = UIImageView.newAutoLayoutView()
         imageView.contentMode = .ScaleAspectFit
         imageView.layer.borderColor = UIColor.blackColor().CGColor
@@ -37,7 +44,7 @@ class NewRestaurantViewController : UIViewController {
         return imageView
     }()
 
-    lazy var imagePicker : UIImagePickerController = {
+    lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.allowsEditing = false
         picker.sourceType = .PhotoLibrary
@@ -71,10 +78,18 @@ class NewRestaurantViewController : UIViewController {
         imageView.autoSetDimension(.Height, toSize: 100.0)
         imageView.autoSetDimension(.Width, toSize: 100.0)
 
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapDoneButton:"))
+        let doneButton = UIBarButtonItem(
+            title: "Done",
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: Selector("didTapDoneButton:")
+        )
         navigationItem.rightBarButtonItem = doneButton
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("didTapImageView:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: Selector("didTapImageView:")
+        )
         imageView.userInteractionEnabled = true
         imageView.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -105,19 +120,23 @@ class NewRestaurantViewController : UIViewController {
     }
 }
 
+// MARK: - UIImagePickerControllerDelegate
 extension NewRestaurantViewController: UIImagePickerControllerDelegate {
     func imagePickerController(
         picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.image = pickedImage
+        if
+            let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
+            imageView.image = image
         }
 
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
+// MARK: - UINavigationControllerDelegate
 extension NewRestaurantViewController: UINavigationControllerDelegate {
     func didTapImageView(sender: UITapGestureRecognizer) {
         imagePicker.delegate = self

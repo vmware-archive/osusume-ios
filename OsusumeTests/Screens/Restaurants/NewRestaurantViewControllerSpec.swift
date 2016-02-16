@@ -10,7 +10,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
 
     override func spec() {
         describe("New Restaurant Page") {
-            var subject: NewRestaurantViewController!
+            var newRestaurantVC: NewRestaurantViewController!
             var router: FakeRouter!
             var restaurantRepo: FakeRestaurantRepo!
             var photoRepo: FakePhotoRepo!
@@ -20,13 +20,18 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 router = FakeRouter()
                 restaurantRepo = FakeRestaurantRepo()
                 photoRepo = FakePhotoRepo()
-                subject = NewRestaurantViewController(router: router, restaurantRepo: restaurantRepo, photoRepo: photoRepo)
+                newRestaurantVC = NewRestaurantViewController(
+                    router: router,
+                    restaurantRepo: restaurantRepo,
+                    photoRepo: photoRepo,
+                    sessionRepo: FakeSessionRepo()
+                )
 
                 self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-                self.window!.rootViewController = subject
+                self.window!.rootViewController = newRestaurantVC
                 self.window!.makeKeyAndVisible()
 
-                subject.view.layoutSubviews()
+                newRestaurantVC.view.layoutSubviews()
             }
 
             afterEach {
@@ -36,21 +41,21 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             }
 
             it("can save restaurant and return to listing screen") {
-                expect(subject.navigationItem.rightBarButtonItem!.title).to(equal("Done"))
+                expect(newRestaurantVC.navigationItem.rightBarButtonItem!.title).to(equal("Done"))
 
-                subject.didTapDoneButton(subject.navigationItem.rightBarButtonItem)
+                newRestaurantVC.didTapDoneButton(newRestaurantVC.navigationItem.rightBarButtonItem)
                 expect(router.restaurantListScreenIsShowing).to(equal(true))
             }
 
-            it("makes an API call with all fields") {
-                subject.formView.nameTextField.text = "Some Restaurant"
-                subject.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
-                subject.formView.notesTextField.text = "Notes"
+            it("creates a restaurant with the API when tapping done") {
+                newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
+                newRestaurantVC.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
+                newRestaurantVC.formView.notesTextField.text = "Notes"
 
                 let image = UIImage(named: "Jeana")
-                subject.imageView.image = image
+                newRestaurantVC.imageView.image = image
 
-                subject.didTapDoneButton(subject.navigationItem.rightBarButtonItem)
+                newRestaurantVC.didTapDoneButton(newRestaurantVC.navigationItem.rightBarButtonItem)
                 let restaurant: Restaurant = restaurantRepo.createdRestaurant!
 
                 expect(restaurant.name).to(equal("Some Restaurant"))
@@ -64,12 +69,14 @@ class NewRestaurantViewControllerSpec: QuickSpec {
             }
 
             it("displays the camera roll when 'Add Photo from Album' button is tapped") {
-                let view = subject.view
+                let view = newRestaurantVC.view
                 let scrollView = view.subviews[0]
                 let contentInScrollView = scrollView.subviews[0]
-                expect(contentInScrollView.subviews.contains(subject.imageView)).to(beTrue())
-                subject.didTapImageView(UITapGestureRecognizer())
-                expect(subject.presentedViewController).to(beAKindOf(UIImagePickerController))
+
+                expect(contentInScrollView.subviews.contains(newRestaurantVC.imageView)).to(beTrue())
+
+                newRestaurantVC.didTapImageView(UITapGestureRecognizer())
+                expect(newRestaurantVC.presentedViewController).to(beAKindOf(UIImagePickerController))
             }
         }
     }

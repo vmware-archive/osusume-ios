@@ -2,12 +2,17 @@ import UIKit
 
 class NewCommentViewController: UIViewController {
 
+    let sessionRepo: SessionRepo
+
     let commentLabel: UILabel
     let commentTextField: UITextView
 
     private var constraintsNeedUpdate = true
 
-    init() {
+    init(sessionRepo: SessionRepo)
+    {
+        self.sessionRepo = sessionRepo
+
         self.commentLabel = UILabel.newAutoLayoutView()
         self.commentTextField = UITextView.newAutoLayoutView()
 

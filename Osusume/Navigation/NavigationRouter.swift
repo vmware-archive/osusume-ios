@@ -22,7 +22,8 @@ class NavigationRouter : Router {
         let newRestaurantController = NewRestaurantViewController(
             router: self,
             restaurantRepo: HttpRestaurantRepo(http: http),
-            photoRepo: photoRepo
+            photoRepo: photoRepo,
+            sessionRepo: sessionRepo
         )
         navigationController.pushViewController(newRestaurantController, animated: true)
     }
@@ -40,7 +41,8 @@ class NavigationRouter : Router {
         let restaurantDetailViewController = RestaurantDetailViewController(
             router: self,
             repo: HttpRestaurantRepo(http: http),
-            restaurantId: id
+            restaurantId: id,
+            sessionRepo: sessionRepo
         )
         navigationController.pushViewController(restaurantDetailViewController, animated: true)
     }
@@ -49,7 +51,8 @@ class NavigationRouter : Router {
         let editRestaurantViewController = EditRestaurantViewController(
             router: self,
             repo: HttpRestaurantRepo(http: http),
-            restaurant: restaurant
+            restaurant: restaurant,
+            sessionRepo: sessionRepo
         )
         navigationController.pushViewController(editRestaurantViewController, animated: true)
     }
@@ -65,7 +68,9 @@ class NavigationRouter : Router {
     }
 
     func showNewCommentScreen(restaurantId: Int) {
-        let newCommentViewController = NewCommentViewController()
+        let newCommentViewController = NewCommentViewController(
+            sessionRepo: sessionRepo
+        )
 
         navigationController.pushViewController(newCommentViewController, animated: true)
     }

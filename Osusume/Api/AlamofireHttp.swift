@@ -10,7 +10,11 @@ struct AlamofireHttp: Http {
         self.sessionRepo = sessionRepo
     }
 
-    func get(path: String) -> Future<AnyObject, RepoError> {
+    func get(
+        path: String,
+        headers: [String: String]
+        ) -> Future<AnyObject, RepoError>
+    {
         let promise = Promise<AnyObject, RepoError>()
 
         request(.GET, path: path).responseJSON { response in
@@ -29,7 +33,12 @@ struct AlamofireHttp: Http {
         return promise.future
     }
 
-    func post(path: String, parameters: [String: AnyObject]) -> Future<HttpJson, RepoError> {
+    func post(
+        path: String,
+        headers: [String: String],
+        parameters: [String: AnyObject]
+        ) -> Future<HttpJson, RepoError>
+    {
         let promise = Promise<HttpJson, RepoError>()
 
         request(.POST, path: path, parameters: parameters).responseJSON { response in
@@ -44,7 +53,12 @@ struct AlamofireHttp: Http {
         return promise.future
     }
 
-    func patch(path: String, parameters: [String: AnyObject]) -> Future<HttpJson, RepoError> {
+    func patch(
+        path: String,
+        headers: [String: String],
+        parameters: [String: AnyObject]
+        ) -> Future<HttpJson, RepoError>
+    {
         let promise = Promise<HttpJson, RepoError>()
 
         request(.PATCH, path: path, parameters: parameters).responseJSON { response in
@@ -59,6 +73,7 @@ struct AlamofireHttp: Http {
         return promise.future
     }
 
+    // MARK: - Private Methods
     private func request(method: Alamofire.Method, path: String) -> Request {
         return request(method, path: path, parameters: [:])
     }
