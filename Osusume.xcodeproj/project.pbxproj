@@ -31,7 +31,7 @@
 		AE7E5B801C6870CF0057A795 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7E5B7F1C6870CF0057A795 /* RestaurantTableViewCell.swift */; };
 		AE81888F1C3F87DA009D3DE7 /* RestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */; };
 		AEA712401C4F4BF600862B02 /* LaunchWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA7123F1C4F4BF600862B02 /* LaunchWorkflow.swift */; };
-		AEA712441C4F4D5C00862B02 /* LaunchWorkflowSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA712431C4F4D5C00862B02 /* LaunchWorkflowSpec.swift */; };
+		AEA712441C4F4D5C00862B02 /* LaunchWorkflowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA712431C4F4D5C00862B02 /* LaunchWorkflowTest.swift */; };
 		AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA712471C4F59B300862B02 /* KeychainAccess.framework */; };
 		AEB243901C71666300959434 /* RestaurantListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB2438F1C71666300959434 /* RestaurantListViewControllerTests.swift */; };
 		AEC4EE5C1C71C5AD00881A01 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC4EE5B1C71C5AD00881A01 /* NewCommentViewController.swift */; };
@@ -112,7 +112,7 @@
 		AE7E5B7F1C6870CF0057A795 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantFormView.swift; sourceTree = "<group>"; };
 		AEA7123F1C4F4BF600862B02 /* LaunchWorkflow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflow.swift; sourceTree = "<group>"; };
-		AEA712431C4F4D5C00862B02 /* LaunchWorkflowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflowSpec.swift; sourceTree = "<group>"; };
+		AEA712431C4F4D5C00862B02 /* LaunchWorkflowTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflowTest.swift; sourceTree = "<group>"; };
 		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		AEB2438F1C71666300959434 /* RestaurantListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListViewControllerTests.swift; sourceTree = "<group>"; };
 		AEC4EE5B1C71C5AD00881A01 /* NewCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
@@ -470,7 +470,7 @@
 		DE99CE4BF4B09C4C96211B54 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				AEA712431C4F4D5C00862B02 /* LaunchWorkflowSpec.swift */,
+				AEA712431C4F4D5C00862B02 /* LaunchWorkflowTest.swift */,
 				DE99C54E9CE45026BBFFFC90 /* NavigationRouterTest.swift */,
 			);
 			path = Navigation;
@@ -709,7 +709,7 @@
 				AE42F3FF1C72E74A00447E67 /* Fixtures.swift in Sources */,
 				AE42F3FB1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift in Sources */,
 				AE017D6A1C7179B400788FDF /* KeychainSessionRepoTest.swift in Sources */,
-				AEA712441C4F4D5C00862B02 /* LaunchWorkflowSpec.swift in Sources */,
+				AEA712441C4F4D5C00862B02 /* LaunchWorkflowTest.swift in Sources */,
 				DE99CE8F0DB16A84EC8C2539 /* LoginViewControllerSpec.swift in Sources */,
 				DE99C5E5D4769EC1E07F36DC /* NavigationRouterTest.swift in Sources */,
 				DE99C1D285014C69A9EA7733 /* NewRestaurantViewControllerSpec.swift in Sources */,

@@ -4,7 +4,7 @@ import KeychainAccess
 
 @testable import Osusume
 
-class LaunchWorkflowSpec : QuickSpec {
+class LaunchWorkflowTest: QuickSpec {
     override func spec() {
         describe("the Launch Workflow") {
             var launchWorkflow: LaunchWorkflow!
@@ -25,13 +25,14 @@ class LaunchWorkflowSpec : QuickSpec {
                 )
 
                 launchWorkflow = LaunchWorkflow(
+                    router: router,
                     sessionRepo: fakeSessionRepo,
                     photoRepo: fakePhotoRepo
                 )
             }
 
             it("shows the login screen if there is no session") {
-                launchWorkflow.startWorkflow(router)
+                launchWorkflow.startWorkflow()
 
                 expect(navController.topViewController)
                     .to(beAKindOf(LoginViewController))
@@ -40,14 +41,14 @@ class LaunchWorkflowSpec : QuickSpec {
             it("shows the restaurant list view screen if there is a session") {
                 fakeSessionRepo.setToken("some-token")
 
-                launchWorkflow.startWorkflow(router)
+                launchWorkflow.startWorkflow()
 
                 expect(navController.topViewController)
                     .to(beAKindOf(RestaurantListViewController))
             }
 
             it("configures PhotoRepo") {
-                launchWorkflow.startWorkflow(router)
+                launchWorkflow.startWorkflow()
 
                 expect(fakePhotoRepo.configured).to(equal(true))
             }

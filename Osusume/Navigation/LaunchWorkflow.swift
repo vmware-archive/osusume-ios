@@ -1,13 +1,15 @@
 class LaunchWorkflow {
+    let router: Router
     let sessionRepo: SessionRepo
     let photoRepo: PhotoRepo
 
-    init (sessionRepo: SessionRepo, photoRepo: PhotoRepo) {
+    init (router: Router, sessionRepo: SessionRepo, photoRepo: PhotoRepo) {
+        self.router = router
         self.sessionRepo = sessionRepo
         self.photoRepo = photoRepo
     }
 
-    func startWorkflow(router: Router) {
+    func startWorkflow() {
         photoRepo.configureCredentials()
 
         if let _ = sessionRepo.getToken() {
