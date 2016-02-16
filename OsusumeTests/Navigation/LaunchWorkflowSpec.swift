@@ -22,6 +22,7 @@ class LaunchWorkflowSpec : QuickSpec {
                     navigationController: navController,
                     http: http,
                     sessionRepo: fakeSessionRepo,
+                    restaurantRepo: FakeRestaurantRepo(),
                     photoRepo: fakePhotoRepo
                 )
 

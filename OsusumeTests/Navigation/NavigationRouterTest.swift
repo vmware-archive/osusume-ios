@@ -3,7 +3,7 @@ import Nimble
 
 @testable import Osusume
 
-class NavigationRouterSpec: QuickSpec {
+class NavigationRouterTest: QuickSpec {
     override func spec() {
         describe("the navigation router") {
             var navigationRouter: NavigationRouter!
@@ -19,6 +19,7 @@ class NavigationRouterSpec: QuickSpec {
                     navigationController: navController,
                     http: http,
                     sessionRepo: fakeSessionRepo,
+                    restaurantRepo: FakeRestaurantRepo(),
                     photoRepo: FakePhotoRepo()
                 )
             }
