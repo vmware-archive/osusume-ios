@@ -3,7 +3,7 @@ import Nimble
 
 @testable import Osusume
 
-class RestaurantDetailViewControllerSpec: XCTestCase {
+class RestaurantDetailViewControllerTest: XCTestCase {
     let creationDate = NSDate(timeIntervalSince1970: 0)
     let router = FakeRouter()
     let repo = FakeRestaurantRepo()
@@ -28,8 +28,7 @@ class RestaurantDetailViewControllerSpec: XCTestCase {
         controller = RestaurantDetailViewController(
             router: router,
             repo: repo,
-            restaurantId: 1,
-            sessionRepo: FakeSessionRepo()
+            restaurantId: 1
         )
     }
 

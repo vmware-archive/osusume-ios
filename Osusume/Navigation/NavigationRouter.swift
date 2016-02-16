@@ -21,9 +21,8 @@ class NavigationRouter : Router {
     func showNewRestaurantScreen() {
         let newRestaurantController = NewRestaurantViewController(
             router: self,
-            restaurantRepo: HttpRestaurantRepo(http: http),
-            photoRepo: photoRepo,
-            sessionRepo: sessionRepo
+            restaurantRepo: HttpRestaurantRepo(http: http, sessionRepo: sessionRepo),
+            photoRepo: photoRepo
         )
         navigationController.pushViewController(newRestaurantController, animated: true)
     }
@@ -31,7 +30,7 @@ class NavigationRouter : Router {
     func showRestaurantListScreen() {
         let restaurantListViewController = RestaurantListViewController(
             router: self,
-            repo: HttpRestaurantRepo(http: http),
+            repo: HttpRestaurantRepo(http: http, sessionRepo: sessionRepo),
             sessionRepo: sessionRepo
         )
         navigationController.setViewControllers([restaurantListViewController], animated: true)
@@ -40,9 +39,8 @@ class NavigationRouter : Router {
     func showRestaurantDetailScreen(id: Int) {
         let restaurantDetailViewController = RestaurantDetailViewController(
             router: self,
-            repo: HttpRestaurantRepo(http: http),
-            restaurantId: id,
-            sessionRepo: sessionRepo
+            repo: HttpRestaurantRepo(http: http, sessionRepo: sessionRepo),
+            restaurantId: id
         )
         navigationController.pushViewController(restaurantDetailViewController, animated: true)
     }
@@ -50,9 +48,8 @@ class NavigationRouter : Router {
     func showEditRestaurantScreen(restaurant: Restaurant) {
         let editRestaurantViewController = EditRestaurantViewController(
             router: self,
-            repo: HttpRestaurantRepo(http: http),
-            restaurant: restaurant,
-            sessionRepo: sessionRepo
+            repo: HttpRestaurantRepo(http: http, sessionRepo: sessionRepo),
+            restaurant: restaurant
         )
         navigationController.pushViewController(editRestaurantViewController, animated: true)
     }

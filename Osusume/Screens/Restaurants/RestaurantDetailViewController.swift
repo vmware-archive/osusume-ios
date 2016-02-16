@@ -6,7 +6,6 @@ import BrightFutures
 class RestaurantDetailViewController : UIViewController {
     unowned let router: Router
     let repo: RestaurantRepo
-    let sessionRepo: SessionRepo
 
     let restaurantId: Int
     var restaurant: Restaurant? = nil
@@ -39,13 +38,11 @@ class RestaurantDetailViewController : UIViewController {
     init(
         router: Router,
         repo: RestaurantRepo,
-        restaurantId: Int,
-        sessionRepo: SessionRepo)
+        restaurantId: Int)
     {
         self.router = router
         self.repo = repo
         self.restaurantId = restaurantId
-        self.sessionRepo = sessionRepo
 
         super.init(nibName: nil, bundle: nil)
     }

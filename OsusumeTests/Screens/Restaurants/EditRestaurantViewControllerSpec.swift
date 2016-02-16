@@ -23,8 +23,7 @@ class EditRestaurantViewControllerSpec: QuickSpec {
                 subject = EditRestaurantViewController(
                     router: router,
                     repo: repo,
-                    restaurant: repo.createdRestaurant!,
-                    sessionRepo: FakeSessionRepo()
+                    restaurant: repo.createdRestaurant!
                 )
 
                 subject.view.layoutSubviews()

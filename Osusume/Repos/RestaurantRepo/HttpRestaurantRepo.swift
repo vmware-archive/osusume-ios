@@ -6,9 +6,11 @@ class HttpRestaurantRepo : RestaurantRepo {
 
     let path: String = "/restaurants"
     let http: Http
+    let sessionRepo: SessionRepo
 
-    init(http: Http) {
+    init(http: Http, sessionRepo: SessionRepo) {
         self.http = http
+        self.sessionRepo = sessionRepo
     }
 
     //MARK: - GET Functions

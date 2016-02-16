@@ -8,19 +8,16 @@ class NewRestaurantViewController: UIViewController {
     unowned let router: Router
     let restaurantRepo: RestaurantRepo
     let photoRepo: PhotoRepo
-    let sessionRepo: SessionRepo
 
     //MARK: - Initializers
     init(
         router: Router,
         restaurantRepo: RestaurantRepo,
-        photoRepo: PhotoRepo,
-        sessionRepo: SessionRepo)
+        photoRepo: PhotoRepo)
     {
         self.router = router
         self.restaurantRepo = restaurantRepo
         self.photoRepo = photoRepo
-        self.sessionRepo = sessionRepo
 
         super.init(nibName: nil, bundle: nil)
     }

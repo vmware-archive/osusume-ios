@@ -7,7 +7,6 @@ class EditRestaurantViewController: UIViewController {
 
     unowned let router: Router
     let repo: RestaurantRepo
-    let sessionRepo: SessionRepo
 
     var restaurant: Restaurant? = nil
     var id: Int!
@@ -16,14 +15,12 @@ class EditRestaurantViewController: UIViewController {
     init(
         router: Router,
         repo: RestaurantRepo,
-        restaurant: Restaurant,
-        sessionRepo: SessionRepo)
+        restaurant: Restaurant)
     {
         self.router = router
         self.repo = repo
         self.restaurant = restaurant
         self.id = restaurant.id
-        self.sessionRepo = sessionRepo
 
         super.init(nibName: nil, bundle: nil)
     }

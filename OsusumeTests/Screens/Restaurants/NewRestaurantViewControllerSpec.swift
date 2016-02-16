@@ -23,8 +23,7 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 newRestaurantVC = NewRestaurantViewController(
                     router: router,
                     restaurantRepo: restaurantRepo,
-                    photoRepo: photoRepo,
-                    sessionRepo: FakeSessionRepo()
+                    photoRepo: photoRepo
                 )
 
                 self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
