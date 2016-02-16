@@ -3,7 +3,7 @@ import KeychainAccess
 import Nimble
 @testable import Osusume
 
-class KeychainSessionRepoTests: XCTestCase {
+class KeychainSessionRepoTest: XCTestCase {
 
     var keychainSessionRepo: KeychainSessionRepo!
     var keychain: Keychain!
@@ -16,7 +16,7 @@ class KeychainSessionRepoTests: XCTestCase {
         keychainSessionRepo = KeychainSessionRepo()
         keychain = Keychain(service: "osusume-token-store")
     }
-    
+
     override func tearDown() {
         keychain[HttpTokenKeyName] = nil
 

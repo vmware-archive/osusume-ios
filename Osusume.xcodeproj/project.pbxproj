@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */; };
 		AE017D661C7177D000788FDF /* KeychainSessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE017D651C7177D000788FDF /* KeychainSessionRepo.swift */; };
-		AE017D6A1C7179B400788FDF /* KeychainSessionRepoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE017D691C7179B400788FDF /* KeychainSessionRepoTests.swift */; };
+		AE017D6A1C7179B400788FDF /* KeychainSessionRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE017D691C7179B400788FDF /* KeychainSessionRepoTest.swift */; };
 		AE0F65C21C60346600778E50 /* FakeRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65BF1C60346600778E50 /* FakeRestaurantRepo.swift */; };
 		AE0F65C31C60346600778E50 /* FakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65C01C60346600778E50 /* FakeRouter.swift */; };
 		AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65C11C60346600778E50 /* FakeUserRepo.swift */; };
 		AE10E14C1C5AF079006749F4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE10E14B1C5AF079006749F4 /* main.swift */; };
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE331EF91C50A01C007D37C2 /* RepoError.swift */; };
+		AE42F3FB1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42F3FA1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift */; };
+		AE42F3FD1C72E3BF00447E67 /* FakeHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42F3FC1C72E3BF00447E67 /* FakeHttp.swift */; };
+		AE42F3FF1C72E74A00447E67 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42F3FE1C72E74A00447E67 /* Fixtures.swift */; };
 		AE74A6051C71727A00BD1C0C /* PhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74A5FB1C71727A00BD1C0C /* PhotoRepo.swift */; };
 		AE74A6061C71727A00BD1C0C /* S3PhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74A5FC1C71727A00BD1C0C /* S3PhotoRepo.swift */; };
 		AE74A6071C71727A00BD1C0C /* HttpRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74A5FE1C71727A00BD1C0C /* HttpRestaurantRepo.swift */; };
@@ -87,13 +90,16 @@
 /* Begin PBXFileReference section */
 		2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		AE017D651C7177D000788FDF /* KeychainSessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSessionRepo.swift; sourceTree = "<group>"; };
-		AE017D691C7179B400788FDF /* KeychainSessionRepoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSessionRepoTests.swift; sourceTree = "<group>"; };
+		AE017D691C7179B400788FDF /* KeychainSessionRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSessionRepoTest.swift; sourceTree = "<group>"; };
 		AE0F65BF1C60346600778E50 /* FakeRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRestaurantRepo.swift; sourceTree = "<group>"; };
 		AE0F65C01C60346600778E50 /* FakeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRouter.swift; sourceTree = "<group>"; };
 		AE0F65C11C60346600778E50 /* FakeUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeUserRepo.swift; sourceTree = "<group>"; };
 		AE10E14B1C5AF079006749F4 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AE331EF91C50A01C007D37C2 /* RepoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoError.swift; sourceTree = "<group>"; };
+		AE42F3FA1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRestaurantRepoTest.swift; sourceTree = "<group>"; };
+		AE42F3FC1C72E3BF00447E67 /* FakeHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeHttp.swift; sourceTree = "<group>"; };
+		AE42F3FE1C72E74A00447E67 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		AE74A5FB1C71727A00BD1C0C /* PhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoRepo.swift; sourceTree = "<group>"; };
 		AE74A5FC1C71727A00BD1C0C /* S3PhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3PhotoRepo.swift; sourceTree = "<group>"; };
 		AE74A5FE1C71727A00BD1C0C /* HttpRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRestaurantRepo.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 		AE017D671C71799D00788FDF /* Repos */ = {
 			isa = PBXGroup;
 			children = (
+				AE42F3F91C72E09F00447E67 /* RestaurantRepo */,
 				AE017D681C71799D00788FDF /* SessionRepo */,
 			);
 			path = Repos;
@@ -200,7 +207,7 @@
 		AE017D681C71799D00788FDF /* SessionRepo */ = {
 			isa = PBXGroup;
 			children = (
-				AE017D691C7179B400788FDF /* KeychainSessionRepoTests.swift */,
+				AE017D691C7179B400788FDF /* KeychainSessionRepoTest.swift */,
 			);
 			path = SessionRepo;
 			sourceTree = "<group>";
@@ -208,6 +215,7 @@
 		AE0F65BE1C60346600778E50 /* Fakes */ = {
 			isa = PBXGroup;
 			children = (
+				AE42F3FC1C72E3BF00447E67 /* FakeHttp.swift */,
 				AED333A41C62E8B200127DC6 /* FakePhotoRepo.swift */,
 				AE0F65BF1C60346600778E50 /* FakeRestaurantRepo.swift */,
 				AE0F65C01C60346600778E50 /* FakeRouter.swift */,
@@ -234,6 +242,14 @@
 				AE7CDA551C69835300A2D6B3 /* WebImage.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE42F3F91C72E09F00447E67 /* RestaurantRepo */ = {
+			isa = PBXGroup;
+			children = (
+				AE42F3FA1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift */,
+			);
+			path = RestaurantRepo;
 			sourceTree = "<group>";
 		};
 		AE74A5FA1C71727A00BD1C0C /* PhotoRepo */ = {
@@ -328,6 +344,7 @@
 				DE99CE4BF4B09C4C96211B54 /* Navigation */,
 				AE017D671C71799D00788FDF /* Repos */,
 				DE99CF05F4A7BB5B048FC5BB /* Screens */,
+				AE42F3FE1C72E74A00447E67 /* Fixtures.swift */,
 				AECA9B691C0EC90E00C30BA4 /* Info.plist */,
 			);
 			path = OsusumeTests;
@@ -683,12 +700,15 @@
 			files = (
 				AEFD19C11C61E660008809D5 /* DateConverterSpec.swift in Sources */,
 				AEE17ABA1C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift in Sources */,
+				AE42F3FD1C72E3BF00447E67 /* FakeHttp.swift in Sources */,
 				AED333A51C62E8B200127DC6 /* FakePhotoRepo.swift in Sources */,
 				AE0F65C21C60346600778E50 /* FakeRestaurantRepo.swift in Sources */,
 				AE0F65C31C60346600778E50 /* FakeRouter.swift in Sources */,
 				AE7623341C7190AA006272C3 /* FakeSessionRepo.swift in Sources */,
 				AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */,
-				AE017D6A1C7179B400788FDF /* KeychainSessionRepoTests.swift in Sources */,
+				AE42F3FF1C72E74A00447E67 /* Fixtures.swift in Sources */,
+				AE42F3FB1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift in Sources */,
+				AE017D6A1C7179B400788FDF /* KeychainSessionRepoTest.swift in Sources */,
 				AEA712441C4F4D5C00862B02 /* LaunchWorkflowSpec.swift in Sources */,
 				DE99CE8F0DB16A84EC8C2539 /* LoginViewControllerSpec.swift in Sources */,
 				DE99C5E5D4769EC1E07F36DC /* NavigationRouterSpec.swift in Sources */,

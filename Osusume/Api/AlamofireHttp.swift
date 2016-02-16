@@ -3,11 +3,9 @@ import Alamofire
 
 struct AlamofireHttp: Http {
     let basePath: String
-    let sessionRepo: SessionRepo
 
-    init(basePath: String, sessionRepo: SessionRepo) {
+    init(basePath: String) {
         self.basePath = basePath
-        self.sessionRepo = sessionRepo
     }
 
     func get(
@@ -17,7 +15,7 @@ struct AlamofireHttp: Http {
     {
         let promise = Promise<AnyObject, RepoError>()
 
-        request(.GET, path: path).responseJSON { response in
+        request(.GET, path: path, headers: headers).responseJSON { response in
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
@@ -41,7 +39,7 @@ struct AlamofireHttp: Http {
     {
         let promise = Promise<HttpJson, RepoError>()
 
-        request(.POST, path: path, parameters: parameters).responseJSON { response in
+        request(.POST, path: path, headers: headers, parameters: parameters).responseJSON { response in
             switch response.result {
             case .Success:
                 promise.success(response.result.value as! HttpJson)
@@ -61,7 +59,7 @@ struct AlamofireHttp: Http {
     {
         let promise = Promise<HttpJson, RepoError>()
 
-        request(.PATCH, path: path, parameters: parameters).responseJSON { response in
+        request(.PATCH, path: path, headers: headers, parameters: parameters).responseJSON { response in
             switch response.result {
             case .Success:
                 promise.success(["status": "OK"])
@@ -74,22 +72,27 @@ struct AlamofireHttp: Http {
     }
 
     // MARK: - Private Methods
-    private func request(method: Alamofire.Method, path: String) -> Request {
-        return request(method, path: path, parameters: [:])
-    }
-
-    private func request(method: Alamofire.Method, path: String, parameters: [String: AnyObject]) -> Request {
+    private func request(
+        method: Alamofire.Method,
+        path: String,
+        headers: [String: String],
+        parameters: [String: AnyObject] = [:]
+        ) -> Request
+    {
         let URL = NSURL(string: "\(basePath)\(path)")!
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = method.rawValue
 
-        if let token = sessionRepo.getToken() {
-            mutableURLRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        if let bearerToken = headers["Authorization"] {
+            mutableURLRequest.setValue(bearerToken, forHTTPHeaderField: "Authorization")
         }
 
         do {
             if (method != .GET) {
-                mutableURLRequest.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions())
+                mutableURLRequest.HTTPBody = try NSJSONSerialization.dataWithJSONObject(
+                    parameters,
+                    options: NSJSONWritingOptions()
+                )
                 mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             }
         } catch {
@@ -98,4 +101,4 @@ struct AlamofireHttp: Http {
 
         return Alamofire.request(mutableURLRequest)
     }
-} 
+}

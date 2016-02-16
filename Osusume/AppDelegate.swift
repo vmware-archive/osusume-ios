@@ -17,10 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
-            http: AlamofireHttp(
-                basePath: AppDelegate.basePath,
-                sessionRepo: sessionRepo
-            ),
+            http: AlamofireHttp(basePath: AppDelegate.basePath),
             sessionRepo: sessionRepo,
             photoRepo: photoRepo
         )

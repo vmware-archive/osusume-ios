@@ -38,3 +38,19 @@ struct Restaurant {
             self.photoUrl = photoUrl
     }
 }
+
+extension Restaurant: Equatable {}
+
+func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
+    return lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.address == rhs.address &&
+        lhs.cuisineType == rhs.cuisineType &&
+        lhs.offersEnglishMenu == rhs.offersEnglishMenu &&
+        lhs.walkInsOk  == rhs.walkInsOk &&
+        lhs.acceptsCreditCards == rhs.acceptsCreditCards &&
+        lhs.notes == rhs.notes &&
+        lhs.author == rhs.author &&
+        lhs.createdAt == rhs.createdAt &&
+        lhs.photoUrl == rhs.photoUrl
+}

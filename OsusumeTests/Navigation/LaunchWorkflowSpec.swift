@@ -13,10 +13,7 @@ class LaunchWorkflowSpec : QuickSpec {
             let fakeSessionRepo = FakeSessionRepo()
             let fakePhotoRepo = FakePhotoRepo()
 
-            let http: Http = AlamofireHttp(
-                basePath: AppDelegate.basePath,
-                sessionRepo: fakeSessionRepo
-            )
+            let http: Http = AlamofireHttp(basePath: AppDelegate.basePath)
 
             beforeEach {
                 navController = UINavigationController()

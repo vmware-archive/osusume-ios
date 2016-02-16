@@ -10,10 +10,7 @@ class NavigationRouterSpec: QuickSpec {
             var navController: UINavigationController!
             let fakeSessionRepo = FakeSessionRepo()
 
-            let http: Http = AlamofireHttp(
-                basePath: AppDelegate.basePath,
-                sessionRepo: fakeSessionRepo
-            )
+            let http: Http = AlamofireHttp(basePath: AppDelegate.basePath)
 
             beforeEach {
                 navController = UINavigationController()

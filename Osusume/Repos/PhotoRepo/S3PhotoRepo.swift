@@ -5,15 +5,27 @@ class S3PhotoRepo : PhotoRepo {
 
     func configureCredentials() {
         // Initialize the Amazon Cognito credentials provider
-        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: S3PhotoRepo.regionType, identityPoolId: S3PhotoRepo.identityPoolId)
-        let configuration = AWSServiceConfiguration(region: S3PhotoRepo.regionType, credentialsProvider:credentialsProvider)
+        let credentialsProvider = AWSCognitoCredentialsProvider(
+            regionType: S3PhotoRepo.regionType,
+            identityPoolId: S3PhotoRepo.identityPoolId
+        )
 
-        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+        let configuration = AWSServiceConfiguration(
+            region: S3PhotoRepo.regionType,
+            credentialsProvider: credentialsProvider
+        )
+
+        AWSServiceManager
+            .defaultServiceManager()
+            .defaultServiceConfiguration = configuration
     }
 
     func uploadPhotoWithKey(key: String, photo: UIImage) {
         let fileName = key.componentsSeparatedByString("/").last
-        let photoTempURL = NSURL(fileURLWithPath: NSTemporaryDirectory().stringByAppendingString(fileName!))
+        let photoTempURL = NSURL(
+            fileURLWithPath: NSTemporaryDirectory().stringByAppendingString(fileName!)
+        )
+
         UIImageJPEGRepresentation(photo, 1.0)?.writeToURL(photoTempURL, atomically: true)
 
         let transferManager: AWSS3TransferManager = AWSS3TransferManager.defaultS3TransferManager()
