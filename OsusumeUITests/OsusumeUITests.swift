@@ -32,8 +32,9 @@ class OsusumeUITests: XCTestCase {
     func testAddingAndEditingARestaurant() {
         let app = XCUIApplication()
 
-        login(app)
+        logoutIfAlreadyLoggedIn(app)
 
+        login(app)
         app.navigationBars["Osusume.RestaurantListView"].buttons["add restaurant"].tap()
         
         let element = app.scrollViews.childrenMatchingType(.Other).element
@@ -45,8 +46,7 @@ class OsusumeUITests: XCTestCase {
         textField.swipeUp()
 
         let tablesQuery = app.tables
-
-        app.scrollViews.childrenMatchingType(.Other).element.childrenMatchingType(.Image).element.tap()
+        app.scrollViews.otherElements.buttons["add photo"].tap()
         app.tables.buttons["Camera Roll"].tap()
         app.collectionViews.cells.elementBoundByIndex(0).tap()
 
@@ -66,6 +66,12 @@ class OsusumeUITests: XCTestCase {
 
         XCTAssert(app.images["Picture of \(newName)"].exists)
         XCTAssert(app.staticTexts[newName].exists)
+    }
+
+    func logoutIfAlreadyLoggedIn(app: XCUIApplication) {
+        if app.buttons["Logout"].exists {
+            app.buttons["Logout"].tap()
+        }
     }
 
     func login(app: XCUIApplication) {

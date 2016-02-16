@@ -41,7 +41,20 @@ class NewRestaurantViewController: UIViewController {
         return imageView
     }()
 
-    lazy var imagePicker: UIImagePickerController = {
+    lazy var addPhotoButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("add photo", forState: .Normal)
+        button.backgroundColor = .whiteColor()
+        button.setTitleColor(.blackColor(), forState: .Normal)
+        button.addTarget(
+            self,
+            action: Selector("didTapAddPhotoButton:"),
+            forControlEvents: .TouchUpInside
+        )
+        return button
+    }()
+
+    lazy var imagePicker : UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.allowsEditing = false
         picker.sourceType = .PhotoLibrary
@@ -54,9 +67,10 @@ class NewRestaurantViewController: UIViewController {
 
         view.addSubview(scrollView)
         scrollView.addSubview(contentInScrollView)
+        contentInScrollView.addSubview(imageView)
+        contentInScrollView.addSubview(addPhotoButton)
         contentInScrollView.addSubview(formViewContainer)
         formViewContainer.addSubview(formView)
-        contentInScrollView.addSubview(imageView)
 
         scrollView.backgroundColor = UIColor.whiteColor()
         scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
@@ -65,15 +79,21 @@ class NewRestaurantViewController: UIViewController {
         contentInScrollView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
         contentInScrollView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
 
-        formViewContainer.autoPinEdgeToSuperviewEdge(.Top)
-        formViewContainer.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-        formViewContainer.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
-        formView.autoPinEdgesToSuperviewEdges()
-
-        imageView.autoPinEdge(.Top, toEdge: .Bottom, ofView: formViewContainer, withOffset: 10.0)
-        imageView.autoAlignAxis(.Vertical, toSameAxisOfView: formViewContainer)
+        imageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 20.0)
+        imageView.autoAlignAxisToSuperviewAxis(.Vertical)
         imageView.autoSetDimension(.Height, toSize: 100.0)
         imageView.autoSetDimension(.Width, toSize: 100.0)
+
+        addPhotoButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageView)
+        addPhotoButton.autoAlignAxis(.Vertical, toSameAxisOfView: imageView)
+        addPhotoButton.autoSetDimension(.Height, toSize: 25.0)
+        addPhotoButton.autoSetDimension(.Width, toSize: 100.0)
+
+        formViewContainer.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+        formViewContainer.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
+        formViewContainer.autoPinEdge(.Top, toEdge: .Bottom, ofView: addPhotoButton, withOffset: 20.0)
+        formViewContainer.autoAlignAxis(.Vertical, toSameAxisOfView: formViewContainer)
+        formView.autoPinEdgesToSuperviewEdges()
 
         let doneButton = UIBarButtonItem(
             title: "Done",
@@ -82,13 +102,6 @@ class NewRestaurantViewController: UIViewController {
             action: Selector("didTapDoneButton:")
         )
         navigationItem.rightBarButtonItem = doneButton
-
-        let tapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: Selector("didTapImageView:")
-        )
-        imageView.userInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGestureRecognizer)
     }
 
     // MARK: - Actions
@@ -135,7 +148,7 @@ extension NewRestaurantViewController: UIImagePickerControllerDelegate {
 
 // MARK: - UINavigationControllerDelegate
 extension NewRestaurantViewController: UINavigationControllerDelegate {
-    func didTapImageView(sender: UITapGestureRecognizer) {
+    func didTapAddPhotoButton(sender: UIButton?) {
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
     }

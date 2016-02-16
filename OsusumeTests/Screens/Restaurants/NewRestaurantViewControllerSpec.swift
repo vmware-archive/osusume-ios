@@ -66,17 +66,6 @@ class NewRestaurantViewControllerSpec: QuickSpec {
                 expect(restaurant.notes).to(equal("Notes"))
                 expect(restaurant.photoUrl!.absoluteString).to(equal(photoRepo.generatedUrlAbsoluteString))
             }
-
-            it("displays the camera roll when 'Add Photo from Album' button is tapped") {
-                let view = newRestaurantVC.view
-                let scrollView = view.subviews[0]
-                let contentInScrollView = scrollView.subviews[0]
-
-                expect(contentInScrollView.subviews.contains(newRestaurantVC.imageView)).to(beTrue())
-
-                newRestaurantVC.didTapImageView(UITapGestureRecognizer())
-                expect(newRestaurantVC.presentedViewController).to(beAKindOf(UIImagePickerController))
-            }
         }
     }
 }
