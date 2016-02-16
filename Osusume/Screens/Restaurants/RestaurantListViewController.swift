@@ -37,7 +37,7 @@ class RestaurantListViewController: UITableViewController {
 
         self.navigationItem.leftBarButtonItem =
             UIBarButtonItem(
-                title: "logout",
+                title: "Logout",
                 style: .Plain,
                 target: self,
                 action: Selector("didTapLogoutButton:"))

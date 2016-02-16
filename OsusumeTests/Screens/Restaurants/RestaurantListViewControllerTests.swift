@@ -96,7 +96,7 @@ class RestaurantListViewControllerTests: XCTestCase {
 
     func testViewDidLoad_showsLogoutButton() {
         if let leftBarButtonItem = self.restaurantListVC.navigationItem.leftBarButtonItem {
-            expect(leftBarButtonItem.title).to(equal("logout"))
+            expect(leftBarButtonItem.title).to(equal("Logout"))
         } else {
             XCTFail()
         }
