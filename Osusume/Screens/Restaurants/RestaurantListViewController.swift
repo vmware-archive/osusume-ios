@@ -10,7 +10,6 @@ class RestaurantListViewController: UITableViewController {
 
     let cellIdentifier = "RestaurantListItemCell"
     var restaurants: [Restaurant] = []
-    let dateConverter = DateConverter()
 
     //MARK: - Initializers
     init(router: Router, repo: RestaurantRepo, sessionRepo: SessionRepo) {

@@ -3,7 +3,7 @@ import UIKit
 import PureLayout
 import BrightFutures
 
-class NewRestaurantViewController : UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewRestaurantViewController : UIViewController {
 
     unowned let router: Router
     let restaurantRepo: RestaurantRepo
@@ -103,14 +103,22 @@ class NewRestaurantViewController : UIViewController, UIImagePickerControllerDel
                 self.router.showRestaurantListScreen()
         }
     }
+}
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+extension NewRestaurantViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(
+        picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = pickedImage
         }
+
         dismissViewControllerAnimated(true, completion: nil)
     }
+}
 
+extension NewRestaurantViewController: UINavigationControllerDelegate {
     func didTapImageView(sender: UITapGestureRecognizer) {
         imagePicker.delegate = self
         presentViewController(imagePicker, animated: true, completion: nil)
