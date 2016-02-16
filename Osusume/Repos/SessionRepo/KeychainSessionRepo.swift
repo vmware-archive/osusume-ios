@@ -1,21 +1,21 @@
 import KeychainAccess
 
 class KeychainSessionRepo: SessionRepo {
-    static let STORE_SERVICE_NAME: String = "osususme-token-store"
+    static let StoreServiceName: String = "osusume-token-store"
 
-    private let HTTP_TOKEN: String = "http-token"
+    private let httpTokenKeyName: String = "http-token"
 
-    let keychain = Keychain(service: STORE_SERVICE_NAME)
+    let keychain = Keychain(service: StoreServiceName)
 
     func setToken(token: String) {
-        keychain[HTTP_TOKEN] = token
+        keychain[httpTokenKeyName] = token
     }
 
     func getToken() -> String? {
-        return keychain[HTTP_TOKEN]
+        return keychain[httpTokenKeyName]
     }
 
     func deleteToken() {
-        keychain[HTTP_TOKEN] = nil
+        keychain[httpTokenKeyName] = nil
     }
 }

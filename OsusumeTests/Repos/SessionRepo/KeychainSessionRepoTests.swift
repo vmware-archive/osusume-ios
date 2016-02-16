@@ -14,7 +14,7 @@ class KeychainSessionRepoTests: XCTestCase {
         super.setUp()
 
         keychainSessionRepo = KeychainSessionRepo()
-        keychain = Keychain(service: "osususme-token-store")
+        keychain = Keychain(service: "osusume-token-store")
     }
     
     override func tearDown() {
