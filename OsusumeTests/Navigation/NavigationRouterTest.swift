@@ -17,10 +17,10 @@ class NavigationRouterTest: QuickSpec {
 
                 navigationRouter = NavigationRouter(
                     navigationController: navController,
-                    http: http,
                     sessionRepo: fakeSessionRepo,
                     restaurantRepo: FakeRestaurantRepo(),
-                    photoRepo: FakePhotoRepo()
+                    photoRepo: FakePhotoRepo(),
+                    userRepo: FakeUserRepo()
                 )
             }
 

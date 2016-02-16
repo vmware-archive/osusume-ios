@@ -2,23 +2,23 @@ import UIKit
 
 class NavigationRouter : Router {
     let navigationController : UINavigationController
-    let http: Http
     let sessionRepo: SessionRepo
     let restaurantRepo: RestaurantRepo
     let photoRepo: PhotoRepo
+    let userRepo: UserRepo
 
     init(
         navigationController: UINavigationController,
-        http: Http,
         sessionRepo: SessionRepo,
         restaurantRepo: RestaurantRepo,
-        photoRepo: PhotoRepo)
+        photoRepo: PhotoRepo,
+        userRepo: UserRepo)
     {
         self.navigationController = navigationController
-        self.http = http
         self.sessionRepo = sessionRepo
         self.restaurantRepo = restaurantRepo
         self.photoRepo = photoRepo
+        self.userRepo = userRepo
     }
 
     func showNewRestaurantScreen() {
@@ -27,7 +27,11 @@ class NavigationRouter : Router {
             restaurantRepo: restaurantRepo,
             photoRepo: photoRepo
         )
-        navigationController.pushViewController(newRestaurantController, animated: true)
+
+        navigationController.pushViewController(
+            newRestaurantController,
+            animated: true
+        )
     }
 
     func showRestaurantListScreen() {
@@ -36,7 +40,11 @@ class NavigationRouter : Router {
             repo: restaurantRepo,
             sessionRepo: sessionRepo
         )
-        navigationController.setViewControllers([restaurantListViewController], animated: true)
+
+        navigationController.setViewControllers(
+            [restaurantListViewController],
+            animated: true
+        )
     }
 
     func showRestaurantDetailScreen(id: Int) {
@@ -45,7 +53,11 @@ class NavigationRouter : Router {
             repo: restaurantRepo,
             restaurantId: id
         )
-        navigationController.pushViewController(restaurantDetailViewController, animated: true)
+
+        navigationController.pushViewController(
+            restaurantDetailViewController,
+            animated: true
+        )
     }
 
     func showEditRestaurantScreen(restaurant: Restaurant) {
@@ -54,22 +66,32 @@ class NavigationRouter : Router {
             repo: restaurantRepo,
             restaurant: restaurant
         )
-        navigationController.pushViewController(editRestaurantViewController, animated: true)
+
+        navigationController.pushViewController(
+            editRestaurantViewController,
+            animated: true
+        )
     }
 
     func showLoginScreen() {
         let loginViewController = LoginViewController(
             router: self,
-            repo: HttpUserRepo(http: http),
+            repo: userRepo,
             sessionRepo: sessionRepo
         )
 
-        navigationController.setViewControllers([loginViewController], animated: true)
+        navigationController.setViewControllers(
+            [loginViewController],
+            animated: true
+        )
     }
 
     func showNewCommentScreen(restaurantId: Int) {
         let newCommentViewController = NewCommentViewController()
 
-        navigationController.pushViewController(newCommentViewController, animated: true)
+        navigationController.pushViewController(
+            newCommentViewController,
+            animated: true
+        )
     }
 }

@@ -13,17 +13,15 @@ class LaunchWorkflowSpec : QuickSpec {
             let fakeSessionRepo = FakeSessionRepo()
             let fakePhotoRepo = FakePhotoRepo()
 
-            let http: Http = AlamofireHttp(basePath: AppDelegate.basePath)
-
             beforeEach {
                 navController = UINavigationController()
 
                 router = NavigationRouter(
                     navigationController: navController,
-                    http: http,
-                    sessionRepo: fakeSessionRepo,
+                    sessionRepo: FakeSessionRepo(),
                     restaurantRepo: FakeRestaurantRepo(),
-                    photoRepo: fakePhotoRepo
+                    photoRepo: fakePhotoRepo,
+                    userRepo: FakeUserRepo()
                 )
 
                 launchWorkflow = LaunchWorkflow(
@@ -35,7 +33,8 @@ class LaunchWorkflowSpec : QuickSpec {
             it("shows the login screen if there is no session") {
                 launchWorkflow.startWorkflow(router)
 
-                expect(navController.topViewController).to(beAKindOf(LoginViewController))
+                expect(navController.topViewController)
+                    .to(beAKindOf(LoginViewController))
             }
 
             it("shows the restaurant list view screen if there is a session") {
@@ -43,7 +42,8 @@ class LaunchWorkflowSpec : QuickSpec {
 
                 launchWorkflow.startWorkflow(router)
 
-                expect(navController.topViewController).to(beAKindOf(RestaurantListViewController))
+                expect(navController.topViewController)
+                    .to(beAKindOf(RestaurantListViewController))
             }
 
             it("configures PhotoRepo") {

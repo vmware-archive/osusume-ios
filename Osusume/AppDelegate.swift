@@ -8,6 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let sessionRepo: SessionRepo
     let restaurantRepo: RestaurantRepo
     let photoRepo: PhotoRepo
+    let userRepo: UserRepo
 
     static let basePath = NSBundle.mainBundle().objectForInfoDictionaryKey("ServerURL") as! String
 
@@ -18,20 +19,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let http = AlamofireHttp(basePath: AppDelegate.basePath)
         let restaurantRepo = HttpRestaurantRepo(http: http, sessionRepo: sessionRepo)
+        let userRepo = HttpUserRepo(http: http)
 
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
-            http: http,
             sessionRepo: sessionRepo,
             restaurantRepo: restaurantRepo,
-            photoRepo: photoRepo
+            photoRepo: photoRepo,
+            userRepo: userRepo
         )
 
         self.init(
             router: router,
             sessionRepo: sessionRepo,
             restaurantRepo: restaurantRepo,
-            photoRepo: photoRepo
+            photoRepo: photoRepo,
+            userRepo: userRepo
         )
     }
 
@@ -39,12 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         router: NavigationRouter,
         sessionRepo: SessionRepo,
         restaurantRepo: RestaurantRepo,
-        photoRepo: PhotoRepo)
+        photoRepo: PhotoRepo,
+        userRepo: UserRepo)
     {
         self.router = router
         self.sessionRepo = sessionRepo
         self.restaurantRepo = restaurantRepo
         self.photoRepo = photoRepo
+        self.userRepo = userRepo
     }
 
     func application(
