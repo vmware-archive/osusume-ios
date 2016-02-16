@@ -62,6 +62,12 @@ class NavigationRouterSpec: QuickSpec {
                 expect(fakeSessionRepo === loginSessionRepo).to(beTrue())
             }
 
+            it("shows the new comment screen") {
+                let restaurant = Restaurant(id: 1, name: "Existing Restaurant")
+                navigationRouter.showNewCommentScreen(1)
+
+                expect(navController.topViewController).to(beAKindOf(NewCommentViewController))
+            }
         }
     }
 }

@@ -55,4 +55,13 @@ class RestaurantDetailViewControllerSpec: XCTestCase {
 
         expect(self.router.editRestaurantScreenIsShowing).to(equal(true))
     }
+
+    func test_tappingTheAddCommentButton_showsTheNewCommentScreen() {
+        let _ = controller.view
+
+        controller.addCommentButton.sendActionsForControlEvents(.TouchUpInside)
+
+        expect(self.router.newCommentScreenIsShowing).to(equal(true))
+        expect(self.router.showNewCommentScreen_args).to(equal(1)) // created restaurant
+    }
 }

@@ -6,7 +6,12 @@ class NavigationRouter : Router {
     let sessionRepo: SessionRepo
     let photoRepo: PhotoRepo
 
-    init(navigationController: UINavigationController, http: Http, sessionRepo: SessionRepo, photoRepo: PhotoRepo) {
+    init(
+        navigationController: UINavigationController,
+        http: Http,
+        sessionRepo: SessionRepo,
+        photoRepo: PhotoRepo)
+    {
         self.navigationController = navigationController
         self.http = http
         self.sessionRepo = sessionRepo
@@ -14,22 +19,41 @@ class NavigationRouter : Router {
     }
 
     func showNewRestaurantScreen() {
-        let newRestaurantController = NewRestaurantViewController(router: self, restaurantRepo: HttpRestaurantRepo(http: http), photoRepo: photoRepo)
+        let newRestaurantController = NewRestaurantViewController(
+            router: self,
+            restaurantRepo: HttpRestaurantRepo(http: http),
+            photoRepo: photoRepo
+        )
+
         navigationController.pushViewController(newRestaurantController, animated: true)
     }
 
     func showRestaurantListScreen() {
-        let restaurantListViewController = RestaurantListViewController(router: self, repo: HttpRestaurantRepo(http: http))
+        let restaurantListViewController = RestaurantListViewController(
+            router: self,
+            repo: HttpRestaurantRepo(http: http)
+        )
+
         navigationController.setViewControllers([restaurantListViewController], animated: true)
     }
 
     func showRestaurantDetailScreen(id: Int) {
-        let restaurantDetailViewController = RestaurantDetailViewController(router: self, repo: HttpRestaurantRepo(http: http), id: id)
+        let restaurantDetailViewController = RestaurantDetailViewController(
+            router: self,
+            repo: HttpRestaurantRepo(http: http),
+            id: id
+        )
+
         navigationController.pushViewController(restaurantDetailViewController, animated: true)
     }
 
     func showEditRestaurantScreen(restaurant: Restaurant) {
-        let editRestaurantViewController = EditRestaurantViewController(router: self, repo: HttpRestaurantRepo(http: http), restaurant: restaurant)
+        let editRestaurantViewController = EditRestaurantViewController(
+            router: self,
+            repo: HttpRestaurantRepo(http: http),
+            restaurant: restaurant
+        )
+
         navigationController.pushViewController(editRestaurantViewController, animated: true)
     }
 
@@ -39,6 +63,13 @@ class NavigationRouter : Router {
             repo: HttpUserRepo(http: http),
             sessionRepo: sessionRepo
         )
+
         navigationController.setViewControllers([loginViewController], animated: true)
+    }
+
+    func showNewCommentScreen(restaurantID: Int) {
+        let newCommentViewController = NewCommentViewController()
+
+        navigationController.pushViewController(newCommentViewController, animated: true)
     }
 }

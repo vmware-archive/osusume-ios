@@ -9,20 +9,6 @@ class RestaurantDetailViewController : UIViewController {
     let id: Int
     var restaurant: Restaurant? = nil
 
-    //MARK: - Initializers
-
-    init(router: Router, repo: RestaurantRepo, id: Int) {
-        self.router = router
-        self.repo = repo
-        self.id = id
-
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) is not supported for RestaurantDetailViewController")
-    }
-
     //MARK: - View Elements
     let scrollView  = UIScrollView.newAutoLayoutView()
     let scrollViewContentView = UIView.newAutoLayoutView()
@@ -44,6 +30,21 @@ class RestaurantDetailViewController : UIViewController {
         return label
     }()
     let creationInfoLabel = UILabel()
+    let addCommentButton = UIButton.newAutoLayoutView()
+
+    //MARK: - Initializers
+
+    init(router: Router, repo: RestaurantRepo, id: Int) {
+        self.router = router
+        self.repo = repo
+        self.id = id
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) is not supported for RestaurantDetailViewController")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,7 @@ class RestaurantDetailViewController : UIViewController {
         scrollViewContentView.addSubview(acceptsCreditCardsLabel)
         scrollViewContentView.addSubview(notesLabel)
         scrollViewContentView.addSubview(creationInfoLabel)
+        scrollViewContentView.addSubview(addCommentButton)
 
         applyViewConstraints()
 
@@ -67,11 +69,14 @@ class RestaurantDetailViewController : UIViewController {
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurant in
                 self.restaurant = returnedRestaurant
 
-                let setAccessibilityTypeCompletionHandler: SDWebImageCompletionBlock = {(image: UIImage!, error: NSError!, cacheType: SDImageCacheType!, imageURL: NSURL!) -> Void in
+                let setAccessibilityTypeCompletionHandler: SDWebImageCompletionBlock = {
+                    (image: UIImage!, error: NSError!, cacheType: SDImageCacheType!, imageURL: NSURL!) -> Void in
+
                     if error == nil {
                         self.headerImageView.accessibilityLabel = "Picture of \(self.restaurant!.name)"
                     }
                 }
+
                 self.headerImageView.sd_setImageWithURL(self.restaurant!.photoUrl, completed: setAccessibilityTypeCompletionHandler)
 
                 let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: returnedRestaurant)
@@ -92,6 +97,14 @@ class RestaurantDetailViewController : UIViewController {
             action: Selector("didTapEditRestaurantButton:")
         )
         navigationItem.rightBarButtonItem = editButton
+
+        addCommentButton.addTarget(
+            self,
+            action: "didTapAddNewCommentButton",
+            forControlEvents: .TouchUpInside
+        )
+        addCommentButton.setTitle("New Comment", forState: .Normal)
+        addCommentButton.backgroundColor = UIColor.grayColor()
     }
 
     //MARK: - Actions
@@ -99,6 +112,10 @@ class RestaurantDetailViewController : UIViewController {
         if let currentRestaurant = self.restaurant {
             router.showEditRestaurantScreen(currentRestaurant)
         }
+    }
+
+    func didTapAddNewCommentButton() {
+        router.showNewCommentScreen(self.restaurant!.id)
     }
 
     //MARK: - Constraints
@@ -137,5 +154,9 @@ class RestaurantDetailViewController : UIViewController {
 
         creationInfoLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         creationInfoLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
+
+        addCommentButton.autoPinEdge(.Leading, toEdge: .Leading, ofView: creationInfoLabel)
+        addCommentButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: creationInfoLabel)
+
     }
 }

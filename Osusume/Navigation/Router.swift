@@ -4,4 +4,5 @@ protocol Router : class {
     func showRestaurantDetailScreen(id: Int)
     func showEditRestaurantScreen(restaurant: Restaurant)
     func showLoginScreen()
+    func showNewCommentScreen(id: Int)
 }
