@@ -6,7 +6,7 @@ import BrightFutures
 class RestaurantDetailViewController : UIViewController {
     unowned let router: Router
     let repo: RestaurantRepo
-    let id: Int
+    let restaurantId: Int
     var restaurant: Restaurant? = nil
 
     //MARK: - View Elements
@@ -34,10 +34,10 @@ class RestaurantDetailViewController : UIViewController {
 
     //MARK: - Initializers
 
-    init(router: Router, repo: RestaurantRepo, id: Int) {
+    init(router: Router, repo: RestaurantRepo, restaurantId: Int) {
         self.router = router
         self.repo = repo
-        self.id = id
+        self.restaurantId = restaurantId
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -65,7 +65,7 @@ class RestaurantDetailViewController : UIViewController {
 
         applyViewConstraints()
 
-        repo.getOne(self.id)
+        repo.getOne(self.restaurantId)
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurant in
                 self.restaurant = returnedRestaurant
 

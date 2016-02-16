@@ -28,7 +28,7 @@ class RestaurantDetailViewControllerSpec: XCTestCase {
         controller = RestaurantDetailViewController(
             router: router,
             repo: repo,
-            id: 1
+            restaurantId: 1
         )
     }
 

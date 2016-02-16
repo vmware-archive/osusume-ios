@@ -40,7 +40,7 @@ class NavigationRouter : Router {
         let restaurantDetailViewController = RestaurantDetailViewController(
             router: self,
             repo: HttpRestaurantRepo(http: http),
-            id: id
+            restaurantId: id
         )
         navigationController.pushViewController(restaurantDetailViewController, animated: true)
     }
