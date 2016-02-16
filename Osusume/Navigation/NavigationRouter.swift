@@ -64,7 +64,7 @@ class NavigationRouter : Router {
         navigationController.setViewControllers([loginViewController], animated: true)
     }
 
-    func showNewCommentScreen(restaurantID: Int) {
+    func showNewCommentScreen(restaurantId: Int) {
         let newCommentViewController = NewCommentViewController()
 
         navigationController.pushViewController(newCommentViewController, animated: true)

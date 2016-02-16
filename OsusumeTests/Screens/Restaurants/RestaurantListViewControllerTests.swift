@@ -35,11 +35,29 @@ class RestaurantListViewControllerTests: XCTestCase {
             ),
             Restaurant(
                 id: 2,
-                name: "とんかつ 豚組食堂"
+                name: "とんかつ 豚組食堂",
+                address: "",
+                cuisineType: "つけめん",
+                offersEnglishMenu: true,
+                walkInsOk: true,
+                acceptsCreditCards: true,
+                notes: "This place is great",
+                author: "Simon",
+                createdAt: NSDate(timeIntervalSince1970: 1454480320),
+                photoUrl: NSURL(string: "")
             ),
             Restaurant(
                 id: 3,
-                name: "Coco Curry"
+                name: "Coco Curry",
+                address: "",
+                cuisineType: "つけめん",
+                offersEnglishMenu: true,
+                walkInsOk: true,
+                acceptsCreditCards: true,
+                notes: "This place is great",
+                author: "Simon",
+                createdAt: NSDate(timeIntervalSince1970: 1454480320),
+                photoUrl: NSURL(string: "")
             ),
         ]
 

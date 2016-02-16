@@ -1,6 +1,6 @@
 import Foundation
 
-class Restaurant {
+struct Restaurant {
     var id: Int
     var name: String
     var address: String
@@ -36,19 +36,5 @@ class Restaurant {
             self.author = author
             self.createdAt = createdAt
             self.photoUrl = photoUrl
-    }
-
-    init(id: Int, name: String) {
-        self.id = id
-        self.name = name
-        self.address = ""
-        self.cuisineType = ""
-        self.offersEnglishMenu = false
-        self.walkInsOk = false
-        self.acceptsCreditCards = false
-        self.notes = ""
-        self.author = ""
-        self.createdAt = nil
-        self.photoUrl = nil
     }
 }

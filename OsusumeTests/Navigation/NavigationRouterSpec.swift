@@ -44,7 +44,20 @@ class NavigationRouterSpec: QuickSpec {
             }
 
             it("shows the edit restaurant screen") {
-                let restaurant = Restaurant(id: 1, name: "Existing Restaurant")
+                let restaurant = Restaurant(
+                    id: 1,
+                    name: "Existing Restaurant",
+                    address: "",
+                    cuisineType: "つけめん",
+                    offersEnglishMenu: true,
+                    walkInsOk: true,
+                    acceptsCreditCards: true,
+                    notes: "This place is great",
+                    author: "Simon",
+                    createdAt: NSDate(timeIntervalSince1970: 1454480320),
+                    photoUrl: NSURL(string: "")
+                )
+
                 navigationRouter.showEditRestaurantScreen(restaurant)
                 expect(navController.topViewController).to(beAKindOf(EditRestaurantViewController))
             }
@@ -63,7 +76,6 @@ class NavigationRouterSpec: QuickSpec {
             }
 
             it("shows the new comment screen") {
-                let restaurant = Restaurant(id: 1, name: "Existing Restaurant")
                 navigationRouter.showNewCommentScreen(1)
 
                 expect(navController.topViewController).to(beAKindOf(NewCommentViewController))
