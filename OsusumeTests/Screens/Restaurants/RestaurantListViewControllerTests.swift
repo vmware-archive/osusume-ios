@@ -40,7 +40,7 @@ class RestaurantListViewControllerTests: XCTestCase {
                 name: "Coco Curry"
             ),
         ]
-        restaurantListVC = RestaurantListViewController(router: router, repo: repo)
+        restaurantListVC = RestaurantListViewController(router: router, repo: repo, sessionRepo: FakeSessionRepo())
         restaurantListVC.view.layoutSubviews()
     }
 

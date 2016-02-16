@@ -24,16 +24,15 @@ class NavigationRouter : Router {
             restaurantRepo: HttpRestaurantRepo(http: http),
             photoRepo: photoRepo
         )
-
         navigationController.pushViewController(newRestaurantController, animated: true)
     }
 
     func showRestaurantListScreen() {
         let restaurantListViewController = RestaurantListViewController(
             router: self,
-            repo: HttpRestaurantRepo(http: http)
+            repo: HttpRestaurantRepo(http: http),
+            sessionRepo: sessionRepo
         )
-
         navigationController.setViewControllers([restaurantListViewController], animated: true)
     }
 
@@ -43,7 +42,6 @@ class NavigationRouter : Router {
             repo: HttpRestaurantRepo(http: http),
             id: id
         )
-
         navigationController.pushViewController(restaurantDetailViewController, animated: true)
     }
 
@@ -53,7 +51,6 @@ class NavigationRouter : Router {
             repo: HttpRestaurantRepo(http: http),
             restaurant: restaurant
         )
-
         navigationController.pushViewController(editRestaurantViewController, animated: true)
     }
 

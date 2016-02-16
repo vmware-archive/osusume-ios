@@ -7,15 +7,17 @@ class RestaurantListViewController: UITableViewController {
 
     unowned let router : Router
     let repo : RestaurantRepo
+    let sessionRepo: SessionRepo
 
     let cellIdentifier = "RestaurantListItemCell"
     var restaurants: [Restaurant] = []
     let dateConverter = DateConverter()
 
     //MARK: - Initializers
-    init(router: Router, repo: RestaurantRepo) {
+    init(router: Router, repo: RestaurantRepo, sessionRepo: SessionRepo) {
         self.router = router
         self.repo = repo
+        self.sessionRepo = sessionRepo
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -37,7 +39,7 @@ class RestaurantListViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem =
             UIBarButtonItem(
                 title: "add restaurant",
-                style: UIBarButtonItemStyle.Plain,
+                style: .Plain,
                 target: self,
                 action: Selector("didTapAddRestaurantButton:")
         )
