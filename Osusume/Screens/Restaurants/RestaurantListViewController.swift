@@ -4,9 +4,8 @@ import PureLayout
 import BrightFutures
 
 class RestaurantListViewController: UITableViewController {
-
-    unowned let router : Router
-    let repo : RestaurantRepo
+    unowned let router: Router
+    let repo: RestaurantRepo
     let sessionRepo: SessionRepo
 
     let cellIdentifier = "RestaurantListItemCell"
@@ -36,6 +35,13 @@ class RestaurantListViewController: UITableViewController {
                 self.tableView.reloadData()
         }
 
+        self.navigationItem.leftBarButtonItem =
+            UIBarButtonItem(
+                title: "logout",
+                style: .Plain,
+                target: self,
+                action: Selector("didTapLogoutButton:"))
+
         self.navigationItem.rightBarButtonItem =
             UIBarButtonItem(
                 title: "add restaurant",
@@ -54,6 +60,11 @@ class RestaurantListViewController: UITableViewController {
     }
 
     //MARK: - Actions
+    func didTapLogoutButton(sender: UIBarButtonItem) {
+        sessionRepo.deleteToken()
+        router.showLoginScreen()
+    }
+
     func didTapAddRestaurantButton(sender: UIBarButtonItem) {
         router.showNewRestaurantScreen()
     }

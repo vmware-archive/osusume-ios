@@ -7,17 +7,19 @@ import Result
 class RestaurantListViewControllerTests: XCTestCase {
 
     var restaurantListVC: RestaurantListViewController!
-    var router: FakeRouter!
-    var repo: FakeRestaurantRepo!
+    var fakeRouter: FakeRouter!
+    var fakeRestaurantRepo: FakeRestaurantRepo!
+    var fakeSessionRepo: FakeSessionRepo!
 
     override func setUp() {
         super.setUp()
 
         UIView.setAnimationsEnabled(false)
-        router = FakeRouter()
-        repo = FakeRestaurantRepo()
+        fakeRouter = FakeRouter()
+        fakeRestaurantRepo = FakeRestaurantRepo()
+        fakeSessionRepo = FakeSessionRepo()
 
-        repo.allRestaurants = [
+        fakeRestaurantRepo.allRestaurants = [
             Restaurant(
                 id: 1,
                 name: "つけめんTETSU",
@@ -40,7 +42,13 @@ class RestaurantListViewControllerTests: XCTestCase {
                 name: "Coco Curry"
             ),
         ]
-        restaurantListVC = RestaurantListViewController(router: router, repo: repo, sessionRepo: FakeSessionRepo())
+
+        restaurantListVC = RestaurantListViewController(
+            router: fakeRouter,
+            repo: fakeRestaurantRepo,
+            sessionRepo: fakeSessionRepo
+        )
+
         restaurantListVC.view.layoutSubviews()
     }
 
@@ -70,17 +78,41 @@ class RestaurantListViewControllerTests: XCTestCase {
     }
 
     func testTapNewRestarauntShowsNewRestaurantScreen() {
-        expect(self.restaurantListVC.navigationItem.rightBarButtonItem).toNot(beNil())
-        expect(self.restaurantListVC.navigationItem.rightBarButtonItem!.title).to(equal("add restaurant"))
+        if let rightBarButtonItem = self.restaurantListVC.navigationItem.rightBarButtonItem {
+            expect(rightBarButtonItem.title).to(equal("add restaurant"))
+        } else {
+            XCTFail()
+        }
 
         restaurantListVC.didTapAddRestaurantButton(restaurantListVC.navigationItem.rightBarButtonItem!)
 
-        expect(self.router.newRestaurantScreenIsShowing).to(equal(true))
+        expect(self.fakeRouter.newRestaurantScreenIsShowing).to(equal(true))
     }
 
     func testSelectRowShowsRestaurantDetailScreen() {
         restaurantListVC.didTapRestaurant(1)
-        expect(self.router.restaurantDetailScreenIsShowing).to(equal(true))
+        expect(self.fakeRouter.restaurantDetailScreenIsShowing).to(equal(true))
+    }
+
+    func testViewDidLoad_showsLogoutButton() {
+        if let leftBarButtonItem = self.restaurantListVC.navigationItem.leftBarButtonItem {
+            expect(leftBarButtonItem.title).to(equal("logout"))
+        } else {
+            XCTFail()
+        }
+    }
+
+    func testTappingTheLogoutButton_callsDeleteTokenSessionRepo_movesUserToLoginScreen() {
+        let logoutButton: UIBarButtonItem! = self.restaurantListVC.navigationItem.leftBarButtonItem
+        UIApplication.sharedApplication().sendAction(
+            logoutButton.action,
+            to: logoutButton.target,
+            from: nil,
+            forEvent: nil
+        )
+
+        expect(self.fakeSessionRepo.deleteTokenWasCalled).to(beTrue())
+        expect(self.fakeRouter.loginScreenIsShowing).to(beTrue())
     }
 
 }
