@@ -43,7 +43,6 @@ class OsusumeUITests: XCTestCase {
 
         let restaurantName = "testAddingAndEditingARestaurant-\(NSDate())"
         textField.typeText(restaurantName)
-        textField.swipeUp()
 
         let tablesQuery = app.tables
         app.scrollViews.otherElements.buttons["add photo"].tap()
