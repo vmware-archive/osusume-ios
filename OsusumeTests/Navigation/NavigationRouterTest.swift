@@ -18,7 +18,8 @@ class NavigationRouterTest: QuickSpec {
                     sessionRepo: fakeSessionRepo,
                     restaurantRepo: FakeRestaurantRepo(),
                     photoRepo: FakePhotoRepo(),
-                    userRepo: FakeUserRepo()
+                    userRepo: FakeUserRepo(),
+                    commentRepo: FakeCommentRepo()
                 )
             }
 
@@ -75,6 +76,29 @@ class NavigationRouterTest: QuickSpec {
                 navigationRouter.showNewCommentScreen(1)
 
                 expect(navController.topViewController).to(beAKindOf(NewCommentViewController))
+            }
+
+            it("dismisses the new comment screen") {
+                let fakeRestaurantRepo = FakeRestaurantRepo()
+                fakeRestaurantRepo.createdRestaurant = Fixtures.newRestaurant()
+
+                navigationRouter.navigationController.setViewControllers(
+                    [
+                        RestaurantDetailViewController(
+                            router: FakeRouter(),
+                            repo: fakeRestaurantRepo,
+                            restaurantId: 2
+                        ),
+                        NewCommentViewController(
+                            router: FakeRouter(),
+                            commentRepo: FakeCommentRepo()
+                        )
+                    ],
+                    animated: false
+                )
+                navigationRouter.dismissNewCommentScreen(false)
+
+                expect(navController.topViewController).to(beAKindOf(RestaurantDetailViewController))
             }
         }
     }

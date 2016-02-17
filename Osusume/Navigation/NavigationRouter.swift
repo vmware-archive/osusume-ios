@@ -6,19 +6,22 @@ class NavigationRouter : Router {
     let restaurantRepo: RestaurantRepo
     let photoRepo: PhotoRepo
     let userRepo: UserRepo
+    let commentRepo: CommentRepo
 
     init(
         navigationController: UINavigationController,
         sessionRepo: SessionRepo,
         restaurantRepo: RestaurantRepo,
         photoRepo: PhotoRepo,
-        userRepo: UserRepo)
+        userRepo: UserRepo,
+        commentRepo: CommentRepo)
     {
         self.navigationController = navigationController
         self.sessionRepo = sessionRepo
         self.restaurantRepo = restaurantRepo
         self.photoRepo = photoRepo
         self.userRepo = userRepo
+        self.commentRepo = commentRepo
     }
 
     func showNewRestaurantScreen() {
@@ -87,11 +90,19 @@ class NavigationRouter : Router {
     }
 
     func showNewCommentScreen(restaurantId: Int) {
-        let newCommentViewController = NewCommentViewController()
+        let newCommentViewController = NewCommentViewController(
+            router: self,
+            commentRepo: commentRepo
+        )
 
         navigationController.pushViewController(
             newCommentViewController,
             animated: true
         )
     }
+
+    func dismissNewCommentScreen(animated: Bool) {
+        navigationController.popViewControllerAnimated(animated)
+    }
+
 }

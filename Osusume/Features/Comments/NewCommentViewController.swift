@@ -2,13 +2,19 @@ import UIKit
 
 class NewCommentViewController: UIViewController {
 
+    unowned let router : Router
+    let commentRepo: CommentRepo
+
     let commentLabel: UILabel
     let commentTextField: UITextView
 
     private var constraintsNeedUpdate = true
 
-    init()
+    init(router: Router, commentRepo: CommentRepo)
     {
+        self.router = router
+        self.commentRepo = commentRepo
+
         self.commentLabel = UILabel.newAutoLayoutView()
         self.commentTextField = UITextView.newAutoLayoutView()
 
@@ -19,9 +25,19 @@ class NewCommentViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: View Controller Lifecycle
+
     override func loadView() {
         view = UIView()
         view.backgroundColor = UIColor.cyanColor()
+
+        self.navigationItem.rightBarButtonItem =
+            UIBarButtonItem(
+                title: "Save",
+                style: .Plain,
+                target: self,
+                action: Selector("didTapSaveButton:")
+        )
 
         view.addSubview(commentLabel)
         view.addSubview(commentTextField)
@@ -57,6 +73,15 @@ class NewCommentViewController: UIViewController {
         }
 
         super.updateViewConstraints()
+    }
+
+    //MARK: - Actions
+    func didTapSaveButton(sender: UIBarButtonItem) {
+        commentRepo
+            .persist(NewComment(text: commentTextField.text))
+            .onSuccess { [unowned self] _ in
+                self.router.dismissNewCommentScreen(false)
+            }
     }
 
 }

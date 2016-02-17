@@ -21,13 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             sessionRepo: sessionRepo
         )
         let userRepo = HttpUserRepo(http: http)
+        let commentRepo = HttpCommentRepo(http: http)
 
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
             sessionRepo: sessionRepo,
             restaurantRepo: restaurantRepo,
             photoRepo: photoRepo,
-            userRepo: userRepo
+            userRepo: userRepo,
+            commentRepo: commentRepo
         )
 
         self.init(

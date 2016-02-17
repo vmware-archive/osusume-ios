@@ -32,4 +32,9 @@ class FakeRouter : Router {
         newCommentScreenIsShowing = true
         showNewCommentScreen_args = id
     }
+
+    var dismissNewCommentScreen_wasCalled = false
+    func dismissNewCommentScreen(animated: Bool) {
+        dismissNewCommentScreen_wasCalled = true
+    }
 }

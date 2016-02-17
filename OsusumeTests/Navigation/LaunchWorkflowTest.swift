@@ -21,7 +21,8 @@ class LaunchWorkflowTest: QuickSpec {
                     sessionRepo: FakeSessionRepo(),
                     restaurantRepo: FakeRestaurantRepo(),
                     photoRepo: fakePhotoRepo,
-                    userRepo: FakeUserRepo()
+                    userRepo: FakeUserRepo(),
+                    commentRepo: FakeCommentRepo()
                 )
 
                 launchWorkflow = LaunchWorkflow(
