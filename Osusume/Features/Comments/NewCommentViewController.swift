@@ -1,21 +1,18 @@
 import UIKit
 
 class NewCommentViewController: UIViewController {
-
     unowned let router : Router
     let commentRepo: CommentRepo
 
-    let commentLabel: UILabel
     let commentTextField: UITextView
 
     private var constraintsNeedUpdate = true
+    private let textFieldPlaceHolder = "Add a comment"
 
-    init(router: Router, commentRepo: CommentRepo)
-    {
+    init(router: Router, commentRepo: CommentRepo) {
         self.router = router
         self.commentRepo = commentRepo
 
-        self.commentLabel = UILabel.newAutoLayoutView()
         self.commentTextField = UITextView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
@@ -31,6 +28,7 @@ class NewCommentViewController: UIViewController {
         view = UIView()
         view.backgroundColor = UIColor.cyanColor()
 
+        self.navigationItem.title = "Add a comment"
         self.navigationItem.rightBarButtonItem =
             UIBarButtonItem(
                 title: "Save",
@@ -39,33 +37,22 @@ class NewCommentViewController: UIViewController {
                 action: Selector("didTapSaveButton:")
         )
 
-        view.addSubview(commentLabel)
         view.addSubview(commentTextField)
 
-        commentLabel.text = "add a comment"
-
+        commentTextField.delegate = self
         commentTextField.layer.borderWidth = 1.0
         commentTextField.layer.borderColor = UIColor.darkGrayColor().CGColor
+        commentTextField.text = textFieldPlaceHolder
+
+        automaticallyAdjustsScrollViewInsets = false
 
         view.setNeedsUpdateConstraints()
     }
 
     override func updateViewConstraints() {
         if constraintsNeedUpdate {
-            commentLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: 100.0)
-            commentLabel.autoPinEdgeToSuperviewMargin(.Left)
-
-            commentTextField.autoPinEdge(
-                .Top,
-                toEdge: .Bottom,
-                ofView: commentLabel,
-                withOffset: 10.0
-            )
-            commentTextField.autoPinEdge(
-                .Leading,
-                toEdge: .Leading,
-                ofView: commentLabel
-            )
+            commentTextField.autoPinEdgeToSuperviewEdge(.Top, withInset: 80.0)
+            commentTextField.autoPinEdgeToSuperviewMargin(.Left)
             commentTextField.autoPinEdgeToSuperviewMargin(.Right)
             commentTextField.autoSetDimension(.Height, toSize: 100.0)
 
@@ -75,7 +62,7 @@ class NewCommentViewController: UIViewController {
         super.updateViewConstraints()
     }
 
-    //MARK: - Actions
+    // MARK: - Actions
     func didTapSaveButton(sender: UIBarButtonItem) {
         commentRepo
             .persist(NewComment(text: commentTextField.text))
@@ -83,5 +70,17 @@ class NewCommentViewController: UIViewController {
                 self.router.dismissNewCommentScreen(false)
             }
     }
+}
 
+// MARK: - UITextViewDelegate
+extension NewCommentViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.text == textFieldPlaceHolder {
+            textView.text = ""
+        }
+    }
+
+    func textViewDidEndEditing(textView: UITextView) {
+        textView.text = textFieldPlaceHolder
+    }
 }

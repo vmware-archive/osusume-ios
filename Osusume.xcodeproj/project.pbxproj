@@ -438,7 +438,6 @@
 				AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */,
 				DE99CB4FBE6F93BF8C2F53C2 /* NewRestaurantViewControllerSpec.swift */,
 				AEE2E7301C72C503001A72BB /* NewRestaurantViewControllerTests.swift */,
-				AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerSpec.swift */,
 				AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */,
 				AEB2438F1C71666300959434 /* RestaurantListViewControllerTests.swift */,
 			);

@@ -14,6 +14,49 @@ func tapNavBarButton(button: UIBarButtonItem) {
 }
 
 class NewCommentViewControllerTest: XCTestCase {
+    func test_view_showsTitleInNavigationBar() {
+        let fakeCommentRepo = FakeCommentRepo()
+
+        let newCommentVC = NewCommentViewController(
+            router: FakeRouter(),
+            commentRepo: fakeCommentRepo
+        )
+
+        let _ = newCommentVC.view
+
+
+        XCTAssertEqual("Add a comment", newCommentVC.navigationItem.title)
+    }
+
+    func test_displayingPlaceholderText() {
+        let fakeCommentRepo = FakeCommentRepo()
+
+        let newCommentVC = NewCommentViewController(
+            router: FakeRouter(),
+            commentRepo: fakeCommentRepo
+        )
+
+        let _ = newCommentVC.view
+
+        XCTAssertEqual(
+            newCommentVC.hash,
+            newCommentVC.commentTextField.delegate?.hash
+        )
+
+        let _ = newCommentVC.view
+        XCTAssertEqual(newCommentVC.commentTextField.text, "Add a comment")
+
+        newCommentVC.textViewDidBeginEditing(newCommentVC.commentTextField)
+        XCTAssertNotEqual(newCommentVC.commentTextField.text, "Add a comment")
+
+        newCommentVC.textViewDidEndEditing(newCommentVC.commentTextField)
+        XCTAssertEqual(newCommentVC.commentTextField.text, "Add a comment")
+
+        newCommentVC.commentTextField.text = "Here's my comment"
+        newCommentVC.textViewDidBeginEditing(newCommentVC.commentTextField)
+        XCTAssertEqual(newCommentVC.commentTextField.text, "Here's my comment")
+    }
+
     func test_tappingSave_persistsComment() {
         let fakeCommentRepo = FakeCommentRepo()
 
