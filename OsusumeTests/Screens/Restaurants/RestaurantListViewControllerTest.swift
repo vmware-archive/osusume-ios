@@ -4,7 +4,7 @@ import BrightFutures
 import Result
 @testable import Osusume
 
-class RestaurantListViewControllerTests: XCTestCase {
+class RestaurantListViewControllerTest: XCTestCase {
 
     var restaurantListVC: RestaurantListViewController!
     var fakeRouter: FakeRouter!

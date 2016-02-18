@@ -1,11 +1,11 @@
 @testable import Osusume
 
 class FakePhotoRepo: PhotoRepo {
-    var configured: Bool = false
+    var credentialsConfigured: Bool = false
     var generatedUrlAbsoluteString: String = ""
 
     func configureCredentials() {
-        configured = true
+        credentialsConfigured = true
     }
 
     func uploadPhotoWithKey(key: String, photo: UIImage) {

@@ -1,58 +1,58 @@
-import Quick
+import Foundation
+import XCTest
 import Nimble
 import KeychainAccess
 
 @testable import Osusume
 
-class LaunchWorkflowTest: QuickSpec {
-    override func spec() {
-        describe("the Launch Workflow") {
-            var launchWorkflow: LaunchWorkflow!
-            var router: NavigationRouter!
-            var navController: UINavigationController!
-            let fakeSessionRepo = FakeSessionRepo()
-            let fakePhotoRepo = FakePhotoRepo()
+class LaunchWorkflowTest: XCTestCase {
 
-            beforeEach {
-                navController = UINavigationController()
+    var launchWorkflow: LaunchWorkflow!
+    var navController: UINavigationController!
+    let fakeSessionRepo = FakeSessionRepo()
+    let fakePhotoRepo = FakePhotoRepo()
 
-                router = NavigationRouter(
-                    navigationController: navController,
-                    sessionRepo: FakeSessionRepo(),
-                    restaurantRepo: FakeRestaurantRepo(),
-                    photoRepo: fakePhotoRepo,
-                    userRepo: FakeUserRepo(),
-                    commentRepo: FakeCommentRepo()
-                )
+    override func setUp() {
+        var router: NavigationRouter!
 
-                launchWorkflow = LaunchWorkflow(
-                    router: router,
-                    sessionRepo: fakeSessionRepo,
-                    photoRepo: fakePhotoRepo
-                )
-            }
+        navController = UINavigationController()
 
-            it("shows the login screen if there is no session") {
-                launchWorkflow.startWorkflow()
+        router = NavigationRouter(
+            navigationController: navController,
+            sessionRepo: FakeSessionRepo(),
+            restaurantRepo: FakeRestaurantRepo(),
+            photoRepo: fakePhotoRepo,
+            userRepo: FakeUserRepo(),
+            commentRepo: FakeCommentRepo()
+        )
 
-                expect(navController.topViewController)
-                    .to(beAKindOf(LoginViewController))
-            }
-
-            it("shows the restaurant list view screen if there is a session") {
-                fakeSessionRepo.setToken("some-token")
-
-                launchWorkflow.startWorkflow()
-
-                expect(navController.topViewController)
-                    .to(beAKindOf(RestaurantListViewController))
-            }
-
-            it("configures PhotoRepo") {
-                launchWorkflow.startWorkflow()
-
-                expect(fakePhotoRepo.configured).to(equal(true))
-            }
-        }
+        launchWorkflow = LaunchWorkflow(
+            router: router,
+            sessionRepo: fakeSessionRepo,
+            photoRepo: fakePhotoRepo
+        )
     }
+
+    func test_showsLoginScreen_whenASessionExists() {
+        launchWorkflow.startWorkflow()
+
+        expect(self.navController.topViewController)
+            .to(beAKindOf(LoginViewController))
+    }
+
+    func test_showsRestaurantListView_whenASessionExists() {
+        fakeSessionRepo.setToken("some-token")
+
+        launchWorkflow.startWorkflow()
+
+        expect(self.navController.topViewController)
+            .to(beAKindOf(RestaurantListViewController))
+    }
+
+    func test_startWorkflow_configuresPhotoRepoCredentials() {
+        launchWorkflow.startWorkflow()
+
+        expect(self.fakePhotoRepo.credentialsConfigured).to(equal(true))
+    }
+
 }
