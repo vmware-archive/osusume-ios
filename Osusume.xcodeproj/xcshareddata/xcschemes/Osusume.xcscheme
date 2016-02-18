@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "perl &quot;${PROJECT_DIR}/bin/sortXcodeProject&quot; &quot;${PROJECT_FILE_PATH}/project.pbxproj&quot;">
+               scriptText = "">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
