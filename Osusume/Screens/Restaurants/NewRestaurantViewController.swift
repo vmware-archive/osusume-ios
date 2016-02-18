@@ -169,7 +169,11 @@ extension NewRestaurantViewController: UINavigationControllerDelegate {
     }
 
     func addImageToCollectionView(image: UIImage?, info: [NSObject: AnyObject]?) {
-        images.append(image!)
+        guard let i = image else {
+            return
+        }
+
+        images.append(i)
         imageCollectionView.reloadData()
     }
 }
