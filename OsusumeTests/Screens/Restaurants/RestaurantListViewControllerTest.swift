@@ -67,7 +67,7 @@ class RestaurantListViewControllerTest: XCTestCase {
             sessionRepo: fakeSessionRepo
         )
 
-        restaurantListVC.view.layoutSubviews()
+        restaurantListVC.view.setNeedsLayout()
     }
 
     override func tearDown() {

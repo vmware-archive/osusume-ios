@@ -33,8 +33,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     func test_viewDidLoad_displaysDetailsOfARestaurant() {
-        let _ = controller.view
-
+        controller.view.setNeedsLayout()
 
         expect(self.controller.nameLabel.text).to(equal("My Restaurant"))
         expect(self.controller.addressLabel.text).to(equal("Roppongi"))
@@ -47,7 +46,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     func test_tappingTheEditButton_showsTheEditScreen() {
-        let _ = controller.view
+        controller.view.setNeedsLayout()
 
         expect(self.controller.navigationItem.rightBarButtonItem?.title).to(equal("Edit"))
 
@@ -57,7 +56,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     func test_tappingTheAddCommentButton_showsTheNewCommentScreen() {
-        let _ = controller.view
+        controller.view.setNeedsLayout()
 
         controller.addCommentButton.sendActionsForControlEvents(.TouchUpInside)
 

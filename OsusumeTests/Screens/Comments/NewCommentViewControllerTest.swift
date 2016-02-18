@@ -21,9 +21,7 @@ class NewCommentViewControllerTest: XCTestCase {
             router: FakeRouter(),
             commentRepo: fakeCommentRepo
         )
-
-        let _ = newCommentVC.view
-
+        newCommentVC.view.setNeedsLayout()
 
         XCTAssertEqual("Add a comment", newCommentVC.navigationItem.title)
     }
@@ -35,8 +33,7 @@ class NewCommentViewControllerTest: XCTestCase {
             router: FakeRouter(),
             commentRepo: fakeCommentRepo
         )
-
-        let _ = newCommentVC.view
+        newCommentVC.view.setNeedsLayout()
 
         XCTAssertEqual(
             newCommentVC.hash,
@@ -64,8 +61,7 @@ class NewCommentViewControllerTest: XCTestCase {
             router: FakeRouter(),
             commentRepo: fakeCommentRepo
         )
-
-        let _ = newCommentVC.view
+        newCommentVC.view.setNeedsLayout()
 
         newCommentVC.commentTextField.text = "No parking in Harvard Yard"
 
@@ -89,8 +85,7 @@ class NewCommentViewControllerTest: XCTestCase {
             router: fakeRouter,
             commentRepo: fakeCommentRepo
         )
-
-        let _ = newCommentVC.view
+        newCommentVC.view.setNeedsLayout()
 
         let saveButton = newCommentVC.navigationItem.rightBarButtonItem
         tapNavBarButton(saveButton!)

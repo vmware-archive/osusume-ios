@@ -32,7 +32,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
         self.window!.rootViewController = newRestaurantVC
         self.window!.makeKeyAndVisible()
 
-        newRestaurantVC.view.layoutSubviews()
+        newRestaurantVC.view.setNeedsLayout()
     }
 
     override func tearDown() {

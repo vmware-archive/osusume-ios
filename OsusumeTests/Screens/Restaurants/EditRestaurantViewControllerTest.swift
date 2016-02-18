@@ -24,8 +24,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
             restaurant: repo.createdRestaurant!
         )
 
-        editRestaurantViewController.view.layoutSubviews()
-
+        editRestaurantViewController.view.setNeedsLayout()
     }
 
     func test_populatesRestaurantDetailsInFields() {

@@ -19,7 +19,7 @@ class LoginViewControllerTest: XCTestCase {
             sessionRepo: fakeSessionRepo
         )
 
-        loginVC.view.layoutSubviews()
+        loginVC.view.setNeedsLayout()
 
         loginVC.emailTextField.text = "test@email.com"
         loginVC.passwordTextField.text = "secret"
