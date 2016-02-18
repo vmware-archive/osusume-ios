@@ -12,25 +12,22 @@ class FakeRestaurantRepo : RestaurantRepo {
         return restaurantsPromise.future
     }
 
-    func create(params: [String : AnyObject]) -> Future<HttpJson, RepoError> {
+    func create(newRestaurant: NewRestaurant) -> Future<HttpJson, RepoError> {
         let promise = Promise<HttpJson, RepoError>()
         promise.success(HttpJson())
 
         createdRestaurant = Restaurant(id: 0,
-            name: params["name"] as! String,
-            address: params["address"] as! String,
-            cuisineType: params["cuisine_type"] as! String,
-            offersEnglishMenu: params["offers_english_menu"] as! Bool,
-            walkInsOk: params["walk_ins_ok"] as! Bool,
-            acceptsCreditCards: params["accepts_credit_cards"] as! Bool,
-            notes: params["notes"] as! String,
+            name: newRestaurant.name,
+            address: newRestaurant.address,
+            cuisineType: newRestaurant.cuisineType,
+            offersEnglishMenu: newRestaurant.offersEnglishMenu,
+            walkInsOk: newRestaurant.walkInsOk,
+            acceptsCreditCards: newRestaurant.acceptsCreditCards,
+            notes: newRestaurant.notes,
             author: "Fake user",
             createdAt: NSDate(),
-            photoUrl: NSURL(string: ""))
-
-        if let photoUrl = params["photo_url"] as? String {
-            createdRestaurant?.photoUrl = NSURL(string: photoUrl)
-        }
+            photoUrl: NSURL(string: newRestaurant.photoUrl)
+        )
 
         return promise.future
     }

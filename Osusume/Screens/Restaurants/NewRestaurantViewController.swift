@@ -115,24 +115,22 @@ class NewRestaurantViewController: UIViewController {
 
     // MARK: - Actions
     func didTapDoneButton(sender: UIBarButtonItem?) {
-        var params: [String: AnyObject] = [
-            "name": formView.getNameText()!,
-            "address": formView.getAddressText()!,
-            "cuisine_type": formView.getCuisineTypeText()!,
-            "offers_english_menu": formView.getOffersEnglishMenuState()!,
-            "walk_ins_ok": formView.getWalkInsOkState()!,
-            "accepts_credit_cards": formView.getAcceptsCreditCardsState()!,
-            "notes": formView.getNotesText()!
-        ]
+        let key = "user_id/\(NSUUID().UUIDString)"
 
-        if let photo = self.images.first {
-            let key = "user_id/\(NSUUID().UUIDString)"
+        photoRepo.uploadPhotoWithKey(key, photo: self.images.first!)
 
-            photoRepo.uploadPhotoWithKey(key, photo: photo)
-            params["photo_url"] = photoRepo.generatePhotoURLForKey(key).absoluteString
-        }
+        let newRestaurant = NewRestaurant(
+            name: formView.getNameText()!,
+            address: formView.getAddressText()!,
+            cuisineType: formView.getCuisineTypeText()!,
+            offersEnglishMenu: formView.getOffersEnglishMenuState()!,
+            walkInsOk: formView.getWalkInsOkState()!,
+            acceptsCreditCards: formView.getAcceptsCreditCardsState()!,
+            notes: formView.getNotesText()!,
+            photoUrl: photoRepo.generatePhotoURLForKey(key).absoluteString
+        )
 
-        restaurantRepo.create(params)
+        restaurantRepo.create(newRestaurant)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
                 self.router.showRestaurantListScreen()
         }

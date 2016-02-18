@@ -31,19 +31,7 @@ class NewRestaurantViewControllerTests: XCTestCase {
         newRestaurantVC.view.layoutSubviews()
     }
 
-    func test_tappingDoneButton_returnsToListScreenOnSuccess() {
-        let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
-        UIApplication.sharedApplication().sendAction(
-            doneButton.action,
-            to: doneButton.target,
-            from: nil,
-            forEvent: nil
-        )
-
-        expect(self.fakeRouter.restaurantListScreenIsShowing).to(equal(true))
-    }
-
-    func test_tappingDoneButton_savesRestaurant() {
+    func test_tappingDoneButton_savesRestaurant_returnsToListScreenOnSuccess() {
         newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
         newRestaurantVC.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
         newRestaurantVC.formView.notesTextField.text = "Notes"
@@ -74,6 +62,8 @@ class NewRestaurantViewControllerTests: XCTestCase {
 
         expect(restaurant?.photoUrl!.absoluteString)
             .to(equal(fakePhotoRepo.generatedUrlAbsoluteString))
+        expect(self.fakeRouter.restaurantListScreenIsShowing).to(equal(true))
+
     }
 
     func test_tappingTheAddPhotoButton_showsTheCameraRoll() {

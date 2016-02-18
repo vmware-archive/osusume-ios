@@ -50,6 +50,7 @@
 		AECA9B5D1C0EC90E00C30BA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECA9B5B1C0EC90E00C30BA4 /* LaunchScreen.storyboard */; };
 		AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B771C0ED81500C30BA4 /* Nimble.framework */; };
 		AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B721C0ED6FA00C30BA4 /* Quick.framework */; };
+		AED030571C75943F000BC99C /* NewRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED030561C75943F000BC99C /* NewRestaurant.swift */; };
 		AED333A51C62E8B200127DC6 /* FakePhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED333A41C62E8B200127DC6 /* FakePhotoRepo.swift */; };
 		AED333AD1C634A5400127DC6 /* OsusumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */; };
 		AEDB5C1C1C755C570050D002 /* RestaurantConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C1B1C755C570050D002 /* RestaurantConverterTest.swift */; };
@@ -145,6 +146,7 @@
 		AECA9B691C0EC90E00C30BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AECA9B721C0ED6FA00C30BA4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		AECA9B771C0ED81500C30BA4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		AED030561C75943F000BC99C /* NewRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurant.swift; sourceTree = "<group>"; };
 		AED333A41C62E8B200127DC6 /* FakePhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePhotoRepo.swift; sourceTree = "<group>"; };
 		AED333AA1C634A5400127DC6 /* OsusumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsusumeUITests.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				AEC8776B1C7305810005BEA1 /* Comments */,
+				AED030551C759425000BC99C /* Restaurants */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -402,6 +405,14 @@
 				AECA9B691C0EC90E00C30BA4 /* Info.plist */,
 			);
 			path = OsusumeTests;
+			sourceTree = "<group>";
+		};
+		AED030551C759425000BC99C /* Restaurants */ = {
+			isa = PBXGroup;
+			children = (
+				AED030561C75943F000BC99C /* NewRestaurant.swift */,
+			);
+			path = Restaurants;
 			sourceTree = "<group>";
 		};
 		AED333AB1C634A5400127DC6 /* OsusumeUITests */ = {
@@ -739,6 +750,7 @@
 				DE99C1BD8A703F77AFD777D0 /* NavigationRouter.swift in Sources */,
 				AEC8776F1C7306320005BEA1 /* NewComment.swift in Sources */,
 				AEC8776D1C7305F90005BEA1 /* NewCommentViewController.swift in Sources */,
+				AED030571C75943F000BC99C /* NewRestaurant.swift in Sources */,
 				DE99CAAB65BC8243F5B84D01 /* NewRestaurantViewController.swift in Sources */,
 				AEAEF4961C730929004ECC89 /* PersistedComment.swift in Sources */,
 				AE74A6051C71727A00BD1C0C /* PhotoRepo.swift in Sources */,

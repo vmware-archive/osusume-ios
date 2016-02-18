@@ -30,12 +30,23 @@ class HttpRestaurantRepo: RestaurantRepo {
 
     //MARK: - POST Functions
 
-    func create(params: [String: AnyObject]) -> Future<HttpJson, RepoError> {
+    func create(newRestaurant: NewRestaurant) -> Future<HttpJson, RepoError> {
         return http
             .post(
                 path,
                 headers: buildHeaders(),
-                parameters: ["restaurant": params]
+                parameters: [
+                    "restaurant": [
+                        "name": newRestaurant.name,
+                        "address": newRestaurant.address,
+                        "cuisine_type": newRestaurant.cuisineType,
+                        "offers_english_menu": newRestaurant.offersEnglishMenu,
+                        "walk_ins_ok": newRestaurant.walkInsOk,
+                        "accepts_credit_cards": newRestaurant.acceptsCreditCards,
+                        "notes": newRestaurant.notes,
+                        "photo_url": newRestaurant.photoUrl
+                    ]
+                ]
             )
     }
 

@@ -38,15 +38,33 @@ class HttpRestaurantRepoTest: XCTestCase {
         XCTAssertEqual(expectedHeaders, fakeHttp.get_args.headers)
     }
 
-    func test_create_passesTokenAsHeaderToHttp() {
-        httpRestaurantRepo.create(["paramName": "paramValue"])
+    func test_create_formatsBodyWithRestaurantData() {
+        httpRestaurantRepo.create(
+            NewRestaurant(
+                name: "Danny's Diner",
+                address: "123 Main Street",
+                cuisineType: "Creole",
+                offersEnglishMenu: true,
+                walkInsOk: true,
+                acceptsCreditCards: true,
+                notes: "So good",
+                photoUrl: "my-cool-url"
+            )
+        )
 
-        let expectedHeaders = [
-            "Authorization": "Bearer some-session-token"
-        ]
+        let expectedHeaders = ["Authorization": "Bearer some-session-token"]
+        let actualRestaurantParams = fakeHttp.post_args.parameters["restaurant"]!
 
         XCTAssertEqual("/restaurants", fakeHttp.post_args.path)
         XCTAssertEqual(expectedHeaders, fakeHttp.post_args.headers)
+        XCTAssertEqual("Danny's Diner", actualRestaurantParams["name"])
+        XCTAssertEqual("123 Main Street", actualRestaurantParams["address"])
+        XCTAssertEqual("Creole", actualRestaurantParams["cuisine_type"])
+        XCTAssertEqual(true, actualRestaurantParams["offers_english_menu"])
+        XCTAssertEqual(true, actualRestaurantParams["walk_ins_ok"])
+        XCTAssertEqual(true, actualRestaurantParams["accepts_credit_cards"])
+        XCTAssertEqual("So good", actualRestaurantParams["notes"])
+        XCTAssertEqual("my-cool-url", actualRestaurantParams["photo_url"])
     }
 
     func test_update_passesTokenAsHeaderToHttp() {
