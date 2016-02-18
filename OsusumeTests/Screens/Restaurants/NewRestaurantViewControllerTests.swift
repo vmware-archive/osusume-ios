@@ -8,55 +8,50 @@ import Photos
 class NewRestaurantViewControllerTests: XCTestCase {
 
     var window: UIWindow?
-    var newRestaurantViewController: NewRestaurantViewController!
+    var newRestaurantVC: NewRestaurantViewController!
     var fakeRouter: FakeRouter!
     var fakeRestaurantRepo: FakeRestaurantRepo!
     var fakePhotoRepo: FakePhotoRepo!
 
     override func setUp() {
-        super.setUp()
-
         fakeRouter = FakeRouter()
         fakeRestaurantRepo = FakeRestaurantRepo()
         fakePhotoRepo = FakePhotoRepo()
 
-        newRestaurantViewController = NewRestaurantViewController(
+        newRestaurantVC = NewRestaurantViewController(
             router: fakeRouter,
             restaurantRepo: fakeRestaurantRepo,
             photoRepo: fakePhotoRepo
         )
 
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window!.rootViewController = newRestaurantViewController
+        self.window!.rootViewController = newRestaurantVC
         self.window!.makeKeyAndVisible()
 
-        newRestaurantViewController.view.layoutSubviews()
+        newRestaurantVC.view.layoutSubviews()
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func test_tappingDoneButton_returnsToListScreen() {
-        let doneButton = newRestaurantViewController.navigationItem.rightBarButtonItem!
+    func test_tappingDoneButton_returnsToListScreenOnSuccess() {
+        let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
         UIApplication.sharedApplication().sendAction(
             doneButton.action,
             to: doneButton.target,
             from: nil,
             forEvent: nil
         )
+
         expect(self.fakeRouter.restaurantListScreenIsShowing).to(equal(true))
     }
 
     func test_tappingDoneButton_savesRestaurant() {
-        newRestaurantViewController.formView.nameTextField.text = "Some Restaurant"
-        newRestaurantViewController.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
-        newRestaurantViewController.formView.notesTextField.text = "Notes"
+        newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
+        newRestaurantVC.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
+        newRestaurantVC.formView.notesTextField.text = "Notes"
 
         let image = UIImage(named: "Jeana")
-        newRestaurantViewController.images.append(image!)
+        newRestaurantVC.images.append(image!)
 
-        let doneButton = newRestaurantViewController.navigationItem.rightBarButtonItem!
+        let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
         UIApplication.sharedApplication().sendAction(
             doneButton.action,
             to: doneButton.target,
@@ -64,22 +59,29 @@ class NewRestaurantViewControllerTests: XCTestCase {
             forEvent: nil
         )
 
-        let fakeRestaurantRepo = newRestaurantViewController.restaurantRepo as! FakeRestaurantRepo
-        let restaurant: Restaurant = fakeRestaurantRepo.createdRestaurant!
-        expect(restaurant.name).to(equal("Some Restaurant"))
-        expect(restaurant.address).to(equal(""))
-        expect(restaurant.cuisineType).to(equal("Restaurant Cuisine Type"))
-        expect(restaurant.offersEnglishMenu).to(equal(false))
-        expect(restaurant.walkInsOk).to(equal(false))
-        expect(restaurant.acceptsCreditCards).to(equal(false))
-        expect(restaurant.notes).to(equal("Notes"))
+        let fakeRestaurantRepo = newRestaurantVC.restaurantRepo as? FakeRestaurantRepo
+        let restaurant = fakeRestaurantRepo?.createdRestaurant
 
-        let fakePhotoRepo = newRestaurantViewController.photoRepo as! FakePhotoRepo
-        expect(restaurant.photoUrl!.absoluteString).to(equal(fakePhotoRepo.generatedUrlAbsoluteString))
+        expect(restaurant?.name).to(equal("Some Restaurant"))
+        expect(restaurant?.address).to(equal(""))
+        expect(restaurant?.cuisineType).to(equal("Restaurant Cuisine Type"))
+        expect(restaurant?.offersEnglishMenu).to(equal(false))
+        expect(restaurant?.walkInsOk).to(equal(false))
+        expect(restaurant?.acceptsCreditCards).to(equal(false))
+        expect(restaurant?.notes).to(equal("Notes"))
+
+        let fakePhotoRepo = newRestaurantVC.photoRepo as! FakePhotoRepo
+
+        expect(restaurant?.photoUrl!.absoluteString)
+            .to(equal(fakePhotoRepo.generatedUrlAbsoluteString))
     }
 
     func test_tappingTheAddPhotoButton_showsTheCameraRoll() {
-        newRestaurantViewController.addPhotoButton.sendActionsForControlEvents(.TouchUpInside)
-        expect(self.newRestaurantViewController.presentedViewController).to(beAKindOf(BSImagePickerViewController))
+        newRestaurantVC
+            .addPhotoButton
+            .sendActionsForControlEvents(.TouchUpInside)
+
+        expect(self.newRestaurantVC.presentedViewController)
+            .to(beAKindOf(BSImagePickerViewController))
     }
 }
