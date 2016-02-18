@@ -1,5 +1,7 @@
 import XCTest
 import Nimble
+import BSImagePicker
+import Photos
 
 @testable import Osusume
 
@@ -52,7 +54,7 @@ class NewRestaurantViewControllerTests: XCTestCase {
         newRestaurantViewController.formView.notesTextField.text = "Notes"
 
         let image = UIImage(named: "Jeana")
-        newRestaurantViewController.imageView.image = image
+        newRestaurantViewController.images.append(image!)
 
         let doneButton = newRestaurantViewController.navigationItem.rightBarButtonItem!
         UIApplication.sharedApplication().sendAction(
@@ -77,9 +79,7 @@ class NewRestaurantViewControllerTests: XCTestCase {
     }
 
     func test_tappingTheAddPhotoButton_showsTheCameraRoll() {
-
         newRestaurantViewController.addPhotoButton.sendActionsForControlEvents(.TouchUpInside)
-        expect(self.newRestaurantViewController.presentedViewController).to(beAKindOf(UIImagePickerController))
+        expect(self.newRestaurantViewController.presentedViewController).to(beAKindOf(BSImagePickerViewController))
     }
-
 }

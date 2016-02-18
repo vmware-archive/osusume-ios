@@ -38,16 +38,24 @@ class OsusumeUITests: XCTestCase {
         app.navigationBars["Osusume.RestaurantListView"].buttons["add restaurant"].tap()
         
         let element = app.scrollViews.childrenMatchingType(.Other).element
-        let textField = element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.TextField).elementBoundByIndex(0)
+        let textField = element.childrenMatchingType(.Other)
+            .element
+            .childrenMatchingType(.Other)
+            .element
+            .childrenMatchingType(.TextField)
+            .elementBoundByIndex(0)
         textField.tap()
 
         let restaurantName = "testAddingAndEditingARestaurant-\(NSDate())"
         textField.typeText(restaurantName)
 
         let tablesQuery = app.tables
-        app.scrollViews.otherElements.buttons["add photo"].tap()
-        app.tables.buttons["Camera Roll"].tap()
+        app.scrollViews.otherElements.buttons["add photos"].tap()
         app.collectionViews.cells.elementBoundByIndex(0).tap()
+        app.collectionViews.cells.elementBoundByIndex(1).tap()
+        app.navigationBars.buttons["Done (2)"].tap()
+
+        XCTAssert(app.collectionViews["Photos to be uploaded"].cells.count == 2)
 
         app.navigationBars["Osusume.NewRestaurantView"].buttons["Done"].tap()
 

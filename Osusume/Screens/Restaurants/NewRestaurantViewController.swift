@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 import PureLayout
 import BrightFutures
+import BSImagePicker
+import Photos
 
 class NewRestaurantViewController: UIViewController {
 
@@ -32,18 +34,27 @@ class NewRestaurantViewController: UIViewController {
     let formViewContainer = UIView.newAutoLayoutView()
     let formView = RestaurantFormView(restaurant: nil)
 
-    let imageView: UIImageView = {
-        let imageView = UIImageView.newAutoLayoutView()
-        imageView.contentMode = .ScaleAspectFit
-        imageView.layer.borderColor = UIColor.blackColor().CGColor
-        imageView.layer.borderWidth = 2.0
-        imageView.backgroundColor = UIColor.grayColor()
-        return imageView
+    lazy var imageCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake(100, 100)
+        layout.scrollDirection = .Horizontal
+
+        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        collectionView.delegate   = self
+        collectionView.dataSource = self
+        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
+        collectionView.backgroundColor = UIColor.lightGrayColor()
+        collectionView.accessibilityLabel = "Photos to be uploaded"
+
+        return collectionView
     }()
+
+    var images: [UIImage] = []
 
     lazy var addPhotoButton: UIButton = {
         let button = UIButton()
-        button.setTitle("add photo", forState: .Normal)
+        button.setTitle("add photos", forState: .Normal)
         button.backgroundColor = .whiteColor()
         button.setTitleColor(.blackColor(), forState: .Normal)
         button.addTarget(
@@ -54,10 +65,8 @@ class NewRestaurantViewController: UIViewController {
         return button
     }()
 
-    lazy var imagePicker : UIImagePickerController = {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = false
-        picker.sourceType = .PhotoLibrary
+    lazy var imagePicker : BSImagePickerViewController = {
+        let picker = BSImagePickerViewController()
         return picker
     }()
 
@@ -67,7 +76,7 @@ class NewRestaurantViewController: UIViewController {
 
         view.addSubview(scrollView)
         scrollView.addSubview(contentInScrollView)
-        contentInScrollView.addSubview(imageView)
+        contentInScrollView.addSubview(imageCollectionView)
         contentInScrollView.addSubview(addPhotoButton)
         contentInScrollView.addSubview(formViewContainer)
         formViewContainer.addSubview(formView)
@@ -79,13 +88,13 @@ class NewRestaurantViewController: UIViewController {
         contentInScrollView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
         contentInScrollView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
 
-        imageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 20.0)
-        imageView.autoAlignAxisToSuperviewAxis(.Vertical)
-        imageView.autoSetDimension(.Height, toSize: 100.0)
-        imageView.autoSetDimension(.Width, toSize: 100.0)
+        imageCollectionView.autoPinEdgeToSuperviewEdge(.Top, withInset: 20.0)
+        imageCollectionView.autoAlignAxisToSuperviewAxis(.Vertical)
+        imageCollectionView.autoSetDimension(.Height, toSize: 120.0)
+        imageCollectionView.autoMatchDimension(.Width, toDimension:.Width, ofView: contentInScrollView)
 
-        addPhotoButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageView)
-        addPhotoButton.autoAlignAxis(.Vertical, toSameAxisOfView: imageView)
+        addPhotoButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageCollectionView)
+        addPhotoButton.autoAlignAxis(.Vertical, toSameAxisOfView: imageCollectionView)
         addPhotoButton.autoSetDimension(.Height, toSize: 25.0)
         addPhotoButton.autoSetDimension(.Width, toSize: 100.0)
 
@@ -116,7 +125,7 @@ class NewRestaurantViewController: UIViewController {
             "notes": formView.getNotesText()!
         ]
 
-        if let photo = self.imageView.image {
+        if let photo = self.images.first {
             let key = "user_id/\(NSUUID().UUIDString)"
 
             photoRepo.uploadPhotoWithKey(key, photo: photo)
@@ -130,26 +139,53 @@ class NewRestaurantViewController: UIViewController {
     }
 }
 
-// MARK: - UIImagePickerControllerDelegate
-extension NewRestaurantViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(
-        picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [String : AnyObject])
-    {
-        if
-            let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        {
-            imageView.image = image
-        }
-
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-}
-
 // MARK: - UINavigationControllerDelegate
 extension NewRestaurantViewController: UINavigationControllerDelegate {
     func didTapAddPhotoButton(sender: UIButton?) {
-        imagePicker.delegate = self
-        presentViewController(imagePicker, animated: true, completion: nil)
+        bs_presentImagePickerController(
+            imagePicker,
+            animated: true,
+            select: nil,
+            deselect: nil,
+            cancel: nil,
+            finish: gatherImageAssets,
+            completion: nil
+        )
     }
+
+    func gatherImageAssets(assets: [PHAsset]) {
+        images.removeAll()
+
+        let imageManager = PHImageManager.defaultManager()
+        for asset in assets {
+            imageManager.requestImageForAsset(
+                asset,
+                targetSize: PHImageManagerMaximumSize,
+                contentMode: .Default,
+                options: nil,
+                resultHandler: addImageToCollectionView
+            )
+        }
+    }
+
+    func addImageToCollectionView(image: UIImage?, info: [NSObject: AnyObject]?) {
+        images.append(image!)
+        imageCollectionView.reloadData()
+    }
+}
+
+extension NewRestaurantViewController: UICollectionViewDataSource {
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath)
+        cell.backgroundView = UIImageView(image: images[indexPath.row])
+        return cell
+    }
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+}
+
+extension NewRestaurantViewController: UICollectionViewDelegate {
+
 }
