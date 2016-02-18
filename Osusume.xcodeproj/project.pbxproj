@@ -448,9 +448,9 @@
 			isa = PBXGroup;
 			children = (
 				AEE17AB91C44CAA2005C1BE9 /* EditRestaurantViewControllerSpec.swift */,
-				AEE2E7301C72C503001A72BB /* NewRestaurantViewControllerTests.swift */,
 				AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */,
 				AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */,
+				AEE2E7301C72C503001A72BB /* NewRestaurantViewControllerTests.swift */,
 				AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */,
 				AEB2438F1C71666300959434 /* RestaurantListViewControllerTest.swift */,
 			);
@@ -763,10 +763,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEC9D4C71C754DC2008C4122 /* DateConverterTest.swift in Sources */,
+				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,
 				AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */,
 				AEC877651C72FFAF0005BEA1 /* FakeCommentRepo.swift in Sources */,
 				AE42F3FD1C72E3BF00447E67 /* FakeHttp.swift in Sources */,
-				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,
 				AED333A51C62E8B200127DC6 /* FakePhotoRepo.swift in Sources */,
 				AE0F65C21C60346600778E50 /* FakeRestaurantRepo.swift in Sources */,
 				AE0F65C31C60346600778E50 /* FakeRouter.swift in Sources */,
@@ -774,12 +774,12 @@
 				AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */,
 				AE42F3FF1C72E74A00447E67 /* Fixtures.swift in Sources */,
 				AE42F3FB1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift in Sources */,
-				AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */,
 				AE017D6A1C7179B400788FDF /* KeychainSessionRepoTest.swift in Sources */,
-				AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */,
-				AEDB5C201C7564170050D002 /* NavigationRouterTest.swift in Sources */,
 				AEDB5C1E1C755FF40050D002 /* LaunchWorkflowTest.swift in Sources */,
+				AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */,
+				AEDB5C201C7564170050D002 /* NavigationRouterTest.swift in Sources */,
 				AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */,
+				AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */,
 				AEE2E7311C72C503001A72BB /* NewRestaurantViewControllerTests.swift in Sources */,
 				DE99C398B1B5A25B9D1AE5D8 /* RestaurantConverterSpec.swift in Sources */,
 				AEDB5C1C1C755C570050D002 /* RestaurantConverterTest.swift in Sources */,
