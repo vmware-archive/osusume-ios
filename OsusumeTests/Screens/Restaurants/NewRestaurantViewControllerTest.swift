@@ -42,7 +42,8 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_tappingDoneButton_returnsToListScreen() {
-        newRestaurantVC.images.append(UIImage(named: "Jeana")!)
+        let image = testImage(named: "appleLogo", imageExtension: "png")
+        newRestaurantVC.images.append(image)
 
         let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(doneButton)
@@ -55,8 +56,8 @@ class NewRestaurantViewControllerTest: XCTestCase {
         newRestaurantVC.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
         newRestaurantVC.formView.notesTextField.text = "Notes"
 
-        let image = UIImage(named: "Jeana")
-        newRestaurantVC.images.append(image!)
+        let image = testImage(named: "appleLogo", imageExtension: "png")
+        newRestaurantVC.images.append(image)
 
         let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(doneButton)
@@ -74,7 +75,8 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_tappingTheAddPhotoButton_showsTheCameraRoll() {
-        newRestaurantVC.images.append(UIImage(named: "Jeana")!)
+        let image = testImage(named: "appleLogo", imageExtension: "png")
+        newRestaurantVC.images.append(image)
         newRestaurantVC.addPhotoButton.sendActionsForControlEvents(.TouchUpInside)
 
         expect(self.newRestaurantVC.presentedViewController).toEventually(beAKindOf(BSImagePickerViewController))

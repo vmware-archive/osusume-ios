@@ -28,7 +28,7 @@ class NetworkPhotoRepoTest: XCTestCase {
     }
 
     func test_uploadPhoto_passesRequestToStorageService() {
-        let image = UIImage(named: "Jeana")!
+        let image = testImage(named: "appleLogo", imageExtension: "png")
         networkPhotoRepo.uploadPhoto(image)
 
         let expectedUrl = NSURL(
@@ -39,7 +39,7 @@ class NetworkPhotoRepoTest: XCTestCase {
     }
 
     func test_uploadPhoto_returnsUploadedFileUrl() {
-        let image = UIImage(named: "Jeana")!
+        let image = testImage(named: "appleLogo", imageExtension: "png")
         let actualUploadedFileUrl = networkPhotoRepo.uploadPhoto(image)
 
         expect(actualUploadedFileUrl).to(equal("http://example.com"))
