@@ -42,6 +42,8 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_tappingDoneButton_returnsToListScreen() {
+        newRestaurantVC.images.append(UIImage(named: "Jeana")!)
+
         let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(doneButton)
 
@@ -72,8 +74,9 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_tappingTheAddPhotoButton_showsTheCameraRoll() {
+        newRestaurantVC.images.append(UIImage(named: "Jeana")!)
         newRestaurantVC.addPhotoButton.sendActionsForControlEvents(.TouchUpInside)
 
-        expect(self.newRestaurantVC.presentedViewController).to(beAKindOf(BSImagePickerViewController))
+        expect(self.newRestaurantVC.presentedViewController).toEventually(beAKindOf(BSImagePickerViewController))
     }
 }

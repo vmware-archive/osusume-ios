@@ -115,9 +115,7 @@ class NewRestaurantViewController: UIViewController {
 
     // MARK: - Actions
     func didTapDoneButton(sender: UIBarButtonItem?) {
-        let key = "user_id/\(NSUUID().UUIDString)"
-
-        photoRepo.uploadPhotoWithKey(key, photo: self.images.first!)
+        let photoUrl = photoRepo.uploadPhoto(self.images.first!)
 
         let newRestaurant = NewRestaurant(
             name: formView.getNameText()!,
@@ -127,7 +125,7 @@ class NewRestaurantViewController: UIViewController {
             walkInsOk: formView.getWalkInsOkState()!,
             acceptsCreditCards: formView.getAcceptsCreditCardsState()!,
             notes: formView.getNotesText()!,
-            photoUrl: photoRepo.generatePhotoURLForKey(key).absoluteString
+            photoUrl: photoUrl
         )
 
         restaurantRepo.create(newRestaurant)
@@ -189,5 +187,4 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
 }
 
 extension NewRestaurantViewController: UICollectionViewDelegate {
-
 }

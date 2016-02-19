@@ -8,8 +8,11 @@ class FakePhotoRepo: PhotoRepo {
         credentialsConfigured = true
     }
 
-    func uploadPhotoWithKey(key: String, photo: UIImage) {
-
+    var uploadPhoto_returnValue = ""
+    var uploadPhoto_arg = UIImage(named: "")
+    func uploadPhoto(photo: UIImage) -> String {
+        uploadPhoto_arg = (photo: photo)
+        return uploadPhoto_returnValue
     }
 
     func generatePhotoURLForKey(key: String) -> NSURL {

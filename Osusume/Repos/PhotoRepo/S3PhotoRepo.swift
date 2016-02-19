@@ -20,7 +20,9 @@ class S3PhotoRepo : PhotoRepo {
             .defaultServiceConfiguration = configuration
     }
 
-    func uploadPhotoWithKey(key: String, photo: UIImage) {
+    func uploadPhoto(photo: UIImage) -> String {
+        let key = "user_id/\(NSUUID().UUIDString)"
+
         let fileName = key.componentsSeparatedByString("/").last
         let photoTempURL = NSURL(
             fileURLWithPath: NSTemporaryDirectory().stringByAppendingString(fileName!)
@@ -45,9 +47,7 @@ class S3PhotoRepo : PhotoRepo {
 
             return nil
         }
-    }
 
-    func generatePhotoURLForKey(key: String) -> NSURL {
-        return NSURL(string: "https://s3-ap-northeast-1.amazonaws.com/\(S3PhotoRepo.bucketName)/\(key)")!
+        return "https://s3-ap-northeast-1.amazonaws.com/\(S3PhotoRepo.bucketName)/\(key)"
     }
 }
