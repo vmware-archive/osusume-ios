@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     convenience override init() {
         let navController = UINavigationController()
         let sessionRepo = KeychainSessionRepo()
-        let photoRepo = S3PhotoRepo()
+        let photoRepo = NetworkPhotoRepo()
 
         let http = AlamofireHttp(basePath: AppDelegate.basePath)
         let restaurantRepo = HttpRestaurantRepo(
