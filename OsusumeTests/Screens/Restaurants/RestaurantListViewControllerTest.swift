@@ -96,13 +96,10 @@ class RestaurantListViewControllerTest: XCTestCase {
     }
 
     func testTapNewRestarauntShowsNewRestaurantScreen() {
-        if let rightBarButtonItem = self.restaurantListVC.navigationItem.rightBarButtonItem {
-            expect(rightBarButtonItem.title).to(equal("add restaurant"))
-        } else {
-            XCTFail()
-        }
+        let addRestaurantButton = self.restaurantListVC.navigationItem.rightBarButtonItem!
+        expect(addRestaurantButton.title).to(equal("add restaurant"))
 
-        restaurantListVC.didTapAddRestaurantButton(restaurantListVC.navigationItem.rightBarButtonItem!)
+        tapNavBarButton(addRestaurantButton)
 
         expect(self.fakeRouter.newRestaurantScreenIsShowing).to(equal(true))
     }
@@ -122,12 +119,7 @@ class RestaurantListViewControllerTest: XCTestCase {
 
     func testTappingTheLogoutButton_callsDeleteTokenSessionRepo_movesUserToLoginScreen() {
         let logoutButton: UIBarButtonItem! = self.restaurantListVC.navigationItem.leftBarButtonItem
-        UIApplication.sharedApplication().sendAction(
-            logoutButton.action,
-            to: logoutButton.target,
-            from: nil,
-            forEvent: nil
-        )
+        tapNavBarButton(logoutButton)
 
         expect(self.fakeSessionRepo.deleteTokenWasCalled).to(beTrue())
         expect(self.fakeRouter.loginScreenIsShowing).to(beTrue())

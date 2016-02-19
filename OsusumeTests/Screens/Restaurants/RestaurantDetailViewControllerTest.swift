@@ -8,7 +8,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     let router = FakeRouter()
     let repo = FakeRestaurantRepo()
 
-    var controller: RestaurantDetailViewController!
+    var restaurantDetailVC: RestaurantDetailViewController!
 
     override func setUp() {
         repo.createdRestaurant = Restaurant(
@@ -25,7 +25,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             photoUrl: NSURL(string: "")
         )
 
-        controller = RestaurantDetailViewController(
+        restaurantDetailVC = RestaurantDetailViewController(
             router: router,
             repo: repo,
             restaurantId: 1
@@ -33,32 +33,33 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     func test_viewDidLoad_displaysDetailsOfARestaurant() {
-        controller.view.setNeedsLayout()
+        restaurantDetailVC.view.setNeedsLayout()
 
-        expect(self.controller.nameLabel.text).to(equal("My Restaurant"))
-        expect(self.controller.addressLabel.text).to(equal("Roppongi"))
-        expect(self.controller.cuisineTypeLabel.text).to(equal("Sushi"))
-        expect(self.controller.offersEnglishMenuLabel.text).to(equal("Offers English menu"))
-        expect(self.controller.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
-        expect(self.controller.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
-        expect(self.controller.notesLabel.text).to(equal("This place is great"))
-        expect(self.controller.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
+        expect(self.restaurantDetailVC.nameLabel.text).to(equal("My Restaurant"))
+        expect(self.restaurantDetailVC.addressLabel.text).to(equal("Roppongi"))
+        expect(self.restaurantDetailVC.cuisineTypeLabel.text).to(equal("Sushi"))
+        expect(self.restaurantDetailVC.offersEnglishMenuLabel.text).to(equal("Offers English menu"))
+        expect(self.restaurantDetailVC.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
+        expect(self.restaurantDetailVC.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
+        expect(self.restaurantDetailVC.notesLabel.text).to(equal("This place is great"))
+        expect(self.restaurantDetailVC.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
     }
 
     func test_tappingTheEditButton_showsTheEditScreen() {
-        controller.view.setNeedsLayout()
+        restaurantDetailVC.view.setNeedsLayout()
 
-        expect(self.controller.navigationItem.rightBarButtonItem?.title).to(equal("Edit"))
+        expect(self.restaurantDetailVC.navigationItem.rightBarButtonItem?.title).to(equal("Edit"))
 
-        controller.didTapEditRestaurantButton(controller.navigationItem.rightBarButtonItem!)
+        let updateButton = restaurantDetailVC.navigationItem.rightBarButtonItem!
+        tapNavBarButton(updateButton)
 
         expect(self.router.editRestaurantScreenIsShowing).to(equal(true))
     }
 
     func test_tappingTheAddCommentButton_showsTheNewCommentScreen() {
-        controller.view.setNeedsLayout()
+        restaurantDetailVC.view.setNeedsLayout()
 
-        controller.addCommentButton.sendActionsForControlEvents(.TouchUpInside)
+        restaurantDetailVC.addCommentButton.sendActionsForControlEvents(.TouchUpInside)
 
         expect(self.router.newCommentScreenIsShowing).to(equal(true))
         expect(self.router.showNewCommentScreen_args).to(equal(1)) // created restaurant

@@ -43,7 +43,9 @@ class EditRestaurantViewControllerTest: XCTestCase {
         editRestaurantViewController.formView.walkInsOkSwitch.on = true
         editRestaurantViewController.formView.notesTextField.text = "Try the vegetables!"
 
-        editRestaurantViewController.didTapUpdateButton(editRestaurantViewController.navigationItem.rightBarButtonItem)
+        let updateButton = editRestaurantViewController.navigationItem.rightBarButtonItem!
+        tapNavBarButton(updateButton)
+
         let restaurant: Restaurant = repo.createdRestaurant!
 
         expect(restaurant.name).to(equal("Updated Restaurant Name"))
