@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Osusume.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AED333A91C634A5400127DC6"
+               BuildableName = "OsusumeUITests.xctest"
+               BlueprintName = "OsusumeUITests"
+               ReferencedContainer = "container:Osusume.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -35,16 +49,6 @@
                BlueprintIdentifier = "AECA9B621C0EC90E00C30BA4"
                BuildableName = "OsusumeTests.xctest"
                BlueprintName = "OsusumeTests"
-               ReferencedContainer = "container:Osusume.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AED333A91C634A5400127DC6"
-               BuildableName = "OsusumeUITests.xctest"
-               BlueprintName = "OsusumeUITests"
                ReferencedContainer = "container:Osusume.xcodeproj">
             </BuildableReference>
          </TestableReference>
