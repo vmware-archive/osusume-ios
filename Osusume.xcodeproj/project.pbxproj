@@ -14,6 +14,11 @@
 		AE0F65C31C60346600778E50 /* FakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65C01C60346600778E50 /* FakeRouter.swift */; };
 		AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0F65C11C60346600778E50 /* FakeUserRepo.swift */; };
 		AE10E14C1C5AF079006749F4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE10E14B1C5AF079006749F4 /* main.swift */; };
+		AE20233C1C76B5A900F36F6C /* NetworkPhotoRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE20233B1C76B5A900F36F6C /* NetworkPhotoRepoTest.swift */; };
+		AE20233F1C76BF1700F36F6C /* S3StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE20233E1C76BF1700F36F6C /* S3StorageService.swift */; };
+		AE2023411C76BF6200F36F6C /* NSUUIDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2023401C76BF6200F36F6C /* NSUUIDProvider.swift */; };
+		AE2023431C76BFAC00F36F6C /* FakeUUIDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2023421C76BFAC00F36F6C /* FakeUUIDProvider.swift */; };
+		AE2023451C76BFCE00F36F6C /* FakeStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2023441C76BFCE00F36F6C /* FakeStorageProvider.swift */; };
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE331EF91C50A01C007D37C2 /* RepoError.swift */; };
 		AE42F3FB1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42F3FA1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift */; };
@@ -105,6 +110,11 @@
 		AE0F65C01C60346600778E50 /* FakeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRouter.swift; sourceTree = "<group>"; };
 		AE0F65C11C60346600778E50 /* FakeUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeUserRepo.swift; sourceTree = "<group>"; };
 		AE10E14B1C5AF079006749F4 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AE20233B1C76B5A900F36F6C /* NetworkPhotoRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPhotoRepoTest.swift; sourceTree = "<group>"; };
+		AE20233E1C76BF1700F36F6C /* S3StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3StorageService.swift; sourceTree = "<group>"; };
+		AE2023401C76BF6200F36F6C /* NSUUIDProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUUIDProvider.swift; sourceTree = "<group>"; };
+		AE2023421C76BFAC00F36F6C /* FakeUUIDProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeUUIDProvider.swift; sourceTree = "<group>"; };
+		AE2023441C76BFCE00F36F6C /* FakeStorageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeStorageProvider.swift; sourceTree = "<group>"; };
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AE331EF91C50A01C007D37C2 /* RepoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoError.swift; sourceTree = "<group>"; };
 		AE42F3FA1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRestaurantRepoTest.swift; sourceTree = "<group>"; };
@@ -245,7 +255,9 @@
 				AE0F65BF1C60346600778E50 /* FakeRestaurantRepo.swift */,
 				AE0F65C01C60346600778E50 /* FakeRouter.swift */,
 				AE7623331C7190AA006272C3 /* FakeSessionRepo.swift */,
+				AE2023441C76BFCE00F36F6C /* FakeStorageProvider.swift */,
 				AE0F65C11C60346600778E50 /* FakeUserRepo.swift */,
+				AE2023421C76BFAC00F36F6C /* FakeUUIDProvider.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -275,8 +287,18 @@
 		AE2023381C76A85400F36F6C /* PhotoRepo */ = {
 			isa = PBXGroup;
 			children = (
+				AE20233B1C76B5A900F36F6C /* NetworkPhotoRepoTest.swift */,
 			);
 			path = PhotoRepo;
+			sourceTree = "<group>";
+		};
+		AE20233D1C76BF0E00F36F6C /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				AE2023401C76BF6200F36F6C /* NSUUIDProvider.swift */,
+				AE20233E1C76BF1700F36F6C /* S3StorageService.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		AE42F3F91C72E09F00447E67 /* RestaurantRepo */ = {
@@ -343,6 +365,7 @@
 			children = (
 				AEC8776B1C7305810005BEA1 /* Comments */,
 				AED030551C759425000BC99C /* Restaurants */,
+				AE20233D1C76BF0E00F36F6C /* Storage */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -757,6 +780,7 @@
 				AEC8776D1C7305F90005BEA1 /* NewCommentViewController.swift in Sources */,
 				AED030571C75943F000BC99C /* NewRestaurant.swift in Sources */,
 				DE99CAAB65BC8243F5B84D01 /* NewRestaurantViewController.swift in Sources */,
+				AE2023411C76BF6200F36F6C /* NSUUIDProvider.swift in Sources */,
 				AEAEF4961C730929004ECC89 /* PersistedComment.swift in Sources */,
 				AE74A6051C71727A00BD1C0C /* PhotoRepo.swift in Sources */,
 				AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */,
@@ -769,6 +793,7 @@
 				AE74A6081C71727A00BD1C0C /* RestaurantRepo.swift in Sources */,
 				AE7E5B801C6870CF0057A795 /* RestaurantTableViewCell.swift in Sources */,
 				DE99C674E82B6B17CDB36A4B /* Router.swift in Sources */,
+				AE20233F1C76BF1700F36F6C /* S3StorageService.swift in Sources */,
 				AE7623321C719036006272C3 /* SessionRepo.swift in Sources */,
 				AE74A60B1C71727A00BD1C0C /* UserRepo.swift in Sources */,
 			);
@@ -787,13 +812,16 @@
 				AE0F65C21C60346600778E50 /* FakeRestaurantRepo.swift in Sources */,
 				AE0F65C31C60346600778E50 /* FakeRouter.swift in Sources */,
 				AE7623341C7190AA006272C3 /* FakeSessionRepo.swift in Sources */,
+				AE2023451C76BFCE00F36F6C /* FakeStorageProvider.swift in Sources */,
 				AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */,
+				AE2023431C76BFAC00F36F6C /* FakeUUIDProvider.swift in Sources */,
 				AE42F3FF1C72E74A00447E67 /* Fixtures.swift in Sources */,
 				AE42F3FB1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift in Sources */,
 				AE017D6A1C7179B400788FDF /* KeychainSessionRepoTest.swift in Sources */,
 				AEDB5C1E1C755FF40050D002 /* LaunchWorkflowTest.swift in Sources */,
 				AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */,
 				AEDB5C201C7564170050D002 /* NavigationRouterTest.swift in Sources */,
+				AE20233C1C76B5A900F36F6C /* NetworkPhotoRepoTest.swift in Sources */,
 				AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */,
 				AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */,
 				AEDB5C1C1C755C570050D002 /* RestaurantConverterTest.swift in Sources */,

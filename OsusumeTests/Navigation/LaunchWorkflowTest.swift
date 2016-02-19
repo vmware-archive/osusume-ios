@@ -48,11 +48,4 @@ class LaunchWorkflowTest: XCTestCase {
         expect(self.navController.topViewController)
             .to(beAKindOf(RestaurantListViewController))
     }
-
-    func test_startWorkflow_configuresPhotoRepoCredentials() {
-        launchWorkflow.startWorkflow()
-
-        expect(self.fakePhotoRepo.credentialsConfigured).to(equal(true))
-    }
-
 }
