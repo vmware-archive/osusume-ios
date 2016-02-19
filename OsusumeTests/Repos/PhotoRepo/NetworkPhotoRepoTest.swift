@@ -3,15 +3,19 @@ import Nimble
 @testable import Osusume
 
 class NetworkPhotoRepoTest: XCTestCase {
+    var fakeStorageService: FakeStorage!
+    var networkPhotoRepo: NetworkPhotoRepo!
 
-    func test_uploadPhoto_passesRequestToStorageService() {
-        let fakeStorageService = FakeStorageService()
+    override func setUp() {
+        fakeStorageService = FakeStorage()
 
-        let networkPhotoRepo = NetworkPhotoRepo(
+        networkPhotoRepo = NetworkPhotoRepo(
             storageService: fakeStorageService,
             uuidProvider: FakeUUIDProvider()
         )
+    }
 
+    func test_uploadPhoto_passesRequestToStorageService() {
         let image = UIImage(named: "Jeana")!
         networkPhotoRepo.uploadPhoto(image)
 
@@ -19,17 +23,10 @@ class NetworkPhotoRepoTest: XCTestCase {
             fileURLWithPath: NSTemporaryDirectory().stringByAppendingString("fakeKey")
         )
 
-        expect(fakeStorageService.uploadFile_arg).to(equal(expectedUrl))
+        expect(self.fakeStorageService.uploadFile_arg).to(equal(expectedUrl))
     }
 
     func test_uploadPhoto_returnsUploadedFileUrl() {
-        let fakeStorageService = FakeStorageService()
-
-        let networkPhotoRepo = NetworkPhotoRepo(
-            storageService: fakeStorageService,
-            uuidProvider: FakeUUIDProvider()
-        )
-
         let image = UIImage(named: "Jeana")!
         let actualUploadedFileUrl = networkPhotoRepo.uploadPhoto(image)
 

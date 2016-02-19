@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navController = UINavigationController()
         let sessionRepo = KeychainSessionRepo()
         let photoRepo = NetworkPhotoRepo(
-            storageService: S3StorageService(),
+            storageService: S3Storage(),
             uuidProvider: NSUUIDProvider()
         )
 

@@ -1,14 +1,12 @@
-protocol StorageService {
+protocol RemoteStorage {
     func uploadFile(withUrl url: NSURL) -> String
 }
 
-struct S3StorageService: StorageService {
+struct S3Storage: RemoteStorage {
 
     func uploadFile(withUrl url: NSURL) -> String {
 
         configureCredentials()
-
-        print("url.lastPathComponent: \(url.lastPathComponent)")
 
         let key = "user_id/\(url.lastPathComponent!)"
         let bucketName = "osusume-tokyo-dev"

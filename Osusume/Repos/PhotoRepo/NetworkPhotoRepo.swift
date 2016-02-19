@@ -1,5 +1,5 @@
 struct NetworkPhotoRepo: PhotoRepo {
-    let storageService: StorageService
+    let storageService: RemoteStorage
     let uuidProvider: UUIDProvider
 
     func uploadPhoto(photo: UIImage) -> String {
