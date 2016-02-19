@@ -4,15 +4,6 @@ import BrightFutures
 
 @testable import Osusume
 
-func tapNavBarButton(button: UIBarButtonItem) {
-    UIApplication.sharedApplication().sendAction(
-        button.action,
-        to: button.target,
-        from: nil,
-        forEvent: nil
-    )
-}
-
 class NewCommentViewControllerTest: XCTestCase {
     func test_view_showsTitleInNavigationBar() {
         let fakeCommentRepo = FakeCommentRepo()

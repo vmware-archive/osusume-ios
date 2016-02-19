@@ -1,6 +1,6 @@
 @testable import Osusume
 
-class FakeStorage: RemoteStorage {
+class FakeRemoteStorage: RemoteStorage {
     var uploadFile_arg = NSURL()
     var uploadFile_returnValue = "http://example.com"
     func uploadFile(withUrl url: NSURL) -> String {

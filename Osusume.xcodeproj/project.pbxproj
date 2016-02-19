@@ -21,6 +21,7 @@
 		AE2023451C76BFCE00F36F6C /* FakeStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2023441C76BFCE00F36F6C /* FakeStorageProvider.swift */; };
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE331EF91C50A01C007D37C2 /* RepoError.swift */; };
+		AE3ECDEE1C76E947002D70B4 /* appleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3ECDED1C76E947002D70B4 /* appleLogo.png */; };
 		AE42F3FB1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42F3FA1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift */; };
 		AE42F3FD1C72E3BF00447E67 /* FakeHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42F3FC1C72E3BF00447E67 /* FakeHttp.swift */; };
 		AE42F3FF1C72E74A00447E67 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42F3FE1C72E74A00447E67 /* Fixtures.swift */; };
@@ -117,6 +118,7 @@
 		AE2023441C76BFCE00F36F6C /* FakeStorageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeStorageProvider.swift; sourceTree = "<group>"; };
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AE331EF91C50A01C007D37C2 /* RepoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoError.swift; sourceTree = "<group>"; };
+		AE3ECDED1C76E947002D70B4 /* appleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appleLogo.png; sourceTree = "<group>"; };
 		AE42F3FA1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRestaurantRepoTest.swift; sourceTree = "<group>"; };
 		AE42F3FC1C72E3BF00447E67 /* FakeHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeHttp.swift; sourceTree = "<group>"; };
 		AE42F3FE1C72E74A00447E67 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
@@ -301,6 +303,22 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		AE3ECDEB1C76E947002D70B4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AE3ECDEC1C76E947002D70B4 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AE3ECDEC1C76E947002D70B4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				AE3ECDED1C76E947002D70B4 /* appleLogo.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		AE42F3F91C72E09F00447E67 /* RestaurantRepo */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +446,7 @@
 				AE0F65BE1C60346600778E50 /* Fakes */,
 				DE99CE4BF4B09C4C96211B54 /* Navigation */,
 				AE017D671C71799D00788FDF /* Repos */,
+				AE3ECDEB1C76E947002D70B4 /* Resources */,
 				DE99CF05F4A7BB5B048FC5BB /* Screens */,
 				AEAEF4971C7315EC004ECC89 /* ExtensionsForTest.swift */,
 				AE42F3FE1C72E74A00447E67 /* Fixtures.swift */,
@@ -698,6 +717,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE3ECDEE1C76E947002D70B4 /* appleLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

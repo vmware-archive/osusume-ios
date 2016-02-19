@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sessionRepo = KeychainSessionRepo()
         let photoRepo = NetworkPhotoRepo(
             storageService: S3Storage(),
-            uuidProvider: NSUUIDProvider()
+            uuidProvider: NSUUIDProvider(),
+            localStorage: DiskStorage()
         )
 
         let http = AlamofireHttp(basePath: AppDelegate.basePath)
