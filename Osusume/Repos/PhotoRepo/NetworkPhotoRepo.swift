@@ -9,7 +9,7 @@ struct DiskStorage: LocalStorage {
 }
 
 struct NetworkPhotoRepo: PhotoRepo {
-    let storageService: RemoteStorage
+    let remoteStorage: RemoteStorage
     let uuidProvider: UUIDProvider
     let localStorage: LocalStorage
 
@@ -23,6 +23,6 @@ struct NetworkPhotoRepo: PhotoRepo {
         let imageData = UIImageJPEGRepresentation(photo, 1.0)!
         localStorage.writeToDisk(imageData, toUrl: photoTempURL)
 
-        return storageService.uploadFile(withUrl: photoTempURL)
+        return remoteStorage.uploadFile(withUrl: photoTempURL)
     }
 }

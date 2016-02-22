@@ -11,7 +11,7 @@ struct S3Storage: RemoteStorage {
         let key = "user_id/\(url.lastPathComponent!)"
         let bucketName = "osusume-tokyo-dev"
 
-        let storageProvider = AWSS3TransferManager.defaultS3TransferManager()
+        let s3 = AWSS3TransferManager.defaultS3TransferManager()
         let uploadRequest = AWSS3TransferManagerUploadRequest()
 
         uploadRequest.bucket = bucketName
@@ -19,7 +19,7 @@ struct S3Storage: RemoteStorage {
         uploadRequest.body = url
         uploadRequest.ACL = AWSS3ObjectCannedACL.PublicRead
 
-        storageProvider.upload(uploadRequest)
+        s3.upload(uploadRequest)
 
         return "https://s3-ap-northeast-1.amazonaws.com/\(bucketName)/\(key)"
     }

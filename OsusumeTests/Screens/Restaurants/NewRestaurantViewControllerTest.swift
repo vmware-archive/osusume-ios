@@ -41,6 +41,15 @@ class NewRestaurantViewControllerTest: XCTestCase {
         self.window = nil
     }
 
+    func test_tappingTheAddPhotoButton_showsTheCameraRoll() {
+        let image = testImage(named: "appleLogo", imageExtension: "png")
+        newRestaurantVC.images.append(image)
+        newRestaurantVC.addPhotoButton.sendActionsForControlEvents(.TouchUpInside)
+
+        expect(self.newRestaurantVC.presentedViewController)
+            .toEventually(beAKindOf(BSImagePickerViewController))
+    }
+
     func test_tappingDoneButton_returnsToListScreen() {
         let image = testImage(named: "appleLogo", imageExtension: "png")
         newRestaurantVC.images.append(image)
@@ -71,14 +80,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(restaurant.walkInsOk).to(equal(false))
         expect(restaurant.acceptsCreditCards).to(equal(false))
         expect(restaurant.notes).to(equal("Notes"))
-        expect(restaurant.photoUrl!.absoluteString).to(equal(fakePhotoRepo.generatedUrlAbsoluteString))
-    }
-
-    func test_tappingTheAddPhotoButton_showsTheCameraRoll() {
-        let image = testImage(named: "appleLogo", imageExtension: "png")
-        newRestaurantVC.images.append(image)
-        newRestaurantVC.addPhotoButton.sendActionsForControlEvents(.TouchUpInside)
-
-        expect(self.newRestaurantVC.presentedViewController).toEventually(beAKindOf(BSImagePickerViewController))
+        expect(restaurant.photoUrl!.absoluteString).to(equal(fakePhotoRepo.uploadPhoto_returnValue))
     }
 }

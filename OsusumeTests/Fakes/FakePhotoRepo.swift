@@ -2,7 +2,7 @@
 
 class FakePhotoRepo: PhotoRepo {
     var credentialsConfigured: Bool = false
-    var generatedUrlAbsoluteString: String = ""
+
 
     func configureCredentials() {
         credentialsConfigured = true
@@ -13,10 +13,5 @@ class FakePhotoRepo: PhotoRepo {
     func uploadPhoto(photo: UIImage) -> String {
         uploadPhoto_arg = (photo: photo)
         return uploadPhoto_returnValue
-    }
-
-    func generatePhotoURLForKey(key: String) -> NSURL {
-        generatedUrlAbsoluteString = "http://www.\(key).com"
-        return NSURL(string: generatedUrlAbsoluteString)!
     }
 }

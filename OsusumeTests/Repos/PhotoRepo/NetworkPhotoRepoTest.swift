@@ -21,7 +21,7 @@ class NetworkPhotoRepoTest: XCTestCase {
         fakeLocalStorage = FakeLocalStorage()
 
         networkPhotoRepo = NetworkPhotoRepo(
-            storageService: fakeStorageService,
+            remoteStorage: fakeStorageService,
             uuidProvider: FakeUUIDProvider(),
             localStorage: fakeLocalStorage
         )

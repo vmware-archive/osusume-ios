@@ -175,16 +175,25 @@ extension NewRestaurantViewController: UINavigationControllerDelegate {
 }
 
 extension NewRestaurantViewController: UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(
+        collectionView: UICollectionView,
+        cellForItemAtIndexPath indexPath: NSIndexPath
+        ) -> UICollectionViewCell
+    {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath)
+
         cell.backgroundView = UIImageView(image: images[indexPath.row])
+
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+        ) -> Int
+    {
         return images.count
     }
 }
 
-extension NewRestaurantViewController: UICollectionViewDelegate {
-}
+extension NewRestaurantViewController: UICollectionViewDelegate {}
