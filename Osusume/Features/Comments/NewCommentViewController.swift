@@ -3,15 +3,17 @@ import UIKit
 class NewCommentViewController: UIViewController {
     unowned let router : Router
     let commentRepo: CommentRepo
+    let restaurantId: Int
 
     let commentTextField: UITextView
 
     private var constraintsNeedUpdate = true
     private let textFieldPlaceHolder = "Add a comment"
 
-    init(router: Router, commentRepo: CommentRepo) {
+    init(router: Router, commentRepo: CommentRepo, restaurantId: Int) {
         self.router = router
         self.commentRepo = commentRepo
+        self.restaurantId = restaurantId
 
         self.commentTextField = UITextView.newAutoLayoutView()
 
@@ -65,7 +67,12 @@ class NewCommentViewController: UIViewController {
     // MARK: - Actions
     func didTapSaveButton(sender: UIBarButtonItem) {
         commentRepo
-            .persist(NewComment(text: commentTextField.text))
+            .persist(
+                NewComment(
+                    text: commentTextField.text,
+                    restaurantId: restaurantId
+                )
+            )
             .onSuccess { [unowned self] _ in
                 self.router.dismissNewCommentScreen(false)
             }

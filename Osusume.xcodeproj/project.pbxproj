@@ -19,8 +19,13 @@
 		AE2023411C76BF6200F36F6C /* NSUUIDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2023401C76BF6200F36F6C /* NSUUIDProvider.swift */; };
 		AE2023431C76BFAC00F36F6C /* FakeUUIDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2023421C76BFAC00F36F6C /* FakeUUIDProvider.swift */; };
 		AE2023451C76BFCE00F36F6C /* FakeStorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2023441C76BFCE00F36F6C /* FakeStorageProvider.swift */; };
+		AE237C7E1C76EE490044536D /* HttpCommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE237C7D1C76EE490044536D /* HttpCommentRepo.swift */; };
+		AE237C811C76EE870044536D /* HttpCommentRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE237C801C76EE870044536D /* HttpCommentRepoTest.swift */; };
+		AE292CF91C7AB02D0099A85B /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE292CF81C7AB02D0099A85B /* DataParser.swift */; };
+		AE292CFB1C7AB1C50099A85B /* CommentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE292CFA1C7AB1C50099A85B /* CommentParser.swift */; };
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE331EF91C50A01C007D37C2 /* RepoError.swift */; };
+		AE3369121C7BF31E004BE03B /* ParseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3369111C7BF31E004BE03B /* ParseError.swift */; };
 		AE3ECDEE1C76E947002D70B4 /* appleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3ECDED1C76E947002D70B4 /* appleLogo.png */; };
 		AE42F3FB1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42F3FA1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift */; };
 		AE42F3FD1C72E3BF00447E67 /* FakeHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42F3FC1C72E3BF00447E67 /* FakeHttp.swift */; };
@@ -44,7 +49,6 @@
 		AEC471D41C7439F7001B8C56 /* BSGridCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D31C7439F7001B8C56 /* BSGridCollectionViewLayout.framework */; };
 		AEC471D61C7439FA001B8C56 /* BSImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D51C7439FA001B8C56 /* BSImagePicker.framework */; };
 		AEC471D81C743A00001B8C56 /* UIImageViewModeScaleAspect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D71C743A00001B8C56 /* UIImageViewModeScaleAspect.framework */; };
-		AEC877631C72FF570005BEA1 /* HttpCommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC877621C72FF570005BEA1 /* HttpCommentRepo.swift */; };
 		AEC877651C72FFAF0005BEA1 /* FakeCommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC877641C72FFAF0005BEA1 /* FakeCommentRepo.swift */; };
 		AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC877671C7300090005BEA1 /* NewCommentViewControllerTest.swift */; };
 		AEC8776D1C7305F90005BEA1 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8776C1C7305F90005BEA1 /* NewCommentViewController.swift */; };
@@ -70,6 +74,7 @@
 		AEDEDC491C71935200E1A031 /* RestaurantDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEDC481C71935200E1A031 /* RestaurantDetailPresenter.swift */; };
 		AEDEDC5B1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */; };
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
+		AEE7CB041C7AB48F00F31289 /* CommentParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE7CB031C7AB48F00F31289 /* CommentParserTest.swift */; };
 		AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF8BF8F1C61C263000677EB /* libz.tbd */; };
 		AEFCB7781C6191FB0096DD93 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
 		AEFCB77A1C6192020096DD93 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
@@ -116,8 +121,13 @@
 		AE2023401C76BF6200F36F6C /* NSUUIDProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUUIDProvider.swift; sourceTree = "<group>"; };
 		AE2023421C76BFAC00F36F6C /* FakeUUIDProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeUUIDProvider.swift; sourceTree = "<group>"; };
 		AE2023441C76BFCE00F36F6C /* FakeStorageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeStorageProvider.swift; sourceTree = "<group>"; };
+		AE237C7D1C76EE490044536D /* HttpCommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpCommentRepo.swift; sourceTree = "<group>"; };
+		AE237C801C76EE870044536D /* HttpCommentRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpCommentRepoTest.swift; sourceTree = "<group>"; };
+		AE292CF81C7AB02D0099A85B /* DataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
+		AE292CFA1C7AB1C50099A85B /* CommentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentParser.swift; sourceTree = "<group>"; };
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AE331EF91C50A01C007D37C2 /* RepoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoError.swift; sourceTree = "<group>"; };
+		AE3369111C7BF31E004BE03B /* ParseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseError.swift; sourceTree = "<group>"; };
 		AE3ECDED1C76E947002D70B4 /* appleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appleLogo.png; sourceTree = "<group>"; };
 		AE42F3FA1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRestaurantRepoTest.swift; sourceTree = "<group>"; };
 		AE42F3FC1C72E3BF00447E67 /* FakeHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeHttp.swift; sourceTree = "<group>"; };
@@ -141,7 +151,6 @@
 		AEC471D31C7439F7001B8C56 /* BSGridCollectionViewLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BSGridCollectionViewLayout.framework; path = Carthage/Build/iOS/BSGridCollectionViewLayout.framework; sourceTree = "<group>"; };
 		AEC471D51C7439FA001B8C56 /* BSImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BSImagePicker.framework; path = Carthage/Build/iOS/BSImagePicker.framework; sourceTree = "<group>"; };
 		AEC471D71C743A00001B8C56 /* UIImageViewModeScaleAspect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIImageViewModeScaleAspect.framework; path = Carthage/Build/iOS/UIImageViewModeScaleAspect.framework; sourceTree = "<group>"; };
-		AEC877621C72FF570005BEA1 /* HttpCommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpCommentRepo.swift; sourceTree = "<group>"; };
 		AEC877641C72FFAF0005BEA1 /* FakeCommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeCommentRepo.swift; sourceTree = "<group>"; };
 		AEC877671C7300090005BEA1 /* NewCommentViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentViewControllerTest.swift; sourceTree = "<group>"; };
 		AEC8776C1C7305F90005BEA1 /* NewCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +183,7 @@
 		AEDEDC481C71935200E1A031 /* RestaurantDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailPresenter.swift; sourceTree = "<group>"; };
 		AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewControllerTest.swift; sourceTree = "<group>"; };
 		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
+		AEE7CB031C7AB48F00F31289 /* CommentParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentParserTest.swift; sourceTree = "<group>"; };
 		AEF8BF8F1C61C263000677EB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		AEFCB7771C6191FB0096DD93 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSS3.framework"; sourceTree = "<group>"; };
 		AEFCB7791C6192020096DD93 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSCore.framework"; sourceTree = "<group>"; };
@@ -233,6 +243,7 @@
 		AE017D671C71799D00788FDF /* Repos */ = {
 			isa = PBXGroup;
 			children = (
+				AE237C7F1C76EE770044536D /* CommentRepo */,
 				AE2023381C76A85400F36F6C /* PhotoRepo */,
 				AE42F3F91C72E09F00447E67 /* RestaurantRepo */,
 				AE017D681C71799D00788FDF /* SessionRepo */,
@@ -303,6 +314,22 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		AE237C7C1C76EE490044536D /* CommentRepo */ = {
+			isa = PBXGroup;
+			children = (
+				AE237C7D1C76EE490044536D /* HttpCommentRepo.swift */,
+			);
+			path = CommentRepo;
+			sourceTree = "<group>";
+		};
+		AE237C7F1C76EE770044536D /* CommentRepo */ = {
+			isa = PBXGroup;
+			children = (
+				AE237C801C76EE870044536D /* HttpCommentRepoTest.swift */,
+			);
+			path = CommentRepo;
+			sourceTree = "<group>";
+		};
 		AE3ECDEB1C76E947002D70B4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,13 +390,6 @@
 			path = UserRepo;
 			sourceTree = "<group>";
 		};
-		AEC4EE5A1C71C59B00881A01 /* Comments */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Comments;
-			sourceTree = "<group>";
-		};
 		AEC877661C72FFFE0005BEA1 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +411,7 @@
 		AEC8776B1C7305810005BEA1 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
+				AE292CFA1C7AB1C50099A85B /* CommentParser.swift */,
 				AEC8776E1C7306320005BEA1 /* NewComment.swift */,
 				AEC8776C1C7305F90005BEA1 /* NewCommentViewController.swift */,
 				AEAEF4951C730929004ECC89 /* PersistedComment.swift */,
@@ -431,10 +452,12 @@
 				DE99C129438C34333056125D /* Screens */,
 				AECA9B521C0EC90E00C30BA4 /* AppDelegate.swift */,
 				AECA9B591C0EC90E00C30BA4 /* Assets.xcassets */,
+				AE292CF81C7AB02D0099A85B /* DataParser.swift */,
 				AECA9B5E1C0EC90E00C30BA4 /* Info.plist */,
 				AECA9B5B1C0EC90E00C30BA4 /* LaunchScreen.storyboard */,
 				AE10E14B1C5AF079006749F4 /* main.swift */,
 				AEDEDC441C716D6900E1A031 /* OsusumeBridgingHeader.h */,
+				AE3369111C7BF31E004BE03B /* ParseError.swift */,
 			);
 			path = Osusume;
 			sourceTree = "<group>";
@@ -444,6 +467,7 @@
 			children = (
 				DE99C6D9E900B2C60B8C67DA /* Converters */,
 				AE0F65BE1C60346600778E50 /* Fakes */,
+				AEE7CB011C7AB46C00F31289 /* Features */,
 				DE99CE4BF4B09C4C96211B54 /* Navigation */,
 				AE017D671C71799D00788FDF /* Repos */,
 				AE3ECDEB1C76E947002D70B4 /* Resources */,
@@ -472,6 +496,22 @@
 			path = OsusumeUITests;
 			sourceTree = "<group>";
 		};
+		AEE7CB011C7AB46C00F31289 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				AEE7CB021C7AB46C00F31289 /* Comments */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		AEE7CB021C7AB46C00F31289 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				AEE7CB031C7AB48F00F31289 /* CommentParserTest.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
 		DE99C0044C71DF22E5E51328 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,7 +523,6 @@
 		DE99C129438C34333056125D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				AEC4EE5A1C71C59B00881A01 /* Comments */,
 				DE99C54688E7F01FE6A3777D /* Restaurants */,
 				DE99C8E2D4573E447DF678D2 /* Users */,
 			);
@@ -493,11 +532,11 @@
 		DE99C1FFFE3D1142AD7A070E /* Repos */ = {
 			isa = PBXGroup;
 			children = (
+				AE237C7C1C76EE490044536D /* CommentRepo */,
 				AE74A5FA1C71727A00BD1C0C /* PhotoRepo */,
 				AE74A5FD1C71727A00BD1C0C /* RestaurantRepo */,
 				AE74A6001C71727A00BD1C0C /* SessionRepo */,
 				AE74A6021C71727A00BD1C0C /* UserRepo */,
-				AEC877621C72FF570005BEA1 /* HttpCommentRepo.swift */,
 				AE331EF91C50A01C007D37C2 /* RepoError.swift */,
 			);
 			path = Repos;
@@ -784,10 +823,12 @@
 			files = (
 				DE99C7C1E73B412E900D494C /* AlamofireHttp.swift in Sources */,
 				AECA9B531C0EC90E00C30BA4 /* AppDelegate.swift in Sources */,
+				AE292CFB1C7AB1C50099A85B /* CommentParser.swift in Sources */,
+				AE292CF91C7AB02D0099A85B /* DataParser.swift in Sources */,
 				AEFD19C31C61E6E7008809D5 /* DateConverter.swift in Sources */,
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
 				DE99CDBDBD35F271954B99EC /* Http.swift in Sources */,
-				AEC877631C72FF570005BEA1 /* HttpCommentRepo.swift in Sources */,
+				AE237C7E1C76EE490044536D /* HttpCommentRepo.swift in Sources */,
 				AE74A6071C71727A00BD1C0C /* HttpRestaurantRepo.swift in Sources */,
 				AE74A60A1C71727A00BD1C0C /* HttpUserRepo.swift in Sources */,
 				AE017D661C7177D000788FDF /* KeychainSessionRepo.swift in Sources */,
@@ -801,6 +842,7 @@
 				AED030571C75943F000BC99C /* NewRestaurant.swift in Sources */,
 				DE99CAAB65BC8243F5B84D01 /* NewRestaurantViewController.swift in Sources */,
 				AE2023411C76BF6200F36F6C /* NSUUIDProvider.swift in Sources */,
+				AE3369121C7BF31E004BE03B /* ParseError.swift in Sources */,
 				AEAEF4961C730929004ECC89 /* PersistedComment.swift in Sources */,
 				AE74A6051C71727A00BD1C0C /* PhotoRepo.swift in Sources */,
 				AE331EFA1C50A01C007D37C2 /* RepoError.swift in Sources */,
@@ -823,6 +865,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE7CB041C7AB48F00F31289 /* CommentParserTest.swift in Sources */,
 				AEC9D4C71C754DC2008C4122 /* DateConverterTest.swift in Sources */,
 				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,
 				AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */,
@@ -836,6 +879,7 @@
 				AE0F65C41C60346600778E50 /* FakeUserRepo.swift in Sources */,
 				AE2023431C76BFAC00F36F6C /* FakeUUIDProvider.swift in Sources */,
 				AE42F3FF1C72E74A00447E67 /* Fixtures.swift in Sources */,
+				AE237C811C76EE870044536D /* HttpCommentRepoTest.swift in Sources */,
 				AE42F3FB1C72E0AC00447E67 /* HttpRestaurantRepoTest.swift in Sources */,
 				AE017D6A1C7179B400788FDF /* KeychainSessionRepoTest.swift in Sources */,
 				AEDB5C1E1C755FF40050D002 /* LaunchWorkflowTest.swift in Sources */,

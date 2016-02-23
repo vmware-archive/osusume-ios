@@ -5,12 +5,15 @@ import BrightFutures
 @testable import Osusume
 
 class NewCommentViewControllerTest: XCTestCase {
+    let fakeRestaurantId = 0
+
     func test_view_showsTitleInNavigationBar() {
         let fakeCommentRepo = FakeCommentRepo()
 
         let newCommentVC = NewCommentViewController(
             router: FakeRouter(),
-            commentRepo: fakeCommentRepo
+            commentRepo: fakeCommentRepo,
+            restaurantId: fakeRestaurantId
         )
         newCommentVC.view.setNeedsLayout()
 
@@ -22,7 +25,8 @@ class NewCommentViewControllerTest: XCTestCase {
 
         let newCommentVC = NewCommentViewController(
             router: FakeRouter(),
-            commentRepo: fakeCommentRepo
+            commentRepo: fakeCommentRepo,
+            restaurantId: fakeRestaurantId
         )
         newCommentVC.view.setNeedsLayout()
 
@@ -50,7 +54,8 @@ class NewCommentViewControllerTest: XCTestCase {
 
         let newCommentVC = NewCommentViewController(
             router: FakeRouter(),
-            commentRepo: fakeCommentRepo
+            commentRepo: fakeCommentRepo,
+            restaurantId: fakeRestaurantId
         )
         newCommentVC.view.setNeedsLayout()
 
@@ -59,7 +64,10 @@ class NewCommentViewControllerTest: XCTestCase {
         let saveButton = newCommentVC.navigationItem.rightBarButtonItem
         tapNavBarButton(saveButton!)
 
-        let expectedComment = NewComment(text: "No parking in Harvard Yard")
+        let expectedComment = NewComment(
+            text: "No parking in Harvard Yard",
+            restaurantId: fakeRestaurantId
+        )
 
         XCTAssertTrue(fakeCommentRepo.persist_wasCalled)
         XCTAssertEqual(expectedComment, fakeCommentRepo.persist_arg)
@@ -74,7 +82,8 @@ class NewCommentViewControllerTest: XCTestCase {
 
         let newCommentVC = NewCommentViewController(
             router: fakeRouter,
-            commentRepo: fakeCommentRepo
+            commentRepo: fakeCommentRepo,
+            restaurantId: fakeRestaurantId
         )
         newCommentVC.view.setNeedsLayout()
 
@@ -84,7 +93,8 @@ class NewCommentViewControllerTest: XCTestCase {
         promise.success(
             PersistedComment(
                 id: 123,
-                text: "Saved comment"
+                text: "Saved comment",
+                restaurantId: fakeRestaurantId
             )
         )
 

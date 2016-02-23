@@ -71,12 +71,15 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_dismissesNewCommentScreen() {
+        let fakeRestaurantId = 0
+
         navigationRouter.navigationController.setViewControllers(
             [
                 UIViewController(),
                 NewCommentViewController(
                     router: FakeRouter(),
-                    commentRepo: FakeCommentRepo()
+                    commentRepo: FakeCommentRepo(),
+                    restaurantId: fakeRestaurantId
                 )
             ],
             animated: false

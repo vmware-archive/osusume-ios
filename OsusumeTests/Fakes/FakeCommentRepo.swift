@@ -3,7 +3,10 @@ import BrightFutures
 
 class FakeCommentRepo: CommentRepo {
     private(set) var persist_wasCalled = false
-    private(set) var persist_arg = NewComment(text: "FAKE: I park my car in Harvard yard.")
+    private(set) var persist_arg = NewComment(
+        text: "FAKE: I park my car in Harvard yard.",
+        restaurantId: 0
+    )
 
     var persist_returnValue = Future<PersistedComment, RepoError>()
 

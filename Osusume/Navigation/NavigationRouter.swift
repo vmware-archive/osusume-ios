@@ -92,7 +92,8 @@ class NavigationRouter : Router {
     func showNewCommentScreen(restaurantId: Int) {
         let newCommentViewController = NewCommentViewController(
             router: self,
-            commentRepo: commentRepo
+            commentRepo: commentRepo,
+            restaurantId: restaurantId
         )
 
         navigationController.pushViewController(

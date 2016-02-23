@@ -25,7 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             sessionRepo: sessionRepo
         )
         let userRepo = HttpUserRepo(http: http)
-        let commentRepo = HttpCommentRepo(http: http)
+        let commentRepo = HttpCommentRepo(
+            http: http,
+            sessionRepo: sessionRepo,
+            parser: CommentParser()
+        )
 
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
