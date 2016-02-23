@@ -48,7 +48,7 @@ class HttpRestaurantRepoTest: XCTestCase {
                 walkInsOk: true,
                 acceptsCreditCards: true,
                 notes: "So good",
-                photoUrls: ["my-cool-url"]
+                photoUrls: ["my-cool-url", "my-awesome-url"]
             )
         )
 
@@ -64,7 +64,7 @@ class HttpRestaurantRepoTest: XCTestCase {
         XCTAssertEqual(true, actualRestaurantParams["walk_ins_ok"])
         XCTAssertEqual(true, actualRestaurantParams["accepts_credit_cards"])
         XCTAssertEqual("So good", actualRestaurantParams["notes"])
-        XCTAssertEqual("my-cool-url", actualRestaurantParams["photo_url"])
+        XCTAssertEqual([["url": "my-cool-url"], ["url": "my-awesome-url"]], actualRestaurantParams["photo_urls"])
     }
 
     func test_update_passesTokenAsHeaderToHttp() {
