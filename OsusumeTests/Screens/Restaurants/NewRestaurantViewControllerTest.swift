@@ -67,19 +67,24 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
         let image = testImage(named: "appleLogo", imageExtension: "png")
         newRestaurantVC.images.append(image)
+        let truckImage = testImage(named: "truck", imageExtension: "png")
+        newRestaurantVC.images.append(truckImage)
+
+        fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
+
 
         let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(doneButton)
 
-        let restaurant: Restaurant = fakeRestaurantRepo.createdRestaurant!
 
-        expect(restaurant.name).to(equal("Some Restaurant"))
-        expect(restaurant.address).to(equal(""))
-        expect(restaurant.cuisineType).to(equal("Restaurant Cuisine Type"))
-        expect(restaurant.offersEnglishMenu).to(equal(false))
-        expect(restaurant.walkInsOk).to(equal(false))
-        expect(restaurant.acceptsCreditCards).to(equal(false))
-        expect(restaurant.notes).to(equal("Notes"))
-        expect(restaurant.photoUrl!.absoluteString).to(equal(fakePhotoRepo.uploadPhoto_returnValue))
+        let newRestaurant = fakeRestaurantRepo.create_args
+        expect(newRestaurant.name).to(equal("Some Restaurant"))
+        expect(newRestaurant.address).to(equal(""))
+        expect(newRestaurant.cuisineType).to(equal("Restaurant Cuisine Type"))
+        expect(newRestaurant.offersEnglishMenu).to(equal(false))
+        expect(newRestaurant.walkInsOk).to(equal(false))
+        expect(newRestaurant.acceptsCreditCards).to(equal(false))
+        expect(newRestaurant.notes).to(equal("Notes"))
+        expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]))
     }
 }

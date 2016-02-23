@@ -50,7 +50,7 @@ class NewRestaurantViewController: UIViewController {
         return collectionView
     }()
 
-    var images: [UIImage] = []
+    var images = [UIImage]()
 
     lazy var addPhotoButton: UIButton = {
         let button = UIButton()
@@ -115,7 +115,7 @@ class NewRestaurantViewController: UIViewController {
 
     // MARK: - Actions
     func didTapDoneButton(sender: UIBarButtonItem?) {
-        let photoUrl = photoRepo.uploadPhoto(self.images.first!)
+        let photoUrls = photoRepo.uploadPhotos(self.images)
 
         let newRestaurant = NewRestaurant(
             name: formView.getNameText()!,
@@ -125,7 +125,7 @@ class NewRestaurantViewController: UIViewController {
             walkInsOk: formView.getWalkInsOkState()!,
             acceptsCreditCards: formView.getAcceptsCreditCardsState()!,
             notes: formView.getNotesText()!,
-            photoUrl: photoUrl
+            photoUrls: photoUrls
         )
 
         restaurantRepo.create(newRestaurant)

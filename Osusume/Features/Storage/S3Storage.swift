@@ -8,7 +8,7 @@ struct S3Storage: RemoteStorage {
 
         configureCredentials()
 
-        let key = "user_id/\(url.lastPathComponent!)"
+        let key = url.lastPathComponent!
         let bucketName = "osusume-tokyo-dev"
 
         let s3 = AWSS3TransferManager.defaultS3TransferManager()
@@ -28,7 +28,6 @@ struct S3Storage: RemoteStorage {
         let identityPoolId = "ap-northeast-1:f65d8e6f-ac25-46b1-8106-f72026005681"
         let regionType = AWSRegionType.APNortheast1
 
-        // Initialize the Amazon Cognito credentials provider
         let credentialsProvider = AWSCognitoCredentialsProvider(
             regionType: regionType,
             identityPoolId: identityPoolId

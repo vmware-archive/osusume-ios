@@ -1,3 +1,3 @@
 protocol PhotoRepo {
-    func uploadPhoto(photo: UIImage) -> String
+    func uploadPhotos(photos: [UIImage]) -> [String]
 }

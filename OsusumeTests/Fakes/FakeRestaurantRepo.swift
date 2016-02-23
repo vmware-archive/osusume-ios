@@ -12,22 +12,12 @@ class FakeRestaurantRepo : RestaurantRepo {
         return restaurantsPromise.future
     }
 
+    var create_args : NewRestaurant!
     func create(newRestaurant: NewRestaurant) -> Future<HttpJson, RepoError> {
         let promise = Promise<HttpJson, RepoError>()
         promise.success(HttpJson())
 
-        createdRestaurant = Restaurant(id: 0,
-            name: newRestaurant.name,
-            address: newRestaurant.address,
-            cuisineType: newRestaurant.cuisineType,
-            offersEnglishMenu: newRestaurant.offersEnglishMenu,
-            walkInsOk: newRestaurant.walkInsOk,
-            acceptsCreditCards: newRestaurant.acceptsCreditCards,
-            notes: newRestaurant.notes,
-            author: "Fake user",
-            createdAt: NSDate(),
-            photoUrl: NSURL(string: newRestaurant.photoUrl)
-        )
+        create_args = newRestaurant
 
         return promise.future
     }

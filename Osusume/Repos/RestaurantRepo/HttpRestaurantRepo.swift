@@ -44,7 +44,7 @@ class HttpRestaurantRepo: RestaurantRepo {
                         "walk_ins_ok": newRestaurant.walkInsOk,
                         "accepts_credit_cards": newRestaurant.acceptsCreditCards,
                         "notes": newRestaurant.notes,
-                        "photo_url": newRestaurant.photoUrl
+                        "photo_url": newRestaurant.photoUrls.first!
                     ]
                 ]
             )

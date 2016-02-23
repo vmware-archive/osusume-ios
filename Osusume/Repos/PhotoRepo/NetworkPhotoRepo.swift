@@ -13,7 +13,11 @@ struct NetworkPhotoRepo: PhotoRepo {
     let uuidProvider: UUIDProvider
     let localStorage: LocalStorage
 
-    func uploadPhoto(photo: UIImage) -> String {
+    func uploadPhotos(photos: [UIImage]) -> [String] {
+        return photos.map { photo in uploadPhoto(photo) }
+    }
+
+    private func uploadPhoto(photo: UIImage) -> String {
         let fileName = uuidProvider.uuidKey()
 
         let photoTempURL = NSURL(

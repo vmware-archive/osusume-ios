@@ -6,5 +6,5 @@ struct NewRestaurant {
     let walkInsOk: Bool
     let acceptsCreditCards: Bool
     let notes: String
-    let photoUrl: String
+    let photoUrls: [String]
 }

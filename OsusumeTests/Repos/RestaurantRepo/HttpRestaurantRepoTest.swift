@@ -48,7 +48,7 @@ class HttpRestaurantRepoTest: XCTestCase {
                 walkInsOk: true,
                 acceptsCreditCards: true,
                 notes: "So good",
-                photoUrl: "my-cool-url"
+                photoUrls: ["my-cool-url"]
             )
         )
 
