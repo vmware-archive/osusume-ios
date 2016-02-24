@@ -40,7 +40,6 @@ class NewRestaurantViewController: UIViewController {
         layout.scrollDirection = .Horizontal
 
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        collectionView.delegate   = self
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
@@ -133,10 +132,7 @@ class NewRestaurantViewController: UIViewController {
                 self.router.showRestaurantListScreen()
         }
     }
-}
 
-// MARK: - UINavigationControllerDelegate
-extension NewRestaurantViewController: UINavigationControllerDelegate {
     func didTapAddPhotoButton(sender: UIButton?) {
         bs_presentImagePickerController(
             imagePicker,
@@ -149,7 +145,8 @@ extension NewRestaurantViewController: UINavigationControllerDelegate {
         )
     }
 
-    func gatherImageAssets(assets: [PHAsset]) {
+    // MARK: - Private Methods
+    private func gatherImageAssets(assets: [PHAsset]) {
         images.removeAll()
 
         let imageManager = PHImageManager.defaultManager()
@@ -164,7 +161,7 @@ extension NewRestaurantViewController: UINavigationControllerDelegate {
         }
     }
 
-    func addImageToCollectionView(image: UIImage?, info: [NSObject: AnyObject]?) {
+    private func addImageToCollectionView(image: UIImage?, info: [NSObject: AnyObject]?) {
         guard let i = image else {
             return
         }
@@ -174,6 +171,10 @@ extension NewRestaurantViewController: UINavigationControllerDelegate {
     }
 }
 
+// MARK: - UINavigationControllerDelegate
+extension NewRestaurantViewController: UINavigationControllerDelegate {}
+
+// MARK: - UICollectionViewDataSource
 extension NewRestaurantViewController: UICollectionViewDataSource {
     func collectionView(
         collectionView: UICollectionView,
@@ -195,5 +196,3 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
         return images.count
     }
 }
-
-extension NewRestaurantViewController: UICollectionViewDelegate {}
