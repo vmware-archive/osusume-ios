@@ -74,7 +74,7 @@ class NewCommentViewController: UIViewController {
                 )
             )
             .onSuccess { [unowned self] _ in
-                self.router.dismissNewCommentScreen(false)
+                self.router.dismissNewCommentScreen(true)
             }
     }
 }
