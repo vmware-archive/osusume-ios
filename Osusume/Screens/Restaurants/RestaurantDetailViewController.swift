@@ -82,7 +82,10 @@ class RestaurantDetailViewController : UIViewController {
                     }
                 }
 
-                self.headerImageView.sd_setImageWithURL(self.restaurant!.photoUrl, completed: setAccessibilityTypeCompletionHandler)
+                self.headerImageView.sd_setImageWithURL(
+                    self.restaurant!.photoUrls.first,
+                    completed: setAccessibilityTypeCompletionHandler
+                )
 
                 let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: returnedRestaurant)
                 self.nameLabel.text = restaurantDetailPresenter.name

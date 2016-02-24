@@ -19,7 +19,7 @@ struct Fixtures {
             notes: "",
             author: "",
             createdAt: NSDate(),
-            photoUrl: NSURL(string: "")
+            photoUrls: []
         )
     }
 }

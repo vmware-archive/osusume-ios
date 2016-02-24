@@ -11,7 +11,7 @@ struct Restaurant {
     var notes: String
     var author: String
     var createdAt: NSDate?
-    var photoUrl: NSURL?
+    var photoUrls: [NSURL]
 
     init(
         id: Int,
@@ -24,7 +24,9 @@ struct Restaurant {
         notes: String,
         author: String,
         createdAt: NSDate?,
-        photoUrl: NSURL?) {
+        photoUrls: [NSURL]
+        )
+    {
             self.id = id
             self.name = name
             self.address = address
@@ -35,7 +37,7 @@ struct Restaurant {
             self.notes = notes
             self.author = author
             self.createdAt = createdAt
-            self.photoUrl = photoUrl
+            self.photoUrls = photoUrls
     }
 }
 
@@ -52,5 +54,5 @@ func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
         lhs.notes == rhs.notes &&
         lhs.author == rhs.author &&
         lhs.createdAt == rhs.createdAt &&
-        lhs.photoUrl == rhs.photoUrl
+        lhs.photoUrls == rhs.photoUrls
 }

@@ -27,7 +27,7 @@ class RestaurantConverter {
             notes: valueOrEmptyString(json["notes"]),
             author: userName,
             createdAt: dateOrNil(json["created_at"]),
-            photoUrl: optionalURL(json["photo_url"])
+            photoUrls: photoUrlsJsonToNSURLArray(json["photo_urls"])
         )
     }
 
@@ -58,5 +58,17 @@ class RestaurantConverter {
     func optionalURL(string: AnyObject?) -> NSURL? {
         guard let urlString = string as? String else { return nil }
         return NSURL(string: urlString)
+    }
+
+    func photoUrlsJsonToNSURLArray(json: AnyObject?) -> [NSURL] {
+        var urls: [NSURL] = []
+
+        if let photoUrls = json as? [[String: AnyObject]] {
+            urls = photoUrls.map { photoUrl in
+                return NSURL(string: photoUrl["url"] as! String)!
+            }
+        }
+
+        return urls
     }
 }

@@ -31,7 +31,7 @@ class RestaurantListViewControllerTest: XCTestCase {
                 notes: "This place is great",
                 author: "Simon",
                 createdAt: NSDate(timeIntervalSince1970: 1454480320),
-                photoUrl: NSURL(string: "")
+                photoUrls: []
             ),
             Restaurant(
                 id: 2,
@@ -44,7 +44,7 @@ class RestaurantListViewControllerTest: XCTestCase {
                 notes: "This place is great",
                 author: "Simon",
                 createdAt: NSDate(timeIntervalSince1970: 1454480320),
-                photoUrl: NSURL(string: "")
+                photoUrls: []
             ),
             Restaurant(
                 id: 3,
@@ -57,7 +57,7 @@ class RestaurantListViewControllerTest: XCTestCase {
                 notes: "This place is great",
                 author: "Simon",
                 createdAt: NSDate(timeIntervalSince1970: 1454480320),
-                photoUrl: NSURL(string: "")
+                photoUrls: []
             ),
         ]
 

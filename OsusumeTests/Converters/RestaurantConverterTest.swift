@@ -20,7 +20,9 @@ class RestaurantConverterTest: XCTestCase {
                 "notes": "notes",
                 "created_at": 1454480320,
                 "user": ["name": "Bambi"],
-                "photo_url": "http://www.example.com"
+                "photo_urls": [
+                    ["url": "http://www.example.com"]
+                ]
             ],
             [
                 "name": "second restaurant",
@@ -33,7 +35,9 @@ class RestaurantConverterTest: XCTestCase {
                 "notes": "notes",
                 "created_at": 1454480320,
                 "user": ["name": "Bambi"],
-                "photo_url": "http://www.example.com"
+                "photo_urls": [
+                    ["url": "http://www.example.com"]
+                ]
             ]
         ]
 
@@ -57,13 +61,19 @@ class RestaurantConverterTest: XCTestCase {
             "accepts_credit_cards": false,
             "created_at": 1454480320,
             "user": ["name": "Bambi"],
-            "photo_url": "http://www.example.com"
+            "photo_urls": [
+                ["url": "http://www.example.com"],
+                ["url": "my-awesome-url"]
+            ]
         ]
 
         let restaurant: Restaurant = restaurantConverter.perform(json)
         expect(restaurant.name).to(equal("first restaurant"))
         expect(restaurant.createdAt!).to(equal(NSDate(timeIntervalSince1970: 1454480320)))
         expect(restaurant.author).to(equal("Bambi"))
+
+        expect(restaurant.photoUrls[0].URLString).to(equal("http://www.example.com"))
+        expect(restaurant.photoUrls[1].URLString).to(equal("my-awesome-url"))
     }
 
     func test_convert_usesDefaultsWhenOptionalFieldsAreMissing() {
