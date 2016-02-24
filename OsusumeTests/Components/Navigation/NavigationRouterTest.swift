@@ -43,7 +43,7 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_showingEditRestaurantScreen() {
-        let restaurant = Fixtures.newRestaurant()
+        let restaurant = RestaurantFixtures.newRestaurant()
         navigationRouter.showEditRestaurantScreen(restaurant)
 
         expect(self.navController.topViewController).to(beAKindOf(EditRestaurantViewController))

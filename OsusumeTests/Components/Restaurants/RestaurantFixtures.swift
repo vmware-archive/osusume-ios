@@ -2,7 +2,7 @@ import Foundation
 
 @testable import Osusume
 
-struct Fixtures {
+struct RestaurantFixtures {
     static func newRestaurant(
         id id: Int = 1,
         name: String = "Danny's Diner"
