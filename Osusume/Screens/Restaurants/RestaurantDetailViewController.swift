@@ -3,7 +3,7 @@ import UIKit
 import PureLayout
 import BrightFutures
 
-class RestaurantDetailViewController : UIViewController {
+class RestaurantDetailViewController: UIViewController {
     unowned let router: Router
     let repo: RestaurantRepo
 
@@ -11,30 +11,9 @@ class RestaurantDetailViewController : UIViewController {
     var restaurant: Restaurant? = nil
 
     //MARK: - View Elements
-    let scrollView  = UIScrollView.newAutoLayoutView()
-    let scrollViewContentView = UIView.newAutoLayoutView()
-
-    let headerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .ScaleAspectFit
-        return imageView
-    }()
-    let nameLabel = UILabel()
-    let addressLabel = UILabel()
-    let cuisineTypeLabel = UILabel()
-    let offersEnglishMenuLabel = UILabel()
-    let walkInsOkLabel = UILabel()
-    let acceptsCreditCardsLabel = UILabel()
-    let notesLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        return label
-    }()
-    let creationInfoLabel = UILabel()
-    let addCommentButton = UIButton.newAutoLayoutView()
+    let tableView = UITableView.newAutoLayoutView()
 
     //MARK: - Initializers
-
     init(
         router: Router,
         repo: RestaurantRepo,
@@ -45,6 +24,23 @@ class RestaurantDetailViewController : UIViewController {
         self.restaurantId = restaurantId
 
         super.init(nibName: nil, bundle: nil)
+
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = .None
+        tableView.registerClass(
+            RestaurantDetailTableViewCell.self,
+            forCellReuseIdentifier: String(RestaurantDetailTableViewCell)
+        )
+
+        let editButton = UIBarButtonItem(
+            title: "Edit",
+            style: .Plain,
+            target: self,
+            action: Selector("didTapEditRestaurantButton:")
+        )
+        navigationItem.rightBarButtonItem = editButton
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -54,65 +50,14 @@ class RestaurantDetailViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(scrollView)
-        scrollView.backgroundColor = UIColor.whiteColor()
-        scrollView.addSubview(scrollViewContentView)
-        scrollViewContentView.addSubview(headerImageView)
-        scrollViewContentView.addSubview(nameLabel)
-        scrollViewContentView.addSubview(addressLabel)
-        scrollViewContentView.addSubview(cuisineTypeLabel)
-        scrollViewContentView.addSubview(offersEnglishMenuLabel)
-        scrollViewContentView.addSubview(walkInsOkLabel)
-        scrollViewContentView.addSubview(acceptsCreditCardsLabel)
-        scrollViewContentView.addSubview(notesLabel)
-        scrollViewContentView.addSubview(creationInfoLabel)
-        scrollViewContentView.addSubview(addCommentButton)
-
+        view.addSubview(tableView)
         applyViewConstraints()
 
         repo.getOne(self.restaurantId)
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurant in
                 self.restaurant = returnedRestaurant
-
-                let setAccessibilityTypeCompletionHandler: SDWebImageCompletionBlock = {
-                    (image: UIImage!, error: NSError!, cacheType: SDImageCacheType!, imageURL: NSURL!) -> Void in
-
-                    if error == nil {
-                        self.headerImageView.accessibilityLabel = "Picture of \(self.restaurant!.name)"
-                    }
-                }
-
-                self.headerImageView.sd_setImageWithURL(
-                    self.restaurant!.photoUrls.first,
-                    completed: setAccessibilityTypeCompletionHandler
-                )
-
-                let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: returnedRestaurant)
-                self.nameLabel.text = restaurantDetailPresenter.name
-                self.addressLabel.text = restaurantDetailPresenter.address
-                self.cuisineTypeLabel.text = restaurantDetailPresenter.cuisineType
-                self.offersEnglishMenuLabel.text = restaurantDetailPresenter.offersEnglishMenu
-                self.walkInsOkLabel.text = restaurantDetailPresenter.walkInsOk
-                self.acceptsCreditCardsLabel.text = restaurantDetailPresenter.creditCardsOk
-                self.notesLabel.text = restaurantDetailPresenter.notes
-                self.creationInfoLabel.text = restaurantDetailPresenter.creationInfo
+                self.tableView.reloadData()
         }
-
-        let editButton = UIBarButtonItem(
-            title: "Edit",
-            style: .Plain,
-            target: self,
-            action: Selector("didTapEditRestaurantButton:")
-        )
-        navigationItem.rightBarButtonItem = editButton
-
-        addCommentButton.addTarget(
-            self,
-            action: "didTapAddNewCommentButton",
-            forControlEvents: .TouchUpInside
-        )
-        addCommentButton.setTitle("Add comment", forState: .Normal)
-        addCommentButton.backgroundColor = UIColor.grayColor()
     }
 
     //MARK: - Actions
@@ -122,49 +67,54 @@ class RestaurantDetailViewController : UIViewController {
         }
     }
 
-    func didTapAddNewCommentButton() {
-        router.showNewCommentScreen(self.restaurant!.id)
-    }
-
     //MARK: - Constraints
     func applyViewConstraints() {
-        scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+    }
+}
 
-        scrollViewContentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-        scrollViewContentView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
-        scrollViewContentView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
+extension RestaurantDetailViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
 
-        headerImageView.autoPinEdge(.Top, toEdge: .Top, ofView: scrollViewContentView)
-        headerImageView.autoSetDimension(.Height, toSize: 150.0)
-        headerImageView.autoAlignAxis(.Vertical, toSameAxisOfView: view)
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return restaurant != nil ? 1 : 0
+    }
 
-        nameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: headerImageView)
-        nameLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+    func tableView(
+        tableView: UITableView,
+        cellForRowAtIndexPath indexPath: NSIndexPath
+        ) -> UITableViewCell
+    {
+        guard
+            let cell = tableView.dequeueReusableCellWithIdentifier(
+                String(RestaurantDetailTableViewCell), forIndexPath: indexPath
+                ) as? RestaurantDetailTableViewCell,
+            let currentRestaurant = restaurant else {
+                return UITableViewCell()
+        }
 
-        addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
+        cell.selectionStyle = .None
+        cell.delegate = self
+        cell.configureViewWithRestaurant(currentRestaurant)
 
-        cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
+        return cell
+    }
+}
 
-        offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        offersEnglishMenuLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
+extension RestaurantDetailViewController: UITableViewDelegate {
+    func tableView(
+        tableView: UITableView,
+        estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
+        ) -> CGFloat
+    {
+        return UITableViewAutomaticDimension
+    }
+}
 
-        walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        walkInsOkLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuLabel)
-
-        acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        acceptsCreditCardsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkLabel)
-
-        notesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        notesLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-        notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsLabel)
-
-        creationInfoLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        creationInfoLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
-
-        addCommentButton.autoPinEdge(.Leading, toEdge: .Leading, ofView: creationInfoLabel)
-        addCommentButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: creationInfoLabel)
-
+extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate {
+    func displayAddCommentScreen() {
+        router.showNewCommentScreen(self.restaurant!.id)
     }
 }

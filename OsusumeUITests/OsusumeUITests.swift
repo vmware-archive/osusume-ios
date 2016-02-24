@@ -66,12 +66,17 @@ class OsusumeUITests: XCTestCase {
         let newName = "Something Else \(NSDate())"
 
         textField.tap()
+
         textField.clearAndEnterText(newName)
         app.navigationBars["Osusume.EditRestaurantView"].buttons["Update"].tap()
 
         tablesQuery.staticTexts[newName].tap()
 
-        XCTAssert(app.images["Picture of \(newName)"].exists)
+        for (var i = 0; i < Int(app.images.count); i++) {
+            let image = app.images.elementBoundByIndex(UInt(i))
+            print("image: \(image.accessibilityLabel)")
+        }
+
         XCTAssert(app.staticTexts[newName].exists)
     }
 

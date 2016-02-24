@@ -35,14 +35,17 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     func test_viewDidLoad_displaysDetailsOfARestaurant() {
         restaurantDetailVC.view.setNeedsLayout()
 
-        expect(self.restaurantDetailVC.nameLabel.text).to(equal("My Restaurant"))
-        expect(self.restaurantDetailVC.addressLabel.text).to(equal("Roppongi"))
-        expect(self.restaurantDetailVC.cuisineTypeLabel.text).to(equal("Sushi"))
-        expect(self.restaurantDetailVC.offersEnglishMenuLabel.text).to(equal("Offers English menu"))
-        expect(self.restaurantDetailVC.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
-        expect(self.restaurantDetailVC.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
-        expect(self.restaurantDetailVC.notesLabel.text).to(equal("This place is great"))
-        expect(self.restaurantDetailVC.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
+        let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
+        let restaurantDetailCell = restaurantDetailVC.tableView.cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
+
+        expect(restaurantDetailCell.nameLabel.text).to(equal("My Restaurant"))
+        expect(restaurantDetailCell.addressLabel.text).to(equal("Roppongi"))
+        expect(restaurantDetailCell.cuisineTypeLabel.text).to(equal("Sushi"))
+        expect(restaurantDetailCell.offersEnglishMenuLabel.text).to(equal("Offers English menu"))
+        expect(restaurantDetailCell.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
+        expect(restaurantDetailCell.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
+        expect(restaurantDetailCell.notesLabel.text).to(equal("This place is great"))
+        expect(restaurantDetailCell.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
     }
 
     func test_tappingTheEditButton_showsTheEditScreen() {
@@ -59,7 +62,10 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     func test_tappingTheAddCommentButton_showsTheNewCommentScreen() {
         restaurantDetailVC.view.setNeedsLayout()
 
-        restaurantDetailVC.addCommentButton.sendActionsForControlEvents(.TouchUpInside)
+        let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
+        let restaurantDetailCell = restaurantDetailVC.tableView.cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
+
+        restaurantDetailCell.addCommentButton.sendActionsForControlEvents(.TouchUpInside)
 
         expect(self.router.newCommentScreenIsShowing).to(equal(true))
         expect(self.router.showNewCommentScreen_args).to(equal(1)) // created restaurant

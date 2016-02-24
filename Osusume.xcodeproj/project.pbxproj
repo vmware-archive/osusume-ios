@@ -43,6 +43,7 @@
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE7E5B801C6870CF0057A795 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7E5B7F1C6870CF0057A795 /* RestaurantTableViewCell.swift */; };
 		AE81888F1C3F87DA009D3DE7 /* RestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */; };
+		AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */; };
 		AEA712401C4F4BF600862B02 /* LaunchWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA7123F1C4F4BF600862B02 /* LaunchWorkflow.swift */; };
 		AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA712471C4F59B300862B02 /* KeychainAccess.framework */; };
 		AEAEF4961C730929004ECC89 /* PersistedComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAEF4951C730929004ECC89 /* PersistedComment.swift */; };
@@ -147,6 +148,7 @@
 		AE7CDA551C69835300A2D6B3 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		AE7E5B7F1C6870CF0057A795 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		AE81888E1C3F87D9009D3DE7 /* RestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantFormView.swift; sourceTree = "<group>"; };
+		AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewCell.swift; sourceTree = "<group>"; };
 		AEA7123F1C4F4BF600862B02 /* LaunchWorkflow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflow.swift; sourceTree = "<group>"; };
 		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		AEAEF4951C730929004ECC89 /* PersistedComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistedComment.swift; sourceTree = "<group>"; };
@@ -396,6 +398,14 @@
 			path = UserRepo;
 			sourceTree = "<group>";
 		};
+		AE877D601C7C078400471040 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AEC877661C72FFFE0005BEA1 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,6 +590,7 @@
 		DE99C54688E7F01FE6A3777D /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				AE877D601C7C078400471040 /* View */,
 				AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */,
 				DE99CFD1D44DEE333A4B91FC /* NewRestaurantViewController.swift */,
 				AEDEDC481C71935200E1A031 /* RestaurantDetailPresenter.swift */,
@@ -856,6 +867,7 @@
 				DE99C76AD03A5F6287E76BFC /* Restaurant.swift in Sources */,
 				DE99C785DEA75F18FF4965A3 /* RestaurantConverter.swift in Sources */,
 				AEDEDC491C71935200E1A031 /* RestaurantDetailPresenter.swift in Sources */,
+				AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */,
 				248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */,
 				AE81888F1C3F87DA009D3DE7 /* RestaurantFormView.swift in Sources */,
 				DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */,
