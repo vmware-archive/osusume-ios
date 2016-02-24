@@ -5,5 +5,5 @@ protocol DataParser {
     typealias ParsedObject
     typealias ParseError: ErrorType
 
-    func parse(json: HttpJson) -> Result<ParsedObject, ParseError>
+    func parse(json: [String: AnyObject]) -> Result<ParsedObject, ParseError>
 }

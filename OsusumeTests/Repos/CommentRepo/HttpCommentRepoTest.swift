@@ -7,7 +7,7 @@ import BrightFutures
 class FakeCommentParser: DataParser {
     typealias ParsedObject = PersistedComment
 
-    var parse_arg: HttpJson?
+    var parse_arg: [String: AnyObject]?
     var parse_returnValue = Result<PersistedComment, ParseError>(
         value: PersistedComment(
             id: 99,
@@ -15,7 +15,7 @@ class FakeCommentParser: DataParser {
             restaurantId: 99
         )
     )
-    func parse(json: HttpJson) -> Result<PersistedComment, ParseError> {
+    func parse(json: [String: AnyObject]) -> Result<PersistedComment, ParseError> {
         parse_arg = json
         return parse_returnValue
     }
@@ -64,7 +64,7 @@ class HttpCommentRepoTest: XCTestCase {
     }
 
     func test_persist_failsWhenHttpFails() {
-        fakeHttp.post_returnValue = Future<HttpJson, RepoError>(error: RepoError.PostFailed)
+        fakeHttp.post_returnValue = Future<[String: AnyObject], RepoError>(error: RepoError.PostFailed)
 
         let comment = NewComment(text: "I loved the tonkatsu!", restaurantId: 1)
         let result = httpCommentRepo.persist(comment)
@@ -79,7 +79,7 @@ class HttpCommentRepoTest: XCTestCase {
             "restaurant_id": 99
         ]
 
-        fakeHttp.post_returnValue = Future<HttpJson, RepoError>(value: expectedPostResponseJson)
+        fakeHttp.post_returnValue = Future<[String: AnyObject], RepoError>(value: expectedPostResponseJson)
 
         let e = self.expectationWithDescription("no description")
 
@@ -116,7 +116,7 @@ class HttpCommentRepoTest: XCTestCase {
             "restaurant_id": 99
         ]
 
-        fakeHttp.post_returnValue = Future<HttpJson, RepoError>(value: expectedPostResponseJson)
+        fakeHttp.post_returnValue = Future<[String: AnyObject], RepoError>(value: expectedPostResponseJson)
 
         fakeCommentParser.parse_returnValue = Result<PersistedComment, ParseError>(
             error: ParseError.CommentParseError

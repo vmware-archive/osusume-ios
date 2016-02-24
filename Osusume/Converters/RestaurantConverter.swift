@@ -2,14 +2,15 @@ import Foundation
 
 class RestaurantConverter {
 
-    func perform(json: [HttpJson]) -> [Restaurant] {
+    func perform(json: [[String: AnyObject]]) -> [Restaurant] {
         let restaurantArray: [Restaurant] = json.map { restaurant in
             perform(restaurant)
         }
+
         return restaurantArray
     }
 
-    func perform(json: HttpJson) -> Restaurant {
+    func perform(json: [String: AnyObject]) -> Restaurant {
         var userName : String = ""
         if let user = json["user"] {
             userName = valueOrEmptyString(user["name"])

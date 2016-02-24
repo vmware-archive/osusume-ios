@@ -13,9 +13,9 @@ class FakeRestaurantRepo : RestaurantRepo {
     }
 
     var create_args : NewRestaurant!
-    func create(newRestaurant: NewRestaurant) -> Future<HttpJson, RepoError> {
-        let promise = Promise<HttpJson, RepoError>()
-        promise.success(HttpJson())
+    func create(newRestaurant: NewRestaurant) -> Future<[String: AnyObject], RepoError> {
+        let promise = Promise<[String: AnyObject], RepoError>()
+        promise.success([String: AnyObject]())
 
         create_args = newRestaurant
 
@@ -28,9 +28,9 @@ class FakeRestaurantRepo : RestaurantRepo {
         return restaurantPromise.future
     }
 
-    func update(id: Int, params: [String: AnyObject]) -> Future<HttpJson, RepoError> {
-        let promise = Promise<HttpJson, RepoError>()
-        promise.success(HttpJson())
+    func update(id: Int, params: [String: AnyObject]) -> Future<[String: AnyObject], RepoError> {
+        let promise = Promise<[String: AnyObject], RepoError>()
+        promise.success([String: AnyObject]())
 
         createdRestaurant = Restaurant(id: 0,
             name: params["name"] as! String,

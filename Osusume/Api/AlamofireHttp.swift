@@ -35,14 +35,14 @@ struct AlamofireHttp: Http {
         path: String,
         headers: [String: String],
         parameters: [String: AnyObject]
-        ) -> Future<HttpJson, RepoError>
+        ) -> Future<[String: AnyObject], RepoError>
     {
-        let promise = Promise<HttpJson, RepoError>()
+        let promise = Promise<[String: AnyObject], RepoError>()
 
         request(.POST, path: path, headers: headers, parameters: parameters).responseJSON { response in
             switch response.result {
             case .Success:
-                promise.success(response.result.value as! HttpJson)
+                promise.success(response.result.value as! [String: AnyObject])
             case .Failure(_):
                 promise.failure(RepoError.PostFailed)
             }
@@ -55,9 +55,9 @@ struct AlamofireHttp: Http {
         path: String,
         headers: [String: String],
         parameters: [String: AnyObject]
-        ) -> Future<HttpJson, RepoError>
+        ) -> Future<[String: AnyObject], RepoError>
     {
-        let promise = Promise<HttpJson, RepoError>()
+        let promise = Promise<[String: AnyObject], RepoError>()
 
         request(.PATCH, path: path, headers: headers, parameters: parameters).responseJSON { response in
             switch response.result {

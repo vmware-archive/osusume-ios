@@ -1,7 +1,5 @@
 import BrightFutures
 
-typealias HttpJson = [String: AnyObject]
-
 protocol Http {
     func get(
         path: String,
@@ -10,10 +8,10 @@ protocol Http {
     func post(
         path: String,
         headers: [String: String],
-        parameters: [String: AnyObject]) -> Future<HttpJson, RepoError>
+        parameters: [String: AnyObject]) -> Future<[String: AnyObject], RepoError>
 
     func patch(
         path: String,
         headers: [String: String],
-        parameters: [String: AnyObject]) -> Future<HttpJson, RepoError>
+        parameters: [String: AnyObject]) -> Future<[String: AnyObject], RepoError>
 }

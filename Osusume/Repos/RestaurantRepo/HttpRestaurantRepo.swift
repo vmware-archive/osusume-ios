@@ -19,18 +19,18 @@ class HttpRestaurantRepo: RestaurantRepo {
     func getAll() -> Future<[Restaurant], RepoError> {
         return http
             .get(path, headers: buildHeaders())
-            .map { value in self.converter.perform(value as! [HttpJson]) }
+            .map { value in self.converter.perform(value as! [[String: AnyObject]]) }
     }
 
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
         return http
             .get("\(path)/\(id)", headers: buildHeaders())
-            .map { value in self.converter.perform(value as! HttpJson) }
+            .map { value in self.converter.perform(value as! [String: AnyObject]) }
     }
 
     //MARK: - POST Functions
 
-    func create(newRestaurant: NewRestaurant) -> Future<HttpJson, RepoError> {
+    func create(newRestaurant: NewRestaurant) -> Future<[String: AnyObject], RepoError> {
         return http
             .post(
                 path,
@@ -52,7 +52,7 @@ class HttpRestaurantRepo: RestaurantRepo {
 
     //MARK: - PATCH Functions
 
-    func update(id: Int, params: [String: AnyObject]) -> Future<HttpJson, RepoError> {
+    func update(id: Int, params: [String: AnyObject]) -> Future<[String: AnyObject], RepoError> {
         return http
             .patch(
                 "\(path)/\(id)",
