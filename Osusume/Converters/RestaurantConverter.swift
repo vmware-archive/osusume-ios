@@ -13,41 +13,25 @@ class RestaurantConverter {
     func perform(json: [String: AnyObject]) -> Restaurant {
         var userName : String = ""
         if let user = json["user"] {
-            userName = valueOrEmptyString(user["name"])
+            userName = user["name"] as? String ?? ""
         }
 
         return Restaurant(
             id: json["id"] as! Int,
             name: json["name"] as! String,
-            address: valueOrEmptyString(json["address"]),
-            cuisineType: valueOrEmptyString(json["cuisine_type"]),
-            offersEnglishMenu: valueOrFalse(json["offers_english_menu"]),
-            walkInsOk: valueOrFalse(json["walk_ins_ok"]),
-            acceptsCreditCards: valueOrFalse(json["accepts_credit_cards"]),
-            notes: valueOrEmptyString(json["notes"]),
+            address: json["address"] as? String ?? "",
+            cuisineType: json["cuisine_type"] as? String ?? "",
+            offersEnglishMenu: json["offers_english_menu"] as? Bool ?? false,
+            walkInsOk: json["walk_ins_ok"] as? Bool ?? false,
+            acceptsCreditCards: json["accepts_credit_cards"] as? Bool ?? false,
+            notes: json["notes"] as? String ?? "",
             author: userName,
             createdAt: dateOrNil(json["created_at"]),
             photoUrls: photoUrlsJsonToNSURLArray(json["photo_urls"])
         )
     }
 
-    func valueOrEmptyString(attribute: AnyObject?) -> String {
-        if let string = attribute as? String {
-            return string
-        } else {
-            return ""
-        }
-    }
-
-    func valueOrFalse(attribute: AnyObject?) -> Bool {
-        if let bool = attribute as? Bool {
-            return bool
-        } else {
-            return false
-        }
-    }
-
-    func dateOrNil(attribute: AnyObject?) -> NSDate? {
+    private func dateOrNil(attribute: AnyObject?) -> NSDate? {
         if let date = attribute as? Double {
             return NSDate(timeIntervalSince1970: date)
         } else {
@@ -55,20 +39,24 @@ class RestaurantConverter {
         }
     }
 
-    func optionalURL(string: AnyObject?) -> NSURL? {
-        guard let urlString = string as? String else { return nil }
-        return NSURL(string: urlString)
-    }
-
-    func photoUrlsJsonToNSURLArray(json: AnyObject?) -> [NSURL] {
+    private func photoUrlsJsonToNSURLArray(json: AnyObject?) -> [NSURL] {
         var urls: [NSURL] = []
 
         if let photoUrls = json as? [[String: AnyObject]] {
-            urls = photoUrls.map { photoUrl in
-                return NSURL(string: photoUrl["url"] as! String)!
+
+            urls = photoUrls.flatMap { photoUrl in
+                return urlOrNil(photoUrl)
             }
+
         }
 
         return urls
+    }
+
+    private func urlOrNil(photoUrlFromServer: AnyObject) -> NSURL? {
+        if let urlAsString = photoUrlFromServer["url"] as? String {
+            return NSURL(string: urlAsString)
+        }
+        return nil
     }
 }
