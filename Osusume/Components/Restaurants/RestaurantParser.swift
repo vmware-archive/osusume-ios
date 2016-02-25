@@ -1,6 +1,6 @@
 import Foundation
 
-struct RestaurantConverter {
+struct RestaurantParser {
 
     func perform(json: [[String: AnyObject]]) -> [Restaurant] {
         let restaurantArray: [Restaurant] = json.map { restaurant in

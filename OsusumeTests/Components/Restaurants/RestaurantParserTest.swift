@@ -4,9 +4,9 @@ import XCTest
 
 @testable import Osusume
 
-class RestaurantConverterTest: XCTestCase {
+class RestaurantParserTest: XCTestCase {
     func test_convertingMultipleRestaurants() {
-        let restaurantConverter = RestaurantConverter()
+        let restaurantParser = RestaurantParser()
 
         let json: [[String: AnyObject]] = [
             [
@@ -41,7 +41,7 @@ class RestaurantConverterTest: XCTestCase {
             ]
         ]
 
-        let restaurants: [Restaurant] = restaurantConverter.perform(json)
+        let restaurants: [Restaurant] = restaurantParser.perform(json)
 
         expect(restaurants.count).to(equal(2))
         expect(restaurants[0].name).to(equal("first restaurant"))
@@ -49,7 +49,7 @@ class RestaurantConverterTest: XCTestCase {
     }
 
     func test_convertingASingleRestaurant() {
-        let restaurantConverter = RestaurantConverter()
+        let restaurantParser = RestaurantParser()
 
         let json: [String: AnyObject] = [
             "name": "first restaurant",
@@ -73,7 +73,7 @@ class RestaurantConverterTest: XCTestCase {
             ]
         ]
 
-        let restaurant: Restaurant = restaurantConverter.perform(json)
+        let restaurant: Restaurant = restaurantParser.perform(json)
         expect(restaurant.name).to(equal("first restaurant"))
         expect(restaurant.createdAt!).to(equal(NSDate(timeIntervalSince1970: 1454480320)))
         expect(restaurant.author).to(equal("Bambi"))
@@ -83,10 +83,10 @@ class RestaurantConverterTest: XCTestCase {
     }
 
     func test_convert_usesDefaultsWhenOptionalFieldsAreMissing() {
-        let restaurantConverter = RestaurantConverter()
+        let restaurantParser = RestaurantParser()
         let json: [String: AnyObject] = ["name": "first restaurant", "id": 1]
 
-        let restaurant = restaurantConverter.perform(json)
+        let restaurant = restaurantParser.perform(json)
         expect(restaurant.address).to(equal(""))
         expect(restaurant.walkInsOk).to(equal(false))
         expect(restaurant.createdAt).to(beNil())

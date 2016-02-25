@@ -2,13 +2,13 @@ import BrightFutures
 import Alamofire
 
 struct HttpRestaurantRepo: RestaurantRepo {
-    let converter: RestaurantConverter
+    let parser: RestaurantParser
     let path: String
     let http: Http
     let sessionRepo: SessionRepo
 
     init(http: Http, sessionRepo: SessionRepo) {
-        self.converter = RestaurantConverter()
+        self.parser = RestaurantParser()
         self.path = "/restaurants"
         self.http = http
         self.sessionRepo = sessionRepo
@@ -19,13 +19,13 @@ struct HttpRestaurantRepo: RestaurantRepo {
     func getAll() -> Future<[Restaurant], RepoError> {
         return http
             .get(path, headers: buildHeaders())
-            .map { value in self.converter.perform(value as! [[String: AnyObject]]) }
+            .map { value in self.parser.perform(value as! [[String: AnyObject]]) }
     }
 
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
         return http
             .get("\(path)/\(id)", headers: buildHeaders())
-            .map { value in self.converter.perform(value as! [String: AnyObject]) }
+            .map { value in self.parser.perform(value as! [String: AnyObject]) }
     }
 
     //MARK: - POST Functions
