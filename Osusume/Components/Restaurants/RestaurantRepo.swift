@@ -1,6 +1,6 @@
 import BrightFutures
 
-protocol RestaurantRepo : class {
+protocol RestaurantRepo {
     func getAll() -> Future<[Restaurant], RepoError>
 
     func getOne(id: Int) -> Future<Restaurant, RepoError>

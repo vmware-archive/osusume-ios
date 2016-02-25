@@ -1,7 +1,7 @@
 import BrightFutures
 import Alamofire
 
-class HttpRestaurantRepo: RestaurantRepo {
+struct HttpRestaurantRepo: RestaurantRepo {
     let converter: RestaurantConverter
     let path: String
     let http: Http
