@@ -1,6 +1,6 @@
 import Foundation
 
-class RestaurantConverter {
+struct RestaurantConverter {
 
     func perform(json: [[String: AnyObject]]) -> [Restaurant] {
         let restaurantArray: [Restaurant] = json.map { restaurant in
@@ -27,7 +27,8 @@ class RestaurantConverter {
             notes: json["notes"] as? String ?? "",
             author: userName,
             createdAt: dateOrNil(json["created_at"]),
-            photoUrls: photoUrlsJsonToNSURLArray(json["photo_urls"])
+            photoUrls: photoUrlsJsonToNSURLArray(json["photo_urls"]),
+            comments: [PersistedComment(id: 1, text: "comment", restaurantId: 9)]
         )
     }
 

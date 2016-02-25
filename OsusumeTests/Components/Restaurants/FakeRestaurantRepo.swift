@@ -42,7 +42,8 @@ class FakeRestaurantRepo : RestaurantRepo {
             notes: params["notes"] as! String,
             author: "Fake user",
             createdAt: NSDate(),
-            photoUrls: []
+            photoUrls: [],
+            comments: []
         )
 
         return promise.future

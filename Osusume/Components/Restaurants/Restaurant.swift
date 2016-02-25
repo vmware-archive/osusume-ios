@@ -12,6 +12,7 @@ struct Restaurant {
     var author: String
     var createdAt: NSDate?
     var photoUrls: [NSURL]
+    var comments: [PersistedComment]
 
     init(
         id: Int,
@@ -24,7 +25,8 @@ struct Restaurant {
         notes: String,
         author: String,
         createdAt: NSDate?,
-        photoUrls: [NSURL]
+        photoUrls: [NSURL],
+        comments: [PersistedComment]
         )
     {
             self.id = id
@@ -38,6 +40,7 @@ struct Restaurant {
             self.author = author
             self.createdAt = createdAt
             self.photoUrls = photoUrls
+            self.comments = comments
     }
 }
 

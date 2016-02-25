@@ -64,6 +64,12 @@ class RestaurantConverterTest: XCTestCase {
             "photo_urls": [
                 ["url": "http://www.example.com"],
                 ["url": "my-awesome-url"]
+            ],
+            "comments": [
+                [ "id": 1,
+                  "content": "first comment",
+                  "restaurant_id": 9
+                ]
             ]
         ]
 

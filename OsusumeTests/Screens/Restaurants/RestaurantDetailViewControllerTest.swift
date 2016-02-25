@@ -22,7 +22,8 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             notes: "This place is great",
             author: "Danny",
             createdAt: creationDate,
-            photoUrls: []
+            photoUrls: [],
+            comments: []
         )
 
         restaurantDetailVC = RestaurantDetailViewController(
