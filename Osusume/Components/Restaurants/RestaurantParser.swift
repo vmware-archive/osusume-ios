@@ -2,15 +2,15 @@ import Foundation
 
 struct RestaurantParser {
 
-    func perform(json: [[String: AnyObject]]) -> [Restaurant] {
+    func parseList(json: [[String: AnyObject]]) -> [Restaurant] {
         let restaurantArray: [Restaurant] = json.map { restaurant in
-            perform(restaurant)
+            parseSingle(restaurant)
         }
 
         return restaurantArray
     }
 
-    func perform(json: [String: AnyObject]) -> Restaurant {
+    func parseSingle(json: [String: AnyObject]) -> Restaurant {
         var userName : String = ""
         if let user = json["user"] {
             userName = user["name"] as? String ?? ""

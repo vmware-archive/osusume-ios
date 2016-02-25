@@ -41,7 +41,7 @@ class RestaurantParserTest: XCTestCase {
             ]
         ]
 
-        let restaurants: [Restaurant] = restaurantParser.perform(json)
+        let restaurants: [Restaurant] = restaurantParser.parseList(json)
 
         expect(restaurants.count).to(equal(2))
         expect(restaurants[0].name).to(equal("first restaurant"))
@@ -73,7 +73,7 @@ class RestaurantParserTest: XCTestCase {
             ]
         ]
 
-        let restaurant: Restaurant = restaurantParser.perform(json)
+        let restaurant: Restaurant = restaurantParser.parseSingle(json)
         expect(restaurant.name).to(equal("first restaurant"))
         expect(restaurant.createdAt!).to(equal(NSDate(timeIntervalSince1970: 1454480320)))
         expect(restaurant.author).to(equal("Bambi"))
@@ -86,7 +86,7 @@ class RestaurantParserTest: XCTestCase {
         let restaurantParser = RestaurantParser()
         let json: [String: AnyObject] = ["name": "first restaurant", "id": 1]
 
-        let restaurant = restaurantParser.perform(json)
+        let restaurant = restaurantParser.parseSingle(json)
         expect(restaurant.address).to(equal(""))
         expect(restaurant.walkInsOk).to(equal(false))
         expect(restaurant.createdAt).to(beNil())
