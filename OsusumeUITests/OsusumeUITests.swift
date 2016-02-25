@@ -72,11 +72,6 @@ class OsusumeUITests: XCTestCase {
 
         tablesQuery.staticTexts[newName].tap()
 
-        for (var i = 0; i < Int(app.images.count); i++) {
-            let image = app.images.elementBoundByIndex(UInt(i))
-            print("image: \(image.accessibilityLabel)")
-        }
-
         XCTAssert(app.staticTexts[newName].exists)
     }
 

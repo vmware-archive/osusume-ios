@@ -6,11 +6,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
     weak var delegate: RestaurantDetailTableViewCellDelegate?
 
-    let headerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .ScaleAspectFit
-        return imageView
-    }()
     let nameLabel = UILabel()
     let addressLabel = UILabel()
     let cuisineTypeLabel = UILabel()
@@ -24,11 +19,27 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     }()
     let creationInfoLabel = UILabel()
     let addCommentButton = UIButton.newAutoLayoutView()
+    var photoUrls: [NSURL] = []
+
+    lazy var imageCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake(100, 100)
+        layout.scrollDirection = .Horizontal
+
+        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
+        collectionView.backgroundColor = UIColor.lightGrayColor()
+        collectionView.accessibilityLabel = "Restaurant photos"
+
+        return collectionView
+    }()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        contentView.addSubview(headerImageView)
+        contentView.addSubview(imageCollectionView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(addressLabel)
         contentView.addSubview(cuisineTypeLabel)
@@ -61,21 +72,8 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
     // MARK: Public Methods
     func configureViewWithRestaurant(restaurant: Restaurant) {
-        let setAccessibilityTypeCompletionHandler: SDWebImageCompletionBlock = {
-            (image: UIImage!,
-            error: NSError!,
-            cacheType: SDImageCacheType!,
-            imageURL: NSURL!) -> Void in
-
-            if error == nil {
-                self.headerImageView.accessibilityLabel = "Picture of \(restaurant.name)"
-            }
-        }
-
-        self.headerImageView.sd_setImageWithURL(
-            restaurant.photoUrls.first,
-            completed: setAccessibilityTypeCompletionHandler
-        )
+        photoUrls = restaurant.photoUrls
+        imageCollectionView.reloadData()
 
         let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: restaurant)
         self.nameLabel.text = restaurantDetailPresenter.name
@@ -90,11 +88,12 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
     //MARK: - Constraints
     func applyViewConstraints() {
-        headerImageView.autoPinEdgeToSuperviewEdge(.Top)
-        headerImageView.autoSetDimension(.Height, toSize: 150.0)
-        headerImageView.autoAlignAxis(.Vertical, toSameAxisOfView: contentView)
+        imageCollectionView.autoPinEdgeToSuperviewEdge(.Top)
+        imageCollectionView.autoSetDimension(.Height, toSize: 120.0)
+        imageCollectionView.autoAlignAxis(.Vertical, toSameAxisOfView: contentView)
+        imageCollectionView.autoMatchDimension(.Width, toDimension:.Width, ofView: contentView)
 
-        nameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: headerImageView)
+        nameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageCollectionView)
         nameLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
 
         addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
@@ -125,4 +124,29 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         addCommentButton.autoPinEdgeToSuperviewEdge(.Bottom)
     }
 
+}
+
+// MARK: - UICollectionViewDataSource
+extension RestaurantDetailTableViewCell: UICollectionViewDataSource {
+    func collectionView(
+        collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+        ) -> Int
+    {
+        return photoUrls.count
+    }
+
+    func collectionView(
+        collectionView: UICollectionView,
+        cellForItemAtIndexPath indexPath: NSIndexPath
+        ) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath)
+
+        let imageView = UIImageView()
+        imageView.sd_setImageWithURL(photoUrls[indexPath.row])
+        cell.backgroundView = imageView
+
+        return cell
+    }
 }

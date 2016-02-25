@@ -22,7 +22,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             notes: "This place is great",
             author: "Danny",
             createdAt: creationDate,
-            photoUrls: [],
+            photoUrls: [NSURL(string: "my-awesome-url")!],
             comments: []
         )
 
@@ -47,6 +47,13 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         expect(restaurantDetailCell.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
         expect(restaurantDetailCell.notesLabel.text).to(equal("This place is great"))
         expect(restaurantDetailCell.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
+        expect(restaurantDetailCell.photoUrls.count).to(equal(1))
+
+        let firstImageCell = restaurantDetailCell.collectionView(restaurantDetailCell.imageCollectionView, cellForItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+
+        let firstImageView = firstImageCell.backgroundView as! UIImageView
+        expect(firstImageView).toNot(beNil())
+        expect(firstImageView.sd_imageURL()).to(equal(NSURL(string: "my-awesome-url")!))
     }
 
     func test_tappingTheEditButton_showsTheEditScreen() {
@@ -70,5 +77,6 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         expect(self.router.newCommentScreenIsShowing).to(equal(true))
         expect(self.router.showNewCommentScreen_args).to(equal(1)) // created restaurant
+        expect(self.router.showNewCommentScreen_args).to(equal(1))
     }
 }
