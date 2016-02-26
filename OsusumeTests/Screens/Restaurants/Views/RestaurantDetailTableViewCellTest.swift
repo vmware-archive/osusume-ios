@@ -26,7 +26,12 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
             reuseIdentifier: String(RestaurantDetailTableViewCell)
         )
 
-        restaurantDetailCell.configureViewWithRestaurant(restaurant)
+        let fakeReloader = FakeReloader()
+
+        restaurantDetailCell.configureViewWithRestaurant(
+            restaurant,
+            reloader: fakeReloader
+        )
 
         expect(restaurantDetailCell.nameLabel.text).to(equal("My Restaurant"))
         expect(restaurantDetailCell.addressLabel.text).to(equal("Roppongi"))
@@ -37,6 +42,8 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
         expect(restaurantDetailCell.notesLabel.text).to(equal("This place is great"))
         expect(restaurantDetailCell.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
         expect(restaurantDetailCell.photoUrls.count).to(equal(1))
+
+        expect(fakeReloader.reload_wasCalled).to(beTrue())
 
         let firstImageCell = restaurantDetailCell.collectionView(restaurantDetailCell.imageCollectionView, cellForItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
 

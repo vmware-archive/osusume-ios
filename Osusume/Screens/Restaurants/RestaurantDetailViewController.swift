@@ -97,7 +97,7 @@ extension RestaurantDetailViewController: UITableViewDataSource {
 
         cell.selectionStyle = .None
         cell.delegate = self
-        cell.configureViewWithRestaurant(currentRestaurant)
+        cell.configureViewWithRestaurant(currentRestaurant, reloader: RealReloader())
 
         return cell
     }

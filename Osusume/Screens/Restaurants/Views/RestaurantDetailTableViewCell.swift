@@ -71,9 +71,10 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     }
 
     // MARK: Public Methods
-    func configureViewWithRestaurant(restaurant: Restaurant) {
+    func configureViewWithRestaurant(restaurant: Restaurant, reloader: Reloader) {
         photoUrls = restaurant.photoUrls
-        imageCollectionView.reloadData()
+
+        reloader.reload(imageCollectionView)
 
         let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: restaurant)
         self.nameLabel.text = restaurantDetailPresenter.name
