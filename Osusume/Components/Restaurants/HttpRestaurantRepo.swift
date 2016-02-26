@@ -19,13 +19,13 @@ struct HttpRestaurantRepo: RestaurantRepo {
     func getAll() -> Future<[Restaurant], RepoError> {
         return http
             .get(path, headers: buildHeaders())
-            .map { value in self.parser.parseList(value as! [[String: AnyObject]]) }
+            .map { value in self.parser.parseList(value as! [[String: AnyObject]]).value! }
     }
 
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
         return http
             .get("\(path)/\(id)", headers: buildHeaders())
-            .map { value in self.parser.parseSingle(value as! [String: AnyObject]) }
+            .map { value in self.parser.parseSingle(value as! [String: AnyObject]).value! }
     }
 
     //MARK: - POST Functions
