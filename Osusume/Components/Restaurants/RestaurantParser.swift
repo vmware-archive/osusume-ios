@@ -145,20 +145,4 @@ struct RestaurantParser {
             comments: comments
         ))
     }
-
-    // MARK: - private
-    private func dateOrNil(attribute: AnyObject?) -> NSDate? {
-        if let date = attribute as? Double {
-            return NSDate(timeIntervalSince1970: date)
-        } else {
-            return nil
-        }
-    }
-
-    private func urlOrNil(photoUrlFromServer: AnyObject) -> NSURL? {
-        if let urlAsString = photoUrlFromServer["url"] as? String {
-            return NSURL(string: urlAsString)
-        }
-        return nil
-    }
 }
