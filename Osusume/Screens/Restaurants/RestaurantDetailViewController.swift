@@ -33,6 +33,10 @@ class RestaurantDetailViewController: UIViewController {
             RestaurantDetailTableViewCell.self,
             forCellReuseIdentifier: String(RestaurantDetailTableViewCell)
         )
+        tableView.registerClass(
+            UITableViewCell.self,
+            forCellReuseIdentifier: "commentCell"
+        )
 
         let editButton = UIBarButtonItem(
             title: "Edit",
@@ -75,11 +79,18 @@ class RestaurantDetailViewController: UIViewController {
 
 extension RestaurantDetailViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurant != nil ? 1 : 0
+        switch section {
+            case 0:
+                return restaurant != nil ? 1 : 0
+            case 1:
+                return restaurant?.comments.count ?? 0
+            default:
+                return 0
+        }
     }
 
     func tableView(
@@ -87,19 +98,46 @@ extension RestaurantDetailViewController: UITableViewDataSource {
         cellForRowAtIndexPath indexPath: NSIndexPath
         ) -> UITableViewCell
     {
-        guard
-            let cell = tableView.dequeueReusableCellWithIdentifier(
-                String(RestaurantDetailTableViewCell), forIndexPath: indexPath
-                ) as? RestaurantDetailTableViewCell,
-            let currentRestaurant = restaurant else {
+        switch indexPath.section {
+            case 0:
+                guard
+                    let cell = tableView.dequeueReusableCellWithIdentifier(
+                        String(RestaurantDetailTableViewCell), forIndexPath: indexPath
+                        ) as? RestaurantDetailTableViewCell,
+                    let currentRestaurant = restaurant else {
+                        return UITableViewCell()
+                }
+
+                cell.selectionStyle = .None
+                cell.delegate = self
+                cell.configureView(currentRestaurant, reloader: DefaultReloader(), router: router)
+
+                return cell
+
+            case 1:
+                guard
+                    let currentRestaurant = restaurant else {
+                        return UITableViewCell()
+                }
+
+                var cell = tableView.dequeueReusableCellWithIdentifier(
+                    "commentCell", forIndexPath: indexPath
+                    ) as UITableViewCell
+
+                cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "commentCell")
+                cell.selectionStyle = .None
+
+                let comments = currentRestaurant.comments
+                let currentComment = comments[indexPath.row]
+
+                cell.textLabel?.text = currentComment.text
+                cell.detailTextLabel?.text = String(currentComment.id)
+
+                return cell
+
+            default:
                 return UITableViewCell()
         }
-
-        cell.selectionStyle = .None
-        cell.delegate = self
-        cell.configureView(currentRestaurant, reloader: DefaultReloader(), router: router)
-
-        return cell
     }
 }
 

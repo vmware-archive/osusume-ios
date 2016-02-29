@@ -22,7 +22,22 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             author: "Danny",
             createdAt: NSDate(timeIntervalSince1970: 0),
             photoUrls: [NSURL(string: "my-awesome-url")!],
-            comments: []
+            comments: [
+                PersistedComment(
+                    id: 1,
+                    text: "first comment",
+                    createdDate: NSDate(),
+                    restaurantId: 1,
+                    userName: ""
+                ),
+                PersistedComment(
+                    id: 2,
+                    text: "second comment",
+                    createdDate: NSDate(),
+                    restaurantId: 1,
+                    userName: ""
+                )
+            ]
         )
 
         restaurantDetailVC = RestaurantDetailViewController(
@@ -30,6 +45,25 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             repo: repo,
             restaurantId: 1
         )
+    }
+
+    func test_onViewDidLoad_showsComments() {
+        restaurantDetailVC.view.setNeedsLayout()
+
+        let commentSectionIndex = 1
+        expect(self.restaurantDetailVC.tableView.numberOfRowsInSection(commentSectionIndex)).to(equal(2))
+
+        let firstCommentCell = restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+        )
+        expect(firstCommentCell.textLabel!.text).to(equal("first comment"))
+
+        let secondCommentCell = restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentSectionIndex)
+        )
+        expect(secondCommentCell.textLabel!.text).to(equal("second comment"))
     }
 
     func test_tappingTheEditButton_showsTheEditScreen() {

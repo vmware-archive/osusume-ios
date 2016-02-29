@@ -94,7 +94,9 @@ class NewCommentViewControllerTest: XCTestCase {
             PersistedComment(
                 id: 123,
                 text: "Saved comment",
-                restaurantId: fakeRestaurantId
+                createdDate: NSDate(),
+                restaurantId: fakeRestaurantId,
+                userName: ""
             )
         )
 

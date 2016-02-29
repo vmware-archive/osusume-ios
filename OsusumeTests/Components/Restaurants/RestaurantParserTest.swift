@@ -121,13 +121,23 @@ class RestaurantParserTest: XCTestCase {
             "name": "first restaurant",
             "id": 1232,
             "comments": [
-                [ "id": 1,
+                [
+                    "id": 1,
                     "content": "first comment",
-                    "restaurant_id": 1232
+                    "created_at": "2016-02-29T06:07:55.000Z",
+                    "restaurant_id": 1232,
+                    "user": [
+                        "name": "Witta"
+                    ]
                 ],
-                [ "id": 2,
+                [
+                    "id": 2,
                     "content": "second comment",
-                    "restaurant_id": 1232
+                    "created_at": "2016-02-29T06:07:59.000Z",
+                    "restaurant_id": 1232,
+                    "user": [
+                        "name": "Danny"
+                    ]
                 ]
             ]
         ]
@@ -136,14 +146,18 @@ class RestaurantParserTest: XCTestCase {
         let expectedFirstComment = PersistedComment(
             id: 1,
             text: "first comment",
-            restaurantId: 1232
+            createdDate: NSDate(timeIntervalSince1970: 1456726075),
+            restaurantId: 1232,
+            userName: "Witta"
         )
         expect(restaurant.comments[0]).to(equal(expectedFirstComment))
 
         let expectedSecondComment = PersistedComment(
             id: 2,
             text: "second comment",
-            restaurantId: 1232
+            createdDate: NSDate(timeIntervalSince1970: 1456726079),
+            restaurantId: 1232,
+            userName: "Danny"
         )
         expect(restaurant.comments[1]).to(equal(expectedSecondComment))
     }
@@ -155,13 +169,23 @@ class RestaurantParserTest: XCTestCase {
             "name": "first restaurant",
             "id": 1,
             "comments": [
-                [ "id": 1,
+                [
+                    "id": 1,
                     "content": "first comment",
-                    "restaurant_id": 9
+                    "created_at": "2016-02-29T06:07:55.000Z",
+                    "restaurant_id": 9,
+                    "user": [
+                        "name": "Witta"
+                    ]
                 ],
-                [ "id": 2,
+                [
+                    "id": 2,
                     "content": "second comment",
-                    "restaurant_id": 9
+                    "created_at": "2016-02-29T06:07:55.000Z",
+                    "restaurant_id": 9,
+                    "user": [
+                        "name": "Witta"
+                    ]
                 ],
                 [ "bad": "commentData"]
             ]

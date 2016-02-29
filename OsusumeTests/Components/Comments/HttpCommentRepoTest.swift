@@ -12,7 +12,9 @@ class FakeCommentParser: DataParser {
         value: PersistedComment(
             id: 99,
             text: "this is a comment",
-            restaurantId: 99
+            createdDate: NSDate(),
+            restaurantId: 99,
+            userName: ""
         )
     )
     func parse(json: [String: AnyObject]) -> Result<PersistedComment, ParseError> {

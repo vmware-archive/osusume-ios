@@ -17,7 +17,11 @@ class CommentParserTest: XCTestCase {
         let inputHttpJson: [String: AnyObject] = [
             "id": 3,
             "content": "hello this is a comment!",
-            "restaurant_id": 99
+            "created_at": "2016-02-29T06:07:55.000Z",
+            "restaurant_id": 99,
+            "user": [
+                "name": "Witta"
+            ]
         ]
 
         let result: Result<PersistedComment, ParseError> = commentParser.parse(inputHttpJson)
@@ -25,10 +29,28 @@ class CommentParserTest: XCTestCase {
         let expectedComment = PersistedComment(
             id: 3,
             text: "hello this is a comment!",
-            restaurantId: 99
+            createdDate: NSDate(timeIntervalSince1970: 1456726075),
+            restaurantId: 99,
+            userName: "Witta"
         )
 
         expect(result.value).to(equal(expectedComment))
+    }
+
+    func test_invalidDateTimeStampFormat_returnsParseError() {
+        let inputHttpJson: [String: AnyObject] = [
+            "id": 3,
+            "content": "hello this is a comment!",
+            "created_at": "invalid timestamp string",
+            "restaurant_id": 99,
+            "user": [
+                "name": "Witta"
+            ]
+        ]
+
+        let result: Result<PersistedComment, ParseError> = commentParser.parse(inputHttpJson)
+
+        expect(result.error).to(equal(ParseError.CommentParseError))
     }
 
     func test_missingInputField_returnsParseError() {
