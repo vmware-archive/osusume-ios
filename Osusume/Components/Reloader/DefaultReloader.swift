@@ -1,4 +1,4 @@
-struct RealReloader: Reloader {
+struct DefaultReloader: Reloader {
     func reload(reloadable: Reloadable) {
         reloadable.reloadData()
     }
