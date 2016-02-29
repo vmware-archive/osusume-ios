@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */; };
+		AE1D42091C8420350048DF66 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1D42081C8420350048DF66 /* ImageViewController.swift */; };
+		AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1D420A1C8423960048DF66 /* ImageViewControllerTest.swift */; };
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE37F6041C7FD7EB0005CB29 /* FakeReloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37F6031C7FD7EB0005CB29 /* FakeReloader.swift */; };
 		AE3ECDEE1C76E947002D70B4 /* appleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3ECDED1C76E947002D70B4 /* appleLogo.png */; };
@@ -122,6 +124,8 @@
 
 /* Begin PBXFileReference section */
 		2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
+		AE1D42081C8420350048DF66 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		AE1D420A1C8423960048DF66 /* ImageViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewControllerTest.swift; sourceTree = "<group>"; };
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AE37F6031C7FD7EB0005CB29 /* FakeReloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeReloader.swift; sourceTree = "<group>"; };
 		AE3ECDED1C76E947002D70B4 /* appleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appleLogo.png; sourceTree = "<group>"; };
@@ -444,6 +448,7 @@
 			children = (
 				DE99CE81502116C4694176DA /* Views */,
 				AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */,
+				AE1D420A1C8423960048DF66 /* ImageViewControllerTest.swift */,
 				AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */,
 				AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */,
 				AEB2438F1C71666300959434 /* RestaurantListViewControllerTest.swift */,
@@ -494,6 +499,7 @@
 			children = (
 				AE877D601C7C078400471040 /* Views */,
 				AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */,
+				AE1D42081C8420350048DF66 /* ImageViewController.swift */,
 				DE99CFD1D44DEE333A4B91FC /* NewRestaurantViewController.swift */,
 				2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */,
 				DE99CF23833B1E11CEDEBB5E /* RestaurantListViewController.swift */,
@@ -873,6 +879,7 @@
 				DE99C575936B3E8619D06F8D /* HttpCommentRepo.swift in Sources */,
 				DE99C666756597D0AB21E3B5 /* HttpRestaurantRepo.swift in Sources */,
 				DE99CB8A9C851219F3FC27CC /* HttpUserRepo.swift in Sources */,
+				AE1D42091C8420350048DF66 /* ImageViewController.swift in Sources */,
 				DE99CAE855DA045F9EC09C0C /* KeychainSessionRepo.swift in Sources */,
 				DE99C5F42497764EF7EE4252 /* LaunchWorkflow.swift in Sources */,
 				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
@@ -928,6 +935,7 @@
 				DE99C26900A3406AA1C154CF /* FakeUUIDProvider.swift in Sources */,
 				DE99CDD1C1EF4FD00A5D80BF /* HttpCommentRepoTest.swift in Sources */,
 				DE99C37C22157FAC29D102FA /* HttpRestaurantRepoTest.swift in Sources */,
+				AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */,
 				DE99C39FB88F303DF4869148 /* KeychainSessionRepoTest.swift in Sources */,
 				DE99CED00AC7F1E1202E9B1F /* LaunchWorkflowTest.swift in Sources */,
 				AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */,

@@ -5,6 +5,7 @@ protocol RestaurantDetailTableViewCellDelegate: NSObjectProtocol {
 class RestaurantDetailTableViewCell: UITableViewCell {
 
     weak var delegate: RestaurantDetailTableViewCellDelegate?
+    weak var router: Router?
 
     let nameLabel = UILabel()
     let addressLabel = UILabel()
@@ -28,6 +29,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
         collectionView.backgroundColor = UIColor.lightGrayColor()
@@ -71,7 +73,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     }
 
     // MARK: Public Methods
-    func configureViewWithRestaurant(restaurant: Restaurant, reloader: Reloader) {
+    func configureView(restaurant: Restaurant, reloader: Reloader, router: Router) {
         photoUrls = restaurant.photoUrls
 
         reloader.reload(imageCollectionView)
@@ -85,6 +87,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         self.acceptsCreditCardsLabel.text = restaurantDetailPresenter.creditCardsOk
         self.notesLabel.text = restaurantDetailPresenter.notes
         self.creationInfoLabel.text = restaurantDetailPresenter.creationInfo
+        self.router = router
     }
 
     //MARK: - Constraints
@@ -125,6 +128,12 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         addCommentButton.autoPinEdgeToSuperviewEdge(.Bottom)
     }
 
+}
+// MARK: - UICollectionViewDelegate
+extension RestaurantDetailTableViewCell: UICollectionViewDelegate {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.router?.showImageScreen(photoUrls[indexPath.row])
+    }
 }
 
 // MARK: - UICollectionViewDataSource

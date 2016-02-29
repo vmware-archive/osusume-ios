@@ -89,4 +89,13 @@ class NavigationRouterTest: XCTestCase {
         expect(self.navController.topViewController).toNot(beAKindOf(NewCommentViewController))
         expect(self.navController.viewControllers.count).to(equal(1))
     }
+
+    func test_showingImageScreen() {
+        let url = NSURL(string: "my-awesome-url")!
+        navigationRouter.showImageScreen(url)
+
+        expect(self.navController.topViewController).to(beAKindOf(ImageViewController))
+        expect((self.navController.topViewController as! ImageViewController).url)
+            .to(equal(url))
+    }
 }

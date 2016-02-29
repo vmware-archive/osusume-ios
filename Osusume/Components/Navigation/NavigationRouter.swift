@@ -106,4 +106,12 @@ class NavigationRouter : Router {
         navigationController.popViewControllerAnimated(animated)
     }
 
+    func showImageScreen(url: NSURL) {
+        let imageViewController = ImageViewController(url: url)
+
+        navigationController.pushViewController(
+            imageViewController,
+            animated: true
+        )
+    }
 }

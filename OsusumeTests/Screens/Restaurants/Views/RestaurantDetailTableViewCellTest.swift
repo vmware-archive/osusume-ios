@@ -4,8 +4,11 @@ import Nimble
 
 class RestaurantDetailTableViewCellTest: XCTestCase {
     var restaurantDetailTableViewCell: RestaurantDetailTableViewCell!
+    var restaurantDetailCell: RestaurantDetailTableViewCell!
+    var fakeReloader: FakeReloader!
+    var fakeRouter: FakeRouter!
 
-    func test_viewDidLoad_displaysDetailsOfARestaurant() {
+    override func setUp() {
         let restaurant = Restaurant(
             id: 1,
             name: "My Restaurant",
@@ -21,29 +24,33 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
             comments: []
         )
 
-        let restaurantDetailCell = RestaurantDetailTableViewCell(
+        restaurantDetailCell = RestaurantDetailTableViewCell(
             style: .Default,
             reuseIdentifier: String(RestaurantDetailTableViewCell)
         )
 
-        let fakeReloader = FakeReloader()
+        fakeReloader = FakeReloader()
+        fakeRouter = FakeRouter()
 
-        restaurantDetailCell.configureViewWithRestaurant(
+        restaurantDetailCell.configureView(
             restaurant,
-            reloader: fakeReloader
+            reloader: fakeReloader,
+            router: fakeRouter
         )
+    }
 
-        expect(restaurantDetailCell.nameLabel.text).to(equal("My Restaurant"))
-        expect(restaurantDetailCell.addressLabel.text).to(equal("Roppongi"))
-        expect(restaurantDetailCell.cuisineTypeLabel.text).to(equal("Sushi"))
-        expect(restaurantDetailCell.offersEnglishMenuLabel.text).to(equal("Offers English menu"))
-        expect(restaurantDetailCell.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
-        expect(restaurantDetailCell.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
-        expect(restaurantDetailCell.notesLabel.text).to(equal("This place is great"))
-        expect(restaurantDetailCell.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
-        expect(restaurantDetailCell.photoUrls.count).to(equal(1))
+    func test_viewDidLoad_displaysDetailsOfARestaurant() {
+        expect(self.restaurantDetailCell.nameLabel.text).to(equal("My Restaurant"))
+        expect(self.restaurantDetailCell.addressLabel.text).to(equal("Roppongi"))
+        expect(self.restaurantDetailCell.cuisineTypeLabel.text).to(equal("Sushi"))
+        expect(self.restaurantDetailCell.offersEnglishMenuLabel.text).to(equal("Offers English menu"))
+        expect(self.restaurantDetailCell.walkInsOkLabel.text).to(equal("Walk-ins not recommended"))
+        expect(self.restaurantDetailCell.acceptsCreditCardsLabel.text).to(equal("Accepts credit cards"))
+        expect(self.restaurantDetailCell.notesLabel.text).to(equal("This place is great"))
+        expect(self.restaurantDetailCell.creationInfoLabel.text).to(equal("Added by Danny on 1/1/70"))
+        expect(self.restaurantDetailCell.photoUrls.count).to(equal(1))
 
-        expect(fakeReloader.reload_wasCalled).to(beTrue())
+        expect(self.fakeReloader.reload_wasCalled).to(beTrue())
 
         let firstImageCell = restaurantDetailCell.collectionView(restaurantDetailCell.imageCollectionView, cellForItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
 
@@ -51,4 +58,10 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
         expect(firstImageView.sd_imageURL()).to(equal(NSURL(string: "my-awesome-url")!))
     }
 
+    func test_tappingAnImage_showsAFullScreenImage() {
+        restaurantDetailCell.imageCollectionView.delegate!.collectionView!(restaurantDetailCell.imageCollectionView, didSelectItemAtIndexPath: NSIndexPath(forItem: 0, inSection: 0))
+
+        expect(self.fakeRouter.imageScreenIsShowing).to(equal(true))
+        expect(self.fakeRouter.showImageScreen_args).to(equal(NSURL(string: "my-awesome-url")))
+    }
 }
