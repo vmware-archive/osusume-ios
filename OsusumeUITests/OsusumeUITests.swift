@@ -21,7 +21,7 @@ class OsusumeUITests: XCTestCase {
         osusume.addTwoPhotos()
 
         let screen = osusume.ui
-        XCTAssert(screen.collectionViews["Photos to be uploaded"].cells.count == 2)
+        XCTAssertEqual(screen.collectionViews["Photos to be uploaded"].cells.count, 2)
 
         osusume.tapDoneButton()
         osusume.tapRestaurantName(restaurantName)
@@ -33,7 +33,7 @@ class OsusumeUITests: XCTestCase {
 
         osusume.tapRestaurantName(newName)
 
-        XCTAssert(screen.staticTexts[newName].exists)
+        XCTAssertTrue(screen.staticTexts[newName].exists)
     }
 
 }
