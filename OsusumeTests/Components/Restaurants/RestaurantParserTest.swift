@@ -5,6 +5,8 @@ import XCTest
 @testable import Osusume
 
 class RestaurantParserTest: XCTestCase {
+
+    // MARK: parseList
     func test_convertingMultipleRestaurants() {
         let restaurantParser = RestaurantParser()
 
@@ -63,12 +65,31 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurants.count).to(equal(1))
     }
 
-    func test_convertingASingleRestaurant() {
+    func test_convertingMultipleRestaurantsWithbadData_returnsNil() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [[String: AnyObject]] = [
+            [
+                "bad": "data",
+                "id": 1,
+            ],
+            [
+                "name": "second restaurant",
+                "really bad": "data",
+            ]
+        ]
+
+        let result = restaurantParser.parseList(json)
+        expect(result.error).to(beNil())
+    }
+
+    // MARK: parseSingle
+    func test_convertingASingleRestaurant_withoutComments() {
         let restaurantParser = RestaurantParser()
 
         let json: [String: AnyObject] = [
             "name": "first restaurant",
-            "id": 1,
+            "id": 1232,
             "address": "",
             "cuisine_type": "",
             "offers_english_menu": false,
@@ -81,10 +102,6 @@ class RestaurantParserTest: XCTestCase {
                 ["url": "my-awesome-url"]
             ],
             "comments": [
-                [ "id": 1,
-                  "content": "first comment",
-                  "restaurant_id": 9
-                ]
             ]
         ]
 
@@ -94,6 +111,64 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.author).to(equal("Bambi"))
         expect(restaurant.photoUrls[0].URLString).to(equal("http://www.example.com"))
         expect(restaurant.photoUrls[1].URLString).to(equal("my-awesome-url"))
+        expect(restaurant.comments.count).to(equal(0))
+    }
+
+    func test_convertingASingleRestaurant_withComments() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "name": "first restaurant",
+            "id": 1232,
+            "comments": [
+                [ "id": 1,
+                    "content": "first comment",
+                    "restaurant_id": 1232
+                ],
+                [ "id": 2,
+                    "content": "second comment",
+                    "restaurant_id": 1232
+                ]
+            ]
+        ]
+
+        let restaurant: Restaurant = restaurantParser.parseSingle(json).value!
+        let expectedFirstComment = PersistedComment(
+            id: 1,
+            text: "first comment",
+            restaurantId: 1232
+        )
+        expect(restaurant.comments[0]).to(equal(expectedFirstComment))
+
+        let expectedSecondComment = PersistedComment(
+            id: 2,
+            text: "second comment",
+            restaurantId: 1232
+        )
+        expect(restaurant.comments[1]).to(equal(expectedSecondComment))
+    }
+
+    func test_convertingASingleRestaurant_skipsInvalidComments() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "name": "first restaurant",
+            "id": 1,
+            "comments": [
+                [ "id": 1,
+                    "content": "first comment",
+                    "restaurant_id": 9
+                ],
+                [ "id": 2,
+                    "content": "second comment",
+                    "restaurant_id": 9
+                ],
+                [ "bad": "commentData"]
+            ]
+        ]
+
+        let restaurant: Restaurant = restaurantParser.parseSingle(json).value!
+        expect(restaurant.comments.count).to(equal(2))
     }
 
     func test_convertingASingleRestaurant_onFailure() {
@@ -109,7 +184,6 @@ class RestaurantParserTest: XCTestCase {
     func test_convert_usesDefaultsWhenOptionalFieldsAreMissing() {
         let restaurantParser = RestaurantParser()
         let json: [String: AnyObject] = ["name": "first restaurant", "id": 1]
-
 
         let restaurant = restaurantParser.parseSingle(json).value!
         expect(restaurant.address).to(equal(""))
