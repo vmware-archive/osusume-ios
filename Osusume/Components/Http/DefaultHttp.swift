@@ -1,7 +1,7 @@
 import BrightFutures
 import Alamofire
 
-struct AlamofireHttp: Http {
+struct DefaultHttp: Http {
     let basePath: String
 
     init(basePath: String) {

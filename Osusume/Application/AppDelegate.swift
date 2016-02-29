@@ -15,11 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sessionRepo = KeychainSessionRepo()
         let photoRepo = NetworkPhotoRepo(
             remoteStorage: S3Storage(),
-            uuidProvider: NSUUIDProvider(),
+            uuidProvider: RandomUUIDProvider(),
             localStorage: DiskStorage()
         )
 
-        let http = AlamofireHttp(basePath: AppDelegate.basePath)
+        let http = DefaultHttp(basePath: AppDelegate.basePath)
         let restaurantRepo = HttpRestaurantRepo(
             http: http,
             sessionRepo: sessionRepo

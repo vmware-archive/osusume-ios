@@ -2,7 +2,7 @@ protocol UUIDProvider {
     func uuidKey() -> String
 }
 
-struct NSUUIDProvider: UUIDProvider {
+struct RandomUUIDProvider: UUIDProvider {
     func uuidKey() -> String {
         return NSUUID().UUIDString
     }
