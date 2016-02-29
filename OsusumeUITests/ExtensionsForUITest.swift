@@ -20,3 +20,7 @@ extension XCUIElement {
         self.typeText(text)
     }
 }
+
+func uniqueName(name: String) -> String {
+    return "\(name) \(NSDate().timeIntervalSince1970)"
+}

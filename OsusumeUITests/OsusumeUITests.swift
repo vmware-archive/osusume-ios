@@ -1,77 +1,39 @@
 import XCTest
 
 class OsusumeUITests: XCTestCase {
-    func test() {
+    var osusume: OsusumeApplication!
+
+    override func setUp() {
         continueAfterFailure = false
 
-        let app = XCUIApplication()
+        osusume = OsusumeApplication()
+    }
 
-        app.launch()
+    func test() {
+        osusume.launch()
+        osusume.login(username: "A", password: "A")
+        osusume.tapAddRestaurantButton()
 
-        if app.buttons["Logout"].exists {
-            app.buttons["Logout"].tap()
-        }
+        let restaurantName = uniqueName("test restaurant")
 
-        let emailTextField = app.textFields["Email"]
-        emailTextField.tap()
-        emailTextField.typeText("A")
+        osusume.enterRestaurantName(restaurantName)
+        osusume.tapAddPhotosButton()
+        osusume.addTwoPhotos()
 
-        let passwordTextField = app.textFields["Password"]
-        passwordTextField.tap()
-        passwordTextField.typeText("A")
+        let screen = osusume.ui
+        XCTAssert(screen.collectionViews["Photos to be uploaded"].cells.count == 2)
 
-        let loginButton = app.buttons["Login"]
-        loginButton.tap()
+        osusume.tapDoneButton()
+        osusume.tapRestaurantName(restaurantName)
+        osusume.tapEditButton()
 
-        app.navigationBars["Osusume.RestaurantListView"]
-            .buttons["add restaurant"]
-            .tap()
-        
-        let element = app.scrollViews
-            .childrenMatchingType(.Other)
-            .element
+        let newName = uniqueName("updated test restaurant")
+        osusume.enterRestaurantName(newName)
+        osusume.tapUpdateButton()
 
-        let textField = element.childrenMatchingType(.Other)
-            .element
-            .childrenMatchingType(.Other)
-            .element
-            .childrenMatchingType(.TextField)
-            .elementBoundByIndex(0)
+        osusume.tapRestaurantName(newName)
 
-        textField.tap()
-
-        let restaurantName = "testAddingAndEditingARestaurant-\(NSDate())"
-
-        textField.typeText(restaurantName)
-
-        let tablesQuery = app.tables
-        app.scrollViews.otherElements.buttons["add photos"].tap()
-        app.collectionViews.cells.elementBoundByIndex(0).tap()
-        app.collectionViews.cells.elementBoundByIndex(1).tap()
-        app.navigationBars.buttons["Done (2)"].tap()
-
-        XCTAssert(app.collectionViews["Photos to be uploaded"].cells.count == 2)
-
-        app.navigationBars["Osusume.NewRestaurantView"].buttons["Done"].tap()
-
-        tablesQuery.staticTexts[restaurantName].tap()
-
-        app.navigationBars["Osusume.RestaurantDetailView"]
-            .buttons["Edit"]
-            .tap()
-
-        let newName = "Something Else \(NSDate())"
-
-        textField.tap()
-
-        textField.clearAndEnterText(newName)
-        app.navigationBars["Osusume.EditRestaurantView"]
-            .buttons["Update"]
-            .tap()
-
-        tablesQuery.staticTexts[newName].tap()
-
-        XCTAssert(app.staticTexts[newName].exists)
+        XCTAssert(screen.staticTexts[newName].exists)
     }
 
 }

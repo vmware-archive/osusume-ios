@@ -19,6 +19,7 @@
 		AE3ED1751C842ECE0097DC10 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
 		AE3ED1761C842EDF0097DC10 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */; };
 		AE3ED1781C842FBC0097DC10 /* ExtensionsForUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1771C842FBC0097DC10 /* ExtensionsForUITest.swift */; };
+		AE3ED17A1C843DA50097DC10 /* OsusumeApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1791C843DA50097DC10 /* OsusumeApplication.swift */; };
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */; };
 		AEA70FA11C7FD8BC005046A8 /* Reloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA70FA01C7FD8BC005046A8 /* Reloader.swift */; };
@@ -132,6 +133,7 @@
 		AE3ECDF11C7AEAA0002D70B4 /* truck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = truck.png; sourceTree = "<group>"; };
 		AE3ED1721C8420640097DC10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE3ED1771C842FBC0097DC10 /* ExtensionsForUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsForUITest.swift; sourceTree = "<group>"; };
+		AE3ED1791C843DA50097DC10 /* OsusumeApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OsusumeApplication.swift; sourceTree = "<group>"; };
 		AE7CDA551C69835300A2D6B3 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewCell.swift; sourceTree = "<group>"; };
 		AEA70FA01C7FD8BC005046A8 /* Reloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reloader.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			children = (
 				AE3ED1771C842FBC0097DC10 /* ExtensionsForUITest.swift */,
 				AED333AE1C634A5400127DC6 /* Info.plist */,
+				AE3ED1791C843DA50097DC10 /* OsusumeApplication.swift */,
 				AED333AC1C634A5400127DC6 /* OsusumeUITests.swift */,
 			);
 			path = OsusumeUITests;
@@ -956,6 +959,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE3ED1781C842FBC0097DC10 /* ExtensionsForUITest.swift in Sources */,
+				AE3ED17A1C843DA50097DC10 /* OsusumeApplication.swift in Sources */,
 				AED333AD1C634A5400127DC6 /* OsusumeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
