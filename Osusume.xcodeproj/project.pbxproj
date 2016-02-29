@@ -13,6 +13,9 @@
 		AE3ECDEE1C76E947002D70B4 /* appleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3ECDED1C76E947002D70B4 /* appleLogo.png */; };
 		AE3ECDF21C7AEAA0002D70B4 /* truck.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3ECDF11C7AEAA0002D70B4 /* truck.png */; };
 		AE3ED1731C8420640097DC10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE3ED1711C8420640097DC10 /* LaunchScreen.storyboard */; };
+		AE3ED1741C842EB60097DC10 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
+		AE3ED1751C842ECE0097DC10 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
+		AE3ED1761C842EDF0097DC10 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */; };
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */; };
 		AEA70FA11C7FD8BC005046A8 /* Reloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA70FA01C7FD8BC005046A8 /* Reloader.swift */; };
@@ -241,6 +244,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE3ED1761C842EDF0097DC10 /* AWSCognito.framework in Frameworks */,
+				AE3ED1751C842ECE0097DC10 /* AWSCore.framework in Frameworks */,
+				AE3ED1741C842EB60097DC10 /* AWSS3.framework in Frameworks */,
 				AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */,
 				AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */,
 			);
