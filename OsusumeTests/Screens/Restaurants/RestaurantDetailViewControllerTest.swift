@@ -8,6 +8,10 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     let repo = FakeRestaurantRepo()
 
     var restaurantDetailVC: RestaurantDetailViewController!
+    let today = NSDate()
+    var tomorrow: NSDate {
+        return NSDate(timeInterval: 60*60*24, sinceDate: today)
+    }
 
     override func setUp() {
         repo.createdRestaurant = Restaurant(
@@ -26,16 +30,16 @@ class RestaurantDetailViewControllerTest: XCTestCase {
                 PersistedComment(
                     id: 1,
                     text: "first comment",
-                    createdDate: NSDate(),
+                    createdDate: today,
                     restaurantId: 1,
-                    userName: ""
+                    userName: "Danny"
                 ),
                 PersistedComment(
                     id: 2,
                     text: "second comment",
-                    createdDate: NSDate(),
+                    createdDate: tomorrow,
                     restaurantId: 1,
-                    userName: ""
+                    userName: "Witta"
                 )
             ]
         )
@@ -57,13 +61,16 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             restaurantDetailVC.tableView,
             cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
         )
+
         expect(firstCommentCell.textLabel!.text).to(equal("first comment"))
+        expect(firstCommentCell.detailTextLabel!.text).to(equal("Danny - \(DateConverter().formattedDate(today))"))
 
         let secondCommentCell = restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
             cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentSectionIndex)
         )
         expect(secondCommentCell.textLabel!.text).to(equal("second comment"))
+        expect(secondCommentCell.detailTextLabel!.text).to(equal("Witta - \(DateConverter().formattedDate(tomorrow))"))
     }
 
     func test_tappingTheEditButton_showsTheEditScreen() {
