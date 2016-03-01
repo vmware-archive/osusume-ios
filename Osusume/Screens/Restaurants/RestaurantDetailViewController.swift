@@ -5,6 +5,7 @@ import BrightFutures
 
 class RestaurantDetailViewController: UIViewController {
     unowned let router: Router
+    let reloader: Reloader
     let repo: RestaurantRepo
 
     let restaurantId: Int
@@ -16,10 +17,12 @@ class RestaurantDetailViewController: UIViewController {
     //MARK: - Initializers
     init(
         router: Router,
+        reloader: Reloader,
         repo: RestaurantRepo,
         restaurantId: Int)
     {
         self.router = router
+        self.reloader = reloader
         self.repo = repo
         self.restaurantId = restaurantId
 
@@ -56,11 +59,15 @@ class RestaurantDetailViewController: UIViewController {
 
         view.addSubview(tableView)
         applyViewConstraints()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
 
         repo.getOne(self.restaurantId)
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurant in
                 self.restaurant = returnedRestaurant
-                self.tableView.reloadData()
+                self.reloader.reload(self.tableView)
         }
     }
 

@@ -53,6 +53,7 @@ class NavigationRouter : Router {
     func showRestaurantDetailScreen(id: Int) {
         let restaurantDetailViewController = RestaurantDetailViewController(
             router: self,
+            reloader: DefaultReloader(),
             repo: restaurantRepo,
             restaurantId: id
         )

@@ -43,16 +43,18 @@ class RestaurantDetailViewControllerTest: XCTestCase {
                 )
             ]
         )
+    }
 
+    func test_onViewWillAppear_showsComments() {
         restaurantDetailVC = RestaurantDetailViewController(
             router: router,
+            reloader: FakeReloader(),
             repo: repo,
             restaurantId: 1
         )
-    }
 
-    func test_onViewDidLoad_showsComments() {
         restaurantDetailVC.view.setNeedsLayout()
+        restaurantDetailVC.viewWillAppear(false)
 
         let commentSectionIndex = 1
         expect(self.restaurantDetailVC.tableView.numberOfRowsInSection(commentSectionIndex)).to(equal(2))
@@ -73,8 +75,32 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         expect(secondCommentCell.detailTextLabel!.text).to(equal("Witta - \(DateConverter().formattedDate(tomorrow))"))
     }
 
-    func test_tappingTheEditButton_showsTheEditScreen() {
+    func test_onViewWillAppear_reloadsTableViewData() {
+        let reloader = FakeReloader()
+
+        restaurantDetailVC = RestaurantDetailViewController(
+            router: router,
+            reloader: reloader,
+            repo: repo,
+            restaurantId: 1
+        )
+
         restaurantDetailVC.view.setNeedsLayout()
+        restaurantDetailVC.viewWillAppear(false)
+
+        expect(reloader.reload_wasCalled).to(equal(true))
+    }
+
+    func test_tappingTheEditButton_showsTheEditScreen() {
+        restaurantDetailVC = RestaurantDetailViewController(
+            router: router,
+            reloader: FakeReloader(),
+            repo: repo,
+            restaurantId: 1
+        )
+
+        restaurantDetailVC.view.setNeedsLayout()
+        restaurantDetailVC.viewWillAppear(false)
 
         expect(self.restaurantDetailVC.navigationItem.rightBarButtonItem?.title).to(equal("Edit"))
 
@@ -85,7 +111,15 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     func test_tappingTheAddCommentButton_showsTheNewCommentScreen() {
+        restaurantDetailVC = RestaurantDetailViewController(
+            router: router,
+            reloader: DefaultReloader(),
+            repo: repo,
+            restaurantId: 1
+        )
+
         restaurantDetailVC.view.setNeedsLayout()
+        restaurantDetailVC.viewWillAppear(false)
 
         let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
         let restaurantDetailCell = restaurantDetailVC.tableView.cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
