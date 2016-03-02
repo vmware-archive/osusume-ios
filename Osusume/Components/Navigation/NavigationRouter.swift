@@ -41,7 +41,8 @@ class NavigationRouter : Router {
         let restaurantListViewController = RestaurantListViewController(
             router: self,
             repo: restaurantRepo,
-            sessionRepo: sessionRepo
+            sessionRepo: sessionRepo,
+            reloader: DefaultReloader()
         )
 
         navigationController.setViewControllers(

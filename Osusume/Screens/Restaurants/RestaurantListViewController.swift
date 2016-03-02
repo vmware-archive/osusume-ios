@@ -7,15 +7,17 @@ class RestaurantListViewController: UITableViewController {
     unowned let router: Router
     let repo: RestaurantRepo
     let sessionRepo: SessionRepo
+    let reloader: Reloader
 
     let cellIdentifier = "RestaurantListItemCell"
     var restaurants: [Restaurant] = []
 
     //MARK: - Initializers
-    init(router: Router, repo: RestaurantRepo, sessionRepo: SessionRepo) {
+    init(router: Router, repo: RestaurantRepo, sessionRepo: SessionRepo, reloader: Reloader) {
         self.router = router
         self.repo = repo
         self.sessionRepo = sessionRepo
+        self.reloader = reloader
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -31,7 +33,7 @@ class RestaurantListViewController: UITableViewController {
         repo.getAll()
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurants in
                 self.restaurants = returnedRestaurants
-                self.tableView.reloadData()
+                self.reloader.reload(self.tableView)
         }
 
         self.navigationItem.leftBarButtonItem =
