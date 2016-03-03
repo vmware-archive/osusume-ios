@@ -2,6 +2,8 @@ import UIKit
 
 class RestaurantTableViewCell: UITableViewCell {
 
+    let photoImageView = UIImageView()
+    let textContentView = UIView.newAutoLayoutView()
     let nameLabel = UILabel()
     let cuisineTypeLabel = UILabel()
     let authorLabel = UILabel()
@@ -11,13 +13,26 @@ class RestaurantTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(cuisineTypeLabel)
-        contentView.addSubview(authorLabel)
-        contentView.addSubview(createdAtLabel)
+        contentView.addSubview(photoImageView)
+        contentView.addSubview(textContentView)
+        textContentView.addSubview(nameLabel)
+        textContentView.addSubview(cuisineTypeLabel)
+        textContentView.addSubview(authorLabel)
+        textContentView.addSubview(createdAtLabel)
+
+        photoImageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 10.0)
+        photoImageView.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+        photoImageView.autoConstrainAttribute(.Width, toAttribute: .Height, ofView: self, withOffset: -20.0)
+        photoImageView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10.0)
+
+        textContentView.autoPinEdgeToSuperviewEdge(.Top)
+        textContentView.autoPinEdge(.Leading, toEdge: .Trailing, ofView: photoImageView)
+        textContentView.autoPinEdgeToSuperviewEdge(.Trailing)
+        textContentView.autoPinEdgeToSuperviewEdge(.Bottom)
 
         nameLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: 10.0)
         nameLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
 
         cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
@@ -35,6 +50,10 @@ class RestaurantTableViewCell: UITableViewCell {
     }
 
     func setPresenter(presenter: RestaurantDetailPresenter) {
+        photoImageView.sd_setImageWithURL(
+            presenter.photoUrl,
+            placeholderImage: UIImage(named: "TableCellPlaceholder")
+        )
         nameLabel.text = presenter.name
         cuisineTypeLabel.text = presenter.cuisineType
         authorLabel.text = presenter.author

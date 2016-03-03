@@ -76,6 +76,10 @@ class RestaurantListViewController: UITableViewController {
 
     //MARK: - UITableView
 
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100.0
+    }
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

@@ -52,4 +52,12 @@ struct RestaurantDetailPresenter {
     var creationDate: String {
         return "Created on \(DateConverter().formattedDate(restaurant.createdAt))"
     }
+
+    var photoUrl: NSURL {
+        if let url = self.restaurant.photoUrls.first {
+            return url
+        }
+
+        return NSURL(string: "")!
+    }
 }
