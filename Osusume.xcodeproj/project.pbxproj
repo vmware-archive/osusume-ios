@@ -931,7 +931,6 @@
 				DE99CDFE2542C59DFFE64112 /* CommentParserTest.swift in Sources */,
 				DE99C758C4362943C1232D75 /* DateConverterTest.swift in Sources */,
 				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,
-				AEDD1B7C1C87CFF70024B29E /* RestaurantTableViewCellTest.swift in Sources */,
 				AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */,
 				DE99C963630E4601E58D7E89 /* FakeCommentRepo.swift in Sources */,
 				DE99C928BE0115E1B7591775 /* FakeHttp.swift in Sources */,
@@ -959,6 +958,7 @@
 				DE99C6A0D1CDECE63F455ABB /* RestaurantFixtures.swift in Sources */,
 				AEB243901C71666300959434 /* RestaurantListViewControllerTest.swift in Sources */,
 				DE99C45D7BD67361E4B3AFB7 /* RestaurantParserTest.swift in Sources */,
+				AEDD1B7C1C87CFF70024B29E /* RestaurantTableViewCellTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
