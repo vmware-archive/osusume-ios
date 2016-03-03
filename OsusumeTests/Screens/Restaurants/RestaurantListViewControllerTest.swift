@@ -74,12 +74,10 @@ class RestaurantListViewControllerTest: XCTestCase {
     func test_viewDidLoad_reloadsTableData() {
         restaurantListVC.view.setNeedsLayout()
 
-        let expectedTableViewHash = restaurantListVC.tableView.hash
         let actualTableView = fakeReloader.reload_args as? UITableView
-        let actualTableViewHash = actualTableView?.hash
 
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))
-        expect(actualTableViewHash).to(equal(expectedTableViewHash))
+        expect(actualTableView === self.restaurantListVC.tableView).to(equal(true))
     }
 
     // MARK: Actions
