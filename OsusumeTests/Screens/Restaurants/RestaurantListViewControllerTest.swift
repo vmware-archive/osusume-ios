@@ -19,20 +19,7 @@ class RestaurantListViewControllerTest: XCTestCase {
         fakeReloader = FakeReloader()
 
         fakeRestaurantRepo.allRestaurants = [
-            Restaurant(
-                id: 1,
-                name: "TETSU",
-                address: "",
-                cuisineType: "ramen",
-                offersEnglishMenu: true,
-                walkInsOk: true,
-                acceptsCreditCards: true,
-                notes: "This place is great",
-                author: "Simon",
-                createdAt: NSDate(timeIntervalSince1970: 1454480320),
-                photoUrls: [],
-                comments: []
-            ),
+            RestaurantFixtures.newRestaurant()
         ]
 
         restaurantListVC = RestaurantListViewController(
@@ -51,15 +38,6 @@ class RestaurantListViewControllerTest: XCTestCase {
 
         expect(tableView.numberOfSections).to(equal(1))
         expect(tableView.numberOfRowsInSection(0)).to(equal(1))
-
-        let firstTableViewCell = tableView.cellForRowAtIndexPath(
-            NSIndexPath(forItem: 0, inSection: 0)
-        ) as! RestaurantTableViewCell
-
-        expect(firstTableViewCell.nameLabel.text).to(equal("TETSU"))
-        expect(firstTableViewCell.cuisineTypeLabel.text).to(equal("ramen"))
-        expect(firstTableViewCell.authorLabel.text).to(equal("Added by Simon"))
-        expect(firstTableViewCell.createdAtLabel.text).to(equal("Created on 2/3/16"))
     }
 
     // MARK: View Lifecycle

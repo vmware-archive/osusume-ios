@@ -33,4 +33,11 @@ class RestaurantTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func setPresenter(presenter: RestaurantDetailPresenter) {
+        nameLabel.text = presenter.name
+        cuisineTypeLabel.text = presenter.cuisineType
+        authorLabel.text = presenter.author
+        createdAtLabel.text = presenter.creationDate
+    }
 }

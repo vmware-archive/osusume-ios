@@ -101,10 +101,7 @@ class RestaurantListViewController: UITableViewController {
                 restaurant: restaurants[indexPath.row]
             )
 
-            cell.nameLabel.text = presenter.name
-            cell.cuisineTypeLabel.text = presenter.cuisineType
-            cell.authorLabel.text = presenter.author
-            cell.createdAtLabel.text = presenter.creationDate
+            cell.setPresenter(presenter)
 
             return cell
         }
