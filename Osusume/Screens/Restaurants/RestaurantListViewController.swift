@@ -3,7 +3,7 @@ import UIKit
 import PureLayout
 import BrightFutures
 
-class RestaurantListViewController: UITableViewController {
+class RestaurantListViewController: UIViewController {
     unowned let router: Router
     let repo: RestaurantRepo
     let sessionRepo: SessionRepo
@@ -11,6 +11,9 @@ class RestaurantListViewController: UITableViewController {
 
     let cellIdentifier = "RestaurantListItemCell"
     var restaurants: [Restaurant] = []
+
+    //MARK: - View Elements
+    let tableView = UITableView.newAutoLayoutView()
 
     //MARK: - Initializers
     init(router: Router, repo: RestaurantRepo, sessionRepo: SessionRepo, reloader: Reloader) {
@@ -20,6 +23,9 @@ class RestaurantListViewController: UITableViewController {
         self.reloader = reloader
 
         super.init(nibName: nil, bundle: nil)
+
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -51,13 +57,18 @@ class RestaurantListViewController: UITableViewController {
                 action: Selector("didTapAddRestaurantButton:")
         )
 
-        self.tableView.estimatedRowHeight = 10.0
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-
         tableView.registerClass(
             RestaurantTableViewCell.self,
             forCellReuseIdentifier: cellIdentifier
         )
+
+        view.addSubview(tableView)
+        applyViewConstraints()
+    }
+
+    //MARK: - Constraints
+    func applyViewConstraints() {
+        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
 
     //MARK: - Actions
@@ -73,18 +84,20 @@ class RestaurantListViewController: UITableViewController {
     func didTapRestaurant(id: Int) {
         router.showRestaurantDetailScreen(id)
     }
+}
 
-    //MARK: - UITableView
-
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+extension RestaurantListViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100.0
     }
+}
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+extension RestaurantListViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(
+    func tableView(
         tableView: UITableView,
         numberOfRowsInSection section: Int
         ) -> Int
@@ -92,13 +105,13 @@ class RestaurantListViewController: UITableViewController {
         return restaurants.count
     }
 
-    override func tableView(
+    func tableView(
         tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath
         ) -> UITableViewCell
     {
         if
-            let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
                 as? RestaurantTableViewCell
         {
             let presenter = RestaurantDetailPresenter(
@@ -113,7 +126,7 @@ class RestaurantListViewController: UITableViewController {
         return UITableViewCell()
     }
 
-    override func tableView(
+    func tableView(
         tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath
         )
