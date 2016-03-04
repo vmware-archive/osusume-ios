@@ -50,7 +50,7 @@ class RestaurantTableViewCell: UITableViewCell {
     }
 
     func setPresenter(presenter: RestaurantDetailPresenter) {
-        photoImageView.sd_setImageWithURL(
+        photoImageView.setImage(
             presenter.photoUrl,
             placeholderImage: UIImage(named: "TableCellPlaceholder")
         )

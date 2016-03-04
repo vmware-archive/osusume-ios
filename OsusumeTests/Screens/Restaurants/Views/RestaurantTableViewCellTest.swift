@@ -28,7 +28,7 @@ class RestaurantTableViewCellTest: XCTestCase {
 
         restaurantCell.setPresenter(presenter)
 
-        expect(restaurantCell.photoImageView.sd_imageURL()).to(equal(NSURL(string: "my-awesome-url")))
+        expect(restaurantCell.photoImageView.getImageURL()).to(equal(NSURL(string: "my-awesome-url")))
         expect(restaurantCell.nameLabel.text).to(equal("My Restaurant"))
         expect(restaurantCell.cuisineTypeLabel.text).to(equal("Sushi"))
         expect(restaurantCell.authorLabel.text).to(equal("Added by Danny"))
