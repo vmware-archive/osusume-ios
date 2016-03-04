@@ -39,8 +39,6 @@
 		AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */; };
 		AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */; };
 		AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */; };
-		AEDD1B7C1C87CFF70024B29E /* RestaurantTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD1B7B1C87CFF70024B29E /* RestaurantTableViewCellTest.swift */; };
-		AEDD1B7E1C891AFE0024B29E /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD1B7D1C891AFE0024B29E /* RemoteImage.swift */; };
 		AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */; };
 		AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
 		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
@@ -161,8 +159,6 @@
 		AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTest.swift; sourceTree = "<group>"; };
-		AEDD1B7B1C87CFF70024B29E /* RestaurantTableViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCellTest.swift; sourceTree = "<group>"; };
-		AEDD1B7D1C891AFE0024B29E /* RemoteImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		AEDE88C21C1FA57700AF8DA1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -538,7 +534,6 @@
 			children = (
 				DE99CA2F1013C067383EDCAD /* NetworkPhotoRepo.swift */,
 				DE99C23AE564F64ADA1FA252 /* PhotoRepo.swift */,
-				AEDD1B7D1C891AFE0024B29E /* RemoteImage.swift */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
@@ -657,7 +652,6 @@
 			isa = PBXGroup;
 			children = (
 				DE99CF148A4BB0C3FD5C1E15 /* RestaurantDetailTableViewCellTest.swift */,
-				AEDD1B7B1C87CFF70024B29E /* RestaurantTableViewCellTest.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -896,7 +890,6 @@
 				DE99CAE855DA045F9EC09C0C /* KeychainSessionRepo.swift in Sources */,
 				DE99C5F42497764EF7EE4252 /* LaunchWorkflow.swift in Sources */,
 				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
-				AEDD1B7E1C891AFE0024B29E /* RemoteImage.swift in Sources */,
 				DE99C2FBE2CDA0C6D59583BD /* main.swift in Sources */,
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
 				DE99C47B5157D6F86DCAE43E /* NetworkPhotoRepo.swift in Sources */,
@@ -962,7 +955,6 @@
 				DE99C6A0D1CDECE63F455ABB /* RestaurantFixtures.swift in Sources */,
 				AEB243901C71666300959434 /* RestaurantListViewControllerTest.swift in Sources */,
 				DE99C45D7BD67361E4B3AFB7 /* RestaurantParserTest.swift in Sources */,
-				AEDD1B7C1C87CFF70024B29E /* RestaurantTableViewCellTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

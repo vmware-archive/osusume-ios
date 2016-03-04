@@ -118,7 +118,15 @@ extension RestaurantListViewController: UITableViewDataSource {
                 restaurant: restaurants[indexPath.row]
             )
 
-            cell.setPresenter(presenter)
+            cell.photoImageView.sd_setImageWithURL(
+                presenter.photoUrl,
+                placeholderImage: UIImage(named: "TableCellPlaceholder")
+            )
+
+            cell.nameLabel.text = presenter.name
+            cell.cuisineTypeLabel.text = presenter.cuisineType
+            cell.authorLabel.text = presenter.author
+            cell.createdAtLabel.text = presenter.creationDate
 
             return cell
         }
