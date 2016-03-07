@@ -24,11 +24,13 @@
 		AE3ED1851C850EF20097DC10 /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1811C850EF20097DC10 /* Reloadable.swift */; };
 		AE3ED1861C850EF20097DC10 /* Reloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1821C850EF20097DC10 /* Reloader.swift */; };
 		AE3ED1871C850EF20097DC10 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */; };
+		AE5C73DE1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5C73DD1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift */; };
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */; };
 		AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA712471C4F59B300862B02 /* KeychainAccess.framework */; };
 		AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAEF4971C7315EC004ECC89 /* ExtensionsForTest.swift */; };
 		AEB243901C71666300959434 /* RestaurantListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB2438F1C71666300959434 /* RestaurantListViewControllerTest.swift */; };
+		AEBCAB5D1C8D5F37005FBA11 /* FakeImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCAB5C1C8D5F37005FBA11 /* FakeImageLoader.swift */; };
 		AEC471D41C7439F7001B8C56 /* BSGridCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D31C7439F7001B8C56 /* BSGridCollectionViewLayout.framework */; };
 		AEC471D61C7439FA001B8C56 /* BSImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D51C7439FA001B8C56 /* BSImagePicker.framework */; };
 		AEC471D81C743A00001B8C56 /* UIImageViewModeScaleAspect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D71C743A00001B8C56 /* UIImageViewModeScaleAspect.framework */; };
@@ -39,6 +41,9 @@
 		AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */; };
 		AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */; };
 		AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */; };
+		AEDD1B841C8975740024B29E /* DiskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD1B831C8975740024B29E /* DiskStorage.swift */; };
+		AEDD1B861C897DEE0024B29E /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD1B851C897DEE0024B29E /* ImageLoader.swift */; };
+		AEDD1B881C897FF40024B29E /* DefaultImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD1B871C897FF40024B29E /* DefaultImageLoader.swift */; };
 		AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */; };
 		AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
 		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
@@ -139,11 +144,13 @@
 		AE3ED1811C850EF20097DC10 /* Reloadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reloadable.swift; sourceTree = "<group>"; };
 		AE3ED1821C850EF20097DC10 /* Reloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reloader.swift; sourceTree = "<group>"; };
 		AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
+		AE5C73DD1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultImageLoaderTest.swift; sourceTree = "<group>"; };
 		AE7CDA551C69835300A2D6B3 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewCell.swift; sourceTree = "<group>"; };
 		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		AEAEF4971C7315EC004ECC89 /* ExtensionsForTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsForTest.swift; sourceTree = "<group>"; };
 		AEB2438F1C71666300959434 /* RestaurantListViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListViewControllerTest.swift; sourceTree = "<group>"; };
+		AEBCAB5C1C8D5F37005FBA11 /* FakeImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeImageLoader.swift; sourceTree = "<group>"; };
 		AEC471D31C7439F7001B8C56 /* BSGridCollectionViewLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BSGridCollectionViewLayout.framework; path = Carthage/Build/iOS/BSGridCollectionViewLayout.framework; sourceTree = "<group>"; };
 		AEC471D51C7439FA001B8C56 /* BSImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BSImagePicker.framework; path = Carthage/Build/iOS/BSImagePicker.framework; sourceTree = "<group>"; };
 		AEC471D71C743A00001B8C56 /* UIImageViewModeScaleAspect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIImageViewModeScaleAspect.framework; path = Carthage/Build/iOS/UIImageViewModeScaleAspect.framework; sourceTree = "<group>"; };
@@ -159,6 +166,9 @@
 		AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTest.swift; sourceTree = "<group>"; };
+		AEDD1B831C8975740024B29E /* DiskStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskStorage.swift; sourceTree = "<group>"; };
+		AEDD1B851C897DEE0024B29E /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		AEDD1B871C897FF40024B29E /* DefaultImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultImageLoader.swift; sourceTree = "<group>"; };
 		AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		AEDE88C21C1FA57700AF8DA1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -483,6 +493,7 @@
 		DE99C4E1F96B7A9E400BE07F /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				AEDD1B831C8975740024B29E /* DiskStorage.swift */,
 				DE99CD7CA952D78127F0ED9F /* RandomUUIDProvider.swift */,
 				DE99C8CE8002A8D4D0F99B17 /* S3Storage.swift */,
 			);
@@ -532,6 +543,8 @@
 		DE99C5A1F88E77C554A330D7 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				AEDD1B871C897FF40024B29E /* DefaultImageLoader.swift */,
+				AEDD1B851C897DEE0024B29E /* ImageLoader.swift */,
 				DE99CA2F1013C067383EDCAD /* NetworkPhotoRepo.swift */,
 				DE99C23AE564F64ADA1FA252 /* PhotoRepo.swift */,
 			);
@@ -629,6 +642,8 @@
 		DE99CDE1645E40FC08E6BAFB /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				AE5C73DD1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift */,
+				AEBCAB5C1C8D5F37005FBA11 /* FakeImageLoader.swift */,
 				DE99C87FE0E588335886E449 /* FakePhotoRepo.swift */,
 				DE99C40014BC36486F0794C3 /* NetworkPhotoRepoTest.swift */,
 			);
@@ -880,12 +895,15 @@
 				DE99CE89810E79B5C6F3AADD /* DataParser.swift in Sources */,
 				DE99CF768727260E8FCC3250 /* DateConverter.swift in Sources */,
 				DE99CBC2E6E4DCF9DEFA9449 /* DefaultHttp.swift in Sources */,
+				AEDD1B881C897FF40024B29E /* DefaultImageLoader.swift in Sources */,
 				AE3ED1841C850EF20097DC10 /* DefaultReloader.swift in Sources */,
+				AEDD1B841C8975740024B29E /* DiskStorage.swift in Sources */,
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
 				DE99CCF718E82C82888029DF /* Http.swift in Sources */,
 				DE99C575936B3E8619D06F8D /* HttpCommentRepo.swift in Sources */,
 				DE99C666756597D0AB21E3B5 /* HttpRestaurantRepo.swift in Sources */,
 				DE99CB8A9C851219F3FC27CC /* HttpUserRepo.swift in Sources */,
+				AEDD1B861C897DEE0024B29E /* ImageLoader.swift in Sources */,
 				AE1D42091C8420350048DF66 /* ImageViewController.swift in Sources */,
 				DE99CAE855DA045F9EC09C0C /* KeychainSessionRepo.swift in Sources */,
 				DE99C5F42497764EF7EE4252 /* LaunchWorkflow.swift in Sources */,
@@ -927,10 +945,12 @@
 			files = (
 				DE99CDFE2542C59DFFE64112 /* CommentParserTest.swift in Sources */,
 				DE99C758C4362943C1232D75 /* DateConverterTest.swift in Sources */,
+				AE5C73DE1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift in Sources */,
 				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,
 				AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */,
 				DE99C963630E4601E58D7E89 /* FakeCommentRepo.swift in Sources */,
 				DE99C928BE0115E1B7591775 /* FakeHttp.swift in Sources */,
+				AEBCAB5D1C8D5F37005FBA11 /* FakeImageLoader.swift in Sources */,
 				DE99C22361A04CBA99831688 /* FakeLocalStorage.swift in Sources */,
 				DE99C17C711158F022FE2AD4 /* FakePhotoRepo.swift in Sources */,
 				AE37F6041C7FD7EB0005CB29 /* FakeReloader.swift in Sources */,

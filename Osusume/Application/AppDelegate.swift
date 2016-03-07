@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let photoRepo = NetworkPhotoRepo(
             remoteStorage: S3Storage(),
             uuidProvider: RandomUUIDProvider(),
-            localStorage: DiskStorage()
+            localStorage: DiskStorage(),
+            imageLoader: DefaultImageLoader()
         )
 
         let http = DefaultHttp(basePath: AppDelegate.basePath)

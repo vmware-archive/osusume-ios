@@ -2,6 +2,7 @@ import XCTest
 import Nimble
 import UIKit
 import Foundation
+import BrightFutures
 @testable import Osusume
 
 class NetworkPhotoRepoTest: XCTestCase {
@@ -9,19 +10,87 @@ class NetworkPhotoRepoTest: XCTestCase {
     var fakeUuidProvider: FakeUUIDProvider!
     var networkPhotoRepo: NetworkPhotoRepo!
     var fakeLocalStorage: FakeLocalStorage!
+    var fakeImageLoader: FakeImageLoader!
 
     override func setUp() {
         fakeRemoteStorage = FakeRemoteStorage()
         fakeLocalStorage = FakeLocalStorage()
         fakeUuidProvider = FakeUUIDProvider()
+        fakeImageLoader = FakeImageLoader()
 
         networkPhotoRepo = NetworkPhotoRepo(
             remoteStorage: fakeRemoteStorage,
             uuidProvider: fakeUuidProvider,
-            localStorage: fakeLocalStorage
+            localStorage: fakeLocalStorage,
+            imageLoader: fakeImageLoader
         )
     }
 
+    // MARK: - loadImageFromUrl
+    func test_loadImageFromUrl_delegatesToImageLoader() {
+        let url = NSURL(string: "my-awesome-url")!
+
+        networkPhotoRepo.loadImageFromUrl(url, placeholder: nil)
+
+        expect(self.fakeImageLoader.load_wasCalled).to(equal(true))
+        expect(self.fakeImageLoader.load_arguments.url).to(equal(url))
+    }
+
+    func test_loadImageFromUrl_doesNothingWithInvalidUrls() {
+        let url = NSURL(string: "invalid url")
+
+        networkPhotoRepo.loadImageFromUrl(url, placeholder: nil)
+
+        expect(self.fakeImageLoader.load_wasCalled).to(equal(false))
+    }
+
+    func test_loadImageFromUrl_loadsImage() {
+        let url = NSURL(string: "my-awesome-url")
+
+        let promise = Promise<UIImage, ImageLoadingError>()
+        self.fakeImageLoader.load_returnValue = promise.future
+
+        let actualResult = networkPhotoRepo.loadImageFromUrl(url, placeholder: nil)
+
+        promise.success(testImage(named: "appleLogo", imageExtension: "png"))
+
+        waitUntil { done in
+            while !promise.future.isCompleted {}
+            done()
+        }
+
+        if let actualImage = actualResult.result?.value {
+            let actualImageData = UIImageJPEGRepresentation(actualImage, 1.0)
+
+            let expectedImage = testImage(named: "appleLogo", imageExtension: "png")
+            let expectedImageData = UIImageJPEGRepresentation(expectedImage, 1.0)
+
+            expect(actualImageData).to(equal(expectedImageData))
+        } else {
+            XCTFail("Image not returned from Promise.")
+        }
+    }
+
+    func test_loadImageFromUrl_mapsFailuresToRepoErrors() {
+        let url = NSURL(string: "my-awesome-url")
+
+        let promise = Promise<UIImage, ImageLoadingError>()
+        self.fakeImageLoader.load_returnValue = promise.future
+
+        let actualResult = networkPhotoRepo.loadImageFromUrl(url, placeholder: nil)
+
+        promise.failure(.Failed)
+
+        waitUntil { done in
+            while !promise.future.isCompleted {}
+            done()
+        }
+
+        expect(actualResult.result?.error).to(equal(RepoError.GetFailed))
+    }
+
+
+    // MARK: - uploadPhotos
     func test_uploadPhotos_passesRequestToStorageService() {
         let appleImage = testImage(named: "appleLogo", imageExtension: "png")
         fakeUuidProvider.uuidKey_returnValue = "my-cool-filename"

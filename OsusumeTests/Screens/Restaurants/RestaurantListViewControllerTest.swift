@@ -11,22 +11,23 @@ class RestaurantListViewControllerTest: XCTestCase {
     var fakeRestaurantRepo: FakeRestaurantRepo!
     var fakeSessionRepo: FakeSessionRepo!
     var fakeReloader: FakeReloader!
+    var fakePhotoRepo: FakePhotoRepo!
 
     override func setUp() {
         fakeRouter = FakeRouter()
         fakeRestaurantRepo = FakeRestaurantRepo()
         fakeSessionRepo = FakeSessionRepo()
         fakeReloader = FakeReloader()
+        fakePhotoRepo = FakePhotoRepo()
 
-        fakeRestaurantRepo.allRestaurants = [
-            RestaurantFixtures.newRestaurant()
-        ]
+        fakeRestaurantRepo.allRestaurants = [RestaurantFixtures.newRestaurant()]
 
         restaurantListVC = RestaurantListViewController(
             router: fakeRouter,
             repo: fakeRestaurantRepo,
             sessionRepo: fakeSessionRepo,
-            reloader: fakeReloader
+            reloader: fakeReloader,
+            photoRepo: fakePhotoRepo
         )
     }
 
@@ -39,6 +40,36 @@ class RestaurantListViewControllerTest: XCTestCase {
         expect(tableView.numberOfSections).to(equal(1))
         expect(tableView.numberOfRowsInSection(0)).to(equal(1))
     }
+
+    func test_tableView_loadsImageFromPhotoUrl() {
+        restaurantListVC.view.setNeedsLayout()
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+
+        let promise = Promise<UIImage, RepoError>()
+        fakePhotoRepo.loadImageFromUrl_returnValue = promise.future
+
+        let cell = restaurantListVC.tableView(
+            restaurantListVC.tableView,
+            cellForRowAtIndexPath: indexPath
+        ) as? RestaurantTableViewCell
+
+        expect(self.fakePhotoRepo.loadImageFromUrl_wasCalled).to(equal(true))
+        expect(self.fakePhotoRepo.loadImageFromUrl_args.url)
+            .to(equal(NSURL(string: "http://www.example.com/cat.jpg")!))
+        expect(self.fakePhotoRepo.loadImageFromUrl_args.placeholder)
+            .to(equal(UIImage(named: "TableCellPlaceholder")!))
+
+        let apple = testImage(named: "appleLogo", imageExtension: "png")
+        promise.success(apple)
+
+        waitUntil { done in
+            while !promise.future.isCompleted {}
+            done()
+        }
+
+        expect(cell?.photoImageView.image).to(equal(apple))
+    }
+
 
     // MARK: View Lifecycle
     func test_viewDidLoad_showsLogoutButton() {

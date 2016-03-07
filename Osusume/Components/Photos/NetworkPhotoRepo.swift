@@ -1,17 +1,19 @@
-protocol LocalStorage {
-    func writeToDisk(data: NSData, toUrl url: NSURL)
-}
-
-struct DiskStorage: LocalStorage {
-    func writeToDisk(data: NSData, toUrl url: NSURL) {
-        data.writeToURL(url, atomically: true)
-    }
-}
+import BrightFutures
 
 struct NetworkPhotoRepo: PhotoRepo {
     let remoteStorage: RemoteStorage
     let uuidProvider: UUIDProvider
     let localStorage: LocalStorage
+    let imageLoader: ImageLoader
+
+    func loadImageFromUrl(url: NSURL?, placeholder: UIImage?) -> Future<UIImage, RepoError> {
+        if let url = url {
+             return imageLoader.load(url, placeholder: placeholder)
+                .mapError { _ in RepoError.GetFailed }
+        }
+
+        return Future()
+    }
 
     func uploadPhotos(photos: [UIImage]) -> [String] {
         return photos.map { photo in uploadPhoto(photo) }

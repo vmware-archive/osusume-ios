@@ -19,7 +19,9 @@ struct RestaurantFixtures {
             notes: "",
             author: "",
             createdAt: NSDate(),
-            photoUrls: [],
+            photoUrls: [
+                NSURL(string: "http://www.example.com/cat.jpg")!
+            ],
             comments: []
         )
     }

@@ -42,7 +42,8 @@ class NavigationRouter : Router {
             router: self,
             repo: restaurantRepo,
             sessionRepo: sessionRepo,
-            reloader: DefaultReloader()
+            reloader: DefaultReloader(),
+            photoRepo: photoRepo
         )
 
         navigationController.setViewControllers(

@@ -8,6 +8,7 @@ class RestaurantListViewController: UIViewController {
     let repo: RestaurantRepo
     let sessionRepo: SessionRepo
     let reloader: Reloader
+    let photoRepo: PhotoRepo
 
     let cellIdentifier = "RestaurantListItemCell"
     var restaurants: [Restaurant] = []
@@ -16,11 +17,18 @@ class RestaurantListViewController: UIViewController {
     let tableView = UITableView.newAutoLayoutView()
 
     //MARK: - Initializers
-    init(router: Router, repo: RestaurantRepo, sessionRepo: SessionRepo, reloader: Reloader) {
+    init(
+        router: Router,
+        repo: RestaurantRepo,
+        sessionRepo: SessionRepo,
+        reloader: Reloader,
+        photoRepo: PhotoRepo)
+    {
         self.router = router
         self.repo = repo
         self.sessionRepo = sessionRepo
         self.reloader = reloader
+        self.photoRepo = photoRepo
 
         super.init(nibName: nil, bundle: nil)
 
@@ -118,10 +126,10 @@ extension RestaurantListViewController: UITableViewDataSource {
                 restaurant: restaurants[indexPath.row]
             )
 
-            cell.photoImageView.sd_setImageWithURL(
-                presenter.photoUrl,
-                placeholderImage: UIImage(named: "TableCellPlaceholder")
-            )
+            photoRepo.loadImageFromUrl(presenter.photoUrl, placeholder: UIImage(named: "TableCellPlaceholder")!)
+                .onSuccess { image in
+                    cell.photoImageView.image = image
+                }
 
             cell.nameLabel.text = presenter.name
             cell.cuisineTypeLabel.text = presenter.cuisineType
