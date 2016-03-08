@@ -24,6 +24,7 @@
 		AE3ED1851C850EF20097DC10 /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1811C850EF20097DC10 /* Reloadable.swift */; };
 		AE3ED1861C850EF20097DC10 /* Reloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1821C850EF20097DC10 /* Reloader.swift */; };
 		AE3ED1871C850EF20097DC10 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */; };
+		AE559A421C8EA4FF001D45A1 /* UserRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A411C8EA4FF001D45A1 /* UserRepoTest.swift */; };
 		AE5C73DE1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5C73DD1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift */; };
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */; };
@@ -144,6 +145,7 @@
 		AE3ED1811C850EF20097DC10 /* Reloadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reloadable.swift; sourceTree = "<group>"; };
 		AE3ED1821C850EF20097DC10 /* Reloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reloader.swift; sourceTree = "<group>"; };
 		AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
+		AE559A411C8EA4FF001D45A1 /* UserRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepoTest.swift; sourceTree = "<group>"; };
 		AE5C73DD1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultImageLoaderTest.swift; sourceTree = "<group>"; };
 		AE7CDA551C69835300A2D6B3 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 				DE99CE8BD6AEB8146575F4DB /* FakeSessionRepo.swift */,
 				DE99C931A70085460B5745A7 /* FakeUserRepo.swift */,
 				DE99C888906689E76151F9A7 /* KeychainSessionRepoTest.swift */,
+				AE559A411C8EA4FF001D45A1 /* UserRepoTest.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -962,6 +965,7 @@
 				DE99C26900A3406AA1C154CF /* FakeUUIDProvider.swift in Sources */,
 				DE99CDD1C1EF4FD00A5D80BF /* HttpCommentRepoTest.swift in Sources */,
 				DE99C37C22157FAC29D102FA /* HttpRestaurantRepoTest.swift in Sources */,
+				AE559A421C8EA4FF001D45A1 /* UserRepoTest.swift in Sources */,
 				AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */,
 				DE99C39FB88F303DF4869148 /* KeychainSessionRepoTest.swift in Sources */,
 				DE99CED00AC7F1E1202E9B1F /* LaunchWorkflowTest.swift in Sources */,
