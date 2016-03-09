@@ -3,11 +3,11 @@ import BrightFutures
 
 class FakePhotoRepo: PhotoRepo {
     var loadImageFromUrl_wasCalled = false
-    var loadImageFromUrl_args: (url: NSURL, placeholder: UIImage)!
+    var loadImageFromUrl_args: NSURL?
     var loadImageFromUrl_returnValue = Future<UIImage, RepoError>()
-    func loadImageFromUrl(url: NSURL?, placeholder: UIImage?) -> Future<UIImage, RepoError> {
+    func loadImageFromUrl(url: NSURL?) -> Future<UIImage, RepoError> {
         loadImageFromUrl_wasCalled = true
-        loadImageFromUrl_args = (url!, placeholder!)
+        loadImageFromUrl_args = url!
         return loadImageFromUrl_returnValue
     }
 

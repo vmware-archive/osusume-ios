@@ -5,5 +5,5 @@ enum ImageLoadingError: ErrorType {
 }
 
 protocol ImageLoader {
-    func load(url: NSURL, placeholder: UIImage?) -> Future<UIImage, ImageLoadingError>
+    func load(url: NSURL) -> Future<UIImage, ImageLoadingError>
 }

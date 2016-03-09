@@ -30,16 +30,16 @@ class NetworkPhotoRepoTest: XCTestCase {
     func test_loadImageFromUrl_delegatesToImageLoader() {
         let url = NSURL(string: "my-awesome-url")!
 
-        networkPhotoRepo.loadImageFromUrl(url, placeholder: nil)
+        networkPhotoRepo.loadImageFromUrl(url)
 
         expect(self.fakeImageLoader.load_wasCalled).to(equal(true))
-        expect(self.fakeImageLoader.load_arguments.url).to(equal(url))
+        expect(self.fakeImageLoader.load_arguments).to(equal(url))
     }
 
     func test_loadImageFromUrl_doesNothingWithInvalidUrls() {
         let url = NSURL(string: "invalid url")
 
-        networkPhotoRepo.loadImageFromUrl(url, placeholder: nil)
+        networkPhotoRepo.loadImageFromUrl(url)
 
         expect(self.fakeImageLoader.load_wasCalled).to(equal(false))
     }
@@ -50,7 +50,7 @@ class NetworkPhotoRepoTest: XCTestCase {
         let promise = Promise<UIImage, ImageLoadingError>()
         self.fakeImageLoader.load_returnValue = promise.future
 
-        let actualResult = networkPhotoRepo.loadImageFromUrl(url, placeholder: nil)
+        let actualResult = networkPhotoRepo.loadImageFromUrl(url)
 
         promise.success(testImage(named: "appleLogo", imageExtension: "png"))
 
@@ -77,7 +77,7 @@ class NetworkPhotoRepoTest: XCTestCase {
         let promise = Promise<UIImage, ImageLoadingError>()
         self.fakeImageLoader.load_returnValue = promise.future
 
-        let actualResult = networkPhotoRepo.loadImageFromUrl(url, placeholder: nil)
+        let actualResult = networkPhotoRepo.loadImageFromUrl(url)
 
         promise.failure(.Failed)
 

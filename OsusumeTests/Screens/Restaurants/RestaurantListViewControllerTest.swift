@@ -53,11 +53,12 @@ class RestaurantListViewControllerTest: XCTestCase {
             cellForRowAtIndexPath: indexPath
         ) as? RestaurantTableViewCell
 
+        let placeholderImage = UIImage(named: "TableCellPlaceholder")!
+        expect(cell?.photoImageView.image).to(equal(placeholderImage))
+
         expect(self.fakePhotoRepo.loadImageFromUrl_wasCalled).to(equal(true))
-        expect(self.fakePhotoRepo.loadImageFromUrl_args.url)
+        expect(self.fakePhotoRepo.loadImageFromUrl_args)
             .to(equal(NSURL(string: "http://www.example.com/cat.jpg")!))
-        expect(self.fakePhotoRepo.loadImageFromUrl_args.placeholder)
-            .to(equal(UIImage(named: "TableCellPlaceholder")!))
 
         let apple = testImage(named: "appleLogo", imageExtension: "png")
         promise.success(apple)

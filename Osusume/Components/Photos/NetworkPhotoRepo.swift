@@ -6,9 +6,9 @@ struct NetworkPhotoRepo: PhotoRepo {
     let localStorage: LocalStorage
     let imageLoader: ImageLoader
 
-    func loadImageFromUrl(url: NSURL?, placeholder: UIImage?) -> Future<UIImage, RepoError> {
+    func loadImageFromUrl(url: NSURL?) -> Future<UIImage, RepoError> {
         if let url = url {
-             return imageLoader.load(url, placeholder: placeholder)
+             return imageLoader.load(url)
                 .mapError { _ in RepoError.GetFailed }
         }
 

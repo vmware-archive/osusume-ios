@@ -126,7 +126,8 @@ extension RestaurantListViewController: UITableViewDataSource {
                 restaurant: restaurants[indexPath.row]
             )
 
-            photoRepo.loadImageFromUrl(presenter.photoUrl, placeholder: UIImage(named: "TableCellPlaceholder")!)
+            cell.photoImageView.image = UIImage(named: "TableCellPlaceholder")
+            photoRepo.loadImageFromUrl(presenter.photoUrl)
                 .onSuccess { image in
                     cell.photoImageView.image = image
                 }

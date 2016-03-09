@@ -25,7 +25,8 @@
 		AE3ED1861C850EF20097DC10 /* Reloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1821C850EF20097DC10 /* Reloader.swift */; };
 		AE3ED1871C850EF20097DC10 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */; };
 		AE559A421C8EA4FF001D45A1 /* UserRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A411C8EA4FF001D45A1 /* UserRepoTest.swift */; };
-		AE5C73DE1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5C73DD1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift */; };
+		AE559A441C8EC199001D45A1 /* ImageLoaderHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A431C8EC199001D45A1 /* ImageLoaderHandlerTest.swift */; };
+		AE559A461C8EC98B001D45A1 /* ImageLoaderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A451C8EC98B001D45A1 /* ImageLoaderHandler.swift */; };
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */; };
 		AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA712471C4F59B300862B02 /* KeychainAccess.framework */; };
@@ -146,7 +147,8 @@
 		AE3ED1821C850EF20097DC10 /* Reloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reloader.swift; sourceTree = "<group>"; };
 		AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		AE559A411C8EA4FF001D45A1 /* UserRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepoTest.swift; sourceTree = "<group>"; };
-		AE5C73DD1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultImageLoaderTest.swift; sourceTree = "<group>"; };
+		AE559A431C8EC199001D45A1 /* ImageLoaderHandlerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderHandlerTest.swift; sourceTree = "<group>"; };
+		AE559A451C8EC98B001D45A1 /* ImageLoaderHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderHandler.swift; sourceTree = "<group>"; };
 		AE7CDA551C69835300A2D6B3 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewCell.swift; sourceTree = "<group>"; };
 		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 			children = (
 				AEDD1B871C897FF40024B29E /* DefaultImageLoader.swift */,
 				AEDD1B851C897DEE0024B29E /* ImageLoader.swift */,
+				AE559A451C8EC98B001D45A1 /* ImageLoaderHandler.swift */,
 				DE99CA2F1013C067383EDCAD /* NetworkPhotoRepo.swift */,
 				DE99C23AE564F64ADA1FA252 /* PhotoRepo.swift */,
 			);
@@ -645,9 +648,9 @@
 		DE99CDE1645E40FC08E6BAFB /* Photos */ = {
 			isa = PBXGroup;
 			children = (
-				AE5C73DD1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift */,
 				AEBCAB5C1C8D5F37005FBA11 /* FakeImageLoader.swift */,
 				DE99C87FE0E588335886E449 /* FakePhotoRepo.swift */,
+				AE559A431C8EC199001D45A1 /* ImageLoaderHandlerTest.swift */,
 				DE99C40014BC36486F0794C3 /* NetworkPhotoRepoTest.swift */,
 			);
 			path = Photos;
@@ -907,6 +910,7 @@
 				DE99C666756597D0AB21E3B5 /* HttpRestaurantRepo.swift in Sources */,
 				DE99CB8A9C851219F3FC27CC /* HttpUserRepo.swift in Sources */,
 				AEDD1B861C897DEE0024B29E /* ImageLoader.swift in Sources */,
+				AE559A461C8EC98B001D45A1 /* ImageLoaderHandler.swift in Sources */,
 				AE1D42091C8420350048DF66 /* ImageViewController.swift in Sources */,
 				DE99CAE855DA045F9EC09C0C /* KeychainSessionRepo.swift in Sources */,
 				DE99C5F42497764EF7EE4252 /* LaunchWorkflow.swift in Sources */,
@@ -948,7 +952,6 @@
 			files = (
 				DE99CDFE2542C59DFFE64112 /* CommentParserTest.swift in Sources */,
 				DE99C758C4362943C1232D75 /* DateConverterTest.swift in Sources */,
-				AE5C73DE1C8D1E0900C45F39 /* DefaultImageLoaderTest.swift in Sources */,
 				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,
 				AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */,
 				DE99C963630E4601E58D7E89 /* FakeCommentRepo.swift in Sources */,
@@ -965,7 +968,7 @@
 				DE99C26900A3406AA1C154CF /* FakeUUIDProvider.swift in Sources */,
 				DE99CDD1C1EF4FD00A5D80BF /* HttpCommentRepoTest.swift in Sources */,
 				DE99C37C22157FAC29D102FA /* HttpRestaurantRepoTest.swift in Sources */,
-				AE559A421C8EA4FF001D45A1 /* UserRepoTest.swift in Sources */,
+				AE559A441C8EC199001D45A1 /* ImageLoaderHandlerTest.swift in Sources */,
 				AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */,
 				DE99C39FB88F303DF4869148 /* KeychainSessionRepoTest.swift in Sources */,
 				DE99CED00AC7F1E1202E9B1F /* LaunchWorkflowTest.swift in Sources */,
@@ -979,6 +982,7 @@
 				DE99C6A0D1CDECE63F455ABB /* RestaurantFixtures.swift in Sources */,
 				AEB243901C71666300959434 /* RestaurantListViewControllerTest.swift in Sources */,
 				DE99C45D7BD67361E4B3AFB7 /* RestaurantParserTest.swift in Sources */,
+				AE559A421C8EA4FF001D45A1 /* UserRepoTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
