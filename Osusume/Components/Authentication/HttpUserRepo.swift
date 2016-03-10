@@ -4,9 +4,10 @@ import Alamofire
 
 class HttpUserRepo: UserRepo {
     let http: Http
-
-    init(http: Http) {
+    let sessionRepo: SessionRepo
+    init(http: Http, sessionRepo: SessionRepo) {
         self.http = http
+        self.sessionRepo = sessionRepo
     }
 
     func login(email: String, password: String) -> Future<String, RepoError> {
@@ -17,5 +18,15 @@ class HttpUserRepo: UserRepo {
                 parameters: ["email": email, "password": password]
             )
             .map { value in value["token"] as! String }
+    }
+
+    func fetchCurrentUserName() -> Future<String, RepoError> {
+        return http.get("/profile", headers: buildHeaders()).map{value in value["name"] as! String}
+    }
+
+    private func buildHeaders() -> [String: String] {
+        return [
+            "Authorization": "Bearer \(sessionRepo.getToken()!)"
+        ]
     }
 }

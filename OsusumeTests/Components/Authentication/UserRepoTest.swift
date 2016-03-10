@@ -6,9 +6,18 @@ import BrightFutures
 class UserRepoTest: XCTestCase {
     let fakeHttp = FakeHttp()
     var userRepo: UserRepo!
+    let fakeSessionRepo = FakeSessionRepo()
+
+    override func setUp() {
+        fakeSessionRepo.tokenValue = "some-session-token"
+
+        userRepo = HttpUserRepo(
+            http: fakeHttp,
+            sessionRepo: fakeSessionRepo
+        )
+    }
 
     func test_login_callsPostWithEmailAndPasswordAndReturnsToken() {
-        userRepo = HttpUserRepo(http: fakeHttp)
         let promise = Promise<[String: AnyObject], RepoError>()
         fakeHttp.post_returnValue = promise.future
 
@@ -21,5 +30,16 @@ class UserRepoTest: XCTestCase {
         promise.success(["token": "my-token"])
         NSRunLoop.osu_advance()
         expect(token.value).to(equal("my-token"))
+    }
+
+    func test_fetchCurrentUser_returnsUserName() {
+        let promise = Promise<AnyObject, RepoError>()
+        fakeHttp.get_returnValue = promise.future
+
+        let userName = userRepo.fetchCurrentUserName()
+
+        promise.success(["name": "awesome-user-name"])
+        NSRunLoop.osu_advance()
+        expect(userName.value).to(equal("awesome-user-name"))
     }
 }

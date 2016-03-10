@@ -25,7 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             http: http,
             sessionRepo: sessionRepo
         )
-        let userRepo = HttpUserRepo(http: http)
+        let userRepo = HttpUserRepo(
+            http: http,
+            sessionRepo: sessionRepo
+        )
         let commentRepo = HttpCommentRepo(
             http: http,
             sessionRepo: sessionRepo,

@@ -1,0 +1,41 @@
+import XCTest
+import Nimble
+import BrightFutures
+@testable import Osusume
+
+class ProfileViewControllerTest: XCTestCase {
+    var fakeUserRepo: FakeUserRepo!
+    var fakeRouter: FakeRouter!
+    var fakeSessionRepo: FakeSessionRepo!
+    var profileVC: ProfileViewController!
+
+    override func setUp() {
+        fakeUserRepo = FakeUserRepo()
+        fakeRouter = FakeRouter()
+        fakeSessionRepo = FakeSessionRepo()
+        profileVC = ProfileViewController(
+            router: fakeRouter,
+            repo: fakeUserRepo,
+            sessionRepo: fakeSessionRepo
+        )
+        profileVC.view.setNeedsLayout()
+    }
+
+    // MARK: View Lifecycle
+    func test_viewDidLoad_displaysUsername() {
+        fakeUserRepo.stringPromise.success("A")
+        NSRunLoop.osu_advance()
+        expect(self.profileVC.userNameLabel.text).to(equal("A"))
+    }
+
+    func test_viewDidLoad_showsLogoutButton() {
+        expect(self.profileVC.logoutButton).toNot(beNil())
+    }
+
+    //MARK: Actions
+    func test_tapLogout_logsOutUser() {
+        profileVC.logoutButton.sendActionsForControlEvents(.TouchUpInside)
+        expect(self.fakeSessionRepo.deleteTokenWasCalled).to(beTrue())
+        expect(self.fakeRouter.loginScreenIsShowing).to(beTrue())
+    }
+}

@@ -6,7 +6,6 @@ import BrightFutures
 class RestaurantListViewController: UIViewController {
     unowned let router: Router
     let repo: RestaurantRepo
-    let sessionRepo: SessionRepo
     let reloader: Reloader
     let photoRepo: PhotoRepo
 
@@ -20,13 +19,11 @@ class RestaurantListViewController: UIViewController {
     init(
         router: Router,
         repo: RestaurantRepo,
-        sessionRepo: SessionRepo,
         reloader: Reloader,
         photoRepo: PhotoRepo)
     {
         self.router = router
         self.repo = repo
-        self.sessionRepo = sessionRepo
         self.reloader = reloader
         self.photoRepo = photoRepo
 
@@ -52,10 +49,10 @@ class RestaurantListViewController: UIViewController {
 
         self.navigationItem.leftBarButtonItem =
             UIBarButtonItem(
-                title: "Logout",
+                title: "Profile",
                 style: .Plain,
                 target: self,
-                action: Selector("didTapLogoutButton:"))
+                action: Selector("didTapProfileButton:"))
 
         self.navigationItem.rightBarButtonItem =
             UIBarButtonItem(
@@ -80,9 +77,8 @@ class RestaurantListViewController: UIViewController {
     }
 
     //MARK: - Actions
-    func didTapLogoutButton(sender: UIBarButtonItem) {
-        sessionRepo.deleteToken()
-        router.showLoginScreen()
+    func didTapProfileButton(sender: UIBarButtonItem) {
+        router.showProfileScreen()
     }
 
     func didTapAddRestaurantButton(sender: UIBarButtonItem) {

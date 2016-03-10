@@ -78,4 +78,26 @@ class OsusumeApplication {
             .buttons["Update"]
             .tap()
     }
+
+    func tapRestaurantDetailBackButton() {
+        ui.navigationBars["Osusume.RestaurantDetailView"]
+            .childrenMatchingType(.Button)
+            .matchingIdentifier("Back")
+            .elementBoundByIndex(0)
+            .tap()
+    }
+
+    func tapProfileButton() {
+        ui.navigationBars["Osusume.RestaurantListView"]
+            .buttons["Profile"]
+            .tap()
+    }
+
+    func tapProfileBackButton() {
+        ui.navigationBars["My Profile"]
+            .childrenMatchingType(.Button)
+            .matchingIdentifier("Back")
+            .elementBoundByIndex(0)
+            .tap()
+    }
 }

@@ -25,7 +25,6 @@ class RestaurantListViewControllerTest: XCTestCase {
         restaurantListVC = RestaurantListViewController(
             router: fakeRouter,
             repo: fakeRestaurantRepo,
-            sessionRepo: fakeSessionRepo,
             reloader: fakeReloader,
             photoRepo: fakePhotoRepo
         )
@@ -73,12 +72,12 @@ class RestaurantListViewControllerTest: XCTestCase {
 
 
     // MARK: View Lifecycle
-    func test_viewDidLoad_showsLogoutButton() {
+    func test_viewDidLoad_showsProfileButton() {
         restaurantListVC.view.setNeedsLayout()
 
         let leftBarButtonItem = self.restaurantListVC.navigationItem.leftBarButtonItem
 
-        expect(leftBarButtonItem?.title).to(equal("Logout"))
+        expect(leftBarButtonItem?.title).to(equal("Profile"))
     }
 
     func test_viewDidLoad_reloadsTableData() {
@@ -109,17 +108,14 @@ class RestaurantListViewControllerTest: XCTestCase {
         expect(self.fakeRouter.restaurantDetailScreenIsShowing).to(equal(true))
     }
 
-    func test_tappingLogoutButton_callsDeleteTokenSessionRepo_movesUserToLoginScreen() {
+    func test_tappingProfileButton_showsProfileScreen() {
         restaurantListVC.view.setNeedsLayout()
 
-        let logoutButton = self.restaurantListVC.navigationItem.leftBarButtonItem!
+        let profileButton = self.restaurantListVC.navigationItem.leftBarButtonItem!
 
+        tapNavBarButton(profileButton)
 
-        tapNavBarButton(logoutButton)
-
-
-        expect(self.fakeSessionRepo.deleteTokenWasCalled).to(beTrue())
-        expect(self.fakeRouter.loginScreenIsShowing).to(beTrue())
+        expect(self.fakeRouter.profileScreenIsShowing).to(beTrue())
     }
 
 }

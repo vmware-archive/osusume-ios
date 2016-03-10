@@ -34,6 +34,12 @@ class OsusumeUITests: XCTestCase {
         osusume.tapRestaurantName(newName)
 
         XCTAssertTrue(screen.staticTexts[newName].exists)
+
+        osusume.tapRestaurantDetailBackButton()
+
+        osusume.tapProfileButton()
+        XCTAssertTrue(screen.staticTexts["My Profile"].exists)
+        osusume.tapProfileBackButton()
     }
 
 }

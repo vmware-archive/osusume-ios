@@ -24,6 +24,8 @@
 		AE3ED1851C850EF20097DC10 /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1811C850EF20097DC10 /* Reloadable.swift */; };
 		AE3ED1861C850EF20097DC10 /* Reloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1821C850EF20097DC10 /* Reloader.swift */; };
 		AE3ED1871C850EF20097DC10 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */; };
+		AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */; };
+		AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */; };
 		AE559A421C8EA4FF001D45A1 /* UserRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A411C8EA4FF001D45A1 /* UserRepoTest.swift */; };
 		AE559A441C8EC199001D45A1 /* ImageLoaderHandlerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A431C8EC199001D45A1 /* ImageLoaderHandlerTest.swift */; };
 		AE559A461C8EC98B001D45A1 /* ImageLoaderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A451C8EC98B001D45A1 /* ImageLoaderHandler.swift */; };
@@ -146,6 +148,8 @@
 		AE3ED1811C850EF20097DC10 /* Reloadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reloadable.swift; sourceTree = "<group>"; };
 		AE3ED1821C850EF20097DC10 /* Reloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reloader.swift; sourceTree = "<group>"; };
 		AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
+		AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTest.swift; sourceTree = "<group>"; };
 		AE559A411C8EA4FF001D45A1 /* UserRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepoTest.swift; sourceTree = "<group>"; };
 		AE559A431C8EC199001D45A1 /* ImageLoaderHandlerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderHandlerTest.swift; sourceTree = "<group>"; };
 		AE559A451C8EC98B001D45A1 /* ImageLoaderHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderHandler.swift; sourceTree = "<group>"; };
@@ -336,6 +340,29 @@
 			path = DataReloading;
 			sourceTree = "<group>";
 		};
+		AE559A381C8E6F96001D45A1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		AE559A3B1C8E7015001D45A1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		AE559A3E1C8E7492001D45A1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		AE877D601C7C078400471040 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,6 +473,7 @@
 				DE99C05A3B00F28311CF7DF9 /* JsonParsing */,
 				DE99C00E116EE2EC9BB258E0 /* Navigation */,
 				DE99C5A1F88E77C554A330D7 /* Photos */,
+				AE559A381C8E6F96001D45A1 /* Profile */,
 				DE99CE260F35F29000DA6B7F /* Restaurants */,
 				DE99C4E1F96B7A9E400BE07F /* Storage */,
 			);
@@ -457,6 +485,7 @@
 			children = (
 				DE99C5704F8E23A0677B3263 /* Comments */,
 				DE99C8E2D4573E447DF678D2 /* Login */,
+				AE559A3B1C8E7015001D45A1 /* Profile */,
 				DE99C54688E7F01FE6A3777D /* Restaurants */,
 			);
 			path = Screens;
@@ -708,6 +737,7 @@
 			children = (
 				AEC877661C72FFFE0005BEA1 /* Comments */,
 				DE99CB59BBE28BEC558F6267 /* Login */,
+				AE559A3E1C8E7492001D45A1 /* Profile */,
 				DE99C27815A58B229380223E /* Restaurants */,
 			);
 			path = Screens;
@@ -925,6 +955,7 @@
 				DE99C150101FB8E0A3656E6A /* ParseError.swift in Sources */,
 				DE99C436E360442260128A3B /* PersistedComment.swift in Sources */,
 				DE99C6D52B330617543375A2 /* PhotoRepo.swift in Sources */,
+				AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */,
 				DE99C09C8D59A4023CBD6A14 /* RandomUUIDProvider.swift in Sources */,
 				AE3ED1851C850EF20097DC10 /* Reloadable.swift in Sources */,
 				AE3ED1861C850EF20097DC10 /* Reloader.swift in Sources */,
@@ -977,6 +1008,7 @@
 				DE99CC7C2EB019C02B7866BA /* NetworkPhotoRepoTest.swift in Sources */,
 				AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */,
 				AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */,
+				AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */,
 				DE99C7227466E10933462D38 /* RestaurantDetailTableViewCellTest.swift in Sources */,
 				AEDEDC5B1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift in Sources */,
 				DE99C6A0D1CDECE63F455ABB /* RestaurantFixtures.swift in Sources */,

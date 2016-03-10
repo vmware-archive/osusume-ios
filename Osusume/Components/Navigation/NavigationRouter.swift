@@ -41,7 +41,6 @@ class NavigationRouter : Router {
         let restaurantListViewController = RestaurantListViewController(
             router: self,
             repo: restaurantRepo,
-            sessionRepo: sessionRepo,
             reloader: DefaultReloader(),
             photoRepo: photoRepo
         )
@@ -114,6 +113,19 @@ class NavigationRouter : Router {
 
         navigationController.pushViewController(
             imageViewController,
+            animated: true
+        )
+    }
+
+    func showProfileScreen() {
+        let profileViewController = ProfileViewController(
+            router: self,
+            repo: userRepo,
+            sessionRepo: sessionRepo
+        )
+
+        navigationController.pushViewController(
+            profileViewController,
             animated: true
         )
     }

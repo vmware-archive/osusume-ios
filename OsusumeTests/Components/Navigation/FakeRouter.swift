@@ -44,4 +44,9 @@ class FakeRouter : Router {
         imageScreenIsShowing = true
         showImageScreen_args = url
     }
+
+    var profileScreenIsShowing = false
+    func showProfileScreen() {
+        profileScreenIsShowing = true
+    }
 }

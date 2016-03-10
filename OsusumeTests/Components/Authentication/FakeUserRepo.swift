@@ -15,4 +15,8 @@ class FakeUserRepo : UserRepo {
 
         return stringPromise.future
     }
+
+    func fetchCurrentUserName() -> Future<String, RepoError> {
+        return stringPromise.future
+    }
 }

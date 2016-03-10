@@ -7,4 +7,5 @@ protocol Router: class {
     func showNewCommentScreen(id: Int)
     func dismissNewCommentScreen(animated: Bool)
     func showImageScreen(url: NSURL)
+    func showProfileScreen()
 }
