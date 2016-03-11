@@ -3,27 +3,16 @@ import Nimble
 @testable import Osusume
 
 class HttpPostRepoTest: XCTestCase {
-    let fakeHttp = FakeHttp()
-    let fakeSessionRepo = FakeSessionRepo()
+    let fakeRestaurantRepo = FakeRestaurantRepo()
     var httpPostRepo: HttpPostRepo!
 
     override func setUp() {
-        fakeSessionRepo.tokenValue = "some-session-token"
-
-        httpPostRepo = HttpPostRepo(
-            http: fakeHttp,
-            sessionRepo: fakeSessionRepo
-        )
+        httpPostRepo = HttpPostRepo(restaurantRepo: fakeRestaurantRepo)
     }
 
-    func test_getAll_passesTokenAsHeaderToHttp() {
+    func test_getAll_delegatesToRestaurantRepo() {
         httpPostRepo.getAll()
 
-        let expectedHeaders = [
-            "Authorization": "Bearer some-session-token"
-        ]
-
-        XCTAssertEqual("/profile/posts", fakeHttp.get_args.path)
-        XCTAssertEqual(expectedHeaders, fakeHttp.get_args.headers)
+        expect(self.fakeRestaurantRepo.getAll_wasCalled).to(equal(true))
     }
 }

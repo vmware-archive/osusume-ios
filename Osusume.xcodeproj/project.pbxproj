@@ -448,8 +448,8 @@
 		AEEF3BDC1C915A7700553DB3 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				AEEF3BDD1C915ABB00553DB3 /* HttpPostRepoTest.swift */,
 				AEEF3BDF1C91635200553DB3 /* FakePostRepo.swift */,
+				AEEF3BDD1C915ABB00553DB3 /* HttpPostRepoTest.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -957,6 +957,7 @@
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
 				DE99CCF718E82C82888029DF /* Http.swift in Sources */,
 				DE99C575936B3E8619D06F8D /* HttpCommentRepo.swift in Sources */,
+				AEEF3BD91C91576300553DB3 /* HttpPostRepo.swift in Sources */,
 				DE99C666756597D0AB21E3B5 /* HttpRestaurantRepo.swift in Sources */,
 				DE99CB8A9C851219F3FC27CC /* HttpUserRepo.swift in Sources */,
 				AEDD1B861C897DEE0024B29E /* ImageLoader.swift in Sources */,
@@ -975,6 +976,7 @@
 				DE99C150101FB8E0A3656E6A /* ParseError.swift in Sources */,
 				DE99C436E360442260128A3B /* PersistedComment.swift in Sources */,
 				DE99C6D52B330617543375A2 /* PhotoRepo.swift in Sources */,
+				AEEF3BDB1C91587E00553DB3 /* PostRepo.swift in Sources */,
 				AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */,
 				DE99C09C8D59A4023CBD6A14 /* RandomUUIDProvider.swift in Sources */,
 				AE3ED1851C850EF20097DC10 /* Reloadable.swift in Sources */,
@@ -993,9 +995,7 @@
 				DE99C5E76677BB3EC661EEFF /* S3Storage.swift in Sources */,
 				DE99C74E7C41EF4CD1917D0F /* SessionRepo.swift in Sources */,
 				AE3ED1871C850EF20097DC10 /* UIKitExtensions.swift in Sources */,
-				AEEF3BD91C91576300553DB3 /* HttpPostRepo.swift in Sources */,
 				DE99C8689FF32EA1A298D0C4 /* UserRepo.swift in Sources */,
-				AEEF3BDB1C91587E00553DB3 /* PostRepo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1012,18 +1012,18 @@
 				AEBCAB5D1C8D5F37005FBA11 /* FakeImageLoader.swift in Sources */,
 				DE99C22361A04CBA99831688 /* FakeLocalStorage.swift in Sources */,
 				DE99C17C711158F022FE2AD4 /* FakePhotoRepo.swift in Sources */,
+				AEEF3BE01C91635200553DB3 /* FakePostRepo.swift in Sources */,
 				AE37F6041C7FD7EB0005CB29 /* FakeReloader.swift in Sources */,
 				DE99C51CD1DB54246958051D /* FakeRemoteStorage.swift in Sources */,
-				AEEF3BDE1C915ABB00553DB3 /* HttpPostRepoTest.swift in Sources */,
 				DE99CFF67EFE10FB62F671E7 /* FakeRestaurantRepo.swift in Sources */,
 				DE99C631EC2BA39452CA983D /* FakeRouter.swift in Sources */,
 				DE99CCF19E10CB0C5E8CC4DC /* FakeSessionRepo.swift in Sources */,
 				DE99C650E795C8E9946EAFD8 /* FakeUserRepo.swift in Sources */,
 				DE99C26900A3406AA1C154CF /* FakeUUIDProvider.swift in Sources */,
 				DE99CDD1C1EF4FD00A5D80BF /* HttpCommentRepoTest.swift in Sources */,
+				AEEF3BDE1C915ABB00553DB3 /* HttpPostRepoTest.swift in Sources */,
 				DE99C37C22157FAC29D102FA /* HttpRestaurantRepoTest.swift in Sources */,
 				AE559A441C8EC199001D45A1 /* ImageLoaderHandlerTest.swift in Sources */,
-				AEEF3BE01C91635200553DB3 /* FakePostRepo.swift in Sources */,
 				AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */,
 				DE99C39FB88F303DF4869148 /* KeychainSessionRepoTest.swift in Sources */,
 				DE99CED00AC7F1E1202E9B1F /* LaunchWorkflowTest.swift in Sources */,

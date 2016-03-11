@@ -6,8 +6,10 @@ class FakeRestaurantRepo : RestaurantRepo {
     var createdRestaurant : Restaurant? = nil
     var allRestaurants : [Restaurant] = []
 
+    var getAll_wasCalled = false
     var restaurantsPromise = Promise<[Restaurant], RepoError>()
     func getAll() -> Future<[Restaurant], RepoError> {
+        getAll_wasCalled = true
         restaurantsPromise.success(allRestaurants)
         return restaurantsPromise.future
     }

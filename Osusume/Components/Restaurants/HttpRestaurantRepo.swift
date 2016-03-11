@@ -7,9 +7,9 @@ struct HttpRestaurantRepo: RestaurantRepo {
     let http: Http
     let sessionRepo: SessionRepo
 
-    init(http: Http, sessionRepo: SessionRepo) {
+    init(http: Http, sessionRepo: SessionRepo, path: String = "/restaurants") {
         self.parser = RestaurantParser()
-        self.path = "/restaurants"
+        self.path = path
         self.http = http
         self.sessionRepo = sessionRepo
     }
