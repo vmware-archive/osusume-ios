@@ -7,36 +7,19 @@ class ProfileViewController: UIViewController {
 
     //MARK: - View Elements
     let userNameLabel: UILabel
-
-    lazy var logoutButton: UIButton = {
-        let button = UIButton.newAutoLayoutView()
-        button.backgroundColor = UIColor.grayColor()
-        button.setTitle("Logout", forState: .Normal)
-        button.addTarget(
-            self,
-            action: Selector("didTapLogoutButton:"),
-            forControlEvents: .TouchUpInside
-        )
-        return button
-    }()
-
-    var restaurantsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "My Posts"
-        return label
-    }()
-
-    var restaurantsTableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
-    }()
+    let logoutButton: UIButton
+    let restaurantsLabel: UILabel
+    let restaurantsTableView: UITableView
 
     init(router: Router, repo: UserRepo, sessionRepo: SessionRepo) {
         self.router = router
         self.repo = repo
         self.sessionRepo = sessionRepo
 
-        userNameLabel = UILabel()
+        logoutButton = UIButton.newAutoLayoutView()
+        userNameLabel = UILabel.newAutoLayoutView()
+        restaurantsLabel = UILabel.newAutoLayoutView()
+        restaurantsTableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,7 +32,17 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "My Profile"
+        title = "My Profile"
+
+        logoutButton.backgroundColor = UIColor.grayColor()
+        logoutButton.setTitle("Logout", forState: .Normal)
+        logoutButton.addTarget(
+            self,
+            action: Selector("didTapLogoutButton:"),
+            forControlEvents: .TouchUpInside
+        )
+
+        restaurantsLabel.text = "My Posts"
 
         let userInfoView = UIView.newAutoLayoutView()
         userInfoView.addSubview(userNameLabel)
