@@ -120,7 +120,7 @@ class NavigationRouter : Router {
     func showProfileScreen() {
         let profileViewController = ProfileViewController(
             router: self,
-            repo: userRepo,
+            userRepo: userRepo,
             sessionRepo: sessionRepo
         )
 

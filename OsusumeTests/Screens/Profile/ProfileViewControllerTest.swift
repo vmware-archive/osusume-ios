@@ -15,7 +15,7 @@ class ProfileViewControllerTest: XCTestCase {
         fakeSessionRepo = FakeSessionRepo()
         profileVC = ProfileViewController(
             router: fakeRouter,
-            repo: fakeUserRepo,
+            userRepo: fakeUserRepo,
             sessionRepo: fakeSessionRepo
         )
         profileVC.view.setNeedsLayout()

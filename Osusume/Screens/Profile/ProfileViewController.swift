@@ -2,7 +2,7 @@ import Foundation
 
 class ProfileViewController: UIViewController {
     let router: Router
-    let repo: UserRepo
+    let userRepo: UserRepo
     let sessionRepo: SessionRepo
 
     //MARK: - View Elements
@@ -11,9 +11,9 @@ class ProfileViewController: UIViewController {
     let restaurantsLabel: UILabel
     let restaurantsTableView: UITableView
 
-    init(router: Router, repo: UserRepo, sessionRepo: SessionRepo) {
+    init(router: Router, userRepo: UserRepo, sessionRepo: SessionRepo) {
         self.router = router
-        self.repo = repo
+        self.userRepo = userRepo
         self.sessionRepo = sessionRepo
 
         logoutButton = UIButton.newAutoLayoutView()
@@ -76,7 +76,7 @@ class ProfileViewController: UIViewController {
         restaurantsTableView.autoPinEdgeToSuperviewEdge(.Trailing)
         restaurantsTableView.autoPinEdgeToSuperviewEdge(.Bottom)
 
-        repo.fetchCurrentUserName().onSuccess { [unowned self] userName in
+        userRepo.fetchCurrentUserName().onSuccess { [unowned self] userName in
             self.userNameLabel.text = userName
         }
     }
