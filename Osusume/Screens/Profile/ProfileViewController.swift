@@ -76,9 +76,9 @@ class ProfileViewController: UIViewController {
         restaurantsTableView.autoPinEdgeToSuperviewEdge(.Trailing)
         restaurantsTableView.autoPinEdgeToSuperviewEdge(.Bottom)
 
-        repo.fetchCurrentUserName().onSuccess(callback: {userName in
+        repo.fetchCurrentUserName().onSuccess { [unowned self] userName in
             self.userNameLabel.text = userName
-        })
+        }
     }
 
     //MARK: - Actions
