@@ -6,10 +6,7 @@ class ProfileViewController: UIViewController {
     let sessionRepo: SessionRepo
 
     //MARK: - View Elements
-    let userNameLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
+    let userNameLabel: UILabel
 
     lazy var logoutButton: UIButton = {
         let button = UIButton.newAutoLayoutView()
@@ -23,11 +20,23 @@ class ProfileViewController: UIViewController {
         return button
     }()
 
+    var restaurantsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "My Posts"
+        return label
+    }()
+
+    var restaurantsTableView: UITableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
 
     init(router: Router, repo: UserRepo, sessionRepo: SessionRepo) {
         self.router = router
         self.repo = repo
         self.sessionRepo = sessionRepo
+
+        userNameLabel = UILabel()
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -42,18 +51,37 @@ class ProfileViewController: UIViewController {
 
         self.title = "My Profile"
 
-        view.addSubview(userNameLabel)
-        view.addSubview(logoutButton)
+        let userInfoView = UIView.newAutoLayoutView()
+        userInfoView.addSubview(userNameLabel)
+        userInfoView.addSubview(logoutButton)
+        view.addSubview(userInfoView)
+        view.addSubview(restaurantsLabel)
+        view.addSubview(restaurantsTableView)
 
         view.backgroundColor = UIColor.whiteColor()
 
-        userNameLabel.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
-        userNameLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
-        userNameLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 100.0)
+        userInfoView.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
+        userInfoView.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+        userInfoView.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
+        userInfoView.autoSetDimension(.Height, toSize: 80.0)
 
-        logoutButton.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
+        userNameLabel.autoPinEdgeToSuperviewEdge(.Top)
+        userNameLabel.autoPinEdgeToSuperviewEdge(.Leading)
+        userNameLabel.autoPinEdge(.Trailing, toEdge: .Leading, ofView: logoutButton)
+
+        logoutButton.autoPinEdgeToSuperviewEdge(.Top)
         logoutButton.autoPinEdge(.Leading, toEdge: .Trailing, ofView: userNameLabel)
-        logoutButton.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
+        logoutButton.autoSetDimension(.Width, toSize: 100.0)
+        logoutButton.autoPinEdgeToSuperviewEdge(.Trailing)
+
+        restaurantsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: userInfoView)
+        restaurantsLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+        restaurantsLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
+
+        restaurantsTableView.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantsLabel)
+        restaurantsTableView.autoPinEdgeToSuperviewEdge(.Leading)
+        restaurantsTableView.autoPinEdgeToSuperviewEdge(.Trailing)
+        restaurantsTableView.autoPinEdgeToSuperviewEdge(.Bottom)
 
         repo.fetchCurrentUserName().onSuccess(callback: {userName in
             self.userNameLabel.text = userName

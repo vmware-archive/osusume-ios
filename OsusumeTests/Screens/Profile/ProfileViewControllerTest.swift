@@ -30,6 +30,12 @@ class ProfileViewControllerTest: XCTestCase {
 
     func test_viewDidLoad_showsLogoutButton() {
         expect(self.profileVC.logoutButton).toNot(beNil())
+        expect(self.profileVC.logoutButton.titleLabel?.text).to(equal("Logout"))
+    }
+
+    func test_viewDidLoad_showsMyPostsTab() {
+        expect(self.profileVC.restaurantsLabel).toNot(beNil())
+        expect(self.profileVC.restaurantsLabel.text).to(equal("My Posts"))
     }
 
     //MARK: Actions
