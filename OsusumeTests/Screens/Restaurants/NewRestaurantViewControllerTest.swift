@@ -60,6 +60,16 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeRouter.restaurantListScreenIsShowing).to(equal(true))
     }
 
+    func test_viewDidLoad_showsFindCuisineButton() {
+        expect(self.newRestaurantVC.formView.findCuisineButton).to(beAKindOf(UIButton))
+    }
+
+    func test_tappingFindCuisine_showsFindCuisineScreen() {
+        tapButton(newRestaurantVC.formView.findCuisineButton)
+
+        expect(self.fakeRouter.showFindCuisineScreen_wasCalled).to(beTrue())
+    }
+
     func test_tappingDoneButton_savesRestaurant() {
         newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
         newRestaurantVC.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"

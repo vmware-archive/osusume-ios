@@ -99,4 +99,22 @@ class NavigationRouterTest: XCTestCase {
         expect((self.navController.topViewController as! ImageViewController).url)
             .to(equal(url))
     }
+
+    func test_showingCuisineListScreen() {
+        var window: UIWindow?
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window!.rootViewController = navController
+        window!.makeKeyAndVisible()
+
+        let newRestaurantVC = NewRestaurantViewController(
+            router: FakeRouter(),
+            restaurantRepo: FakeRestaurantRepo(),
+            photoRepo: FakePhotoRepo()
+        )
+        navController.pushViewController(newRestaurantVC, animated: false)
+
+        navigationRouter.showFindCuisineScreen()
+
+        expect(self.navController.presentedViewController).to(beAKindOf(CuisineListTableViewController))
+    }
 }

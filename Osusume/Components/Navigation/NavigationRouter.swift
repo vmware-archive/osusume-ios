@@ -135,4 +135,14 @@ class NavigationRouter: Router {
             animated: true
         )
     }
+
+    func showFindCuisineScreen() {
+        let findCuisineTableViewController = CuisineListTableViewController()
+
+        navigationController.presentViewController(
+            findCuisineTableViewController,
+            animated: true,
+            completion: nil
+        )
+    }
 }

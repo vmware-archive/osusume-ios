@@ -69,6 +69,8 @@
 		AEFCB7781C6191FB0096DD93 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
 		AEFCB77A1C6192020096DD93 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
 		AEFCB77C1C6194CE0096DD93 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */; };
+		AEFD80621C99537500B4F17C /* CuisineListTableViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD80611C99537500B4F17C /* CuisineListTableViewControllerTest.swift */; };
+		AEFD80651C99542100B4F17C /* CuisineListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFD80641C99542100B4F17C /* CuisineListTableViewController.swift */; };
 		DE99C013F19CEC6915625054 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CDED5E4C5907A6F17312 /* RestaurantTableViewCell.swift */; };
 		DE99C04ADB4E9A522E2E2FE4 /* RestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C7C7B61E86D663B7640C /* RestaurantRepo.swift */; };
 		DE99C09C8D59A4023CBD6A14 /* RandomUUIDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CD7CA952D78127F0ED9F /* RandomUUIDProvider.swift */; };
@@ -210,6 +212,8 @@
 		AEFCB7771C6191FB0096DD93 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSS3.framework"; sourceTree = "<group>"; };
 		AEFCB7791C6192020096DD93 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/AWSCore.framework"; sourceTree = "<group>"; };
 		AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = "Libs/aws-ios-sdk-2.3.4/frameworks/extras/AWSCognito.framework"; sourceTree = "<group>"; };
+		AEFD80611C99537500B4F17C /* CuisineListTableViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListTableViewControllerTest.swift; sourceTree = "<group>"; };
+		AEFD80641C99542100B4F17C /* CuisineListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListTableViewController.swift; sourceTree = "<group>"; };
 		DE99C0E75B8B1D39EA5588DB /* DefaultHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultHttp.swift; sourceTree = "<group>"; };
 		DE99C122588ACDEFAB769AB7 /* NewCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		DE99C19CB7A0087314C35911 /* OsusumeBridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsusumeBridgingHeader.h; sourceTree = "<group>"; };
@@ -368,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */,
+				AEFD80611C99537500B4F17C /* CuisineListTableViewControllerTest.swift */,
 				AEACDB7A1C991EC80092AEF6 /* CuisineRepoTest.swift */,
 			);
 			path = Cuisines;
@@ -490,6 +495,14 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		AEFD80631C99541300B4F17C /* Cuisines */ = {
+			isa = PBXGroup;
+			children = (
+				AEFD80641C99542100B4F17C /* CuisineListTableViewController.swift */,
+			);
+			path = Cuisines;
+			sourceTree = "<group>";
+		};
 		DE99C003D1E3F5F16934CAE4 /* Date */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,9 +524,9 @@
 		DE99C05A3B00F28311CF7DF9 /* JsonParsing */ = {
 			isa = PBXGroup;
 			children = (
+				AEF0E1161C9948BF0002CA1B /* DataListParser.swift */,
 				DE99C85298E7CF65D37C73F9 /* DataParser.swift */,
 				DE99CBA30FB1C089E096822D /* ParseError.swift */,
-				AEF0E1161C9948BF0002CA1B /* DataListParser.swift */,
 			);
 			path = JsonParsing;
 			sourceTree = "<group>";
@@ -541,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				DE99C5704F8E23A0677B3263 /* Comments */,
+				AEFD80631C99541300B4F17C /* Cuisines */,
 				DE99C8E2D4573E447DF678D2 /* Login */,
 				AE559A3B1C8E7015001D45A1 /* Profile */,
 				DE99C54688E7F01FE6A3777D /* Restaurants */,
@@ -991,7 +1005,9 @@
 				AEACDB791C9900020092AEF6 /* Cuisine.swift in Sources */,
 				AEACDB771C98FFD90092AEF6 /* CuisineList.swift in Sources */,
 				AEACDB751C98FDF90092AEF6 /* CuisineListParser.swift in Sources */,
+				AEFD80651C99542100B4F17C /* CuisineListTableViewController.swift in Sources */,
 				AEACDB7D1C991FB30092AEF6 /* CuisineRepo.swift in Sources */,
+				AEF0E1171C9948BF0002CA1B /* DataListParser.swift in Sources */,
 				DE99CE89810E79B5C6F3AADD /* DataParser.swift in Sources */,
 				DE99CF768727260E8FCC3250 /* DateConverter.swift in Sources */,
 				DE99CBC2E6E4DCF9DEFA9449 /* DefaultHttp.swift in Sources */,
@@ -1004,7 +1020,6 @@
 				AEEF3BD91C91576300553DB3 /* HttpPostRepo.swift in Sources */,
 				DE99C666756597D0AB21E3B5 /* HttpRestaurantRepo.swift in Sources */,
 				DE99CB8A9C851219F3FC27CC /* HttpUserRepo.swift in Sources */,
-				AEF0E1171C9948BF0002CA1B /* DataListParser.swift in Sources */,
 				AEDD1B861C897DEE0024B29E /* ImageLoader.swift in Sources */,
 				AE559A461C8EC98B001D45A1 /* ImageLoaderHandler.swift in Sources */,
 				AE1D42091C8420350048DF66 /* ImageViewController.swift in Sources */,
@@ -1051,6 +1066,7 @@
 			files = (
 				DE99CDFE2542C59DFFE64112 /* CommentParserTest.swift in Sources */,
 				AE51C6321C98FD680068EF0D /* CuisineListParserTest.swift in Sources */,
+				AEFD80621C99537500B4F17C /* CuisineListTableViewControllerTest.swift in Sources */,
 				AEACDB7B1C991EC80092AEF6 /* CuisineRepoTest.swift in Sources */,
 				DE99C758C4362943C1232D75 /* DateConverterTest.swift in Sources */,
 				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,

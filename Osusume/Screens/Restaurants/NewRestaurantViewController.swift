@@ -5,6 +5,10 @@ import BrightFutures
 import BSImagePicker
 import Photos
 
+protocol FindCuisineScreenPresenterProtocol {
+    func showFindCuisineScreen()
+}
+
 class NewRestaurantViewController: UIViewController {
 
     unowned let router: Router
@@ -22,6 +26,8 @@ class NewRestaurantViewController: UIViewController {
         self.photoRepo = photoRepo
 
         super.init(nibName: nil, bundle: nil)
+
+        formView.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -194,5 +200,12 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
         ) -> Int
     {
         return images.count
+    }
+}
+
+// MARK: - FindCuisineScreenPresenterProtocol
+extension NewRestaurantViewController: FindCuisineScreenPresenterProtocol {
+    func showFindCuisineScreen() {
+        router.showFindCuisineScreen()
     }
 }

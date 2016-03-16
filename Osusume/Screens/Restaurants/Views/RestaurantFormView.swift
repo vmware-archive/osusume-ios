@@ -3,6 +3,7 @@ import UIKit
 class RestaurantFormView : UIView {
 
     let restaurant: Restaurant? = nil
+    var delegate: FindCuisineScreenPresenterProtocol?
 
     // MARK: - Initializers
     init(restaurant: Restaurant?) {
@@ -14,6 +15,7 @@ class RestaurantFormView : UIView {
         self.addSubview(addressTextField)
         self.addSubview(cuisineTypeLabel)
         self.addSubview(cuisineTypeTextField)
+        self.addSubview(findCuisineButton)
         self.addSubview(offersEnglishMenuLabel)
         self.addSubview(offersEnglishMenuSwitch)
         self.addSubview(walkInsOkLabel)
@@ -69,9 +71,12 @@ class RestaurantFormView : UIView {
         cuisineTypeTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
         cuisineTypeTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
 
-        offersEnglishMenuSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-        offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeTextField, withOffset: 8.0)
+        findCuisineButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeTextField)
+        findCuisineButton.autoAlignAxisToSuperviewAxis(.Vertical)
+
+        offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: findCuisineButton, withOffset: 8.0)
         offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        offersEnglishMenuSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
         offersEnglishMenuLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: offersEnglishMenuSwitch)
 
         walkInsOkSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
@@ -179,6 +184,21 @@ class RestaurantFormView : UIView {
         return textField
     }()
 
+    lazy var findCuisineButton: UIButton = {
+        let button = UIButton()
+
+        button.setTitle("Find Cuisine", forState: .Normal)
+        button.setTitleColor(button.tintColor, forState: .Normal)
+        button.backgroundColor = UIColor.clearColor()
+        button.addTarget(
+            self,
+            action: Selector("didTapFindCuisineButton:"),
+            forControlEvents: .TouchUpInside
+        )
+
+        return button
+    }()
+
 
     //MARK: - Getters
 
@@ -208,5 +228,10 @@ class RestaurantFormView : UIView {
 
     func getNotesText() -> String? {
         return notesTextField.text
+    }
+
+    // MARK: Actions
+    func didTapFindCuisineButton(sender: UIButton) {
+        delegate?.showFindCuisineScreen()
     }
 }

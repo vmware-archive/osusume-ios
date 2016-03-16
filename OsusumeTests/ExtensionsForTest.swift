@@ -11,6 +11,10 @@ extension NSRunLoop {
 
 class ExtensionsForTest {}
 
+func tapButton(button: UIButton) {
+    button.sendActionsForControlEvents(.TouchUpInside)
+}
+
 func tapNavBarButton(button: UIBarButtonItem) {
     UIApplication.sharedApplication().sendAction(
         button.action,
