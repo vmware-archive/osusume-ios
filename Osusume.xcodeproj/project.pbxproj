@@ -712,10 +712,10 @@
 				DE99CB21B6B5AF4521A2A1A1 /* HttpRestaurantRepo.swift */,
 				DE99CB4E04736BBC8AFF8021 /* NewRestaurant.swift */,
 				DE99CADB47A29D018CAEA0A9 /* Restaurant.swift */,
+				AE28A95F1C9939B600816CEB /* RestaurantDataSource.swift */,
 				DE99C98F1E0CA5232D37AFEC /* RestaurantDetailPresenter.swift */,
 				DE99C1A3787E5EB3046984FF /* RestaurantParser.swift */,
 				DE99C7C7B61E86D663B7640C /* RestaurantRepo.swift */,
-				AE28A95F1C9939B600816CEB /* RestaurantDataSource.swift */,
 			);
 			path = Restaurants;
 			sourceTree = "<group>";
@@ -955,7 +955,6 @@
 				DE99CF768727260E8FCC3250 /* DateConverter.swift in Sources */,
 				DE99CBC2E6E4DCF9DEFA9449 /* DefaultHttp.swift in Sources */,
 				AEDD1B881C897FF40024B29E /* DefaultImageLoader.swift in Sources */,
-				AE28A9601C9939B600816CEB /* RestaurantDataSource.swift in Sources */,
 				AE3ED1841C850EF20097DC10 /* DefaultReloader.swift in Sources */,
 				AEDD1B841C8975740024B29E /* DiskStorage.swift in Sources */,
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
@@ -987,6 +986,7 @@
 				AE3ED1861C850EF20097DC10 /* Reloader.swift in Sources */,
 				DE99C5B49AE57371C657E350 /* RepoError.swift in Sources */,
 				DE99C669FE674F54A5287FC6 /* Restaurant.swift in Sources */,
+				AE28A9601C9939B600816CEB /* RestaurantDataSource.swift in Sources */,
 				DE99CB151EDB94CD5450E1FB /* RestaurantDetailPresenter.swift in Sources */,
 				AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */,
 				248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */,
