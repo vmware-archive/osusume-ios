@@ -22,7 +22,8 @@ class ProfileViewController: UIViewController {
         sessionRepo: SessionRepo,
         postRepo: PostRepo,
         photoRepo: PhotoRepo,
-        reloader: Reloader) {
+        reloader: Reloader)
+    {
         self.router = router
         self.userRepo = userRepo
         self.sessionRepo = sessionRepo
