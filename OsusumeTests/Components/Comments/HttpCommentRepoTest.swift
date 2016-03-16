@@ -21,7 +21,6 @@ class FakeCommentParser: DataParser {
         parse_arg = json
         return parse_returnValue
     }
-
 }
 
 class HttpCommentRepoTest: XCTestCase {
