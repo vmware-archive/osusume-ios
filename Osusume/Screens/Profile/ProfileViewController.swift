@@ -1,13 +1,12 @@
 import Foundation
 
-class ProfileViewController: UIViewController, UITableViewDataSource {
+class ProfileViewController: UIViewController {
     let router: Router
     let userRepo: UserRepo
     let sessionRepo: SessionRepo
     let postRepo: PostRepo
-    let photoRepo: PhotoRepo
     let reloader: Reloader
-    var posts: [Restaurant]
+    let restaurantDataSource: RestaurantDataSource
 
     let cellIdentifier = "RestaurantListItemCell"
 
@@ -28,9 +27,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
         self.userRepo = userRepo
         self.sessionRepo = sessionRepo
         self.postRepo = postRepo
-        self.photoRepo = photoRepo
         self.reloader = reloader
-        self.posts = [Restaurant]()
+        self.restaurantDataSource = RestaurantDataSource(photoRepo: photoRepo)
 
         logoutButton = UIButton.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
@@ -39,7 +37,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
 
         super.init(nibName: nil, bundle: nil)
 
-        self.tableView.dataSource = self
+        self.tableView.dataSource = self.restaurantDataSource
         self.tableView.delegate = self
     }
 
@@ -106,46 +104,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
             }
 
         postRepo.getAll()
-            .onSuccess { restaurants in
-                self.posts = restaurants
+            .onSuccess { [unowned self] restaurants in
+                self.restaurantDataSource.restaurants = restaurants
                 self.reloader.reload(self.tableView)
             }
 
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(posts.count)
-        return posts.count
-    }
-
-    func tableView(
-        tableView: UITableView,
-        cellForRowAtIndexPath indexPath: NSIndexPath
-        ) -> UITableViewCell
-    {
-        if
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-                as? RestaurantTableViewCell
-        {
-            let presenter = RestaurantDetailPresenter(
-                restaurant: posts[indexPath.row]
-            )
-
-            cell.photoImageView.image = UIImage(named: "TableCellPlaceholder")
-            photoRepo.loadImageFromUrl(presenter.photoUrl)
-                .onSuccess { image in
-                    cell.photoImageView.image = image
-            }
-
-            cell.nameLabel.text = presenter.name
-            cell.cuisineTypeLabel.text = presenter.cuisineType
-            cell.authorLabel.text = presenter.author
-            cell.createdAtLabel.text = presenter.creationDate
-
-            return cell
-        }
-
-        return UITableViewCell()
     }
 
     //MARK: - Actions
@@ -160,3 +123,4 @@ extension ProfileViewController: UITableViewDelegate {
         return 100.0
     }
 }
+

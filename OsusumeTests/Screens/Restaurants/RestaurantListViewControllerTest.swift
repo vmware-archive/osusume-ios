@@ -31,23 +31,16 @@ class RestaurantListViewControllerTest: XCTestCase {
     }
 
     // MARK: - UITableView
-    func test_tableView_displaysListOfRestaurants() {
-        restaurantListVC.view.setNeedsLayout()
-
-        let tableView = restaurantListVC.tableView
-
-        expect(tableView.numberOfSections).to(equal(1))
-        expect(tableView.numberOfRowsInSection(0)).to(equal(1))
-    }
-
     func test_tableView_loadsImageFromPhotoUrl() {
         restaurantListVC.view.setNeedsLayout()
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        restaurantListVC.restaurantDataSource.restaurants = [RestaurantFixtures.newRestaurant()]
+
 
         let promise = Promise<UIImage, RepoError>()
         fakePhotoRepo.loadImageFromUrl_returnValue = promise.future
 
-        let cell = restaurantListVC.tableView(
+        let cell = restaurantListVC.restaurantDataSource.tableView(
             restaurantListVC.tableView,
             cellForRowAtIndexPath: indexPath
         ) as? RestaurantTableViewCell
