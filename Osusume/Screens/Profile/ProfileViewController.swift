@@ -1,31 +1,46 @@
 import Foundation
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDataSource {
     let router: Router
     let userRepo: UserRepo
     let sessionRepo: SessionRepo
     let postRepo: PostRepo
+    let photoRepo: PhotoRepo
+    let reloader: Reloader
     var posts: [Restaurant]
+
+    let cellIdentifier = "RestaurantListItemCell"
+
 
     //MARK: - View Elements
     let userNameLabel: UILabel
     let logoutButton: UIButton
     let restaurantsLabel: UILabel
-    let restaurantsTableView: UITableView
+    let tableView: UITableView
 
-    init(router: Router, userRepo: UserRepo, sessionRepo: SessionRepo, postRepo: PostRepo) {
+    init(router: Router,
+        userRepo: UserRepo,
+        sessionRepo: SessionRepo,
+        postRepo: PostRepo,
+        photoRepo: PhotoRepo,
+        reloader: Reloader) {
         self.router = router
         self.userRepo = userRepo
         self.sessionRepo = sessionRepo
         self.postRepo = postRepo
+        self.photoRepo = photoRepo
+        self.reloader = reloader
         self.posts = [Restaurant]()
 
         logoutButton = UIButton.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
         restaurantsLabel = UILabel.newAutoLayoutView()
-        restaurantsTableView = UITableView.newAutoLayoutView()
+        tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
+
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +50,11 @@ class ProfileViewController: UIViewController {
     //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.registerClass(
+            RestaurantTableViewCell.self,
+            forCellReuseIdentifier: cellIdentifier
+        )
 
         title = "My Profile"
 
@@ -53,7 +73,7 @@ class ProfileViewController: UIViewController {
         userInfoView.addSubview(logoutButton)
         view.addSubview(userInfoView)
         view.addSubview(restaurantsLabel)
-        view.addSubview(restaurantsTableView)
+        view.addSubview(tableView)
 
         view.backgroundColor = UIColor.whiteColor()
 
@@ -75,24 +95,68 @@ class ProfileViewController: UIViewController {
         restaurantsLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
         restaurantsLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
 
-        restaurantsTableView.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantsLabel)
-        restaurantsTableView.autoPinEdgeToSuperviewEdge(.Leading)
-        restaurantsTableView.autoPinEdgeToSuperviewEdge(.Trailing)
-        restaurantsTableView.autoPinEdgeToSuperviewEdge(.Bottom)
+        tableView.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantsLabel)
+        tableView.autoPinEdgeToSuperviewEdge(.Left)
+        tableView.autoPinEdgeToSuperviewEdge(.Right)
+        tableView.autoPinEdgeToSuperviewEdge(.Bottom)
 
         userRepo.fetchCurrentUserName()
             .onSuccess { [unowned self] userName in
                 self.userNameLabel.text = userName
             }
+
         postRepo.getAll()
             .onSuccess { restaurants in
                 self.posts = restaurants
+                self.reloader.reload(self.tableView)
             }
+
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(posts.count)
+        return posts.count
+    }
+
+    func tableView(
+        tableView: UITableView,
+        cellForRowAtIndexPath indexPath: NSIndexPath
+        ) -> UITableViewCell
+    {
+        if
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+                as? RestaurantTableViewCell
+        {
+            let presenter = RestaurantDetailPresenter(
+                restaurant: posts[indexPath.row]
+            )
+
+            cell.photoImageView.image = UIImage(named: "TableCellPlaceholder")
+            photoRepo.loadImageFromUrl(presenter.photoUrl)
+                .onSuccess { image in
+                    cell.photoImageView.image = image
+            }
+
+            cell.nameLabel.text = presenter.name
+            cell.cuisineTypeLabel.text = presenter.cuisineType
+            cell.authorLabel.text = presenter.author
+            cell.createdAtLabel.text = presenter.creationDate
+
+            return cell
+        }
+
+        return UITableViewCell()
     }
 
     //MARK: - Actions
     func didTapLogoutButton(sender: UIButton?) {
         sessionRepo.deleteToken()
         router.showLoginScreen()
+    }
+}
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100.0
     }
 }

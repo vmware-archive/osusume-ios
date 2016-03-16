@@ -125,7 +125,9 @@ class NavigationRouter: Router {
             router: self,
             userRepo: userRepo,
             sessionRepo: sessionRepo,
-            postRepo: postRepo
+            postRepo: postRepo,
+            photoRepo: photoRepo,
+            reloader: DefaultReloader()
         )
 
         navigationController.pushViewController(
