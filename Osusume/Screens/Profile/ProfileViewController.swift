@@ -4,6 +4,8 @@ class ProfileViewController: UIViewController {
     let router: Router
     let userRepo: UserRepo
     let sessionRepo: SessionRepo
+    let postRepo: PostRepo
+    var posts: [Restaurant]
 
     //MARK: - View Elements
     let userNameLabel: UILabel
@@ -11,10 +13,12 @@ class ProfileViewController: UIViewController {
     let restaurantsLabel: UILabel
     let restaurantsTableView: UITableView
 
-    init(router: Router, userRepo: UserRepo, sessionRepo: SessionRepo) {
+    init(router: Router, userRepo: UserRepo, sessionRepo: SessionRepo, postRepo: PostRepo) {
         self.router = router
         self.userRepo = userRepo
         self.sessionRepo = sessionRepo
+        self.postRepo = postRepo
+        self.posts = [Restaurant]()
 
         logoutButton = UIButton.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
@@ -76,9 +80,14 @@ class ProfileViewController: UIViewController {
         restaurantsTableView.autoPinEdgeToSuperviewEdge(.Trailing)
         restaurantsTableView.autoPinEdgeToSuperviewEdge(.Bottom)
 
-        userRepo.fetchCurrentUserName().onSuccess { [unowned self] userName in
-            self.userNameLabel.text = userName
-        }
+        userRepo.fetchCurrentUserName()
+            .onSuccess { [unowned self] userName in
+                self.userNameLabel.text = userName
+            }
+        postRepo.getAll()
+            .onSuccess { restaurants in
+                self.posts = restaurants
+            }
     }
 
     //MARK: - Actions

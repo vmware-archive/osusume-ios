@@ -1,12 +1,13 @@
 import UIKit
 
-class NavigationRouter : Router {
+class NavigationRouter: Router {
     let navigationController : UINavigationController
     let sessionRepo: SessionRepo
     let restaurantRepo: RestaurantRepo
     let photoRepo: PhotoRepo
     let userRepo: UserRepo
     let commentRepo: CommentRepo
+    let postRepo: PostRepo
 
     init(
         navigationController: UINavigationController,
@@ -14,7 +15,8 @@ class NavigationRouter : Router {
         restaurantRepo: RestaurantRepo,
         photoRepo: PhotoRepo,
         userRepo: UserRepo,
-        commentRepo: CommentRepo)
+        commentRepo: CommentRepo,
+        postRepo: PostRepo)
     {
         self.navigationController = navigationController
         self.sessionRepo = sessionRepo
@@ -22,6 +24,7 @@ class NavigationRouter : Router {
         self.photoRepo = photoRepo
         self.userRepo = userRepo
         self.commentRepo = commentRepo
+        self.postRepo = postRepo
     }
 
     func showNewRestaurantScreen() {
@@ -121,7 +124,8 @@ class NavigationRouter : Router {
         let profileViewController = ProfileViewController(
             router: self,
             userRepo: userRepo,
-            sessionRepo: sessionRepo
+            sessionRepo: sessionRepo,
+            postRepo: postRepo
         )
 
         navigationController.pushViewController(

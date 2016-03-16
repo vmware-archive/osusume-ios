@@ -34,6 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             sessionRepo: sessionRepo,
             parser: CommentParser()
         )
+        let postRepo = HttpPostRepo(
+            restaurantRepo: HttpRestaurantRepo(
+                http: http,
+                sessionRepo: sessionRepo,
+                path: "/profile/posts"
+            )
+        )
 
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
@@ -41,7 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             restaurantRepo: restaurantRepo,
             photoRepo: photoRepo,
             userRepo: userRepo,
-            commentRepo: commentRepo
+            commentRepo: commentRepo,
+            postRepo: postRepo
         )
 
         self.init(

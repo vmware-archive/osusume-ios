@@ -8,7 +8,6 @@ struct HttpPostRepo: PostRepo {
         self.restaurantRepo = restaurantRepo
     }
 
-    //MARK: - GET Functions
     func getAll() -> Future<[Restaurant], RepoError> {
         return restaurantRepo.getAll()
     }

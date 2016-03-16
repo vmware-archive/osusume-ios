@@ -7,16 +7,20 @@ class ProfileViewControllerTest: XCTestCase {
     var fakeUserRepo: FakeUserRepo!
     var fakeRouter: FakeRouter!
     var fakeSessionRepo: FakeSessionRepo!
+    var fakePostRepo: FakePostRepo!
     var profileVC: ProfileViewController!
 
     override func setUp() {
         fakeUserRepo = FakeUserRepo()
         fakeRouter = FakeRouter()
         fakeSessionRepo = FakeSessionRepo()
+        fakePostRepo = FakePostRepo()
+
         profileVC = ProfileViewController(
             router: fakeRouter,
             userRepo: fakeUserRepo,
-            sessionRepo: fakeSessionRepo
+            sessionRepo: fakeSessionRepo,
+            postRepo: fakePostRepo
         )
     }
 
@@ -41,6 +45,20 @@ class ProfileViewControllerTest: XCTestCase {
 
         expect(self.profileVC.restaurantsLabel).toNot(beNil())
         expect(self.profileVC.restaurantsLabel.text).to(equal("My Posts"))
+    }
+
+    func test_viewDidLoad_fetchsUsersPosts() {
+        let promise = Promise<[Restaurant], RepoError>()
+        fakePostRepo.getAll_returnValue = promise.future
+
+        profileVC.view.setNeedsLayout()
+
+        expect(self.fakePostRepo.getAll_wasCalled).to(equal(true))
+        let expectedRestaurant = RestaurantFixtures.newRestaurant(name: "Miya's Café")
+        promise.success([expectedRestaurant])
+        NSRunLoop.osu_advance()
+
+        expect(self.profileVC.posts).to(equal([expectedRestaurant]))
     }
 
     //MARK: Actions
