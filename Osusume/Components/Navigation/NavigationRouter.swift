@@ -8,6 +8,7 @@ class NavigationRouter: Router {
     let userRepo: UserRepo
     let commentRepo: CommentRepo
     let postRepo: PostRepo
+    let cuisineRepo: CuisineRepo
 
     init(
         navigationController: UINavigationController,
@@ -16,7 +17,8 @@ class NavigationRouter: Router {
         photoRepo: PhotoRepo,
         userRepo: UserRepo,
         commentRepo: CommentRepo,
-        postRepo: PostRepo)
+        postRepo: PostRepo,
+        cuisineRepo: CuisineRepo)
     {
         self.navigationController = navigationController
         self.sessionRepo = sessionRepo
@@ -25,6 +27,7 @@ class NavigationRouter: Router {
         self.userRepo = userRepo
         self.commentRepo = commentRepo
         self.postRepo = postRepo
+        self.cuisineRepo = cuisineRepo
     }
 
     func showNewRestaurantScreen() {
@@ -140,7 +143,8 @@ class NavigationRouter: Router {
     func showFindCuisineScreen() {
         let cuisineNavController = UINavigationController()
         let findCuisineTableViewController = CuisineListTableViewController(
-            router: self
+            router: self,
+            cuisineRepo: cuisineRepo
         )
 
         cuisineNavController.setViewControllers(

@@ -9,10 +9,12 @@ class NavigationRouterTest: XCTestCase {
     var navigationRouter: NavigationRouter!
     var navController: UINavigationController!
     var fakeSessionRepo: FakeSessionRepo!
+    var fakeCuisineRepo: FakeCuisineRepo!
 
     override func setUp() {
         navController = UINavigationController()
         fakeSessionRepo = FakeSessionRepo()
+        fakeCuisineRepo = FakeCuisineRepo()
 
         navigationRouter = NavigationRouter(
             navigationController: navController,
@@ -21,7 +23,8 @@ class NavigationRouterTest: XCTestCase {
             photoRepo: FakePhotoRepo(),
             userRepo: FakeUserRepo(),
             commentRepo: FakeCommentRepo(),
-            postRepo: FakePostRepo()
+            postRepo: FakePostRepo(),
+            cuisineRepo: fakeCuisineRepo
         )
     }
 
@@ -60,7 +63,7 @@ class NavigationRouterTest: XCTestCase {
         navigationRouter.showLoginScreen()
 
         let loginVC = navController.topViewController as! LoginViewController
-        let loginSessionRepo = loginVC.sessionRepo as? FakeSessionRepo
+        let loginSessionRepo = loginVC.sessionRepo as! FakeSessionRepo
 
         expect(self.fakeSessionRepo === loginSessionRepo).to(beTrue())
     }
@@ -128,7 +131,10 @@ class NavigationRouterTest: XCTestCase {
 
         let cuisineNavController = UINavigationController()
         cuisineNavController.setViewControllers(
-            [CuisineListTableViewController(router: FakeRouter())],
+            [CuisineListTableViewController(
+                router: FakeRouter(),
+                cuisineRepo: FakeCuisineRepo())
+            ],
             animated: false
         )
 

@@ -41,6 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 path: "/profile/posts"
             )
         )
+        let cuisineRepo = HttpCuisineRepo(
+            http: http,
+            sessionRepo: sessionRepo,
+            parser: CuisineListParser()
+        )
 
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
@@ -49,7 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             photoRepo: photoRepo,
             userRepo: userRepo,
             commentRepo: commentRepo,
-            postRepo: postRepo
+            postRepo: postRepo,
+            cuisineRepo: cuisineRepo
         )
 
         self.init(
