@@ -60,9 +60,9 @@
 		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
 		AEDEDC5B1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */; };
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
-		AEEF3BD91C91576300553DB3 /* HttpPostRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3BD81C91576300553DB3 /* HttpPostRepo.swift */; };
+		AEEF3BD91C91576300553DB3 /* NetworkPostRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3BD81C91576300553DB3 /* NetworkPostRepo.swift */; };
 		AEEF3BDB1C91587E00553DB3 /* PostRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3BDA1C91587E00553DB3 /* PostRepo.swift */; };
-		AEEF3BDE1C915ABB00553DB3 /* HttpPostRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3BDD1C915ABB00553DB3 /* HttpPostRepoTest.swift */; };
+		AEEF3BDE1C915ABB00553DB3 /* NetworkPostRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3BDD1C915ABB00553DB3 /* NetworkPostRepoTest.swift */; };
 		AEEF3BE01C91635200553DB3 /* FakePostRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF3BDF1C91635200553DB3 /* FakePostRepo.swift */; };
 		AEF0E1171C9948BF0002CA1B /* DataListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF0E1161C9948BF0002CA1B /* DataListParser.swift */; };
 		AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF8BF8F1C61C263000677EB /* libz.tbd */; };
@@ -82,7 +82,7 @@
 		DE99C26900A3406AA1C154CF /* FakeUUIDProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C9F70136CE80C70428B4 /* FakeUUIDProvider.swift */; };
 		DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAE18A548DAFDFD0CE09 /* LoginViewController.swift */; };
 		DE99C2FBE2CDA0C6D59583BD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C5F9CF7919916FDFB5B9 /* main.swift */; };
-		DE99C37C22157FAC29D102FA /* HttpRestaurantRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C51E328463B174013D14 /* HttpRestaurantRepoTest.swift */; };
+		DE99C37C22157FAC29D102FA /* NetworkRestaurantRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C51E328463B174013D14 /* NetworkRestaurantRepoTest.swift */; };
 		DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CE4F21B10840934F189A /* NavigationRouter.swift */; };
 		DE99C39FB88F303DF4869148 /* KeychainSessionRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C888906689E76151F9A7 /* KeychainSessionRepoTest.swift */; };
 		DE99C3A75F3D574B68C6D653 /* NavigationRouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C29F4250EF598B078CBE /* NavigationRouterTest.swift */; };
@@ -91,7 +91,7 @@
 		DE99C47B5157D6F86DCAE43E /* NetworkPhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CA2F1013C067383EDCAD /* NetworkPhotoRepo.swift */; };
 		DE99C4A2FA6B0FDFA78F2DB0 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C122588ACDEFAB769AB7 /* NewCommentViewController.swift */; };
 		DE99C51CD1DB54246958051D /* FakeRemoteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C2FB37E6CF002B3E0E9F /* FakeRemoteStorage.swift */; };
-		DE99C575936B3E8619D06F8D /* HttpCommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CE5AAB306FC0D7331522 /* HttpCommentRepo.swift */; };
+		DE99C575936B3E8619D06F8D /* NetworkCommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CE5AAB306FC0D7331522 /* NetworkCommentRepo.swift */; };
 		DE99C599EE21237384D5904E /* NewComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C555461433F145ED0F5C /* NewComment.swift */; };
 		DE99C5B49AE57371C657E350 /* RepoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C37987E8571ABBFED4B3 /* RepoError.swift */; };
 		DE99C5E76677BB3EC661EEFF /* S3Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C8CE8002A8D4D0F99B17 /* S3Storage.swift */; };
@@ -99,7 +99,7 @@
 		DE99C5F42497764EF7EE4252 /* LaunchWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CD8AC456CCAB4BA93C40 /* LaunchWorkflow.swift */; };
 		DE99C631EC2BA39452CA983D /* FakeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CEB05C4B9209C5CF29A9 /* FakeRouter.swift */; };
 		DE99C650E795C8E9946EAFD8 /* FakeUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C931A70085460B5745A7 /* FakeUserRepo.swift */; };
-		DE99C666756597D0AB21E3B5 /* HttpRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CB21B6B5AF4521A2A1A1 /* HttpRestaurantRepo.swift */; };
+		DE99C666756597D0AB21E3B5 /* NetworkRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CB21B6B5AF4521A2A1A1 /* NetworkRestaurantRepo.swift */; };
 		DE99C669FE674F54A5287FC6 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CADB47A29D018CAEA0A9 /* Restaurant.swift */; };
 		DE99C68D935DBB25693915E9 /* NewRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CB4E04736BBC8AFF8021 /* NewRestaurant.swift */; };
 		DE99C6A0D1CDECE63F455ABB /* RestaurantFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CA5899A1AF4CA0FFE8A5 /* RestaurantFixtures.swift */; };
@@ -115,13 +115,13 @@
 		DE99CAE855DA045F9EC09C0C /* KeychainSessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C447806B234A82B79597 /* KeychainSessionRepo.swift */; };
 		DE99CB151EDB94CD5450E1FB /* RestaurantDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C98F1E0CA5232D37AFEC /* RestaurantDetailPresenter.swift */; };
 		DE99CB6B84CBE284E0588C86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C9C4EBA431F553DA789D /* AppDelegate.swift */; };
-		DE99CB8A9C851219F3FC27CC /* HttpUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C2C797A66285E2844A01 /* HttpUserRepo.swift */; };
+		DE99CB8A9C851219F3FC27CC /* NetworkUserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C2C797A66285E2844A01 /* NetworkUserRepo.swift */; };
 		DE99CBC2E6E4DCF9DEFA9449 /* DefaultHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C0E75B8B1D39EA5588DB /* DefaultHttp.swift */; };
 		DE99CBEFC4994FC7AAD23892 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE99C8F88DD1B34A37725E2B /* Assets.xcassets */; };
 		DE99CC7C2EB019C02B7866BA /* NetworkPhotoRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C40014BC36486F0794C3 /* NetworkPhotoRepoTest.swift */; };
 		DE99CCF19E10CB0C5E8CC4DC /* FakeSessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CE8BD6AEB8146575F4DB /* FakeSessionRepo.swift */; };
 		DE99CCF718E82C82888029DF /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAA54E70E66E08AAF60A /* Http.swift */; };
-		DE99CDD1C1EF4FD00A5D80BF /* HttpCommentRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CA8AD0B174D494C5EB5E /* HttpCommentRepoTest.swift */; };
+		DE99CDD1C1EF4FD00A5D80BF /* NetworkCommentRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CA8AD0B174D494C5EB5E /* NetworkCommentRepoTest.swift */; };
 		DE99CDFE2542C59DFFE64112 /* CommentParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C2CA4AF4E232D0AF3C1F /* CommentParserTest.swift */; };
 		DE99CE89810E79B5C6F3AADD /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C85298E7CF65D37C73F9 /* DataParser.swift */; };
 		DE99CED00AC7F1E1202E9B1F /* LaunchWorkflowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CB4F84C485683E8E91DC /* LaunchWorkflowTest.swift */; };
@@ -203,9 +203,9 @@
 		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewControllerTest.swift; sourceTree = "<group>"; };
 		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
-		AEEF3BD81C91576300553DB3 /* HttpPostRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPostRepo.swift; sourceTree = "<group>"; };
+		AEEF3BD81C91576300553DB3 /* NetworkPostRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPostRepo.swift; sourceTree = "<group>"; };
 		AEEF3BDA1C91587E00553DB3 /* PostRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRepo.swift; sourceTree = "<group>"; };
-		AEEF3BDD1C915ABB00553DB3 /* HttpPostRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPostRepoTest.swift; sourceTree = "<group>"; };
+		AEEF3BDD1C915ABB00553DB3 /* NetworkPostRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPostRepoTest.swift; sourceTree = "<group>"; };
 		AEEF3BDF1C91635200553DB3 /* FakePostRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePostRepo.swift; sourceTree = "<group>"; };
 		AEF0E1161C9948BF0002CA1B /* DataListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataListParser.swift; sourceTree = "<group>"; };
 		AEF8BF8F1C61C263000677EB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -220,7 +220,7 @@
 		DE99C1A3787E5EB3046984FF /* RestaurantParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantParser.swift; sourceTree = "<group>"; };
 		DE99C23AE564F64ADA1FA252 /* PhotoRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoRepo.swift; sourceTree = "<group>"; };
 		DE99C29F4250EF598B078CBE /* NavigationRouterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouterTest.swift; sourceTree = "<group>"; };
-		DE99C2C797A66285E2844A01 /* HttpUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUserRepo.swift; sourceTree = "<group>"; };
+		DE99C2C797A66285E2844A01 /* NetworkUserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUserRepo.swift; sourceTree = "<group>"; };
 		DE99C2CA4AF4E232D0AF3C1F /* CommentParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentParserTest.swift; sourceTree = "<group>"; };
 		DE99C2FB37E6CF002B3E0E9F /* FakeRemoteStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRemoteStorage.swift; sourceTree = "<group>"; };
 		DE99C36B42C76047E436BFE9 /* FakeCommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeCommentRepo.swift; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 		DE99C40014BC36486F0794C3 /* NetworkPhotoRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPhotoRepoTest.swift; sourceTree = "<group>"; };
 		DE99C447806B234A82B79597 /* KeychainSessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSessionRepo.swift; sourceTree = "<group>"; };
 		DE99C47DD7832C65984A6578 /* FakeHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeHttp.swift; sourceTree = "<group>"; };
-		DE99C51E328463B174013D14 /* HttpRestaurantRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRestaurantRepoTest.swift; sourceTree = "<group>"; };
+		DE99C51E328463B174013D14 /* NetworkRestaurantRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRestaurantRepoTest.swift; sourceTree = "<group>"; };
 		DE99C555461433F145ED0F5C /* NewComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewComment.swift; sourceTree = "<group>"; };
 		DE99C5F9CF7919916FDFB5B9 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		DE99C627302A4EFE9A12C212 /* UserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
@@ -248,12 +248,12 @@
 		DE99CA5899A1AF4CA0FFE8A5 /* RestaurantFixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantFixtures.swift; sourceTree = "<group>"; };
 		DE99CA67CB4E2F3B76BD2322 /* FakeRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRestaurantRepo.swift; sourceTree = "<group>"; };
 		DE99CA6DCD8E6063FFA13336 /* PersistedComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistedComment.swift; sourceTree = "<group>"; };
-		DE99CA8AD0B174D494C5EB5E /* HttpCommentRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpCommentRepoTest.swift; sourceTree = "<group>"; };
+		DE99CA8AD0B174D494C5EB5E /* NetworkCommentRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCommentRepoTest.swift; sourceTree = "<group>"; };
 		DE99CAA54E70E66E08AAF60A /* Http.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
 		DE99CADB47A29D018CAEA0A9 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		DE99CAE18A548DAFDFD0CE09 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DE99CAFF5735BD05DB84AB46 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
-		DE99CB21B6B5AF4521A2A1A1 /* HttpRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRestaurantRepo.swift; sourceTree = "<group>"; };
+		DE99CB21B6B5AF4521A2A1A1 /* NetworkRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRestaurantRepo.swift; sourceTree = "<group>"; };
 		DE99CB4E04736BBC8AFF8021 /* NewRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurant.swift; sourceTree = "<group>"; };
 		DE99CB4F84C485683E8E91DC /* LaunchWorkflowTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflowTest.swift; sourceTree = "<group>"; };
 		DE99CBA30FB1C089E096822D /* ParseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseError.swift; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 		DE99CDC0C40C710F1ABC1C51 /* RestaurantParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantParserTest.swift; sourceTree = "<group>"; };
 		DE99CDED5E4C5907A6F17312 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		DE99CE4F21B10840934F189A /* NavigationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
-		DE99CE5AAB306FC0D7331522 /* HttpCommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpCommentRepo.swift; sourceTree = "<group>"; };
+		DE99CE5AAB306FC0D7331522 /* NetworkCommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCommentRepo.swift; sourceTree = "<group>"; };
 		DE99CE8BD6AEB8146575F4DB /* FakeSessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSessionRepo.swift; sourceTree = "<group>"; };
 		DE99CEB05C4B9209C5CF29A9 /* FakeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRouter.swift; sourceTree = "<group>"; };
 		DE99CF089B30D310AFABD656 /* FakeLocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeLocalStorage.swift; sourceTree = "<group>"; };
@@ -381,7 +381,7 @@
 		AE559A381C8E6F96001D45A1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				AEEF3BD81C91576300553DB3 /* HttpPostRepo.swift */,
+				AEEF3BD81C91576300553DB3 /* NetworkPostRepo.swift */,
 				AEEF3BDA1C91587E00553DB3 /* PostRepo.swift */,
 			);
 			path = Profile;
@@ -490,7 +490,7 @@
 			isa = PBXGroup;
 			children = (
 				AEEF3BDF1C91635200553DB3 /* FakePostRepo.swift */,
-				AEEF3BDD1C915ABB00553DB3 /* HttpPostRepoTest.swift */,
+				AEEF3BDD1C915ABB00553DB3 /* NetworkPostRepoTest.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -566,7 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				DE99CDB86EED28DF3E9398F9 /* CommentParser.swift */,
-				DE99CE5AAB306FC0D7331522 /* HttpCommentRepo.swift */,
+				DE99CE5AAB306FC0D7331522 /* NetworkCommentRepo.swift */,
 				DE99C555461433F145ED0F5C /* NewComment.swift */,
 				DE99CA6DCD8E6063FFA13336 /* PersistedComment.swift */,
 			);
@@ -607,8 +607,8 @@
 		DE99C512F3845333439F2047 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				DE99C2C797A66285E2844A01 /* HttpUserRepo.swift */,
 				DE99C447806B234A82B79597 /* KeychainSessionRepo.swift */,
+				DE99C2C797A66285E2844A01 /* NetworkUserRepo.swift */,
 				DE99CC16807EC3A0D1F1E4FD /* SessionRepo.swift */,
 				DE99C627302A4EFE9A12C212 /* UserRepo.swift */,
 			);
@@ -661,7 +661,7 @@
 			children = (
 				DE99C2CA4AF4E232D0AF3C1F /* CommentParserTest.swift */,
 				DE99C36B42C76047E436BFE9 /* FakeCommentRepo.swift */,
-				DE99CA8AD0B174D494C5EB5E /* HttpCommentRepoTest.swift */,
+				DE99CA8AD0B174D494C5EB5E /* NetworkCommentRepoTest.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -680,7 +680,7 @@
 			isa = PBXGroup;
 			children = (
 				DE99CA67CB4E2F3B76BD2322 /* FakeRestaurantRepo.swift */,
-				DE99C51E328463B174013D14 /* HttpRestaurantRepoTest.swift */,
+				DE99C51E328463B174013D14 /* NetworkRestaurantRepoTest.swift */,
 				DE99CA5899A1AF4CA0FFE8A5 /* RestaurantFixtures.swift */,
 				DE99CDC0C40C710F1ABC1C51 /* RestaurantParserTest.swift */,
 			);
@@ -759,7 +759,7 @@
 		DE99CE260F35F29000DA6B7F /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
-				DE99CB21B6B5AF4521A2A1A1 /* HttpRestaurantRepo.swift */,
+				DE99CB21B6B5AF4521A2A1A1 /* NetworkRestaurantRepo.swift */,
 				DE99CB4E04736BBC8AFF8021 /* NewRestaurant.swift */,
 				DE99CADB47A29D018CAEA0A9 /* Restaurant.swift */,
 				AE28A95F1C9939B600816CEB /* RestaurantDataSource.swift */,
@@ -1016,10 +1016,6 @@
 				AEDD1B841C8975740024B29E /* DiskStorage.swift in Sources */,
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
 				DE99CCF718E82C82888029DF /* Http.swift in Sources */,
-				DE99C575936B3E8619D06F8D /* HttpCommentRepo.swift in Sources */,
-				AEEF3BD91C91576300553DB3 /* HttpPostRepo.swift in Sources */,
-				DE99C666756597D0AB21E3B5 /* HttpRestaurantRepo.swift in Sources */,
-				DE99CB8A9C851219F3FC27CC /* HttpUserRepo.swift in Sources */,
 				AEDD1B861C897DEE0024B29E /* ImageLoader.swift in Sources */,
 				AE559A461C8EC98B001D45A1 /* ImageLoaderHandler.swift in Sources */,
 				AE1D42091C8420350048DF66 /* ImageViewController.swift in Sources */,
@@ -1028,7 +1024,11 @@
 				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
 				DE99C2FBE2CDA0C6D59583BD /* main.swift in Sources */,
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
+				DE99C575936B3E8619D06F8D /* NetworkCommentRepo.swift in Sources */,
 				DE99C47B5157D6F86DCAE43E /* NetworkPhotoRepo.swift in Sources */,
+				AEEF3BD91C91576300553DB3 /* NetworkPostRepo.swift in Sources */,
+				DE99C666756597D0AB21E3B5 /* NetworkRestaurantRepo.swift in Sources */,
+				DE99CB8A9C851219F3FC27CC /* NetworkUserRepo.swift in Sources */,
 				DE99C599EE21237384D5904E /* NewComment.swift in Sources */,
 				DE99C4A2FA6B0FDFA78F2DB0 /* NewCommentViewController.swift in Sources */,
 				DE99C68D935DBB25693915E9 /* NewRestaurant.swift in Sources */,
@@ -1084,16 +1084,16 @@
 				DE99CCF19E10CB0C5E8CC4DC /* FakeSessionRepo.swift in Sources */,
 				DE99C650E795C8E9946EAFD8 /* FakeUserRepo.swift in Sources */,
 				DE99C26900A3406AA1C154CF /* FakeUUIDProvider.swift in Sources */,
-				DE99CDD1C1EF4FD00A5D80BF /* HttpCommentRepoTest.swift in Sources */,
-				AEEF3BDE1C915ABB00553DB3 /* HttpPostRepoTest.swift in Sources */,
-				DE99C37C22157FAC29D102FA /* HttpRestaurantRepoTest.swift in Sources */,
 				AE559A441C8EC199001D45A1 /* ImageLoaderHandlerTest.swift in Sources */,
 				AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */,
 				DE99C39FB88F303DF4869148 /* KeychainSessionRepoTest.swift in Sources */,
 				DE99CED00AC7F1E1202E9B1F /* LaunchWorkflowTest.swift in Sources */,
 				AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */,
 				DE99C3A75F3D574B68C6D653 /* NavigationRouterTest.swift in Sources */,
+				DE99CDD1C1EF4FD00A5D80BF /* NetworkCommentRepoTest.swift in Sources */,
 				DE99CC7C2EB019C02B7866BA /* NetworkPhotoRepoTest.swift in Sources */,
+				AEEF3BDE1C915ABB00553DB3 /* NetworkPostRepoTest.swift in Sources */,
+				DE99C37C22157FAC29D102FA /* NetworkRestaurantRepoTest.swift in Sources */,
 				AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */,
 				AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */,
 				AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */,

@@ -1,7 +1,7 @@
 import BrightFutures
 import Alamofire
 
-struct HttpPostRepo: PostRepo {
+struct NetworkPostRepo: PostRepo {
     let restaurantRepo: RestaurantRepo
 
     init(restaurantRepo: RestaurantRepo) {

@@ -23,16 +23,16 @@ class FakeCommentParser: DataParser {
     }
 }
 
-class HttpCommentRepoTest: XCTestCase {
+class NetworkCommentRepoTest: XCTestCase {
     let fakeHttp = FakeHttp()
     let fakeSessionRepo = FakeSessionRepo()
-    var httpCommentRepo: HttpCommentRepo<FakeCommentParser>!
+    var networkCommentRepo: NetworkCommentRepo<FakeCommentParser>!
     let fakeCommentParser = FakeCommentParser()
 
     override func setUp() {
         fakeSessionRepo.tokenValue = "some-session-token"
 
-        httpCommentRepo = HttpCommentRepo(
+        networkCommentRepo = NetworkCommentRepo(
             http: fakeHttp,
             sessionRepo: fakeSessionRepo,
             parser: fakeCommentParser
@@ -41,7 +41,7 @@ class HttpCommentRepoTest: XCTestCase {
 
     func test_persist_passesDataToHttp() {
         let comment = NewComment(text: "I loved the tonkatsu!", restaurantId: 1)
-        httpCommentRepo.persist(comment)
+        networkCommentRepo.persist(comment)
 
         let expectedHeaders = [
             "Authorization": "Bearer some-session-token"
@@ -68,7 +68,7 @@ class HttpCommentRepoTest: XCTestCase {
         fakeHttp.post_returnValue = Future<[String: AnyObject], RepoError>(error: RepoError.PostFailed)
 
         let comment = NewComment(text: "I loved the tonkatsu!", restaurantId: 1)
-        let result = httpCommentRepo.persist(comment)
+        let result = networkCommentRepo.persist(comment)
 
         expect(result.error).toEventually(equal(RepoError.PostFailed))
     }
@@ -85,7 +85,7 @@ class HttpCommentRepoTest: XCTestCase {
         let e = self.expectationWithDescription("no description")
 
         let comment = NewComment(text: "hello this is a comment!", restaurantId: 99)
-        let result = httpCommentRepo.persist(comment)
+        let result = networkCommentRepo.persist(comment)
 
         result.onSuccess { _ in
             if
@@ -126,7 +126,7 @@ class HttpCommentRepoTest: XCTestCase {
         let e = self.expectationWithDescription("no description")
 
         let comment = NewComment(text: "hello this is a comment!", restaurantId: 99)
-        let result = httpCommentRepo.persist(comment)
+        let result = networkCommentRepo.persist(comment)
 
         result.onComplete { _ in
             print("result: \(result)")

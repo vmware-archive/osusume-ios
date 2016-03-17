@@ -11,7 +11,7 @@ class UserRepoTest: XCTestCase {
     override func setUp() {
         fakeSessionRepo.tokenValue = "some-session-token"
 
-        userRepo = HttpUserRepo(
+        userRepo = NetworkUserRepo(
             http: fakeHttp,
             sessionRepo: fakeSessionRepo
         )

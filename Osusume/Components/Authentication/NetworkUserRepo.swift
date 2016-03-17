@@ -2,7 +2,7 @@ import Foundation
 import BrightFutures
 import Alamofire
 
-class HttpUserRepo: UserRepo {
+class NetworkUserRepo: UserRepo {
     let http: Http
     let sessionRepo: SessionRepo
     init(http: Http, sessionRepo: SessionRepo) {

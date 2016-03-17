@@ -21,21 +21,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
 
         let http = DefaultHttp(basePath: AppDelegate.basePath)
-        let restaurantRepo = HttpRestaurantRepo(
+        let restaurantRepo = NetworkRestaurantRepo(
             http: http,
             sessionRepo: sessionRepo
         )
-        let userRepo = HttpUserRepo(
+        let userRepo = NetworkUserRepo(
             http: http,
             sessionRepo: sessionRepo
         )
-        let commentRepo = HttpCommentRepo(
+        let commentRepo = NetworkCommentRepo(
             http: http,
             sessionRepo: sessionRepo,
             parser: CommentParser()
         )
-        let postRepo = HttpPostRepo(
-            restaurantRepo: HttpRestaurantRepo(
+        let postRepo = NetworkPostRepo(
+            restaurantRepo: NetworkRestaurantRepo(
                 http: http,
                 sessionRepo: sessionRepo,
                 path: "/profile/posts"

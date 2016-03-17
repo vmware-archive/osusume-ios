@@ -1,7 +1,7 @@
 import BrightFutures
 import Alamofire
 
-struct HttpRestaurantRepo: RestaurantRepo {
+struct NetworkRestaurantRepo: RestaurantRepo {
     let parser: RestaurantParser
     let path: String
     let http: Http

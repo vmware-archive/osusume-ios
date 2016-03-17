@@ -4,7 +4,7 @@ protocol CommentRepo {
     func persist(comment: NewComment) -> Future<PersistedComment, RepoError>
 }
 
-struct HttpCommentRepo <P: DataParser where P.ParsedObject == PersistedComment>: CommentRepo {
+struct NetworkCommentRepo <P: DataParser where P.ParsedObject == PersistedComment>: CommentRepo {
     let http: Http
     let sessionRepo: SessionRepo
     let parser: P

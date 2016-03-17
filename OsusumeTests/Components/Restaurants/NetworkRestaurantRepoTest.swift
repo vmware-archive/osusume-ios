@@ -2,22 +2,22 @@ import XCTest
 
 @testable import Osusume
 
-class HttpRestaurantRepoTest: XCTestCase {
+class NetworkRestaurantRepoTest: XCTestCase {
     let fakeHttp = FakeHttp()
     let fakeSessionRepo = FakeSessionRepo()
-    var httpRestaurantRepo: HttpRestaurantRepo!
+    var networkRestaurantRepo: NetworkRestaurantRepo!
 
     override func setUp() {
         fakeSessionRepo.tokenValue = "some-session-token"
 
-        httpRestaurantRepo = HttpRestaurantRepo(
+        networkRestaurantRepo = NetworkRestaurantRepo(
             http: fakeHttp,
             sessionRepo: fakeSessionRepo
         )
     }
 
     func test_getAll_passesTokenAsHeaderToHttp() {
-        httpRestaurantRepo.getAll()
+        networkRestaurantRepo.getAll()
 
         let expectedHeaders = [
             "Authorization": "Bearer some-session-token"
@@ -28,7 +28,7 @@ class HttpRestaurantRepoTest: XCTestCase {
     }
 
     func test_getOne_passesTokenAsHeaderToHttp() {
-        httpRestaurantRepo.getOne(999)
+        networkRestaurantRepo.getOne(999)
 
         let expectedHeaders = [
             "Authorization": "Bearer some-session-token"
@@ -39,7 +39,7 @@ class HttpRestaurantRepoTest: XCTestCase {
     }
 
     func test_create_formatsBodyWithRestaurantData() {
-        httpRestaurantRepo.create(
+        networkRestaurantRepo.create(
             NewRestaurant(
                 name: "Danny's Diner",
                 address: "123 Main Street",
@@ -68,7 +68,7 @@ class HttpRestaurantRepoTest: XCTestCase {
     }
 
     func test_update_passesTokenAsHeaderToHttp() {
-        httpRestaurantRepo.update(999, params: ["paramName": "paramValue"])
+        networkRestaurantRepo.update(999, params: ["paramName": "paramValue"])
 
         let expectedHeaders = [
             "Authorization": "Bearer some-session-token"

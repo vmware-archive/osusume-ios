@@ -2,16 +2,16 @@ import XCTest
 import Nimble
 @testable import Osusume
 
-class HttpPostRepoTest: XCTestCase {
+class NetworkPostRepoTest: XCTestCase {
     let fakeRestaurantRepo = FakeRestaurantRepo()
-    var httpPostRepo: HttpPostRepo!
+    var networkPostRepo: NetworkPostRepo!
 
     override func setUp() {
-        httpPostRepo = HttpPostRepo(restaurantRepo: fakeRestaurantRepo)
+        networkPostRepo = NetworkPostRepo(restaurantRepo: fakeRestaurantRepo)
     }
 
     func test_getAll_delegatesToRestaurantRepo() {
-        httpPostRepo.getAll()
+        networkPostRepo.getAll()
 
         expect(self.fakeRestaurantRepo.getAll_wasCalled).to(equal(true))
     }
