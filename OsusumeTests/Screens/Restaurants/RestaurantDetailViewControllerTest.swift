@@ -6,6 +6,7 @@ import Nimble
 class RestaurantDetailViewControllerTest: XCTestCase {
     let router = FakeRouter()
     let repo = FakeRestaurantRepo()
+    let reloader = FakeReloader()
 
     var restaurantDetailVC: RestaurantDetailViewController!
     let today = NSDate()
@@ -14,6 +15,13 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     override func setUp() {
+        restaurantDetailVC = RestaurantDetailViewController(
+            router: router,
+            reloader: reloader,
+            repo: repo,
+            restaurantId: 1
+        )
+
         repo.createdRestaurant = Restaurant(
             id: 1,
             name: "My Restaurant",
@@ -46,13 +54,6 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     func test_onViewWillAppear_showsComments() {
-        restaurantDetailVC = RestaurantDetailViewController(
-            router: router,
-            reloader: FakeReloader(),
-            repo: repo,
-            restaurantId: 1
-        )
-
         restaurantDetailVC.view.setNeedsLayout()
         restaurantDetailVC.viewWillAppear(false)
 
@@ -76,29 +77,13 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     func test_onViewWillAppear_reloadsTableViewData() {
-        let reloader = FakeReloader()
-
-        restaurantDetailVC = RestaurantDetailViewController(
-            router: router,
-            reloader: reloader,
-            repo: repo,
-            restaurantId: 1
-        )
-
         restaurantDetailVC.view.setNeedsLayout()
         restaurantDetailVC.viewWillAppear(false)
 
-        expect(reloader.reload_wasCalled).to(equal(true))
+        expect(self.reloader.reload_wasCalled).to(equal(true))
     }
 
     func test_tappingTheEditButton_showsTheEditScreen() {
-        restaurantDetailVC = RestaurantDetailViewController(
-            router: router,
-            reloader: FakeReloader(),
-            repo: repo,
-            restaurantId: 1
-        )
-
         restaurantDetailVC.view.setNeedsLayout()
         restaurantDetailVC.viewWillAppear(false)
 
