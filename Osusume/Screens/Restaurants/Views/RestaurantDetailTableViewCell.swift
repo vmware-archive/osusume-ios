@@ -8,39 +8,41 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     weak var delegate: RestaurantDetailTableViewCellDelegate?
     weak var router: Router?
 
-    let nameLabel = UILabel()
-    let addressLabel = UILabel()
-    let cuisineTypeLabel = UILabel()
-    let offersEnglishMenuLabel = UILabel()
-    let walkInsOkLabel = UILabel()
-    let acceptsCreditCardsLabel = UILabel()
-    let notesLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        return label
-    }()
-    let creationInfoLabel = UILabel()
-    let likeButton = UIButton.newAutoLayoutView()
-    let addCommentButton = UIButton.newAutoLayoutView()
-    var photoUrls: [NSURL] = []
+    var imageCollectionView: UICollectionView
+    let nameLabel: UILabel
+    let addressLabel: UILabel
+    let cuisineTypeLabel: UILabel
+    let offersEnglishMenuLabel: UILabel
+    let walkInsOkLabel: UILabel
+    let acceptsCreditCardsLabel: UILabel
+    let notesLabel: UILabel
+    let creationInfoLabel: UILabel
+    let likeButton: UIButton
+    let addCommentButton: UIButton
+    var photoUrls: [NSURL]
 
-    lazy var imageCollectionView: UICollectionView = {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        nameLabel = UILabel.newAutoLayoutView()
+        addressLabel = UILabel.newAutoLayoutView()
+        cuisineTypeLabel = UILabel.newAutoLayoutView()
+        offersEnglishMenuLabel = UILabel.newAutoLayoutView()
+        walkInsOkLabel = UILabel.newAutoLayoutView()
+        acceptsCreditCardsLabel = UILabel.newAutoLayoutView()
+        notesLabel = UILabel.newAutoLayoutView()
+        creationInfoLabel = UILabel.newAutoLayoutView()
+        likeButton = UIButton.newAutoLayoutView()
+        addCommentButton = UIButton.newAutoLayoutView()
+        photoUrls = [NSURL]()
+
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSizeMake(100, 100)
         layout.scrollDirection = .Horizontal
+        imageCollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        imageCollectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
+        imageCollectionView.backgroundColor = UIColor.lightGrayColor()
+        imageCollectionView.accessibilityLabel = "Restaurant photos"
 
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
-        collectionView.backgroundColor = UIColor.lightGrayColor()
-        collectionView.accessibilityLabel = "Restaurant photos"
-
-        return collectionView
-    }()
-
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         contentView.addSubview(imageCollectionView)
@@ -55,6 +57,10 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         contentView.addSubview(likeButton)
         contentView.addSubview(addCommentButton)
 
+        imageCollectionView.dataSource = self
+        imageCollectionView.delegate = self
+
+        notesLabel.numberOfLines = 0
         addCommentButton.addTarget(
             self,
             action: "didTapAddNewCommentButton",
