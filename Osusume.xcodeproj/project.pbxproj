@@ -1069,6 +1069,7 @@
 			files = (
 				DE99CDFE2542C59DFFE64112 /* CommentParserTest.swift in Sources */,
 				AE51C6321C98FD680068EF0D /* CuisineListParserTest.swift in Sources */,
+				DE99C3D734C5387B790D9FEC /* CuisineListTableViewControllerTest.swift in Sources */,
 				AEACDB7B1C991EC80092AEF6 /* CuisineRepoTest.swift in Sources */,
 				DE99C758C4362943C1232D75 /* DateConverterTest.swift in Sources */,
 				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,
@@ -1106,7 +1107,6 @@
 				AEB243901C71666300959434 /* RestaurantListViewControllerTest.swift in Sources */,
 				DE99C45D7BD67361E4B3AFB7 /* RestaurantParserTest.swift in Sources */,
 				AE559A421C8EA4FF001D45A1 /* UserRepoTest.swift in Sources */,
-				DE99C3D734C5387B790D9FEC /* CuisineListTableViewControllerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

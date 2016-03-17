@@ -139,7 +139,9 @@ class NavigationRouter: Router {
 
     func showFindCuisineScreen() {
         let cuisineNavController = UINavigationController()
-        let findCuisineTableViewController = CuisineListTableViewController()
+        let findCuisineTableViewController = CuisineListTableViewController(
+            router: self
+        )
 
         cuisineNavController.setViewControllers(
             [findCuisineTableViewController],
@@ -151,5 +153,10 @@ class NavigationRouter: Router {
             animated: true,
             completion: nil
         )
+    }
+
+    func dismissFindCuisineScreen() {
+        let presentedVC = navigationController.presentedViewController as? UINavigationController
+        presentedVC!.dismissViewControllerAnimated(true, completion: nil)
     }
 }

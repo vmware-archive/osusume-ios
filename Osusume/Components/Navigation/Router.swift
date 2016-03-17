@@ -8,5 +8,7 @@ protocol Router: class {
     func dismissNewCommentScreen(animated: Bool)
     func showImageScreen(url: NSURL)
     func showProfileScreen()
+
     func showFindCuisineScreen()
+    func dismissFindCuisineScreen()
 }

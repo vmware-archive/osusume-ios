@@ -119,4 +119,34 @@ class NavigationRouterTest: XCTestCase {
         expect(cuisineNavController).to(beAKindOf(UINavigationController))
         expect(cuisineNavController?.topViewController).to(beAKindOf(CuisineListTableViewController))
     }
+
+    func test_dismissesCuisineListScreen() {
+        var window: UIWindow?
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window!.rootViewController = navController
+        window!.makeKeyAndVisible()
+
+        let cuisineNavController = UINavigationController()
+        cuisineNavController.setViewControllers(
+            [CuisineListTableViewController(router: FakeRouter())],
+            animated: false
+        )
+
+        navController.pushViewController(UIViewController(), animated: false)
+        navController.presentViewController(
+            cuisineNavController,
+            animated: false,
+            completion: nil
+        )
+
+        let presentedViewController = navController.presentedViewController as? UINavigationController
+        expect(presentedViewController?.topViewController).to(beAKindOf(CuisineListTableViewController))
+
+
+        navigationRouter.dismissFindCuisineScreen()
+
+
+        NSRunLoop.osu_advance(by: 1)
+        expect(self.navController.presentedViewController).to(beNil())
+    }
 }
