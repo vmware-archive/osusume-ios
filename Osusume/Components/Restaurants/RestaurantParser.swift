@@ -52,6 +52,9 @@ struct RestaurantParser {
         let maybeUserName = maybeUserJson?["name"] as? String
         let userName = maybeUserName ?? ""
 
+        let maybeLiked = json["liked"] as? Bool
+        let liked = maybeLiked ?? false
+
         let maybeCreatedAt = json["created_at"] as? Double
         let createdAtEpoch: Double? = maybeCreatedAt ?? nil
         var createdAt: NSDate? = nil
@@ -82,7 +85,7 @@ struct RestaurantParser {
             acceptsCreditCards: acceptCreditCard,
             notes: notes,
             author: userName,
-            liked:  false,
+            liked: liked,
             createdAt: createdAt,
             photoUrls: urls,
             comments: comments

@@ -7,7 +7,7 @@ import XCTest
 class RestaurantParserTest: XCTestCase {
 
     // MARK: parseList
-    func test_convertingMultipleRestaurants() {
+    func test_parsingMultipleRestaurants() {
         let restaurantParser = RestaurantParser()
 
         let json: [[String: AnyObject]] = [
@@ -50,7 +50,7 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurants[1].name).to(equal("second restaurant"))
     }
 
-    func test_convertingMultipleRestaurants_omittingRestaurantsWithBadData() {
+    func test_parsingMultipleRestaurants_omittingRestaurantsWithBadData() {
         let restaurantParser = RestaurantParser()
 
         let json: [[String: AnyObject]] = [
@@ -65,7 +65,7 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurants.count).to(equal(1))
     }
 
-    func test_convertingMultipleRestaurantsWithbadData_returnsNil() {
+    func test_parsingMultipleRestaurantsWithbadData_returnsNil() {
         let restaurantParser = RestaurantParser()
 
         let json: [[String: AnyObject]] = [
@@ -84,37 +84,7 @@ class RestaurantParserTest: XCTestCase {
     }
 
     // MARK: parseSingle
-    func test_convertingASingleRestaurant_withoutComments() {
-        let restaurantParser = RestaurantParser()
-
-        let json: [String: AnyObject] = [
-            "name": "first restaurant",
-            "id": 1232,
-            "address": "",
-            "cuisine_type": "",
-            "offers_english_menu": false,
-            "walk_ins_ok": false,
-            "accepts_credit_cards": false,
-            "created_at": 1454480320,
-            "user": ["name": "Bambi"],
-            "photo_urls": [
-                ["url": "http://www.example.com"],
-                ["url": "my-awesome-url"]
-            ],
-            "comments": [
-            ]
-        ]
-
-        let restaurant: Restaurant = restaurantParser.parseSingle(json).value!
-        expect(restaurant.name).to(equal("first restaurant"))
-        expect(restaurant.createdAt!).to(equal(NSDate(timeIntervalSince1970: 1454480320)))
-        expect(restaurant.author).to(equal("Bambi"))
-        expect(restaurant.photoUrls[0].URLString).to(equal("http://www.example.com"))
-        expect(restaurant.photoUrls[1].URLString).to(equal("my-awesome-url"))
-        expect(restaurant.comments.count).to(equal(0))
-    }
-
-    func test_convertingASingleRestaurant_withComments() {
+    func test_parsingASingleRestaurant() {
         let restaurantParser = RestaurantParser()
 
         let json: [String: AnyObject] = [
@@ -162,7 +132,68 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.comments[1]).to(equal(expectedSecondComment))
     }
 
-    func test_convertingASingleRestaurant_skipsInvalidComments() {
+    func test_parse_handlesLikeStatus() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "id": 1232,
+            "name": "liked restaurant",
+            "liked": true
+        ]
+
+
+        let restaurant = restaurantParser.parseSingle(json).value!
+
+        expect(restaurant.liked).to(equal(true))
+    }
+
+    func test_parse_handlesUnlikeStatus() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "id": 1232,
+            "name": "liked restaurant",
+            "liked": false
+        ]
+
+
+        let restaurant = restaurantParser.parseSingle(json).value!
+
+        expect(restaurant.liked).to(equal(false))
+    }
+
+
+    func test_parsingASingleRestaurant_withoutComments() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "name": "first restaurant",
+            "id": 1232,
+            "address": "",
+            "cuisine_type": "",
+            "offers_english_menu": false,
+            "walk_ins_ok": false,
+            "accepts_credit_cards": false,
+            "created_at": 1454480320,
+            "user": ["name": "Bambi"],
+            "photo_urls": [
+                ["url": "http://www.example.com"],
+                ["url": "my-awesome-url"]
+            ],
+            "comments": [
+            ]
+        ]
+
+        let restaurant = restaurantParser.parseSingle(json).value!
+        expect(restaurant.name).to(equal("first restaurant"))
+        expect(restaurant.createdAt!).to(equal(NSDate(timeIntervalSince1970: 1454480320)))
+        expect(restaurant.author).to(equal("Bambi"))
+        expect(restaurant.photoUrls[0].URLString).to(equal("http://www.example.com"))
+        expect(restaurant.photoUrls[1].URLString).to(equal("my-awesome-url"))
+        expect(restaurant.comments.count).to(equal(0))
+    }
+
+    func test_parsingASingleRestaurant_skipsInvalidComments() {
         let restaurantParser = RestaurantParser()
 
         let json: [String: AnyObject] = [
@@ -195,7 +226,7 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.comments.count).to(equal(2))
     }
 
-    func test_convertingASingleRestaurant_onFailure() {
+    func test_parsingASingleRestaurant_onFailure() {
         let restaurantParser = RestaurantParser()
 
         let json: [String: AnyObject] = [ "bad": "data" ]
