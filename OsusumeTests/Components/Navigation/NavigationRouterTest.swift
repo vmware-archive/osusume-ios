@@ -115,6 +115,8 @@ class NavigationRouterTest: XCTestCase {
 
         navigationRouter.showFindCuisineScreen()
 
-        expect(self.navController.presentedViewController).to(beAKindOf(CuisineListTableViewController))
+        let cuisineNavController = navController.presentedViewController as? UINavigationController
+        expect(cuisineNavController).to(beAKindOf(UINavigationController))
+        expect(cuisineNavController?.topViewController).to(beAKindOf(CuisineListTableViewController))
     }
 }
