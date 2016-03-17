@@ -1,10 +1,15 @@
 import UIKit
 
+protocol CuisineSelectionProtocol {
+    func cuisineSelected(cuisine: Cuisine)
+}
+
 class CuisineListTableViewController: UITableViewController {
 
     private let router: Router
     private let cuisineRepo: CuisineRepo
     private var cuisineList: CuisineList
+    var delegate: CuisineSelectionProtocol?
 
     init(router: Router,
         cuisineRepo: CuisineRepo)
@@ -43,12 +48,12 @@ class CuisineListTableViewController: UITableViewController {
             }
     }
 
-    // MARK: Actions
+    // MARK: - Actions
     func didTapCancelButton(sender: UIBarButtonItem?) {
         router.dismissFindCuisineScreen()
     }
 
-    // MARK: UITableViewDataSource
+    // MARK: - UITableViewDataSource
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -70,4 +75,14 @@ class CuisineListTableViewController: UITableViewController {
 
         return cell
     }
+
+    // MARK: - UITableViewDelegate
+    override func tableView(
+        tableView: UITableView,
+        didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        delegate?.cuisineSelected(cuisineList.cuisines[indexPath.row])
+        router.dismissFindCuisineScreen()
+    }
 }
+

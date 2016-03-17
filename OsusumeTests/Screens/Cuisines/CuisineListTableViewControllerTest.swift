@@ -12,6 +12,7 @@ class CuisineListTableViewControllerTest: XCTestCase {
     var fakeRouter: FakeRouter!
     var fakeCuisineRepo: FakeCuisineRepo!
     var cuisinePromise: Promise<CuisineList, RepoError>!
+    var selectedCuisine: Cuisine?
 
     override func setUp() {
         fakeRouter = FakeRouter()
@@ -68,5 +69,46 @@ class CuisineListTableViewControllerTest: XCTestCase {
 
         let cuisineCell = cuisineListTVC.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
         expect(cuisineCell?.textLabel?.text).to(equal("Soba!"))
+    }
+
+    func test_tappingCuisineCell_callsCuisineDelegate() {
+        cuisineListTVC.delegate = self
+        let cuisineList = CuisineList(cuisines:
+            [
+                Cuisine(id: 1, name: "Soba!")
+            ]
+        )
+        cuisinePromise.success(cuisineList)
+        NSRunLoop.osu_advance()
+
+
+        let firstCell = NSIndexPath(forRow: 0, inSection: 0)
+        cuisineListTVC.tableView(cuisineListTVC.tableView, didSelectRowAtIndexPath: firstCell)
+
+
+        expect(self.selectedCuisine).to(equal(cuisineList.cuisines.first))
+    }
+
+    func test_tappingCuisineCell_dismissesFindCuisineScreen() {
+        let cuisineList = CuisineList(cuisines:
+            [
+                Cuisine(id: 1, name: "Soba!")
+            ]
+        )
+        cuisinePromise.success(cuisineList)
+        NSRunLoop.osu_advance()
+
+
+        let firstCell = NSIndexPath(forRow: 0, inSection: 0)
+        cuisineListTVC.tableView(cuisineListTVC.tableView, didSelectRowAtIndexPath: firstCell)
+
+
+        expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
+    }
+}
+
+extension CuisineListTableViewControllerTest: CuisineSelectionProtocol {
+    func cuisineSelected(cuisine: Cuisine) {
+        selectedCuisine = cuisine
     }
 }

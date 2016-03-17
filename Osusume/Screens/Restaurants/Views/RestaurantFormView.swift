@@ -235,3 +235,9 @@ class RestaurantFormView : UIView {
         delegate?.showFindCuisineScreen()
     }
 }
+
+extension RestaurantFormView: CuisineSelectionProtocol {
+    func cuisineSelected(cuisine: Cuisine) {
+        cuisineTypeTextField.text = cuisine.name
+    }
+}

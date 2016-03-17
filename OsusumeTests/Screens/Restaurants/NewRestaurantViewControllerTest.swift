@@ -97,4 +97,14 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(newRestaurant.notes).to(equal("Notes"))
         expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]))
     }
+
+    func test_selectCuisine_populatesCuisineTextfield() {
+        let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
+
+
+        newRestaurantVC.formView.cuisineSelected(selectedCuisine)
+
+
+        expect(self.newRestaurantVC.formView.cuisineTypeTextField.text).to(equal("Hamburger"))
+    }
 }

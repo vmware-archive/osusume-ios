@@ -150,6 +150,9 @@ class NavigationRouter: Router {
             cuisineRepo: cuisineRepo
         )
 
+        let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController
+        findCuisineTableViewController.delegate = newRestaurantVC!.formView
+
         cuisineNavController.setViewControllers(
             [findCuisineTableViewController],
             animated: true
