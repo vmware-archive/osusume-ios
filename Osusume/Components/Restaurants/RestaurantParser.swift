@@ -82,6 +82,7 @@ struct RestaurantParser {
             acceptsCreditCards: acceptCreditCard,
             notes: notes,
             author: userName,
+            liked:  false,
             createdAt: createdAt,
             photoUrls: urls,
             comments: comments

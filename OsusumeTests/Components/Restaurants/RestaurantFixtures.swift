@@ -5,7 +5,9 @@ import Foundation
 struct RestaurantFixtures {
     static func newRestaurant(
         id id: Int = 1,
-        name: String = "Danny's Diner"
+        name: String = "Danny's Diner",
+        liked: Bool = true,
+        photoUrl: String = "http://www.example.com/cat.jpg"
         ) -> Restaurant
     {
         return Restaurant(
@@ -18,9 +20,10 @@ struct RestaurantFixtures {
             acceptsCreditCards: false,
             notes: "",
             author: "",
+            liked: liked,
             createdAt: NSDate(),
             photoUrls: [
-                NSURL(string: "http://www.example.com/cat.jpg")!
+                NSURL(string: photoUrl)!
             ],
             comments: []
         )

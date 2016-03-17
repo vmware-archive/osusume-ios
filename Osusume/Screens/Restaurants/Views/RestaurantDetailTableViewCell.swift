@@ -66,10 +66,9 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         likeButton.addTarget(
             self.delegate,
             action: "didTapLikeButton:",
-            forControlEvents: .TouchUpInside)
+            forControlEvents: .TouchUpInside
+        )
         likeButton.setTitle("Like", forState: .Normal)
-        likeButton.setTitleColor(UIColor.redColor(), forState: .Highlighted)
-        likeButton.backgroundColor = UIColor.blueColor()
 
         applyViewConstraints()
     }
@@ -99,6 +98,14 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         self.notesLabel.text = restaurantDetailPresenter.notes
         self.creationInfoLabel.text = restaurantDetailPresenter.creationInfo
         self.router = router
+
+        if restaurant.liked {
+            likeButton.backgroundColor = UIColor.redColor()
+            likeButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        } else {
+            likeButton.backgroundColor = UIColor.blueColor()
+            likeButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+        }
     }
 
     //MARK: - Constraints

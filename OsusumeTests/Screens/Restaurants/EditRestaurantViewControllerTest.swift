@@ -27,6 +27,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
             acceptsCreditCards: true,
             notes: "This place is great",
             author: "Jane",
+            liked: false,
             createdAt: NSDate(),
             photoUrls: [],
             comments: []

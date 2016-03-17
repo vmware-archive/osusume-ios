@@ -43,6 +43,7 @@ class FakeRestaurantRepo : RestaurantRepo {
             acceptsCreditCards: params["accepts_credit_cards"] as! Bool,
             notes: params["notes"] as! String,
             author: "Fake user",
+            liked: false,
             createdAt: NSDate(),
             photoUrls: [],
             comments: []
