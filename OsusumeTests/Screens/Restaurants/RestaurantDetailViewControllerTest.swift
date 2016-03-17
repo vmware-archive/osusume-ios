@@ -44,13 +44,6 @@ class RestaurantDetailViewControllerTest: XCTestCase {
                     createdDate: today,
                     restaurantId: 1,
                     userName: "Danny"
-                ),
-                PersistedComment(
-                    id: 2,
-                    text: "second comment",
-                    createdDate: tomorrow,
-                    restaurantId: 1,
-                    userName: "Witta"
                 )
             ]
         )
@@ -61,7 +54,10 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         restaurantDetailVC.viewWillAppear(false)
 
         let commentSectionIndex = 1
-        expect(self.restaurantDetailVC.tableView.numberOfRowsInSection(commentSectionIndex)).to(equal(2))
+        let actualRowCount = self.restaurantDetailVC.tableView
+            .numberOfRowsInSection(commentSectionIndex)
+
+        expect(actualRowCount).to(equal(1))
 
         let firstCommentCell = restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
@@ -69,14 +65,9 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         )
 
         expect(firstCommentCell.textLabel!.text).to(equal("first comment"))
-        expect(firstCommentCell.detailTextLabel!.text).to(equal("Danny - \(DateConverter().formattedDate(today))"))
+        expect(firstCommentCell.detailTextLabel!.text)
+            .to(equal("Danny - \(DateConverter().formattedDate(today))"))
 
-        let secondCommentCell = restaurantDetailVC.tableView(
-            restaurantDetailVC.tableView,
-            cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentSectionIndex)
-        )
-        expect(secondCommentCell.textLabel!.text).to(equal("second comment"))
-        expect(secondCommentCell.detailTextLabel!.text).to(equal("Witta - \(DateConverter().formattedDate(tomorrow))"))
     }
 
     func test_onViewWillAppear_reloadsTableViewData() {
@@ -90,7 +81,8 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         restaurantDetailVC.view.setNeedsLayout()
         restaurantDetailVC.viewWillAppear(false)
 
-        expect(self.restaurantDetailVC.navigationItem.rightBarButtonItem?.title).to(equal("Edit"))
+        expect(self.restaurantDetailVC.navigationItem.rightBarButtonItem?.title)
+            .to(equal("Edit"))
 
         let updateButton = restaurantDetailVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(updateButton)
@@ -111,9 +103,12 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         restaurantDetailVC.viewWillAppear(false)
 
         let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
-        let restaurantDetailCell = restaurantDetailVC.tableView.cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
+        let restaurantDetailCell = restaurantDetailVC.tableView
+            .cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
+
 
         restaurantDetailCell.addCommentButton.sendActionsForControlEvents(.TouchUpInside)
+
 
         expect(self.fakeRouter.newCommentScreenIsShowing).to(equal(true))
         expect(self.fakeRouter.showNewCommentScreen_args).to(equal(1))
