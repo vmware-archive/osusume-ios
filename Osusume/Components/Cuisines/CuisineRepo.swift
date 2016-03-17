@@ -18,7 +18,7 @@ struct HttpCuisineRepo <P: DataListParser where P.ParsedObject == CuisineList>: 
             }
             .flatMap { json in
                 return self.parser
-                    .parse(json as! [[String : AnyObject]])
+                    .parse(json as! [[String : AnyObject]]) // Result<CuisineList, ParseError>
                         .mapError {
                             _ in return RepoError.GetFailed
                         }
