@@ -3,16 +3,6 @@ import UIKit
 import PureLayout
 import BrightFutures
 
-protocol LikeRepo {
-    func like(id: Int)
-}
-
-struct NetworkLikeRepo: LikeRepo {
-    func like(id: Int) {
-
-    }
-}
-
 class RestaurantDetailViewController: UIViewController {
     unowned let router: Router
     let reloader: Reloader

@@ -26,6 +26,8 @@
 		AE3ED1861C850EF20097DC10 /* Reloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1821C850EF20097DC10 /* Reloader.swift */; };
 		AE3ED1871C850EF20097DC10 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */; };
 		AE3FF5221C9A5A0100DB4F6C /* FakeLikeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FF5211C9A5A0100DB4F6C /* FakeLikeRepo.swift */; };
+		AE3FF5241C9A5A7700DB4F6C /* LikeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FF5231C9A5A7700DB4F6C /* LikeRepo.swift */; };
+		AE3FF5261C9A5A8E00DB4F6C /* NetworkLikeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FF5251C9A5A8E00DB4F6C /* NetworkLikeRepo.swift */; };
 		AE51C6321C98FD680068EF0D /* CuisineListParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */; };
 		AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */; };
 		AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */; };
@@ -165,6 +167,8 @@
 		AE3ED1821C850EF20097DC10 /* Reloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reloader.swift; sourceTree = "<group>"; };
 		AE3ED1831C850EF20097DC10 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		AE3FF5211C9A5A0100DB4F6C /* FakeLikeRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeLikeRepo.swift; sourceTree = "<group>"; };
+		AE3FF5231C9A5A7700DB4F6C /* LikeRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeRepo.swift; sourceTree = "<group>"; };
+		AE3FF5251C9A5A8E00DB4F6C /* NetworkLikeRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLikeRepo.swift; sourceTree = "<group>"; };
 		AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListParserTest.swift; sourceTree = "<group>"; };
 		AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTest.swift; sourceTree = "<group>"; };
@@ -745,6 +749,8 @@
 		DE99CE260F35F29000DA6B7F /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				AE3FF5231C9A5A7700DB4F6C /* LikeRepo.swift */,
+				AE3FF5251C9A5A8E00DB4F6C /* NetworkLikeRepo.swift */,
 				DE99C8319B5E7658F8AC9B35 /* NetworkPostRepo.swift */,
 				DE99CB21B6B5AF4521A2A1A1 /* NetworkRestaurantRepo.swift */,
 				DE99CB4E04736BBC8AFF8021 /* NewRestaurant.swift */,
@@ -1008,10 +1014,12 @@
 				AE1D42091C8420350048DF66 /* ImageViewController.swift in Sources */,
 				DE99CAE855DA045F9EC09C0C /* KeychainSessionRepo.swift in Sources */,
 				DE99C5F42497764EF7EE4252 /* LaunchWorkflow.swift in Sources */,
+				AE3FF5241C9A5A7700DB4F6C /* LikeRepo.swift in Sources */,
 				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
 				DE99C2FBE2CDA0C6D59583BD /* main.swift in Sources */,
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
 				DE99C575936B3E8619D06F8D /* NetworkCommentRepo.swift in Sources */,
+				AE3FF5261C9A5A8E00DB4F6C /* NetworkLikeRepo.swift in Sources */,
 				DE99C47B5157D6F86DCAE43E /* NetworkPhotoRepo.swift in Sources */,
 				DE99C17D2E7F4D8B2782BF38 /* NetworkPostRepo.swift in Sources */,
 				DE99C666756597D0AB21E3B5 /* NetworkRestaurantRepo.swift in Sources */,
