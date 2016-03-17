@@ -58,7 +58,7 @@ class NavigationRouter: Router {
         let restaurantDetailViewController = RestaurantDetailViewController(
             router: self,
             reloader: DefaultReloader(),
-            repo: restaurantRepo,
+            restaurantRepo: restaurantRepo,
             restaurantId: id
         )
 

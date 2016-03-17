@@ -19,12 +19,12 @@ class RestaurantDetailViewController: UIViewController {
     init(
         router: Router,
         reloader: Reloader,
-        repo: RestaurantRepo,
+        restaurantRepo: RestaurantRepo,
         restaurantId: Int)
     {
         self.router = router
         self.reloader = reloader
-        self.repo = repo
+        self.repo = restaurantRepo
         self.restaurantId = restaurantId
         self.tableView = UITableView.newAutoLayoutView()
         self.likeButton = UIButton.newAutoLayoutView()

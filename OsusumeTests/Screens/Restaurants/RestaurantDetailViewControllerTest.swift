@@ -5,7 +5,7 @@ import Nimble
 
 class RestaurantDetailViewControllerTest: XCTestCase {
     let fakeRouter = FakeRouter()
-    let fakeRepo = FakeRestaurantRepo()
+    let fakeRestaurantRepo = FakeRestaurantRepo()
     let fakeReloader = FakeReloader()
 
     var restaurantDetailVC: RestaurantDetailViewController!
@@ -18,11 +18,11 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         restaurantDetailVC = RestaurantDetailViewController(
             router: fakeRouter,
             reloader: fakeReloader,
-            repo: fakeRepo,
+            restaurantRepo: fakeRestaurantRepo,
             restaurantId: 1
         )
 
-        fakeRepo.createdRestaurant = Restaurant(
+        fakeRestaurantRepo.createdRestaurant = Restaurant(
             id: 1,
             name: "My Restaurant",
             address: "Roppongi",
@@ -99,7 +99,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         restaurantDetailVC = RestaurantDetailViewController(
             router: fakeRouter,
             reloader: DefaultReloader(),
-            repo: fakeRepo,
+            restaurantRepo: fakeRestaurantRepo,
             restaurantId: 1
         )
 
