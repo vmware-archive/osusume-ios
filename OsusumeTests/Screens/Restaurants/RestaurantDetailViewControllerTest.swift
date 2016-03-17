@@ -4,9 +4,9 @@ import Nimble
 @testable import Osusume
 
 class RestaurantDetailViewControllerTest: XCTestCase {
-    let router = FakeRouter()
-    let repo = FakeRestaurantRepo()
-    let reloader = FakeReloader()
+    let fakeRouter = FakeRouter()
+    let fakeRepo = FakeRestaurantRepo()
+    let fakeReloader = FakeReloader()
 
     var restaurantDetailVC: RestaurantDetailViewController!
     let today = NSDate()
@@ -16,13 +16,13 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
     override func setUp() {
         restaurantDetailVC = RestaurantDetailViewController(
-            router: router,
-            reloader: reloader,
-            repo: repo,
+            router: fakeRouter,
+            reloader: fakeReloader,
+            repo: fakeRepo,
             restaurantId: 1
         )
 
-        repo.createdRestaurant = Restaurant(
+        fakeRepo.createdRestaurant = Restaurant(
             id: 1,
             name: "My Restaurant",
             address: "Roppongi",
@@ -80,7 +80,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         restaurantDetailVC.view.setNeedsLayout()
         restaurantDetailVC.viewWillAppear(false)
 
-        expect(self.reloader.reload_wasCalled).to(equal(true))
+        expect(self.fakeReloader.reload_wasCalled).to(equal(true))
     }
 
     func test_tappingTheEditButton_showsTheEditScreen() {
@@ -92,14 +92,14 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         let updateButton = restaurantDetailVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(updateButton)
 
-        expect(self.router.editRestaurantScreenIsShowing).to(equal(true))
+        expect(self.fakeRouter.editRestaurantScreenIsShowing).to(equal(true))
     }
 
     func test_tappingTheAddCommentButton_showsTheNewCommentScreen() {
         restaurantDetailVC = RestaurantDetailViewController(
-            router: router,
+            router: fakeRouter,
             reloader: DefaultReloader(),
-            repo: repo,
+            repo: fakeRepo,
             restaurantId: 1
         )
 
@@ -111,7 +111,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         restaurantDetailCell.addCommentButton.sendActionsForControlEvents(.TouchUpInside)
 
-        expect(self.router.newCommentScreenIsShowing).to(equal(true))
-        expect(self.router.showNewCommentScreen_args).to(equal(1))
+        expect(self.fakeRouter.newCommentScreenIsShowing).to(equal(true))
+        expect(self.fakeRouter.showNewCommentScreen_args).to(equal(1))
     }
 }

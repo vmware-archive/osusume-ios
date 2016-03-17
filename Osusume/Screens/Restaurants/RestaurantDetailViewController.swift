@@ -9,10 +9,11 @@ class RestaurantDetailViewController: UIViewController {
     let repo: RestaurantRepo
 
     let restaurantId: Int
-    var restaurant: Restaurant? = nil
+    var restaurant: Restaurant?
 
     //MARK: - View Elements
-    let tableView = UITableView.newAutoLayoutView()
+    let tableView: UITableView
+    let likeButton: UIButton
 
     //MARK: - Initializers
     init(
@@ -25,6 +26,8 @@ class RestaurantDetailViewController: UIViewController {
         self.reloader = reloader
         self.repo = repo
         self.restaurantId = restaurantId
+        self.tableView = UITableView.newAutoLayoutView()
+        self.likeButton = UIButton.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
 
