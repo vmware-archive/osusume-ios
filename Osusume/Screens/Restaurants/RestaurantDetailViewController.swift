@@ -140,11 +140,7 @@ extension RestaurantDetailViewController: UITableViewDataSource {
                         return UITableViewCell()
                 }
 
-                var cell = tableView.dequeueReusableCellWithIdentifier(
-                    "commentCell", forIndexPath: indexPath
-                    ) as UITableViewCell
-
-                cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "commentCell")
+                let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "commentCell")
                 cell.backgroundColor = UIColor.greenColor()
                 cell.selectionStyle = .None
 
