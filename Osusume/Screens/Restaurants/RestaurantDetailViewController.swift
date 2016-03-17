@@ -3,6 +3,14 @@ import UIKit
 import PureLayout
 import BrightFutures
 
+protocol LikeRepo {
+
+}
+
+struct NetworkLikeRepo: LikeRepo {
+
+}
+
 class RestaurantDetailViewController: UIViewController {
     unowned let router: Router
     let reloader: Reloader
@@ -20,6 +28,7 @@ class RestaurantDetailViewController: UIViewController {
         router: Router,
         reloader: Reloader,
         restaurantRepo: RestaurantRepo,
+        likeRepo: LikeRepo,
         restaurantId: Int)
     {
         self.router = router

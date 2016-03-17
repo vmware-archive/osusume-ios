@@ -59,6 +59,7 @@ class NavigationRouter: Router {
             router: self,
             reloader: DefaultReloader(),
             restaurantRepo: restaurantRepo,
+            likeRepo: NetworkLikeRepo(),
             restaurantId: id
         )
 

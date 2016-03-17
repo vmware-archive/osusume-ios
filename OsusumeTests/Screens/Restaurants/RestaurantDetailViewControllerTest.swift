@@ -3,6 +3,12 @@ import Nimble
 
 @testable import Osusume
 
+
+
+struct FakeLikeRepo: LikeRepo {
+
+}
+
 class RestaurantDetailViewControllerTest: XCTestCase {
     let fakeRouter = FakeRouter()
     let fakeRestaurantRepo = FakeRestaurantRepo()
@@ -19,6 +25,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             router: fakeRouter,
             reloader: fakeReloader,
             restaurantRepo: fakeRestaurantRepo,
+            likeRepo: FakeLikeRepo(),
             restaurantId: 1
         )
 
@@ -100,6 +107,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             router: fakeRouter,
             reloader: DefaultReloader(),
             restaurantRepo: fakeRestaurantRepo,
+            likeRepo: FakeLikeRepo(),
             restaurantId: 1
         )
 
