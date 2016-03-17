@@ -2,9 +2,9 @@ import UIKit
 
 class CuisineListTableViewController: UITableViewController {
 
-    let router: Router
-    let cuisineRepo: CuisineRepo
-    var cuisineList: CuisineList
+    private let router: Router
+    private let cuisineRepo: CuisineRepo
+    private var cuisineList: CuisineList
 
     init(router: Router,
         cuisineRepo: CuisineRepo)
