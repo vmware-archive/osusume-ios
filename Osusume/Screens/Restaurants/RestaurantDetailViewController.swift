@@ -4,24 +4,26 @@ import PureLayout
 import BrightFutures
 
 protocol LikeRepo {
-
+    func like(id: Int)
 }
 
 struct NetworkLikeRepo: LikeRepo {
+    func like(id: Int) {
 
+    }
 }
 
 class RestaurantDetailViewController: UIViewController {
     unowned let router: Router
     let reloader: Reloader
-    let repo: RestaurantRepo
+    let restaurantRepo: RestaurantRepo
+    let likeRepo: LikeRepo
 
     let restaurantId: Int
     var restaurant: Restaurant?
 
     //MARK: - View Elements
     let tableView: UITableView
-    let likeButton: UIButton
 
     //MARK: - Initializers
     init(
@@ -33,10 +35,10 @@ class RestaurantDetailViewController: UIViewController {
     {
         self.router = router
         self.reloader = reloader
-        self.repo = restaurantRepo
+        self.restaurantRepo = restaurantRepo
+        self.likeRepo = likeRepo
         self.restaurantId = restaurantId
         self.tableView = UITableView.newAutoLayoutView()
-        self.likeButton = UIButton.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
 
@@ -76,7 +78,7 @@ class RestaurantDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        repo.getOne(self.restaurantId)
+        restaurantRepo.getOne(self.restaurantId)
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurant in
                 self.restaurant = returnedRestaurant
                 self.reloader.reload(self.tableView)
@@ -88,6 +90,10 @@ class RestaurantDetailViewController: UIViewController {
         if let currentRestaurant = self.restaurant {
             router.showEditRestaurantScreen(currentRestaurant)
         }
+    }
+
+    func didTapLikeButton(sender: UIButton) {
+        likeRepo.like(restaurantId)
     }
 
     //MARK: - Constraints
@@ -127,6 +133,7 @@ extension RestaurantDetailViewController: UITableViewDataSource {
                         return UITableViewCell()
                 }
 
+                cell.backgroundColor = UIColor.cyanColor()
                 cell.selectionStyle = .None
                 cell.delegate = self
                 cell.configureView(currentRestaurant, reloader: DefaultReloader(), router: router)
@@ -144,6 +151,7 @@ extension RestaurantDetailViewController: UITableViewDataSource {
                     ) as UITableViewCell
 
                 cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "commentCell")
+                cell.backgroundColor = UIColor.greenColor()
                 cell.selectionStyle = .None
 
                 let comments = currentRestaurant.comments

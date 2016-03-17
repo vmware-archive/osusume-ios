@@ -5,14 +5,21 @@ import Nimble
 
 
 
-struct FakeLikeRepo: LikeRepo {
-
+class FakeLikeRepo: LikeRepo {
+    var like_wasCalled = false
+    var like_arg = 0
+    func like(id: Int) {
+        like_wasCalled = true
+        like_arg = id
+    }
 }
 
 class RestaurantDetailViewControllerTest: XCTestCase {
     let fakeRouter = FakeRouter()
     let fakeRestaurantRepo = FakeRestaurantRepo()
+    let fakeLikeRepo = FakeLikeRepo()
     let fakeReloader = FakeReloader()
+    let restaurantId = 1
 
     var restaurantDetailVC: RestaurantDetailViewController!
     let today = NSDate()
@@ -25,8 +32,8 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             router: fakeRouter,
             reloader: fakeReloader,
             restaurantRepo: fakeRestaurantRepo,
-            likeRepo: FakeLikeRepo(),
-            restaurantId: 1
+            likeRepo: fakeLikeRepo,
+            restaurantId: restaurantId
         )
 
         fakeRestaurantRepo.createdRestaurant = Restaurant(
@@ -121,5 +128,29 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         expect(self.fakeRouter.newCommentScreenIsShowing).to(equal(true))
         expect(self.fakeRouter.showNewCommentScreen_args).to(equal(1))
+    }
+
+    func test_tappingTheLikeButton() {
+        restaurantDetailVC = RestaurantDetailViewController(
+            router: fakeRouter,
+            reloader: DefaultReloader(),
+            restaurantRepo: fakeRestaurantRepo,
+            likeRepo: fakeLikeRepo,
+            restaurantId: 1
+        )
+
+        restaurantDetailVC.view.setNeedsLayout()
+        restaurantDetailVC.viewWillAppear(false)
+
+        let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
+        let restaurantDetailCell = restaurantDetailVC.tableView
+            .cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
+
+
+        restaurantDetailCell.likeButton.sendActionsForControlEvents(.TouchUpInside)
+
+
+        expect(self.fakeLikeRepo.like_wasCalled).to(beTrue())
+        expect(self.fakeLikeRepo.like_arg).to(equal(restaurantId))
     }
 }

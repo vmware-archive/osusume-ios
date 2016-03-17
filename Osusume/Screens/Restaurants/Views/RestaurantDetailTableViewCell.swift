@@ -1,5 +1,6 @@
 protocol RestaurantDetailTableViewCellDelegate: NSObjectProtocol {
     func displayAddCommentScreen()
+    func didTapLikeButton(sender: UIButton)
 }
 
 class RestaurantDetailTableViewCell: UITableViewCell {
@@ -19,6 +20,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         return label
     }()
     let creationInfoLabel = UILabel()
+    let likeButton = UIButton.newAutoLayoutView()
     let addCommentButton = UIButton.newAutoLayoutView()
     var photoUrls: [NSURL] = []
 
@@ -30,7 +32,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        collectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
         collectionView.backgroundColor = UIColor.lightGrayColor()
         collectionView.accessibilityLabel = "Restaurant photos"
@@ -50,6 +52,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         contentView.addSubview(acceptsCreditCardsLabel)
         contentView.addSubview(notesLabel)
         contentView.addSubview(creationInfoLabel)
+        contentView.addSubview(likeButton)
         contentView.addSubview(addCommentButton)
 
         addCommentButton.addTarget(
@@ -59,6 +62,14 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         )
         addCommentButton.setTitle("Add comment", forState: .Normal)
         addCommentButton.backgroundColor = UIColor.grayColor()
+
+        likeButton.addTarget(
+            self.delegate,
+            action: "didTapLikeButton:",
+            forControlEvents: .TouchUpInside)
+        likeButton.setTitle("Like", forState: .Normal)
+        likeButton.setTitleColor(UIColor.redColor(), forState: .Highlighted)
+        likeButton.backgroundColor = UIColor.blueColor()
 
         applyViewConstraints()
     }
@@ -122,10 +133,15 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         creationInfoLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         creationInfoLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
 
-        addCommentButton.autoPinEdge(.Leading, toEdge: .Leading, ofView: creationInfoLabel)
-        addCommentButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: creationInfoLabel)
+        likeButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: creationInfoLabel)
+        likeButton.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+        likeButton.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
 
-        addCommentButton.autoPinEdgeToSuperviewEdge(.Bottom)
+        addCommentButton.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
+        addCommentButton.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
+        addCommentButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: likeButton)
+
+        addCommentButton.autoPinEdgeToSuperviewMargin(.Bottom)
     }
 
 }
