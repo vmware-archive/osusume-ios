@@ -9,6 +9,7 @@ class NavigationRouter: Router {
     let commentRepo: CommentRepo
     let postRepo: PostRepo
     let cuisineRepo: CuisineRepo
+    let likeRepo: LikeRepo
 
     init(
         navigationController: UINavigationController,
@@ -18,7 +19,8 @@ class NavigationRouter: Router {
         userRepo: UserRepo,
         commentRepo: CommentRepo,
         postRepo: PostRepo,
-        cuisineRepo: CuisineRepo)
+        cuisineRepo: CuisineRepo,
+        likeRepo: LikeRepo)
     {
         self.navigationController = navigationController
         self.sessionRepo = sessionRepo
@@ -28,6 +30,7 @@ class NavigationRouter: Router {
         self.commentRepo = commentRepo
         self.postRepo = postRepo
         self.cuisineRepo = cuisineRepo
+        self.likeRepo = likeRepo
     }
 
     func showNewRestaurantScreen() {
@@ -62,7 +65,7 @@ class NavigationRouter: Router {
             router: self,
             reloader: DefaultReloader(),
             restaurantRepo: restaurantRepo,
-            likeRepo: NetworkLikeRepo(),
+            likeRepo: likeRepo,
             restaurantId: id
         )
 

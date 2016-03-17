@@ -46,6 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             sessionRepo: sessionRepo,
             parser: CuisineListParser()
         )
+        let likeRepo = NetworkLikeRepo(
+            http: http
+        )
 
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
@@ -55,7 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userRepo: userRepo,
             commentRepo: commentRepo,
             postRepo: postRepo,
-            cuisineRepo: cuisineRepo
+            cuisineRepo: cuisineRepo,
+            likeRepo: likeRepo
         )
 
         self.init(

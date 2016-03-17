@@ -25,7 +25,8 @@ class LaunchWorkflowTest: XCTestCase {
             userRepo: FakeUserRepo(),
             commentRepo: FakeCommentRepo(),
             postRepo: FakePostRepo(),
-            cuisineRepo: FakeCuisineRepo()
+            cuisineRepo: FakeCuisineRepo(),
+            likeRepo: FakeLikeRepo()
         )
 
         launchWorkflow = LaunchWorkflow(
