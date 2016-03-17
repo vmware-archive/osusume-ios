@@ -1,3 +1,4 @@
+import BrightFutures
 import XCTest
 import Nimble
 
@@ -114,7 +115,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         expect(self.fakeRouter.showNewCommentScreen_args).to(equal(1))
     }
 
-    func test_tappingTheLikeButton() {
+    func test_tappingTheLikeButton_callsTheController() {
         restaurantDetailVC = RestaurantDetailViewController(
             router: fakeRouter,
             reloader: DefaultReloader(),
@@ -136,5 +137,18 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         expect(self.fakeLikeRepo.like_wasCalled).to(beTrue())
         expect(self.fakeLikeRepo.like_arg).to(equal(restaurantId))
+    }
+
+    func test_tappingTheLikeButton_togglesTheColorOfTheButton() {
+        let likeButton = UIButton()
+        let promise = Promise<Like, LikeRepoError>()
+        fakeLikeRepo.like_returnValue = promise.future
+
+        restaurantDetailVC.didTapLikeButton(likeButton)
+
+        promise.success(Like())
+
+        expect(likeButton.backgroundColor).toEventually(equal(UIColor.redColor()))
+        expect(likeButton.titleColorForState(.Normal)).toEventually(equal(UIColor.blueColor()))
     }
 }

@@ -26,6 +26,8 @@
 		AE3FF5221C9A5A0100DB4F6C /* FakeLikeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FF5211C9A5A0100DB4F6C /* FakeLikeRepo.swift */; };
 		AE3FF5241C9A5A7700DB4F6C /* LikeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FF5231C9A5A7700DB4F6C /* LikeRepo.swift */; };
 		AE3FF5261C9A5A8E00DB4F6C /* NetworkLikeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FF5251C9A5A8E00DB4F6C /* NetworkLikeRepo.swift */; };
+		AE3FF5281C9A781500DB4F6C /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FF5271C9A781500DB4F6C /* Like.swift */; };
+		AE3FF52A1C9A7AE000DB4F6C /* LikeRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3FF5291C9A7AE000DB4F6C /* LikeRepoTest.swift */; };
 		AE51C6321C98FD680068EF0D /* CuisineListParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */; };
 		AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */; };
 		AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */; };
@@ -157,6 +159,8 @@
 		AE3FF5211C9A5A0100DB4F6C /* FakeLikeRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeLikeRepo.swift; sourceTree = "<group>"; };
 		AE3FF5231C9A5A7700DB4F6C /* LikeRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeRepo.swift; sourceTree = "<group>"; };
 		AE3FF5251C9A5A8E00DB4F6C /* NetworkLikeRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLikeRepo.swift; sourceTree = "<group>"; };
+		AE3FF5271C9A781500DB4F6C /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		AE3FF5291C9A7AE000DB4F6C /* LikeRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeRepoTest.swift; sourceTree = "<group>"; };
 		AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListParserTest.swift; sourceTree = "<group>"; };
 		AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTest.swift; sourceTree = "<group>"; };
@@ -641,6 +645,7 @@
 				AE3FF5211C9A5A0100DB4F6C /* FakeLikeRepo.swift */,
 				DE99CE118C90B70C13B4D6F0 /* FakePostRepo.swift */,
 				DE99CA67CB4E2F3B76BD2322 /* FakeRestaurantRepo.swift */,
+				AE3FF5291C9A7AE000DB4F6C /* LikeRepoTest.swift */,
 				DE99CCD04FD48638BAC6D71B /* NetworkPostRepoTest.swift */,
 				DE99C51E328463B174013D14 /* NetworkRestaurantRepoTest.swift */,
 				DE99CA5899A1AF4CA0FFE8A5 /* RestaurantFixtures.swift */,
@@ -721,6 +726,7 @@
 		DE99CE260F35F29000DA6B7F /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				AE3FF5271C9A781500DB4F6C /* Like.swift */,
 				AE3FF5231C9A5A7700DB4F6C /* LikeRepo.swift */,
 				AE3FF5251C9A5A8E00DB4F6C /* NetworkLikeRepo.swift */,
 				DE99C8319B5E7658F8AC9B35 /* NetworkPostRepo.swift */,
@@ -957,6 +963,7 @@
 				AE1D42091C8420350048DF66 /* ImageViewController.swift in Sources */,
 				DE99CAE855DA045F9EC09C0C /* KeychainSessionRepo.swift in Sources */,
 				DE99C5F42497764EF7EE4252 /* LaunchWorkflow.swift in Sources */,
+				AE3FF5281C9A781500DB4F6C /* Like.swift in Sources */,
 				AE3FF5241C9A5A7700DB4F6C /* LikeRepo.swift in Sources */,
 				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
 				DE99C2FBE2CDA0C6D59583BD /* main.swift in Sources */,
@@ -1027,6 +1034,7 @@
 				AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */,
 				DE99C39FB88F303DF4869148 /* KeychainSessionRepoTest.swift in Sources */,
 				DE99CED00AC7F1E1202E9B1F /* LaunchWorkflowTest.swift in Sources */,
+				AE3FF52A1C9A7AE000DB4F6C /* LikeRepoTest.swift in Sources */,
 				AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */,
 				DE99C3A75F3D574B68C6D653 /* NavigationRouterTest.swift in Sources */,
 				DE99CDD1C1EF4FD00A5D80BF /* NetworkCommentRepoTest.swift in Sources */,

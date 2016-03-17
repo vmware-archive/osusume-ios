@@ -84,6 +84,10 @@ class RestaurantDetailViewController: UIViewController {
 
     func didTapLikeButton(sender: UIButton) {
         likeRepo.like(restaurantId)
+            .onSuccess { _ in
+                sender.backgroundColor = UIColor.redColor()
+                sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        }
     }
 
     //MARK: - Constraints
