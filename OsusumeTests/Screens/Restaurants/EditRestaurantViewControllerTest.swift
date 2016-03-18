@@ -16,22 +16,11 @@ class EditRestaurantViewControllerTest: XCTestCase {
         UIView.setAnimationsEnabled(false)
         router = FakeRouter()
         repo = FakeRestaurantRepo()
+    }
 
-        repo.createdRestaurant = Restaurant(
-            id: 1,
-            name: "Original Restaurant Name",
-            address: "Original Address",
-            cuisineType: "Original Cuisine Type",
-            offersEnglishMenu: true,
-            walkInsOk: false,
-            acceptsCreditCards: true,
-            notes: "This place is great",
-            author: "Jane",
-            liked: false,
-            createdAt: NSDate(),
-            photoUrls: [],
-            comments: []
-        )
+    private func instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine) {
+        repo.createdRestaurant = RestaurantFixtures.newRestaurant(name: "Original Restaurant Name", liked: false, cuisine: cuisine)
+
         editRestaurantViewController = EditRestaurantViewController(
             router: router,
             repo: repo,
@@ -42,18 +31,36 @@ class EditRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_populatesRestaurantDetailsInFields() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+
         expect(self.editRestaurantViewController.formView.nameTextField.text).to(equal("Original Restaurant Name"))
         expect(self.editRestaurantViewController.formView.addressTextField.text).to(equal("Original Address"))
-        expect(self.editRestaurantViewController.formView.cuisineTypeTextField.text).to(equal("Original Cuisine Type"))
+        expect(self.editRestaurantViewController.formView.cuisineTypeTextField.text).to(equal("Pizza"))
         expect(self.editRestaurantViewController.formView.offersEnglishMenuSwitch.on).to(equal(true))
         expect(self.editRestaurantViewController.formView.walkInsOkSwitch.on).to(equal(false))
         expect(self.editRestaurantViewController.formView.acceptsCreditCardsSwitch.on).to(equal(true))
         expect(self.editRestaurantViewController.formView.notesTextField.text).to(equal("This place is great"))
     }
 
+    func test_populatesRestaurantDetailsInFieldsWithoutCuisine() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 0, name: "Not Specified"))
+
+        expect(self.editRestaurantViewController.formView.nameTextField.text).to(equal("Original Restaurant Name"))
+        expect(self.editRestaurantViewController.formView.addressTextField.text).to(equal("Original Address"))
+        expect(self.editRestaurantViewController.formView.cuisineTypeTextField.text).to(equal(""))
+        expect(self.editRestaurantViewController.formView.offersEnglishMenuSwitch.on).to(equal(true))
+        expect(self.editRestaurantViewController.formView.walkInsOkSwitch.on).to(equal(false))
+        expect(self.editRestaurantViewController.formView.acceptsCreditCardsSwitch.on).to(equal(true))
+        expect(self.editRestaurantViewController.formView.notesTextField.text).to(equal("This place is great"))
+    }
+
+
     func test_invokesUpdateWithChangedValues() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+
         editRestaurantViewController.formView.nameTextField.text = "Updated Restaurant Name"
         editRestaurantViewController.formView.cuisineTypeTextField.text = "Updated Restaurant Cuisine Type"
+        editRestaurantViewController.formView.cuisine = Cuisine(id: 2, name: "Gyouza")
         editRestaurantViewController.formView.walkInsOkSwitch.on = true
         editRestaurantViewController.formView.notesTextField.text = "Try the vegetables!"
 
@@ -65,6 +72,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(restaurant.name).to(equal("Updated Restaurant Name"))
         expect(restaurant.address).to(equal("Original Address"))
         expect(restaurant.cuisineType).to(equal("Updated Restaurant Cuisine Type"))
+        expect(restaurant.cuisine == Cuisine(id: 2, name: "Gyouza"))
         expect(restaurant.offersEnglishMenu).to(equal(true))
         expect(restaurant.walkInsOk).to(equal(true))
         expect(restaurant.acceptsCreditCards).to(equal(true))

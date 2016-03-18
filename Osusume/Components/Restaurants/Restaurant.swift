@@ -5,6 +5,7 @@ struct Restaurant {
     var name: String
     var address: String
     var cuisineType: String
+    var cuisine: Cuisine
     var offersEnglishMenu: Bool
     var walkInsOk: Bool
     var acceptsCreditCards: Bool
@@ -20,6 +21,7 @@ struct Restaurant {
         name: String,
         address: String,
         cuisineType: String,
+        cuisine: Cuisine,
         offersEnglishMenu: Bool,
         walkInsOk: Bool,
         acceptsCreditCards: Bool,
@@ -35,6 +37,7 @@ struct Restaurant {
             self.name = name
             self.address = address
             self.cuisineType = cuisineType
+            self.cuisine = cuisine
             self.offersEnglishMenu = offersEnglishMenu
             self.walkInsOk = walkInsOk
             self.acceptsCreditCards = acceptsCreditCards
@@ -54,6 +57,7 @@ func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
         lhs.name == rhs.name &&
         lhs.address == rhs.address &&
         lhs.cuisineType == rhs.cuisineType &&
+        lhs.cuisine == rhs.cuisine &&
         lhs.offersEnglishMenu == rhs.offersEnglishMenu &&
         lhs.walkInsOk  == rhs.walkInsOk &&
         lhs.acceptsCreditCards == rhs.acceptsCreditCards &&

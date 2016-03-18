@@ -31,6 +31,7 @@ class NetworkRestaurantRepoTest: XCTestCase {
                 name: "Danny's Diner",
                 address: "123 Main Street",
                 cuisineType: "Creole",
+                cuisineId: 9,
                 offersEnglishMenu: true,
                 walkInsOk: true,
                 acceptsCreditCards: true,
@@ -45,6 +46,7 @@ class NetworkRestaurantRepoTest: XCTestCase {
         XCTAssertEqual("Danny's Diner", actualRestaurantParams["name"])
         XCTAssertEqual("123 Main Street", actualRestaurantParams["address"])
         XCTAssertEqual("Creole", actualRestaurantParams["cuisine_type"])
+        XCTAssertEqual(9, actualRestaurantParams["cuisine_id"])
         XCTAssertEqual(true, actualRestaurantParams["offers_english_menu"])
         XCTAssertEqual(true, actualRestaurantParams["walk_ins_ok"])
         XCTAssertEqual(true, actualRestaurantParams["accepts_credit_cards"])

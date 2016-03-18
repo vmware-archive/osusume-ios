@@ -38,6 +38,7 @@ class FakeRestaurantRepo : RestaurantRepo {
             name: params["name"] as! String,
             address: params["address"] as! String,
             cuisineType: params["cuisine_type"] as! String,
+            cuisine: params["cuisine"] as! Cuisine,
             offersEnglishMenu: params["offers_english_menu"] as! Bool,
             walkInsOk: params["walk_ins_ok"] as! Bool,
             acceptsCreditCards: params["accepts_credit_cards"] as! Bool,

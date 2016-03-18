@@ -4,6 +4,7 @@ class RestaurantFormView : UIView {
 
     let restaurant: Restaurant? = nil
     var delegate: FindCuisineScreenPresenterProtocol?
+    var cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
 
     // MARK: - Initializers
     init(restaurant: Restaurant?) {
@@ -39,7 +40,7 @@ class RestaurantFormView : UIView {
     func setRestaurantValues(restaurant: Restaurant) {
         nameTextField.text = restaurant.name
         addressTextField.text = restaurant.address
-        cuisineTypeTextField.text = restaurant.cuisineType
+        cuisineTypeTextField.text = restaurant.cuisine.id == 0 ? "" : restaurant.cuisine.name
         offersEnglishMenuSwitch.on = restaurant.offersEnglishMenu
         walkInsOkSwitch.on = restaurant.walkInsOk
         acceptsCreditCardsSwitch.on = restaurant.acceptsCreditCards
@@ -239,5 +240,6 @@ class RestaurantFormView : UIView {
 extension RestaurantFormView: CuisineSelectionProtocol {
     func cuisineSelected(cuisine: Cuisine) {
         cuisineTypeTextField.text = cuisine.name
+        self.cuisine = cuisine
     }
 }

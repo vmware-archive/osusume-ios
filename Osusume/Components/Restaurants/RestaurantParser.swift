@@ -36,6 +36,11 @@ struct RestaurantParser {
         let maybeCuisineType = json["cuisine_type"] as? String
         let cuisineType = maybeCuisineType ?? ""
 
+        let maybeCuisineJson = json["cuisine"] as? [String: AnyObject]
+        let cuisineJson = maybeCuisineJson ?? [:]
+        let maybeCuisine = CuisineParser().parse(cuisineJson).value
+        let cuisine = maybeCuisine ?? Cuisine(id: 0, name: "Not Specified")
+
         let maybeOffersEnglishMenu = json["offers_english_menu"] as? Bool
         let offersEnglishMenu = maybeOffersEnglishMenu ?? false
 
@@ -80,6 +85,7 @@ struct RestaurantParser {
             name: name,
             address: address,
             cuisineType: cuisineType,
+            cuisine: cuisine,
             offersEnglishMenu: offersEnglishMenu,
             walkInsOk: walkInsOk,
             acceptsCreditCards: acceptCreditCard,

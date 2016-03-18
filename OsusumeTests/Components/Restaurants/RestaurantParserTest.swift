@@ -47,6 +47,7 @@ class RestaurantParserTest: XCTestCase {
 
         expect(restaurants.count).to(equal(2))
         expect(restaurants[0].name).to(equal("first restaurant"))
+        expect(restaurants[0].cuisineType).to(equal(""))
         expect(restaurants[1].name).to(equal("second restaurant"))
     }
 
@@ -162,6 +163,42 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.liked).to(equal(false))
     }
 
+    func test_parse_handlesCuisine() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "id": 1232,
+            "name": "liked restaurant",
+            "cuisine": [
+                "id": 1,
+                "name": "Italian"
+            ]
+        ]
+
+
+        let restaurant = restaurantParser.parseSingle(json).value!
+
+
+        let actualCuisine = restaurant.cuisine
+        expect(actualCuisine.id).to(equal(1))
+        expect(actualCuisine.name).to(equal("Italian"))
+    }
+
+    func test_parse_handlesWithoutCuisine() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "id": 1232,
+            "name": "liked restaurant"
+        ]
+
+
+        let restaurant = restaurantParser.parseSingle(json).value!
+
+
+        let expectedCuisine = Cuisine(id: 0, name: "Not Specified")
+        expect(restaurant.cuisine == expectedCuisine)
+    }
 
     func test_parsingASingleRestaurant_withoutComments() {
         let restaurantParser = RestaurantParser()

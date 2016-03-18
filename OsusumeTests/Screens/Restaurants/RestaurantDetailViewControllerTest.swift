@@ -31,6 +31,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             name: "My Restaurant",
             address: "Roppongi",
             cuisineType: "Sushi",
+            cuisine: Cuisine(id: 1, name: "Pizza"),
             offersEnglishMenu: true,
             walkInsOk: false,
             acceptsCreditCards: true,

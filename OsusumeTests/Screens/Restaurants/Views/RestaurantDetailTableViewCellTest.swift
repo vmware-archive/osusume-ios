@@ -21,6 +21,7 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
                 name: "My Restaurant",
                 address: "Roppongi",
                 cuisineType: "Sushi",
+                cuisine: Cuisine(id: 1, name: "Pizza"),
                 offersEnglishMenu: true,
                 walkInsOk: false,
                 acceptsCreditCards: true,
@@ -40,7 +41,7 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
         expect(self.restaurantDetailCell.addressLabel.text)
             .to(equal("Roppongi"))
         expect(self.restaurantDetailCell.cuisineTypeLabel.text)
-            .to(equal("Sushi"))
+            .to(equal("Pizza"))
         expect(self.restaurantDetailCell.offersEnglishMenuLabel.text)
             .to(equal("Offers English menu"))
         expect(self.restaurantDetailCell.walkInsOkLabel.text)

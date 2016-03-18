@@ -44,6 +44,7 @@ struct NetworkRestaurantRepo: RestaurantRepo {
                         "name": newRestaurant.name,
                         "address": newRestaurant.address,
                         "cuisine_type": newRestaurant.cuisineType,
+                        "cuisine_id": newRestaurant.cuisineId,
                         "offers_english_menu": newRestaurant.offersEnglishMenu,
                         "walk_ins_ok": newRestaurant.walkInsOk,
                         "accepts_credit_cards": newRestaurant.acceptsCreditCards,
