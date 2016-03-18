@@ -34,7 +34,6 @@ class NetworkCommentRepoTest: XCTestCase {
 
         networkCommentRepo = NetworkCommentRepo(
             http: fakeHttp,
-            sessionRepo: fakeSessionRepo,
             parser: fakeCommentParser
         )
     }
@@ -43,12 +42,7 @@ class NetworkCommentRepoTest: XCTestCase {
         let comment = NewComment(text: "I loved the tonkatsu!", restaurantId: 1)
         networkCommentRepo.persist(comment)
 
-        let expectedHeaders = [
-            "Authorization": "Bearer some-session-token"
-        ]
-
         XCTAssertEqual("/restaurants/\(comment.restaurantId)/comments", fakeHttp.post_args.path)
-        XCTAssertEqual(expectedHeaders, fakeHttp.post_args.headers)
 
         let expectedParams: [String: AnyObject] = ["comment": ["content": comment.text]]
 

@@ -6,7 +6,6 @@ protocol CommentRepo {
 
 struct NetworkCommentRepo <P: DataParser where P.ParsedObject == PersistedComment>: CommentRepo {
     let http: Http
-    let sessionRepo: SessionRepo
     let parser: P
 
     func persist(comment: NewComment) -> Future<PersistedComment, RepoError> {
@@ -15,7 +14,7 @@ struct NetworkCommentRepo <P: DataParser where P.ParsedObject == PersistedCommen
         return http
             .post(
                 path,
-                headers: buildHeaders(),
+                headers: [:],
                 parameters: ["comment": ["content": comment.text]]
             )
             .mapError { _ in
@@ -26,11 +25,5 @@ struct NetworkCommentRepo <P: DataParser where P.ParsedObject == PersistedCommen
                     .parse(httpJson)
                     .mapError { _ in return RepoError.ParsingFailed }
             }
-    }
-
-    private func buildHeaders() -> [String: String] {
-        return [
-            "Authorization": "Bearer \(sessionRepo.getToken()!)"
-        ]
     }
 }

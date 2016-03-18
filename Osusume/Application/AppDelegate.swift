@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             sessionRepo: sessionRepo
         )
         let commentRepo = NetworkCommentRepo(
-            http: http,
-            sessionRepo: sessionRepo,
+            http: sessionHttp,
             parser: CommentParser()
         )
         let postRepo = NetworkPostRepo(
