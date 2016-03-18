@@ -32,19 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AECA9B621C0EC90E00C30BA4"
-               BuildableName = "OsusumeTests.xctest"
-               BlueprintName = "OsusumeTests"
-               ReferencedContainer = "container:Osusume.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AED333A91C634A5400127DC6"
-               BuildableName = "OsusumeUITests.xctest"
-               BlueprintName = "OsusumeUITests"
+               BlueprintIdentifier = "AE19A9FF1C9BDEAF00D8CBAC"
+               BuildableName = "OsusumeIntegrationTests.xctest"
+               BlueprintName = "OsusumeIntegrationTests"
                ReferencedContainer = "container:Osusume.xcodeproj">
             </BuildableReference>
          </TestableReference>

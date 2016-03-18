@@ -10,6 +10,7 @@
 		248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */; };
 		AE19A9F91C9BC85B00D8CBAC /* SessionHttpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19A9F81C9BC85B00D8CBAC /* SessionHttpTest.swift */; };
 		AE19A9FB1C9BCA1500D8CBAC /* SessionHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19A9FA1C9BCA1500D8CBAC /* SessionHttp.swift */; };
+		AE19AA031C9BDEAF00D8CBAC /* OsusumeIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19AA021C9BDEAF00D8CBAC /* OsusumeIntegrationTests.swift */; };
 		AE1D42091C8420350048DF66 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1D42081C8420350048DF66 /* ImageViewController.swift */; };
 		AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1D420A1C8423960048DF66 /* ImageViewControllerTest.swift */; };
 		AE28A9601C9939B600816CEB /* RestaurantDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE28A95F1C9939B600816CEB /* RestaurantDataSource.swift */; };
@@ -136,6 +137,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AE19AA051C9BDEAF00D8CBAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AECA9B471C0EC90E00C30BA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AECA9B4E1C0EC90E00C30BA4;
+			remoteInfo = Osusume;
+		};
 		AECA9B641C0EC90E00C30BA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AECA9B471C0EC90E00C30BA4 /* Project object */;
@@ -149,6 +157,9 @@
 		2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		AE19A9F81C9BC85B00D8CBAC /* SessionHttpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHttpTest.swift; sourceTree = "<group>"; };
 		AE19A9FA1C9BCA1500D8CBAC /* SessionHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHttp.swift; sourceTree = "<group>"; };
+		AE19AA001C9BDEAF00D8CBAC /* OsusumeIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE19AA021C9BDEAF00D8CBAC /* OsusumeIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsusumeIntegrationTests.swift; sourceTree = "<group>"; };
+		AE19AA041C9BDEAF00D8CBAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE1D42081C8420350048DF66 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		AE1D420A1C8423960048DF66 /* ImageViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewControllerTest.swift; sourceTree = "<group>"; };
 		AE28A95F1C9939B600816CEB /* RestaurantDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDataSource.swift; sourceTree = "<group>"; };
@@ -277,6 +288,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AE19A9FD1C9BDEAF00D8CBAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AECA9B4C1C0EC90E00C30BA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +330,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE19AA011C9BDEAF00D8CBAC /* OsusumeIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				AE19AA041C9BDEAF00D8CBAC /* Info.plist */,
+				AE19AA021C9BDEAF00D8CBAC /* OsusumeIntegrationTests.swift */,
+			);
+			path = OsusumeIntegrationTests;
+			sourceTree = "<group>";
+		};
 		AE1CEF6C1C15605B0006073F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +457,7 @@
 			children = (
 				AE1CEF6C1C15605B0006073F /* Frameworks */,
 				AECA9B511C0EC90E00C30BA4 /* Osusume */,
+				AE19AA011C9BDEAF00D8CBAC /* OsusumeIntegrationTests */,
 				AECA9B661C0EC90E00C30BA4 /* OsusumeTests */,
 				AECA9B501C0EC90E00C30BA4 /* Products */,
 			);
@@ -439,6 +467,7 @@
 			isa = PBXGroup;
 			children = (
 				AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */,
+				AE19AA001C9BDEAF00D8CBAC /* OsusumeIntegrationTests.xctest */,
 				AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */,
 			);
 			name = Products;
@@ -801,6 +830,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AE19A9FF1C9BDEAF00D8CBAC /* OsusumeIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE19AA0A1C9BDEAF00D8CBAC /* Build configuration list for PBXNativeTarget "OsusumeIntegrationTests" */;
+			buildPhases = (
+				AE19A9FC1C9BDEAF00D8CBAC /* Sources */,
+				AE19A9FD1C9BDEAF00D8CBAC /* Frameworks */,
+				AE19A9FE1C9BDEAF00D8CBAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE19AA061C9BDEAF00D8CBAC /* PBXTargetDependency */,
+			);
+			name = OsusumeIntegrationTests;
+			productName = OsusumeIntegrationTests;
+			productReference = AE19AA001C9BDEAF00D8CBAC /* OsusumeIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AECA9B4E1C0EC90E00C30BA4 /* Osusume */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AECA9B6C1C0EC90E00C30BA4 /* Build configuration list for PBXNativeTarget "Osusume" */;
@@ -849,6 +896,11 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = io.pivotal;
 				TargetAttributes = {
+					AE19A9FF1C9BDEAF00D8CBAC = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 9G43X93F7Z;
+						TestTargetID = AECA9B4E1C0EC90E00C30BA4;
+					};
 					AECA9B4E1C0EC90E00C30BA4 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 9G43X93F7Z;
@@ -874,11 +926,19 @@
 			targets = (
 				AECA9B4E1C0EC90E00C30BA4 /* Osusume */,
 				AECA9B621C0EC90E00C30BA4 /* OsusumeTests */,
+				AE19A9FF1C9BDEAF00D8CBAC /* OsusumeIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AE19A9FE1C9BDEAF00D8CBAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AECA9B4D1C0EC90E00C30BA4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -947,6 +1007,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AE19A9FC1C9BDEAF00D8CBAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE19AA031C9BDEAF00D8CBAC /* OsusumeIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AECA9B4B1C0EC90E00C30BA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1068,6 +1136,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AE19AA061C9BDEAF00D8CBAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AECA9B4E1C0EC90E00C30BA4 /* Osusume */;
+			targetProxy = AE19AA051C9BDEAF00D8CBAC /* PBXContainerItemProxy */;
+		};
 		AECA9B651C0EC90E00C30BA4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AECA9B4E1C0EC90E00C30BA4 /* Osusume */;
@@ -1087,6 +1160,45 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AE19AA071C9BDEAF00D8CBAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = OsusumeIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.pivotal.OsusumeIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
+			};
+			name = Debug;
+		};
+		AE19AA081C9BDEAF00D8CBAC /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = OsusumeIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.pivotal.OsusumeIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
+			};
+			name = Staging;
+		};
+		AE19AA091C9BDEAF00D8CBAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = OsusumeIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.pivotal.OsusumeIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osusume.app/Osusume";
+			};
+			name = Release;
+		};
 		AE293BC61C3CBFC900E09ABC /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1343,6 +1455,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AE19AA0A1C9BDEAF00D8CBAC /* Build configuration list for PBXNativeTarget "OsusumeIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE19AA071C9BDEAF00D8CBAC /* Debug */,
+				AE19AA081C9BDEAF00D8CBAC /* Staging */,
+				AE19AA091C9BDEAF00D8CBAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		AECA9B4A1C0EC90E00C30BA4 /* Build configuration list for PBXProject "Osusume" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
