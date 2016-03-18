@@ -40,8 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             )
         )
         let cuisineRepo = HttpCuisineRepo(
-            http: http,
-            sessionRepo: sessionRepo,
+            http: sessionHttp,
             parser: CuisineListParser()
         )
         let likeRepo = NetworkLikeRepo(

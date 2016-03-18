@@ -19,13 +19,10 @@ class CuisineRepoTest: XCTestCase {
 
     func test_getAll_makesGetRequestWithCorrectArguments() {
         let fakeHttp = FakeHttp()
-        let fakeSessionRepo = FakeSessionRepo()
         let fakeCuisineListParser = FakeCuisineListParser()
-        fakeSessionRepo.tokenValue = "A Validated Token Value"
 
         let cuisineRepo = HttpCuisineRepo(
             http: fakeHttp,
-            sessionRepo: fakeSessionRepo,
             parser: fakeCuisineListParser
         )
 
@@ -33,11 +30,7 @@ class CuisineRepoTest: XCTestCase {
         cuisineRepo.getAll()
 
 
-        let expectedHeaders = [
-            "Authorization": "Bearer A Validated Token Value"
-        ]
         expect(fakeHttp.get_args.path).to(equal("/cuisines"))
-        expect(fakeHttp.get_args.headers).to(equal(expectedHeaders))
     }
 
     func test_getAll_parsesHttpOutputJson() {
@@ -51,7 +44,6 @@ class CuisineRepoTest: XCTestCase {
 
         let cuisineRepo = HttpCuisineRepo(
             http: fakeHttp,
-            sessionRepo: fakeSessionRepo,
             parser: fakeCuisineListParser
         )
 
@@ -76,7 +68,6 @@ class CuisineRepoTest: XCTestCase {
 
         let cuisineRepo = HttpCuisineRepo(
             http: fakeHttp,
-            sessionRepo: fakeSessionRepo,
             parser: fakeCuisineListParser
         )
 

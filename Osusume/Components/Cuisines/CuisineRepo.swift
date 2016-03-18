@@ -7,12 +7,11 @@ protocol CuisineRepo {
 
 struct HttpCuisineRepo <P: DataListParser where P.ParsedObject == CuisineList>: CuisineRepo {
     let http: Http
-    let sessionRepo: SessionRepo
     let parser: P
 
     func getAll() -> Future<CuisineList, RepoError> {
         return http
-            .get("/cuisines", headers: buildHeaders()) // Future<AnyObject, RepoError>
+            .get("/cuisines", headers: [:]) // Future<AnyObject, RepoError>
             .mapError {
                 _ in return RepoError.GetFailed
             }
@@ -23,11 +22,5 @@ struct HttpCuisineRepo <P: DataListParser where P.ParsedObject == CuisineList>: 
                             _ in return RepoError.GetFailed
                         }
             }
-    }
-
-    private func buildHeaders() -> [String : String] {
-        return [
-            "Authorization": "Bearer \(sessionRepo.getToken()!)"
-        ]
     }
 }
