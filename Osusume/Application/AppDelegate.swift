@@ -21,9 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
 
         let http = DefaultHttp(basePath: AppDelegate.basePath)
+        let sessionHttp = SessionHttp(http: http, sessionRepo: sessionRepo)
         let restaurantRepo = NetworkRestaurantRepo(
-            http: http,
-            sessionRepo: sessionRepo
+            http: sessionHttp
         )
         let userRepo = NetworkUserRepo(
             http: http,
@@ -36,8 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         let postRepo = NetworkPostRepo(
             restaurantRepo: NetworkRestaurantRepo(
-                http: http,
-                sessionRepo: sessionRepo,
+                http: sessionHttp,
                 path: "/profile/posts"
             )
         )

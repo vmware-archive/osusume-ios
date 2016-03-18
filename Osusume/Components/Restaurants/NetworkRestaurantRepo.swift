@@ -5,20 +5,18 @@ struct NetworkRestaurantRepo: RestaurantRepo {
     let parser: RestaurantParser
     let path: String
     let http: Http
-    let sessionRepo: SessionRepo
 
-    init(http: Http, sessionRepo: SessionRepo, path: String = "/restaurants") {
+    init(http: Http, path: String = "/restaurants") {
         self.parser = RestaurantParser()
         self.path = path
         self.http = http
-        self.sessionRepo = sessionRepo
     }
 
     //MARK: - GET Functions
 
     func getAll() -> Future<[Restaurant], RepoError> {
         return http
-            .get(path, headers: buildHeaders())
+            .get(path, headers: [:])
             .map { value in
                 self.parser
                     .parseList(value as! [[String: AnyObject]]).value!
@@ -27,7 +25,7 @@ struct NetworkRestaurantRepo: RestaurantRepo {
 
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
         return http
-            .get("\(path)/\(id)", headers: buildHeaders())
+            .get("\(path)/\(id)", headers: [:])
             .map { value in
                 self.parser
                     .parseSingle(value as! [String: AnyObject]).value!
@@ -40,7 +38,7 @@ struct NetworkRestaurantRepo: RestaurantRepo {
         return http
             .post(
                 path,
-                headers: buildHeaders(),
+                headers: [:],
                 parameters: [
                     "restaurant": [
                         "name": newRestaurant.name,
@@ -62,15 +60,8 @@ struct NetworkRestaurantRepo: RestaurantRepo {
         return http
             .patch(
                 "\(path)/\(id)",
-                headers: buildHeaders(),
+                headers: [:],
                 parameters: ["restaurant": params]
             )
-    }
-
-    // MARK: - Private Methods
-    private func buildHeaders() -> [String: String] {
-        return [
-            "Authorization": "Bearer \(sessionRepo.getToken()!)"
-        ]
     }
 }

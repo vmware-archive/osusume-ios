@@ -10,32 +10,19 @@ class NetworkRestaurantRepoTest: XCTestCase {
     override func setUp() {
         fakeSessionRepo.tokenValue = "some-session-token"
 
-        networkRestaurantRepo = NetworkRestaurantRepo(
-            http: fakeHttp,
-            sessionRepo: fakeSessionRepo
-        )
+        networkRestaurantRepo = NetworkRestaurantRepo(http: fakeHttp)
     }
 
-    func test_getAll_passesTokenAsHeaderToHttp() {
+    func test_getAll() {
         networkRestaurantRepo.getAll()
 
-        let expectedHeaders = [
-            "Authorization": "Bearer some-session-token"
-        ]
-
         XCTAssertEqual("/restaurants", fakeHttp.get_args.path)
-        XCTAssertEqual(expectedHeaders, fakeHttp.get_args.headers)
     }
 
-    func test_getOne_passesTokenAsHeaderToHttp() {
+    func test_getOne() {
         networkRestaurantRepo.getOne(999)
 
-        let expectedHeaders = [
-            "Authorization": "Bearer some-session-token"
-        ]
-
         XCTAssertEqual("/restaurants/999", fakeHttp.get_args.path)
-        XCTAssertEqual(expectedHeaders, fakeHttp.get_args.headers)
     }
 
     func test_create_formatsBodyWithRestaurantData() {
@@ -52,11 +39,9 @@ class NetworkRestaurantRepoTest: XCTestCase {
             )
         )
 
-        let expectedHeaders = ["Authorization": "Bearer some-session-token"]
         let actualRestaurantParams = fakeHttp.post_args.parameters["restaurant"]!
 
         XCTAssertEqual("/restaurants", fakeHttp.post_args.path)
-        XCTAssertEqual(expectedHeaders, fakeHttp.post_args.headers)
         XCTAssertEqual("Danny's Diner", actualRestaurantParams["name"])
         XCTAssertEqual("123 Main Street", actualRestaurantParams["address"])
         XCTAssertEqual("Creole", actualRestaurantParams["cuisine_type"])
@@ -67,14 +52,9 @@ class NetworkRestaurantRepoTest: XCTestCase {
         XCTAssertEqual([["url": "my-cool-url"], ["url": "my-awesome-url"]], actualRestaurantParams["photo_urls"])
     }
 
-    func test_update_passesTokenAsHeaderToHttp() {
-        networkRestaurantRepo.update(999, params: ["paramName": "paramValue"])
-
-        let expectedHeaders = [
-            "Authorization": "Bearer some-session-token"
-        ]
+    func test_update() {
+        networkRestaurantRepo.update(999, params: ["paramName" : "paramValue"])
 
         XCTAssertEqual("/restaurants/999", fakeHttp.patch_args.path)
-        XCTAssertEqual(expectedHeaders, fakeHttp.patch_args.headers)
     }
 }
