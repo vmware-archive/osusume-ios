@@ -47,7 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             parser: CuisineListParser()
         )
         let likeRepo = NetworkLikeRepo(
-            http: http
+            http: http,
+            sessionRepo: sessionRepo
         )
 
         let router: NavigationRouter = NavigationRouter(
