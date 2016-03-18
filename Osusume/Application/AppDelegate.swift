@@ -43,10 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             http: sessionHttp,
             parser: CuisineListParser()
         )
-        let likeRepo = NetworkLikeRepo(
-            http: http,
-            sessionRepo: sessionRepo
-        )
+        let likeRepo = NetworkLikeRepo(http: sessionHttp)
 
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
