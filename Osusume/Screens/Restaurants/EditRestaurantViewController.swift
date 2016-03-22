@@ -33,7 +33,7 @@ class EditRestaurantViewController: UIViewController {
     let scrollView = UIScrollView.newAutoLayoutView()
     let contentInScrollView = UIView.newAutoLayoutView()
     let formViewContainer = UIView.newAutoLayoutView()
-    var formView: RestaurantFormView!
+    var formView: EditRestaurantFormView!
 
     //MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class EditRestaurantViewController: UIViewController {
         scrollView.addSubview(contentInScrollView)
         contentInScrollView.addSubview(formViewContainer)
 
-        formView = RestaurantFormView(restaurant: self.restaurant)
+        formView = EditRestaurantFormView(restaurant: self.restaurant)
         formViewContainer.addSubview(formView)
 
         scrollView.backgroundColor = UIColor.whiteColor()

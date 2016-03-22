@@ -1,6 +1,6 @@
 import UIKit
 
-class RestaurantFormView : UIView {
+class NewRestaurantFormView: UIView {
 
     let restaurant: Restaurant? = nil
     var delegate: FindCuisineScreenPresenterProtocol?
@@ -207,7 +207,7 @@ class RestaurantFormView : UIView {
     }
 }
 
-extension RestaurantFormView: CuisineSelectionProtocol {
+extension NewRestaurantFormView: CuisineSelectionProtocol {
     func cuisineSelected(cuisine: Cuisine) {
         cuisineTypeValueLabel.text = cuisine.name
         self.cuisine = cuisine

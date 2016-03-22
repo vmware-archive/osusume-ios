@@ -38,7 +38,7 @@ class NewRestaurantViewController: UIViewController {
     let scrollView  = UIScrollView.newAutoLayoutView()
     let contentInScrollView = UIView.newAutoLayoutView()
     let formViewContainer = UIView.newAutoLayoutView()
-    let formView = RestaurantFormView(restaurant: nil)
+    let formView = NewRestaurantFormView(restaurant: nil)
 
     lazy var imageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
