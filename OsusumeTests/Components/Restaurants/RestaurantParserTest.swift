@@ -197,7 +197,7 @@ class RestaurantParserTest: XCTestCase {
 
 
         let expectedCuisine = Cuisine(id: 0, name: "Not Specified")
-        expect(restaurant.cuisine == expectedCuisine)
+        expect(restaurant.cuisine).to(equal(expectedCuisine))
     }
 
     func test_parsingASingleRestaurant_withoutComments() {

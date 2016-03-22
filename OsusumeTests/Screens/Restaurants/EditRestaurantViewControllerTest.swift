@@ -72,7 +72,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(restaurant.name).to(equal("Updated Restaurant Name"))
         expect(restaurant.address).to(equal("Original Address"))
         expect(restaurant.cuisineType).to(equal("Updated Restaurant Cuisine Type"))
-        expect(restaurant.cuisine == Cuisine(id: 2, name: "Gyouza"))
+        expect(restaurant.cuisine).to(equal(Cuisine(id: 2, name: "Gyouza")))
         expect(restaurant.offersEnglishMenu).to(equal(true))
         expect(restaurant.walkInsOk).to(equal(true))
         expect(restaurant.acceptsCreditCards).to(equal(true))

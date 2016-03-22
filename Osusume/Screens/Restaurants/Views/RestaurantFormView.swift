@@ -6,8 +6,70 @@ class RestaurantFormView : UIView {
     var delegate: FindCuisineScreenPresenterProtocol?
     var cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
 
+    // MARK: - View Elements
+
+    let nameTextField: UITextField
+    let nameLabel: UILabel
+    let addressTextField: UITextField
+    let addressLabel: UILabel
+    let cuisineTypeValueLabel: UILabel
+    let cuisineTypeLabel: UILabel
+    let offersEnglishMenuLabel: UILabel
+    let offersEnglishMenuSwitch: UISwitch
+    let walkInsOkLabel: UILabel
+    let walkInsOkSwitch: UISwitch
+    let acceptsCreditCardsLabel: UILabel
+    let acceptsCreditCardsSwitch: UISwitch
+    let notesLabel: UILabel
+    let notesTextField: UITextView
+    let findCuisineButton: UIButton
+
     // MARK: - Initializers
     init(restaurant: Restaurant?) {
+        nameTextField = UITextField.newAutoLayoutView()
+        nameTextField.borderStyle = .Line
+
+        nameLabel = UILabel.newAutoLayoutView()
+        nameLabel.text = "Restaurant Name"
+
+        addressTextField = UITextField.newAutoLayoutView()
+        addressTextField.borderStyle = .Line
+
+        addressLabel = UILabel.newAutoLayoutView()
+        addressLabel.text = "Address"
+
+        cuisineTypeValueLabel = UILabel.newAutoLayoutView()
+
+        cuisineTypeLabel = UILabel.newAutoLayoutView()
+        cuisineTypeLabel.text = "Cuisine Type"
+
+        offersEnglishMenuLabel = UILabel.newAutoLayoutView()
+        offersEnglishMenuLabel.text = "Offers English Menu"
+
+        offersEnglishMenuSwitch = UISwitch.newAutoLayoutView()
+
+        walkInsOkLabel = UILabel.newAutoLayoutView()
+        walkInsOkLabel.text = "Walk-ins Ok"
+
+        walkInsOkSwitch = UISwitch.newAutoLayoutView()
+
+        acceptsCreditCardsLabel = UILabel.newAutoLayoutView()
+        acceptsCreditCardsLabel.text = "Accepts Credit Cards"
+
+        acceptsCreditCardsSwitch = UISwitch.newAutoLayoutView()
+
+        notesLabel = UILabel.newAutoLayoutView()
+        notesLabel.text = "Notes"
+
+        notesTextField = UITextView.newAutoLayoutView()
+        notesTextField.layer.borderWidth = 1.0
+        notesTextField.layer.borderColor = UIColor.darkGrayColor().CGColor
+
+        findCuisineButton = UIButton.newAutoLayoutView()
+        findCuisineButton.setTitle("Find Cuisine", forState: .Normal)
+        findCuisineButton.setTitleColor(findCuisineButton.tintColor, forState: .Normal)
+        findCuisineButton.backgroundColor = UIColor.clearColor()
+
         super.init(frame: CGRect())
 
         self.addSubview(nameLabel)
@@ -25,6 +87,12 @@ class RestaurantFormView : UIView {
         self.addSubview(acceptsCreditCardsSwitch)
         self.addSubview(notesLabel)
         self.addSubview(notesTextField)
+
+        findCuisineButton.addTarget(
+            self,
+            action: Selector("didTapFindCuisineButton:"),
+            forControlEvents: .TouchUpInside
+        )
 
         if let thisRestaurant = restaurant {
             setRestaurantValues(thisRestaurant)
@@ -102,104 +170,6 @@ class RestaurantFormView : UIView {
 
         notesTextField.autoPinEdgeToSuperviewEdge(.Bottom)
     }
-
-
-    // MARK: - View Elements
-
-    let nameTextField : UITextField = {
-        let textField = UITextField.newAutoLayoutView()
-        textField.borderStyle = .Line
-        return textField
-    }()
-
-    let nameLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.text = "Restaurant Name"
-        return label
-    }()
-
-    let addressTextField : UITextField = {
-        let textField = UITextField.newAutoLayoutView()
-        textField.borderStyle = .Line
-        return textField
-    }()
-
-    let addressLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.text = "Address"
-        return label
-    }()
-
-    let cuisineTypeValueLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        return label
-    }()
-
-    let cuisineTypeLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.text = "Cuisine Type"
-        return label
-    }()
-
-    let offersEnglishMenuLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.text = "Offers English Menu"
-        return label
-    }()
-
-    let offersEnglishMenuSwitch : UISwitch = {
-        let menuSwitch = UISwitch.newAutoLayoutView()
-        return menuSwitch
-    }()
-
-    let walkInsOkLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.text = "Walk-ins Ok"
-        return label
-    }()
-
-    let walkInsOkSwitch : UISwitch = {
-        return UISwitch.newAutoLayoutView()
-    }()
-
-    let acceptsCreditCardsLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.text = "Accepts Credit Cards"
-        return label
-    }()
-
-    let acceptsCreditCardsSwitch : UISwitch = {
-        return UISwitch.newAutoLayoutView()
-    }()
-
-    let notesLabel : UILabel = {
-        let label = UILabel.newAutoLayoutView()
-        label.text = "Notes"
-        return label
-    }()
-
-    let notesTextField : UITextView = {
-        let textField = UITextView.newAutoLayoutView()
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.darkGrayColor().CGColor
-        return textField
-    }()
-
-    lazy var findCuisineButton: UIButton = {
-        let button = UIButton()
-
-        button.setTitle("Find Cuisine", forState: .Normal)
-        button.setTitleColor(button.tintColor, forState: .Normal)
-        button.backgroundColor = UIColor.clearColor()
-        button.addTarget(
-            self,
-            action: Selector("didTapFindCuisineButton:"),
-            forControlEvents: .TouchUpInside
-        )
-
-        return button
-    }()
-
 
     //MARK: - Getters
 
