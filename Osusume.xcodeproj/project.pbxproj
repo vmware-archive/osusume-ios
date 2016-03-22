@@ -42,6 +42,9 @@
 		AE559A461C8EC98B001D45A1 /* ImageLoaderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A451C8EC98B001D45A1 /* ImageLoaderHandler.swift */; };
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */; };
+		AE9F01E41C9BE50300163045 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */; };
+		AE9F01E51C9BE51600163045 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
+		AE9F01E61C9BE53000163045 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
 		AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA712471C4F59B300862B02 /* KeychainAccess.framework */; };
 		AEACDB751C98FDF90092AEF6 /* CuisineListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB741C98FDF90092AEF6 /* CuisineListParser.swift */; };
 		AEACDB771C98FFD90092AEF6 /* CuisineList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB761C98FFD90092AEF6 /* CuisineList.swift */; };
@@ -51,12 +54,13 @@
 		AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAEF4971C7315EC004ECC89 /* ExtensionsForTest.swift */; };
 		AEB243901C71666300959434 /* RestaurantListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB2438F1C71666300959434 /* RestaurantListViewControllerTest.swift */; };
 		AEBCAB5D1C8D5F37005FBA11 /* FakeImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCAB5C1C8D5F37005FBA11 /* FakeImageLoader.swift */; };
+		AEC1B68D1CA0D641005E6F7A /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */; };
+		AEC1B68E1CA0D641005E6F7A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B771C0ED81500C30BA4 /* Nimble.framework */; };
+		AEC1B68F1CA0D641005E6F7A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
 		AEC471D41C7439F7001B8C56 /* BSGridCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D31C7439F7001B8C56 /* BSGridCollectionViewLayout.framework */; };
 		AEC471D61C7439FA001B8C56 /* BSImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D51C7439FA001B8C56 /* BSImagePicker.framework */; };
 		AEC471D81C743A00001B8C56 /* UIImageViewModeScaleAspect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D71C743A00001B8C56 /* UIImageViewModeScaleAspect.framework */; };
 		AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC877671C7300090005BEA1 /* NewCommentViewControllerTest.swift */; };
-		AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B771C0ED81500C30BA4 /* Nimble.framework */; };
-		AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECA9B721C0ED6FA00C30BA4 /* Quick.framework */; };
 		AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */; };
 		AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */; };
 		AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */; };
@@ -296,6 +300,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE9F01E41C9BE50300163045 /* AWSCognito.framework in Frameworks */,
+				AE9F01E51C9BE51600163045 /* AWSCore.framework in Frameworks */,
+				AE9F01E61C9BE53000163045 /* AWSS3.framework in Frameworks */,
+				AEC1B68D1CA0D641005E6F7A /* BrightFutures.framework in Frameworks */,
+				AEC1B68E1CA0D641005E6F7A /* Nimble.framework in Frameworks */,
+				AEC1B68F1CA0D641005E6F7A /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,8 +336,6 @@
 				AE3ED1761C842EDF0097DC10 /* AWSCognito.framework in Frameworks */,
 				AE3ED1751C842ECE0097DC10 /* AWSCore.framework in Frameworks */,
 				AE3ED1741C842EB60097DC10 /* AWSS3.framework in Frameworks */,
-				AECA9B7C1C0EDA7100C30BA4 /* Nimble.framework in Frameworks */,
-				AECA9B7D1C0EDA7400C30BA4 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -843,6 +851,7 @@
 				AE19A9FC1C9BDEAF00D8CBAC /* Sources */,
 				AE19A9FD1C9BDEAF00D8CBAC /* Frameworks */,
 				AE19A9FE1C9BDEAF00D8CBAC /* Resources */,
+				AEEBA4BB1CA0D86F003E136F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -995,7 +1004,6 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Quick.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/PureLayout.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
@@ -1004,6 +1012,22 @@
 				"$(SRCROOT)/Carthage/Build/iOS/WebImage.framework",
 			);
 			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		AEEBA4BB1CA0D86F003E136F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1172,6 +1196,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = OsusumeIntegrationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1185,6 +1215,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = OsusumeIntegrationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1198,6 +1234,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks/extras",
+					"$(PROJECT_DIR)/Libs/aws-ios-sdk-2.3.4/frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = OsusumeIntegrationTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
