@@ -104,11 +104,7 @@ class ProfileViewControllerTest: XCTestCase {
 
         let apple = testImage(named: "appleLogo", imageExtension: "png")
         promise.success(apple)
-
-        waitUntil { done in
-            while !promise.future.isCompleted {}
-            done()
-        }
+        waitForFutureToComplete(promise.future)
 
         expect(cell?.photoImageView.image).to(equal(apple))
     }

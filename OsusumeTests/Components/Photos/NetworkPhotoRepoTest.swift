@@ -53,11 +53,7 @@ class NetworkPhotoRepoTest: XCTestCase {
         let actualResult = networkPhotoRepo.loadImageFromUrl(url)
 
         promise.success(testImage(named: "appleLogo", imageExtension: "png"))
-
-        waitUntil { done in
-            while !promise.future.isCompleted {}
-            done()
-        }
+        waitForFutureToComplete(promise.future)
 
         if let actualImage = actualResult.result?.value {
             let actualImageData = UIImageJPEGRepresentation(actualImage, 1.0)
@@ -80,11 +76,7 @@ class NetworkPhotoRepoTest: XCTestCase {
         let actualResult = networkPhotoRepo.loadImageFromUrl(url)
 
         promise.failure(.Failed)
-
-        waitUntil { done in
-            while !promise.future.isCompleted {}
-            done()
-        }
+        waitForFutureToComplete(promise.future)
 
         expect(actualResult.result?.error).to(equal(RepoError.GetFailed))
     }
