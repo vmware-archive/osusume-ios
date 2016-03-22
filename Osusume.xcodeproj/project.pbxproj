@@ -210,7 +210,6 @@
 		AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osusume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECA9B691C0EC90E00C30BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AECA9B721C0ED6FA00C30BA4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		AECA9B771C0ED81500C30BA4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
@@ -365,7 +364,6 @@
 				AEF8BF8F1C61C263000677EB /* libz.tbd */,
 				AECA9B771C0ED81500C30BA4 /* Nimble.framework */,
 				AE2978111C1012B400751DD3 /* PureLayout.framework */,
-				AECA9B721C0ED6FA00C30BA4 /* Quick.framework */,
 				AEDE88C21C1FA57700AF8DA1 /* Result.framework */,
 				AEC471D71C743A00001B8C56 /* UIImageViewModeScaleAspect.framework */,
 				AE7CDA551C69835300A2D6B3 /* WebImage.framework */,
@@ -1513,6 +1511,7 @@
 				AE19AA091C9BDEAF00D8CBAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Staging;
 		};
 		AECA9B4A1C0EC90E00C30BA4 /* Build configuration list for PBXProject "Osusume" */ = {
 			isa = XCConfigurationList;
