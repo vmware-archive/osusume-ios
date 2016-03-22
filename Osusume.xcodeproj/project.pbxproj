@@ -18,6 +18,7 @@
 		AE28A9601C9939B600816CEB /* RestaurantDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE28A95F1C9939B600816CEB /* RestaurantDataSource.swift */; };
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE37F6041C7FD7EB0005CB29 /* FakeReloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37F6031C7FD7EB0005CB29 /* FakeReloader.swift */; };
+		AE39E61F1CA0D70A008DBD18 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
 		AE3ECDEE1C76E947002D70B4 /* appleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3ECDED1C76E947002D70B4 /* appleLogo.png */; };
 		AE3ECDF21C7AEAA0002D70B4 /* truck.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3ECDF11C7AEAA0002D70B4 /* truck.png */; };
 		AE3ED1731C8420640097DC10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE3ED1711C8420640097DC10 /* LaunchScreen.storyboard */; };
@@ -68,7 +69,6 @@
 		AEDD1B861C897DEE0024B29E /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD1B851C897DEE0024B29E /* ImageLoader.swift */; };
 		AEDD1B881C897FF40024B29E /* DefaultImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD1B871C897FF40024B29E /* DefaultImageLoader.swift */; };
 		AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */; };
-		AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
 		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
 		AEDEDC5B1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */; };
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
@@ -322,7 +322,7 @@
 				AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */,
 				AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */,
 				AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */,
-				AEDE88C31C1FA57700AF8DA1 /* Result.framework in Frameworks */,
+				AE39E61F1CA0D70A008DBD18 /* Result.framework in Frameworks */,
 				AEC471D81C743A00001B8C56 /* UIImageViewModeScaleAspect.framework in Frameworks */,
 				AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */,
 			);
