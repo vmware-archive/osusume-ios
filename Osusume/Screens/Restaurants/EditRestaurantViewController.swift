@@ -8,8 +8,8 @@ class EditRestaurantViewController: UIViewController {
     unowned let router: Router
     let repo: RestaurantRepo
 
-    var restaurant: Restaurant? = nil
-    var id: Int!
+    let restaurant: Restaurant
+    let id: Int
 
     //MARK: - Initializers
     init(
@@ -43,7 +43,7 @@ class EditRestaurantViewController: UIViewController {
         scrollView.addSubview(contentInScrollView)
         contentInScrollView.addSubview(formViewContainer)
 
-        formView = EditRestaurantFormView(restaurant: self.restaurant)
+        formView = EditRestaurantFormView(restaurant: restaurant)
         formViewContainer.addSubview(formView)
 
         scrollView.backgroundColor = UIColor.whiteColor()

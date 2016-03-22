@@ -1,8 +1,6 @@
 import UIKit
 
 class NewRestaurantFormView: UIView {
-
-    let restaurant: Restaurant? = nil
     var delegate: FindCuisineScreenPresenterProtocol?
     var cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
 
@@ -25,7 +23,7 @@ class NewRestaurantFormView: UIView {
     let findCuisineButton: UIButton
 
     // MARK: - Initializers
-    init(restaurant: Restaurant?) {
+    init() {
         nameTextField = UITextField.newAutoLayoutView()
         nameTextField.borderStyle = .Line
 
@@ -94,27 +92,12 @@ class NewRestaurantFormView: UIView {
             forControlEvents: .TouchUpInside
         )
 
-        if let thisRestaurant = restaurant {
-            setRestaurantValues(thisRestaurant)
-        }
-
         updateSubviewConstraints()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    func setRestaurantValues(restaurant: Restaurant) {
-        nameTextField.text = restaurant.name
-        addressTextField.text = restaurant.address
-        cuisineTypeValueLabel.text = restaurant.cuisine.id == 0 ? "" : restaurant.cuisine.name
-        offersEnglishMenuSwitch.on = restaurant.offersEnglishMenu
-        walkInsOkSwitch.on = restaurant.walkInsOk
-        acceptsCreditCardsSwitch.on = restaurant.acceptsCreditCards
-        notesTextField.text = restaurant.notes
-    }
-
 
     // MARK: - Constraints
 

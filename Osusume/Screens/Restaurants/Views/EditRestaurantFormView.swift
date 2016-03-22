@@ -2,7 +2,7 @@ import UIKit
 
 class EditRestaurantFormView: UIView {
 
-    let restaurant: Restaurant? = nil
+    let restaurant: Restaurant
     var cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
 
     // MARK: - View Elements
@@ -21,10 +21,9 @@ class EditRestaurantFormView: UIView {
     let acceptsCreditCardsSwitch: UISwitch
     let notesLabel: UILabel
     let notesTextField: UITextView
-    let findCuisineButton: UIButton
 
     // MARK: - Initializers
-    init(restaurant: Restaurant?) {
+    init(restaurant: Restaurant) {
         nameTextField = UITextField.newAutoLayoutView()
         nameTextField.borderStyle = .Line
 
@@ -64,10 +63,7 @@ class EditRestaurantFormView: UIView {
         notesTextField.layer.borderWidth = 1.0
         notesTextField.layer.borderColor = UIColor.darkGrayColor().CGColor
 
-        findCuisineButton = UIButton.newAutoLayoutView()
-        findCuisineButton.setTitle("Find Cuisine", forState: .Normal)
-        findCuisineButton.setTitleColor(findCuisineButton.tintColor, forState: .Normal)
-        findCuisineButton.backgroundColor = UIColor.clearColor()
+        self.restaurant = restaurant
 
         super.init(frame: CGRect())
 
@@ -77,7 +73,6 @@ class EditRestaurantFormView: UIView {
         self.addSubview(addressTextField)
         self.addSubview(cuisineTypeLabel)
         self.addSubview(cuisineTypeValueLabel)
-        self.addSubview(findCuisineButton)
         self.addSubview(offersEnglishMenuLabel)
         self.addSubview(offersEnglishMenuSwitch)
         self.addSubview(walkInsOkLabel)
@@ -87,15 +82,7 @@ class EditRestaurantFormView: UIView {
         self.addSubview(notesLabel)
         self.addSubview(notesTextField)
 
-        findCuisineButton.addTarget(
-            self,
-            action: Selector("didTapFindCuisineButton:"),
-            forControlEvents: .TouchUpInside
-        )
-
-        if let thisRestaurant = restaurant {
-            setRestaurantValues(thisRestaurant)
-        }
+        setRestaurantValues(restaurant)
 
         updateSubviewConstraints()
     }
@@ -140,10 +127,7 @@ class EditRestaurantFormView: UIView {
         cuisineTypeValueLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
         cuisineTypeValueLabel.autoSetDimension(.Height, toSize: 25.0)
 
-        findCuisineButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeValueLabel)
-        findCuisineButton.autoAlignAxisToSuperviewAxis(.Vertical)
-
-        offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: findCuisineButton, withOffset: 8.0)
+        offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeValueLabel, withOffset: 8.0)
         offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         offersEnglishMenuSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
         offersEnglishMenuLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: offersEnglishMenuSwitch)
