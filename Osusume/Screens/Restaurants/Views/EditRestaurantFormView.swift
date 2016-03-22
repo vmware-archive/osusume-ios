@@ -82,16 +82,6 @@ class EditRestaurantFormView: UIView {
         self.addSubview(notesLabel)
         self.addSubview(notesTextField)
 
-        setRestaurantValues(restaurant)
-
-        updateSubviewConstraints()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func setRestaurantValues(restaurant: Restaurant) {
         nameTextField.text = restaurant.name
         addressTextField.text = restaurant.address
         cuisineTypeValueLabel.text = restaurant.cuisine.id == 0 ? "" : restaurant.cuisine.name
@@ -99,8 +89,13 @@ class EditRestaurantFormView: UIView {
         walkInsOkSwitch.on = restaurant.walkInsOk
         acceptsCreditCardsSwitch.on = restaurant.acceptsCreditCards
         notesTextField.text = restaurant.notes
+
+        updateSubviewConstraints()
     }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - Constraints
 
