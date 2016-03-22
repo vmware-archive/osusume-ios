@@ -5,22 +5,19 @@ struct NetworkRestaurantRepo: RestaurantRepo {
     let parser: RestaurantParser
     let path: String
     let http: Http
+    private let restaurantListRepo: RestaurantListRepo
 
-    init(http: Http, path: String = "/restaurants") {
+    init(http: Http, restaurantListRepo: RestaurantListRepo) {
         self.parser = RestaurantParser()
-        self.path = path
+        self.path = "/restaurants"
         self.http = http
+        self.restaurantListRepo = restaurantListRepo
     }
 
     //MARK: - GET Functions
 
     func getAll() -> Future<[Restaurant], RepoError> {
-        return http
-            .get(path, headers: [:])
-            .map { value in
-                self.parser
-                    .parseList(value as! [[String: AnyObject]]).value!
-        }
+        return restaurantListRepo.getAll(path)
     }
 
     func getOne(id: Int) -> Future<Restaurant, RepoError> {

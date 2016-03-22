@@ -22,8 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let http = DefaultHttp(basePath: AppDelegate.basePath)
         let sessionHttp = SessionHttp(http: http, sessionRepo: sessionRepo)
+
+        let networkRestaurantListRepo = NetworkRestaurantListRepo(
+            http: http,
+            parser: RestaurantParser()
+        )
+
         let restaurantRepo = NetworkRestaurantRepo(
-            http: sessionHttp
+            http: sessionHttp,
+            restaurantListRepo: networkRestaurantListRepo
         )
         let userRepo = NetworkUserRepo(
             http: http,
@@ -34,10 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             parser: CommentParser()
         )
         let postRepo = NetworkPostRepo(
-            restaurantRepo: NetworkRestaurantRepo(
-                http: sessionHttp,
-                path: "/profile/posts"
-            )
+            restaurantListRepo: networkRestaurantListRepo
         )
         let cuisineRepo = HttpCuisineRepo(
             http: sessionHttp,

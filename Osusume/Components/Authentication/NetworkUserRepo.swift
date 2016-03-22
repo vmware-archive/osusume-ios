@@ -21,7 +21,11 @@ class NetworkUserRepo: UserRepo {
     }
 
     func fetchCurrentUserName() -> Future<String, RepoError> {
-        return http.get("/profile", headers: buildHeaders()).map{value in value["name"] as! String}
+        return http
+            .get("/profile", headers: buildHeaders())
+            .map { value in
+                value["name"] as! String
+            }
     }
 
     private func buildHeaders() -> [String: String] {
