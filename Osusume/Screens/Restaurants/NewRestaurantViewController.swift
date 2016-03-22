@@ -125,7 +125,7 @@ class NewRestaurantViewController: UIViewController {
         let newRestaurant = NewRestaurant(
             name: formView.getNameText()!,
             address: formView.getAddressText()!,
-            cuisineType: formView.getCuisineTypeText()!,
+            cuisineType: formView.getCuisineTypeText() ?? "",
             cuisineId: formView.cuisine.id,
             offersEnglishMenu: formView.getOffersEnglishMenuState()!,
             walkInsOk: formView.getWalkInsOkState()!,

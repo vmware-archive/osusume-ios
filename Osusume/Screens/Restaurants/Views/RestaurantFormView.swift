@@ -15,7 +15,7 @@ class RestaurantFormView : UIView {
         self.addSubview(addressLabel)
         self.addSubview(addressTextField)
         self.addSubview(cuisineTypeLabel)
-        self.addSubview(cuisineTypeTextField)
+        self.addSubview(cuisineTypeValueLabel)
         self.addSubview(findCuisineButton)
         self.addSubview(offersEnglishMenuLabel)
         self.addSubview(offersEnglishMenuSwitch)
@@ -40,7 +40,7 @@ class RestaurantFormView : UIView {
     func setRestaurantValues(restaurant: Restaurant) {
         nameTextField.text = restaurant.name
         addressTextField.text = restaurant.address
-        cuisineTypeTextField.text = restaurant.cuisine.id == 0 ? "" : restaurant.cuisine.name
+        cuisineTypeValueLabel.text = restaurant.cuisine.id == 0 ? "" : restaurant.cuisine.name
         offersEnglishMenuSwitch.on = restaurant.offersEnglishMenu
         walkInsOkSwitch.on = restaurant.walkInsOk
         acceptsCreditCardsSwitch.on = restaurant.acceptsCreditCards
@@ -68,11 +68,12 @@ class RestaurantFormView : UIView {
         cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         cuisineTypeLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
         cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressTextField)
-        cuisineTypeTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        cuisineTypeTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-        cuisineTypeTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
+        cuisineTypeValueLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        cuisineTypeValueLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+        cuisineTypeValueLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
+        cuisineTypeValueLabel.autoSetDimension(.Height, toSize: 25.0)
 
-        findCuisineButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeTextField)
+        findCuisineButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeValueLabel)
         findCuisineButton.autoAlignAxisToSuperviewAxis(.Vertical)
 
         offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: findCuisineButton, withOffset: 8.0)
@@ -129,10 +130,9 @@ class RestaurantFormView : UIView {
         return label
     }()
 
-    let cuisineTypeTextField : UITextField = {
-        let textField = UITextField.newAutoLayoutView()
-        textField.borderStyle = .Line
-        return textField
+    let cuisineTypeValueLabel : UILabel = {
+        let label = UILabel.newAutoLayoutView()
+        return label
     }()
 
     let cuisineTypeLabel : UILabel = {
@@ -212,7 +212,7 @@ class RestaurantFormView : UIView {
     }
 
     func getCuisineTypeText() -> String? {
-        return cuisineTypeTextField.text
+        return cuisineTypeValueLabel.text
     }
 
     func getOffersEnglishMenuState() -> Bool? {
@@ -239,7 +239,7 @@ class RestaurantFormView : UIView {
 
 extension RestaurantFormView: CuisineSelectionProtocol {
     func cuisineSelected(cuisine: Cuisine) {
-        cuisineTypeTextField.text = cuisine.name
+        cuisineTypeValueLabel.text = cuisine.name
         self.cuisine = cuisine
     }
 }

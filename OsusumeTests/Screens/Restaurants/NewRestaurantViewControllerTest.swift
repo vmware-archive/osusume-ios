@@ -41,15 +41,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         self.window = nil
     }
 
-    func test_tappingTheAddPhotoButton_showsTheCameraRoll() {
-        let image = testImage(named: "appleLogo", imageExtension: "png")
-        newRestaurantVC.images.append(image)
-        newRestaurantVC.addPhotoButton.sendActionsForControlEvents(.TouchUpInside)
-
-        expect(self.newRestaurantVC.presentedViewController)
-            .toEventually(beAKindOf(BSImagePickerViewController))
-    }
-
     func test_tappingDoneButton_returnsToListScreen() {
         let image = testImage(named: "appleLogo", imageExtension: "png")
         newRestaurantVC.images.append(image)
@@ -72,7 +63,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
     func test_tappingDoneButton_savesRestaurant() {
         newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
-        newRestaurantVC.formView.cuisineTypeTextField.text = "Restaurant Cuisine Type"
+        newRestaurantVC.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"
         newRestaurantVC.formView.notesTextField.text = "Notes"
 
         let image = testImage(named: "appleLogo", imageExtension: "png")
@@ -105,6 +96,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         newRestaurantVC.formView.cuisineSelected(selectedCuisine)
 
 
-        expect(self.newRestaurantVC.formView.cuisineTypeTextField.text).to(equal("Hamburger"))
+        expect(self.newRestaurantVC.formView.cuisineTypeValueLabel.text).to(equal("Hamburger"))
     }
 }

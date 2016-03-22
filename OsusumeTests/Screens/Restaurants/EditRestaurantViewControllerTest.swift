@@ -35,7 +35,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
         expect(self.editRestaurantViewController.formView.nameTextField.text).to(equal("Original Restaurant Name"))
         expect(self.editRestaurantViewController.formView.addressTextField.text).to(equal("Original Address"))
-        expect(self.editRestaurantViewController.formView.cuisineTypeTextField.text).to(equal("Pizza"))
+        expect(self.editRestaurantViewController.formView.cuisineTypeValueLabel.text).to(equal("Pizza"))
         expect(self.editRestaurantViewController.formView.offersEnglishMenuSwitch.on).to(equal(true))
         expect(self.editRestaurantViewController.formView.walkInsOkSwitch.on).to(equal(false))
         expect(self.editRestaurantViewController.formView.acceptsCreditCardsSwitch.on).to(equal(true))
@@ -47,7 +47,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
         expect(self.editRestaurantViewController.formView.nameTextField.text).to(equal("Original Restaurant Name"))
         expect(self.editRestaurantViewController.formView.addressTextField.text).to(equal("Original Address"))
-        expect(self.editRestaurantViewController.formView.cuisineTypeTextField.text).to(equal(""))
+        expect(self.editRestaurantViewController.formView.cuisineTypeValueLabel.text).to(equal(""))
         expect(self.editRestaurantViewController.formView.offersEnglishMenuSwitch.on).to(equal(true))
         expect(self.editRestaurantViewController.formView.walkInsOkSwitch.on).to(equal(false))
         expect(self.editRestaurantViewController.formView.acceptsCreditCardsSwitch.on).to(equal(true))
@@ -59,7 +59,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
 
         editRestaurantViewController.formView.nameTextField.text = "Updated Restaurant Name"
-        editRestaurantViewController.formView.cuisineTypeTextField.text = "Updated Restaurant Cuisine Type"
+        editRestaurantViewController.formView.cuisineTypeValueLabel.text = "Updated Restaurant Cuisine Type"
         editRestaurantViewController.formView.cuisine = Cuisine(id: 2, name: "Gyouza")
         editRestaurantViewController.formView.walkInsOkSwitch.on = true
         editRestaurantViewController.formView.notesTextField.text = "Try the vegetables!"
