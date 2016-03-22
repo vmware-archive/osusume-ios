@@ -1,7 +1,7 @@
 github "Alamofire/Alamofire" "3.2.1"
 github "mikaoj/BSGridCollectionViewLayout" "1.0.1"
 github "kishikawakatsumi/KeychainAccess" "v2.3.4"
-github "Quick/Nimble" "v3.1.0"
+github "Quick/Nimble" "v3.2.0"
 github "PureLayout/PureLayout" "v3.0.1"
 github "antitypical/Result" "1.0.2"
 github "rs/SDWebImage" "3.7.5"
