@@ -40,7 +40,7 @@ class CuisineListTableViewController: UIViewController, UITableViewDataSource, U
     }
 
     override func viewDidLoad() {
-        title = "Add Cuisine"
+        title = "Find Cuisine"
 
         view.addSubview(tableView)
         tableView.autoPinEdgesToSuperviewEdges()
@@ -58,10 +58,6 @@ class CuisineListTableViewController: UIViewController, UITableViewDataSource, U
     }
 
     // MARK: - UITableViewDataSource
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cuisineList.cuisines.count
     }

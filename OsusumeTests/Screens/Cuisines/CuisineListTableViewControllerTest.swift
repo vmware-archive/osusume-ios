@@ -4,45 +4,40 @@ import XCTest
 import BrightFutures
 @testable import Osusume
 
-import Foundation
+class FakeCuisineSelection: CuisineSelectionProtocol {
+    var selectedCuisine = Cuisine(id: 0, name: "")
+    func cuisineSelected(cuisine: Cuisine) {
+        selectedCuisine = cuisine
+    }
+}
 
 class CuisineListTableViewControllerTest: XCTestCase {
-
-    var cuisineListVC: CuisineListTableViewController!
-    var fakeRouter: FakeRouter!
-    var fakeCuisineRepo: FakeCuisineRepo!
-    var cuisinePromise: Promise<CuisineList, RepoError>!
+    let fakeRouter: FakeRouter = FakeRouter()
+    let fakeCuisineRepo = FakeCuisineRepo()
+    let cuisinePromise = Promise<CuisineList, RepoError>()
+    let cuisineList = CuisineList(cuisines: [Cuisine(id: 1, name: "Soba!")])
     var selectedCuisine: Cuisine?
 
-    override func setUp() {
-        fakeRouter = FakeRouter()
-        fakeCuisineRepo = FakeCuisineRepo()
+    var cuisineListVC: CuisineListTableViewController!
 
-        cuisinePromise = Promise<CuisineList, RepoError>()
+    override func setUp() {
         fakeCuisineRepo.getAll_returnValue = cuisinePromise.future
 
         cuisineListVC = CuisineListTableViewController(
             router: fakeRouter,
             cuisineRepo: fakeCuisineRepo
         )
-        cuisineListVC.view.setNeedsLayout()
-    }
-
-    func test_viewDidLoad_showsCuisineListTableViewWithCuisineData() {
-        expect(self.cuisineListVC.tableView).toNot(beNil())
     }
 
     func test_addCuisineTitle_isShown() {
-        expect(self.cuisineListVC.title).to(equal("Add Cuisine"))
-    }
+        cuisineListVC.view.setNeedsLayout()
 
-    func test_cancelButton_isShown() {
-        let leftBarButtonItem = cuisineListVC.navigationItem.leftBarButtonItem! as UIBarButtonItem
-        let systemButtonValue = leftBarButtonItem.valueForKey("systemItem") as? Int
-        expect(systemButtonValue).to(equal(UIBarButtonSystemItem.Cancel.rawValue))
+        expect(self.cuisineListVC.title).to(equal("Find Cuisine"))
     }
 
     func test_tapCancelButton_navigatesBackToPreviousScreen() {
+        cuisineListVC.view.setNeedsLayout()
+
         let cancelButton = cuisineListVC.navigationItem.leftBarButtonItem! as UIBarButtonItem
 
 
@@ -53,48 +48,40 @@ class CuisineListTableViewControllerTest: XCTestCase {
     }
 
     func test_viewDidLoad_showsCuisines() {
-        let cuisineList = CuisineList(cuisines:
-            [
-                Cuisine(id: 1, name: "Soba!")
-            ]
-        )
-
+        cuisineListVC.view.setNeedsLayout()
 
         cuisinePromise.success(cuisineList)
         NSRunLoop.osu_advance()
 
-
-        expect(self.cuisineListVC.tableView.numberOfSections).to(equal(1))
         expect(self.cuisineListVC.tableView.numberOfRowsInSection(0)).to(equal(1))
 
-        let cuisineCell = cuisineListVC.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+        let cuisineCell = cuisineListVC.tableView.cellForRowAtIndexPath(
+            NSIndexPath(forRow: 0, inSection: 0)
+        )
         expect(cuisineCell?.textLabel?.text).to(equal("Soba!"))
     }
 
     func test_tappingCuisineCell_callsCuisineDelegate() {
-        cuisineListVC.delegate = self
-        let cuisineList = CuisineList(cuisines:
-            [
-                Cuisine(id: 1, name: "Soba!")
-            ]
-        )
+        cuisineListVC.view.setNeedsLayout()
+
+        let fakeCuisineSelection = FakeCuisineSelection()
+        cuisineListVC.delegate = fakeCuisineSelection
         cuisinePromise.success(cuisineList)
         NSRunLoop.osu_advance()
 
-
         let firstCell = NSIndexPath(forRow: 0, inSection: 0)
-        cuisineListVC.tableView(cuisineListVC.tableView, didSelectRowAtIndexPath: firstCell)
+        cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            didSelectRowAtIndexPath: firstCell
+        )
 
 
-        expect(self.selectedCuisine).to(equal(cuisineList.cuisines.first))
+        expect(fakeCuisineSelection.selectedCuisine).to(equal(cuisineList.cuisines.first))
     }
 
     func test_tappingCuisineCell_dismissesFindCuisineScreen() {
-        let cuisineList = CuisineList(cuisines:
-            [
-                Cuisine(id: 1, name: "Soba!")
-            ]
-        )
+        cuisineListVC.view.setNeedsLayout()
+
         cuisinePromise.success(cuisineList)
         NSRunLoop.osu_advance()
 
@@ -104,11 +91,5 @@ class CuisineListTableViewControllerTest: XCTestCase {
 
 
         expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
-    }
-}
-
-extension CuisineListTableViewControllerTest: CuisineSelectionProtocol {
-    func cuisineSelected(cuisine: Cuisine) {
-        selectedCuisine = cuisine
     }
 }
