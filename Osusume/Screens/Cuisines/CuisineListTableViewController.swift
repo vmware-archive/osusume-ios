@@ -4,19 +4,19 @@ protocol CuisineSelectionProtocol {
     func cuisineSelected(cuisine: Cuisine)
 }
 
-class CuisineListTableViewController: UITableViewController {
+class CuisineListTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    private let router: Router
-    private let cuisineRepo: CuisineRepo
-    private var cuisineList: CuisineList
+    let router: Router
+    let tableView: UITableView
+    let cuisineRepo: CuisineRepo
+    var cuisineList: CuisineList
     var delegate: CuisineSelectionProtocol?
 
-    init(router: Router,
-        cuisineRepo: CuisineRepo)
-    {
+    init(router: Router, cuisineRepo: CuisineRepo) {
         self.router = router
         self.cuisineRepo = cuisineRepo
         self.cuisineList = CuisineList(cuisines: [])
+        self.tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
 
@@ -32,6 +32,7 @@ class CuisineListTableViewController: UITableViewController {
             forCellReuseIdentifier: "CuisineCell"
         )
         tableView.dataSource = self
+        tableView.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -40,6 +41,9 @@ class CuisineListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         title = "Add Cuisine"
+
+        view.addSubview(tableView)
+        tableView.autoPinEdgesToSuperviewEdges()
 
         cuisineRepo.getAll()
             .onSuccess { [unowned self] cuisineList in
@@ -54,15 +58,15 @@ class CuisineListTableViewController: UITableViewController {
     }
 
     // MARK: - UITableViewDataSource
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cuisineList.cuisines.count
     }
 
-    override func tableView(
+    func tableView(
         tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
@@ -77,7 +81,7 @@ class CuisineListTableViewController: UITableViewController {
     }
 
     // MARK: - UITableViewDelegate
-    override func tableView(
+    func tableView(
         tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath)
     {

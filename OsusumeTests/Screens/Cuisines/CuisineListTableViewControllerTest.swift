@@ -8,7 +8,7 @@ import Foundation
 
 class CuisineListTableViewControllerTest: XCTestCase {
 
-    var cuisineListTVC: CuisineListTableViewController!
+    var cuisineListVC: CuisineListTableViewController!
     var fakeRouter: FakeRouter!
     var fakeCuisineRepo: FakeCuisineRepo!
     var cuisinePromise: Promise<CuisineList, RepoError>!
@@ -21,29 +21,29 @@ class CuisineListTableViewControllerTest: XCTestCase {
         cuisinePromise = Promise<CuisineList, RepoError>()
         fakeCuisineRepo.getAll_returnValue = cuisinePromise.future
 
-        cuisineListTVC = CuisineListTableViewController(
+        cuisineListVC = CuisineListTableViewController(
             router: fakeRouter,
             cuisineRepo: fakeCuisineRepo
         )
-        cuisineListTVC.view.setNeedsLayout()
+        cuisineListVC.view.setNeedsLayout()
     }
 
     func test_viewDidLoad_showsCuisineListTableViewWithCuisineData() {
-        expect(self.cuisineListTVC.tableView).toNot(beNil())
+        expect(self.cuisineListVC.tableView).toNot(beNil())
     }
 
     func test_addCuisineTitle_isShown() {
-        expect(self.cuisineListTVC.title).to(equal("Add Cuisine"))
+        expect(self.cuisineListVC.title).to(equal("Add Cuisine"))
     }
 
     func test_cancelButton_isShown() {
-        let leftBarButtonItem = cuisineListTVC.navigationItem.leftBarButtonItem! as UIBarButtonItem
+        let leftBarButtonItem = cuisineListVC.navigationItem.leftBarButtonItem! as UIBarButtonItem
         let systemButtonValue = leftBarButtonItem.valueForKey("systemItem") as? Int
         expect(systemButtonValue).to(equal(UIBarButtonSystemItem.Cancel.rawValue))
     }
 
     func test_tapCancelButton_navigatesBackToPreviousScreen() {
-        let cancelButton = cuisineListTVC.navigationItem.leftBarButtonItem! as UIBarButtonItem
+        let cancelButton = cuisineListVC.navigationItem.leftBarButtonItem! as UIBarButtonItem
 
 
         tapNavBarButton(cancelButton)
@@ -64,15 +64,15 @@ class CuisineListTableViewControllerTest: XCTestCase {
         NSRunLoop.osu_advance()
 
 
-        expect(self.cuisineListTVC.tableView.numberOfSections).to(equal(1))
-        expect(self.cuisineListTVC.tableView.numberOfRowsInSection(0)).to(equal(1))
+        expect(self.cuisineListVC.tableView.numberOfSections).to(equal(1))
+        expect(self.cuisineListVC.tableView.numberOfRowsInSection(0)).to(equal(1))
 
-        let cuisineCell = cuisineListTVC.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+        let cuisineCell = cuisineListVC.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
         expect(cuisineCell?.textLabel?.text).to(equal("Soba!"))
     }
 
     func test_tappingCuisineCell_callsCuisineDelegate() {
-        cuisineListTVC.delegate = self
+        cuisineListVC.delegate = self
         let cuisineList = CuisineList(cuisines:
             [
                 Cuisine(id: 1, name: "Soba!")
@@ -83,7 +83,7 @@ class CuisineListTableViewControllerTest: XCTestCase {
 
 
         let firstCell = NSIndexPath(forRow: 0, inSection: 0)
-        cuisineListTVC.tableView(cuisineListTVC.tableView, didSelectRowAtIndexPath: firstCell)
+        cuisineListVC.tableView(cuisineListVC.tableView, didSelectRowAtIndexPath: firstCell)
 
 
         expect(self.selectedCuisine).to(equal(cuisineList.cuisines.first))
@@ -100,7 +100,7 @@ class CuisineListTableViewControllerTest: XCTestCase {
 
 
         let firstCell = NSIndexPath(forRow: 0, inSection: 0)
-        cuisineListTVC.tableView(cuisineListTVC.tableView, didSelectRowAtIndexPath: firstCell)
+        cuisineListVC.tableView(cuisineListVC.tableView, didSelectRowAtIndexPath: firstCell)
 
 
         expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
