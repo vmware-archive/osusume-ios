@@ -145,7 +145,7 @@ class NavigationRouter: Router {
 
     func showFindCuisineScreen() {
         let cuisineNavController = UINavigationController()
-        let findCuisineTableViewController = CuisineListTableViewController(
+        let findCuisineTableViewController = CuisineListViewController(
             router: self,
             cuisineRepo: cuisineRepo,
             textSearch: DefaultTextSearch()

@@ -4,7 +4,7 @@ protocol CuisineSelectionProtocol {
     func cuisineSelected(cuisine: Cuisine)
 }
 
-class CuisineListTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class CuisineListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     let router: Router
     let tableView: UITableView

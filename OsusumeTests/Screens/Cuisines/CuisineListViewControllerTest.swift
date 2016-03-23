@@ -4,7 +4,7 @@ import XCTest
 import BrightFutures
 @testable import Osusume
 
-class CuisineListTableViewControllerTest: XCTestCase {
+class CuisineListViewControllerTest: XCTestCase {
     let fakeRouter: FakeRouter = FakeRouter()
     let fakeCuisineRepo = FakeCuisineRepo()
     let fakeTextSearch = FakeTextSearch()
@@ -12,12 +12,12 @@ class CuisineListTableViewControllerTest: XCTestCase {
     let cuisineList = CuisineList(cuisines: [Cuisine(id: 1, name: "Soba!")])
     var selectedCuisine: Cuisine?
 
-    var cuisineListVC: CuisineListTableViewController!
+    var cuisineListVC: CuisineListViewController!
 
     override func setUp() {
         fakeCuisineRepo.getAll_returnValue = cuisinePromise.future
 
-        cuisineListVC = CuisineListTableViewController(
+        cuisineListVC = CuisineListViewController(
             router: fakeRouter,
             cuisineRepo: fakeCuisineRepo,
             textSearch: fakeTextSearch
