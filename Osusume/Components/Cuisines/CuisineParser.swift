@@ -11,6 +11,7 @@ struct CuisineParser: DataParser {
             return Result.Failure(ParseError.CuisineParseError)
         }
         let cuisine = Cuisine(id: id, name: name)
+
         return Result.Success(cuisine)
 
     }

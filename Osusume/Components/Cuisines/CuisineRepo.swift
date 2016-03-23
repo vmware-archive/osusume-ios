@@ -12,13 +12,10 @@ struct HttpCuisineRepo <P: DataListParser where P.ParsedObject == [Cuisine]>: Cu
 
     func getAll() -> Future<[Cuisine], RepoError> {
         return http
-            .get("/cuisines", headers: [:]) // Future<AnyObject, RepoError>
-            .mapError {
-                _ in return RepoError.GetFailed
-            }
+            .get("/cuisines", headers: [:])
             .flatMap { json in
                 return self.parser
-                    .parse(json as! [[String : AnyObject]]) // Result<[Cuisine], ParseError>
+                    .parse(json as! [[String : AnyObject]])
                         .mapError {
                             _ in return RepoError.GetFailed
                         }
@@ -26,6 +23,15 @@ struct HttpCuisineRepo <P: DataListParser where P.ParsedObject == [Cuisine]>: Cu
     }
 
     func create(cuisine: NewCuisine) -> Future<Cuisine, RepoError> {
-        return Future<Cuisine, RepoError>()
+        return http.post(
+                "/cuisines",
+                headers: [:],
+                parameters: ["name" : cuisine.name]
+            )
+            .flatMap { (json: [String: AnyObject]) -> Result<Cuisine, RepoError> in
+                return CuisineParser().parse(json)
+                    .mapError { _ in RepoError.PostFailed }
+            }
+
     }
 }

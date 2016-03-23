@@ -30,6 +30,27 @@ class CuisineRepoTest: XCTestCase {
         )
     }
 
+    func test_create_formatsPostRequest() {
+        cuisineRepo.create(NewCuisine(name: "Mexican"))
+
+        expect(self.fakeHttp.post_args.path).to(equal("/cuisines"))
+        let expectedName = self.fakeHttp.post_args.parameters["name"] as? String
+        expect(expectedName).to(equal("Mexican"))
+    }
+
+    func test_create_parsesCuisineFromReponse() {
+        let promise = Promise<[String: AnyObject], RepoError>()
+        fakeHttp.post_returnValue = promise.future
+
+        var actualCuisine = Cuisine(id: 0, name: "")
+        cuisineRepo.create(NewCuisine(name: "Mexican"))
+            .onSuccess { cuisine in actualCuisine = cuisine }
+
+        promise.success(["id": 1, "name": "Mexican"])
+
+        expect(actualCuisine).toEventually(equal(Cuisine(id: 1, name: "Mexican")))
+    }
+
     func test_getAll_makesGetRequestWithCorrectArguments() {
         cuisineRepo.getAll()
 
