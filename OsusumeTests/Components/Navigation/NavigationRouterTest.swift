@@ -160,7 +160,8 @@ class NavigationRouterTest: XCTestCase {
                     CuisineListViewController(
                     router: FakeRouter(),
                     cuisineRepo: FakeCuisineRepo(),
-                    textSearch: FakeTextSearch()
+                    textSearch: FakeTextSearch(),
+                    reloader: FakeReloader()
                 )
             ],
             animated: false

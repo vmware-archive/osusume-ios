@@ -8,6 +8,7 @@ class CuisineListViewControllerTest: XCTestCase {
     let fakeRouter: FakeRouter = FakeRouter()
     let fakeCuisineRepo = FakeCuisineRepo()
     let fakeTextSearch = FakeTextSearch()
+    let fakeReloader = FakeReloader()
     let cuisinePromise = Promise<CuisineList, RepoError>()
     let cuisineList = CuisineList(cuisines: [Cuisine(id: 1, name: "Soba!")])
     var selectedCuisine: Cuisine?
@@ -20,7 +21,8 @@ class CuisineListViewControllerTest: XCTestCase {
         cuisineListVC = CuisineListViewController(
             router: fakeRouter,
             cuisineRepo: fakeCuisineRepo,
-            textSearch: fakeTextSearch
+            textSearch: fakeTextSearch,
+            reloader: fakeReloader
         )
     }
 
@@ -42,17 +44,18 @@ class CuisineListViewControllerTest: XCTestCase {
         expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
     }
 
-    func test_viewDidLoad_showsCuisinesInTableViewCells() {
+    func test_tableView_configuresCells() {
+        cuisineListVC.cuisineList = cuisineList
+        cuisineListVC.tableView.reloadData()
+
+
         cuisineListVC.view.setNeedsLayout()
 
-        cuisinePromise.success(cuisineList)
-        NSRunLoop.osu_advance()
-
-        expect(self.cuisineListVC.tableView.numberOfRowsInSection(0)).to(equal(1))
 
         let cuisineCell = cuisineListVC.tableView.cellForRowAtIndexPath(
             NSIndexPath(forRow: 0, inSection: 0)
         )
+        expect(self.cuisineListVC.tableView.numberOfRowsInSection(0)).to(equal(1))
         expect(cuisineCell?.textLabel?.text).to(equal("Soba!"))
     }
 
@@ -127,5 +130,27 @@ class CuisineListViewControllerTest: XCTestCase {
 
 
         expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
+    }
+
+    func test_cuisineRepoGetAllSuccess_reloadsTableView() {
+        cuisineListVC.view.setNeedsLayout()
+
+
+        cuisinePromise.success(cuisineList)
+        NSRunLoop.osu_advance()
+
+
+        expect(self.fakeReloader.reload_wasCalled).to(equal(true))
+        expect(self.cuisineListVC.cuisineList).to(equal(cuisineList))
+    }
+
+    func test_searchBarDelegateMethod_reloadsTableView() {
+        cuisineListVC.view.setNeedsLayout()
+
+
+        cuisineListVC.searchBar(UISearchBar(), textDidChange: "text")
+
+
+        expect(self.fakeReloader.reload_wasCalled).to(equal(true))
     }
 }

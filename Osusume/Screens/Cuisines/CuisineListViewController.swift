@@ -11,14 +11,16 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
     let searchBar: UISearchBar
     let cuisineRepo: CuisineRepo
     let textSearch: TextSearch
+    let reloader: Reloader
     var cuisineList: CuisineList
     var fullCuisineList: CuisineList
     var delegate: CuisineSelectionProtocol?
 
-    init(router: Router, cuisineRepo: CuisineRepo, textSearch: TextSearch) {
+    init(router: Router, cuisineRepo: CuisineRepo, textSearch: TextSearch, reloader: Reloader) {
         self.router = router
         self.cuisineRepo = cuisineRepo
         self.textSearch = textSearch
+        self.reloader = reloader
         self.cuisineList = CuisineList(cuisines: [])
         self.fullCuisineList = CuisineList(cuisines: [])
         self.tableView = UITableView.newAutoLayoutView()
@@ -65,7 +67,7 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
             .onSuccess { [unowned self] cuisineList in
                 self.cuisineList = cuisineList
                 self.fullCuisineList = cuisineList
-                self.tableView.reloadData()
+                self.reloader.reload(self.tableView)
             }
     }
 
@@ -89,7 +91,7 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
         )
         cuisineList = CuisineList(cuisines: filteredCuisineArray)
 
-        tableView.reloadData()
+        reloader.reload(self.tableView)
     }
 
     // MARK: - UITableViewDataSource
