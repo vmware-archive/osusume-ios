@@ -14,7 +14,7 @@ class CuisineListViewController: UIViewController {
     let reloader: Reloader
     var cuisineList: [Cuisine]
     var fullCuisineList: [Cuisine]
-    var delegate: CuisineSelectionProtocol?
+    var cuisineSelectionDelegate: CuisineSelectionProtocol?
 
     init(router: Router, cuisineRepo: CuisineRepo, textSearch: TextSearch, reloader: Reloader) {
         self.router = router
@@ -34,6 +34,11 @@ class CuisineListViewController: UIViewController {
             action: Selector("didTapCancelButton:")
         )
         navigationItem.leftBarButtonItem = cancelButton
+
+        tableView.registerClass(
+            UITableViewCell.self,
+            forCellReuseIdentifier: "AddCuisineCell"
+        )
 
         tableView.registerClass(
             UITableViewCell.self,
@@ -98,7 +103,15 @@ extension CuisineListViewController: UISearchBarDelegate {
 }
 
 extension CuisineListViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+
         return cuisineList.count
     }
 
@@ -106,14 +119,23 @@ extension CuisineListViewController: UITableViewDataSource {
         tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier(
+        if indexPath.section == 0 {
+            let addCuisineCell = tableView.dequeueReusableCellWithIdentifier(
+                "AddCuisineCell",
+                forIndexPath: indexPath
+            )
+            addCuisineCell.textLabel?.text = "Add Cuisine"
+            return addCuisineCell
+        }
+
+        let cuisineCell = tableView.dequeueReusableCellWithIdentifier(
             "CuisineCell",
             forIndexPath: indexPath
         )
 
-        cell.textLabel?.text = cuisineList[indexPath.row].name
+        cuisineCell.textLabel?.text = cuisineList[indexPath.row].name
 
-        return cell
+        return cuisineCell
     }
 }
 
@@ -122,8 +144,16 @@ extension CuisineListViewController: UITableViewDelegate {
         tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        delegate?.cuisineSelected(cuisineList[indexPath.row])
-        router.dismissFindCuisineScreen()
+        if indexPath.section == 0 {
+            cuisineRepo.create(NewCuisine(name: searchBar.text!))
+                .onSuccess { [unowned self] savedCuisine in
+                    self.cuisineSelectionDelegate?.cuisineSelected(savedCuisine)
+                    self.router.dismissFindCuisineScreen()
+                }
+        } else {
+            cuisineSelectionDelegate?.cuisineSelected(cuisineList[indexPath.row])
+            router.dismissFindCuisineScreen()
+        }
     }
 }
 

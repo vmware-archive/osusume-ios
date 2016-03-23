@@ -44,7 +44,7 @@ class CuisineListViewControllerTest: XCTestCase {
         expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
     }
 
-    func test_tableView_configuresCells() {
+    func test_tableView_configuresCuisineCells() {
         cuisineListVC.cuisineList = cuisineList
         cuisineListVC.tableView.reloadData()
 
@@ -52,14 +52,45 @@ class CuisineListViewControllerTest: XCTestCase {
         cuisineListVC.view.setNeedsLayout()
 
 
-        let cuisineCell = cuisineListVC.tableView.cellForRowAtIndexPath(
-            NSIndexPath(forRow: 0, inSection: 0)
+        let cuisineCell = cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1)
         )
-        expect(self.cuisineListVC.tableView.numberOfRowsInSection(0)).to(equal(1))
-        expect(cuisineCell?.textLabel?.text).to(equal("Soba!"))
+        expect(self.cuisineListVC.tableView(
+            self.cuisineListVC.tableView,
+            numberOfRowsInSection: 1)
+        ).to(equal(1))
+        expect(cuisineCell.textLabel?.text).to(equal("Soba!"))
     }
 
-    // MARK: - UISearchBarDelegate
+    func test_tableView_configuresAnAddCuisineCell() {
+        cuisineListVC.view.setNeedsLayout()
+
+
+        let addCuisineCell = cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+        expect(addCuisineCell.textLabel?.text).to(equal("Add Cuisine"))
+    }
+
+    func test_tableView_hasTwoSections() {
+        let sections = cuisineListVC.numberOfSectionsInTableView(
+            cuisineListVC.tableView
+        )
+
+        expect(sections).to(equal(2))
+    }
+
+    func test_tableView_numRowsInAddCuisineSectionIsOne() {
+        let numCells = cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            numberOfRowsInSection: 0
+        )
+
+        expect(numCells).to(equal(1))
+    }
+
     func test_initialization_savesFullCuisineList() {
         cuisineListVC.view.setNeedsLayout()
 
@@ -100,36 +131,66 @@ class CuisineListViewControllerTest: XCTestCase {
         expect(self.cuisineListVC.cuisineList).to(equal(filteredCuisineArray))
     }
 
+    func test_tableView_hasAConfiguredDelegate() {
+        let expectedDelegate = self.cuisineListVC.tableView.delegate as! CuisineListViewController
+
+        XCTAssert(self.cuisineListVC === expectedDelegate)
+    }
+
     func test_tappingCuisineCell_callsCuisineDelegate() {
         cuisineListVC.view.setNeedsLayout()
 
         let fakeCuisineSelection = FakeCuisineSelection()
-        cuisineListVC.delegate = fakeCuisineSelection
-        cuisinePromise.success(cuisineList)
-        NSRunLoop.osu_advance()
+        cuisineListVC.cuisineSelectionDelegate = fakeCuisineSelection
+        cuisineListVC.cuisineList = [Cuisine(id: 1, name: "Soba!")]
 
-        let firstCell = NSIndexPath(forRow: 0, inSection: 0)
         cuisineListVC.tableView(
             cuisineListVC.tableView,
-            didSelectRowAtIndexPath: firstCell
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1)
         )
 
 
-        expect(fakeCuisineSelection.selectedCuisine).to(equal(cuisineList.first))
+        expect(fakeCuisineSelection.selectedCuisine).to(equal(Cuisine(id: 1, name: "Soba!")))
+        expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
     }
 
-    func test_tappingCuisineCell_dismissesFindCuisineScreen() {
-        cuisineListVC.view.setNeedsLayout()
+    func test_tappingAddCuisineCell_callsAddCuisineOnCuisineRepo() {
+        let fakeCuisineSelection = FakeCuisineSelection()
+        cuisineListVC.cuisineSelectionDelegate = fakeCuisineSelection
+        cuisineListVC.searchBar.text = "Pie"
 
-        cuisinePromise.success(cuisineList)
+
+        cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+
+        expect(self.fakeCuisineRepo.create_wasCalled).to(equal(true))
+        expect(self.fakeCuisineRepo.create_arg).to(equal(NewCuisine(name: "Pie")))
+        expect(fakeCuisineSelection.cuisineSelected_wasCalled).to(equal(false))
+        expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(equal(false))
+    }
+
+    func test_tappingAddCuisineCell_uponSuccessfulCuisineCreation() {
+        let promise = Promise<Cuisine, RepoError>()
+        fakeCuisineRepo.create_returnValue = promise.future
+        let fakeCuisineSelection = FakeCuisineSelection()
+        cuisineListVC.cuisineSelectionDelegate = fakeCuisineSelection
+        cuisineListVC.searchBar.text = "Pie"
+
+
+        cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+        let expectedCuisine = Cuisine(id: 1, name: "Pie")
+        promise.success(expectedCuisine)
         NSRunLoop.osu_advance()
 
-
-        let firstCell = NSIndexPath(forRow: 0, inSection: 0)
-        cuisineListVC.tableView(cuisineListVC.tableView, didSelectRowAtIndexPath: firstCell)
-
-
-        expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
+        expect(fakeCuisineSelection.selectedCuisine).to(equal(expectedCuisine))
+        expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(equal(true))
     }
 
     func test_cuisineRepoGetAllSuccess_reloadsTableView() {

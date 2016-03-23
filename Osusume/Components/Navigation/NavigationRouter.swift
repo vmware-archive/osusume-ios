@@ -153,7 +153,7 @@ class NavigationRouter: Router {
         )
 
         let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController
-        findCuisineTableViewController.delegate = newRestaurantVC!.formView
+        findCuisineTableViewController.cuisineSelectionDelegate = newRestaurantVC!.formView
 
         cuisineNavController.setViewControllers(
             [findCuisineTableViewController],

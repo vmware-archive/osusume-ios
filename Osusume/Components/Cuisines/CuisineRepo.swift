@@ -3,6 +3,7 @@ import Result
 
 protocol CuisineRepo {
     func getAll() -> Future<[Cuisine], RepoError>
+    func create(cuisine: NewCuisine) -> Future<Cuisine, RepoError>
 }
 
 struct HttpCuisineRepo <P: DataListParser where P.ParsedObject == [Cuisine]>: CuisineRepo {
@@ -22,5 +23,9 @@ struct HttpCuisineRepo <P: DataListParser where P.ParsedObject == [Cuisine]>: Cu
                             _ in return RepoError.GetFailed
                         }
             }
+    }
+
+    func create(cuisine: NewCuisine) -> Future<Cuisine, RepoError> {
+        return Future<Cuisine, RepoError>()
     }
 }

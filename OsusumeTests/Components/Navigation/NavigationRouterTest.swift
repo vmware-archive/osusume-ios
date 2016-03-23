@@ -145,7 +145,7 @@ class NavigationRouterTest: XCTestCase {
 
         let cuisineNavController = navController.presentedViewController as? UINavigationController
         let cuisineTVC = cuisineNavController?.topViewController as? CuisineListViewController
-        expect(cuisineTVC?.delegate).toNot(beNil())
+        expect(cuisineTVC?.cuisineSelectionDelegate).toNot(beNil())
     }
 
     func test_dismissesCuisineListScreen() {
