@@ -9,8 +9,6 @@ import Photos
 @testable import Osusume
 
 class NewRestaurantViewControllerTest: XCTestCase {
-    var window: UIWindow?
-
     var newRestaurantVC: NewRestaurantViewController!
     var fakeRouter: FakeRouter!
     var fakeRestaurantRepo: FakeRestaurantRepo!
@@ -28,17 +26,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
             photoRepo: fakePhotoRepo
         )
 
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window!.rootViewController = newRestaurantVC
-        self.window!.makeKeyAndVisible()
-
         newRestaurantVC.view.setNeedsLayout()
-    }
-
-    override func tearDown() {
-        self.window?.hidden = true
-        self.window!.rootViewController = nil
-        self.window = nil
     }
 
     func test_tappingDoneButton_returnsToListScreen() {
