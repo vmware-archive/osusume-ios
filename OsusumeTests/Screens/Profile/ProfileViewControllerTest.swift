@@ -46,6 +46,27 @@ class ProfileViewControllerTest: XCTestCase {
         expect(self.profileVC.logoutButton.titleLabel?.text).to(equal("Logout"))
     }
 
+    func test_viewDidLoad_showsSegmentedControl() {
+        profileVC.view.setNeedsLayout()
+
+        let segmentedControl: UISegmentedControl = profileVC.myContentSegmentedControl
+
+        expect(segmentedControl.titleForSegmentAtIndex(0)).to(equal("My Posts"))
+        expect(segmentedControl.titleForSegmentAtIndex(1)).to(equal("My Likes"))
+        expect(segmentedControl.selectedSegmentIndex).to(equal(0))
+    }
+
+    func test_tappingSegmentedControl_selectsCurrentPage() {
+        profileVC.view.setNeedsLayout()
+
+        // Action
+        let segmentedControl: UISegmentedControl = profileVC.myContentSegmentedControl
+        segmentedControl.selectedSegmentIndex = 1
+        segmentedControl.sendActionsForControlEvents(.ValueChanged)
+
+        // Expectation
+        expect(self.profileVC.currentPage).to(equal(1))
+    }
 
     func test_viewDidLoad_fetchsUsersPosts() {
         let promise = Promise<[Restaurant], RepoError>()

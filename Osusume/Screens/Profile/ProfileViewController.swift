@@ -10,10 +10,14 @@ class ProfileViewController: UIViewController {
 
     let cellIdentifier = "RestaurantListItemCell"
 
+    private(set) var currentPage: Int = 0
 
     //MARK: - View Elements
+    let userInfoView: UIView
     let userNameLabel: UILabel
     let logoutButton: UIButton
+    let myContentSegmentedControl: UISegmentedControl
+    let pageViewController: UIPageViewController
     let tableView: UITableView
 
     init(router: Router,
@@ -30,8 +34,13 @@ class ProfileViewController: UIViewController {
         self.reloader = reloader
         self.restaurantDataSource = RestaurantDataSource(photoRepo: photoRepo)
 
-        logoutButton = UIButton.newAutoLayoutView()
+        userInfoView = UIView.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
+        logoutButton = UIButton.newAutoLayoutView()
+        myContentSegmentedControl = UISegmentedControl(items:
+            ["My Posts", "My Likes"]
+        )
+        pageViewController = UIPageViewController()
         tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
@@ -55,6 +64,13 @@ class ProfileViewController: UIViewController {
 
         title = "My Profile"
 
+        myContentSegmentedControl.addTarget(
+            self,
+            action: Selector("didChangeSelectedSegment:"),
+            forControlEvents: .ValueChanged
+        )
+        myContentSegmentedControl.selectedSegmentIndex = 0
+
         logoutButton.backgroundColor = UIColor.grayColor()
         logoutButton.setTitle("Logout", forState: .Normal)
         logoutButton.addTarget(
@@ -63,9 +79,9 @@ class ProfileViewController: UIViewController {
             forControlEvents: .TouchUpInside
         )
 
-        let userInfoView = UIView.newAutoLayoutView()
         userInfoView.addSubview(userNameLabel)
         userInfoView.addSubview(logoutButton)
+        userInfoView.addSubview(myContentSegmentedControl)
         view.addSubview(userInfoView)
         view.addSubview(tableView)
 
@@ -85,6 +101,11 @@ class ProfileViewController: UIViewController {
         logoutButton.autoSetDimension(.Width, toSize: 100.0)
         logoutButton.autoPinEdgeToSuperviewEdge(.Trailing)
 
+        myContentSegmentedControl.autoPinEdge(.Top, toEdge: .Bottom, ofView: logoutButton, withOffset: 8)
+        myContentSegmentedControl.autoPinEdgeToSuperviewEdge(.Left)
+        myContentSegmentedControl.autoPinEdgeToSuperviewEdge(.Right)
+        myContentSegmentedControl.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 2)
+
         tableView.autoPinEdge(.Top, toEdge: .Bottom, ofView: userInfoView)
         tableView.autoPinEdgeToSuperviewEdge(.Left)
         tableView.autoPinEdgeToSuperviewEdge(.Right)
@@ -100,13 +121,16 @@ class ProfileViewController: UIViewController {
                 self.restaurantDataSource.myPosts = restaurants
                 self.reloader.reload(self.tableView)
             }
-
     }
 
     //MARK: - Actions
     func didTapLogoutButton(sender: UIButton?) {
         sessionRepo.deleteToken()
         router.showLoginScreen()
+    }
+
+    func didChangeSelectedSegment(sender: UISegmentedControl) {
+        currentPage = sender.selectedSegmentIndex
     }
 }
 
