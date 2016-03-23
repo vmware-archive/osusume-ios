@@ -4,7 +4,7 @@ protocol CuisineSelectionProtocol {
     func cuisineSelected(cuisine: Cuisine)
 }
 
-class CuisineListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class CuisineListViewController: UIViewController {
 
     let router: Router
     let tableView: UITableView
@@ -83,7 +83,9 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
     func didTapCancelButton(sender: UIBarButtonItem?) {
         router.dismissFindCuisineScreen()
     }
+}
 
+extension CuisineListViewController: UISearchBarDelegate {
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         let filteredCuisineArray = textSearch.search(
             searchText,
@@ -93,8 +95,9 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
 
         reloader.reload(self.tableView)
     }
+}
 
-    // MARK: - UITableViewDataSource
+extension CuisineListViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cuisineList.count
     }
@@ -112,8 +115,9 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
 
         return cell
     }
+}
 
-    // MARK: - UITableViewDelegate
+extension CuisineListViewController: UITableViewDelegate {
     func tableView(
         tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath)
