@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sessionHttp = SessionHttp(http: http, sessionRepo: sessionRepo)
 
         let networkRestaurantListRepo = NetworkRestaurantListRepo(
-            http: http,
+            http: sessionHttp,
             parser: RestaurantParser()
         )
 
