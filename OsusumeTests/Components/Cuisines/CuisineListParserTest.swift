@@ -27,11 +27,11 @@ class CuisineListParserTest: XCTestCase {
 
 
         let cuisineList = cuisineResult.value!
-        expect(cuisineList.cuisines.count).to(equal(2))
-        expect(cuisineList.cuisines.first?.id).to(equal(1))
-        expect(cuisineList.cuisines.first?.name).to(equal("American"))
-        expect(cuisineList.cuisines.last?.id).to(equal(2))
-        expect(cuisineList.cuisines.last?.name).to(equal("Italian"))
+        expect(cuisineList.count).to(equal(2))
+        expect(cuisineList.first?.id).to(equal(1))
+        expect(cuisineList.first?.name).to(equal("American"))
+        expect(cuisineList.last?.id).to(equal(2))
+        expect(cuisineList.last?.name).to(equal("Italian"))
     }
 
     func test_parseIncompleteJson_excludesIncompleteCuisinesFromList() {
@@ -50,9 +50,9 @@ class CuisineListParserTest: XCTestCase {
 
 
         let cuisineList = cuisineResult.value!
-        expect(cuisineList.cuisines.count).to(equal(1))
-        expect(cuisineList.cuisines.first?.id).to(equal(4))
-        expect(cuisineList.cuisines.first?.name).to(equal("French"))
+        expect(cuisineList.count).to(equal(1))
+        expect(cuisineList.first?.id).to(equal(4))
+        expect(cuisineList.first?.name).to(equal("French"))
     }
 
     func test_parseIncorrectValueType_excludesInvalidCuisinesFromList() {
@@ -72,8 +72,8 @@ class CuisineListParserTest: XCTestCase {
 
 
         let cuisineList = cuisineResult.value!
-        expect(cuisineList.cuisines.count).to(equal(1))
-        expect(cuisineList.cuisines.first?.id).to(equal(4))
-        expect(cuisineList.cuisines.first?.name).to(equal("French"))
+        expect(cuisineList.count).to(equal(1))
+        expect(cuisineList.first?.id).to(equal(4))
+        expect(cuisineList.first?.name).to(equal("French"))
     }
 }

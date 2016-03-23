@@ -9,8 +9,8 @@ class CuisineListViewControllerTest: XCTestCase {
     let fakeCuisineRepo = FakeCuisineRepo()
     let fakeTextSearch = FakeTextSearch()
     let fakeReloader = FakeReloader()
-    let cuisinePromise = Promise<CuisineList, RepoError>()
-    let cuisineList = CuisineList(cuisines: [Cuisine(id: 1, name: "Soba!")])
+    let cuisinePromise = Promise<[Cuisine], RepoError>()
+    let cuisineList = [Cuisine(id: 1, name: "Soba!")]
     var selectedCuisine: Cuisine?
 
     var cuisineListVC: CuisineListViewController!
@@ -64,7 +64,7 @@ class CuisineListViewControllerTest: XCTestCase {
         cuisineListVC.view.setNeedsLayout()
 
         expect(self.cuisineListVC.fullCuisineList)
-            .to(equal(CuisineList(cuisines: [])))
+            .to(equal([]))
 
         cuisinePromise.success(cuisineList)
         NSRunLoop.osu_advance()
@@ -85,7 +85,7 @@ class CuisineListViewControllerTest: XCTestCase {
 
         expect(self.fakeTextSearch.search_wasCalled).to(equal(true))
         expect(self.fakeTextSearch.search_args.searchTerm).to(equal("my search"))
-        expect(self.fakeTextSearch.search_args.collection).to(equal(cuisineList.cuisines))
+        expect(self.fakeTextSearch.search_args.collection).to(equal(cuisineList))
     }
 
     func test_search_assignsNewCuisineList() {
@@ -97,7 +97,7 @@ class CuisineListViewControllerTest: XCTestCase {
         cuisineListVC.searchBar(UISearchBar(), textDidChange: "my search")
 
 
-        expect(self.cuisineListVC.cuisineList.cuisines).to(equal(filteredCuisineArray))
+        expect(self.cuisineListVC.cuisineList).to(equal(filteredCuisineArray))
     }
 
     func test_tappingCuisineCell_callsCuisineDelegate() {
@@ -115,7 +115,7 @@ class CuisineListViewControllerTest: XCTestCase {
         )
 
 
-        expect(fakeCuisineSelection.selectedCuisine).to(equal(cuisineList.cuisines.first))
+        expect(fakeCuisineSelection.selectedCuisine).to(equal(cuisineList.first))
     }
 
     func test_tappingCuisineCell_dismissesFindCuisineScreen() {

@@ -12,8 +12,8 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
     let cuisineRepo: CuisineRepo
     let textSearch: TextSearch
     let reloader: Reloader
-    var cuisineList: CuisineList
-    var fullCuisineList: CuisineList
+    var cuisineList: [Cuisine]
+    var fullCuisineList: [Cuisine]
     var delegate: CuisineSelectionProtocol?
 
     init(router: Router, cuisineRepo: CuisineRepo, textSearch: TextSearch, reloader: Reloader) {
@@ -21,8 +21,8 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
         self.cuisineRepo = cuisineRepo
         self.textSearch = textSearch
         self.reloader = reloader
-        self.cuisineList = CuisineList(cuisines: [])
-        self.fullCuisineList = CuisineList(cuisines: [])
+        self.cuisineList = []
+        self.fullCuisineList = []
         self.tableView = UITableView.newAutoLayoutView()
         self.searchBar = UISearchBar.newAutoLayoutView()
 
@@ -87,16 +87,16 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         let filteredCuisineArray = textSearch.search(
             searchText,
-            collection: fullCuisineList.cuisines
+            collection: fullCuisineList
         )
-        cuisineList = CuisineList(cuisines: filteredCuisineArray)
+        cuisineList = filteredCuisineArray
 
         reloader.reload(self.tableView)
     }
 
     // MARK: - UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cuisineList.cuisines.count
+        return cuisineList.count
     }
 
     func tableView(
@@ -108,7 +108,7 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
             forIndexPath: indexPath
         )
 
-        cell.textLabel?.text = cuisineList.cuisines[indexPath.row].name
+        cell.textLabel?.text = cuisineList[indexPath.row].name
 
         return cell
     }
@@ -118,7 +118,7 @@ class CuisineListViewController: UIViewController, UITableViewDataSource, UITabl
         tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        delegate?.cuisineSelected(cuisineList.cuisines[indexPath.row])
+        delegate?.cuisineSelected(cuisineList[indexPath.row])
         router.dismissFindCuisineScreen()
     }
 }

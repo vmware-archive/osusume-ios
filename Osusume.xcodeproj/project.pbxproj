@@ -56,7 +56,6 @@
 		AE9F01E61C9BE53000163045 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
 		AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA712471C4F59B300862B02 /* KeychainAccess.framework */; };
 		AEACDB751C98FDF90092AEF6 /* CuisineListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB741C98FDF90092AEF6 /* CuisineListParser.swift */; };
-		AEACDB771C98FFD90092AEF6 /* CuisineList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB761C98FFD90092AEF6 /* CuisineList.swift */; };
 		AEACDB791C9900020092AEF6 /* Cuisine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB781C9900020092AEF6 /* Cuisine.swift */; };
 		AEACDB7B1C991EC80092AEF6 /* CuisineRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB7A1C991EC80092AEF6 /* CuisineRepoTest.swift */; };
 		AEACDB7D1C991FB30092AEF6 /* CuisineRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB7C1C991FB30092AEF6 /* CuisineRepo.swift */; };
@@ -214,7 +213,6 @@
 		AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewCell.swift; sourceTree = "<group>"; };
 		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		AEACDB741C98FDF90092AEF6 /* CuisineListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListParser.swift; sourceTree = "<group>"; };
-		AEACDB761C98FFD90092AEF6 /* CuisineList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineList.swift; sourceTree = "<group>"; };
 		AEACDB781C9900020092AEF6 /* Cuisine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cuisine.swift; sourceTree = "<group>"; };
 		AEACDB7A1C991EC80092AEF6 /* CuisineRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineRepoTest.swift; sourceTree = "<group>"; };
 		AEACDB7C1C991FB30092AEF6 /* CuisineRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineRepo.swift; sourceTree = "<group>"; };
@@ -472,7 +470,6 @@
 			isa = PBXGroup;
 			children = (
 				AEACDB781C9900020092AEF6 /* Cuisine.swift */,
-				AEACDB761C98FFD90092AEF6 /* CuisineList.swift */,
 				AEACDB741C98FDF90092AEF6 /* CuisineListParser.swift */,
 				AE0120D21C9BCA0B00D5E7BA /* CuisineParser.swift */,
 				AEACDB7C1C991FB30092AEF6 /* CuisineRepo.swift */,
@@ -1080,7 +1077,6 @@
 				DE99CB6B84CBE284E0588C86 /* AppDelegate.swift in Sources */,
 				DE99C5EDA17366E088607BC1 /* CommentParser.swift in Sources */,
 				AEACDB791C9900020092AEF6 /* Cuisine.swift in Sources */,
-				AEACDB771C98FFD90092AEF6 /* CuisineList.swift in Sources */,
 				AEACDB751C98FDF90092AEF6 /* CuisineListParser.swift in Sources */,
 				AEFD80651C99542100B4F17C /* CuisineListViewController.swift in Sources */,
 				AE0120D31C9BCA0B00D5E7BA /* CuisineParser.swift in Sources */,

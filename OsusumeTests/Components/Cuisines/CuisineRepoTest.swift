@@ -6,10 +6,8 @@ import Nimble
 
 class FakeCuisineListParser: DataListParser {
     var parse_arg: [[String : AnyObject]]!
-    var parse_returnValue = Result<CuisineList, ParseError>(
-        value: CuisineList(cuisines: [])
-    )
-    func parse(json: [[String : AnyObject]]) -> Result<CuisineList, ParseError> {
+    var parse_returnValue = Result<[Cuisine], ParseError>(value: [])
+    func parse(json: [[String : AnyObject]]) -> Result<[Cuisine], ParseError> {
         parse_arg = json
         return parse_returnValue
     }
@@ -74,7 +72,7 @@ class CuisineRepoTest: XCTestCase {
 
         let getAllCuisinesFuture = cuisineRepo.getAll()
         fakeCuisineListParser.parse_returnValue = Result.Success(
-            CuisineList(cuisines: [Cuisine(id: 1, name: "Thai")])
+            [Cuisine(id: 1, name: "Thai")]
         )
         cuisineJsonPromise.success([[:]])
 
@@ -82,6 +80,6 @@ class CuisineRepoTest: XCTestCase {
         NSRunLoop.osu_advance()
 
         let expectedCuisineListArray = [Cuisine(id: 1, name: "Thai")]
-        expect(getAllCuisinesFuture.value?.cuisines).to(equal(expectedCuisineListArray))
+        expect(getAllCuisinesFuture.value).to(equal(expectedCuisineListArray))
     }
 }

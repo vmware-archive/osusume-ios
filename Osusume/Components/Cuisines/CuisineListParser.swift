@@ -1,9 +1,9 @@
 import Result
 
 struct CuisineListParser: DataListParser {
-    typealias ParsedObject = CuisineList
+    typealias ParsedObject = [Cuisine]
 
-    func parse(json: [[String: AnyObject]]) -> Result<CuisineList, ParseError> {
+    func parse(json: [[String: AnyObject]]) -> Result<[Cuisine], ParseError> {
 
         var cuisineArray: [Cuisine] = []
 
@@ -19,6 +19,6 @@ struct CuisineListParser: DataListParser {
             cuisineArray.append(cuisine)
         }
 
-        return Result.Success(CuisineList(cuisines: cuisineArray))
+        return Result.Success(cuisineArray)
     }
 }
