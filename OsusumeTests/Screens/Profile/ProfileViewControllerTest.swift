@@ -8,6 +8,7 @@ class ProfileViewControllerTest: XCTestCase {
     var fakeRouter: FakeRouter!
     var fakeSessionRepo: FakeSessionRepo!
     var fakePostRepo: FakePostRepo!
+    var fakeLikedRestaurantRepo: FakeLikedRestaurantRepo!
     var fakePhotoRepo: FakePhotoRepo!
     var fakeReloader: FakeReloader!
     var profileVC: ProfileViewController!
@@ -17,6 +18,7 @@ class ProfileViewControllerTest: XCTestCase {
         fakeRouter = FakeRouter()
         fakeSessionRepo = FakeSessionRepo()
         fakePostRepo = FakePostRepo()
+        fakeLikedRestaurantRepo = FakeLikedRestaurantRepo()
         fakePhotoRepo = FakePhotoRepo()
         fakeReloader = FakeReloader()
 
@@ -26,6 +28,7 @@ class ProfileViewControllerTest: XCTestCase {
             sessionRepo: fakeSessionRepo,
             postRepo: fakePostRepo,
             photoRepo: fakePhotoRepo,
+            likedRestaurantRepo: fakeLikedRestaurantRepo,
             reloader: fakeReloader
         )
     }
@@ -49,81 +52,34 @@ class ProfileViewControllerTest: XCTestCase {
     func test_viewDidLoad_showsSegmentedControl() {
         profileVC.view.setNeedsLayout()
 
-        let segmentedControl: UISegmentedControl = profileVC.myContentSegmentedControl
+        let segmentedControl = profileVC.myContentSegmentedControl
 
+        expect(segmentedControl.selectedSegmentIndex).to(equal(0))
         expect(segmentedControl.titleForSegmentAtIndex(0)).to(equal("My Posts"))
         expect(segmentedControl.titleForSegmentAtIndex(1)).to(equal("My Likes"))
-        expect(segmentedControl.selectedSegmentIndex).to(equal(0))
+    }
+
+    func test_viewDidLoad_defaultsToMyPostTableViewController() {
+        profileVC.view.setNeedsDisplay()
+        let pageViewController = profileVC.pageViewController
+
+        expect(self.profileVC.currentPage).to(equal(0))
+        expect(pageViewController.viewControllers?.first).to(beAKindOf(MyPostTableViewController))
     }
 
     func test_tappingSegmentedControl_selectsCurrentPage() {
         profileVC.view.setNeedsLayout()
 
-        // Action
-        let segmentedControl: UISegmentedControl = profileVC.myContentSegmentedControl
+        let segmentedControl = profileVC.myContentSegmentedControl
         segmentedControl.selectedSegmentIndex = 1
         segmentedControl.sendActionsForControlEvents(.ValueChanged)
 
-        // Expectation
+        let pageViewController = profileVC.pageViewController
+        expect(pageViewController.viewControllers?.first)
+            .to(beAKindOf(MyLikesTableViewController))
         expect(self.profileVC.currentPage).to(equal(1))
+
     }
-
-    func test_viewDidLoad_fetchsUsersPosts() {
-        let promise = Promise<[Restaurant], RepoError>()
-        fakePostRepo.getAll_returnValue = promise.future
-
-        profileVC.view.setNeedsLayout()
-
-        expect(self.fakePostRepo.getAll_wasCalled).to(equal(true))
-        let expectedRestaurant = RestaurantFixtures.newRestaurant(name: "Miya's Café")
-        promise.success([expectedRestaurant])
-        NSRunLoop.osu_advance()
-
-        expect(self.fakeReloader.reload_wasCalled).to(equal(true))
-        expect(self.profileVC.restaurantDataSource.myPosts).to(equal([expectedRestaurant]))
-    }
-
-    func test_tableView_configuresCellCount() {
-        let restaurants = [RestaurantFixtures.newRestaurant()]
-        profileVC.restaurantDataSource.myPosts = restaurants
-
-        let numberOfRows = profileVC.restaurantDataSource.tableView(
-            UITableView(),
-            numberOfRowsInSection: 0
-        )
-
-        expect(numberOfRows).to(equal(restaurants.count))
-    }
-
-    func test_tableView_loadsImageFromPhotoUrl() {
-        let restaurants = [RestaurantFixtures.newRestaurant()]
-        profileVC.restaurantDataSource.myPosts = restaurants
-
-        profileVC.view.setNeedsLayout()
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-
-        let promise = Promise<UIImage, RepoError>()
-        fakePhotoRepo.loadImageFromUrl_returnValue = promise.future
-
-        let cell = profileVC.restaurantDataSource.tableView(
-            profileVC.tableView,
-            cellForRowAtIndexPath: indexPath
-            ) as? RestaurantTableViewCell
-
-        let placeholderImage = UIImage(named: "TableCellPlaceholder")!
-        expect(cell?.photoImageView.image).to(equal(placeholderImage))
-
-        expect(self.fakePhotoRepo.loadImageFromUrl_wasCalled).to(equal(true))
-        expect(self.fakePhotoRepo.loadImageFromUrl_args)
-            .to(equal(NSURL(string: "http://www.example.com/cat.jpg")!))
-
-        let apple = testImage(named: "appleLogo", imageExtension: "png")
-        promise.success(apple)
-        waitForFutureToComplete(promise.future)
-
-        expect(cell?.photoImageView.image).to(equal(apple))
-    }
-
 
     //MARK: Actions
     func test_tapLogout_logsOutUser() {

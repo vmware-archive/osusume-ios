@@ -42,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let postRepo = NetworkPostRepo(
             restaurantListRepo: networkRestaurantListRepo
         )
+        let likedRestaurantRepo = NetworkLikedRestaurantRepo(
+            restaurantListRepo: networkRestaurantListRepo
+        )
+
         let cuisineRepo = HttpCuisineRepo(
             http: sessionHttp,
             parser: CuisineListParser()
@@ -56,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userRepo: userRepo,
             commentRepo: commentRepo,
             postRepo: postRepo,
+            likedRestaurantRepo: likedRestaurantRepo,
             cuisineRepo: cuisineRepo,
             likeRepo: likeRepo
         )

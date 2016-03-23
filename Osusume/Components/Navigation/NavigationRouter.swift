@@ -8,6 +8,7 @@ class NavigationRouter: Router {
     let userRepo: UserRepo
     let commentRepo: CommentRepo
     let postRepo: PostRepo
+    let likedRestaurantRepo: LikedRestaurantRepo
     let cuisineRepo: CuisineRepo
     let likeRepo: LikeRepo
 
@@ -19,6 +20,7 @@ class NavigationRouter: Router {
         userRepo: UserRepo,
         commentRepo: CommentRepo,
         postRepo: PostRepo,
+        likedRestaurantRepo: LikedRestaurantRepo,
         cuisineRepo: CuisineRepo,
         likeRepo: LikeRepo)
     {
@@ -29,6 +31,7 @@ class NavigationRouter: Router {
         self.userRepo = userRepo
         self.commentRepo = commentRepo
         self.postRepo = postRepo
+        self.likedRestaurantRepo = likedRestaurantRepo
         self.cuisineRepo = cuisineRepo
         self.likeRepo = likeRepo
     }
@@ -134,6 +137,7 @@ class NavigationRouter: Router {
             sessionRepo: sessionRepo,
             postRepo: postRepo,
             photoRepo: photoRepo,
+            likedRestaurantRepo: likedRestaurantRepo,
             reloader: DefaultReloader()
         )
 

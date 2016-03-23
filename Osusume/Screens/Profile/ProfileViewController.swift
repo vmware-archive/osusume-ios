@@ -5,10 +5,20 @@ class ProfileViewController: UIViewController {
     let userRepo: UserRepo
     let sessionRepo: SessionRepo
     let postRepo: PostRepo
+    let likedRestaurantRepo: LikedRestaurantRepo
     let reloader: Reloader
-    let restaurantDataSource: RestaurantDataSource
+    let photoRepo: PhotoRepo
+    lazy var viewControllers: [UIViewController] = {
+        let viewControllers = [
+            MyPostTableViewController(
+                postRepo: self.postRepo,
+                reloader: self.reloader,
+                photoRepo: self.photoRepo
+            )
+        ]
 
-    let cellIdentifier = "RestaurantListItemCell"
+        return viewControllers
+    }()
 
     private(set) var currentPage: Int = 0
 
@@ -18,13 +28,13 @@ class ProfileViewController: UIViewController {
     let logoutButton: UIButton
     let myContentSegmentedControl: UISegmentedControl
     let pageViewController: UIPageViewController
-    let tableView: UITableView
 
     init(router: Router,
         userRepo: UserRepo,
         sessionRepo: SessionRepo,
         postRepo: PostRepo,
         photoRepo: PhotoRepo,
+        likedRestaurantRepo: LikedRestaurantRepo,
         reloader: Reloader)
     {
         self.router = router
@@ -32,7 +42,8 @@ class ProfileViewController: UIViewController {
         self.sessionRepo = sessionRepo
         self.postRepo = postRepo
         self.reloader = reloader
-        self.restaurantDataSource = RestaurantDataSource(photoRepo: photoRepo)
+        self.photoRepo = photoRepo
+        self.likedRestaurantRepo = likedRestaurantRepo
 
         userInfoView = UIView.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
@@ -40,13 +51,13 @@ class ProfileViewController: UIViewController {
         myContentSegmentedControl = UISegmentedControl(items:
             ["My Posts", "My Likes"]
         )
-        pageViewController = UIPageViewController()
-        tableView = UITableView.newAutoLayoutView()
+        pageViewController = UIPageViewController(
+            transitionStyle: .Scroll,
+            navigationOrientation: .Horizontal,
+            options: [:]
+        )
 
         super.init(nibName: nil, bundle: nil)
-
-        self.tableView.dataSource = self.restaurantDataSource
-        self.tableView.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -57,11 +68,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerClass(
-            RestaurantTableViewCell.self,
-            forCellReuseIdentifier: cellIdentifier
-        )
-
         title = "My Profile"
 
         myContentSegmentedControl.addTarget(
@@ -70,6 +76,13 @@ class ProfileViewController: UIViewController {
             forControlEvents: .ValueChanged
         )
         myContentSegmentedControl.selectedSegmentIndex = 0
+
+        pageViewController.setViewControllers(
+            viewControllers,
+            direction: .Forward,
+            animated: true,
+            completion: nil
+        )
 
         logoutButton.backgroundColor = UIColor.grayColor()
         logoutButton.setTitle("Logout", forState: .Normal)
@@ -83,7 +96,7 @@ class ProfileViewController: UIViewController {
         userInfoView.addSubview(logoutButton)
         userInfoView.addSubview(myContentSegmentedControl)
         view.addSubview(userInfoView)
-        view.addSubview(tableView)
+        view.addSubview(pageViewController.view)
 
         view.backgroundColor = UIColor.whiteColor()
 
@@ -106,20 +119,14 @@ class ProfileViewController: UIViewController {
         myContentSegmentedControl.autoPinEdgeToSuperviewEdge(.Right)
         myContentSegmentedControl.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 2)
 
-        tableView.autoPinEdge(.Top, toEdge: .Bottom, ofView: userInfoView)
-        tableView.autoPinEdgeToSuperviewEdge(.Left)
-        tableView.autoPinEdgeToSuperviewEdge(.Right)
-        tableView.autoPinEdgeToSuperviewEdge(.Bottom)
+        pageViewController.view.autoPinEdge(.Top, toEdge: .Bottom, ofView: userInfoView)
+        pageViewController.view.autoPinEdgeToSuperviewEdge(.Left)
+        pageViewController.view.autoPinEdgeToSuperviewEdge(.Right)
+        pageViewController.view.autoPinEdgeToSuperviewEdge(.Bottom)
 
         userRepo.fetchCurrentUserName()
             .onSuccess { [unowned self] userName in
                 self.userNameLabel.text = userName
-            }
-
-        postRepo.getAll()
-            .onSuccess { [unowned self] restaurants in
-                self.restaurantDataSource.myPosts = restaurants
-                self.reloader.reload(self.tableView)
             }
     }
 
@@ -131,12 +138,30 @@ class ProfileViewController: UIViewController {
 
     func didChangeSelectedSegment(sender: UISegmentedControl) {
         currentPage = sender.selectedSegmentIndex
+
+        let viewController: UIViewController!
+
+        switch currentPage {
+            case 0:
+                viewController = MyPostTableViewController(
+                    postRepo: self.postRepo,
+                    reloader: self.reloader,
+                    photoRepo: self.photoRepo
+                )
+
+            default:
+                viewController = MyLikesTableViewController(
+                    likedRestaurantRepo: self.likedRestaurantRepo,
+                    reloader: self.reloader,
+                    photoRepo: self.photoRepo
+                )
+        }
+
+        pageViewController.setViewControllers(
+            [viewController],
+            direction: .Forward,
+            animated: false,
+            completion: nil
+        )
     }
 }
-
-extension ProfileViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100.0
-    }
-}
-
