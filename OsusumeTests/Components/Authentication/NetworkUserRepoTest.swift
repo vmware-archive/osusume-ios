@@ -3,18 +3,12 @@ import Nimble
 import BrightFutures
 @testable import Osusume
 
-class UserRepoTest: XCTestCase {
+class NetworkUserRepoTest: XCTestCase {
     let fakeHttp = FakeHttp()
     var userRepo: UserRepo!
-    let fakeSessionRepo = FakeSessionRepo()
 
     override func setUp() {
-        fakeSessionRepo.tokenValue = "some-session-token"
-
-        userRepo = NetworkUserRepo(
-            http: fakeHttp,
-            sessionRepo: fakeSessionRepo
-        )
+        userRepo = NetworkUserRepo(http: fakeHttp)
     }
 
     func test_login_callsPostWithEmailAndPasswordAndReturnsToken() {
@@ -40,6 +34,8 @@ class UserRepoTest: XCTestCase {
 
         promise.success(["name": "awesome-user-name"])
         NSRunLoop.osu_advance()
+
+        expect(self.fakeHttp.get_args.path).to(equal("/profile"))
         expect(userName.value).to(equal("awesome-user-name"))
     }
 }

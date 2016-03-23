@@ -33,8 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             restaurantListRepo: networkRestaurantListRepo
         )
         let userRepo = NetworkUserRepo(
-            http: http,
-            sessionRepo: sessionRepo
+            http: sessionHttp
         )
         let commentRepo = NetworkCommentRepo(
             http: sessionHttp,

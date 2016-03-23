@@ -41,7 +41,9 @@ struct SessionHttp: Http {
     {
         var headersWithAuthorization = headers
 
-        headersWithAuthorization["Authorization"] = "Bearer \(sessionRepo.getToken()!)"
+        if let token = sessionRepo.getToken() {
+            headersWithAuthorization["Authorization"] = "Bearer \(token)"
+        }
 
         return headersWithAuthorization
     }
