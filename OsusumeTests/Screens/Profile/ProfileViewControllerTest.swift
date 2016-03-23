@@ -7,8 +7,6 @@ class ProfileViewControllerTest: XCTestCase {
     var fakeUserRepo: FakeUserRepo!
     var fakeRouter: FakeRouter!
     var fakeSessionRepo: FakeSessionRepo!
-    var fakePostRepo: FakePostRepo!
-    var fakeLikedRestaurantRepo: FakeLikedRestaurantRepo!
     var fakePhotoRepo: FakePhotoRepo!
     var fakeReloader: FakeReloader!
     var profileVC: ProfileViewController!
@@ -17,8 +15,6 @@ class ProfileViewControllerTest: XCTestCase {
         fakeUserRepo = FakeUserRepo()
         fakeRouter = FakeRouter()
         fakeSessionRepo = FakeSessionRepo()
-        fakePostRepo = FakePostRepo()
-        fakeLikedRestaurantRepo = FakeLikedRestaurantRepo()
         fakePhotoRepo = FakePhotoRepo()
         fakeReloader = FakeReloader()
 
@@ -26,9 +22,7 @@ class ProfileViewControllerTest: XCTestCase {
             router: fakeRouter,
             userRepo: fakeUserRepo,
             sessionRepo: fakeSessionRepo,
-            postRepo: fakePostRepo,
             photoRepo: fakePhotoRepo,
-            likedRestaurantRepo: fakeLikedRestaurantRepo,
             reloader: fakeReloader
         )
     }

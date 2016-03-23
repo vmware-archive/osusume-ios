@@ -1,5 +1,9 @@
 import BrightFutures
 
+protocol PostRepo {
+    func getAll() -> Future<[Restaurant], RepoError>
+}
+
 struct NetworkPostRepo: PostRepo {
     private let restaurantListRepo: RestaurantListRepo
 

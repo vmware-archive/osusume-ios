@@ -1,5 +1,5 @@
 class MyPostTableViewController: UIViewController {
-    let postRepo: PostRepo
+    let userRepo: UserRepo
     let reloader: Reloader
     let restaurantDataSource: RestaurantDataSource
     let tableView: UITableView
@@ -7,11 +7,11 @@ class MyPostTableViewController: UIViewController {
     let cellIdentifier = "RestaurantListItemCell"
 
     init(
-        postRepo: PostRepo,
+        userRepo: UserRepo,
         reloader: Reloader,
         photoRepo: PhotoRepo)
     {
-        self.postRepo = postRepo
+        self.userRepo = userRepo
         self.reloader = reloader
         self.restaurantDataSource = RestaurantDataSource(photoRepo: photoRepo)
         self.tableView = UITableView.newAutoLayoutView()
@@ -38,7 +38,7 @@ class MyPostTableViewController: UIViewController {
         view.addSubview(tableView)
         tableView.autoPinEdgesToSuperviewEdges()
 
-        postRepo.getAll()
+        userRepo.getMyPosts()
             .onSuccess { [unowned self] restaurants in
                 self.restaurantDataSource.myPosts = restaurants
                 self.reloader.reload(self.tableView)

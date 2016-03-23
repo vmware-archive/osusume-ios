@@ -8,7 +8,13 @@ class NetworkUserRepoTest: XCTestCase {
     var userRepo: UserRepo!
 
     override func setUp() {
-        userRepo = NetworkUserRepo(http: fakeHttp)
+        userRepo = NetworkUserRepo(
+            http: fakeHttp,
+            restaurantListRepo: NetworkRestaurantListRepo(
+                http: fakeHttp,
+                parser: RestaurantParser()
+            )
+        )
     }
 
     func test_login_callsPostWithEmailAndPasswordAndReturnsToken() {
@@ -37,5 +43,17 @@ class NetworkUserRepoTest: XCTestCase {
 
         expect(self.fakeHttp.get_args.path).to(equal("/profile"))
         expect(userName.value).to(equal("awesome-user-name"))
+    }
+
+    func test_getMyPosts_delegatesToRestaurantRepo() {
+        userRepo.getMyPosts()
+
+        expect(self.fakeHttp.get_args.path).to(equal("/profile/posts"))
+    }
+
+    func test_getMyLikes_delegatesToRestaurantRepo() {
+        userRepo.getMyLikes()
+
+        expect(self.fakeHttp.get_args.path).to(equal("/profile/likes"))
     }
 }

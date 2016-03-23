@@ -23,8 +23,6 @@ class NavigationRouterTest: XCTestCase {
             photoRepo: FakePhotoRepo(),
             userRepo: FakeUserRepo(),
             commentRepo: FakeCommentRepo(),
-            postRepo: FakePostRepo(),
-            likedRestaurantRepo: FakeLikedRestaurantRepo(),
             cuisineRepo: fakeCuisineRepo,
             likeRepo: FakeLikeRepo()
         )

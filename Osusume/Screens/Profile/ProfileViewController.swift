@@ -4,14 +4,12 @@ class ProfileViewController: UIViewController {
     let router: Router
     let userRepo: UserRepo
     let sessionRepo: SessionRepo
-    let postRepo: PostRepo
-    let likedRestaurantRepo: LikedRestaurantRepo
     let reloader: Reloader
     let photoRepo: PhotoRepo
     lazy var viewControllers: [UIViewController] = {
         let viewControllers = [
             MyPostTableViewController(
-                postRepo: self.postRepo,
+                userRepo: self.userRepo,
                 reloader: self.reloader,
                 photoRepo: self.photoRepo
             )
@@ -32,18 +30,14 @@ class ProfileViewController: UIViewController {
     init(router: Router,
         userRepo: UserRepo,
         sessionRepo: SessionRepo,
-        postRepo: PostRepo,
         photoRepo: PhotoRepo,
-        likedRestaurantRepo: LikedRestaurantRepo,
         reloader: Reloader)
     {
         self.router = router
         self.userRepo = userRepo
         self.sessionRepo = sessionRepo
-        self.postRepo = postRepo
         self.reloader = reloader
         self.photoRepo = photoRepo
-        self.likedRestaurantRepo = likedRestaurantRepo
 
         userInfoView = UIView.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
@@ -144,14 +138,14 @@ class ProfileViewController: UIViewController {
         switch currentPage {
             case 0:
                 viewController = MyPostTableViewController(
-                    postRepo: self.postRepo,
+                    userRepo: self.userRepo,
                     reloader: self.reloader,
                     photoRepo: self.photoRepo
                 )
 
             default:
                 viewController = MyLikesTableViewController(
-                    likedRestaurantRepo: self.likedRestaurantRepo,
+                    userRepo: self.userRepo,
                     reloader: self.reloader,
                     photoRepo: self.photoRepo
                 )

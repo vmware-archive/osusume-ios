@@ -4,18 +4,18 @@ import BrightFutures
 @testable import Osusume
 
 class MyLikesTableViewControllerTest: XCTestCase {
-    var fakeLikedRestaurantRepo: FakeLikedRestaurantRepo!
     var fakeReloader: FakeReloader!
     var fakePhotoRepo: FakePhotoRepo!
+    var fakeUserRepo: FakeUserRepo!
     var myLikesTVC: MyLikesTableViewController!
 
     override func setUp() {
-        fakeLikedRestaurantRepo = FakeLikedRestaurantRepo()
         fakeReloader = FakeReloader()
         fakePhotoRepo = FakePhotoRepo()
+        fakeUserRepo = FakeUserRepo()
 
         myLikesTVC = MyLikesTableViewController(
-            likedRestaurantRepo: fakeLikedRestaurantRepo,
+            userRepo: fakeUserRepo,
             reloader: fakeReloader,
             photoRepo: fakePhotoRepo
         )
@@ -23,10 +23,10 @@ class MyLikesTableViewControllerTest: XCTestCase {
 
     func test_viewDidLoad_fetchsUsersPosts() {
         let promise = Promise<[Restaurant], RepoError>()
-        fakeLikedRestaurantRepo.getAll_returnValue = promise.future
+        fakeUserRepo.getMyLikes_returnValue = promise.future
         myLikesTVC.view.setNeedsLayout()
 
-        expect(self.fakeLikedRestaurantRepo.getAll_wasCalled).to(equal(true))
+        expect(self.fakeUserRepo.getMyLikes_wasCalled).to(equal(true))
         let expectedRestaurant = RestaurantFixtures.newRestaurant(name: "Miya's Café")
         promise.success([expectedRestaurant])
 

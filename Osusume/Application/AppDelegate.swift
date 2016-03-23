@@ -32,18 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             http: sessionHttp,
             restaurantListRepo: networkRestaurantListRepo
         )
+
         let userRepo = NetworkUserRepo(
-            http: sessionHttp
+            http: sessionHttp,
+            restaurantListRepo: networkRestaurantListRepo
         )
         let commentRepo = NetworkCommentRepo(
             http: sessionHttp,
             parser: CommentParser()
-        )
-        let postRepo = NetworkPostRepo(
-            restaurantListRepo: networkRestaurantListRepo
-        )
-        let likedRestaurantRepo = NetworkLikedRestaurantRepo(
-            restaurantListRepo: networkRestaurantListRepo
         )
 
         let cuisineRepo = HttpCuisineRepo(
@@ -59,8 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             photoRepo: photoRepo,
             userRepo: userRepo,
             commentRepo: commentRepo,
-            postRepo: postRepo,
-            likedRestaurantRepo: likedRestaurantRepo,
             cuisineRepo: cuisineRepo,
             likeRepo: likeRepo
         )

@@ -1,5 +1,5 @@
 class MyLikesTableViewController: UIViewController {
-    let likedRestaurantRepo: LikedRestaurantRepo
+    let userRepo: UserRepo
     let reloader: Reloader
     let restaurantDataSource: RestaurantDataSource
     let tableView: UITableView
@@ -7,11 +7,11 @@ class MyLikesTableViewController: UIViewController {
     let cellIdentifier = "RestaurantListItemCell"
 
     init(
-        likedRestaurantRepo: LikedRestaurantRepo,
+        userRepo: UserRepo,
         reloader: Reloader,
         photoRepo: PhotoRepo)
     {
-        self.likedRestaurantRepo = likedRestaurantRepo
+        self.userRepo = userRepo
         self.reloader = reloader
         self.restaurantDataSource = RestaurantDataSource(photoRepo: photoRepo)
         self.tableView = UITableView.newAutoLayoutView()
@@ -38,7 +38,7 @@ class MyLikesTableViewController: UIViewController {
         view.addSubview(tableView)
         tableView.autoPinEdgesToSuperviewEdges()
 
-        likedRestaurantRepo.getAll()
+        userRepo.getMyLikes()
             .onSuccess { [unowned self] restaurants in
                 self.restaurantDataSource.myPosts = restaurants
                 self.reloader.reload(self.tableView)

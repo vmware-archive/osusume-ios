@@ -4,18 +4,18 @@ import BrightFutures
 @testable import Osusume
 
 class MyPostTableViewControllerTest: XCTestCase {
-    var fakePostRepo: FakePostRepo!
+    var fakeUserRepo: FakeUserRepo!
     var fakeReloader: FakeReloader!
     var fakePhotoRepo: FakePhotoRepo!
     var myPostTVC: MyPostTableViewController!
 
     override func setUp() {
-        fakePostRepo = FakePostRepo()
+        fakeUserRepo = FakeUserRepo()
         fakeReloader = FakeReloader()
         fakePhotoRepo = FakePhotoRepo()
 
         myPostTVC = MyPostTableViewController(
-            postRepo: fakePostRepo,
+            userRepo: fakeUserRepo,
             reloader: fakeReloader,
             photoRepo: fakePhotoRepo
         )
@@ -23,10 +23,10 @@ class MyPostTableViewControllerTest: XCTestCase {
 
     func test_viewDidLoad_fetchsUsersPosts() {
         let promise = Promise<[Restaurant], RepoError>()
-        fakePostRepo.getAll_returnValue = promise.future
+        fakeUserRepo.getMyPosts_returnValue = promise.future
         myPostTVC.view.setNeedsLayout()
 
-        expect(self.fakePostRepo.getAll_wasCalled).to(equal(true))
+        expect(self.fakeUserRepo.getMyPosts_wasCalled).to(equal(true))
         let expectedRestaurant = RestaurantFixtures.newRestaurant(name: "Miya's Café")
         promise.success([expectedRestaurant])
 

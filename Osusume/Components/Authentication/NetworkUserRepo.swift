@@ -4,8 +4,15 @@ import Alamofire
 
 class NetworkUserRepo: UserRepo {
     let http: Http
-    init(http: Http) {
+    private let restaurantListRepo: RestaurantListRepo
+
+    init(
+        http: Http,
+        restaurantListRepo: RestaurantListRepo
+        )
+    {
         self.http = http
+        self.restaurantListRepo = restaurantListRepo
     }
 
     func login(email: String, password: String) -> Future<String, RepoError> {
@@ -24,5 +31,13 @@ class NetworkUserRepo: UserRepo {
             .map { value in
                 value["name"] as! String
             }
+    }
+
+    func getMyPosts() -> Future<[Restaurant], RepoError> {
+        return restaurantListRepo.getAll("/profile/posts")
+    }
+
+    func getMyLikes() -> Future<[Restaurant], RepoError> {
+        return restaurantListRepo.getAll("/profile/likes")
     }
 }
