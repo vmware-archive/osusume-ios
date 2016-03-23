@@ -42,7 +42,7 @@ class RestaurantListViewController: UIViewController {
 
         repo.getAll()
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurants in
-                self.restaurantDataSource.restaurants = returnedRestaurants
+                self.restaurantDataSource.myPosts = returnedRestaurants
                 self.reloader.reload(self.tableView)
         }
 
@@ -99,7 +99,7 @@ extension RestaurantListViewController: UITableViewDelegate {
         didSelectRowAtIndexPath indexPath: NSIndexPath
         )
     {
-        let id = restaurantDataSource.restaurants[indexPath.row].id
+        let id = restaurantDataSource.myPosts[indexPath.row].id
 
         didTapRestaurant(id)
     }

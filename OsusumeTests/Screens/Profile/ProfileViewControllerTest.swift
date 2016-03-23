@@ -65,12 +65,12 @@ class ProfileViewControllerTest: XCTestCase {
         NSRunLoop.osu_advance()
 
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))
-        expect(self.profileVC.restaurantDataSource.restaurants).to(equal([expectedRestaurant]))
+        expect(self.profileVC.restaurantDataSource.myPosts).to(equal([expectedRestaurant]))
     }
 
     func test_tableView_configuresCellCount() {
         let restaurants = [RestaurantFixtures.newRestaurant()]
-        profileVC.restaurantDataSource.restaurants = restaurants
+        profileVC.restaurantDataSource.myPosts = restaurants
 
         let numberOfRows = profileVC.restaurantDataSource.tableView(
             UITableView(),
@@ -82,7 +82,7 @@ class ProfileViewControllerTest: XCTestCase {
 
     func test_tableView_loadsImageFromPhotoUrl() {
         let restaurants = [RestaurantFixtures.newRestaurant()]
-        profileVC.restaurantDataSource.restaurants = restaurants
+        profileVC.restaurantDataSource.myPosts = restaurants
 
         profileVC.view.setNeedsLayout()
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)

@@ -1,13 +1,13 @@
 import UIKit
 
 class RestaurantDataSource: NSObject, UITableViewDataSource {
-    let photoRepo: PhotoRepo
-    var restaurants: [Restaurant]
-    let cellIdentifier = "RestaurantListItemCell"
+    var myPosts: [Restaurant]
+    private let photoRepo: PhotoRepo
+    private let cellIdentifier = "RestaurantListItemCell"
 
     init(photoRepo: PhotoRepo) {
         self.photoRepo = photoRepo
-        self.restaurants = [Restaurant]()
+        self.myPosts = [Restaurant]()
     }
 
     func tableView(
@@ -15,7 +15,7 @@ class RestaurantDataSource: NSObject, UITableViewDataSource {
         numberOfRowsInSection section: Int
         ) -> Int
     {
-        return restaurants.count
+        return myPosts.count
     }
 
     func tableView(
@@ -28,7 +28,7 @@ class RestaurantDataSource: NSObject, UITableViewDataSource {
                 as? RestaurantTableViewCell
         {
             let presenter = RestaurantDetailPresenter(
-                restaurant: restaurants[indexPath.row]
+                restaurant: myPosts[indexPath.row]
             )
 
             cell.photoImageView.image = UIImage(named: "TableCellPlaceholder")
@@ -47,5 +47,4 @@ class RestaurantDataSource: NSObject, UITableViewDataSource {
 
         return UITableViewCell()
     }
-
 }

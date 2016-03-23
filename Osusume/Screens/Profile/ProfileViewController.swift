@@ -106,7 +106,7 @@ class ProfileViewController: UIViewController {
 
         postRepo.getAll()
             .onSuccess { [unowned self] restaurants in
-                self.restaurantDataSource.restaurants = restaurants
+                self.restaurantDataSource.myPosts = restaurants
                 self.reloader.reload(self.tableView)
             }
 
