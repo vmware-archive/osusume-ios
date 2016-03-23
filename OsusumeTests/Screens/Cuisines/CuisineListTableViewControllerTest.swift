@@ -4,24 +4,6 @@ import XCTest
 import BrightFutures
 @testable import Osusume
 
-class FakeCuisineSelection: CuisineSelectionProtocol {
-    var selectedCuisine = Cuisine(id: 0, name: "")
-    func cuisineSelected(cuisine: Cuisine) {
-        selectedCuisine = cuisine
-    }
-}
-
-class FakeTextSearch: TextSearch {
-    var search_wasCalled = false
-    var search_args = (searchTerm: "", collection: [Cuisine]())
-    var search_returnValue = [Cuisine]()
-    func search(searchTerm: String, collection: [Cuisine]) -> [Cuisine] {
-        search_wasCalled = true
-        search_args = (searchTerm: searchTerm, collection: collection)
-        return search_returnValue
-    }
-}
-
 class CuisineListTableViewControllerTest: XCTestCase {
     let fakeRouter: FakeRouter = FakeRouter()
     let fakeCuisineRepo = FakeCuisineRepo()

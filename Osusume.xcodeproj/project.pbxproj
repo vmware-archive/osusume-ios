@@ -15,6 +15,8 @@
 		AE0CBF631CA13FBD0060FA02 /* DefaultTextSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */; };
 		AE0CBF641CA13FBD0060FA02 /* TextSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF621CA13FBD0060FA02 /* TextSearch.swift */; };
 		AE0CBF661CA224B80060FA02 /* DefaultTextSearchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF651CA224B80060FA02 /* DefaultTextSearchTest.swift */; };
+		AE0CBF681CA22F360060FA02 /* FakeTextSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF671CA22F360060FA02 /* FakeTextSearch.swift */; };
+		AE0CBF6A1CA22F620060FA02 /* FakeCuisineSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF691CA22F620060FA02 /* FakeCuisineSelection.swift */; };
 		AE19A9F91C9BC85B00D8CBAC /* SessionHttpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19A9F81C9BC85B00D8CBAC /* SessionHttpTest.swift */; };
 		AE19A9FB1C9BCA1500D8CBAC /* SessionHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19A9FA1C9BCA1500D8CBAC /* SessionHttp.swift */; };
 		AE19AA031C9BDEAF00D8CBAC /* S3StorageIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19AA021C9BDEAF00D8CBAC /* S3StorageIntegrationTests.swift */; };
@@ -176,6 +178,8 @@
 		AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextSearch.swift; sourceTree = "<group>"; };
 		AE0CBF621CA13FBD0060FA02 /* TextSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSearch.swift; sourceTree = "<group>"; };
 		AE0CBF651CA224B80060FA02 /* DefaultTextSearchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextSearchTest.swift; sourceTree = "<group>"; };
+		AE0CBF671CA22F360060FA02 /* FakeTextSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeTextSearch.swift; sourceTree = "<group>"; };
+		AE0CBF691CA22F620060FA02 /* FakeCuisineSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeCuisineSelection.swift; sourceTree = "<group>"; };
 		AE19A9F81C9BC85B00D8CBAC /* SessionHttpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHttpTest.swift; sourceTree = "<group>"; };
 		AE19A9FA1C9BCA1500D8CBAC /* SessionHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHttp.swift; sourceTree = "<group>"; };
 		AE19AA001C9BDEAF00D8CBAC /* OsusumeIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -423,6 +427,8 @@
 				AEACDB7A1C991EC80092AEF6 /* CuisineRepoTest.swift */,
 				AE0CBF651CA224B80060FA02 /* DefaultTextSearchTest.swift */,
 				AE4865DD1C9A75AB00154D50 /* FakeCuisineRepo.swift */,
+				AE0CBF691CA22F620060FA02 /* FakeCuisineSelection.swift */,
+				AE0CBF671CA22F360060FA02 /* FakeTextSearch.swift */,
 			);
 			path = Cuisines;
 			sourceTree = "<group>";
@@ -1157,6 +1163,7 @@
 				AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */,
 				DE99C963630E4601E58D7E89 /* FakeCommentRepo.swift in Sources */,
 				AE4865DE1C9A75AB00154D50 /* FakeCuisineRepo.swift in Sources */,
+				AE0CBF6A1CA22F620060FA02 /* FakeCuisineSelection.swift in Sources */,
 				DE99C928BE0115E1B7591775 /* FakeHttp.swift in Sources */,
 				AEBCAB5D1C8D5F37005FBA11 /* FakeImageLoader.swift in Sources */,
 				AE3FF5221C9A5A0100DB4F6C /* FakeLikeRepo.swift in Sources */,
@@ -1168,6 +1175,7 @@
 				DE99CFF67EFE10FB62F671E7 /* FakeRestaurantRepo.swift in Sources */,
 				DE99C631EC2BA39452CA983D /* FakeRouter.swift in Sources */,
 				DE99CCF19E10CB0C5E8CC4DC /* FakeSessionRepo.swift in Sources */,
+				AE0CBF681CA22F360060FA02 /* FakeTextSearch.swift in Sources */,
 				DE99C650E795C8E9946EAFD8 /* FakeUserRepo.swift in Sources */,
 				DE99C26900A3406AA1C154CF /* FakeUUIDProvider.swift in Sources */,
 				AE559A441C8EC199001D45A1 /* ImageLoaderHandlerTest.swift in Sources */,
