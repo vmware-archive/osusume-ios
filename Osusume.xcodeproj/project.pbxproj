@@ -1182,6 +1182,7 @@
 				DE99CC7C2EB019C02B7866BA /* NetworkPhotoRepoTest.swift in Sources */,
 				DE99C414A3B60B44E41F73B0 /* NetworkPostRepoTest.swift in Sources */,
 				DE99C37C22157FAC29D102FA /* NetworkRestaurantRepoTest.swift in Sources */,
+				AE559A421C8EA4FF001D45A1 /* NetworkUserRepoTest.swift in Sources */,
 				AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */,
 				AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */,
 				AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */,
@@ -1191,7 +1192,6 @@
 				AEB243901C71666300959434 /* RestaurantListViewControllerTest.swift in Sources */,
 				DE99C45D7BD67361E4B3AFB7 /* RestaurantParserTest.swift in Sources */,
 				AE19A9F91C9BC85B00D8CBAC /* SessionHttpTest.swift in Sources */,
-				AE559A421C8EA4FF001D45A1 /* NetworkUserRepoTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
