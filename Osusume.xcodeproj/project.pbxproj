@@ -76,6 +76,7 @@
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
 		AEEBA4BD1CA11096003E136F /* NetworkLikedRestaurantRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEBA4BC1CA11096003E136F /* NetworkLikedRestaurantRepoTest.swift */; };
 		AEEBA4BF1CA11121003E136F /* NetworkLikedRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEBA4BE1CA11121003E136F /* NetworkLikedRestaurantRepo.swift */; };
+		AEED39E21CA21FAD00B57BCB /* EditRestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CD1CFF05F8457F3FF5A1 /* EditRestaurantFormView.swift */; };
 		AEF0E1171C9948BF0002CA1B /* DataListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF0E1161C9948BF0002CA1B /* DataListParser.swift */; };
 		AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF8BF8F1C61C263000677EB /* libz.tbd */; };
 		AEFCB7781C6191FB0096DD93 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
@@ -123,7 +124,6 @@
 		DE99C7227466E10933462D38 /* RestaurantDetailTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CF148A4BB0C3FD5C1E15 /* RestaurantDetailTableViewCellTest.swift */; };
 		DE99C74E7C41EF4CD1917D0F /* SessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CC16807EC3A0D1F1E4FD /* SessionRepo.swift */; };
 		DE99C758C4362943C1232D75 /* DateConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CA061765A3498CD3B025 /* DateConverterTest.swift */; };
-		DE99C775F0F5593955498FC7 /* EditRestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CD1CFF05F8457F3FF5A1 /* EditRestaurantFormView.swift */; };
 		DE99C8689FF32EA1A298D0C4 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C627302A4EFE9A12C212 /* UserRepo.swift */; };
 		DE99C928BE0115E1B7591775 /* FakeHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C47DD7832C65984A6578 /* FakeHttp.swift */; };
 		DE99C963630E4601E58D7E89 /* FakeCommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C36B42C76047E436BFE9 /* FakeCommentRepo.swift */; };
@@ -1074,7 +1074,7 @@
 				AEDD1B881C897FF40024B29E /* DefaultImageLoader.swift in Sources */,
 				AE3ED1841C850EF20097DC10 /* DefaultReloader.swift in Sources */,
 				AEDD1B841C8975740024B29E /* DiskStorage.swift in Sources */,
-				DE99C775F0F5593955498FC7 /* EditRestaurantFormView.swift in Sources */,
+				AEED39E21CA21FAD00B57BCB /* EditRestaurantFormView.swift in Sources */,
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
 				DE99CCF718E82C82888029DF /* Http.swift in Sources */,
 				AEDD1B861C897DEE0024B29E /* ImageLoader.swift in Sources */,
@@ -1113,7 +1113,6 @@
 				DE99CB151EDB94CD5450E1FB /* RestaurantDetailPresenter.swift in Sources */,
 				AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */,
 				248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */,
-				DE99C775F0F5593955498FC7 /* RestaurantFormView.swift in Sources */,
 				AE73E02D1CA11BC200738787 /* RestaurantListRepo.swift in Sources */,
 				DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */,
 				DE99CF792A576BDCD473A679 /* RestaurantParser.swift in Sources */,
