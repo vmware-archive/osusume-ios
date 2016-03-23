@@ -14,6 +14,9 @@ bootstrap:
 sort:
 	perl ./bin/sortXcodeProject Osusume.xcodeproj/project.pbxproj
 
+bump:
+	@./bin/bumpBuild.sh
+
 update:
 	@carthage update --platform iOS
 
