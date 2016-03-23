@@ -46,12 +46,6 @@ class ProfileViewControllerTest: XCTestCase {
         expect(self.profileVC.logoutButton.titleLabel?.text).to(equal("Logout"))
     }
 
-    func test_viewDidLoad_showsMyPostsTab() {
-        profileVC.view.setNeedsLayout()
-
-        expect(self.profileVC.restaurantsLabel).toNot(beNil())
-        expect(self.profileVC.restaurantsLabel.text).to(equal("My Posts"))
-    }
 
     func test_viewDidLoad_fetchsUsersPosts() {
         let promise = Promise<[Restaurant], RepoError>()

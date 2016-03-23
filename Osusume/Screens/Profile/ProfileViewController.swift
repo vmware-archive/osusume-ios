@@ -14,7 +14,6 @@ class ProfileViewController: UIViewController {
     //MARK: - View Elements
     let userNameLabel: UILabel
     let logoutButton: UIButton
-    let restaurantsLabel: UILabel
     let tableView: UITableView
 
     init(router: Router,
@@ -33,7 +32,6 @@ class ProfileViewController: UIViewController {
 
         logoutButton = UIButton.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
-        restaurantsLabel = UILabel.newAutoLayoutView()
         tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
@@ -65,13 +63,10 @@ class ProfileViewController: UIViewController {
             forControlEvents: .TouchUpInside
         )
 
-        restaurantsLabel.text = "My Posts"
-
         let userInfoView = UIView.newAutoLayoutView()
         userInfoView.addSubview(userNameLabel)
         userInfoView.addSubview(logoutButton)
         view.addSubview(userInfoView)
-        view.addSubview(restaurantsLabel)
         view.addSubview(tableView)
 
         view.backgroundColor = UIColor.whiteColor()
@@ -90,11 +85,7 @@ class ProfileViewController: UIViewController {
         logoutButton.autoSetDimension(.Width, toSize: 100.0)
         logoutButton.autoPinEdgeToSuperviewEdge(.Trailing)
 
-        restaurantsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: userInfoView)
-        restaurantsLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
-        restaurantsLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-
-        tableView.autoPinEdge(.Top, toEdge: .Bottom, ofView: restaurantsLabel)
+        tableView.autoPinEdge(.Top, toEdge: .Bottom, ofView: userInfoView)
         tableView.autoPinEdgeToSuperviewEdge(.Left)
         tableView.autoPinEdgeToSuperviewEdge(.Right)
         tableView.autoPinEdgeToSuperviewEdge(.Bottom)
