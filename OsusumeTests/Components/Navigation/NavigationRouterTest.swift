@@ -156,9 +156,12 @@ class NavigationRouterTest: XCTestCase {
 
         let cuisineNavController = UINavigationController()
         cuisineNavController.setViewControllers(
-            [CuisineListTableViewController(
-                router: FakeRouter(),
-                cuisineRepo: FakeCuisineRepo())
+            [
+                CuisineListTableViewController(
+                    router: FakeRouter(),
+                    cuisineRepo: FakeCuisineRepo(),
+                    textSearch: FakeTextSearch()
+                )
             ],
             animated: false
         )

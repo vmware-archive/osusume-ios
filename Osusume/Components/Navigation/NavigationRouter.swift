@@ -147,7 +147,8 @@ class NavigationRouter: Router {
         let cuisineNavController = UINavigationController()
         let findCuisineTableViewController = CuisineListTableViewController(
             router: self,
-            cuisineRepo: cuisineRepo
+            cuisineRepo: cuisineRepo,
+            textSearch: DefaultTextSearch()
         )
 
         let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController

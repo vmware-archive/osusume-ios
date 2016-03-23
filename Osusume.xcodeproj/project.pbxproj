@@ -11,6 +11,10 @@
 		AE0120D31C9BCA0B00D5E7BA /* CuisineParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0120D21C9BCA0B00D5E7BA /* CuisineParser.swift */; };
 		AE0120D51C9BCAB200D5E7BA /* CuisineParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0120D41C9BCAB200D5E7BA /* CuisineParserTest.swift */; };
 		AE0CBF591CA113F60060FA02 /* NewRestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF581CA113F60060FA02 /* NewRestaurantFormView.swift */; };
+		AE0CBF5B1CA12C7A0060FA02 /* DefaultSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF5A1CA12C7A0060FA02 /* DefaultSearchDelegate.swift */; };
+		AE0CBF631CA13FBD0060FA02 /* DefaultTextSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */; };
+		AE0CBF641CA13FBD0060FA02 /* TextSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF621CA13FBD0060FA02 /* TextSearch.swift */; };
+		AE0CBF661CA224B80060FA02 /* DefaultTextSearchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF651CA224B80060FA02 /* DefaultTextSearchTest.swift */; };
 		AE19A9F91C9BC85B00D8CBAC /* SessionHttpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19A9F81C9BC85B00D8CBAC /* SessionHttpTest.swift */; };
 		AE19A9FB1C9BCA1500D8CBAC /* SessionHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19A9FA1C9BCA1500D8CBAC /* SessionHttp.swift */; };
 		AE19AA031C9BDEAF00D8CBAC /* S3StorageIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19AA021C9BDEAF00D8CBAC /* S3StorageIntegrationTests.swift */; };
@@ -168,6 +172,10 @@
 		AE0120D21C9BCA0B00D5E7BA /* CuisineParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineParser.swift; sourceTree = "<group>"; };
 		AE0120D41C9BCAB200D5E7BA /* CuisineParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineParserTest.swift; sourceTree = "<group>"; };
 		AE0CBF581CA113F60060FA02 /* NewRestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantFormView.swift; sourceTree = "<group>"; };
+		AE0CBF5A1CA12C7A0060FA02 /* DefaultSearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSearchDelegate.swift; sourceTree = "<group>"; };
+		AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextSearch.swift; sourceTree = "<group>"; };
+		AE0CBF621CA13FBD0060FA02 /* TextSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSearch.swift; sourceTree = "<group>"; };
+		AE0CBF651CA224B80060FA02 /* DefaultTextSearchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextSearchTest.swift; sourceTree = "<group>"; };
 		AE19A9F81C9BC85B00D8CBAC /* SessionHttpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHttpTest.swift; sourceTree = "<group>"; };
 		AE19A9FA1C9BCA1500D8CBAC /* SessionHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHttp.swift; sourceTree = "<group>"; };
 		AE19AA001C9BDEAF00D8CBAC /* OsusumeIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -413,6 +421,7 @@
 				AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */,
 				AE0120D41C9BCAB200D5E7BA /* CuisineParserTest.swift */,
 				AEACDB7A1C991EC80092AEF6 /* CuisineRepoTest.swift */,
+				AE0CBF651CA224B80060FA02 /* DefaultTextSearchTest.swift */,
 				AE4865DD1C9A75AB00154D50 /* FakeCuisineRepo.swift */,
 			);
 			path = Cuisines;
@@ -461,6 +470,9 @@
 				AEACDB741C98FDF90092AEF6 /* CuisineListParser.swift */,
 				AE0120D21C9BCA0B00D5E7BA /* CuisineParser.swift */,
 				AEACDB7C1C991FB30092AEF6 /* CuisineRepo.swift */,
+				AE0CBF5A1CA12C7A0060FA02 /* DefaultSearchDelegate.swift */,
+				AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */,
+				AE0CBF621CA13FBD0060FA02 /* TextSearch.swift */,
 			);
 			path = Cuisines;
 			sourceTree = "<group>";
@@ -1073,6 +1085,8 @@
 				DE99CBC2E6E4DCF9DEFA9449 /* DefaultHttp.swift in Sources */,
 				AEDD1B881C897FF40024B29E /* DefaultImageLoader.swift in Sources */,
 				AE3ED1841C850EF20097DC10 /* DefaultReloader.swift in Sources */,
+				AE0CBF5B1CA12C7A0060FA02 /* DefaultSearchDelegate.swift in Sources */,
+				AE0CBF631CA13FBD0060FA02 /* DefaultTextSearch.swift in Sources */,
 				AEDD1B841C8975740024B29E /* DiskStorage.swift in Sources */,
 				AEED39E21CA21FAD00B57BCB /* EditRestaurantFormView.swift in Sources */,
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
@@ -1122,6 +1136,7 @@
 				DE99C5E76677BB3EC661EEFF /* S3Storage.swift in Sources */,
 				AE19A9FB1C9BCA1500D8CBAC /* SessionHttp.swift in Sources */,
 				DE99C74E7C41EF4CD1917D0F /* SessionRepo.swift in Sources */,
+				AE0CBF641CA13FBD0060FA02 /* TextSearch.swift in Sources */,
 				AE3ED1871C850EF20097DC10 /* UIKitExtensions.swift in Sources */,
 				DE99C8689FF32EA1A298D0C4 /* UserRepo.swift in Sources */,
 			);
@@ -1137,6 +1152,7 @@
 				AE0120D51C9BCAB200D5E7BA /* CuisineParserTest.swift in Sources */,
 				AEACDB7B1C991EC80092AEF6 /* CuisineRepoTest.swift in Sources */,
 				DE99C758C4362943C1232D75 /* DateConverterTest.swift in Sources */,
+				AE0CBF661CA224B80060FA02 /* DefaultTextSearchTest.swift in Sources */,
 				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,
 				AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */,
 				DE99C963630E4601E58D7E89 /* FakeCommentRepo.swift in Sources */,
