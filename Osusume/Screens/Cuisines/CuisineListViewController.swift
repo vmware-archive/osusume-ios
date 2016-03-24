@@ -124,11 +124,10 @@ extension CuisineListViewController: UITableViewDataSource {
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         if indexPath.section == 0 {
-            let addCuisineCell = tableView.dequeueReusableCellWithIdentifier(
-                "AddCuisineCell",
-                forIndexPath: indexPath
-            )
+            let addCuisineCell = UITableViewCell()
+            addCuisineCell.userInteractionEnabled = isCurrentSearchTermPartialMatch()
             addCuisineCell.textLabel?.text = "Add Cuisine"
+
             return addCuisineCell
         }
 
@@ -140,6 +139,17 @@ extension CuisineListViewController: UITableViewDataSource {
         cuisineCell.textLabel?.text = cuisineList[indexPath.row].name
 
         return cuisineCell
+    }
+
+    private func isCurrentSearchTermPartialMatch() -> Bool {
+        let searchTerm = searchBar.text ?? ""
+
+        guard searchTerm != "" else {
+            return false
+        }
+
+        let exactSearchMatches = textSearch.exactSearch(searchTerm, collection: cuisineList)
+        return exactSearchMatches.isEmpty
     }
 }
 

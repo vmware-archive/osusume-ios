@@ -9,4 +9,14 @@ struct DefaultTextSearch: TextSearch {
                 .containsString(searchTerm.lowercaseString)
         }
     }
+
+    func exactSearch(searchTerm: String, collection: [Cuisine]) -> [Cuisine] {
+        guard searchTerm != "" else {
+            return []
+        }
+
+        return collection.filter({ cuisine in
+            return cuisine.name.lowercaseString == searchTerm.lowercaseString
+        })
+    }
 }

@@ -72,6 +72,7 @@ class CuisineListViewControllerTest: XCTestCase {
             cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
         )
         expect(addCuisineCell.textLabel?.text).to(equal("Add Cuisine"))
+        expect(addCuisineCell.userInteractionEnabled).to(beFalse())
     }
 
     func test_tableView_hasTwoSections() {
@@ -129,6 +130,59 @@ class CuisineListViewControllerTest: XCTestCase {
 
 
         expect(self.cuisineListVC.cuisineList).to(equal(filteredCuisineArray))
+    }
+
+    func test_search_emptyStringDeactivatesAddCuisineCellFromInteraction() {
+        let addCuisineCell = cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+
+        cuisineListVC.searchBar(UISearchBar(), textDidChange: "")
+
+
+        expect(addCuisineCell.userInteractionEnabled).to(beFalse())
+    }
+
+    func test_loadingAddCuisineCell_callsExactSearch() {
+        cuisineListVC.searchBar.text = "J"
+
+
+        cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+
+        expect(self.fakeTextSearch.exactSearch_wasCalled).to(beTrue())
+        expect(self.fakeTextSearch.exactSearch_args.searchTerm).to(equal("J"))
+        expect(self.fakeTextSearch.exactSearch_args.collection).to(equal(cuisineListVC.cuisineList))
+    }
+
+    func test_enableAddCuisineCell_whenReturnsEmptyArray() {
+        cuisineListVC.searchBar.text = "J"
+        fakeTextSearch.exactSearch_returnValue = []
+
+        let addCuisineCell = cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+        expect(addCuisineCell.userInteractionEnabled).to(beTrue())
+
+    }
+
+    func test_disableAddCuisineCell_whenReturnsCuisineArray() {
+        cuisineListVC.searchBar.text = "Japanese"
+        fakeTextSearch.exactSearch_returnValue = [Cuisine(id: 1, name: "Japanese")]
+
+        let addCuisineCell = cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+        expect(addCuisineCell.userInteractionEnabled).to(beFalse())
     }
 
     func test_tableView_hasAConfiguredDelegate() {

@@ -47,4 +47,42 @@ class DefaultTextSearchTest: XCTestCase {
         expect(filteredCuisines).to(equal([japaneseCuisine]))
     }
 
+    func test_exactSearch() {
+        let filteredCuisines = textSearch.exactSearch(
+            "Japanese",
+            collection: [japaneseCuisine, chineseCuisine]
+        )
+
+
+        expect(filteredCuisines).to(equal([japaneseCuisine]))
+    }
+
+    func test_exactSearch_returnsNoneForEmptyString() {
+        let filteredCuisines = textSearch.exactSearch(
+            "",
+            collection: [japaneseCuisine]
+        )
+
+
+        expect(filteredCuisines).to(equal([]))
+    }
+
+    func test_exactSearch_ignoresCase() {
+        let filteredCuisines = textSearch.exactSearch(
+            "JAPANESE",
+            collection: [japaneseCuisine]
+        )
+
+
+        expect(filteredCuisines).to(equal([japaneseCuisine]))
+    }
+
+    func test_exactSearch_doesntMatchSubstrings() {
+        let filteredCuisines = textSearch.exactSearch(
+            "Ja",
+            collection: [japaneseCuisine]
+        )
+
+        expect(filteredCuisines).to(equal([]))
+    }
 }
