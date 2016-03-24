@@ -150,7 +150,7 @@ class CuisineListViewControllerTest: XCTestCase {
         )
 
 
-        expect(fakeCuisineSelection.selectedCuisine).to(equal(Cuisine(id: 1, name: "Soba!")))
+        expect(fakeCuisineSelection.cuisineSelected_returnValue).to(equal(Cuisine(id: 1, name: "Soba!")))
         expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
     }
 
@@ -189,7 +189,7 @@ class CuisineListViewControllerTest: XCTestCase {
         promise.success(expectedCuisine)
         NSRunLoop.osu_advance()
 
-        expect(fakeCuisineSelection.selectedCuisine).to(equal(expectedCuisine))
+        expect(fakeCuisineSelection.cuisineSelected_returnValue).to(equal(expectedCuisine))
         expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(equal(true))
     }
 

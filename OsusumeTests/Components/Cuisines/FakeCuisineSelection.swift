@@ -2,9 +2,9 @@
 
 class FakeCuisineSelection: CuisineSelectionProtocol {
     var cuisineSelected_wasCalled = false
-    var selectedCuisine = Cuisine(id: 0, name: "")
+    var cuisineSelected_returnValue = Cuisine(id: 0, name: "")
     func cuisineSelected(cuisine: Cuisine) {
         cuisineSelected_wasCalled = true
-        selectedCuisine = cuisine
+        cuisineSelected_returnValue = cuisine
     }
 }
