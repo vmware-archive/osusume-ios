@@ -70,6 +70,12 @@
 		AEC471D81C743A00001B8C56 /* UIImageViewModeScaleAspect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D71C743A00001B8C56 /* UIImageViewModeScaleAspect.framework */; };
 		AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC877671C7300090005BEA1 /* NewCommentViewControllerTest.swift */; };
 		AECF51761CA279A40045C42B /* NewCuisine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51751CA279A40045C42B /* NewCuisine.swift */; };
+		AECF51781CA36E290045C42B /* NetworkRestaurantListRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */; };
+		AECF517A1CA36E890045C42B /* CommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51791CA36E890045C42B /* CommentRepo.swift */; };
+		AECF517C1CA36EBE0045C42B /* LikedRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF517B1CA36EBE0045C42B /* LikedRestaurantRepo.swift */; };
+		AED11BDB1CA280B9009940B2 /* MyLikesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED11BDA1CA280B9009940B2 /* MyLikesTableViewController.swift */; };
+		AED11BDD1CA280EB009940B2 /* MyLikesTableViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED11BDC1CA280EB009940B2 /* MyLikesTableViewControllerTest.swift */; };
+		AED11BDF1CA2832D009940B2 /* FakeLikedRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED11BDE1CA2832D009940B2 /* FakeLikedRestaurantRepo.swift */; };
 		AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */; };
 		AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */; };
 		AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */; };
@@ -139,6 +145,7 @@
 		DE99CC7C2EB019C02B7866BA /* NetworkPhotoRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C40014BC36486F0794C3 /* NetworkPhotoRepoTest.swift */; };
 		DE99CCF19E10CB0C5E8CC4DC /* FakeSessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CE8BD6AEB8146575F4DB /* FakeSessionRepo.swift */; };
 		DE99CCF718E82C82888029DF /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAA54E70E66E08AAF60A /* Http.swift */; };
+		DE99CD5C28BC35FE5BE81CC8 /* NetworkCuisineRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CD139AFE883A32C66459 /* NetworkCuisineRepo.swift */; };
 		DE99CDD1C1EF4FD00A5D80BF /* NetworkCommentRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CA8AD0B174D494C5EB5E /* NetworkCommentRepoTest.swift */; };
 		DE99CDFE2542C59DFFE64112 /* CommentParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C2CA4AF4E232D0AF3C1F /* CommentParserTest.swift */; };
 		DE99CE89810E79B5C6F3AADD /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C85298E7CF65D37C73F9 /* DataParser.swift */; };
@@ -225,6 +232,12 @@
 		AECA9B691C0EC90E00C30BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AECA9B771C0ED81500C30BA4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		AECF51751CA279A40045C42B /* NewCuisine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCuisine.swift; sourceTree = "<group>"; };
+		AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRestaurantListRepo.swift; sourceTree = "<group>"; };
+		AECF51791CA36E890045C42B /* CommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRepo.swift; sourceTree = "<group>"; };
+		AECF517B1CA36EBE0045C42B /* LikedRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedRestaurantRepo.swift; sourceTree = "<group>"; };
+		AED11BDA1CA280B9009940B2 /* MyLikesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLikesTableViewController.swift; sourceTree = "<group>"; };
+		AED11BDC1CA280EB009940B2 /* MyLikesTableViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLikesTableViewControllerTest.swift; sourceTree = "<group>"; };
+		AED11BDE1CA2832D009940B2 /* FakeLikedRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeLikedRestaurantRepo.swift; sourceTree = "<group>"; };
 		AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTest.swift; sourceTree = "<group>"; };
@@ -290,6 +303,8 @@
 		DE99CBA30FB1C089E096822D /* ParseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseError.swift; sourceTree = "<group>"; };
 		DE99CC16807EC3A0D1F1E4FD /* SessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRepo.swift; sourceTree = "<group>"; };
 		DE99CC6F8C68D1331736A562 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		DE99CCD04FD48638BAC6D71B /* NetworkPostRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPostRepoTest.swift; sourceTree = "<group>"; };
+		DE99CD139AFE883A32C66459 /* NetworkCuisineRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCuisineRepo.swift; sourceTree = "<group>"; };
 		DE99CD1CFF05F8457F3FF5A1 /* EditRestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantFormView.swift; sourceTree = "<group>"; };
 		DE99CD7CA952D78127F0ED9F /* RandomUUIDProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomUUIDProvider.swift; sourceTree = "<group>"; };
 		DE99CD8AC456CCAB4BA93C40 /* LaunchWorkflow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchWorkflow.swift; sourceTree = "<group>"; };
@@ -471,6 +486,7 @@
 				AEACDB7C1C991FB30092AEF6 /* CuisineRepo.swift */,
 				AE0CBF5A1CA12C7A0060FA02 /* DefaultSearchDelegate.swift */,
 				AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */,
+				DE99CD139AFE883A32C66459 /* NetworkCuisineRepo.swift */,
 				AECF51751CA279A40045C42B /* NewCuisine.swift */,
 				AE0CBF621CA13FBD0060FA02 /* TextSearch.swift */,
 			);
@@ -598,6 +614,7 @@
 			isa = PBXGroup;
 			children = (
 				DE99CDB86EED28DF3E9398F9 /* CommentParser.swift */,
+				AECF51791CA36E890045C42B /* CommentRepo.swift */,
 				DE99CE5AAB306FC0D7331522 /* NetworkCommentRepo.swift */,
 				DE99C555461433F145ED0F5C /* NewComment.swift */,
 				DE99CA6DCD8E6063FFA13336 /* PersistedComment.swift */,
@@ -796,8 +813,11 @@
 			isa = PBXGroup;
 			children = (
 				AE3FF5271C9A781500DB4F6C /* Like.swift */,
+				AECF517B1CA36EBE0045C42B /* LikedRestaurantRepo.swift */,
 				AE3FF5231C9A5A7700DB4F6C /* LikeRepo.swift */,
 				AE3FF5251C9A5A8E00DB4F6C /* NetworkLikeRepo.swift */,
+				DE99C8319B5E7658F8AC9B35 /* NetworkPostRepo.swift */,
+				AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */,
 				DE99CB21B6B5AF4521A2A1A1 /* NetworkRestaurantRepo.swift */,
 				DE99CB4E04736BBC8AFF8021 /* NewRestaurant.swift */,
 				DE99CADB47A29D018CAEA0A9 /* Restaurant.swift */,
@@ -1067,6 +1087,7 @@
 			files = (
 				DE99CB6B84CBE284E0588C86 /* AppDelegate.swift in Sources */,
 				DE99C5EDA17366E088607BC1 /* CommentParser.swift in Sources */,
+				AECF517A1CA36E890045C42B /* CommentRepo.swift in Sources */,
 				AEACDB791C9900020092AEF6 /* Cuisine.swift in Sources */,
 				AEACDB751C98FDF90092AEF6 /* CuisineListParser.swift in Sources */,
 				AEFD80651C99542100B4F17C /* CuisineListViewController.swift in Sources */,
@@ -1090,14 +1111,19 @@
 				DE99CAE855DA045F9EC09C0C /* KeychainSessionRepo.swift in Sources */,
 				DE99C5F42497764EF7EE4252 /* LaunchWorkflow.swift in Sources */,
 				AE3FF5281C9A781500DB4F6C /* Like.swift in Sources */,
+				AECF517C1CA36EBE0045C42B /* LikedRestaurantRepo.swift in Sources */,
 				AE3FF5241C9A5A7700DB4F6C /* LikeRepo.swift in Sources */,
 				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
 				DE99C2FBE2CDA0C6D59583BD /* main.swift in Sources */,
 				AEE6968C1CA36C8F003A2927 /* MyRestaurantListViewController.swift in Sources */,
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
 				DE99C575936B3E8619D06F8D /* NetworkCommentRepo.swift in Sources */,
+				DE99CD5C28BC35FE5BE81CC8 /* NetworkCuisineRepo.swift in Sources */,
+				AEEBA4BF1CA11121003E136F /* NetworkLikedRestaurantRepo.swift in Sources */,
 				AE3FF5261C9A5A8E00DB4F6C /* NetworkLikeRepo.swift in Sources */,
 				DE99C47B5157D6F86DCAE43E /* NetworkPhotoRepo.swift in Sources */,
+				DE99C17D2E7F4D8B2782BF38 /* NetworkPostRepo.swift in Sources */,
+				AECF51781CA36E290045C42B /* NetworkRestaurantListRepo.swift in Sources */,
 				DE99C666756597D0AB21E3B5 /* NetworkRestaurantRepo.swift in Sources */,
 				DE99CB8A9C851219F3FC27CC /* NetworkUserRepo.swift in Sources */,
 				DE99C599EE21237384D5904E /* NewComment.swift in Sources */,

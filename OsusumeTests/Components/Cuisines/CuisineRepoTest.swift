@@ -19,12 +19,12 @@ class CuisineRepoTest: XCTestCase {
     let fakeHttp = FakeHttp()
     let fakeCuisineListParser = FakeCuisineListParser()
     let cuisineJsonPromise = Promise<AnyObject, RepoError>()
-    var cuisineRepo: HttpCuisineRepo<FakeCuisineListParser>!
+    var cuisineRepo: NetworkCuisineRepo<FakeCuisineListParser>!
 
     override func setUp() {
         fakeHttp.get_returnValue = cuisineJsonPromise.future
 
-        cuisineRepo = HttpCuisineRepo(
+        cuisineRepo = NetworkCuisineRepo(
             http: self.fakeHttp,
             parser: self.fakeCuisineListParser
         )

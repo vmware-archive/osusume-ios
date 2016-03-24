@@ -1,10 +1,6 @@
 import BrightFutures
 
-protocol PostRepo {
-    func getAll() -> Future<[Restaurant], RepoError>
-}
-
-struct NetworkPostRepo: PostRepo {
+struct NetworkLikedRestaurantRepo: LikedRestaurantRepo {
     private let restaurantListRepo: RestaurantListRepo
 
     init(restaurantListRepo: RestaurantListRepo) {

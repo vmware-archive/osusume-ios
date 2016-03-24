@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             parser: CommentParser()
         )
 
-        let cuisineRepo = HttpCuisineRepo(
+        let cuisineRepo = NetworkCuisineRepo(
             http: sessionHttp,
             parser: CuisineListParser()
         )

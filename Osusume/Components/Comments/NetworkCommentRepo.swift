@@ -1,9 +1,5 @@
 import BrightFutures
 
-protocol CommentRepo {
-    func persist(comment: NewComment) -> Future<PersistedComment, RepoError>
-}
-
 struct NetworkCommentRepo <P: DataParser where P.ParsedObject == PersistedComment>: CommentRepo {
     let http: Http
     let parser: P
