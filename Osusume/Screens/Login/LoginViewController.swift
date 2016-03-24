@@ -4,13 +4,13 @@ import BrightFutures
 
 class LoginViewController: UIViewController {
     unowned let router : Router
-    let repo : UserRepo
+    let userRepo : UserRepo
     let sessionRepo: SessionRepo
 
-    //MARK: - Initializers
+    // MARK: - Initializers
     init(router: Router, repo: UserRepo, sessionRepo: SessionRepo) {
         self.router = router
-        self.repo = repo
+        self.userRepo = repo
         self.sessionRepo = sessionRepo
 
         super.init(nibName: nil, bundle: nil)
@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    //MARK: - View Elements
+    // MARK: - View Elements
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .Line
@@ -40,13 +40,20 @@ class LoginViewController: UIViewController {
 
         button.setTitle("Login", forState: .Normal)
         button.backgroundColor = UIColor.grayColor()
-        button.addTarget(self, action: Selector("didTapLoginButton:"), forControlEvents: .TouchUpInside)
+        button.addTarget(
+            self,
+            action: Selector("didTapLoginButton:"),
+            forControlEvents: .TouchUpInside
+        )
         return button
     }()
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
 
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
@@ -67,12 +74,24 @@ class LoginViewController: UIViewController {
         loginButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
     }
 
-    //MARK: - Actions
+    override func viewDidAppear(animated: Bool) {
+        emailTextField.becomeFirstResponder()
+    }
+
+    // MARK: - Actions
     @objc private func didTapLoginButton(button: UIButton) {
-        repo.login(emailTextField.text!, password: passwordTextField.text!)
+        userRepo.login(emailTextField.text!, password: passwordTextField.text!)
             .onSuccess(ImmediateExecutionContext) { [unowned self] token in
                 self.sessionRepo.setToken(token)
                 self.router.showRestaurantListScreen()
         }
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.didTapLoginButton(loginButton)
+        return true
     }
 }
