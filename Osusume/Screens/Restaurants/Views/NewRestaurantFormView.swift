@@ -154,7 +154,7 @@ class NewRestaurantFormView: UIView {
         notesTextField.autoPinEdgeToSuperviewEdge(.Bottom)
     }
 
-    //MARK: - Getters
+    // MARK: - Getters
 
     func getNameText() -> String? {
         return nameTextField.text

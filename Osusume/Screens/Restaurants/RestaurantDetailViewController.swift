@@ -12,10 +12,10 @@ class RestaurantDetailViewController: UIViewController {
     let restaurantId: Int
     var restaurant: Restaurant?
 
-    //MARK: - View Elements
+    // MARK: - View Elements
     let tableView: UITableView
 
-    //MARK: - Initializers
+    // MARK: - Initializers
     init(
         router: Router,
         reloader: Reloader,
@@ -75,7 +75,7 @@ class RestaurantDetailViewController: UIViewController {
         }
     }
 
-    //MARK: - Actions
+    // MARK: - Actions
     func didTapEditRestaurantButton(sender: UIBarButtonItem) {
         if let currentRestaurant = self.restaurant {
             router.showEditRestaurantScreen(currentRestaurant)
@@ -90,7 +90,7 @@ class RestaurantDetailViewController: UIViewController {
         }
     }
 
-    //MARK: - Constraints
+    // MARK: - Constraints
     func applyViewConstraints() {
         tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }

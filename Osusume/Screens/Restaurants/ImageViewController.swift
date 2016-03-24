@@ -1,10 +1,10 @@
 class ImageViewController: UIViewController {
 
     let url: NSURL?
-    //MARK: - View Elements
+    // MARK: - View Elements
     let imageView = UIImageView()
 
-    //MARK: - Initializers
+    // MARK: - Initializers
     init(url: NSURL) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
@@ -20,7 +20,7 @@ class ImageViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    //MARK: - Constraints
+    // MARK: - Constraints
     func applyViewConstraints() {
         imageView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }

@@ -11,10 +11,10 @@ class RestaurantListViewController: UIViewController {
 
     let cellIdentifier = "RestaurantListItemCell"
 
-    //MARK: - View Elements
+    // MARK: - View Elements
     let tableView = UITableView.newAutoLayoutView()
 
-    //MARK: - Initializers
+    // MARK: - Initializers
     init(
         router: Router,
         repo: RestaurantRepo,
@@ -36,7 +36,7 @@ class RestaurantListViewController: UIViewController {
         fatalError("init(coder:) is not supported for RestaurantListViewController")
     }
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -70,12 +70,12 @@ class RestaurantListViewController: UIViewController {
         applyViewConstraints()
     }
 
-    //MARK: - Constraints
+    // MARK: - Constraints
     func applyViewConstraints() {
         tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
 
-    //MARK: - Actions
+    // MARK: - Actions
     func didTapProfileButton(sender: UIBarButtonItem) {
         router.showProfileScreen()
     }

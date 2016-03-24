@@ -15,7 +15,7 @@ class NewRestaurantViewController: UIViewController {
     let restaurantRepo: RestaurantRepo
     let photoRepo: PhotoRepo
 
-    //MARK: - Initializers
+    // MARK: - Initializers
     init(
         router: Router,
         restaurantRepo: RestaurantRepo,
@@ -34,7 +34,7 @@ class NewRestaurantViewController: UIViewController {
         fatalError("init(coder:) is not supported for NewRestaurantViewController")
     }
 
-    //MARK: View Elements
+    // MARK: View Elements
     let scrollView  = UIScrollView.newAutoLayoutView()
     let contentInScrollView = UIView.newAutoLayoutView()
     let formViewContainer = UIView.newAutoLayoutView()
@@ -75,7 +75,7 @@ class NewRestaurantViewController: UIViewController {
         return picker
     }()
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

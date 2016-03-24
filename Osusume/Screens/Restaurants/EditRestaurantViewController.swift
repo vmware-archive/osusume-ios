@@ -11,7 +11,7 @@ class EditRestaurantViewController: UIViewController {
     let restaurant: Restaurant
     let id: Int
 
-    //MARK: - Initializers
+    // MARK: - Initializers
     init(
         router: Router,
         repo: RestaurantRepo,
@@ -29,13 +29,13 @@ class EditRestaurantViewController: UIViewController {
         fatalError("init(coder:) is not supported for RestaurantDetailViewController")
     }
 
-    //MARK: - View Elements
+    // MARK: - View Elements
     let scrollView = UIScrollView.newAutoLayoutView()
     let contentInScrollView = UIView.newAutoLayoutView()
     let formViewContainer = UIView.newAutoLayoutView()
     var formView: EditRestaurantFormView!
 
-    //MARK: - View Lifecycle
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,7 +63,7 @@ class EditRestaurantViewController: UIViewController {
         navigationItem.rightBarButtonItem = updateButton
     }
 
-    //MARK: - Actions
+    // MARK: - Actions
     func didTapUpdateButton(sender: UIBarButtonItem?) {
         let params: [String: AnyObject] = [
             "name": formView.getNameText()!,

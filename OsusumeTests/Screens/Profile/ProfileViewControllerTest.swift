@@ -76,7 +76,7 @@ class ProfileViewControllerTest: XCTestCase {
         expect(self.fakeUserRepo.getMyLikes_wasCalled).to(beTrue())
     }
 
-    //MARK: Actions
+    // MARK: Actions
     func test_tapLogout_logsOutUser() {
         profileVC.view.setNeedsLayout()
 

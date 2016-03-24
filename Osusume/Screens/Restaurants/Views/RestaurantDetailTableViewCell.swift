@@ -83,7 +83,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    //MARK: - Actions
+    // MARK: - Actions
     func didTapAddNewCommentButton() {
         delegate?.displayAddCommentScreen()
     }
@@ -114,7 +114,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         }
     }
 
-    //MARK: - Constraints
+    // MARK: - Constraints
     func applyViewConstraints() {
         imageCollectionView.autoPinEdgeToSuperviewEdge(.Top)
         imageCollectionView.autoSetDimension(.Height, toSize: 120.0)

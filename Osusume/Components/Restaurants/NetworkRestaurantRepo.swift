@@ -14,7 +14,7 @@ struct NetworkRestaurantRepo: RestaurantRepo {
         self.restaurantListRepo = restaurantListRepo
     }
 
-    //MARK: - GET Functions
+    // MARK: - GET Functions
 
     func getAll() -> Future<[Restaurant], RepoError> {
         return restaurantListRepo.getAll(path)
@@ -29,7 +29,7 @@ struct NetworkRestaurantRepo: RestaurantRepo {
         }
     }
 
-    //MARK: - POST Functions
+    // MARK: - POST Functions
 
     func create(newRestaurant: NewRestaurant) -> Future<[String: AnyObject], RepoError> {
         return http
@@ -52,7 +52,7 @@ struct NetworkRestaurantRepo: RestaurantRepo {
             )
     }
 
-    //MARK: - PATCH Functions
+    // MARK: - PATCH Functions
 
     func update(id: Int, params: [String: AnyObject]) -> Future<[String: AnyObject], RepoError> {
         return http
