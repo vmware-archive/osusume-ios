@@ -3,44 +3,42 @@ import Nimble
 import BrightFutures
 @testable import Osusume
 
-class MyPostTableViewControllerTest: XCTestCase {
-    var fakeUserRepo: FakeUserRepo!
+class MyRestaurantListViewControllerTest: XCTestCase {
     var fakeReloader: FakeReloader!
     var fakePhotoRepo: FakePhotoRepo!
-    var myPostTVC: MyPostTableViewController!
+    var myRestaurantListVC: MyRestaurantListViewController!
 
     override func setUp() {
-        fakeUserRepo = FakeUserRepo()
         fakeReloader = FakeReloader()
         fakePhotoRepo = FakePhotoRepo()
 
-        myPostTVC = MyPostTableViewController(
-            userRepo: fakeUserRepo,
+        myRestaurantListVC = MyRestaurantListViewController(
             reloader: fakeReloader,
-            photoRepo: fakePhotoRepo
+            photoRepo: fakePhotoRepo,
+            getRestaurants: getRestaurants
         )
     }
 
     func test_viewDidLoad_fetchsUsersPosts() {
         let promise = Promise<[Restaurant], RepoError>()
-        fakeUserRepo.getMyPosts_returnValue = promise.future
-        myPostTVC.view.setNeedsLayout()
+        getRestaurants_returnValue = promise.future
+        myRestaurantListVC.view.setNeedsLayout()
 
-        expect(self.fakeUserRepo.getMyPosts_wasCalled).to(equal(true))
+        expect(self.getRestaurants_wasCalled).to(equal(true))
         let expectedRestaurant = RestaurantFixtures.newRestaurant(name: "Miya's Café")
         promise.success([expectedRestaurant])
 
         waitForFutureToComplete(promise.future)
 
-        expect(self.myPostTVC.restaurantDataSource.myPosts).to(equal([expectedRestaurant]))
+        expect(self.myRestaurantListVC.restaurantDataSource.myPosts).to(equal([expectedRestaurant]))
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))
     }
 
     func test_tableView_configuresCellCount() {
         let restaurants = [RestaurantFixtures.newRestaurant()]
-        myPostTVC.restaurantDataSource.myPosts = restaurants
+        myRestaurantListVC.restaurantDataSource.myPosts = restaurants
 
-        let numberOfRows = myPostTVC.restaurantDataSource.tableView(
+        let numberOfRows = myRestaurantListVC.restaurantDataSource.tableView(
             UITableView(),
             numberOfRowsInSection: 0
         )
@@ -50,15 +48,15 @@ class MyPostTableViewControllerTest: XCTestCase {
 
     func test_tableView_loadsImageFromPhotoUrl() {
         let restaurants = [RestaurantFixtures.newRestaurant()]
-        myPostTVC.restaurantDataSource.myPosts = restaurants
-        myPostTVC.view.setNeedsLayout()
+        myRestaurantListVC.restaurantDataSource.myPosts = restaurants
+        myRestaurantListVC.view.setNeedsLayout()
 
         let promise = Promise<UIImage, RepoError>()
         fakePhotoRepo.loadImageFromUrl_returnValue = promise.future
 
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = myPostTVC.restaurantDataSource.tableView(
-            myPostTVC.tableView,
+        let cell = myRestaurantListVC.restaurantDataSource.tableView(
+            myRestaurantListVC.tableView,
             cellForRowAtIndexPath: indexPath
             ) as? RestaurantTableViewCell
 
@@ -72,8 +70,15 @@ class MyPostTableViewControllerTest: XCTestCase {
         let apple = testImage(named: "appleLogo", imageExtension: "png")
         promise.success(apple)
         waitForFutureToComplete(promise.future)
-        
+
         expect(cell?.photoImageView.image).to(equal(apple))
     }
 
+    // MARK: Fake Methods
+    var getRestaurants_wasCalled = false
+    var getRestaurants_returnValue = Future<[Restaurant], RepoError>()
+    private func getRestaurants() -> Future<[Restaurant], RepoError> {
+        getRestaurants_wasCalled = true
+        return getRestaurants_returnValue
+    }
 }

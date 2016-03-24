@@ -1,4 +1,5 @@
 import Foundation
+import BrightFutures
 
 class ProfileViewController: UIViewController {
     let router: Router
@@ -8,10 +9,10 @@ class ProfileViewController: UIViewController {
     let photoRepo: PhotoRepo
     lazy var viewControllers: [UIViewController] = {
         let viewControllers = [
-            MyPostTableViewController(
-                userRepo: self.userRepo,
+            MyRestaurantListViewController(
                 reloader: self.reloader,
-                photoRepo: self.photoRepo
+                photoRepo: self.photoRepo,
+                getRestaurants: self.userRepo.getMyPosts
             )
         ]
 
@@ -133,23 +134,19 @@ class ProfileViewController: UIViewController {
     func didChangeSelectedSegment(sender: UISegmentedControl) {
         currentPage = sender.selectedSegmentIndex
 
-        let viewController: UIViewController!
+        let getRestaurants: () -> Future<[Restaurant], RepoError>
 
-        switch currentPage {
-            case 0:
-                viewController = MyPostTableViewController(
-                    userRepo: self.userRepo,
-                    reloader: self.reloader,
-                    photoRepo: self.photoRepo
-                )
-
-            default:
-                viewController = MyLikesTableViewController(
-                    userRepo: self.userRepo,
-                    reloader: self.reloader,
-                    photoRepo: self.photoRepo
-                )
+        if (currentPage == 0) {
+            getRestaurants = userRepo.getMyPosts
+        } else {
+            getRestaurants = userRepo.getMyLikes
         }
+
+        let viewController = MyRestaurantListViewController(
+            reloader: reloader,
+            photoRepo: photoRepo,
+            getRestaurants: getRestaurants
+        )
 
         pageViewController.setViewControllers(
             [viewController],

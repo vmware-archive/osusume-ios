@@ -58,7 +58,8 @@ class ProfileViewControllerTest: XCTestCase {
         let pageViewController = profileVC.pageViewController
 
         expect(self.profileVC.currentPage).to(equal(0))
-        expect(pageViewController.viewControllers?.first).to(beAKindOf(MyPostTableViewController))
+        expect(pageViewController.viewControllers?.first).to(beAKindOf(MyRestaurantListViewController))
+        expect(self.fakeUserRepo.getMyPosts_wasCalled).to(beTrue())
     }
 
     func test_tappingSegmentedControl_selectsCurrentPage() {
@@ -70,9 +71,9 @@ class ProfileViewControllerTest: XCTestCase {
 
         let pageViewController = profileVC.pageViewController
         expect(pageViewController.viewControllers?.first)
-            .to(beAKindOf(MyLikesTableViewController))
+            .to(beAKindOf(MyRestaurantListViewController))
         expect(self.profileVC.currentPage).to(equal(1))
-
+        expect(self.fakeUserRepo.getMyLikes_wasCalled).to(beTrue())
     }
 
     //MARK: Actions

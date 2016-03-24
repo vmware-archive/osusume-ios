@@ -1,19 +1,21 @@
-class MyPostTableViewController: UIViewController {
-    let userRepo: UserRepo
-    let reloader: Reloader
+import BrightFutures
+
+class MyRestaurantListViewController: UIViewController {
+    private let reloader: Reloader
     let restaurantDataSource: RestaurantDataSource
+    let getRestaurants: () -> Future<[Restaurant], RepoError>
     let tableView: UITableView
 
     let cellIdentifier = "RestaurantListItemCell"
 
     init(
-        userRepo: UserRepo,
         reloader: Reloader,
-        photoRepo: PhotoRepo)
+        photoRepo: PhotoRepo,
+        getRestaurants: () -> Future<[Restaurant], RepoError>)
     {
-        self.userRepo = userRepo
         self.reloader = reloader
         self.restaurantDataSource = RestaurantDataSource(photoRepo: photoRepo)
+        self.getRestaurants = getRestaurants
         self.tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
@@ -38,7 +40,7 @@ class MyPostTableViewController: UIViewController {
         view.addSubview(tableView)
         tableView.autoPinEdgesToSuperviewEdges()
 
-        userRepo.getMyPosts()
+        getRestaurants()
             .onSuccess { [unowned self] restaurants in
                 self.restaurantDataSource.myPosts = restaurants
                 self.reloader.reload(self.tableView)
@@ -46,7 +48,7 @@ class MyPostTableViewController: UIViewController {
     }
 }
 
-extension MyPostTableViewController: UITableViewDelegate {
+extension MyRestaurantListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100.0
     }
