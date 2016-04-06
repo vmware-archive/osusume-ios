@@ -23,7 +23,7 @@ class NetworkUserRepoTest: XCTestCase {
 
         let token = userRepo.login("my-email", password: "my-password")
 
-        expect(self.fakeHttp.post_args.path).to(equal("/login"))
+        expect(self.fakeHttp.post_args.path).to(equal("/session"))
         expect(self.fakeHttp.post_args.parameters["email"] as? String).to(equal("my-email"))
         expect(self.fakeHttp.post_args.parameters["password"] as? String).to(equal("my-password"))
 

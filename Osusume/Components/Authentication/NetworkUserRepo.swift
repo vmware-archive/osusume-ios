@@ -18,7 +18,7 @@ class NetworkUserRepo: UserRepo {
     func login(email: String, password: String) -> Future<String, RepoError> {
         return http
             .post(
-                "/login",
+                "/session",
                 headers: [:],
                 parameters: ["email": email, "password": password]
             )

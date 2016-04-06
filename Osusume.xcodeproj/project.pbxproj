@@ -73,9 +73,6 @@
 		AECF51781CA36E290045C42B /* NetworkRestaurantListRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */; };
 		AECF517A1CA36E890045C42B /* CommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51791CA36E890045C42B /* CommentRepo.swift */; };
 		AECF517C1CA36EBE0045C42B /* LikedRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF517B1CA36EBE0045C42B /* LikedRestaurantRepo.swift */; };
-		AED11BDB1CA280B9009940B2 /* MyLikesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED11BDA1CA280B9009940B2 /* MyLikesTableViewController.swift */; };
-		AED11BDD1CA280EB009940B2 /* MyLikesTableViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED11BDC1CA280EB009940B2 /* MyLikesTableViewControllerTest.swift */; };
-		AED11BDF1CA2832D009940B2 /* FakeLikedRestaurantRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED11BDE1CA2832D009940B2 /* FakeLikedRestaurantRepo.swift */; };
 		AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */; };
 		AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */; };
 		AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */; };
@@ -235,9 +232,6 @@
 		AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRestaurantListRepo.swift; sourceTree = "<group>"; };
 		AECF51791CA36E890045C42B /* CommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRepo.swift; sourceTree = "<group>"; };
 		AECF517B1CA36EBE0045C42B /* LikedRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikedRestaurantRepo.swift; sourceTree = "<group>"; };
-		AED11BDA1CA280B9009940B2 /* MyLikesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLikesTableViewController.swift; sourceTree = "<group>"; };
-		AED11BDC1CA280EB009940B2 /* MyLikesTableViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLikesTableViewControllerTest.swift; sourceTree = "<group>"; };
-		AED11BDE1CA2832D009940B2 /* FakeLikedRestaurantRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeLikedRestaurantRepo.swift; sourceTree = "<group>"; };
 		AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTest.swift; sourceTree = "<group>"; };
@@ -303,7 +297,6 @@
 		DE99CBA30FB1C089E096822D /* ParseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseError.swift; sourceTree = "<group>"; };
 		DE99CC16807EC3A0D1F1E4FD /* SessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRepo.swift; sourceTree = "<group>"; };
 		DE99CC6F8C68D1331736A562 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		DE99CCD04FD48638BAC6D71B /* NetworkPostRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPostRepoTest.swift; sourceTree = "<group>"; };
 		DE99CD139AFE883A32C66459 /* NetworkCuisineRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCuisineRepo.swift; sourceTree = "<group>"; };
 		DE99CD1CFF05F8457F3FF5A1 /* EditRestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantFormView.swift; sourceTree = "<group>"; };
 		DE99CD7CA952D78127F0ED9F /* RandomUUIDProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomUUIDProvider.swift; sourceTree = "<group>"; };
@@ -816,7 +809,6 @@
 				AECF517B1CA36EBE0045C42B /* LikedRestaurantRepo.swift */,
 				AE3FF5231C9A5A7700DB4F6C /* LikeRepo.swift */,
 				AE3FF5251C9A5A8E00DB4F6C /* NetworkLikeRepo.swift */,
-				DE99C8319B5E7658F8AC9B35 /* NetworkPostRepo.swift */,
 				AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */,
 				DE99CB21B6B5AF4521A2A1A1 /* NetworkRestaurantRepo.swift */,
 				DE99CB4E04736BBC8AFF8021 /* NewRestaurant.swift */,
@@ -1119,10 +1111,8 @@
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
 				DE99C575936B3E8619D06F8D /* NetworkCommentRepo.swift in Sources */,
 				DE99CD5C28BC35FE5BE81CC8 /* NetworkCuisineRepo.swift in Sources */,
-				AEEBA4BF1CA11121003E136F /* NetworkLikedRestaurantRepo.swift in Sources */,
 				AE3FF5261C9A5A8E00DB4F6C /* NetworkLikeRepo.swift in Sources */,
 				DE99C47B5157D6F86DCAE43E /* NetworkPhotoRepo.swift in Sources */,
-				DE99C17D2E7F4D8B2782BF38 /* NetworkPostRepo.swift in Sources */,
 				AECF51781CA36E290045C42B /* NetworkRestaurantListRepo.swift in Sources */,
 				DE99C666756597D0AB21E3B5 /* NetworkRestaurantRepo.swift in Sources */,
 				DE99CB8A9C851219F3FC27CC /* NetworkUserRepo.swift in Sources */,
@@ -1483,7 +1473,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Osusume/Application/OsusumeBridgingHeader.h;
-				ServerURL = "http://localhost:3000";
+				ServerURL = "http://localhost:8080";
 			};
 			name = Debug;
 		};
