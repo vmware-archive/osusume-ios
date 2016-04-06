@@ -24,6 +24,8 @@ class LoginViewController: UIViewController {
     let emailTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .Line
+        textField.autocapitalizationType = .None
+        textField.autocorrectionType = .No
         textField.placeholder = "Email"
         return textField
     }()
@@ -31,6 +33,8 @@ class LoginViewController: UIViewController {
     let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .Line
+        textField.autocapitalizationType = .None
+        textField.autocorrectionType = .No
         textField.placeholder = "Password"
         return textField
     }()
