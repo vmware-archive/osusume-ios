@@ -53,8 +53,7 @@ struct RestaurantParser {
         let maybeNotes = json["notes"] as? String
         let notes = maybeNotes ?? ""
 
-        let maybeUserJson = json["user"] as? [String: AnyObject]
-        let maybeUserName = maybeUserJson?["name"] as? String
+        let maybeUserName = json["created_by_user_name"] as? String
         let userName = maybeUserName ?? ""
 
         let maybeLiked = json["liked"] as? Bool
