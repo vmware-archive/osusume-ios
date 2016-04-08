@@ -212,7 +212,7 @@ class RestaurantParserTest: XCTestCase {
             "walk_ins_ok": false,
             "accepts_credit_cards": false,
             "created_at": 1454480320,
-            "user": ["name": "Bambi"],
+            "created_by_user_name": "Bambi",
             "photo_urls": [
                 ["url": "http://www.example.com"],
                 ["url": "my-awesome-url"]

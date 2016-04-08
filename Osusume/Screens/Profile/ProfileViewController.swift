@@ -72,12 +72,12 @@ class ProfileViewController: UIViewController {
         )
         myContentSegmentedControl.selectedSegmentIndex = 0
 
-//        pageViewController.setViewControllers(
-//            viewControllers,
-//            direction: .Forward,
-//            animated: true,
-//            completion: nil
-//        )
+        pageViewController.setViewControllers(
+            viewControllers,
+            direction: .Forward,
+            animated: true,
+            completion: nil
+        )
 
         logoutButton.backgroundColor = UIColor.grayColor()
         logoutButton.setTitle("Logout", forState: .Normal)
@@ -136,23 +136,23 @@ class ProfileViewController: UIViewController {
 
         let getRestaurants: () -> Future<[Restaurant], RepoError>
 
-//        if (currentPage == 0) {
-//            getRestaurants = userRepo.getMyPosts
-//        } else {
-//            getRestaurants = userRepo.getMyLikes
-//        }
-//
-//        let viewController = MyRestaurantListViewController(
-//            reloader: reloader,
-//            photoRepo: photoRepo,
-//            getRestaurants: getRestaurants
-//        )
-//
-//        pageViewController.setViewControllers(
-//            [viewController],
-//            direction: .Forward,
-//            animated: false,
-//            completion: nil
-//        )
+        if (currentPage == 0) {
+            getRestaurants = userRepo.getMyPosts
+        } else {
+            getRestaurants = userRepo.getMyLikes
+        }
+
+        let viewController = MyRestaurantListViewController(
+            reloader: reloader,
+            photoRepo: photoRepo,
+            getRestaurants: getRestaurants
+        )
+
+        pageViewController.setViewControllers(
+            [viewController],
+            direction: .Forward,
+            animated: false,
+            completion: nil
+        )
     }
 }
