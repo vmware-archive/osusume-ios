@@ -42,7 +42,10 @@ class ProfileViewController: UIViewController {
 
         userInfoView = UIView.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
-        logoutButton = UIButton.newAutoLayoutView()
+
+        logoutButton = UIButton(type: UIButtonType.System)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+
         myContentSegmentedControl = UISegmentedControl(items:
             ["My Posts", "My Likes"]
         )
@@ -79,6 +82,7 @@ class ProfileViewController: UIViewController {
             completion: nil
         )
 
+        logoutButton.setTitleColor(.whiteColor(), forState: .Normal)
         logoutButton.backgroundColor = UIColor.grayColor()
         logoutButton.setTitle("Logout", forState: .Normal)
         logoutButton.addTarget(

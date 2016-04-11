@@ -40,9 +40,11 @@ class LoginViewController: UIViewController {
     }()
 
     lazy var loginButton: UIButton = {
-        let button = UIButton.newAutoLayoutView()
+        let button = UIButton(type: UIButtonType.System)
+        button.translatesAutoresizingMaskIntoConstraints = false
 
         button.setTitle("Login", forState: .Normal)
+        button.setTitleColor(.whiteColor(), forState: .Normal)
         button.backgroundColor = UIColor.grayColor()
         button.addTarget(
             self,
@@ -74,7 +76,9 @@ class LoginViewController: UIViewController {
         passwordTextField.autoPinEdge(.Leading, toEdge: .Leading, ofView: emailTextField)
         passwordTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: emailTextField)
 
-        loginButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: passwordTextField)
+        loginButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: passwordTextField, withOffset: 10.0)
+        loginButton.autoPinEdgeToSuperviewEdge(.Left)
+        loginButton.autoPinEdgeToSuperviewEdge(.Right)
         loginButton.autoAlignAxis(.Vertical, toSameAxisOfView: view)
     }
 

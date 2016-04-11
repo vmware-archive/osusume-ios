@@ -58,10 +58,10 @@ class NewRestaurantViewController: UIViewController {
     var images = [UIImage]()
 
     lazy var addPhotoButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("add photos", forState: .Normal)
-        button.backgroundColor = .whiteColor()
-        button.setTitleColor(.blackColor(), forState: .Normal)
+        let button = UIButton(type: UIButtonType.System)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        button.setTitle("Add photos", forState: .Normal)
         button.addTarget(
             self,
             action: Selector("didTapAddPhotoButton:"),

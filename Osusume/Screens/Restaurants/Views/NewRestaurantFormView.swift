@@ -63,7 +63,9 @@ class NewRestaurantFormView: UIView {
         notesTextField.layer.borderWidth = 1.0
         notesTextField.layer.borderColor = UIColor.darkGrayColor().CGColor
 
-        findCuisineButton = UIButton.newAutoLayoutView()
+        findCuisineButton = UIButton(type: UIButtonType.System)
+        findCuisineButton.translatesAutoresizingMaskIntoConstraints = false
+
         findCuisineButton.setTitle("Find Cuisine", forState: .Normal)
         findCuisineButton.setTitleColor(findCuisineButton.tintColor, forState: .Normal)
         findCuisineButton.backgroundColor = UIColor.clearColor()

@@ -84,7 +84,7 @@ class RestaurantListViewControllerTest: XCTestCase {
 
         let addRestaurantButton = self.restaurantListVC.navigationItem.rightBarButtonItem!
 
-        expect(addRestaurantButton.title).to(equal("add restaurant"))
+        expect(addRestaurantButton.title).to(equal("Add restaurant"))
 
         tapNavBarButton(addRestaurantButton)
 

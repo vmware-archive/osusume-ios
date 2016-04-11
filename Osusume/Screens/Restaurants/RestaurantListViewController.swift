@@ -55,7 +55,7 @@ class RestaurantListViewController: UIViewController {
 
         self.navigationItem.rightBarButtonItem =
             UIBarButtonItem(
-                title: "add restaurant",
+                title: "Add restaurant",
                 style: .Plain,
                 target: self,
                 action: Selector("didTapAddRestaurantButton:")
