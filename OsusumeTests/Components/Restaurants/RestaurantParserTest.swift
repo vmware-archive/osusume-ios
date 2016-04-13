@@ -20,7 +20,7 @@ class RestaurantParserTest: XCTestCase {
                 "walk_ins_ok": false,
                 "accepts_credit_cards": false,
                 "notes": "notes",
-                "created_at": 1454480320,
+                "created_at": "2016-02-29T06:07:55.000Z",
                 "user": ["name": "Bambi"],
                 "photo_urls": [
                     ["url": "http://www.example.com"]
@@ -35,7 +35,7 @@ class RestaurantParserTest: XCTestCase {
                 "walk_ins_ok": false,
                 "accepts_credit_cards": false,
                 "notes": "notes",
-                "created_at": 1454480320,
+                "created_at": "2016-02-29T06:07:55.000Z",
                 "user": ["name": "Bambi"],
                 "photo_urls": [
                     ["url": "http://www.example.com"]
@@ -49,6 +49,7 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurants[0].name).to(equal("first restaurant"))
         expect(restaurants[0].cuisineType).to(equal(""))
         expect(restaurants[1].name).to(equal("second restaurant"))
+        expect(restaurants[0].createdAt).to(equal(NSDate(timeIntervalSince1970: 1456726075)))
     }
 
     func test_parsingMultipleRestaurants_omittingRestaurantsWithBadData() {
@@ -211,7 +212,7 @@ class RestaurantParserTest: XCTestCase {
             "offers_english_menu": false,
             "walk_ins_ok": false,
             "accepts_credit_cards": false,
-            "created_at": 1454480320,
+            "created_at": "2016-02-03T06:18:40.000Z",
             "created_by_user_name": "Bambi",
             "photo_urls": [
                 ["url": "http://www.example.com"],

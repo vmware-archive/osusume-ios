@@ -59,12 +59,8 @@ struct RestaurantParser {
         let maybeLiked = json["liked"] as? Bool
         let liked = maybeLiked ?? false
 
-        let maybeCreatedAt = json["created_at"] as? Double
-        let createdAtEpoch: Double? = maybeCreatedAt ?? nil
-        var createdAt: NSDate? = nil
-        if let actualCreatedAt = createdAtEpoch {
-            createdAt = NSDate(timeIntervalSince1970: actualCreatedAt)
-        }
+        let createdDateString = json["created_at"] as? String
+        let createdAt = DateConverter().formattedDateFromString(createdDateString)
 
         let maybePhotoUrlsJson = json["photo_urls"] as? [[String: AnyObject]]
         let photoUrls = maybePhotoUrlsJson ?? []
