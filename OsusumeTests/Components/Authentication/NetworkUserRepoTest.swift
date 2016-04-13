@@ -32,6 +32,21 @@ class NetworkUserRepoTest: XCTestCase {
         expect(token.value).to(equal("my-token"))
     }
 
+    func test_login_returnsPostFailedErrorWhenLoginTokenIsAbsent() {
+        let promise = Promise<[String: AnyObject], RepoError>()
+        fakeHttp.post_returnValue = promise.future
+
+        let loginResultFuture = userRepo.login("invalid-email", password: "invalid-password")
+
+        expect(self.fakeHttp.post_args.path).to(equal("/session"))
+        expect(self.fakeHttp.post_args.parameters["email"] as? String).to(equal("invalid-email"))
+        expect(self.fakeHttp.post_args.parameters["password"] as? String).to(equal("invalid-password"))
+
+        promise.success(["error": "Invalid email or password."])
+        NSRunLoop.osu_advance()
+        expect(loginResultFuture.error).to(equal(RepoError.PostFailed));
+    }
+
     func test_fetchCurrentUser_returnsUserName() {
         let promise = Promise<AnyObject, RepoError>()
         fakeHttp.get_returnValue = promise.future

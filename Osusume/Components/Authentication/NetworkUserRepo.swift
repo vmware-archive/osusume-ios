@@ -22,7 +22,17 @@ class NetworkUserRepo: UserRepo {
                 headers: [:],
                 parameters: ["email": email, "password": password]
             )
-            .map { value in value["token"] as! String }
+            .flatMap({ (json: [String : AnyObject]) -> Future<String, RepoError> in
+                if let _ = json["error"] {
+                    return Future(error: RepoError.PostFailed)
+                }
+
+                guard let token = json["token"] as? String else {
+                    return Future(error: RepoError.PostFailed)
+                }
+
+                return Future(value: token)
+            })
     }
 
     func fetchCurrentUserName() -> Future<String, RepoError> {
