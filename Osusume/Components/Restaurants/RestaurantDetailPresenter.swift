@@ -60,4 +60,12 @@ struct RestaurantDetailPresenter {
 
         return NSURL(string: "")!
     }
+
+    var numberOfLikes: String {
+        let numberOfLikes = restaurant.numberOfLikes
+
+        let numberOfPeopleQualifier = numberOfLikes == 1 ? "person" : "people"
+
+        return "\(numberOfLikes) \(numberOfPeopleQualifier) liked"
+    }
 }

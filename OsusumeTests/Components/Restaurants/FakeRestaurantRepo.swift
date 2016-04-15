@@ -34,7 +34,8 @@ class FakeRestaurantRepo : RestaurantRepo {
         let promise = Promise<[String: AnyObject], RepoError>()
         promise.success([String: AnyObject]())
 
-        createdRestaurant = Restaurant(id: 0,
+        createdRestaurant = Restaurant(
+            id: 0,
             name: params["name"] as! String,
             address: params["address"] as! String,
             cuisineType: params["cuisine_type"] as! String,
@@ -45,6 +46,7 @@ class FakeRestaurantRepo : RestaurantRepo {
             notes: params["notes"] as! String,
             author: "Fake user",
             liked: false,
+            numberOfLikes: 0,
             createdAt: NSDate(),
             photoUrls: [],
             comments: []

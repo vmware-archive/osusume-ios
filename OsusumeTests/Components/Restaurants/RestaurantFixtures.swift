@@ -11,6 +11,7 @@ struct RestaurantFixtures {
         acceptsCreditCards: Bool = true,
         notes: String = "This place is great",
         liked: Bool = true,
+        numberOfLikes: Int = 0,
         photoUrl: String = "http://www.example.com/cat.jpg",
         cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
         ) -> Restaurant
@@ -27,6 +28,7 @@ struct RestaurantFixtures {
             notes: notes,
             author: "",
             liked: liked,
+            numberOfLikes: numberOfLikes,
             createdAt: NSDate(),
             photoUrls: [
                 NSURL(string: photoUrl)!

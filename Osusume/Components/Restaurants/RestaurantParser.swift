@@ -59,6 +59,9 @@ struct RestaurantParser {
         let maybeLiked = json["liked"] as? Bool
         let liked = maybeLiked ?? false
 
+        let maybeNumberOfLikes = json["num_likes"] as? Int
+        let numberOfLikes = maybeNumberOfLikes ?? 0
+
         let createdDateString = json["created_at"] as? String
         let createdAt = DateConverter().formattedDateFromString(createdDateString)
 
@@ -87,6 +90,7 @@ struct RestaurantParser {
             notes: notes,
             author: userName,
             liked: liked,
+            numberOfLikes: numberOfLikes,
             createdAt: createdAt,
             photoUrls: urls,
             comments: comments

@@ -12,6 +12,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     let nameLabel: UILabel
     let addressLabel: UILabel
     let cuisineTypeLabel: UILabel
+    let numberOfLikesLabel: UILabel
     let offersEnglishMenuLabel: UILabel
     let walkInsOkLabel: UILabel
     let acceptsCreditCardsLabel: UILabel
@@ -25,6 +26,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         nameLabel = UILabel.newAutoLayoutView()
         addressLabel = UILabel.newAutoLayoutView()
         cuisineTypeLabel = UILabel.newAutoLayoutView()
+        numberOfLikesLabel = UILabel.newAutoLayoutView()
         offersEnglishMenuLabel = UILabel.newAutoLayoutView()
         walkInsOkLabel = UILabel.newAutoLayoutView()
         acceptsCreditCardsLabel = UILabel.newAutoLayoutView()
@@ -49,6 +51,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(addressLabel)
         contentView.addSubview(cuisineTypeLabel)
+        contentView.addSubview(numberOfLikesLabel)
         contentView.addSubview(offersEnglishMenuLabel)
         contentView.addSubview(walkInsOkLabel)
         contentView.addSubview(acceptsCreditCardsLabel)
@@ -98,6 +101,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         self.nameLabel.text = restaurantDetailPresenter.name
         self.addressLabel.text = restaurantDetailPresenter.address
         self.cuisineTypeLabel.text = restaurantDetailPresenter.cuisineType
+        self.numberOfLikesLabel.text = restaurantDetailPresenter.numberOfLikes
         self.offersEnglishMenuLabel.text = restaurantDetailPresenter.offersEnglishMenu
         self.walkInsOkLabel.text = restaurantDetailPresenter.walkInsOk
         self.acceptsCreditCardsLabel.text = restaurantDetailPresenter.creditCardsOk
@@ -130,8 +134,11 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
 
+        numberOfLikesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        numberOfLikesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
+
         offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        offersEnglishMenuLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
+        offersEnglishMenuLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: numberOfLikesLabel)
 
         walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         walkInsOkLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuLabel)

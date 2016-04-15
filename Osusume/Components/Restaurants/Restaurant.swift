@@ -12,6 +12,7 @@ struct Restaurant {
     var notes: String
     var author: String
     var liked: Bool
+    var numberOfLikes: Int
     var createdAt: NSDate?
     var photoUrls: [NSURL]
     var comments: [PersistedComment]
@@ -28,6 +29,7 @@ struct Restaurant {
         notes: String,
         author: String,
         liked: Bool,
+        numberOfLikes: Int,
         createdAt: NSDate?,
         photoUrls: [NSURL],
         comments: [PersistedComment]
@@ -44,6 +46,7 @@ struct Restaurant {
             self.notes = notes
             self.author = author
             self.liked = liked
+            self.numberOfLikes = numberOfLikes
             self.createdAt = createdAt
             self.photoUrls = photoUrls
             self.comments = comments
@@ -64,6 +67,7 @@ func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
         lhs.notes == rhs.notes &&
         lhs.author == rhs.author &&
         lhs.liked == rhs.liked &&
+        lhs.numberOfLikes == rhs.numberOfLikes &&
         lhs.createdAt == rhs.createdAt &&
         lhs.photoUrls == rhs.photoUrls
 }

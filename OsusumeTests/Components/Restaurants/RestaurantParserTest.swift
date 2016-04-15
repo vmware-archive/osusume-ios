@@ -149,6 +149,22 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.liked).to(equal(true))
     }
 
+    func test_parse_handlesNumberOfLikes() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "id": 1232,
+            "name": "Restaurant liked by several people",
+            "num_likes": 3
+        ]
+
+
+        let restaurant = restaurantParser.parseSingle(json).value!
+
+
+        expect(restaurant.numberOfLikes).to(equal(3))
+    }
+
     func test_parse_handlesUnlikeStatus() {
         let restaurantParser = RestaurantParser()
 
