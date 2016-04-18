@@ -73,6 +73,8 @@
 		AEC471D41C7439F7001B8C56 /* BSGridCollectionViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D31C7439F7001B8C56 /* BSGridCollectionViewLayout.framework */; };
 		AEC471D61C7439FA001B8C56 /* BSImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D51C7439FA001B8C56 /* BSImagePicker.framework */; };
 		AEC471D81C743A00001B8C56 /* UIImageViewModeScaleAspect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC471D71C743A00001B8C56 /* UIImageViewModeScaleAspect.framework */; };
+		AEC821161CC4775300C9B864 /* PriceRangeListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC821151CC4775300C9B864 /* PriceRangeListViewControllerTest.swift */; };
+		AEC821191CC479DC00C9B864 /* PriceRangeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC821181CC479DC00C9B864 /* PriceRangeListViewController.swift */; };
 		AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC877671C7300090005BEA1 /* NewCommentViewControllerTest.swift */; };
 		AECF51761CA279A40045C42B /* NewCuisine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51751CA279A40045C42B /* NewCuisine.swift */; };
 		AECF51781CA36E290045C42B /* NetworkRestaurantListRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */; };
@@ -233,6 +235,8 @@
 		AEC471D31C7439F7001B8C56 /* BSGridCollectionViewLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BSGridCollectionViewLayout.framework; path = Carthage/Build/iOS/BSGridCollectionViewLayout.framework; sourceTree = "<group>"; };
 		AEC471D51C7439FA001B8C56 /* BSImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BSImagePicker.framework; path = Carthage/Build/iOS/BSImagePicker.framework; sourceTree = "<group>"; };
 		AEC471D71C743A00001B8C56 /* UIImageViewModeScaleAspect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIImageViewModeScaleAspect.framework; path = Carthage/Build/iOS/UIImageViewModeScaleAspect.framework; sourceTree = "<group>"; };
+		AEC821151CC4775300C9B864 /* PriceRangeListViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeListViewControllerTest.swift; sourceTree = "<group>"; };
+		AEC821181CC479DC00C9B864 /* PriceRangeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeListViewController.swift; sourceTree = "<group>"; };
 		AEC877671C7300090005BEA1 /* NewCommentViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentViewControllerTest.swift; sourceTree = "<group>"; };
 		AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osusume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -514,6 +518,22 @@
 			path = Cuisines;
 			sourceTree = "<group>";
 		};
+		AEC821141CC4773900C9B864 /* Price Ranges */ = {
+			isa = PBXGroup;
+			children = (
+				AEC821151CC4775300C9B864 /* PriceRangeListViewControllerTest.swift */,
+			);
+			path = "Price Ranges";
+			sourceTree = "<group>";
+		};
+		AEC821171CC479A500C9B864 /* Price Ranges */ = {
+			isa = PBXGroup;
+			children = (
+				AEC821181CC479DC00C9B864 /* PriceRangeListViewController.swift */,
+			);
+			path = "Price Ranges";
+			sourceTree = "<group>";
+		};
 		AEC877661C72FFFE0005BEA1 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +646,7 @@
 				DE99C5704F8E23A0677B3263 /* Comments */,
 				AEFD80631C99541300B4F17C /* Cuisines */,
 				DE99C8E2D4573E447DF678D2 /* Login */,
+				AEC821171CC479A500C9B864 /* Price Ranges */,
 				AE559A3B1C8E7015001D45A1 /* Profile */,
 				DE99C54688E7F01FE6A3777D /* Restaurants */,
 			);
@@ -894,6 +915,7 @@
 				AEC877661C72FFFE0005BEA1 /* Comments */,
 				AE6CE4CE1C9A39420000C31C /* Cuisines */,
 				DE99CB59BBE28BEC558F6267 /* Login */,
+				AEC821141CC4773900C9B864 /* Price Ranges */,
 				AE559A3E1C8E7492001D45A1 /* Profile */,
 				DE99C27815A58B229380223E /* Restaurants */,
 			);
@@ -1158,6 +1180,7 @@
 				DE99C436E360442260128A3B /* PersistedComment.swift in Sources */,
 				DE99C6D52B330617543375A2 /* PhotoRepo.swift in Sources */,
 				AE6AECA81CC0C8FD000171A3 /* PriceRangeListParser.swift in Sources */,
+				AEC821191CC479DC00C9B864 /* PriceRangeListViewController.swift in Sources */,
 				AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */,
 				DE99C09C8D59A4023CBD6A14 /* RandomUUIDProvider.swift in Sources */,
 				AE3ED1851C850EF20097DC10 /* Reloadable.swift in Sources */,
@@ -1228,6 +1251,7 @@
 				AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */,
 				AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */,
 				AE6AECA51CC0C871000171A3 /* PriceRangeListParserTest.swift in Sources */,
+				AEC821161CC4775300C9B864 /* PriceRangeListViewControllerTest.swift in Sources */,
 				AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */,
 				AEBB1C521CC07E2A00FA5884 /* RestaurantDetailPresenterTest.swift in Sources */,
 				DE99C7227466E10933462D38 /* RestaurantDetailTableViewCellTest.swift in Sources */,
