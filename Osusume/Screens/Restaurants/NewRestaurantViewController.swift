@@ -5,8 +5,9 @@ import BrightFutures
 import BSImagePicker
 import Photos
 
-protocol FindCuisineScreenPresenterProtocol {
+protocol NewRestaurantViewControllerPresenterProtocol {
     func showFindCuisineScreen()
+    func showPriceRangeScreen()
 }
 
 class NewRestaurantViewController: UIViewController {
@@ -205,8 +206,12 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
 }
 
 // MARK: - FindCuisineScreenPresenterProtocol
-extension NewRestaurantViewController: FindCuisineScreenPresenterProtocol {
+extension NewRestaurantViewController: NewRestaurantViewControllerPresenterProtocol {
     func showFindCuisineScreen() {
         router.showFindCuisineScreen()
+    }
+
+    func showPriceRangeScreen() {
+        router.showPriceRangeListScreen()
     }
 }

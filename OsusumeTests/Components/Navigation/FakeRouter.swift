@@ -59,4 +59,9 @@ class FakeRouter : Router {
     func dismissFindCuisineScreen() {
         dismissFindCuisineScreen_wasCalled = true
     }
+
+    var showPriceRangeListScreen_wasCalled = false
+    func showPriceRangeListScreen() {
+        showPriceRangeListScreen_wasCalled = true
+    }
 }

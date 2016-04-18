@@ -37,6 +37,11 @@ class PriceRangeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Select Price Range"
+
+        view.addSubview(tableView)
+        tableView.autoPinEdgesToSuperviewEdges()
+
         priceRangeRepo.getAll()
             .onSuccess { priceRanges in
                 self.priceRanges = priceRanges

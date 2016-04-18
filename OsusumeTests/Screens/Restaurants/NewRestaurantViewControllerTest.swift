@@ -49,6 +49,16 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeRouter.showFindCuisineScreen_wasCalled).to(beTrue())
     }
 
+    func test_viewDidLoad_showsPriceRangeButton() {
+        expect(self.newRestaurantVC.formView.priceRangeButton).to(beAKindOf(UIButton))
+    }
+
+    func test_tappingPriceRange_showsPriceRangeListScreen() {
+        tapButton(newRestaurantVC.formView.priceRangeButton)
+
+        expect(self.fakeRouter.showPriceRangeListScreen_wasCalled).to(beTrue())
+    }
+
     func test_tappingDoneButton_savesRestaurant() {
         newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
         newRestaurantVC.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"

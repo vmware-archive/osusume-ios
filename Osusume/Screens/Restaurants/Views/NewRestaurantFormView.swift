@@ -1,7 +1,7 @@
 import UIKit
 
 class NewRestaurantFormView: UIView {
-    var delegate: FindCuisineScreenPresenterProtocol?
+    var delegate: NewRestaurantViewControllerPresenterProtocol?
     var cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
 
     // MARK: - View Elements
@@ -21,6 +21,7 @@ class NewRestaurantFormView: UIView {
     let notesLabel: UILabel
     let notesTextField: UITextView
     let findCuisineButton: UIButton
+    let priceRangeButton: UIButton
 
     // MARK: - Initializers
     init() {
@@ -63,12 +64,17 @@ class NewRestaurantFormView: UIView {
         notesTextField.layer.borderWidth = 1.0
         notesTextField.layer.borderColor = UIColor.darkGrayColor().CGColor
 
-        findCuisineButton = UIButton(type: UIButtonType.System)
+        findCuisineButton = UIButton(type: .System)
         findCuisineButton.translatesAutoresizingMaskIntoConstraints = false
-
         findCuisineButton.setTitle("Find Cuisine", forState: .Normal)
         findCuisineButton.setTitleColor(findCuisineButton.tintColor, forState: .Normal)
         findCuisineButton.backgroundColor = UIColor.clearColor()
+
+        priceRangeButton = UIButton(type: .System)
+        priceRangeButton.translatesAutoresizingMaskIntoConstraints = false
+        priceRangeButton.setTitle("Price Range", forState: .Normal)
+        priceRangeButton.setTitleColor(priceRangeButton.tintColor, forState: .Normal)
+        priceRangeButton.backgroundColor = UIColor.clearColor()
 
         super.init(frame: CGRect())
 
@@ -79,6 +85,7 @@ class NewRestaurantFormView: UIView {
         self.addSubview(cuisineTypeLabel)
         self.addSubview(cuisineTypeValueLabel)
         self.addSubview(findCuisineButton)
+        self.addSubview(priceRangeButton)
         self.addSubview(offersEnglishMenuLabel)
         self.addSubview(offersEnglishMenuSwitch)
         self.addSubview(walkInsOkLabel)
@@ -91,6 +98,12 @@ class NewRestaurantFormView: UIView {
         findCuisineButton.addTarget(
             self,
             action: Selector("didTapFindCuisineButton:"),
+            forControlEvents: .TouchUpInside
+        )
+
+        priceRangeButton.addTarget(
+            self,
+            action: Selector("didTapPriceRangeButton:"),
             forControlEvents: .TouchUpInside
         )
 
@@ -129,7 +142,10 @@ class NewRestaurantFormView: UIView {
         findCuisineButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeValueLabel)
         findCuisineButton.autoAlignAxisToSuperviewAxis(.Vertical)
 
-        offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: findCuisineButton, withOffset: 8.0)
+        priceRangeButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: findCuisineButton, withOffset: 8.0)
+        priceRangeButton.autoAlignAxisToSuperviewAxis(.Vertical)
+
+        offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: priceRangeButton, withOffset: 8.0)
         offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         offersEnglishMenuSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
         offersEnglishMenuLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: offersEnglishMenuSwitch)
@@ -189,6 +205,10 @@ class NewRestaurantFormView: UIView {
     // MARK: Actions
     func didTapFindCuisineButton(sender: UIButton) {
         delegate?.showFindCuisineScreen()
+    }
+
+    func didTapPriceRangeButton(sender: UIButton) {
+        delegate?.showPriceRangeScreen()
     }
 }
 
