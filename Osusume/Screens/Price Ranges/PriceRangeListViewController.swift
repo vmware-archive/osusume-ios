@@ -4,14 +4,14 @@ import BrightFutures
 import PureLayout
 
 class PriceRangeListViewController: UIViewController {
-    let priceRangeRepo: PriceRangeRepo
-    let reloader: Reloader
+    private let priceRangeRepo: PriceRangeRepo
+    private let reloader: Reloader
 
-    var priceRanges: [PriceRange]
+    private var priceRanges: [PriceRange]
 
     let tableView: UITableView
 
-    internal init(
+    init(
         priceRangeRepo: PriceRangeRepo,
         reloader: Reloader
     ) {
