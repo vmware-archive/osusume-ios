@@ -24,7 +24,8 @@ class NavigationRouterTest: XCTestCase {
             userRepo: FakeUserRepo(),
             commentRepo: FakeCommentRepo(),
             cuisineRepo: fakeCuisineRepo,
-            likeRepo: FakeLikeRepo()
+            likeRepo: FakeLikeRepo(),
+            priceRangeRepo: FakePriceRangeRepo()
         )
     }
 
@@ -182,5 +183,27 @@ class NavigationRouterTest: XCTestCase {
 
         NSRunLoop.osu_advance(by: 1)
         expect(self.navController.presentedViewController).to(beNil())
+    }
+
+    func test_showingPriceRangeListScreen() {
+        var window: UIWindow?
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window!.rootViewController = navController
+        window!.makeKeyAndVisible()
+
+        let newRestaurantVC = NewRestaurantViewController(
+            router: FakeRouter(),
+            restaurantRepo: FakeRestaurantRepo(),
+            photoRepo: FakePhotoRepo()
+        )
+        navController.pushViewController(newRestaurantVC, animated: false)
+
+
+        navigationRouter.showPriceRangeListScreen()
+
+
+        let priceRangeNavController = navController.presentedViewController as? UINavigationController
+        expect(priceRangeNavController).to(beAKindOf(UINavigationController))
+        expect(priceRangeNavController?.topViewController).to(beAKindOf(PriceRangeListViewController))
     }
 }

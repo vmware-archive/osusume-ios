@@ -48,6 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         let likeRepo = NetworkLikeRepo(http: sessionHttp)
 
+        let priceRangeRepo = NetworkPriceRangeRepo(
+            http: sessionHttp,
+            parser: PriceRangeListParser()
+        )
+
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
             sessionRepo: sessionRepo,
@@ -56,7 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             userRepo: userRepo,
             commentRepo: commentRepo,
             cuisineRepo: cuisineRepo,
-            likeRepo: likeRepo
+            likeRepo: likeRepo,
+            priceRangeRepo: priceRangeRepo
         )
 
         self.init(

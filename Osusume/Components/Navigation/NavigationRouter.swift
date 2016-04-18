@@ -9,6 +9,7 @@ class NavigationRouter: Router {
     let commentRepo: CommentRepo
     let cuisineRepo: CuisineRepo
     let likeRepo: LikeRepo
+    let priceRangeRepo: PriceRangeRepo
 
     init(
         navigationController: UINavigationController,
@@ -18,7 +19,8 @@ class NavigationRouter: Router {
         userRepo: UserRepo,
         commentRepo: CommentRepo,
         cuisineRepo: CuisineRepo,
-        likeRepo: LikeRepo)
+        likeRepo: LikeRepo,
+        priceRangeRepo: PriceRangeRepo)
     {
         self.navigationController = navigationController
         self.sessionRepo = sessionRepo
@@ -28,6 +30,7 @@ class NavigationRouter: Router {
         self.commentRepo = commentRepo
         self.cuisineRepo = cuisineRepo
         self.likeRepo = likeRepo
+        self.priceRangeRepo = priceRangeRepo
     }
 
     func showNewRestaurantScreen() {
@@ -166,5 +169,24 @@ class NavigationRouter: Router {
     func dismissFindCuisineScreen() {
         let presentedVC = navigationController.presentedViewController as? UINavigationController
         presentedVC!.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    func showPriceRangeListScreen() {
+        let priceRangeNavController = UINavigationController()
+        let priceRangeListViewController = PriceRangeListViewController(
+            priceRangeRepo: priceRangeRepo,
+            reloader: DefaultReloader()
+        )
+
+        priceRangeNavController.setViewControllers(
+            [priceRangeListViewController],
+            animated: false
+        )
+
+        navigationController.presentViewController(
+            priceRangeNavController,
+            animated: true,
+            completion: nil
+        )
     }
 }
