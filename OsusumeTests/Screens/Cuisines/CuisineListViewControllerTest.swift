@@ -10,7 +10,7 @@ class CuisineListViewControllerTest: XCTestCase {
     let fakeTextSearch = FakeTextSearch()
     let fakeReloader = FakeReloader()
     let cuisinePromise = Promise<[Cuisine], RepoError>()
-    let cuisineList = [Cuisine(id: 1, name: "Soba!")]
+    let fullCuisineList = [Cuisine(id: 1, name: "Soba!")]
     var selectedCuisine: Cuisine?
 
     var cuisineListVC: CuisineListViewController!
@@ -45,11 +45,13 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_tableView_configuresCuisineCells() {
-        cuisineListVC.cuisineList = cuisineList
-        cuisineListVC.tableView.reloadData()
+        let promise = Promise<[Cuisine], RepoError>()
+        fakeCuisineRepo.getAll_returnValue = promise.future
 
 
         cuisineListVC.view.setNeedsLayout()
+        promise.success([Cuisine(id: 0, name: "Soba!")])
+        NSRunLoop.osu_advance()
 
 
         let cuisineCell = cuisineListVC.tableView(
@@ -92,16 +94,16 @@ class CuisineListViewControllerTest: XCTestCase {
         expect(numCells).to(equal(1))
     }
 
-    func test_initialization_savesFullCuisineList() {
+    func test_viewDidLoad_fetchesFullCuisineList() {
         cuisineListVC.view.setNeedsLayout()
 
         expect(self.cuisineListVC.fullCuisineList)
             .to(equal([]))
 
-        cuisinePromise.success(cuisineList)
+        cuisinePromise.success(fullCuisineList)
         NSRunLoop.osu_advance()
 
-        expect(self.cuisineListVC.fullCuisineList).to(equal(cuisineList))
+        expect(self.cuisineListVC.fullCuisineList).to(equal(fullCuisineList))
     }
 
     func test_initialization_assignsTheControllerAsSearchBarDelegate() {
@@ -111,13 +113,20 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_search_delegatesToTheTextSearch() {
-        cuisineListVC.fullCuisineList = cuisineList
+        let promise = Promise<[Cuisine], RepoError>()
+        fakeCuisineRepo.getAll_returnValue = promise.future
+
+        cuisineListVC.view.setNeedsLayout()
+        promise.success(fullCuisineList)
+        NSRunLoop.osu_advance()
+
 
         cuisineListVC.searchBar(UISearchBar(), textDidChange: "my search")
 
+
         expect(self.fakeTextSearch.search_wasCalled).to(equal(true))
         expect(self.fakeTextSearch.search_args.searchTerm).to(equal("my search"))
-        expect(self.fakeTextSearch.search_args.collection).to(equal(cuisineList))
+        expect(self.fakeTextSearch.search_args.collection).to(equal(fullCuisineList))
     }
 
     func test_search_assignsNewCuisineList() {
@@ -129,7 +138,7 @@ class CuisineListViewControllerTest: XCTestCase {
         cuisineListVC.searchBar(UISearchBar(), textDidChange: "my search")
 
 
-        expect(self.cuisineListVC.cuisineList).to(equal(filteredCuisineArray))
+        expect(self.cuisineListVC.filteredCuisineList).to(equal(filteredCuisineArray))
     }
 
     func test_search_emptyStringDeactivatesAddCuisineCellFromInteraction() {
@@ -157,7 +166,7 @@ class CuisineListViewControllerTest: XCTestCase {
 
         expect(self.fakeTextSearch.exactSearch_wasCalled).to(beTrue())
         expect(self.fakeTextSearch.exactSearch_args.searchTerm).to(equal("J"))
-        expect(self.fakeTextSearch.exactSearch_args.collection).to(equal(cuisineListVC.cuisineList))
+        expect(self.fakeTextSearch.exactSearch_args.collection).to(equal(cuisineListVC.filteredCuisineList))
     }
 
     func test_enableAddCuisineCell_whenReturnsEmptyArray() {
@@ -192,11 +201,17 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_tappingCuisineCell_callsCuisineDelegate() {
+        let promise = Promise<[Cuisine], RepoError>()
+        fakeCuisineRepo.getAll_returnValue = promise.future
+
         cuisineListVC.view.setNeedsLayout()
+
+        promise.success([Cuisine(id: 0, name: "Soba!")])
+        NSRunLoop.osu_advance()
 
         let fakeCuisineSelection = FakeCuisineSelection()
         cuisineListVC.cuisineSelectionDelegate = fakeCuisineSelection
-        cuisineListVC.cuisineList = [Cuisine(id: 1, name: "Soba!")]
+
 
         cuisineListVC.tableView(
             cuisineListVC.tableView,
@@ -204,7 +219,7 @@ class CuisineListViewControllerTest: XCTestCase {
         )
 
 
-        expect(fakeCuisineSelection.cuisineSelected_returnValue).to(equal(Cuisine(id: 1, name: "Soba!")))
+        expect(fakeCuisineSelection.cuisineSelected_returnValue).to(equal(Cuisine(id: 0, name: "Soba!")))
         expect(self.fakeRouter.dismissFindCuisineScreen_wasCalled).to(beTrue())
     }
 
@@ -251,12 +266,12 @@ class CuisineListViewControllerTest: XCTestCase {
         cuisineListVC.view.setNeedsLayout()
 
 
-        cuisinePromise.success(cuisineList)
+        cuisinePromise.success(fullCuisineList)
         NSRunLoop.osu_advance()
 
 
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))
-        expect(self.cuisineListVC.cuisineList).to(equal(cuisineList))
+        expect(self.cuisineListVC.filteredCuisineList).to(equal(fullCuisineList))
     }
 
     func test_searchBarDelegateMethod_reloadsTableView() {

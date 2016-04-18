@@ -1,9 +1,9 @@
 import UIKit
 
 class NewCommentViewController: UIViewController {
-    unowned let router : Router
-    let commentRepo: CommentRepo
-    let restaurantId: Int
+    private unowned let router: Router
+    private let commentRepo: CommentRepo
+    private let restaurantId: Int
 
     let commentTextField: UITextView
 

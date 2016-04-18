@@ -5,23 +5,23 @@ protocol CuisineSelectionProtocol {
 }
 
 class CuisineListViewController: UIViewController {
+    private let router: Router
+    private let cuisineRepo: CuisineRepo
+    private let textSearch: TextSearch
+    private let reloader: Reloader
+    private(set) var filteredCuisineList: [Cuisine]
+    private(set) var fullCuisineList: [Cuisine]
+    var cuisineSelectionDelegate: CuisineSelectionProtocol?
 
-    let router: Router
     let tableView: UITableView
     let searchBar: UISearchBar
-    let cuisineRepo: CuisineRepo
-    let textSearch: TextSearch
-    let reloader: Reloader
-    var cuisineList: [Cuisine]
-    var fullCuisineList: [Cuisine]
-    var cuisineSelectionDelegate: CuisineSelectionProtocol?
 
     init(router: Router, cuisineRepo: CuisineRepo, textSearch: TextSearch, reloader: Reloader) {
         self.router = router
         self.cuisineRepo = cuisineRepo
         self.textSearch = textSearch
         self.reloader = reloader
-        self.cuisineList = []
+        self.filteredCuisineList = []
         self.fullCuisineList = []
         self.tableView = UITableView.newAutoLayoutView()
         self.searchBar = UISearchBar.newAutoLayoutView()
@@ -70,7 +70,7 @@ class CuisineListViewController: UIViewController {
 
         cuisineRepo.getAll()
             .onSuccess { [unowned self] cuisineList in
-                self.cuisineList = cuisineList
+                self.filteredCuisineList = cuisineList
                 self.fullCuisineList = cuisineList
                 self.reloader.reload(self.tableView)
             }
@@ -96,7 +96,7 @@ extension CuisineListViewController: UISearchBarDelegate {
             searchText,
             collection: fullCuisineList
         )
-        cuisineList = filteredCuisineArray
+        filteredCuisineList = filteredCuisineArray
 
         reloader.reload(self.tableView)
     }
@@ -116,7 +116,7 @@ extension CuisineListViewController: UITableViewDataSource {
             return 1
         }
 
-        return cuisineList.count
+        return filteredCuisineList.count
     }
 
     func tableView(
@@ -136,7 +136,7 @@ extension CuisineListViewController: UITableViewDataSource {
             forIndexPath: indexPath
         )
 
-        cuisineCell.textLabel?.text = cuisineList[indexPath.row].name
+        cuisineCell.textLabel?.text = filteredCuisineList[indexPath.row].name
 
         return cuisineCell
     }
@@ -148,7 +148,7 @@ extension CuisineListViewController: UITableViewDataSource {
             return false
         }
 
-        let exactSearchMatches = textSearch.exactSearch(searchTerm, collection: cuisineList)
+        let exactSearchMatches = textSearch.exactSearch(searchTerm, collection: filteredCuisineList)
         return exactSearchMatches.isEmpty
     }
 }
@@ -165,7 +165,7 @@ extension CuisineListViewController: UITableViewDelegate {
                     self.router.dismissFindCuisineScreen()
                 }
         } else {
-            cuisineSelectionDelegate?.cuisineSelected(cuisineList[indexPath.row])
+            cuisineSelectionDelegate?.cuisineSelected(filteredCuisineList[indexPath.row])
             router.dismissFindCuisineScreen()
         }
     }
