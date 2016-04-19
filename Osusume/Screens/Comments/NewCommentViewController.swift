@@ -66,7 +66,7 @@ class NewCommentViewController: UIViewController {
     }
 
     // MARK: - Actions
-    func didTapSaveButton(sender: UIBarButtonItem) {
+    @objc private func didTapSaveButton(sender: UIBarButtonItem) {
         commentRepo
             .persist(
                 NewComment(

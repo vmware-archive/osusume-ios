@@ -63,7 +63,7 @@ class EditRestaurantViewController: UIViewController {
     }
 
     // MARK: - Actions
-    func didTapUpdateButton(sender: UIBarButtonItem?) {
+    @objc private func didTapUpdateButton(sender: UIBarButtonItem?) {
         let params: [String: AnyObject] = [
             "name": formView.getNameText()!,
             "address": formView.getAddressText()!,

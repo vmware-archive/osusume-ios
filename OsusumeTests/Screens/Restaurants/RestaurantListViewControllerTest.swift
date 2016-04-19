@@ -92,7 +92,11 @@ class RestaurantListViewControllerTest: XCTestCase {
     }
 
     func test_tappingRestaurant_showsRestaurantDetailScreen() {
-        restaurantListVC.didTapRestaurant(1)
+        restaurantListVC.restaurantListDataSource.myPosts = [RestaurantFixtures.newRestaurant()]
+        restaurantListVC.tableView(
+            restaurantListVC.tableView,
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
 
         expect(self.fakeRouter.restaurantDetailScreenIsShowing).to(equal(true))
     }

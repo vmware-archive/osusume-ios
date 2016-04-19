@@ -131,12 +131,12 @@ class ProfileViewController: UIViewController {
     }
 
     // MARK: - Actions
-    func didTapLogoutButton(sender: UIButton?) {
+    @objc private func didTapLogoutButton(sender: UIButton?) {
         sessionRepo.deleteToken()
         router.showLoginScreen()
     }
 
-    func didChangeSelectedSegment(sender: UISegmentedControl) {
+    @objc private func didChangeSelectedSegment(sender: UISegmentedControl) {
         currentPage = sender.selectedSegmentIndex
 
         let getRestaurants: () -> Future<[Restaurant], RepoError>

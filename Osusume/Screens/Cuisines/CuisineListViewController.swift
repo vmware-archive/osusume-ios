@@ -74,7 +74,7 @@ class CuisineListViewController: UIViewController {
     }
 
     // MARK: - Actions
-    func didTapCancelButton(sender: UIBarButtonItem?) {
+    @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
         router.dismissFindCuisineScreen()
     }
 

@@ -119,7 +119,7 @@ class NewRestaurantViewController: UIViewController {
     }
 
     // MARK: - Actions
-    func didTapDoneButton(sender: UIBarButtonItem?) {
+    @objc private func didTapDoneButton(sender: UIBarButtonItem?) {
         let photoUrls = photoRepo.uploadPhotos(self.images)
 
         let newRestaurant = NewRestaurant(
@@ -140,7 +140,7 @@ class NewRestaurantViewController: UIViewController {
         }
     }
 
-    func didTapAddPhotoButton(sender: UIButton?) {
+    @objc private func didTapAddPhotoButton(sender: UIButton?) {
         bs_presentImagePickerController(
             imagePicker,
             animated: true,

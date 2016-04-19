@@ -77,17 +77,9 @@ class RestaurantDetailViewController: UIViewController {
     }
 
     // MARK: - Actions
-    func didTapEditRestaurantButton(sender: UIBarButtonItem) {
+    @objc private func didTapEditRestaurantButton(sender: UIBarButtonItem) {
         if let currentRestaurant = self.restaurant {
             router.showEditRestaurantScreen(currentRestaurant)
-        }
-    }
-
-    func didTapLikeButton(sender: UIButton) {
-        likeRepo.like(restaurantId)
-            .onSuccess { _ in
-                sender.backgroundColor = UIColor.redColor()
-                sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
         }
     }
 
@@ -181,5 +173,13 @@ extension RestaurantDetailViewController: UITableViewDelegate {
 extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate {
     func displayAddCommentScreen() {
         router.showNewCommentScreen(self.restaurant!.id)
+    }
+
+    func didTapLikeButton(sender: UIButton) {
+        likeRepo.like(restaurantId)
+            .onSuccess { _ in
+                sender.backgroundColor = UIColor.redColor()
+                sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        }
     }
 }
