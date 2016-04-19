@@ -42,7 +42,7 @@ class RestaurantDetailViewController: UIViewController {
         )
         tableView.registerClass(
             UITableViewCell.self,
-            forCellReuseIdentifier: "commentCell"
+            forCellReuseIdentifier: String(UITableViewCell)
         )
 
         let editButton = UIBarButtonItem(
@@ -121,8 +121,10 @@ extension RestaurantDetailViewController: UITableViewDataSource {
             case 0:
                 guard
                     let cell = tableView.dequeueReusableCellWithIdentifier(
-                        String(RestaurantDetailTableViewCell), forIndexPath: indexPath
-                        ) as? RestaurantDetailTableViewCell,
+                        String(RestaurantDetailTableViewCell),
+                        forIndexPath: indexPath
+                    ) as? RestaurantDetailTableViewCell,
+
                     let currentRestaurant = restaurant else {
                         return UITableViewCell()
                 }
@@ -140,7 +142,10 @@ extension RestaurantDetailViewController: UITableViewDataSource {
                         return UITableViewCell()
                 }
 
-                let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "commentCell")
+                let cell = UITableViewCell(
+                    style: .Subtitle,
+                    reuseIdentifier: String(UITableViewCell)
+                )
                 cell.backgroundColor = UIColor.greenColor()
                 cell.selectionStyle = .None
 

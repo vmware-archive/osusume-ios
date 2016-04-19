@@ -25,7 +25,7 @@ class PriceRangeListViewController: UIViewController {
 
         self.tableView.registerClass(
             UITableViewCell.self,
-            forCellReuseIdentifier: "PriceRangeCell"
+            forCellReuseIdentifier: String(UITableViewCell)
         )
         self.tableView.dataSource = self
     }
@@ -61,7 +61,7 @@ extension PriceRangeListViewController: UITableViewDataSource {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("PriceRangeCell")!
+        let cell = tableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))!
 
         cell.textLabel?.text = priceRanges[indexPath.row].range
 

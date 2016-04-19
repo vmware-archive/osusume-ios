@@ -37,12 +37,7 @@ class CuisineListViewController: UIViewController {
 
         tableView.registerClass(
             UITableViewCell.self,
-            forCellReuseIdentifier: "AddCuisineCell"
-        )
-
-        tableView.registerClass(
-            UITableViewCell.self,
-            forCellReuseIdentifier: "CuisineCell"
+            forCellReuseIdentifier: String(UITableViewCell)
         )
         tableView.dataSource = self
         tableView.delegate = self
@@ -134,7 +129,7 @@ extension CuisineListViewController: UITableViewDataSource {
         }
 
         let cuisineCell = tableView.dequeueReusableCellWithIdentifier(
-            "CuisineCell",
+            String(UITableViewCell),
             forIndexPath: indexPath
         )
 
