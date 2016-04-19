@@ -12,6 +12,8 @@ class ImageViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         imageView.sd_setImageWithURL(url)
         view.addSubview(imageView)
         applyViewConstraints()

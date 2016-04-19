@@ -54,6 +54,8 @@ class CuisineListViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         title = "Find Cuisine"
 
         view.addSubview(searchBar)

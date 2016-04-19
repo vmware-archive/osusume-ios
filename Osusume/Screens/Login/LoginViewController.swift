@@ -83,6 +83,8 @@ class LoginViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
         emailTextField.becomeFirstResponder()
     }
 
