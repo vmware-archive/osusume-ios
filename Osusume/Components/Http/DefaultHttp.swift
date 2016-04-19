@@ -15,17 +15,17 @@ struct DefaultHttp: Http {
     {
         let promise = Promise<AnyObject, RepoError>()
 
-        request(.GET, path: path, headers: headers).responseJSON { response in
-                switch response.result {
-                case .Success:
-                    if let value = response.result.value {
-                        promise.success(value)
-                    } else {
-                        promise.failure(RepoError.GetFailed)
-                    }
-                case .Failure(_):
+        getRequest(path, headers: headers).responseJSON { result in
+            switch result {
+            case .Success:
+                if let value = result.value {
+                    promise.success(value)
+                } else {
                     promise.failure(RepoError.GetFailed)
                 }
+            case .Failure(_):
+                promise.failure(RepoError.GetFailed)
+            }
         }
 
         return promise.future
@@ -100,5 +100,22 @@ struct DefaultHttp: Http {
         }
 
         return Alamofire.request(mutableURLRequest)
+    }
+
+    private func getRequest(
+        path: String,
+        headers: [String: String],
+        parameters: [String: AnyObject] = [:]
+        ) -> NSURLRequest
+    {
+        let URL = NSURL(string: "\(basePath)\(path)")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "GET"
+
+        if let bearerToken = headers["Authorization"] {
+            mutableURLRequest.setValue(bearerToken, forHTTPHeaderField: "Authorization")
+        }
+
+        return mutableURLRequest.copy() as! NSURLRequest
     }
 }
