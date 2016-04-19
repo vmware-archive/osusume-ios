@@ -4,6 +4,7 @@ import PureLayout
 import BrightFutures
 
 class RestaurantListViewController: UIViewController {
+    // MARK: - Properties
     private unowned let router: Router
     private let repo: RestaurantRepo
     private let reloader: Reloader
@@ -34,7 +35,7 @@ class RestaurantListViewController: UIViewController {
         fatalError("init(coder:) is not supported for RestaurantListViewController")
     }
 
-    // MARK: - View Lifecycle
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,6 +88,7 @@ class RestaurantListViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension RestaurantListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100.0

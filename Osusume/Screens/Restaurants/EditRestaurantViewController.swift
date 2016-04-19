@@ -4,6 +4,7 @@ import PureLayout
 import BrightFutures
 
 class EditRestaurantViewController: UIViewController {
+    // MARK: - Properties
     private unowned let router: Router
     private let repo: RestaurantRepo
     private let restaurant: Restaurant
@@ -33,7 +34,7 @@ class EditRestaurantViewController: UIViewController {
         fatalError("init(coder:) is not supported for RestaurantDetailViewController")
     }
 
-    // MARK: - View Lifecycle
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

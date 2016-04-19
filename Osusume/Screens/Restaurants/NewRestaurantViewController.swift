@@ -11,9 +11,11 @@ protocol NewRestaurantViewControllerPresenterProtocol {
 }
 
 class NewRestaurantViewController: UIViewController {
+    // MARK: - Properties
     private unowned let router: Router
     private let restaurantRepo: RestaurantRepo
     private let photoRepo: PhotoRepo
+    private(set) var images = [UIImage]()
 
     // MARK: View Elements
     let scrollView  = UIScrollView.newAutoLayoutView()
@@ -35,8 +37,6 @@ class NewRestaurantViewController: UIViewController {
 
         return collectionView
     }()
-
-    private(set) var images = [UIImage]()
 
     private(set) lazy var addPhotoButton: UIButton = {
         let button = UIButton(type: UIButtonType.System)
@@ -75,7 +75,7 @@ class NewRestaurantViewController: UIViewController {
         fatalError("init(coder:) is not supported for NewRestaurantViewController")
     }
 
-    // MARK: - View Lifecycle
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -204,7 +204,7 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - FindCuisineScreenPresenterProtocol
+// MARK: - NewRestaurantViewControllerPresenterProtocol
 extension NewRestaurantViewController: NewRestaurantViewControllerPresenterProtocol {
     func showFindCuisineScreen() {
         router.showFindCuisineScreen()

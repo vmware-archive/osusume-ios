@@ -1,15 +1,17 @@
 import UIKit
 
 class NewCommentViewController: UIViewController {
+    // MARK: - Properties
     private unowned let router: Router
     private let commentRepo: CommentRepo
     private let restaurantId: Int
-
-    let commentTextField: UITextView
-
     private var constraintsNeedUpdate = true
     private let textFieldPlaceHolder = "Add a comment"
 
+    // MARK: - View Elements
+    let commentTextField: UITextView
+
+    // MARK: - Initializers
     init(router: Router, commentRepo: CommentRepo, restaurantId: Int) {
         self.router = router
         self.commentRepo = commentRepo
@@ -24,8 +26,7 @@ class NewCommentViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: View Controller Lifecycle
-
+    // MARK: - View Controller Lifecycle
     override func loadView() {
         view = UIView()
         view.backgroundColor = UIColor.cyanColor()

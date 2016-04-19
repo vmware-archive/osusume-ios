@@ -1,12 +1,15 @@
 import BrightFutures
 
 class MyRestaurantListViewController: UIViewController {
+    // MARK: - Properties
     private let reloader: Reloader
     private let getRestaurants: () -> Future<[Restaurant], RepoError>
     let restaurantListDataSource: RestaurantListDataSource
 
+    // MARK: - View Elements
     let tableView: UITableView
 
+    // MARK: - Initializers
     init(
         reloader: Reloader,
         photoRepo: PhotoRepo,
@@ -27,7 +30,7 @@ class MyRestaurantListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: View Lifecycle
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,6 +50,7 @@ class MyRestaurantListViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MyRestaurantListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100.0

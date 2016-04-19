@@ -4,11 +4,11 @@ import PureLayout
 import BrightFutures
 
 class RestaurantDetailViewController: UIViewController {
+    // MARK: - Properties
     private unowned let router: Router
     private let reloader: Reloader
     private let restaurantRepo: RestaurantRepo
     private let likeRepo: LikeRepo
-
     private let restaurantId: Int
     private var restaurant: Restaurant?
 
@@ -58,6 +58,7 @@ class RestaurantDetailViewController: UIViewController {
         fatalError("init(coder:) is not supported for RestaurantDetailViewController")
     }
 
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -96,6 +97,7 @@ class RestaurantDetailViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension RestaurantDetailViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -164,6 +166,7 @@ extension RestaurantDetailViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension RestaurantDetailViewController: UITableViewDelegate {
     func tableView(
         tableView: UITableView,
@@ -174,6 +177,7 @@ extension RestaurantDetailViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - RestaurantDetailTableViewCellDelegate
 extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate {
     func displayAddCommentScreen() {
         router.showNewCommentScreen(self.restaurant!.id)

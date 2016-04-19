@@ -1,10 +1,7 @@
 import UIKit
 
-protocol CuisineSelectionProtocol {
-    func cuisineSelected(cuisine: Cuisine)
-}
-
 class CuisineListViewController: UIViewController {
+    // MARK: - Properties
     private let router: Router
     private let cuisineRepo: CuisineRepo
     private let textSearch: TextSearch
@@ -13,9 +10,11 @@ class CuisineListViewController: UIViewController {
     private(set) var fullCuisineList: [Cuisine]
     var cuisineSelectionDelegate: CuisineSelectionProtocol?
 
+    // MARK: - View Elements
     let tableView: UITableView
     let searchBar: UISearchBar
 
+    // MARK: - Initializers
     init(router: Router, cuisineRepo: CuisineRepo, textSearch: TextSearch, reloader: Reloader) {
         self.router = router
         self.cuisineRepo = cuisineRepo
@@ -48,6 +47,7 @@ class CuisineListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,6 +73,12 @@ class CuisineListViewController: UIViewController {
             }
     }
 
+    // MARK: - Actions
+    func didTapCancelButton(sender: UIBarButtonItem?) {
+        router.dismissFindCuisineScreen()
+    }
+
+    // MARK: - Private Methods
     private func searchBarOffset() -> CGFloat {
         let navBarHeight = navigationController?
             .navigationBar.bounds.size.height ?? 0.0
@@ -80,13 +86,9 @@ class CuisineListViewController: UIViewController {
 
         return navBarHeight + min(statusBarSize.width, statusBarSize.height)
     }
-
-    // MARK: - Actions
-    func didTapCancelButton(sender: UIBarButtonItem?) {
-        router.dismissFindCuisineScreen()
-    }
 }
 
+// MARK: - UISearchBarDelegate
 extension CuisineListViewController: UISearchBarDelegate {
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         let filteredCuisineArray = textSearch.search(
@@ -99,6 +101,7 @@ extension CuisineListViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension CuisineListViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -150,6 +153,7 @@ extension CuisineListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension CuisineListViewController: UITableViewDelegate {
     func tableView(
         tableView: UITableView,

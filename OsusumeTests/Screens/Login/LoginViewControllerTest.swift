@@ -34,7 +34,7 @@ class LoginViewControllerTest: XCTestCase {
         expect(self.fakeUserRepo.submittedEmail).to(beNil())
         expect(self.fakeUserRepo.submittedPassword).to(beNil())
 
-        loginVC.loginButton.sendActionsForControlEvents(.TouchUpInside)
+        tapButton(loginVC.loginButton)
 
         expect(self.fakeUserRepo.submittedEmail).to(equal("test@email.com"))
         expect(self.fakeUserRepo.submittedPassword).to(equal("secret"))

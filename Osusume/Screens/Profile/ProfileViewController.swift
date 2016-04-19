@@ -2,11 +2,13 @@ import Foundation
 import BrightFutures
 
 class ProfileViewController: UIViewController {
+    // MARK: - Properties
     private let router: Router
     private let userRepo: UserRepo
     private let sessionRepo: SessionRepo
     private let reloader: Reloader
     private let photoRepo: PhotoRepo
+    private(set) var currentPage: Int = 0
     private lazy var viewControllers: [UIViewController] = {
         let viewControllers = [
             MyRestaurantListViewController(
@@ -19,8 +21,6 @@ class ProfileViewController: UIViewController {
         return viewControllers
     }()
 
-    private(set) var currentPage: Int = 0
-
     // MARK: - View Elements
     let userInfoView: UIView
     let userNameLabel: UILabel
@@ -28,6 +28,7 @@ class ProfileViewController: UIViewController {
     let myContentSegmentedControl: UISegmentedControl
     let pageViewController: UIPageViewController
 
+    // MARK: - Initializers
     init(router: Router,
         userRepo: UserRepo,
         sessionRepo: SessionRepo,
@@ -62,7 +63,7 @@ class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - View Lifecycle
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

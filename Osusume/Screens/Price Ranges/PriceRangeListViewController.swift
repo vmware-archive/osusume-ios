@@ -4,13 +4,15 @@ import BrightFutures
 import PureLayout
 
 class PriceRangeListViewController: UIViewController {
+    // MARK: - Properties
     private let priceRangeRepo: PriceRangeRepo
     private let reloader: Reloader
-
     private var priceRanges: [PriceRange]
 
+    // MARK: - View Elements
     let tableView: UITableView
 
+    // MARK: - Initializers
     init(
         priceRangeRepo: PriceRangeRepo,
         reloader: Reloader
@@ -34,6 +36,7 @@ class PriceRangeListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,6 +53,7 @@ class PriceRangeListViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension PriceRangeListViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

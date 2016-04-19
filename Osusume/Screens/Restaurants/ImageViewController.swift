@@ -1,5 +1,5 @@
 class ImageViewController: UIViewController {
-
+    // MARK: - Properties
     let url: NSURL?
 
     // MARK: - View Elements

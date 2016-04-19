@@ -1,24 +1,11 @@
-//import Foundation
 import UIKit
 import BrightFutures
 
 class LoginViewController: UIViewController {
-    private unowned let router : Router
-    private let userRepo : UserRepo
+    // MARK: - Properties
+    private unowned let router: Router
+    private let userRepo: UserRepo
     let sessionRepo: SessionRepo
-
-    // MARK: - Initializers
-    init(router: Router, repo: UserRepo, sessionRepo: SessionRepo) {
-        self.router = router
-        self.userRepo = repo
-        self.sessionRepo = sessionRepo
-
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     // MARK: - View Elements
     let emailTextField: UITextField = {
@@ -54,7 +41,20 @@ class LoginViewController: UIViewController {
         return button
     }()
 
-    // MARK: - View Lifecycle
+    // MARK: - Initializers
+    init(router: Router, repo: UserRepo, sessionRepo: SessionRepo) {
+        self.router = router
+        self.userRepo = repo
+        self.sessionRepo = sessionRepo
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -98,6 +98,7 @@ class LoginViewController: UIViewController {
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()

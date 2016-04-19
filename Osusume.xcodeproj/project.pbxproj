@@ -50,6 +50,7 @@
 		AE559A461C8EC98B001D45A1 /* ImageLoaderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A451C8EC98B001D45A1 /* ImageLoaderHandler.swift */; };
 		AE5D1A951CC0CF0D00553A95 /* NetworkPriceRangeRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D1A941CC0CF0D00553A95 /* NetworkPriceRangeRepoTest.swift */; };
 		AE5D1A971CC0D0E200553A95 /* NetworkPriceRangeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D1A961CC0D0E200553A95 /* NetworkPriceRangeRepo.swift */; };
+		AE6091071CC5C1C20016CD6A /* CuisineSelectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6091061CC5C1C20016CD6A /* CuisineSelectionProtocol.swift */; };
 		AE6AECA51CC0C871000171A3 /* PriceRangeListParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AECA41CC0C871000171A3 /* PriceRangeListParserTest.swift */; };
 		AE6AECA81CC0C8FD000171A3 /* PriceRangeListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AECA71CC0C8FD000171A3 /* PriceRangeListParser.swift */; };
 		AE73E02D1CA11BC200738787 /* RestaurantListRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE73E02C1CA11BC200738787 /* RestaurantListRepo.swift */; };
@@ -218,6 +219,7 @@
 		AE559A451C8EC98B001D45A1 /* ImageLoaderHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoaderHandler.swift; sourceTree = "<group>"; };
 		AE5D1A941CC0CF0D00553A95 /* NetworkPriceRangeRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPriceRangeRepoTest.swift; sourceTree = "<group>"; };
 		AE5D1A961CC0D0E200553A95 /* NetworkPriceRangeRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPriceRangeRepo.swift; sourceTree = "<group>"; };
+		AE6091061CC5C1C20016CD6A /* CuisineSelectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineSelectionProtocol.swift; sourceTree = "<group>"; };
 		AE6AECA41CC0C871000171A3 /* PriceRangeListParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeListParserTest.swift; sourceTree = "<group>"; };
 		AE6AECA71CC0C8FD000171A3 /* PriceRangeListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeListParser.swift; sourceTree = "<group>"; };
 		AE73E02C1CA11BC200738787 /* RestaurantListRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListRepo.swift; sourceTree = "<group>"; };
@@ -589,6 +591,7 @@
 			isa = PBXGroup;
 			children = (
 				AEFD80641C99542100B4F17C /* CuisineListViewController.swift */,
+				AE6091061CC5C1C20016CD6A /* CuisineSelectionProtocol.swift */,
 			);
 			path = Cuisines;
 			sourceTree = "<group>";
@@ -1138,6 +1141,7 @@
 				AEFD80651C99542100B4F17C /* CuisineListViewController.swift in Sources */,
 				AE0120D31C9BCA0B00D5E7BA /* CuisineParser.swift in Sources */,
 				AEACDB7D1C991FB30092AEF6 /* CuisineRepo.swift in Sources */,
+				AE6091071CC5C1C20016CD6A /* CuisineSelectionProtocol.swift in Sources */,
 				AEF0E1171C9948BF0002CA1B /* DataListParser.swift in Sources */,
 				DE99CE89810E79B5C6F3AADD /* DataParser.swift in Sources */,
 				DE99CF768727260E8FCC3250 /* DateConverter.swift in Sources */,
