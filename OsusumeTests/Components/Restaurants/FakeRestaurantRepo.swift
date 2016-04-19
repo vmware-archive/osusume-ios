@@ -2,9 +2,9 @@ import Foundation
 import BrightFutures
 @testable import Osusume
 
-class FakeRestaurantRepo : RestaurantRepo {
-    var createdRestaurant : Restaurant? = nil
-    var allRestaurants : [Restaurant] = []
+class FakeRestaurantRepo: RestaurantRepo {
+    var createdRestaurant: Restaurant? = nil
+    var allRestaurants: [Restaurant] = []
 
     var getAll_wasCalled = false
     var restaurantsPromise = Promise<[Restaurant], RepoError>()
@@ -30,27 +30,12 @@ class FakeRestaurantRepo : RestaurantRepo {
         return restaurantPromise.future
     }
 
+    var update_params: [String: AnyObject] = [:]
     func update(id: Int, params: [String: AnyObject]) -> Future<[String: AnyObject], RepoError> {
         let promise = Promise<[String: AnyObject], RepoError>()
         promise.success([String: AnyObject]())
 
-        createdRestaurant = Restaurant(
-            id: 0,
-            name: params["name"] as! String,
-            address: params["address"] as! String,
-            cuisineType: params["cuisine_type"] as! String,
-            cuisine: params["cuisine"] as! Cuisine,
-            offersEnglishMenu: params["offers_english_menu"] as! Bool,
-            walkInsOk: params["walk_ins_ok"] as! Bool,
-            acceptsCreditCards: params["accepts_credit_cards"] as! Bool,
-            notes: params["notes"] as! String,
-            author: "Fake user",
-            liked: false,
-            numberOfLikes: 0,
-            createdAt: NSDate(),
-            photoUrls: [],
-            comments: []
-        )
+        update_params = params
 
         return promise.future
     }

@@ -68,7 +68,7 @@ class EditRestaurantViewController: UIViewController {
             "name": formView.getNameText()!,
             "address": formView.getAddressText()!,
             "cuisine_type": formView.getCuisineTypeText()!,
-            "cuisine": formView.cuisine,
+            "cuisine_id": formView.cuisine.id,
             "offers_english_menu": formView.getOffersEnglishMenuState()!,
             "walk_ins_ok": formView.getWalkInsOkState()!,
             "accepts_credit_cards": formView.getAcceptsCreditCardsState()!,

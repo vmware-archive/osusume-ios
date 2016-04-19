@@ -55,7 +55,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
     }
 
 
-    func test_invokesUpdateWithChangedValues() {
+    func test_tappingUpdateButton_invokesUpdateWithChangedValues() {
         instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
 
         editRestaurantViewController.formView.nameTextField.text = "Updated Restaurant Name"
@@ -64,18 +64,19 @@ class EditRestaurantViewControllerTest: XCTestCase {
         editRestaurantViewController.formView.walkInsOkSwitch.on = true
         editRestaurantViewController.formView.notesTextField.text = "Try the vegetables!"
 
+
         let updateButton = editRestaurantViewController.navigationItem.rightBarButtonItem!
         tapNavBarButton(updateButton)
 
-        let restaurant: Restaurant = repo.createdRestaurant!
 
-        expect(restaurant.name).to(equal("Updated Restaurant Name"))
-        expect(restaurant.address).to(equal("Original Address"))
-        expect(restaurant.cuisineType).to(equal("Updated Restaurant Cuisine Type"))
-        expect(restaurant.cuisine).to(equal(Cuisine(id: 2, name: "Gyouza")))
-        expect(restaurant.offersEnglishMenu).to(equal(true))
-        expect(restaurant.walkInsOk).to(equal(true))
-        expect(restaurant.acceptsCreditCards).to(equal(true))
-        expect(restaurant.notes).to(equal("Try the vegetables!"))
+        let actualParams = repo.update_params
+        expect(actualParams["name"] as? String).to(equal("Updated Restaurant Name"))
+        expect(actualParams["address"] as? String).to(equal("Original Address"))
+        expect(actualParams["cuisine_type"] as? String).to(equal("Updated Restaurant Cuisine Type"))
+        expect(actualParams["cuisine_id"] as? Int).to(equal(2))
+        expect(actualParams["offers_english_menu"] as? Bool).to(equal(true))
+        expect(actualParams["walk_ins_ok"] as? Bool).to(equal(true))
+        expect(actualParams["accepts_credit_cards"] as? Bool).to(equal(true))
+        expect(actualParams["notes"] as? String).to(equal("Try the vegetables!"))
     }
 }
