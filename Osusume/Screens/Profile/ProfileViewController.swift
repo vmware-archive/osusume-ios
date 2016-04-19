@@ -2,12 +2,12 @@ import Foundation
 import BrightFutures
 
 class ProfileViewController: UIViewController {
-    let router: Router
-    let userRepo: UserRepo
-    let sessionRepo: SessionRepo
-    let reloader: Reloader
-    let photoRepo: PhotoRepo
-    lazy var viewControllers: [UIViewController] = {
+    private let router: Router
+    private let userRepo: UserRepo
+    private let sessionRepo: SessionRepo
+    private let reloader: Reloader
+    private let photoRepo: PhotoRepo
+    private lazy var viewControllers: [UIViewController] = {
         let viewControllers = [
             MyRestaurantListViewController(
                 reloader: self.reloader,

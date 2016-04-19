@@ -30,9 +30,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_tappingDoneButton_returnsToListScreen() {
-        let image = testImage(named: "appleLogo", imageExtension: "png")
-        newRestaurantVC.images.append(image)
-
         let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(doneButton)
 
@@ -63,12 +60,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
         newRestaurantVC.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"
         newRestaurantVC.formView.notesTextField.text = "Notes"
-
-        let image = testImage(named: "appleLogo", imageExtension: "png")
-        newRestaurantVC.images.append(image)
-        let truckImage = testImage(named: "truck", imageExtension: "png")
-        newRestaurantVC.images.append(truckImage)
-
         fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
 
 
@@ -84,7 +75,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(newRestaurant.walkInsOk).to(equal(false))
         expect(newRestaurant.acceptsCreditCards).to(equal(false))
         expect(newRestaurant.notes).to(equal("Notes"))
-        expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]))
+        expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]));
     }
 
     func test_selectCuisine_populatesCuisineTextfield() {

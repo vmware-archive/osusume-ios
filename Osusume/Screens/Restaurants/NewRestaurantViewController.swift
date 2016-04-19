@@ -11,10 +11,50 @@ protocol NewRestaurantViewControllerPresenterProtocol {
 }
 
 class NewRestaurantViewController: UIViewController {
+    private unowned let router: Router
+    private let restaurantRepo: RestaurantRepo
+    private let photoRepo: PhotoRepo
 
-    unowned let router: Router
-    let restaurantRepo: RestaurantRepo
-    let photoRepo: PhotoRepo
+    // MARK: View Elements
+    let scrollView  = UIScrollView.newAutoLayoutView()
+    let contentInScrollView = UIView.newAutoLayoutView()
+    let formViewContainer = UIView.newAutoLayoutView()
+    let formView = NewRestaurantFormView()
+
+    private(set) lazy var imageCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake(100, 100)
+        layout.scrollDirection = .Horizontal
+
+        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
+        collectionView.backgroundColor = UIColor.lightGrayColor()
+        collectionView.accessibilityLabel = "Photos to be uploaded"
+
+        return collectionView
+    }()
+
+    private(set) var images = [UIImage]()
+
+    private(set) lazy var addPhotoButton: UIButton = {
+        let button = UIButton(type: UIButtonType.System)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        button.setTitle("Add photos", forState: .Normal)
+        button.addTarget(
+            self,
+            action: Selector("didTapAddPhotoButton:"),
+            forControlEvents: .TouchUpInside
+        )
+        return button
+    }()
+
+    private(set) lazy var imagePicker : BSImagePickerViewController = {
+        let picker = BSImagePickerViewController()
+        return picker
+    }()
 
     // MARK: - Initializers
     init(
@@ -34,47 +74,6 @@ class NewRestaurantViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not supported for NewRestaurantViewController")
     }
-
-    // MARK: View Elements
-    let scrollView  = UIScrollView.newAutoLayoutView()
-    let contentInScrollView = UIView.newAutoLayoutView()
-    let formViewContainer = UIView.newAutoLayoutView()
-    let formView = NewRestaurantFormView()
-
-    lazy var imageCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake(100, 100)
-        layout.scrollDirection = .Horizontal
-
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
-        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
-        collectionView.backgroundColor = UIColor.lightGrayColor()
-        collectionView.accessibilityLabel = "Photos to be uploaded"
-
-        return collectionView
-    }()
-
-    var images = [UIImage]()
-
-    lazy var addPhotoButton: UIButton = {
-        let button = UIButton(type: UIButtonType.System)
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        button.setTitle("Add photos", forState: .Normal)
-        button.addTarget(
-            self,
-            action: Selector("didTapAddPhotoButton:"),
-            forControlEvents: .TouchUpInside
-        )
-        return button
-    }()
-
-    lazy var imagePicker : BSImagePickerViewController = {
-        let picker = BSImagePickerViewController()
-        return picker
-    }()
 
     // MARK: - View Lifecycle
     override func viewDidLoad() {

@@ -4,12 +4,16 @@ import PureLayout
 import BrightFutures
 
 class EditRestaurantViewController: UIViewController {
+    private unowned let router: Router
+    private let repo: RestaurantRepo
+    private let restaurant: Restaurant
+    private let id: Int
 
-    unowned let router: Router
-    let repo: RestaurantRepo
-
-    let restaurant: Restaurant
-    let id: Int
+    // MARK: - View Elements
+    let scrollView = UIScrollView.newAutoLayoutView()
+    let contentInScrollView = UIView.newAutoLayoutView()
+    let formViewContainer = UIView.newAutoLayoutView()
+    var formView: EditRestaurantFormView!
 
     // MARK: - Initializers
     init(
@@ -28,12 +32,6 @@ class EditRestaurantViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not supported for RestaurantDetailViewController")
     }
-
-    // MARK: - View Elements
-    let scrollView = UIScrollView.newAutoLayoutView()
-    let contentInScrollView = UIView.newAutoLayoutView()
-    let formViewContainer = UIView.newAutoLayoutView()
-    var formView: EditRestaurantFormView!
 
     // MARK: - View Lifecycle
     override func viewDidLoad() {

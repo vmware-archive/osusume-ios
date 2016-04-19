@@ -1,6 +1,7 @@
 class ImageViewController: UIViewController {
 
     let url: NSURL?
+
     // MARK: - View Elements
     let imageView = UIImageView()
 

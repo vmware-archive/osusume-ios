@@ -2,11 +2,10 @@ import BrightFutures
 
 class MyRestaurantListViewController: UIViewController {
     private let reloader: Reloader
+    private let getRestaurants: () -> Future<[Restaurant], RepoError>
     let restaurantDataSource: RestaurantDataSource
-    let getRestaurants: () -> Future<[Restaurant], RepoError>
-    let tableView: UITableView
 
-    let cellIdentifier = "RestaurantListItemCell"
+    let tableView: UITableView
 
     init(
         reloader: Reloader,
@@ -34,7 +33,7 @@ class MyRestaurantListViewController: UIViewController {
 
         tableView.registerClass(
             RestaurantTableViewCell.self,
-            forCellReuseIdentifier: cellIdentifier
+            forCellReuseIdentifier: String(RestaurantTableViewCell)
         )
 
         view.addSubview(tableView)

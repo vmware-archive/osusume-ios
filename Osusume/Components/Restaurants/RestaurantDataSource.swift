@@ -3,7 +3,6 @@ import UIKit
 class RestaurantDataSource: NSObject, UITableViewDataSource {
     var myPosts: [Restaurant]
     private let photoRepo: PhotoRepo
-    private let cellIdentifier = "RestaurantListItemCell"
 
     init(photoRepo: PhotoRepo) {
         self.photoRepo = photoRepo
@@ -24,8 +23,9 @@ class RestaurantDataSource: NSObject, UITableViewDataSource {
         ) -> UITableViewCell
     {
         if
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-                as? RestaurantTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(
+                String(RestaurantTableViewCell)
+            ) as? RestaurantTableViewCell
         {
             let presenter = RestaurantDetailPresenter(
                 restaurant: myPosts[indexPath.row]

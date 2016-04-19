@@ -4,13 +4,13 @@ import PureLayout
 import BrightFutures
 
 class RestaurantDetailViewController: UIViewController {
-    unowned let router: Router
-    let reloader: Reloader
-    let restaurantRepo: RestaurantRepo
-    let likeRepo: LikeRepo
+    private unowned let router: Router
+    private let reloader: Reloader
+    private let restaurantRepo: RestaurantRepo
+    private let likeRepo: LikeRepo
 
-    let restaurantId: Int
-    var restaurant: Restaurant?
+    private let restaurantId: Int
+    private var restaurant: Restaurant?
 
     // MARK: - View Elements
     let tableView: UITableView

@@ -4,12 +4,10 @@ import PureLayout
 import BrightFutures
 
 class RestaurantListViewController: UIViewController {
-    unowned let router: Router
-    let repo: RestaurantRepo
-    let reloader: Reloader
+    private unowned let router: Router
+    private let repo: RestaurantRepo
+    private let reloader: Reloader
     let restaurantDataSource: RestaurantDataSource
-
-    let cellIdentifier = "RestaurantListItemCell"
 
     // MARK: - View Elements
     let tableView = UITableView.newAutoLayoutView()
@@ -63,7 +61,7 @@ class RestaurantListViewController: UIViewController {
 
         tableView.registerClass(
             RestaurantTableViewCell.self,
-            forCellReuseIdentifier: cellIdentifier
+            forCellReuseIdentifier: String(RestaurantTableViewCell)
         )
 
         view.addSubview(tableView)

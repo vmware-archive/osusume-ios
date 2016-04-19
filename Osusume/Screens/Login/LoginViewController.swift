@@ -3,8 +3,8 @@ import UIKit
 import BrightFutures
 
 class LoginViewController: UIViewController {
-    unowned let router : Router
-    let userRepo : UserRepo
+    private unowned let router : Router
+    private let userRepo : UserRepo
     let sessionRepo: SessionRepo
 
     // MARK: - Initializers
