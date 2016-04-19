@@ -1,6 +1,6 @@
 import UIKit
 
-class RestaurantDataSource: NSObject, UITableViewDataSource {
+class RestaurantListDataSource: NSObject, UITableViewDataSource {
     var myPosts: [Restaurant]
     private let photoRepo: PhotoRepo
 

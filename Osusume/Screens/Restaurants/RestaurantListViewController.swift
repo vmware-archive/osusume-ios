@@ -7,7 +7,7 @@ class RestaurantListViewController: UIViewController {
     private unowned let router: Router
     private let repo: RestaurantRepo
     private let reloader: Reloader
-    let restaurantDataSource: RestaurantDataSource
+    let restaurantListDataSource: RestaurantListDataSource
 
     // MARK: - View Elements
     let tableView = UITableView.newAutoLayoutView()
@@ -22,12 +22,12 @@ class RestaurantListViewController: UIViewController {
         self.router = router
         self.repo = repo
         self.reloader = reloader
-        self.restaurantDataSource = RestaurantDataSource(photoRepo: photoRepo)
+        self.restaurantListDataSource = RestaurantListDataSource(photoRepo: photoRepo)
 
         super.init(nibName: nil, bundle: nil)
 
         tableView.delegate = self
-        tableView.dataSource = self.restaurantDataSource
+        tableView.dataSource = self.restaurantListDataSource
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -40,7 +40,7 @@ class RestaurantListViewController: UIViewController {
 
         repo.getAll()
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurants in
-                self.restaurantDataSource.myPosts = returnedRestaurants
+                self.restaurantListDataSource.myPosts = returnedRestaurants
                 self.reloader.reload(self.tableView)
         }
 
@@ -97,7 +97,7 @@ extension RestaurantListViewController: UITableViewDelegate {
         didSelectRowAtIndexPath indexPath: NSIndexPath
         )
     {
-        let id = restaurantDataSource.myPosts[indexPath.row].id
+        let id = restaurantListDataSource.myPosts[indexPath.row].id
 
         didTapRestaurant(id)
     }

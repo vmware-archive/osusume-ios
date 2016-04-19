@@ -30,15 +30,15 @@ class MyRestaurantListViewControllerTest: XCTestCase {
 
         waitForFutureToComplete(promise.future)
 
-        expect(self.myRestaurantListVC.restaurantDataSource.myPosts).to(equal([expectedRestaurant]))
+        expect(self.myRestaurantListVC.restaurantListDataSource.myPosts).to(equal([expectedRestaurant]))
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))
     }
 
     func test_tableView_configuresCellCount() {
         let restaurants = [RestaurantFixtures.newRestaurant()]
-        myRestaurantListVC.restaurantDataSource.myPosts = restaurants
+        myRestaurantListVC.restaurantListDataSource.myPosts = restaurants
 
-        let numberOfRows = myRestaurantListVC.restaurantDataSource.tableView(
+        let numberOfRows = myRestaurantListVC.restaurantListDataSource.tableView(
             UITableView(),
             numberOfRowsInSection: 0
         )
@@ -48,14 +48,14 @@ class MyRestaurantListViewControllerTest: XCTestCase {
 
     func test_tableView_loadsImageFromPhotoUrl() {
         let restaurants = [RestaurantFixtures.newRestaurant()]
-        myRestaurantListVC.restaurantDataSource.myPosts = restaurants
+        myRestaurantListVC.restaurantListDataSource.myPosts = restaurants
         myRestaurantListVC.view.setNeedsLayout()
 
         let promise = Promise<UIImage, RepoError>()
         fakePhotoRepo.loadImageFromUrl_returnValue = promise.future
 
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = myRestaurantListVC.restaurantDataSource.tableView(
+        let cell = myRestaurantListVC.restaurantListDataSource.tableView(
             myRestaurantListVC.tableView,
             cellForRowAtIndexPath: indexPath
             ) as? RestaurantTableViewCell

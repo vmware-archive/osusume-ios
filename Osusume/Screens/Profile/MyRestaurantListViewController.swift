@@ -3,7 +3,7 @@ import BrightFutures
 class MyRestaurantListViewController: UIViewController {
     private let reloader: Reloader
     private let getRestaurants: () -> Future<[Restaurant], RepoError>
-    let restaurantDataSource: RestaurantDataSource
+    let restaurantListDataSource: RestaurantListDataSource
 
     let tableView: UITableView
 
@@ -13,13 +13,13 @@ class MyRestaurantListViewController: UIViewController {
         getRestaurants: () -> Future<[Restaurant], RepoError>)
     {
         self.reloader = reloader
-        self.restaurantDataSource = RestaurantDataSource(photoRepo: photoRepo)
+        self.restaurantListDataSource = RestaurantListDataSource(photoRepo: photoRepo)
         self.getRestaurants = getRestaurants
         self.tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
 
-        tableView.dataSource = restaurantDataSource
+        tableView.dataSource = restaurantListDataSource
         tableView.delegate = self
     }
 
@@ -41,7 +41,7 @@ class MyRestaurantListViewController: UIViewController {
 
         getRestaurants()
             .onSuccess { [unowned self] restaurants in
-                self.restaurantDataSource.myPosts = restaurants
+                self.restaurantListDataSource.myPosts = restaurants
                 self.reloader.reload(self.tableView)
         }
     }
