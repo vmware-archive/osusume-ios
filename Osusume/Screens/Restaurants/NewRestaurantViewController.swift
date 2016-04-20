@@ -136,7 +136,9 @@ class NewRestaurantViewController: UIViewController {
 
         restaurantRepo.create(newRestaurant)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
-                self.router.showRestaurantListScreen()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.router.showRestaurantListScreen()
+                }
         }
     }
 

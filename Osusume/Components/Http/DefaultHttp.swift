@@ -39,12 +39,16 @@ struct DefaultHttp: Http {
     {
         let promise = Promise<[String: AnyObject], RepoError>()
 
-        request(.POST, path: path, headers: headers, parameters: parameters).responseJSON { response in
-            switch response.result {
-            case .Success:
-                promise.success(response.result.value as! [String: AnyObject])
-            case .Failure(_):
-                promise.failure(RepoError.PostFailed)
+        postRequest(path, headers: headers, parameters: parameters).responseJSON { result in
+            switch result {
+                case .Success:
+                    if let value = result.value as? [String: AnyObject] {
+                        promise.success(value)
+                    } else {
+                        promise.failure(RepoError.PostFailed)
+                    }
+                case .Failure(_):
+                    promise.failure(RepoError.PostFailed)
             }
         }
 
@@ -114,6 +118,33 @@ struct DefaultHttp: Http {
 
         if let bearerToken = headers["Authorization"] {
             mutableURLRequest.setValue(bearerToken, forHTTPHeaderField: "Authorization")
+        }
+
+        return mutableURLRequest.copy() as! NSURLRequest
+    }
+
+    private func postRequest(
+        path: String,
+        headers: [String: String],
+        parameters: [String: AnyObject] = [:]
+        ) -> NSURLRequest
+    {
+        let URL = NSURL(string: "\(basePath)\(path)")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "POST"
+
+        if let bearerToken = headers["Authorization"] {
+            mutableURLRequest.setValue(bearerToken, forHTTPHeaderField: "Authorization")
+        }
+
+        do {
+            mutableURLRequest.HTTPBody = try NSJSONSerialization.dataWithJSONObject(
+                parameters,
+                options: NSJSONWritingOptions()
+            )
+            mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        } catch {
+            // No-op
         }
 
         return mutableURLRequest.copy() as! NSURLRequest

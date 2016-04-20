@@ -33,6 +33,8 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(doneButton)
 
+        NSRunLoop.osu_advance()
+
         expect(self.fakeRouter.restaurantListScreenIsShowing).to(equal(true))
     }
 
