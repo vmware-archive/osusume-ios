@@ -39,7 +39,7 @@ struct DefaultHttp: Http {
     {
         let promise = Promise<[String: AnyObject], RepoError>()
 
-        postRequest(path, headers: headers, parameters: parameters).responseJSON { result in
+        postRequest("POST", path: path, headers: headers, parameters: parameters).responseJSON { result in
             switch result {
                 case .Success:
                     if let value = result.value as? [String: AnyObject] {
@@ -63,12 +63,12 @@ struct DefaultHttp: Http {
     {
         let promise = Promise<[String: AnyObject], RepoError>()
 
-        request(.PATCH, path: path, headers: headers, parameters: parameters).responseJSON { response in
-            switch response.result {
-            case .Success:
-                promise.success(["status": "OK"])
-            case .Failure(_):
-                promise.failure(RepoError.PatchFailed)
+        postRequest("PATCH", path: path, headers: headers, parameters: parameters).responseJSON { result in
+            switch result {
+                case .Success:
+                    promise.success(["status": "OK"])
+                case .Failure(_):
+                    promise.failure(RepoError.PatchFailed)
             }
         }
 
@@ -124,6 +124,7 @@ struct DefaultHttp: Http {
     }
 
     private func postRequest(
+        httpMethod: String,
         path: String,
         headers: [String: String],
         parameters: [String: AnyObject] = [:]
@@ -131,7 +132,7 @@ struct DefaultHttp: Http {
     {
         let URL = NSURL(string: "\(basePath)\(path)")!
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
-        mutableURLRequest.HTTPMethod = "POST"
+        mutableURLRequest.HTTPMethod = httpMethod
 
         if let bearerToken = headers["Authorization"] {
             mutableURLRequest.setValue(bearerToken, forHTTPHeaderField: "Authorization")

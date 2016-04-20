@@ -76,7 +76,9 @@ class EditRestaurantViewController: UIViewController {
         ]
         repo.update(self.id, params: params)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
-                self.router.showRestaurantListScreen()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.router.showRestaurantListScreen()
+                }
         }
     }
 }
