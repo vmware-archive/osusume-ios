@@ -89,7 +89,6 @@
 		AEDD1B861C897DEE0024B29E /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD1B851C897DEE0024B29E /* ImageLoader.swift */; };
 		AEDD1B881C897FF40024B29E /* DefaultImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDD1B871C897FF40024B29E /* DefaultImageLoader.swift */; };
 		AEDE88C11C1FA2EE00AF8DA1 /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */; };
-		AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C61C21342900AF8DA1 /* Alamofire.framework */; };
 		AEDEDC5B1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */; };
 		AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */; };
 		AEE6968C1CA36C8F003A2927 /* MyRestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6968B1CA36C8F003A2927 /* MyRestaurantListViewController.swift */; };
@@ -258,7 +257,6 @@
 		AEDD1B871C897FF40024B29E /* DefaultImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultImageLoader.swift; sourceTree = "<group>"; };
 		AEDE88C01C1FA2EE00AF8DA1 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		AEDE88C21C1FA57700AF8DA1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		AEDE88C61C21342900AF8DA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewControllerTest.swift; sourceTree = "<group>"; };
 		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
 		AEE6968B1CA36C8F003A2927 /* MyRestaurantListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantListViewController.swift; sourceTree = "<group>"; };
@@ -350,7 +348,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEDE88C71C21342900AF8DA1 /* Alamofire.framework in Frameworks */,
 				AEFCB77C1C6194CE0096DD93 /* AWSCognito.framework in Frameworks */,
 				AEFCB77A1C6192020096DD93 /* AWSCore.framework in Frameworks */,
 				AEFCB7781C6191FB0096DD93 /* AWSS3.framework in Frameworks */,
@@ -391,7 +388,6 @@
 		AE1CEF6C1C15605B0006073F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AEDE88C61C21342900AF8DA1 /* Alamofire.framework */,
 				AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */,
 				AEFCB7791C6192020096DD93 /* AWSCore.framework */,
 				AEFCB7771C6191FB0096DD93 /* AWSS3.framework */,

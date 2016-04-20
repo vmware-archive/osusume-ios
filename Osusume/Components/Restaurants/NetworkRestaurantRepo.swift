@@ -1,5 +1,4 @@
 import BrightFutures
-import Alamofire
 
 struct NetworkRestaurantRepo: RestaurantRepo {
     let parser: RestaurantParser

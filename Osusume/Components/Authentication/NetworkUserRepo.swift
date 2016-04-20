@@ -1,6 +1,5 @@
 import Foundation
 import BrightFutures
-import Alamofire
 
 class NetworkUserRepo: UserRepo {
     let http: Http

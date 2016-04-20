@@ -242,8 +242,8 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.name).to(equal("first restaurant"))
         expect(restaurant.createdAt!).to(equal(NSDate(timeIntervalSince1970: 1454480320)))
         expect(restaurant.author).to(equal("Bambi"))
-        expect(restaurant.photoUrls[0].URLString).to(equal("http://www.example.com"))
-        expect(restaurant.photoUrls[1].URLString).to(equal("my-awesome-url"))
+        expect(restaurant.photoUrls[0].absoluteString).to(equal("http://www.example.com"))
+        expect(restaurant.photoUrls[1].absoluteString).to(equal("my-awesome-url"))
         expect(restaurant.comments.count).to(equal(0))
     }
 

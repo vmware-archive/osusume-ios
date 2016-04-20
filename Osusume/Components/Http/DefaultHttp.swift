@@ -1,5 +1,4 @@
 import BrightFutures
-import Alamofire
 
 struct DefaultHttp: Http {
     let basePath: String
@@ -76,36 +75,6 @@ struct DefaultHttp: Http {
     }
 
     // MARK: - Private Methods
-    private func request(
-        method: Alamofire.Method,
-        path: String,
-        headers: [String: String],
-        parameters: [String: AnyObject] = [:]
-        ) -> Request
-    {
-        let URL = NSURL(string: "\(basePath)\(path)")!
-        let mutableURLRequest = NSMutableURLRequest(URL: URL)
-        mutableURLRequest.HTTPMethod = method.rawValue
-
-        if let bearerToken = headers["Authorization"] {
-            mutableURLRequest.setValue(bearerToken, forHTTPHeaderField: "Authorization")
-        }
-
-        do {
-            if (method != .GET) {
-                mutableURLRequest.HTTPBody = try NSJSONSerialization.dataWithJSONObject(
-                    parameters,
-                    options: NSJSONWritingOptions()
-                )
-                mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            }
-        } catch {
-            // No-op
-        }
-
-        return Alamofire.request(mutableURLRequest)
-    }
-
     private func getRequest(
         path: String,
         headers: [String: String],

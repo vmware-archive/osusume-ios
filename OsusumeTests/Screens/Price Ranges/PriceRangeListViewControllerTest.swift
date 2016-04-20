@@ -38,7 +38,7 @@ class PriceRangeListViewControllerTest: XCTestCase {
 
     func test_viewDidLoad_setsDataSourceForTableView() {
         let actualDataSource = self.priceRangeListVC.tableView.dataSource
-        expect(actualDataSource === self.priceRangeListVC)
+        expect(actualDataSource) === self.priceRangeListVC
     }
 
     func test_retrievalOfPriceRangeData_reloadsTableView() {
