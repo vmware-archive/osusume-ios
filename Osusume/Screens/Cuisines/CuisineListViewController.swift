@@ -56,7 +56,7 @@ class CuisineListViewController: UIViewController {
         view.addSubview(searchBar)
         view.addSubview(tableView)
 
-        searchBar.autoPinEdgeToSuperviewEdge(.Top, withInset: searchBarOffset())
+        searchBar.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
         searchBar.autoPinEdgeToSuperviewEdge(.Left)
         searchBar.autoPinEdgeToSuperviewEdge(.Right)
 
@@ -76,15 +76,6 @@ class CuisineListViewController: UIViewController {
     // MARK: - Actions
     @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
         router.dismissFindCuisineScreen()
-    }
-
-    // MARK: - Private Methods
-    private func searchBarOffset() -> CGFloat {
-        let navBarHeight = navigationController?
-            .navigationBar.bounds.size.height ?? 0.0
-        let statusBarSize = UIApplication.sharedApplication().statusBarFrame.size
-
-        return navBarHeight + min(statusBarSize.width, statusBarSize.height)
     }
 }
 
