@@ -65,17 +65,17 @@ class RestaurantListViewController: UIViewController {
     }
 
     // MARK: - View Setup
+    private func addSubviews() {
+        view.addSubview(tableView)
+    }
+
     private func configureSubviews() {
-        tableView.delegate = self
         tableView.dataSource = self.restaurantListDataSource
+        tableView.delegate = self
         tableView.registerClass(
             RestaurantTableViewCell.self,
             forCellReuseIdentifier: String(RestaurantTableViewCell)
         )
-    }
-
-    private func addSubviews() {
-        view.addSubview(tableView)
     }
 
     private func addConstraints() {

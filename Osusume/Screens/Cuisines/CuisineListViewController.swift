@@ -11,8 +11,8 @@ class CuisineListViewController: UIViewController {
     var cuisineSelectionDelegate: CuisineSelectionProtocol?
 
     // MARK: - View Elements
-    let tableView: UITableView
     let searchBar: UISearchBar
+    let tableView: UITableView
 
     // MARK: - Initializers
     init(router: Router, cuisineRepo: CuisineRepo, textSearch: TextSearch, reloader: Reloader) {
@@ -22,25 +22,11 @@ class CuisineListViewController: UIViewController {
         self.reloader = reloader
         self.filteredCuisineList = []
         self.fullCuisineList = []
-        self.tableView = UITableView.newAutoLayoutView()
+
         self.searchBar = UISearchBar.newAutoLayoutView()
+        self.tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
-
-        let cancelButton: UIBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: UIBarButtonSystemItem.Cancel,
-            target: self,
-            action: Selector("didTapCancelButton:")
-        )
-        navigationItem.leftBarButtonItem = cancelButton
-
-        tableView.registerClass(
-            UITableViewCell.self,
-            forCellReuseIdentifier: String(UITableViewCell)
-        )
-        tableView.dataSource = self
-        tableView.delegate = self
-        searchBar.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -53,9 +39,43 @@ class CuisineListViewController: UIViewController {
 
         title = "Find Cuisine"
 
+        let cancelButton: UIBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonSystemItem.Cancel,
+            target: self,
+            action: Selector("didTapCancelButton:")
+        )
+        navigationItem.leftBarButtonItem = cancelButton
+
+        configureSubviews()
+        addSubviews()
+        addConstraints()
+
+        cuisineRepo.getAll()
+            .onSuccess { [unowned self] cuisineList in
+                self.filteredCuisineList = cuisineList
+                self.fullCuisineList = cuisineList
+                self.reloader.reload(self.tableView)
+            }
+    }
+
+    // MARK: - View Setup
+    private func addSubviews() {
         view.addSubview(searchBar)
         view.addSubview(tableView)
+    }
 
+    private func configureSubviews() {
+        searchBar.delegate = self
+
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.registerClass(
+            UITableViewCell.self,
+            forCellReuseIdentifier: String(UITableViewCell)
+        )
+    }
+
+    private func addConstraints() {
         searchBar.autoPinToTopLayoutGuideOfViewController(self, withInset: 0)
         searchBar.autoPinEdgeToSuperviewEdge(.Left)
         searchBar.autoPinEdgeToSuperviewEdge(.Right)
@@ -64,13 +84,6 @@ class CuisineListViewController: UIViewController {
         tableView.autoPinEdgeToSuperviewEdge(.Left)
         tableView.autoPinEdgeToSuperviewEdge(.Right)
         tableView.autoPinEdgeToSuperviewEdge(.Bottom)
-
-        cuisineRepo.getAll()
-            .onSuccess { [unowned self] cuisineList in
-                self.filteredCuisineList = cuisineList
-                self.fullCuisineList = cuisineList
-                self.reloader.reload(self.tableView)
-            }
     }
 
     // MARK: - Actions
@@ -162,4 +175,3 @@ extension CuisineListViewController: UITableViewDelegate {
         }
     }
 }
-

@@ -107,6 +107,8 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_initialization_assignsTheControllerAsSearchBarDelegate() {
+        cuisineListVC.view.setNeedsLayout()
+
         let expectedDelegate = cuisineListVC as UISearchBarDelegate
 
         XCTAssert(cuisineListVC.searchBar.delegate! === expectedDelegate)
@@ -195,6 +197,8 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_tableView_hasAConfiguredDelegate() {
+        cuisineListVC.view.setNeedsLayout()
+
         let expectedDelegate = self.cuisineListVC.tableView.delegate as! CuisineListViewController
 
         XCTAssert(self.cuisineListVC === expectedDelegate)

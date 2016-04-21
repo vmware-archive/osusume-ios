@@ -50,15 +50,15 @@ class NewCommentViewController: UIViewController {
     }
 
     // MARK: - View Setup
+    private func addSubviews() {
+        view.addSubview(commentTextView)
+    }
+
     private func configureSubviews() {
         commentTextView.delegate = self
         commentTextView.layer.borderWidth = 1.0
         commentTextView.layer.borderColor = UIColor.darkGrayColor().CGColor
         commentTextView.text = NewCommentViewController.kTextFieldPlaceHolder
-    }
-
-    private func addSubviews() {
-        view.addSubview(commentTextView)
     }
 
     private func addConstraints() {
