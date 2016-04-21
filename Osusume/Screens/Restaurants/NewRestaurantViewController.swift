@@ -90,7 +90,6 @@ class NewRestaurantViewController: UIViewController {
             forCellWithReuseIdentifier: "photoCell"
         )
         imageCollectionView.backgroundColor = UIColor.lightGrayColor()
-        imageCollectionView.accessibilityLabel = "Photos to be uploaded"
 
         addPhotoButton.translatesAutoresizingMaskIntoConstraints = false
         addPhotoButton.setTitle("Add photos", forState: .Normal)
