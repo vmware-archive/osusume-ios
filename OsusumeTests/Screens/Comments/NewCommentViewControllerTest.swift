@@ -32,21 +32,21 @@ class NewCommentViewControllerTest: XCTestCase {
 
         XCTAssertEqual(
             newCommentVC.hash,
-            newCommentVC.commentTextField.delegate?.hash
+            newCommentVC.commentTextView.delegate?.hash
         )
 
         let _ = newCommentVC.view
-        XCTAssertEqual(newCommentVC.commentTextField.text, "Add a comment")
+        XCTAssertEqual(newCommentVC.commentTextView.text, "Add a comment")
 
-        newCommentVC.textViewDidBeginEditing(newCommentVC.commentTextField)
-        XCTAssertNotEqual(newCommentVC.commentTextField.text, "Add a comment")
+        newCommentVC.textViewDidBeginEditing(newCommentVC.commentTextView)
+        XCTAssertNotEqual(newCommentVC.commentTextView.text, "Add a comment")
 
-        newCommentVC.textViewDidEndEditing(newCommentVC.commentTextField)
-        XCTAssertEqual(newCommentVC.commentTextField.text, "Add a comment")
+        newCommentVC.textViewDidEndEditing(newCommentVC.commentTextView)
+        XCTAssertEqual(newCommentVC.commentTextView.text, "Add a comment")
 
-        newCommentVC.commentTextField.text = "Here's my comment"
-        newCommentVC.textViewDidBeginEditing(newCommentVC.commentTextField)
-        XCTAssertEqual(newCommentVC.commentTextField.text, "Here's my comment")
+        newCommentVC.commentTextView.text = "Here's my comment"
+        newCommentVC.textViewDidBeginEditing(newCommentVC.commentTextView)
+        XCTAssertEqual(newCommentVC.commentTextView.text, "Here's my comment")
     }
 
     func test_tappingSave_persistsComment() {
@@ -59,7 +59,7 @@ class NewCommentViewControllerTest: XCTestCase {
         )
         newCommentVC.view.setNeedsLayout()
 
-        newCommentVC.commentTextField.text = "No parking in Harvard Yard"
+        newCommentVC.commentTextView.text = "No parking in Harvard Yard"
 
         let saveButton = newCommentVC.navigationItem.rightBarButtonItem
         tapNavBarButton(saveButton!)

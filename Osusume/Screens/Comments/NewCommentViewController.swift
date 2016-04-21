@@ -5,11 +5,12 @@ class NewCommentViewController: UIViewController {
     private unowned let router: Router
     private let commentRepo: CommentRepo
     private let restaurantId: Int
-    private var constraintsNeedUpdate = true
-    private let textFieldPlaceHolder = "Add a comment"
+
+    // MARK: - Constants
+    private static let kTextFieldPlaceHolder = "Add a comment"
 
     // MARK: - View Elements
-    let commentTextField: UITextView
+    let commentTextView: UITextView
 
     // MARK: - Initializers
     init(router: Router, commentRepo: CommentRepo, restaurantId: Int) {
@@ -17,7 +18,7 @@ class NewCommentViewController: UIViewController {
         self.commentRepo = commentRepo
         self.restaurantId = restaurantId
 
-        self.commentTextField = UITextView.newAutoLayoutView()
+        commentTextView = UITextView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -27,12 +28,13 @@ class NewCommentViewController: UIViewController {
     }
 
     // MARK: - View Controller Lifecycle
-    override func loadView() {
-        view = UIView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         view.backgroundColor = UIColor.cyanColor()
 
-        self.navigationItem.title = "Add a comment"
-        self.navigationItem.rightBarButtonItem =
+        navigationItem.title = "Add a comment"
+        navigationItem.rightBarButtonItem =
             UIBarButtonItem(
                 title: "Save",
                 style: .Plain,
@@ -40,29 +42,30 @@ class NewCommentViewController: UIViewController {
                 action: Selector("didTapSaveButton:")
         )
 
-        view.addSubview(commentTextField)
-
-        commentTextField.delegate = self
-        commentTextField.layer.borderWidth = 1.0
-        commentTextField.layer.borderColor = UIColor.darkGrayColor().CGColor
-        commentTextField.text = textFieldPlaceHolder
-
         automaticallyAdjustsScrollViewInsets = false
 
-        view.setNeedsUpdateConstraints()
+        configureSubviews()
+        addSubviews()
+        addConstraints()
     }
 
-    override func updateViewConstraints() {
-        if constraintsNeedUpdate {
-            commentTextField.autoPinEdgeToSuperviewEdge(.Top, withInset: 80.0)
-            commentTextField.autoPinEdgeToSuperviewMargin(.Left)
-            commentTextField.autoPinEdgeToSuperviewMargin(.Right)
-            commentTextField.autoSetDimension(.Height, toSize: 100.0)
+    // MARK: - View Setup
+    private func configureSubviews() {
+        commentTextView.delegate = self
+        commentTextView.layer.borderWidth = 1.0
+        commentTextView.layer.borderColor = UIColor.darkGrayColor().CGColor
+        commentTextView.text = NewCommentViewController.kTextFieldPlaceHolder
+    }
 
-            constraintsNeedUpdate = false
-        }
+    private func addSubviews() {
+        view.addSubview(commentTextView)
+    }
 
-        super.updateViewConstraints()
+    private func addConstraints() {
+        commentTextView.autoPinEdgeToSuperviewEdge(.Top, withInset: 80.0)
+        commentTextView.autoPinEdgeToSuperviewMargin(.Left)
+        commentTextView.autoPinEdgeToSuperviewMargin(.Right)
+        commentTextView.autoSetDimension(.Height, toSize: 100.0)
     }
 
     // MARK: - Actions
@@ -70,7 +73,7 @@ class NewCommentViewController: UIViewController {
         commentRepo
             .persist(
                 NewComment(
-                    text: commentTextField.text,
+                    text: commentTextView.text,
                     restaurantId: restaurantId
                 )
             )
@@ -83,12 +86,12 @@ class NewCommentViewController: UIViewController {
 // MARK: - UITextViewDelegate
 extension NewCommentViewController: UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {
-        if textView.text == textFieldPlaceHolder {
+        if textView.text == NewCommentViewController.kTextFieldPlaceHolder {
             textView.text = ""
         }
     }
 
     func textViewDidEndEditing(textView: UITextView) {
-        textView.text = textFieldPlaceHolder
+        textView.text = NewCommentViewController.kTextFieldPlaceHolder
     }
 }

@@ -11,7 +11,7 @@ class RestaurantListViewController: UIViewController {
     let restaurantListDataSource: RestaurantListDataSource
 
     // MARK: - View Elements
-    let tableView = UITableView.newAutoLayoutView()
+    let tableView: UITableView
 
     // MARK: - Initializers
     init(
@@ -25,10 +25,9 @@ class RestaurantListViewController: UIViewController {
         self.reloader = reloader
         self.restaurantListDataSource = RestaurantListDataSource(photoRepo: photoRepo)
 
-        super.init(nibName: nil, bundle: nil)
+        tableView = UITableView.newAutoLayoutView()
 
-        tableView.delegate = self
-        tableView.dataSource = self.restaurantListDataSource
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,20 +38,14 @@ class RestaurantListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        repo.getAll()
-            .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurants in
-                self.restaurantListDataSource.myPosts = returnedRestaurants
-                self.reloader.reload(self.tableView)
-        }
-
-        self.navigationItem.leftBarButtonItem =
+        navigationItem.leftBarButtonItem =
             UIBarButtonItem(
                 title: "Profile",
                 style: .Plain,
                 target: self,
                 action: Selector("didTapProfileButton:"))
 
-        self.navigationItem.rightBarButtonItem =
+        navigationItem.rightBarButtonItem =
             UIBarButtonItem(
                 title: "Add restaurant",
                 style: .Plain,
@@ -60,17 +53,32 @@ class RestaurantListViewController: UIViewController {
                 action: Selector("didTapAddRestaurantButton:")
         )
 
+        configureSubviews()
+        addSubviews()
+        addConstraints()
+
+        repo.getAll()
+            .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurants in
+                self.restaurantListDataSource.myPosts = returnedRestaurants
+                self.reloader.reload(self.tableView)
+        }
+    }
+
+    // MARK: - View Setup
+    private func configureSubviews() {
+        tableView.delegate = self
+        tableView.dataSource = self.restaurantListDataSource
         tableView.registerClass(
             RestaurantTableViewCell.self,
             forCellReuseIdentifier: String(RestaurantTableViewCell)
         )
-
-        view.addSubview(tableView)
-        applyViewConstraints()
     }
 
-    // MARK: - Constraints
-    func applyViewConstraints() {
+    private func addSubviews() {
+        view.addSubview(tableView)
+    }
+
+    private func addConstraints() {
         tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
 
