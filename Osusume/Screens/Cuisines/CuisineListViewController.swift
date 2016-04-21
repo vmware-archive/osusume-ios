@@ -1,5 +1,3 @@
-import UIKit
-
 class CuisineListViewController: UIViewController {
     // MARK: - Properties
     private let router: Router
@@ -46,8 +44,8 @@ class CuisineListViewController: UIViewController {
         )
         navigationItem.leftBarButtonItem = cancelButton
 
-        configureSubviews()
         addSubviews()
+        configureSubviews()
         addConstraints()
 
         cuisineRepo.getAll()

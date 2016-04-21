@@ -18,12 +18,10 @@ class MyRestaurantListViewController: UIViewController {
         self.reloader = reloader
         self.restaurantListDataSource = RestaurantListDataSource(photoRepo: photoRepo)
         self.getRestaurants = getRestaurants
+
         self.tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
-
-        tableView.dataSource = restaurantListDataSource
-        tableView.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -34,19 +32,33 @@ class MyRestaurantListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerClass(
-            RestaurantTableViewCell.self,
-            forCellReuseIdentifier: String(RestaurantTableViewCell)
-        )
-
-        view.addSubview(tableView)
-        tableView.autoPinEdgesToSuperviewEdges()
+        addSubviews()
+        configureSubviews()
+        addConstraints()
 
         getRestaurants()
             .onSuccess { [unowned self] restaurants in
                 self.restaurantListDataSource.myPosts = restaurants
                 self.reloader.reload(self.tableView)
         }
+    }
+
+    // MARK: - View Setup
+    private func addSubviews() {
+        view.addSubview(tableView)
+    }
+
+    private func configureSubviews() {
+        tableView.dataSource = restaurantListDataSource
+        tableView.delegate = self
+        tableView.registerClass(
+            RestaurantTableViewCell.self,
+            forCellReuseIdentifier: String(RestaurantTableViewCell)
+        )
+    }
+
+    private func addConstraints() {
+        tableView.autoPinEdgesToSuperviewEdges()
     }
 }
 

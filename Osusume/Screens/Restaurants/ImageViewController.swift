@@ -3,28 +3,40 @@ class ImageViewController: UIViewController {
     let url: NSURL?
 
     // MARK: - View Elements
-    let imageView = UIImageView()
+    let imageView: UIImageView
 
     // MARK: - Initializers
     init(url: NSURL) {
         self.url = url
+
+        imageView = UIImageView()
+
         super.init(nibName: nil, bundle: nil)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        imageView.sd_setImageWithURL(url)
-        view.addSubview(imageView)
-        applyViewConstraints()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Constraints
-    func applyViewConstraints() {
+    // MARK: - View Controller Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        addSubviews()
+        configureSubviews()
+        addConstraints()
+
+        imageView.sd_setImageWithURL(url)
+    }
+
+    // MARK: - View Setup
+    private func addSubviews() {
+        view.addSubview(imageView)
+    }
+
+    private func configureSubviews() {}
+
+    private func addConstraints() {
         imageView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
 }

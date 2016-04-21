@@ -53,8 +53,8 @@ class RestaurantListViewController: UIViewController {
                 action: Selector("didTapAddRestaurantButton:")
         )
 
-        configureSubviews()
         addSubviews()
+        configureSubviews()
         addConstraints()
 
         repo.getAll()
@@ -94,14 +94,16 @@ class RestaurantListViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 extension RestaurantListViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(
+        tableView: UITableView,
+        heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
         return 100.0
     }
 
     func tableView(
         tableView: UITableView,
-        didSelectRowAtIndexPath indexPath: NSIndexPath
-        )
+        didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         let id = restaurantListDataSource.myPosts[indexPath.row].id
         router.showRestaurantDetailScreen(id)

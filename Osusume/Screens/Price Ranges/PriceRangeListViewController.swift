@@ -1,8 +1,3 @@
-import Foundation
-import Result
-import BrightFutures
-import PureLayout
-
 class PriceRangeListViewController: UIViewController {
     // MARK: - Properties
     private let priceRangeRepo: PriceRangeRepo
@@ -19,17 +14,11 @@ class PriceRangeListViewController: UIViewController {
     ) {
         self.priceRangeRepo = priceRangeRepo
         self.reloader = reloader
-
         self.priceRanges = []
 
         self.tableView = UITableView.newAutoLayoutView()
-        super.init(nibName: nil, bundle: nil)
 
-        self.tableView.registerClass(
-            UITableViewCell.self,
-            forCellReuseIdentifier: String(UITableViewCell)
-        )
-        self.tableView.dataSource = self
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,14 +31,32 @@ class PriceRangeListViewController: UIViewController {
 
         title = "Select Price Range"
 
-        view.addSubview(tableView)
-        tableView.autoPinEdgesToSuperviewEdges()
+        addSubviews()
+        configureSubviews()
+        addConstraints()
 
         priceRangeRepo.getAll()
             .onSuccess { priceRanges in
                 self.priceRanges = priceRanges
                 self.reloader.reload(self.tableView)
             }
+    }
+
+    // MARK: - View Setup
+    private func addSubviews() {
+        view.addSubview(tableView)
+    }
+
+    private func configureSubviews() {
+        self.tableView.dataSource = self
+        self.tableView.registerClass(
+            UITableViewCell.self,
+            forCellReuseIdentifier: String(UITableViewCell)
+        )
+    }
+
+    private func addConstraints() {
+        tableView.autoPinEdgesToSuperviewEdges()
     }
 }
 

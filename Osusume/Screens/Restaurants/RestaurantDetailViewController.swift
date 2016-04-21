@@ -28,30 +28,10 @@ class RestaurantDetailViewController: UIViewController {
         self.restaurantRepo = restaurantRepo
         self.likeRepo = likeRepo
         self.restaurantId = restaurantId
-        self.tableView = UITableView.newAutoLayoutView()
+
+        tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
-
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.separatorStyle = .None
-        tableView.registerClass(
-            RestaurantDetailTableViewCell.self,
-            forCellReuseIdentifier: String(RestaurantDetailTableViewCell)
-        )
-        tableView.registerClass(
-            UITableViewCell.self,
-            forCellReuseIdentifier: String(UITableViewCell)
-        )
-
-        let editButton = UIBarButtonItem(
-            title: "Edit",
-            style: .Plain,
-            target: self,
-            action: Selector("didTapEditRestaurantButton:")
-        )
-        navigationItem.rightBarButtonItem = editButton
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -62,8 +42,16 @@ class RestaurantDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(tableView)
-        applyViewConstraints()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Edit",
+            style: .Plain,
+            target: self,
+            action: Selector("didTapEditRestaurantButton:")
+        )
+
+        addSubviews()
+        configureSubviews()
+        addConstraints()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -76,16 +64,35 @@ class RestaurantDetailViewController: UIViewController {
         }
     }
 
+    // MARK: - View Setup
+    private func addSubviews() {
+        view.addSubview(tableView)
+    }
+
+    private func configureSubviews() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = .None
+        tableView.registerClass(
+            RestaurantDetailTableViewCell.self,
+            forCellReuseIdentifier: String(RestaurantDetailTableViewCell)
+        )
+        tableView.registerClass(
+            UITableViewCell.self,
+            forCellReuseIdentifier: String(UITableViewCell)
+        )
+    }
+
+    private func addConstraints() {
+        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+    }
+
     // MARK: - Actions
     @objc private func didTapEditRestaurantButton(sender: UIBarButtonItem) {
         if let currentRestaurant = self.restaurant {
             router.showEditRestaurantScreen(currentRestaurant)
         }
-    }
-
-    // MARK: - Constraints
-    func applyViewConstraints() {
-        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
 }
 

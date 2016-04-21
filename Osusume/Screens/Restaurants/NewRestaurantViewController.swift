@@ -5,56 +5,21 @@ import BrightFutures
 import BSImagePicker
 import Photos
 
-protocol NewRestaurantViewControllerPresenterProtocol {
-    func showFindCuisineScreen()
-    func showPriceRangeScreen()
-}
-
 class NewRestaurantViewController: UIViewController {
     // MARK: - Properties
     private unowned let router: Router
     private let restaurantRepo: RestaurantRepo
     private let photoRepo: PhotoRepo
-    private(set) var images = [UIImage]()
+    private(set) var images: [UIImage]
+    private let imagePicker: BSImagePickerViewController
 
-    // MARK: View Elements
-    let scrollView  = UIScrollView.newAutoLayoutView()
-    let contentInScrollView = UIView.newAutoLayoutView()
-    let formViewContainer = UIView.newAutoLayoutView()
-    let formView = NewRestaurantFormView()
-
-    private(set) lazy var imageCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake(100, 100)
-        layout.scrollDirection = .Horizontal
-
-        let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
-        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
-        collectionView.backgroundColor = UIColor.lightGrayColor()
-        collectionView.accessibilityLabel = "Photos to be uploaded"
-
-        return collectionView
-    }()
-
-    private(set) lazy var addPhotoButton: UIButton = {
-        let button = UIButton(type: UIButtonType.System)
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        button.setTitle("Add photos", forState: .Normal)
-        button.addTarget(
-            self,
-            action: Selector("didTapAddPhotoButton:"),
-            forControlEvents: .TouchUpInside
-        )
-        return button
-    }()
-
-    private(set) lazy var imagePicker : BSImagePickerViewController = {
-        let picker = BSImagePickerViewController()
-        return picker
-    }()
+    // MARK: - View Elements
+    let scrollView: UIScrollView
+    let scrollViewContentView: UIView
+    let imageCollectionView: UICollectionView
+    let addPhotoButton: UIButton
+    let formViewContainer: UIView
+    let formView: NewRestaurantFormView
 
     // MARK: - Initializers
     init(
@@ -65,10 +30,20 @@ class NewRestaurantViewController: UIViewController {
         self.router = router
         self.restaurantRepo = restaurantRepo
         self.photoRepo = photoRepo
+        images = [UIImage]()
+        imagePicker = BSImagePickerViewController()
+
+        scrollView = UIScrollView.newAutoLayoutView()
+        scrollViewContentView = UIView.newAutoLayoutView()
+        imageCollectionView = UICollectionView(
+            frame: CGRectZero,
+            collectionViewLayout: NewRestaurantViewController.imageCollectionViewLayout()
+        )
+        addPhotoButton = UIButton(type: UIButtonType.System)
+        formViewContainer = UIView.newAutoLayoutView()
+        formView = NewRestaurantFormView()
 
         super.init(nibName: nil, bundle: nil)
-
-        formView.delegate = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -79,24 +54,63 @@ class NewRestaurantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentInScrollView)
-        contentInScrollView.addSubview(imageCollectionView)
-        contentInScrollView.addSubview(addPhotoButton)
-        contentInScrollView.addSubview(formViewContainer)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Done",
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: Selector("didTapDoneButton:")
+        )
+
+        addSubviews()
+        configureSubviews()
+        addConstraints()
+    }
+
+    // MARK: - View Setup
+    private func addSubviews() {
         formViewContainer.addSubview(formView)
 
+        scrollViewContentView.addSubview(imageCollectionView)
+        scrollViewContentView.addSubview(addPhotoButton)
+        scrollViewContentView.addSubview(formViewContainer)
+        scrollView.addSubview(scrollViewContentView)
+        view.addSubview(scrollView)
+    }
+
+    private func configureSubviews() {
         scrollView.backgroundColor = UIColor.whiteColor()
+
+        imageCollectionView.dataSource = self
+        imageCollectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        imageCollectionView.registerClass(
+            UICollectionViewCell.self,
+            forCellWithReuseIdentifier: "photoCell"
+        )
+        imageCollectionView.backgroundColor = UIColor.lightGrayColor()
+        imageCollectionView.accessibilityLabel = "Photos to be uploaded"
+
+        addPhotoButton.translatesAutoresizingMaskIntoConstraints = false
+        addPhotoButton.setTitle("Add photos", forState: .Normal)
+        addPhotoButton.addTarget(
+            self,
+            action: Selector("didTapAddPhotoButton:"),
+            forControlEvents: .TouchUpInside
+        )
+
+        formView.delegate = self
+    }
+
+    private func addConstraints() {
         scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
 
-        contentInScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-        contentInScrollView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
-        contentInScrollView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
+        scrollViewContentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        scrollViewContentView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
+        scrollViewContentView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
 
         imageCollectionView.autoPinEdgeToSuperviewEdge(.Top, withInset: 20.0)
         imageCollectionView.autoAlignAxisToSuperviewAxis(.Vertical)
         imageCollectionView.autoSetDimension(.Height, toSize: 120.0)
-        imageCollectionView.autoMatchDimension(.Width, toDimension:.Width, ofView: contentInScrollView)
+        imageCollectionView.autoMatchDimension(.Width, toDimension:.Width, ofView: scrollViewContentView)
 
         addPhotoButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageCollectionView)
         addPhotoButton.autoAlignAxis(.Vertical, toSameAxisOfView: imageCollectionView)
@@ -107,15 +121,8 @@ class NewRestaurantViewController: UIViewController {
         formViewContainer.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
         formViewContainer.autoPinEdge(.Top, toEdge: .Bottom, ofView: addPhotoButton, withOffset: 20.0)
         formViewContainer.autoAlignAxis(.Vertical, toSameAxisOfView: formViewContainer)
-        formView.autoPinEdgesToSuperviewEdges()
 
-        let doneButton = UIBarButtonItem(
-            title: "Done",
-            style: UIBarButtonItemStyle.Plain,
-            target: self,
-            action: Selector("didTapDoneButton:")
-        )
-        navigationItem.rightBarButtonItem = doneButton
+        formView.autoPinEdgesToSuperviewEdges()
     }
 
     // MARK: - Actions
@@ -155,6 +162,13 @@ class NewRestaurantViewController: UIViewController {
     }
 
     // MARK: - Private Methods
+    private static func imageCollectionViewLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake(100, 100)
+        layout.scrollDirection = .Horizontal
+        return layout
+    }
+
     private func gatherImageAssets(assets: [PHAsset]) {
         images.removeAll()
 

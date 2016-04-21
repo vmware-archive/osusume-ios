@@ -11,10 +11,10 @@ class EditRestaurantViewController: UIViewController {
     private let id: Int
 
     // MARK: - View Elements
-    let scrollView = UIScrollView.newAutoLayoutView()
-    let contentInScrollView = UIView.newAutoLayoutView()
-    let formViewContainer = UIView.newAutoLayoutView()
-    var formView: EditRestaurantFormView!
+    let scrollView: UIScrollView
+    let contentInScrollView: UIView
+    let formViewContainer: UIView
+    let formView: EditRestaurantFormView
 
     // MARK: - Initializers
     init(
@@ -27,6 +27,11 @@ class EditRestaurantViewController: UIViewController {
         self.restaurant = restaurant
         self.id = restaurant.id
 
+        scrollView = UIScrollView.newAutoLayoutView()
+        contentInScrollView = UIView.newAutoLayoutView()
+        formViewContainer = UIView.newAutoLayoutView()
+        formView = EditRestaurantFormView(restaurant: restaurant)
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -38,14 +43,31 @@ class EditRestaurantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentInScrollView)
-        contentInScrollView.addSubview(formViewContainer)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Update",
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: Selector("didTapUpdateButton:")
+        )
 
-        formView = EditRestaurantFormView(restaurant: restaurant)
+        addSubviews()
+        configureSubviews()
+        addConstraints()
+    }
+
+    // MARK: - View Setup
+    private func addSubviews() {
         formViewContainer.addSubview(formView)
+        contentInScrollView.addSubview(formViewContainer)
+        scrollView.addSubview(contentInScrollView)
+        view.addSubview(scrollView)
+    }
 
+    private func configureSubviews() {
         scrollView.backgroundColor = UIColor.whiteColor()
+    }
+
+    private func addConstraints() {
         scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
 
         contentInScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
@@ -57,9 +79,6 @@ class EditRestaurantViewController: UIViewController {
         formViewContainer.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
 
         formView.autoPinEdgesToSuperviewEdges()
-
-        let updateButton = UIBarButtonItem(title: "Update", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("didTapUpdateButton:"))
-        navigationItem.rightBarButtonItem = updateButton
     }
 
     // MARK: - Actions

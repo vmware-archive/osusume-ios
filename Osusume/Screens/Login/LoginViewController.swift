@@ -35,8 +35,8 @@ class LoginViewController: UIViewController {
 
         view.backgroundColor = UIColor.whiteColor()
 
-        configureSubviews()
         addSubviews()
+        configureSubviews()
         addConstraints()
     }
 

@@ -1,4 +1,3 @@
-import Foundation
 import BrightFutures
 
 class ProfileViewController: UIViewController {
@@ -8,18 +7,8 @@ class ProfileViewController: UIViewController {
     private let sessionRepo: SessionRepo
     private let reloader: Reloader
     private let photoRepo: PhotoRepo
-    private(set) var currentPage: Int = 0
-    private lazy var viewControllers: [UIViewController] = {
-        let viewControllers = [
-            MyRestaurantListViewController(
-                reloader: self.reloader,
-                photoRepo: self.photoRepo,
-                getRestaurants: self.userRepo.getMyPosts
-            )
-        ]
-
-        return viewControllers
-    }()
+    private(set) var currentPage: Int
+    private var viewControllers: [UIViewController]
 
     // MARK: - View Elements
     let userInfoView: UIView
@@ -38,17 +27,23 @@ class ProfileViewController: UIViewController {
         self.router = router
         self.userRepo = userRepo
         self.sessionRepo = sessionRepo
-        self.reloader = reloader
         self.photoRepo = photoRepo
+        self.reloader = reloader
+        currentPage = 0
+        viewControllers = [
+            MyRestaurantListViewController(
+                reloader: self.reloader,
+                photoRepo: self.photoRepo,
+                getRestaurants: self.userRepo.getMyPosts
+            )
+        ]
 
         userInfoView = UIView.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
-
         logoutButton = UIButton(type: UIButtonType.System)
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
-
-        myContentSegmentedControl = UISegmentedControl(items:
-            ["My Posts", "My Likes"]
+        myContentSegmentedControl = UISegmentedControl(
+            items: ["My Posts", "My Likes"]
         )
         pageViewController = UIPageViewController(
             transitionStyle: .Scroll,
@@ -68,6 +63,37 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         title = "My Profile"
+        view.backgroundColor = UIColor.whiteColor()
+
+        addSubviews()
+        configureSubviews()
+        addConstraints()
+
+        userRepo.fetchCurrentUserName()
+            .onSuccess { [unowned self] userName in
+                self.userNameLabel.text = userName
+            }
+    }
+
+    // MARK: - View Setup
+    private func addSubviews() {
+        userInfoView.addSubview(userNameLabel)
+        userInfoView.addSubview(logoutButton)
+        userInfoView.addSubview(myContentSegmentedControl)
+
+        view.addSubview(userInfoView)
+        view.addSubview(pageViewController.view)
+    }
+
+    private func configureSubviews() {
+        logoutButton.setTitleColor(.whiteColor(), forState: .Normal)
+        logoutButton.backgroundColor = UIColor.grayColor()
+        logoutButton.setTitle("Logout", forState: .Normal)
+        logoutButton.addTarget(
+            self,
+            action: Selector("didTapLogoutButton:"),
+            forControlEvents: .TouchUpInside
+        )
 
         myContentSegmentedControl.addTarget(
             self,
@@ -82,24 +108,9 @@ class ProfileViewController: UIViewController {
             animated: true,
             completion: nil
         )
+    }
 
-        logoutButton.setTitleColor(.whiteColor(), forState: .Normal)
-        logoutButton.backgroundColor = UIColor.grayColor()
-        logoutButton.setTitle("Logout", forState: .Normal)
-        logoutButton.addTarget(
-            self,
-            action: Selector("didTapLogoutButton:"),
-            forControlEvents: .TouchUpInside
-        )
-
-        userInfoView.addSubview(userNameLabel)
-        userInfoView.addSubview(logoutButton)
-        userInfoView.addSubview(myContentSegmentedControl)
-        view.addSubview(userInfoView)
-        view.addSubview(pageViewController.view)
-
-        view.backgroundColor = UIColor.whiteColor()
-
+    private func addConstraints() {
         userInfoView.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
         userInfoView.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
         userInfoView.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
@@ -123,11 +134,6 @@ class ProfileViewController: UIViewController {
         pageViewController.view.autoPinEdgeToSuperviewEdge(.Left)
         pageViewController.view.autoPinEdgeToSuperviewEdge(.Right)
         pageViewController.view.autoPinEdgeToSuperviewEdge(.Bottom)
-
-        userRepo.fetchCurrentUserName()
-            .onSuccess { [unowned self] userName in
-                self.userNameLabel.text = userName
-            }
     }
 
     // MARK: - Actions
