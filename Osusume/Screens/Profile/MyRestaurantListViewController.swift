@@ -32,6 +32,7 @@ class MyRestaurantListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureNavigationBar()
         addSubviews()
         configureSubviews()
         addConstraints()
@@ -44,6 +45,8 @@ class MyRestaurantListViewController: UIViewController {
     }
 
     // MARK: - View Setup
+    private func configureNavigationBar() {}
+
     private func addSubviews() {
         view.addSubview(tableView)
     }

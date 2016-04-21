@@ -37,13 +37,7 @@ class CuisineListViewController: UIViewController {
 
         title = "Find Cuisine"
 
-        let cancelButton: UIBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: UIBarButtonSystemItem.Cancel,
-            target: self,
-            action: Selector("didTapCancelButton:")
-        )
-        navigationItem.leftBarButtonItem = cancelButton
-
+        configureNavigationBar()
         addSubviews()
         configureSubviews()
         addConstraints()
@@ -57,6 +51,14 @@ class CuisineListViewController: UIViewController {
     }
 
     // MARK: - View Setup
+    private func configureNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonSystemItem.Cancel,
+            target: self,
+            action: Selector("didTapCancelButton:")
+        )
+    }
+
     private func addSubviews() {
         view.addSubview(searchBar)
         view.addSubview(tableView)

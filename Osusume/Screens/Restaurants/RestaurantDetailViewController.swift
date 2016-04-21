@@ -42,13 +42,7 @@ class RestaurantDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Edit",
-            style: .Plain,
-            target: self,
-            action: Selector("didTapEditRestaurantButton:")
-        )
-
+        configureNavigationBar()
         addSubviews()
         configureSubviews()
         addConstraints()
@@ -65,6 +59,15 @@ class RestaurantDetailViewController: UIViewController {
     }
 
     // MARK: - View Setup
+    private func configureNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Edit",
+            style: .Plain,
+            target: self,
+            action: Selector("didTapEditRestaurantButton:")
+        )
+    }
+
     private func addSubviews() {
         view.addSubview(tableView)
     }

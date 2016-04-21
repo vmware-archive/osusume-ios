@@ -35,6 +35,7 @@ class LoginViewController: UIViewController {
 
         view.backgroundColor = UIColor.whiteColor()
 
+        configureNavigationBar()
         addSubviews()
         configureSubviews()
         addConstraints()
@@ -47,6 +48,8 @@ class LoginViewController: UIViewController {
     }
 
     // MARK: - View Setup
+    private func configureNavigationBar() {}
+
     private func addSubviews() {
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)

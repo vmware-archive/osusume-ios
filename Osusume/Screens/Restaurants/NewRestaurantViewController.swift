@@ -54,19 +54,22 @@ class NewRestaurantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Done",
-            style: UIBarButtonItemStyle.Plain,
-            target: self,
-            action: Selector("didTapDoneButton:")
-        )
-
+        configureNavigationBar()
         addSubviews()
         configureSubviews()
         addConstraints()
     }
 
     // MARK: - View Setup
+    private func configureNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Done",
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: Selector("didTapDoneButton:")
+        )
+    }
+
     private func addSubviews() {
         formViewContainer.addSubview(formView)
 

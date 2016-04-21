@@ -43,19 +43,22 @@ class EditRestaurantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Update",
-            style: UIBarButtonItemStyle.Plain,
-            target: self,
-            action: Selector("didTapUpdateButton:")
-        )
-
+        configureNavigationBar()
         addSubviews()
         configureSubviews()
         addConstraints()
     }
 
     // MARK: - View Setup
+    private func configureNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Update",
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: Selector("didTapUpdateButton:")
+        )
+    }
+
     private func addSubviews() {
         formViewContainer.addSubview(formView)
         contentInScrollView.addSubview(formViewContainer)

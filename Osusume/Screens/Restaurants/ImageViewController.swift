@@ -22,6 +22,7 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureNavigationBar()
         addSubviews()
         configureSubviews()
         addConstraints()
@@ -30,6 +31,8 @@ class ImageViewController: UIViewController {
     }
 
     // MARK: - View Setup
+    private func configureNavigationBar() {}
+
     private func addSubviews() {
         view.addSubview(imageView)
     }

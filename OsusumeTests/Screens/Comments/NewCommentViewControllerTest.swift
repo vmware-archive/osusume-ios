@@ -17,7 +17,7 @@ class NewCommentViewControllerTest: XCTestCase {
         )
         newCommentVC.view.setNeedsLayout()
 
-        XCTAssertEqual("Add a comment", newCommentVC.navigationItem.title)
+        XCTAssertEqual("Add a comment", newCommentVC.title)
     }
 
     func test_displayingPlaceholderText() {

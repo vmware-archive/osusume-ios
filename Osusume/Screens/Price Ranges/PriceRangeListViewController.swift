@@ -31,6 +31,7 @@ class PriceRangeListViewController: UIViewController {
 
         title = "Select Price Range"
 
+        configureNavigationBar()
         addSubviews()
         configureSubviews()
         addConstraints()
@@ -43,6 +44,8 @@ class PriceRangeListViewController: UIViewController {
     }
 
     // MARK: - View Setup
+    private func configureNavigationBar() {}
+
     private func addSubviews() {
         view.addSubview(tableView)
     }

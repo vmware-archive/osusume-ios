@@ -31,9 +31,18 @@ class NewCommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Add a comment"
+        automaticallyAdjustsScrollViewInsets = false
         view.backgroundColor = UIColor.cyanColor()
 
-        navigationItem.title = "Add a comment"
+        configureNavigationBar()
+        configureSubviews()
+        addSubviews()
+        addConstraints()
+    }
+
+    // MARK: - View Setup
+    private func configureNavigationBar() {
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(
                 title: "Save",
@@ -41,15 +50,8 @@ class NewCommentViewController: UIViewController {
                 target: self,
                 action: Selector("didTapSaveButton:")
         )
-
-        automaticallyAdjustsScrollViewInsets = false
-
-        configureSubviews()
-        addSubviews()
-        addConstraints()
     }
 
-    // MARK: - View Setup
     private func addSubviews() {
         view.addSubview(commentTextView)
     }

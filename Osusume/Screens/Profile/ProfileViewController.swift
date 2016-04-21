@@ -65,6 +65,7 @@ class ProfileViewController: UIViewController {
         title = "My Profile"
         view.backgroundColor = UIColor.whiteColor()
 
+        configureNavigationBar()
         addSubviews()
         configureSubviews()
         addConstraints()
@@ -76,6 +77,8 @@ class ProfileViewController: UIViewController {
     }
 
     // MARK: - View Setup
+    private func configureNavigationBar() {}
+
     private func addSubviews() {
         userInfoView.addSubview(userNameLabel)
         userInfoView.addSubview(logoutButton)
