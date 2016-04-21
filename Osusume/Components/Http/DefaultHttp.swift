@@ -14,7 +14,7 @@ struct DefaultHttp: Http {
     {
         let promise = Promise<AnyObject, RepoError>()
 
-        getRequest(path, headers: headers).responseJSON { result in
+        request("GET", path: path, headers: headers).responseJSON { result in
             switch result {
             case .Success:
                 if let value = result.value {
@@ -38,7 +38,7 @@ struct DefaultHttp: Http {
     {
         let promise = Promise<[String: AnyObject], RepoError>()
 
-        postRequest("POST", path: path, headers: headers, parameters: parameters).responseJSON { result in
+        request("POST", path: path, headers: headers, parameters: parameters).responseJSON { result in
             switch result {
                 case .Success:
                     if let value = result.value as? [String: AnyObject] {
@@ -62,7 +62,7 @@ struct DefaultHttp: Http {
     {
         let promise = Promise<[String: AnyObject], RepoError>()
 
-        postRequest("PATCH", path: path, headers: headers, parameters: parameters).responseJSON { result in
+        request("PATCH", path: path, headers: headers, parameters: parameters).responseJSON { result in
             switch result {
                 case .Success:
                     promise.success(["status": "OK"])
@@ -75,24 +75,7 @@ struct DefaultHttp: Http {
     }
 
     // MARK: - Private Methods
-    private func getRequest(
-        path: String,
-        headers: [String: String],
-        parameters: [String: AnyObject] = [:]
-        ) -> NSURLRequest
-    {
-        let URL = NSURL(string: "\(basePath)\(path)")!
-        let mutableURLRequest = NSMutableURLRequest(URL: URL)
-        mutableURLRequest.HTTPMethod = "GET"
-
-        if let bearerToken = headers["Authorization"] {
-            mutableURLRequest.setValue(bearerToken, forHTTPHeaderField: "Authorization")
-        }
-
-        return mutableURLRequest.copy() as! NSURLRequest
-    }
-
-    private func postRequest(
+    private func request(
         httpMethod: String,
         path: String,
         headers: [String: String],
@@ -107,14 +90,14 @@ struct DefaultHttp: Http {
             mutableURLRequest.setValue(bearerToken, forHTTPHeaderField: "Authorization")
         }
 
-        do {
-            mutableURLRequest.HTTPBody = try NSJSONSerialization.dataWithJSONObject(
+        if (httpMethod == "POST" || httpMethod == "PATCH") {
+            if let body = try? NSJSONSerialization.dataWithJSONObject(
                 parameters,
-                options: NSJSONWritingOptions()
-            )
-            mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        } catch {
-            // No-op
+                options: NSJSONWritingOptions())
+            {
+                mutableURLRequest.HTTPBody = body
+                mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            }
         }
 
         return mutableURLRequest.copy() as! NSURLRequest
