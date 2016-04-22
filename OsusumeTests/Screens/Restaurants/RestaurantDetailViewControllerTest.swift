@@ -39,6 +39,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             author: "Danny",
             liked: false,
             numberOfLikes: 0,
+            priceRange: "",
             createdAt: NSDate(timeIntervalSince1970: 0),
             photoUrls: [NSURL(string: "my-awesome-url")!],
             comments: [

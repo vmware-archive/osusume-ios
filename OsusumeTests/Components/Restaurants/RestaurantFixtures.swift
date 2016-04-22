@@ -29,6 +29,7 @@ struct RestaurantFixtures {
             author: "",
             liked: liked,
             numberOfLikes: numberOfLikes,
+            priceRange: "",
             createdAt: NSDate(),
             photoUrls: [
                 NSURL(string: photoUrl)!

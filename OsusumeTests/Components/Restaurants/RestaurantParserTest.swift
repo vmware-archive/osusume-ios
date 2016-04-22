@@ -217,6 +217,22 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.cuisine).to(equal(expectedCuisine))
     }
 
+    func test_parse_handlesPriceRange() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "id": 1232,
+            "name": "liked restaurant",
+            "price_range": "0~999"
+        ]
+
+
+        let restaurant = restaurantParser.parseSingle(json).value!
+
+
+        expect(restaurant.priceRange).to(equal("0~999"))
+    }
+
     func test_parsingASingleRestaurant_withoutComments() {
         let restaurantParser = RestaurantParser()
 

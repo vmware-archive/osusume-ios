@@ -29,6 +29,7 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
                 author: "Danny",
                 liked: true,
                 numberOfLikes: 2,
+                priceRange: "",
                 createdAt: NSDate(timeIntervalSince1970: 0),
                 photoUrls: [NSURL(string: "my-awesome-url")!],
                 comments: []
