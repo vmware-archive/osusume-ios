@@ -16,13 +16,16 @@ class FakePriceRangeListParser: DataListParser {
 }
 
 class NetworkPriceRangeRepoTest: XCTestCase {
-    let fakeHttp = FakeHttp()
-    let fakePriceRangeListParser = FakePriceRangeListParser()
+    var fakeHttp: FakeHttp!
+    var fakePriceRangeListParser: FakePriceRangeListParser!
     var priceRangeRepo: PriceRangeRepo!
-    let promise = Promise<AnyObject, RepoError>()
+    var httpPromise: Promise<AnyObject, RepoError>!
 
     override func setUp() {
-        fakeHttp.get_returnValue = promise.future
+        fakeHttp = FakeHttp()
+        fakePriceRangeListParser = FakePriceRangeListParser()
+        httpPromise = Promise<AnyObject, RepoError>()
+        fakeHttp.get_returnValue = httpPromise!.future
 
         priceRangeRepo = NetworkPriceRangeRepo(
             http: fakeHttp,
@@ -40,19 +43,10 @@ class NetworkPriceRangeRepoTest: XCTestCase {
     func test_getAll_parsesHttpOutputJson() {
         priceRangeRepo.getAll()
 
-        let httpReturnValue = [
-            [
-                "id" : 1,
-                "range" : "Price Range #1"
-            ],
-            [
-                "id" : 2,
-                "range" : "Price Range #2"
-            ]
-        ]
-        promise.success(httpReturnValue)
 
-        NSRunLoop.osu_advance()
+        let httpReturnValue = [["id" : 1,"range" : "Price Range #1"]]
+        httpPromise.success(httpReturnValue)
+        NSRunLoop.osu_advance(by: 2)
 
         expect(self.fakePriceRangeListParser.parse_arg).to(equal(httpReturnValue))
     }
@@ -64,7 +58,7 @@ class NetworkPriceRangeRepoTest: XCTestCase {
             PriceRange(id: 2, range: "Price Range #2")
         ]
         fakePriceRangeListParser.parse_returnValue = Result.Success(expectedPriceRangeList)
-        promise.success([[:]])
+        httpPromise.success([[:]])
 
 
         NSRunLoop.osu_advance()

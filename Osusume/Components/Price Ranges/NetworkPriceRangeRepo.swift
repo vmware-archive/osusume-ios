@@ -9,7 +9,6 @@ struct NetworkPriceRangeRepo<P: DataListParser where P.ParsedObject == [PriceRan
     let parser: P
 
     func getAll() -> Future<[PriceRange], RepoError> {
-
         return http
             .get("/priceranges", headers: [:])
             .mapError { _ in
