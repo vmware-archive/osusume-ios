@@ -4,7 +4,7 @@ class PriceRangeListViewController: UIViewController {
     private let reloader: Reloader
     private var priceRanges: [PriceRange]
     private let router: Router
-    private let priceRangeSelection: PriceRangeSelectionProtocol
+    private let priceRangeSelection: PriceRangeSelectionDelegate
 
     // MARK: - View Elements
     let tableView: UITableView
@@ -14,7 +14,7 @@ class PriceRangeListViewController: UIViewController {
         priceRangeRepo: PriceRangeRepo,
         reloader: Reloader,
         router: Router,
-        priceRangeSelection: PriceRangeSelectionProtocol
+        priceRangeSelection: PriceRangeSelectionDelegate
     ) {
         self.priceRangeRepo = priceRangeRepo
         self.reloader = reloader

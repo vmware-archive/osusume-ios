@@ -4,7 +4,7 @@ import XCTest
 import Nimble
 @testable import Osusume
 
-class FakePriceRangeSelectionDelegate: PriceRangeSelectionProtocol {
+class FakePriceRangeSelectionDelegate: PriceRangeSelectionDelegate {
     var priceRangeSelected_arg = ""
     func priceRangeSelected(priceRange: String) {
         priceRangeSelected_arg = priceRange

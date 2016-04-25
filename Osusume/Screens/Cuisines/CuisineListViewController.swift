@@ -4,7 +4,7 @@ class CuisineListViewController: UIViewController {
     private let cuisineRepo: CuisineRepo
     private let textSearch: TextSearch
     private let reloader: Reloader
-    private let cuisineSelectionDelegate: CuisineSelectionProtocol
+    private let cuisineSelectionDelegate: CuisineSelectionDelegate
 
     private(set) var filteredCuisineList: [Cuisine]
     private(set) var fullCuisineList: [Cuisine]
@@ -19,7 +19,7 @@ class CuisineListViewController: UIViewController {
         cuisineRepo: CuisineRepo,
         textSearch: TextSearch,
         reloader: Reloader,
-        delegate: CuisineSelectionProtocol)
+        delegate: CuisineSelectionDelegate)
     {
         self.router = router
         self.cuisineRepo = cuisineRepo

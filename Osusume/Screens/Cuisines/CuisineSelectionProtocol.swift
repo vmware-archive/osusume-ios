@@ -1,3 +1,3 @@
-protocol CuisineSelectionProtocol {
+protocol CuisineSelectionDelegate {
     func cuisineSelected(cuisine: Cuisine)
 }

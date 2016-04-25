@@ -236,14 +236,14 @@ class NewRestaurantFormView: UIView {
     }
 }
 
-extension NewRestaurantFormView: CuisineSelectionProtocol {
+extension NewRestaurantFormView: CuisineSelectionDelegate {
     func cuisineSelected(cuisine: Cuisine) {
         cuisineTypeValueLabel.text = cuisine.name
         self.cuisine = cuisine
     }
 }
 
-extension NewRestaurantFormView: PriceRangeSelectionProtocol {
+extension NewRestaurantFormView: PriceRangeSelectionDelegate {
     func priceRangeSelected(priceRange: String) {
         priceRangeValueLabel.text = priceRange
     }
