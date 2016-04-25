@@ -6,12 +6,20 @@ class NewRestaurantFormView: UIView {
 
     // MARK: - View Elements
 
-    let nameTextField: UITextField
     let nameLabel: UILabel
-    let addressTextField: UITextField
+    let nameTextField: UITextField
+
     let addressLabel: UILabel
+    let addressTextField: UITextField
+
+    let cuisineTypeHeaderLabel: UILabel
     let cuisineTypeValueLabel: UILabel
-    let cuisineTypeLabel: UILabel
+    let findCuisineButton: UIButton
+
+    let priceRangeHeaderLabel: UILabel
+    let priceRangeValueLabel: UILabel
+    let priceRangeButton: UIButton
+
     let offersEnglishMenuLabel: UILabel
     let offersEnglishMenuSwitch: UISwitch
     let walkInsOkLabel: UILabel
@@ -20,27 +28,42 @@ class NewRestaurantFormView: UIView {
     let acceptsCreditCardsSwitch: UISwitch
     let notesLabel: UILabel
     let notesTextField: UITextView
-    let findCuisineButton: UIButton
-    let priceRangeButton: UIButton
 
     // MARK: - Initializers
     init() {
-        nameTextField = UITextField.newAutoLayoutView()
-        nameTextField.borderStyle = .Line
-
         nameLabel = UILabel.newAutoLayoutView()
         nameLabel.text = "Restaurant Name"
 
-        addressTextField = UITextField.newAutoLayoutView()
-        addressTextField.borderStyle = .Line
+        nameTextField = UITextField.newAutoLayoutView()
+        nameTextField.borderStyle = .Line
 
         addressLabel = UILabel.newAutoLayoutView()
         addressLabel.text = "Address"
 
+        addressTextField = UITextField.newAutoLayoutView()
+        addressTextField.borderStyle = .Line
+
+        cuisineTypeHeaderLabel = UILabel.newAutoLayoutView()
+        cuisineTypeHeaderLabel.text = "Cuisine Type"
+
         cuisineTypeValueLabel = UILabel.newAutoLayoutView()
 
-        cuisineTypeLabel = UILabel.newAutoLayoutView()
-        cuisineTypeLabel.text = "Cuisine Type"
+        findCuisineButton = UIButton(type: .System)
+        findCuisineButton.translatesAutoresizingMaskIntoConstraints = false
+        findCuisineButton.setTitle("Find Cuisine", forState: .Normal)
+        findCuisineButton.setTitleColor(findCuisineButton.tintColor, forState: .Normal)
+        findCuisineButton.backgroundColor = UIColor.clearColor()
+
+        priceRangeHeaderLabel = UILabel.newAutoLayoutView()
+        priceRangeHeaderLabel.text = "Price Range"
+
+        priceRangeValueLabel = UILabel.newAutoLayoutView()
+
+        priceRangeButton = UIButton(type: .System)
+        priceRangeButton.translatesAutoresizingMaskIntoConstraints = false
+        priceRangeButton.setTitle("Price Range", forState: .Normal)
+        priceRangeButton.setTitleColor(priceRangeButton.tintColor, forState: .Normal)
+        priceRangeButton.backgroundColor = UIColor.clearColor()
 
         offersEnglishMenuLabel = UILabel.newAutoLayoutView()
         offersEnglishMenuLabel.text = "Offers English Menu"
@@ -64,34 +87,28 @@ class NewRestaurantFormView: UIView {
         notesTextField.layer.borderWidth = 1.0
         notesTextField.layer.borderColor = UIColor.darkGrayColor().CGColor
 
-        findCuisineButton = UIButton(type: .System)
-        findCuisineButton.translatesAutoresizingMaskIntoConstraints = false
-        findCuisineButton.setTitle("Find Cuisine", forState: .Normal)
-        findCuisineButton.setTitleColor(findCuisineButton.tintColor, forState: .Normal)
-        findCuisineButton.backgroundColor = UIColor.clearColor()
-
-        priceRangeButton = UIButton(type: .System)
-        priceRangeButton.translatesAutoresizingMaskIntoConstraints = false
-        priceRangeButton.setTitle("Price Range", forState: .Normal)
-        priceRangeButton.setTitleColor(priceRangeButton.tintColor, forState: .Normal)
-        priceRangeButton.backgroundColor = UIColor.clearColor()
-
         super.init(frame: CGRect())
 
         self.addSubview(nameLabel)
         self.addSubview(nameTextField)
         self.addSubview(addressLabel)
         self.addSubview(addressTextField)
-        self.addSubview(cuisineTypeLabel)
+
+        self.addSubview(cuisineTypeHeaderLabel)
         self.addSubview(cuisineTypeValueLabel)
         self.addSubview(findCuisineButton)
+
+        self.addSubview(priceRangeHeaderLabel)
+        self.addSubview(priceRangeValueLabel)
         self.addSubview(priceRangeButton)
+
         self.addSubview(offersEnglishMenuLabel)
         self.addSubview(offersEnglishMenuSwitch)
         self.addSubview(walkInsOkLabel)
         self.addSubview(walkInsOkSwitch)
         self.addSubview(acceptsCreditCardsLabel)
         self.addSubview(acceptsCreditCardsSwitch)
+
         self.addSubview(notesLabel)
         self.addSubview(notesTextField)
 
@@ -131,18 +148,26 @@ class NewRestaurantFormView: UIView {
         addressTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
         addressTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
 
-        cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        cuisineTypeLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-        cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressTextField)
+        cuisineTypeHeaderLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        cuisineTypeHeaderLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+        cuisineTypeHeaderLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressTextField)
         cuisineTypeValueLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         cuisineTypeValueLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
-        cuisineTypeValueLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
+        cuisineTypeValueLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeHeaderLabel)
         cuisineTypeValueLabel.autoSetDimension(.Height, toSize: 25.0)
 
         findCuisineButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeValueLabel)
         findCuisineButton.autoAlignAxisToSuperviewAxis(.Vertical)
 
-        priceRangeButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: findCuisineButton, withOffset: 8.0)
+        priceRangeHeaderLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        priceRangeHeaderLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+        priceRangeHeaderLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: findCuisineButton)
+        priceRangeValueLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        priceRangeValueLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameLabel)
+        priceRangeValueLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: priceRangeHeaderLabel)
+        priceRangeValueLabel.autoSetDimension(.Height, toSize: 25.0)
+
+        priceRangeButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: priceRangeValueLabel)
         priceRangeButton.autoAlignAxisToSuperviewAxis(.Vertical)
 
         offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: priceRangeButton, withOffset: 8.0)
@@ -173,7 +198,6 @@ class NewRestaurantFormView: UIView {
     }
 
     // MARK: - Getters
-
     func getNameText() -> String? {
         return nameTextField.text
     }
@@ -216,5 +240,11 @@ extension NewRestaurantFormView: CuisineSelectionProtocol {
     func cuisineSelected(cuisine: Cuisine) {
         cuisineTypeValueLabel.text = cuisine.name
         self.cuisine = cuisine
+    }
+}
+
+extension NewRestaurantFormView: PriceRangeSelectionProtocol {
+    func priceRangeSelected(priceRange: String) {
+        priceRangeValueLabel.text = priceRange
     }
 }

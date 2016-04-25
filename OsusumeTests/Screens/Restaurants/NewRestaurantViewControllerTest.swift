@@ -58,6 +58,16 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeRouter.showPriceRangeListScreen_wasCalled).to(beTrue())
     }
 
+    func test_selectPriceRange_populatesPriceRangeTextfield() {
+        let selectedPriceRange = PriceRange(id: 1, range: "0~999")
+
+
+        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange.range)
+
+
+        expect(self.newRestaurantVC.formView.priceRangeValueLabel.text).to(equal("0~999"))
+    }
+
     func test_tappingDoneButton_savesRestaurant() {
         newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
         newRestaurantVC.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"

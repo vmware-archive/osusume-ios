@@ -58,6 +58,7 @@
 		AE73E02D1CA11BC200738787 /* RestaurantListRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE73E02C1CA11BC200738787 /* RestaurantListRepo.swift */; };
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */; };
+		AE9E6F3E1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6F3D1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift */; };
 		AE9F01E41C9BE50300163045 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */; };
 		AE9F01E51C9BE51600163045 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
 		AE9F01E61C9BE53000163045 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
@@ -228,6 +229,7 @@
 		AE73E02C1CA11BC200738787 /* RestaurantListRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListRepo.swift; sourceTree = "<group>"; };
 		AE7CDA551C69835300A2D6B3 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewCell.swift; sourceTree = "<group>"; };
+		AE9E6F3D1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeSelectionProtocol.swift; sourceTree = "<group>"; };
 		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		AEACDB741C98FDF90092AEF6 /* CuisineListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListParser.swift; sourceTree = "<group>"; };
 		AEACDB781C9900020092AEF6 /* Cuisine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cuisine.swift; sourceTree = "<group>"; };
@@ -532,6 +534,7 @@
 			isa = PBXGroup;
 			children = (
 				AEC821181CC479DC00C9B864 /* PriceRangeListViewController.swift */,
+				AE9E6F3D1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift */,
 			);
 			path = "Price Ranges";
 			sourceTree = "<group>";
@@ -1189,6 +1192,7 @@
 				DE99C6D52B330617543375A2 /* PhotoRepo.swift in Sources */,
 				AE6AECA81CC0C8FD000171A3 /* PriceRangeListParser.swift in Sources */,
 				AEC821191CC479DC00C9B864 /* PriceRangeListViewController.swift in Sources */,
+				AE9E6F3E1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift in Sources */,
 				AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */,
 				DE99C09C8D59A4023CBD6A14 /* RandomUUIDProvider.swift in Sources */,
 				AE3ED1851C850EF20097DC10 /* Reloadable.swift in Sources */,

@@ -172,13 +172,16 @@ class NavigationRouter: Router {
     }
 
     func showPriceRangeListScreen() {
-        let priceRangeNavController = UINavigationController()
+        let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController
+
         let priceRangeListViewController = PriceRangeListViewController(
             priceRangeRepo: priceRangeRepo,
             reloader: DefaultReloader(),
-            router: self
+            router: self,
+            priceRangeSelection: newRestaurantVC!.formView
         )
 
+        let priceRangeNavController = UINavigationController()
         priceRangeNavController.setViewControllers(
             [priceRangeListViewController],
             animated: false

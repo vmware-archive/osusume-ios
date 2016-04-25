@@ -4,6 +4,7 @@ class PriceRangeListViewController: UIViewController {
     private let reloader: Reloader
     private var priceRanges: [PriceRange]
     private let router: Router
+    private let priceRangeSelection: PriceRangeSelectionProtocol
 
     // MARK: - View Elements
     let tableView: UITableView
@@ -12,12 +13,14 @@ class PriceRangeListViewController: UIViewController {
     init(
         priceRangeRepo: PriceRangeRepo,
         reloader: Reloader,
-        router: Router
+        router: Router,
+        priceRangeSelection: PriceRangeSelectionProtocol
     ) {
         self.priceRangeRepo = priceRangeRepo
         self.reloader = reloader
         self.priceRanges = []
         self.router = router
+        self.priceRangeSelection = priceRangeSelection
 
         self.tableView = UITableView.newAutoLayoutView()
 
@@ -61,6 +64,7 @@ class PriceRangeListViewController: UIViewController {
 
     private func configureSubviews() {
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         self.tableView.registerClass(
             UITableViewCell.self,
             forCellReuseIdentifier: String(UITableViewCell)
@@ -94,5 +98,19 @@ extension PriceRangeListViewController: UITableViewDataSource {
         cell.textLabel?.text = priceRanges[indexPath.row].range
 
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension PriceRangeListViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedCell = self.tableView(
+            self.tableView,
+            cellForRowAtIndexPath: indexPath
+        )
+
+        let selectedPriceRange = selectedCell.textLabel?.text
+        priceRangeSelection.priceRangeSelected(selectedPriceRange!)
+        router.dismissPresentedNavigationController()
     }
 }

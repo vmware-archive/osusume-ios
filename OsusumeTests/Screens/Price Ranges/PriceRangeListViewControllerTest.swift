@@ -4,6 +4,13 @@ import XCTest
 import Nimble
 @testable import Osusume
 
+class FakePriceRangeSelectionDelegate: PriceRangeSelectionProtocol {
+    var priceRangeSelected_arg = ""
+    func priceRangeSelected(priceRange: String) {
+        priceRangeSelected_arg = priceRange
+    }
+}
+
 class FakePriceRangeRepo: PriceRangeRepo {
     var getAll_wasCalled = false
     var getAll_returnValue = Future<[PriceRange], RepoError>()
@@ -17,6 +24,7 @@ class PriceRangeListViewControllerTest: XCTestCase {
     let fakeReloader = FakeReloader()
     let fakeRouter = FakeRouter()
     var fakePriceRangeRepo = FakePriceRangeRepo()
+    var fakePriceRangeSelectionDelegate = FakePriceRangeSelectionDelegate()
     var priceRangeListVC: PriceRangeListViewController!
     var returnPriceRangeListPromise: Promise<[PriceRange], RepoError>!
 
@@ -29,7 +37,8 @@ class PriceRangeListViewControllerTest: XCTestCase {
         priceRangeListVC = PriceRangeListViewController(
             priceRangeRepo: fakePriceRangeRepo,
             reloader: fakeReloader,
-            router: fakeRouter
+            router: fakeRouter,
+            priceRangeSelection: fakePriceRangeSelectionDelegate
         )
         priceRangeListVC.view.setNeedsLayout()
     }
@@ -102,5 +111,21 @@ class PriceRangeListViewControllerTest: XCTestCase {
 
 
         expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
+    }
+
+    func test_tappingPriceRangeCell_passesSelectedPriceRangeToDelegate() {
+        let priceRangeList = [PriceRange(id: 0, range: "0~999")]
+        returnPriceRangeListPromise.success(priceRangeList)
+        waitForFutureToComplete(returnPriceRangeListPromise.future)
+
+
+        priceRangeListVC.tableView(
+            priceRangeListVC.tableView,
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+
+        expect(self.fakePriceRangeSelectionDelegate.priceRangeSelected_arg)
+            .to(equal(priceRangeList[0].range))
     }
 }
