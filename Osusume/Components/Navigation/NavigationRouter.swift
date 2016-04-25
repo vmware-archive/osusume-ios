@@ -166,11 +166,6 @@ class NavigationRouter: Router {
         )
     }
 
-    func dismissFindCuisineScreen() {
-        let presentedVC = navigationController.presentedViewController as? UINavigationController
-        presentedVC!.dismissViewControllerAnimated(true, completion: nil)
-    }
-
     func dismissPresentedNavigationController() {
         if let presentedVC = navigationController.presentedViewController as? UINavigationController {
             presentedVC.dismissViewControllerAnimated(true, completion: nil)

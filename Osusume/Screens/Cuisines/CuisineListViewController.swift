@@ -88,7 +88,7 @@ class CuisineListViewController: UIViewController {
 
     // MARK: - Actions
     @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
-        router.dismissFindCuisineScreen()
+        router.dismissPresentedNavigationController()
     }
 }
 
@@ -167,11 +167,11 @@ extension CuisineListViewController: UITableViewDelegate {
             cuisineRepo.create(NewCuisine(name: searchBar.text!))
                 .onSuccess { [unowned self] savedCuisine in
                     self.cuisineSelectionDelegate?.cuisineSelected(savedCuisine)
-                    self.router.dismissFindCuisineScreen()
+                    self.router.dismissPresentedNavigationController()
                 }
         } else {
             cuisineSelectionDelegate?.cuisineSelected(filteredCuisineList[indexPath.row])
-            router.dismissFindCuisineScreen()
+            router.dismissPresentedNavigationController()
         }
     }
 }

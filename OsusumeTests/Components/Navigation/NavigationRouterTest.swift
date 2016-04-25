@@ -148,43 +148,6 @@ class NavigationRouterTest: XCTestCase {
         expect(cuisineTVC?.cuisineSelectionDelegate).toNot(beNil())
     }
 
-    func test_dismissesCuisineListScreen() {
-        var window: UIWindow?
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = rootNavController
-        window!.makeKeyAndVisible()
-
-        let cuisineNavController = UINavigationController()
-        cuisineNavController.setViewControllers(
-            [
-                    CuisineListViewController(
-                    router: FakeRouter(),
-                    cuisineRepo: FakeCuisineRepo(),
-                    textSearch: FakeTextSearch(),
-                    reloader: FakeReloader()
-                )
-            ],
-            animated: false
-        )
-
-        rootNavController.pushViewController(UIViewController(), animated: false)
-        rootNavController.presentViewController(
-            cuisineNavController,
-            animated: false,
-            completion: nil
-        )
-
-        let presentedViewController = rootNavController.presentedViewController as? UINavigationController
-        expect(presentedViewController?.topViewController).to(beAKindOf(CuisineListViewController))
-
-
-        navigationRouter.dismissFindCuisineScreen()
-
-
-        NSRunLoop.osu_advance(by: 1)
-        expect(self.rootNavController.presentedViewController).to(beNil())
-    }
-
     func test_dismissPresentedNavigationController_dismissesPresentedNavigationController() {
         var window: UIWindow?
         window = UIWindow(frame: UIScreen.mainScreen().bounds)

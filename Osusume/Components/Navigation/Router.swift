@@ -10,8 +10,7 @@ protocol Router: class {
     func showProfileScreen()
 
     func showFindCuisineScreen()
-    func dismissFindCuisineScreen()
-
     func showPriceRangeListScreen()
+
     func dismissPresentedNavigationController()
 }
