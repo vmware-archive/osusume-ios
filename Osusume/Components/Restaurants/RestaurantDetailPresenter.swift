@@ -68,4 +68,8 @@ struct RestaurantDetailPresenter {
 
         return "\(numberOfLikes) \(numberOfPeopleQualifier) liked"
     }
+
+    var priceRange: String {
+        return "Price Range: \(restaurant.priceRange)"
+    }
 }

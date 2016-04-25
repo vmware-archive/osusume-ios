@@ -19,6 +19,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     let notesLabel: UILabel
     let creationInfoLabel: UILabel
     let likeButton: UIButton
+    let priceRangeLabel: UILabel
     let addCommentButton: UIButton
     var photoUrls: [NSURL]
 
@@ -33,6 +34,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         notesLabel = UILabel.newAutoLayoutView()
         creationInfoLabel = UILabel.newAutoLayoutView()
         likeButton = UIButton.newAutoLayoutView()
+        priceRangeLabel = UILabel.newAutoLayoutView()
         addCommentButton = UIButton.newAutoLayoutView()
         photoUrls = [NSURL]()
 
@@ -57,6 +59,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         contentView.addSubview(notesLabel)
         contentView.addSubview(creationInfoLabel)
         contentView.addSubview(likeButton)
+        contentView.addSubview(priceRangeLabel)
         contentView.addSubview(addCommentButton)
 
         imageCollectionView.dataSource = self
@@ -96,6 +99,8 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
         reloader.reload(imageCollectionView)
 
+        self.router = router
+
         let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: restaurant)
         self.nameLabel.text = restaurantDetailPresenter.name
         self.addressLabel.text = restaurantDetailPresenter.address
@@ -106,7 +111,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         self.acceptsCreditCardsLabel.text = restaurantDetailPresenter.creditCardsOk
         self.notesLabel.text = restaurantDetailPresenter.notes
         self.creationInfoLabel.text = restaurantDetailPresenter.creationInfo
-        self.router = router
+        self.priceRangeLabel.text = restaurantDetailPresenter.priceRange
 
         if restaurant.liked {
             likeButton.backgroundColor = UIColor.redColor()
@@ -130,8 +135,11 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
 
+        priceRangeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        priceRangeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
+
         cuisineTypeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
+        cuisineTypeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: priceRangeLabel)
 
         numberOfLikesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         numberOfLikesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)

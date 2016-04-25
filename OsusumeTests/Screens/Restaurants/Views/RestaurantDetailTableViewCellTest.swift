@@ -29,7 +29,7 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
                 author: "Danny",
                 liked: true,
                 numberOfLikes: 2,
-                priceRange: "",
+                priceRange: "0~999",
                 createdAt: NSDate(timeIntervalSince1970: 0),
                 photoUrls: [NSURL(string: "my-awesome-url")!],
                 comments: []
@@ -54,6 +54,8 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
             .to(equal("This place is great"))
         expect(self.restaurantDetailCell.numberOfLikesLabel.text)
             .to(equal("2 people liked"))
+        expect(self.restaurantDetailCell.priceRangeLabel.text)
+            .to(equal("Price Range: 0~999"))
         expect(self.restaurantDetailCell.creationInfoLabel.text)
             .to(equal("Added by Danny on 1/1/70"))
         expect(self.restaurantDetailCell.photoUrls.count).to(equal(1))
