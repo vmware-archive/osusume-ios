@@ -3,6 +3,7 @@ class PriceRangeListViewController: UIViewController {
     private let priceRangeRepo: PriceRangeRepo
     private let reloader: Reloader
     private var priceRanges: [PriceRange]
+    private let router: Router
 
     // MARK: - View Elements
     let tableView: UITableView
@@ -10,11 +11,13 @@ class PriceRangeListViewController: UIViewController {
     // MARK: - Initializers
     init(
         priceRangeRepo: PriceRangeRepo,
-        reloader: Reloader
+        reloader: Reloader,
+        router: Router
     ) {
         self.priceRangeRepo = priceRangeRepo
         self.reloader = reloader
         self.priceRanges = []
+        self.router = router
 
         self.tableView = UITableView.newAutoLayoutView()
 
@@ -44,7 +47,13 @@ class PriceRangeListViewController: UIViewController {
     }
 
     // MARK: - View Setup
-    private func configureNavigationBar() {}
+    private func configureNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .Cancel,
+            target: self,
+            action: Selector("didTapCancelButton:")
+        )
+    }
 
     private func addSubviews() {
         view.addSubview(tableView)
@@ -60,6 +69,11 @@ class PriceRangeListViewController: UIViewController {
 
     private func addConstraints() {
         tableView.autoPinEdgesToSuperviewEdges()
+    }
+
+    // MARK: - Actions
+    @objc private func didTapCancelButton(sender: UIBarButtonItem) {
+        router.dismissPresentedNavigationController()
     }
 }
 

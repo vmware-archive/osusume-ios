@@ -13,4 +13,5 @@ protocol Router: class {
     func dismissFindCuisineScreen()
 
     func showPriceRangeListScreen()
+    func dismissPresentedNavigationController()
 }

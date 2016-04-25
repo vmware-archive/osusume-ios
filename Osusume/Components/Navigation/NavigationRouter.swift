@@ -171,11 +171,18 @@ class NavigationRouter: Router {
         presentedVC!.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    func dismissPresentedNavigationController() {
+        if let presentedVC = navigationController.presentedViewController as? UINavigationController {
+            presentedVC.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+
     func showPriceRangeListScreen() {
         let priceRangeNavController = UINavigationController()
         let priceRangeListViewController = PriceRangeListViewController(
             priceRangeRepo: priceRangeRepo,
-            reloader: DefaultReloader()
+            reloader: DefaultReloader(),
+            router: self
         )
 
         priceRangeNavController.setViewControllers(

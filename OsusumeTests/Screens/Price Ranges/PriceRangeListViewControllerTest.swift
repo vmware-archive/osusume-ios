@@ -15,6 +15,7 @@ class FakePriceRangeRepo: PriceRangeRepo {
 
 class PriceRangeListViewControllerTest: XCTestCase {
     let fakeReloader = FakeReloader()
+    let fakeRouter = FakeRouter()
     var fakePriceRangeRepo = FakePriceRangeRepo()
     var priceRangeListVC: PriceRangeListViewController!
     var returnPriceRangeListPromise: Promise<[PriceRange], RepoError>!
@@ -27,7 +28,8 @@ class PriceRangeListViewControllerTest: XCTestCase {
 
         priceRangeListVC = PriceRangeListViewController(
             priceRangeRepo: fakePriceRangeRepo,
-            reloader: fakeReloader
+            reloader: fakeReloader,
+            router: fakeRouter
         )
         priceRangeListVC.view.setNeedsLayout()
     }
@@ -90,5 +92,15 @@ class PriceRangeListViewControllerTest: XCTestCase {
             cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
         )
         expect(cell.textLabel?.text).to(equal("price-range-1"))
+    }
+
+    func test_tappingCancelBarButtonItem_callsDismissPresentedViewControllerOnRouter() {
+        let cancelBarButtonItem = priceRangeListVC.navigationItem.leftBarButtonItem!
+
+
+        tapNavBarButton(cancelBarButtonItem)
+
+
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 }

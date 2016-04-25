@@ -60,6 +60,11 @@ class FakeRouter : Router {
         dismissFindCuisineScreen_wasCalled = true
     }
 
+    var dismissPresentedNavigationController_wasCalled = false
+    func dismissPresentedNavigationController() {
+        dismissPresentedNavigationController_wasCalled = true
+    }
+
     var showPriceRangeListScreen_wasCalled = false
     func showPriceRangeListScreen() {
         showPriceRangeListScreen_wasCalled = true
