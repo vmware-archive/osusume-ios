@@ -143,17 +143,16 @@ class NavigationRouter: Router {
     }
 
     func showFindCuisineScreen() {
-        let cuisineNavController = UINavigationController()
+        let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController
         let findCuisineTableViewController = CuisineListViewController(
             router: self,
             cuisineRepo: cuisineRepo,
             textSearch: DefaultTextSearch(),
-            reloader: DefaultReloader()
+            reloader: DefaultReloader(),
+            delegate: newRestaurantVC!.formView
         )
 
-        let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController
-        findCuisineTableViewController.cuisineSelectionDelegate = newRestaurantVC!.formView
-
+        let cuisineNavController = UINavigationController()
         cuisineNavController.setViewControllers(
             [findCuisineTableViewController],
             animated: true

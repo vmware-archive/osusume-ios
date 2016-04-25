@@ -4,20 +4,29 @@ class CuisineListViewController: UIViewController {
     private let cuisineRepo: CuisineRepo
     private let textSearch: TextSearch
     private let reloader: Reloader
+    private let cuisineSelectionDelegate: CuisineSelectionProtocol
+
     private(set) var filteredCuisineList: [Cuisine]
     private(set) var fullCuisineList: [Cuisine]
-    var cuisineSelectionDelegate: CuisineSelectionProtocol?
 
     // MARK: - View Elements
     let searchBar: UISearchBar
     let tableView: UITableView
 
     // MARK: - Initializers
-    init(router: Router, cuisineRepo: CuisineRepo, textSearch: TextSearch, reloader: Reloader) {
+    init(
+        router: Router,
+        cuisineRepo: CuisineRepo,
+        textSearch: TextSearch,
+        reloader: Reloader,
+        delegate: CuisineSelectionProtocol)
+    {
         self.router = router
         self.cuisineRepo = cuisineRepo
         self.textSearch = textSearch
         self.reloader = reloader
+        self.cuisineSelectionDelegate = delegate
+
         self.filteredCuisineList = []
         self.fullCuisineList = []
 
@@ -166,11 +175,11 @@ extension CuisineListViewController: UITableViewDelegate {
         if indexPath.section == 0 {
             cuisineRepo.create(NewCuisine(name: searchBar.text!))
                 .onSuccess { [unowned self] savedCuisine in
-                    self.cuisineSelectionDelegate?.cuisineSelected(savedCuisine)
+                    self.cuisineSelectionDelegate.cuisineSelected(savedCuisine)
                     self.router.dismissPresentedNavigationController()
                 }
         } else {
-            cuisineSelectionDelegate?.cuisineSelected(filteredCuisineList[indexPath.row])
+            cuisineSelectionDelegate.cuisineSelected(filteredCuisineList[indexPath.row])
             router.dismissPresentedNavigationController()
         }
     }

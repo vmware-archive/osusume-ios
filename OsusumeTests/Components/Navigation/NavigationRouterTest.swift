@@ -126,28 +126,6 @@ class NavigationRouterTest: XCTestCase {
         expect(cuisineNavController?.topViewController).to(beAKindOf(CuisineListViewController))
     }
 
-    func test_showingCuisineListScreen_setsDelegate() {
-        var window: UIWindow?
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = rootNavController
-        window!.makeKeyAndVisible()
-
-        let newRestaurantVC = NewRestaurantViewController(
-            router: FakeRouter(),
-            restaurantRepo: FakeRestaurantRepo(),
-            photoRepo: FakePhotoRepo()
-        )
-        rootNavController.pushViewController(newRestaurantVC, animated: false)
-
-
-        navigationRouter.showFindCuisineScreen()
-
-
-        let cuisineNavController = rootNavController.presentedViewController as? UINavigationController
-        let cuisineTVC = cuisineNavController?.topViewController as? CuisineListViewController
-        expect(cuisineTVC?.cuisineSelectionDelegate).toNot(beNil())
-    }
-
     func test_dismissPresentedNavigationController_dismissesPresentedNavigationController() {
         var window: UIWindow?
         window = UIWindow(frame: UIScreen.mainScreen().bounds)

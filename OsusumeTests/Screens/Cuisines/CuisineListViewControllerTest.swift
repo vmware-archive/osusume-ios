@@ -9,6 +9,7 @@ class CuisineListViewControllerTest: XCTestCase {
     let fakeCuisineRepo = FakeCuisineRepo()
     let fakeTextSearch = FakeTextSearch()
     let fakeReloader = FakeReloader()
+    let fakeCuisineSelection = FakeCuisineSelection()
     let cuisinePromise = Promise<[Cuisine], RepoError>()
     let fullCuisineList = [Cuisine(id: 1, name: "Soba!")]
     var selectedCuisine: Cuisine?
@@ -22,7 +23,8 @@ class CuisineListViewControllerTest: XCTestCase {
             router: fakeRouter,
             cuisineRepo: fakeCuisineRepo,
             textSearch: fakeTextSearch,
-            reloader: fakeReloader
+            reloader: fakeReloader,
+            delegate: fakeCuisineSelection
         )
     }
 
@@ -213,9 +215,6 @@ class CuisineListViewControllerTest: XCTestCase {
         promise.success([Cuisine(id: 0, name: "Soba!")])
         NSRunLoop.osu_advance()
 
-        let fakeCuisineSelection = FakeCuisineSelection()
-        cuisineListVC.cuisineSelectionDelegate = fakeCuisineSelection
-
 
         cuisineListVC.tableView(
             cuisineListVC.tableView,
@@ -223,13 +222,11 @@ class CuisineListViewControllerTest: XCTestCase {
         )
 
 
-        expect(fakeCuisineSelection.cuisineSelected_returnValue).to(equal(Cuisine(id: 0, name: "Soba!")))
+        expect(self.fakeCuisineSelection.cuisineSelected_returnValue).to(equal(Cuisine(id: 0, name: "Soba!")))
         expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 
     func test_tappingAddCuisineCell_callsAddCuisineOnCuisineRepo() {
-        let fakeCuisineSelection = FakeCuisineSelection()
-        cuisineListVC.cuisineSelectionDelegate = fakeCuisineSelection
         cuisineListVC.searchBar.text = "Pie"
 
 
@@ -241,15 +238,13 @@ class CuisineListViewControllerTest: XCTestCase {
 
         expect(self.fakeCuisineRepo.create_wasCalled).to(equal(true))
         expect(self.fakeCuisineRepo.create_arg).to(equal(NewCuisine(name: "Pie")))
-        expect(fakeCuisineSelection.cuisineSelected_wasCalled).to(equal(false))
+        expect(self.fakeCuisineSelection.cuisineSelected_wasCalled).to(equal(false))
         expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(equal(false))
     }
 
     func test_tappingAddCuisineCell_uponSuccessfulCuisineCreation() {
         let promise = Promise<Cuisine, RepoError>()
         fakeCuisineRepo.create_returnValue = promise.future
-        let fakeCuisineSelection = FakeCuisineSelection()
-        cuisineListVC.cuisineSelectionDelegate = fakeCuisineSelection
         cuisineListVC.searchBar.text = "Pie"
 
 
@@ -262,7 +257,7 @@ class CuisineListViewControllerTest: XCTestCase {
         promise.success(expectedCuisine)
         NSRunLoop.osu_advance()
 
-        expect(fakeCuisineSelection.cuisineSelected_returnValue).to(equal(expectedCuisine))
+        expect(self.fakeCuisineSelection.cuisineSelected_returnValue).to(equal(expectedCuisine))
         expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(equal(true))
     }
 
