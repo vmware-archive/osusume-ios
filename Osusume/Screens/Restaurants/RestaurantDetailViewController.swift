@@ -181,7 +181,7 @@ extension RestaurantDetailViewController: UITableViewDelegate {
 
 // MARK: - RestaurantDetailTableViewCellDelegate
 extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate {
-    func displayAddCommentScreen() {
+    func displayAddCommentScreen(sender: UIButton) {
         router.showNewCommentScreen(self.restaurant!.id)
     }
 

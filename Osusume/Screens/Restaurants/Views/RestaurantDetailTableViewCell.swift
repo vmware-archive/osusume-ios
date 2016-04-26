@@ -1,17 +1,15 @@
-protocol RestaurantDetailTableViewCellDelegate: NSObjectProtocol {
-    func displayAddCommentScreen()
-    func didTapLikeButton(sender: UIButton)
-}
-
 class RestaurantDetailTableViewCell: UITableViewCell {
-
+    // MARK: - Properties
+    private weak var router: Router?
     weak var delegate: RestaurantDetailTableViewCellDelegate?
-    weak var router: Router?
+    private(set) var photoUrls: [NSURL]
 
-    var imageCollectionView: UICollectionView
+    // MARK: - View Elements
+    let imageCollectionView: UICollectionView
     let nameLabel: UILabel
     let addressLabel: UILabel
     let cuisineTypeLabel: UILabel
+    let priceRangeLabel: UILabel
     let numberOfLikesLabel: UILabel
     let offersEnglishMenuLabel: UILabel
     let walkInsOkLabel: UILabel
@@ -19,14 +17,21 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     let notesLabel: UILabel
     let creationInfoLabel: UILabel
     let likeButton: UIButton
-    let priceRangeLabel: UILabel
     let addCommentButton: UIButton
-    var photoUrls: [NSURL]
 
+    // MARK: - Initializers
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        photoUrls = [NSURL]()
+
+        imageCollectionView = UICollectionView(
+            frame: CGRectZero,
+            collectionViewLayout: RestaurantDetailTableViewCell.imageCollectionViewLayout()
+        )
+
         nameLabel = UILabel.newAutoLayoutView()
         addressLabel = UILabel.newAutoLayoutView()
         cuisineTypeLabel = UILabel.newAutoLayoutView()
+        priceRangeLabel = UILabel.newAutoLayoutView()
         numberOfLikesLabel = UILabel.newAutoLayoutView()
         offersEnglishMenuLabel = UILabel.newAutoLayoutView()
         walkInsOkLabel = UILabel.newAutoLayoutView()
@@ -34,24 +39,26 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         notesLabel = UILabel.newAutoLayoutView()
         creationInfoLabel = UILabel.newAutoLayoutView()
         likeButton = UIButton.newAutoLayoutView()
-        priceRangeLabel = UILabel.newAutoLayoutView()
         addCommentButton = UIButton.newAutoLayoutView()
-        photoUrls = [NSURL]()
-
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake(100, 100)
-        layout.scrollDirection = .Horizontal
-        imageCollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        imageCollectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-        imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
-        imageCollectionView.backgroundColor = UIColor.lightGrayColor()
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        addSubviews()
+        configureSubviews()
+        addConstraints()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - View Setup
+    private func addSubviews() {
         contentView.addSubview(imageCollectionView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(addressLabel)
         contentView.addSubview(cuisineTypeLabel)
+        contentView.addSubview(priceRangeLabel)
         contentView.addSubview(numberOfLikesLabel)
         contentView.addSubview(offersEnglishMenuLabel)
         contentView.addSubview(walkInsOkLabel)
@@ -59,20 +66,17 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         contentView.addSubview(notesLabel)
         contentView.addSubview(creationInfoLabel)
         contentView.addSubview(likeButton)
-        contentView.addSubview(priceRangeLabel)
         contentView.addSubview(addCommentButton)
+    }
 
+    private func configureSubviews() {
+        imageCollectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+        imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
+        imageCollectionView.backgroundColor = UIColor.lightGrayColor()
         imageCollectionView.dataSource = self
         imageCollectionView.delegate = self
 
         notesLabel.numberOfLines = 0
-        addCommentButton.addTarget(
-            self,
-            action: "didTapAddNewCommentButton",
-            forControlEvents: .TouchUpInside
-        )
-        addCommentButton.setTitle("Add comment", forState: .Normal)
-        addCommentButton.backgroundColor = UIColor.grayColor()
 
         likeButton.addTarget(
             self.delegate,
@@ -81,49 +85,16 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         )
         likeButton.setTitle("Like", forState: .Normal)
 
-        applyViewConstraints()
+        addCommentButton.addTarget(
+            self.delegate,
+            action: "displayAddCommentScreen:",
+            forControlEvents: .TouchUpInside
+        )
+        addCommentButton.setTitle("Add comment", forState: .Normal)
+        addCommentButton.backgroundColor = UIColor.grayColor()
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    // MARK: - Actions
-    func didTapAddNewCommentButton() {
-        delegate?.displayAddCommentScreen()
-    }
-
-    // MARK: Public Methods
-    func configureView(restaurant: Restaurant, reloader: Reloader, router: Router) {
-        photoUrls = restaurant.photoUrls
-
-        reloader.reload(imageCollectionView)
-
-        self.router = router
-
-        let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: restaurant)
-        self.nameLabel.text = restaurantDetailPresenter.name
-        self.addressLabel.text = restaurantDetailPresenter.address
-        self.cuisineTypeLabel.text = restaurantDetailPresenter.cuisineType
-        self.numberOfLikesLabel.text = restaurantDetailPresenter.numberOfLikes
-        self.offersEnglishMenuLabel.text = restaurantDetailPresenter.offersEnglishMenu
-        self.walkInsOkLabel.text = restaurantDetailPresenter.walkInsOk
-        self.acceptsCreditCardsLabel.text = restaurantDetailPresenter.creditCardsOk
-        self.notesLabel.text = restaurantDetailPresenter.notes
-        self.creationInfoLabel.text = restaurantDetailPresenter.creationInfo
-        self.priceRangeLabel.text = restaurantDetailPresenter.priceRange
-
-        if restaurant.liked {
-            likeButton.backgroundColor = UIColor.redColor()
-            likeButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        } else {
-            likeButton.backgroundColor = UIColor.blueColor()
-            likeButton.setTitleColor(UIColor.redColor(), forState: .Normal)
-        }
-    }
-
-    // MARK: - Constraints
-    func applyViewConstraints() {
+    private func addConstraints() {
         imageCollectionView.autoPinEdgeToSuperviewEdge(.Top)
         imageCollectionView.autoSetDimension(.Height, toSize: 120.0)
         imageCollectionView.autoAlignAxis(.Vertical, toSameAxisOfView: contentView)
@@ -167,15 +138,43 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         addCommentButton.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
         addCommentButton.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
         addCommentButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: likeButton)
-
         addCommentButton.autoPinEdgeToSuperviewMargin(.Bottom)
     }
 
-}
-// MARK: - UICollectionViewDelegate
-extension RestaurantDetailTableViewCell: UICollectionViewDelegate {
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.router?.showImageScreen(photoUrls[indexPath.row])
+    // MARK: Public Methods
+    func configureView(restaurant: Restaurant, reloader: Reloader, router: Router) {
+        self.router = router
+        photoUrls = restaurant.photoUrls
+
+        reloader.reload(imageCollectionView)
+
+        let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: restaurant)
+        nameLabel.text = restaurantDetailPresenter.name
+        addressLabel.text = restaurantDetailPresenter.address
+        cuisineTypeLabel.text = restaurantDetailPresenter.cuisineType
+        numberOfLikesLabel.text = restaurantDetailPresenter.numberOfLikes
+        offersEnglishMenuLabel.text = restaurantDetailPresenter.offersEnglishMenu
+        walkInsOkLabel.text = restaurantDetailPresenter.walkInsOk
+        acceptsCreditCardsLabel.text = restaurantDetailPresenter.creditCardsOk
+        notesLabel.text = restaurantDetailPresenter.notes
+        creationInfoLabel.text = restaurantDetailPresenter.creationInfo
+        priceRangeLabel.text = restaurantDetailPresenter.priceRange
+
+        if restaurant.liked {
+            likeButton.backgroundColor = UIColor.redColor()
+            likeButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        } else {
+            likeButton.backgroundColor = UIColor.blueColor()
+            likeButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+        }
+    }
+
+    // MARK: - Private Methods
+    private static func imageCollectionViewLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake(100, 100)
+        layout.scrollDirection = .Horizontal
+        return layout
     }
 }
 
@@ -183,23 +182,34 @@ extension RestaurantDetailTableViewCell: UICollectionViewDelegate {
 extension RestaurantDetailTableViewCell: UICollectionViewDataSource {
     func collectionView(
         collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
-        ) -> Int
+        numberOfItemsInSection section: Int) -> Int
     {
         return photoUrls.count
     }
 
     func collectionView(
         collectionView: UICollectionView,
-        cellForItemAtIndexPath indexPath: NSIndexPath
-        ) -> UICollectionViewCell
+        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            "photoCell",
+            forIndexPath: indexPath
+        )
 
         let imageView = UIImageView()
         imageView.sd_setImageWithURL(photoUrls[indexPath.row])
         cell.backgroundView = imageView
 
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension RestaurantDetailTableViewCell: UICollectionViewDelegate {
+    func collectionView(
+        collectionView: UICollectionView,
+        didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        self.router?.showImageScreen(photoUrls[indexPath.row])
     }
 }
