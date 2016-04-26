@@ -19,7 +19,11 @@ class EditRestaurantViewControllerTest: XCTestCase {
     }
 
     private func instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine) {
-        repo.createdRestaurant = RestaurantFixtures.newRestaurant(name: "Original Restaurant Name", liked: false, cuisine: cuisine)
+        repo.createdRestaurant = RestaurantFixtures.newRestaurant(
+            name: "Original Restaurant Name",
+            liked: false,
+            cuisine: cuisine
+        )
 
         editRestaurantViewController = EditRestaurantViewController(
             router: router,
@@ -35,11 +39,11 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
         expect(self.editRestaurantViewController.formView.nameTextField.text).to(equal("Original Restaurant Name"))
         expect(self.editRestaurantViewController.formView.addressTextField.text).to(equal("Original Address"))
-        expect(self.editRestaurantViewController.formView.cuisineTypeValueLabel.text).to(equal("Pizza"))
+        expect(self.editRestaurantViewController.formView.cuisineValueLabel.text).to(equal("Pizza"))
         expect(self.editRestaurantViewController.formView.offersEnglishMenuSwitch.on).to(equal(true))
         expect(self.editRestaurantViewController.formView.walkInsOkSwitch.on).to(equal(false))
         expect(self.editRestaurantViewController.formView.acceptsCreditCardsSwitch.on).to(equal(true))
-        expect(self.editRestaurantViewController.formView.notesTextField.text).to(equal("This place is great"))
+        expect(self.editRestaurantViewController.formView.notesTextView.text).to(equal("This place is great"))
     }
 
     func test_populatesRestaurantDetailsInFieldsWithoutCuisine() {
@@ -47,22 +51,19 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
         expect(self.editRestaurantViewController.formView.nameTextField.text).to(equal("Original Restaurant Name"))
         expect(self.editRestaurantViewController.formView.addressTextField.text).to(equal("Original Address"))
-        expect(self.editRestaurantViewController.formView.cuisineTypeValueLabel.text).to(equal(""))
+        expect(self.editRestaurantViewController.formView.cuisineValueLabel.text).to(equal(""))
         expect(self.editRestaurantViewController.formView.offersEnglishMenuSwitch.on).to(equal(true))
         expect(self.editRestaurantViewController.formView.walkInsOkSwitch.on).to(equal(false))
         expect(self.editRestaurantViewController.formView.acceptsCreditCardsSwitch.on).to(equal(true))
-        expect(self.editRestaurantViewController.formView.notesTextField.text).to(equal("This place is great"))
+        expect(self.editRestaurantViewController.formView.notesTextView.text).to(equal("This place is great"))
     }
-
 
     func test_tappingUpdateButton_invokesUpdateWithChangedValues() {
         instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
 
         editRestaurantViewController.formView.nameTextField.text = "Updated Restaurant Name"
-        editRestaurantViewController.formView.cuisineTypeValueLabel.text = "Updated Restaurant Cuisine Type"
-        editRestaurantViewController.formView.cuisine = Cuisine(id: 2, name: "Gyouza")
         editRestaurantViewController.formView.walkInsOkSwitch.on = true
-        editRestaurantViewController.formView.notesTextField.text = "Try the vegetables!"
+        editRestaurantViewController.formView.notesTextView.text = "Try the vegetables!"
 
 
         let updateButton = editRestaurantViewController.navigationItem.rightBarButtonItem!
@@ -72,8 +73,8 @@ class EditRestaurantViewControllerTest: XCTestCase {
         let actualParams = repo.update_params
         expect(actualParams["name"] as? String).to(equal("Updated Restaurant Name"))
         expect(actualParams["address"] as? String).to(equal("Original Address"))
-        expect(actualParams["cuisine_type"] as? String).to(equal("Updated Restaurant Cuisine Type"))
-        expect(actualParams["cuisine_id"] as? Int).to(equal(2))
+        expect(actualParams["cuisine_type"] as? String).to(equal("Pizza"))
+        expect(actualParams["cuisine_id"] as? Int).to(equal(1))
         expect(actualParams["offers_english_menu"] as? Bool).to(equal(true))
         expect(actualParams["walk_ins_ok"] as? Bool).to(equal(true))
         expect(actualParams["accepts_credit_cards"] as? Bool).to(equal(true))
