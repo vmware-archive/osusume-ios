@@ -62,11 +62,22 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let selectedPriceRange = PriceRange(id: 1, range: "0~999")
 
 
-        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange.range)
+        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange)
 
 
         expect(self.newRestaurantVC.formView.priceRangeValueLabel.text).to(equal("0~999"))
     }
+
+    func test_selectPriceRange_setsSelectedPriceRangePropertyValue() {
+        let selectedPriceRange = PriceRange(id: 1, range: "0~999")
+
+
+        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange)
+
+
+        expect(self.newRestaurantVC.formView.selectedPriceRange).to(equal(selectedPriceRange))
+    }
+
 
     func test_tappingDoneButton_savesRestaurant() {
         newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
@@ -99,4 +110,15 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
         expect(self.newRestaurantVC.formView.cuisineTypeValueLabel.text).to(equal("Hamburger"))
     }
+
+    func test_selectCuisine_setsSelectedCuisinePropertyValue() {
+        let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
+
+
+        newRestaurantVC.formView.cuisineSelected(selectedCuisine)
+
+
+        expect(self.newRestaurantVC.formView.selectedCuisine).to(equal(selectedCuisine))
+    }
+
 }

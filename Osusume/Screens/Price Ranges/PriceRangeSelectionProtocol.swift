@@ -1,3 +1,3 @@
 protocol PriceRangeSelectionDelegate {
-    func priceRangeSelected(priceRange: String)
+    func priceRangeSelected(priceRange: PriceRange)
 }

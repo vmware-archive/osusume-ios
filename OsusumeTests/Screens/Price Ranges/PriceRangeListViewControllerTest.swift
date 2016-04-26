@@ -5,8 +5,8 @@ import Nimble
 @testable import Osusume
 
 class FakePriceRangeSelectionDelegate: PriceRangeSelectionDelegate {
-    var priceRangeSelected_arg = ""
-    func priceRangeSelected(priceRange: String) {
+    var priceRangeSelected_arg = PriceRange(id: -1, range: "")
+    func priceRangeSelected(priceRange: PriceRange) {
         priceRangeSelected_arg = priceRange
     }
 }
@@ -126,6 +126,6 @@ class PriceRangeListViewControllerTest: XCTestCase {
 
 
         expect(self.fakePriceRangeSelectionDelegate.priceRangeSelected_arg)
-            .to(equal(priceRangeList[0].range))
+            .to(equal(priceRangeList[0]))
     }
 }

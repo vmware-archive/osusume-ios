@@ -2,7 +2,8 @@ import UIKit
 
 class NewRestaurantFormView: UIView {
     var delegate: NewRestaurantViewControllerPresenterProtocol?
-    var cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
+    private(set) var selectedCuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
+    private(set) var selectedPriceRange: PriceRange = PriceRange(id: 0, range: "Not Specified")
 
     // MARK: - View Elements
 
@@ -239,12 +240,13 @@ class NewRestaurantFormView: UIView {
 extension NewRestaurantFormView: CuisineSelectionDelegate {
     func cuisineSelected(cuisine: Cuisine) {
         cuisineTypeValueLabel.text = cuisine.name
-        self.cuisine = cuisine
+        self.selectedCuisine = cuisine
     }
 }
 
 extension NewRestaurantFormView: PriceRangeSelectionDelegate {
-    func priceRangeSelected(priceRange: String) {
-        priceRangeValueLabel.text = priceRange
+    func priceRangeSelected(priceRange: PriceRange) {
+        priceRangeValueLabel.text = priceRange.range
+        self.selectedPriceRange = priceRange
     }
 }

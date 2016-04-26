@@ -104,13 +104,7 @@ extension PriceRangeListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension PriceRangeListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedCell = self.tableView(
-            self.tableView,
-            cellForRowAtIndexPath: indexPath
-        )
-
-        let selectedPriceRange = selectedCell.textLabel?.text
-        priceRangeSelection.priceRangeSelected(selectedPriceRange!)
+        priceRangeSelection.priceRangeSelected(priceRanges[indexPath.row])
         router.dismissPresentedNavigationController()
     }
 }
