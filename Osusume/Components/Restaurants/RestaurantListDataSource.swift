@@ -31,16 +31,7 @@ class RestaurantListDataSource: NSObject, UITableViewDataSource {
                 restaurant: myPosts[indexPath.row]
             )
 
-            cell.photoImageView.image = UIImage(named: "TableCellPlaceholder")
-            photoRepo.loadImageFromUrl(presenter.photoUrl)
-                .onSuccess { image in
-                    cell.photoImageView.image = image
-            }
-
-            cell.nameLabel.text = presenter.name
-            cell.cuisineTypeLabel.text = presenter.cuisineType
-            cell.authorLabel.text = presenter.author
-            cell.createdAtLabel.text = presenter.creationDate
+            cell.configureView(photoRepo, presenter: presenter)
 
             return cell
         }
