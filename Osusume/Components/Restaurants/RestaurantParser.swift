@@ -66,7 +66,7 @@ struct RestaurantParser {
         let priceRange = maybePriceRange ?? ""
 
         let createdDateString = json["created_at"] as? String
-        let createdAt = DateConverter().formattedDateFromString(createdDateString)
+        let createdAt = DateConverter.formattedDateFromString(createdDateString)
 
         let maybePhotoUrlsJson = json["photo_urls"] as? [[String: AnyObject]]
         let photoUrls = maybePhotoUrlsJson ?? []

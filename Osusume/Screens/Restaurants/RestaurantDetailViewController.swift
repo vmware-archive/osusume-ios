@@ -155,7 +155,7 @@ extension RestaurantDetailViewController: UITableViewDataSource {
 
                 let comments = currentRestaurant.comments
                 let currentComment = comments[indexPath.row]
-                let createdDateString = DateConverter().formattedDate(currentComment.createdDate)
+                let createdDateString = DateConverter.formattedDate(currentComment.createdDate)
 
                 cell.textLabel?.text = currentComment.text
                 cell.detailTextLabel?.text = String("\(currentComment.userName) - \(createdDateString)")

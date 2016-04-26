@@ -71,7 +71,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         expect(firstCommentCell.textLabel!.text).to(equal("first comment"))
         expect(firstCommentCell.detailTextLabel!.text)
-            .to(equal("Danny - \(DateConverter().formattedDate(today))"))
+            .to(equal("Danny - \(DateConverter.formattedDate(today))"))
 
     }
 

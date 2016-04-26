@@ -42,7 +42,7 @@ struct RestaurantDetailPresenter {
     }
 
     var creationInfo: String {
-        return "Added by \(restaurant.author) on \(DateConverter().formattedDate(restaurant.createdAt))"
+        return "Added by \(restaurant.author) on \(DateConverter.formattedDate(restaurant.createdAt))"
     }
 
     var author: String {
@@ -50,7 +50,7 @@ struct RestaurantDetailPresenter {
     }
 
     var creationDate: String {
-        return "Created on \(DateConverter().formattedDate(restaurant.createdAt))"
+        return "Created on \(DateConverter.formattedDate(restaurant.createdAt))"
     }
 
     var photoUrl: NSURL {

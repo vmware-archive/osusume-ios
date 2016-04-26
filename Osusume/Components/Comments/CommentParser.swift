@@ -9,7 +9,7 @@ struct CommentParser: DataParser {
             let id = json["id"] as? Int,
             let text = json["content"] as? String,
             let createdDateString = json["created_at"] as? String,
-            let createdDate = DateConverter().formattedDateFromString(createdDateString),
+            let createdDate = DateConverter.formattedDateFromString(createdDateString),
             let restaurantId = json["restaurant_id"] as? Int,
             let userJson = json["user"] as? [String: AnyObject],
             let userName = userJson["name"] as? String else

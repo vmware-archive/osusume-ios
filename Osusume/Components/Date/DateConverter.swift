@@ -1,8 +1,8 @@
 import Foundation
 
-class DateConverter {
+struct DateConverter {
 
-    func formattedDate(date: NSDate?) -> String {
+    static func formattedDate(date: NSDate?) -> String {
         if let notNilDate = date {
             let formatter = NSDateFormatter()
             formatter.dateStyle = NSDateFormatterStyle.ShortStyle
@@ -11,7 +11,7 @@ class DateConverter {
         return ""
     }
 
-    func formattedDateFromString(string: String?) -> NSDate? {
+    static func formattedDateFromString(string: String?) -> NSDate? {
         let dateFormatter = NSDateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: NSLocaleIdentifier)
         dateFormatter.timeZone = NSTimeZone(name: "UTC")
