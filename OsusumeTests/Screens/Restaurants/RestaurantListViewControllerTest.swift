@@ -34,7 +34,7 @@ class RestaurantListViewControllerTest: XCTestCase {
     func test_tableView_loadsImageFromPhotoUrl() {
         restaurantListVC.view.setNeedsLayout()
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        restaurantListVC.restaurantListDataSource.myPosts = [RestaurantFixtures.newRestaurant()]
+        restaurantListVC.restaurantListDataSource.updateRestaurants([RestaurantFixtures.newRestaurant()])
 
 
         let promise = Promise<UIImage, RepoError>()
@@ -92,7 +92,7 @@ class RestaurantListViewControllerTest: XCTestCase {
     }
 
     func test_tappingRestaurant_showsRestaurantDetailScreen() {
-        restaurantListVC.restaurantListDataSource.myPosts = [RestaurantFixtures.newRestaurant()]
+        restaurantListVC.restaurantListDataSource.updateRestaurants([RestaurantFixtures.newRestaurant()])
         restaurantListVC.tableView(
             restaurantListVC.tableView,
             didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)

@@ -1,7 +1,7 @@
 import UIKit
 
-class RestaurantListDataSource: NSObject, UITableViewDataSource {
-    var myPosts: [Restaurant]
+class RestaurantListDataSource: NSObject {
+    private(set) var myPosts: [Restaurant]
     private let photoRepo: PhotoRepo
 
     init(photoRepo: PhotoRepo) {
@@ -9,23 +9,27 @@ class RestaurantListDataSource: NSObject, UITableViewDataSource {
         self.myPosts = [Restaurant]()
     }
 
+    func updateRestaurants(restaurants: [Restaurant]) {
+        myPosts = restaurants
+    }
+}
+
+extension RestaurantListDataSource: UITableViewDataSource {
     func tableView(
         tableView: UITableView,
-        numberOfRowsInSection section: Int
-        ) -> Int
+        numberOfRowsInSection section: Int) -> Int
     {
         return myPosts.count
     }
 
     func tableView(
         tableView: UITableView,
-        cellForRowAtIndexPath indexPath: NSIndexPath
-        ) -> UITableViewCell
+        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         if
             let cell = tableView.dequeueReusableCellWithIdentifier(
                 String(RestaurantTableViewCell)
-            ) as? RestaurantTableViewCell
+                ) as? RestaurantTableViewCell
         {
             let presenter = RestaurantDetailPresenter(
                 restaurant: myPosts[indexPath.row]

@@ -45,7 +45,7 @@ class RestaurantListViewController: UIViewController {
 
         repo.getAll()
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurants in
-                self.restaurantListDataSource.myPosts = returnedRestaurants
+                self.restaurantListDataSource.updateRestaurants(returnedRestaurants)
                 self.reloader.reload(self.tableView)
         }
     }

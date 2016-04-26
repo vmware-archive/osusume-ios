@@ -36,7 +36,7 @@ class MyRestaurantListViewControllerTest: XCTestCase {
 
     func test_tableView_configuresCellCount() {
         let restaurants = [RestaurantFixtures.newRestaurant()]
-        myRestaurantListVC.restaurantListDataSource.myPosts = restaurants
+        myRestaurantListVC.restaurantListDataSource.updateRestaurants(restaurants)
 
         let numberOfRows = myRestaurantListVC.restaurantListDataSource.tableView(
             UITableView(),
@@ -48,7 +48,7 @@ class MyRestaurantListViewControllerTest: XCTestCase {
 
     func test_tableView_loadsImageFromPhotoUrl() {
         let restaurants = [RestaurantFixtures.newRestaurant()]
-        myRestaurantListVC.restaurantListDataSource.myPosts = restaurants
+        myRestaurantListVC.restaurantListDataSource.updateRestaurants(restaurants)
         myRestaurantListVC.view.setNeedsLayout()
 
         let promise = Promise<UIImage, RepoError>()

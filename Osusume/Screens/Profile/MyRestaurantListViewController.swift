@@ -39,7 +39,7 @@ class MyRestaurantListViewController: UIViewController {
 
         getRestaurants()
             .onSuccess { [unowned self] restaurants in
-                self.restaurantListDataSource.myPosts = restaurants
+                self.restaurantListDataSource.updateRestaurants(restaurants)
                 self.reloader.reload(self.tableView)
         }
     }
