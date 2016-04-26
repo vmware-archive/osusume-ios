@@ -4,16 +4,22 @@ class EditRestaurantFormView: UIView {
     // MARK: - View Elements
     let nameHeaderLabel: UILabel
     let nameTextField: UITextField
+
     let addressHeaderLabel: UILabel
     let addressTextField: UITextField
+
     let cuisineHeaderLabel: UILabel
     let cuisineValueLabel: UILabel
+
     let offersEnglishMenuHeaderLabel: UILabel
     let offersEnglishMenuSwitch: UISwitch
+
     let walkInsOkHeaderLabel: UILabel
     let walkInsOkSwitch: UISwitch
+
     let acceptsCreditCardsHeaderLabel: UILabel
     let acceptsCreditCardsSwitch: UISwitch
+
     let notesHeaderLabel: UILabel
     let notesTextView: UITextView
 
