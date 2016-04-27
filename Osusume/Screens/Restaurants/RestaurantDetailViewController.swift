@@ -64,7 +64,7 @@ class RestaurantDetailViewController: UIViewController {
             title: "Edit",
             style: .Plain,
             target: self,
-            action: Selector("didTapEditRestaurantButton:")
+            action: #selector(RestaurantDetailViewController.didTapEditRestaurantButton(_:))
         )
     }
 
@@ -181,11 +181,11 @@ extension RestaurantDetailViewController: UITableViewDelegate {
 
 // MARK: - RestaurantDetailTableViewCellDelegate
 extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate {
-    func displayAddCommentScreen(sender: UIButton) {
+    @objc func displayAddCommentScreen(sender: UIButton) {
         router.showNewCommentScreen(self.restaurant!.id)
     }
 
-    func didTapLikeButton(sender: UIButton) {
+    @objc func didTapLikeButton(sender: UIButton) {
         likeRepo.like(restaurantId)
             .onSuccess { _ in
                 sender.backgroundColor = UIColor.redColor()

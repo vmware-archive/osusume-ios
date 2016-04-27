@@ -115,7 +115,7 @@ class NewRestaurantFormView: UIView {
         findCuisineButton.backgroundColor = UIColor.clearColor()
         findCuisineButton.addTarget(
             self,
-            action: Selector("didTapFindCuisineButton:"),
+            action: #selector(NewRestaurantFormView.didTapFindCuisineButton(_:)),
             forControlEvents: .TouchUpInside
         )
 
@@ -126,7 +126,7 @@ class NewRestaurantFormView: UIView {
         priceRangeButton.backgroundColor = UIColor.clearColor()
         priceRangeButton.addTarget(
             self,
-            action: Selector("didTapPriceRangeButton:"),
+            action: #selector(NewRestaurantFormView.didTapPriceRangeButton(_:)),
             forControlEvents: .TouchUpInside
         )
 

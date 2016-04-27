@@ -80,14 +80,14 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
         likeButton.addTarget(
             self.delegate,
-            action: "didTapLikeButton:",
+            action: #selector(RestaurantDetailViewController.didTapLikeButton(_:)),
             forControlEvents: .TouchUpInside
         )
         likeButton.setTitle("Like", forState: .Normal)
 
         addCommentButton.addTarget(
             self.delegate,
-            action: "displayAddCommentScreen:",
+            action: #selector(RestaurantDetailViewController.displayAddCommentScreen(_:)),
             forControlEvents: .TouchUpInside
         )
         addCommentButton.setTitle("Add comment", forState: .Normal)

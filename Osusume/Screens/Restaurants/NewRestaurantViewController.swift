@@ -66,7 +66,7 @@ class NewRestaurantViewController: UIViewController {
             title: "Done",
             style: UIBarButtonItemStyle.Plain,
             target: self,
-            action: Selector("didTapDoneButton:")
+            action: #selector(NewRestaurantViewController.didTapDoneButton(_:))
         )
     }
 
@@ -95,7 +95,7 @@ class NewRestaurantViewController: UIViewController {
         addPhotoButton.setTitle("Add photos", forState: .Normal)
         addPhotoButton.addTarget(
             self,
-            action: Selector("didTapAddPhotoButton:"),
+            action: #selector(NewRestaurantViewController.didTapAddPhotoButton(_:)),
             forControlEvents: .TouchUpInside
         )
 

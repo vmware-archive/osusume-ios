@@ -48,7 +48,7 @@ class NewCommentViewController: UIViewController {
                 title: "Save",
                 style: .Plain,
                 target: self,
-                action: Selector("didTapSaveButton:")
+                action: #selector(NewCommentViewController.didTapSaveButton(_:))
         )
     }
 

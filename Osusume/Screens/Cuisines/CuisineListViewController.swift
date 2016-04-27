@@ -64,7 +64,7 @@ class CuisineListViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.Cancel,
             target: self,
-            action: Selector("didTapCancelButton:")
+            action: #selector(CuisineListViewController.didTapCancelButton(_:))
         )
     }
 

@@ -56,14 +56,14 @@ class RestaurantListViewController: UIViewController {
             title: "Profile",
             style: .Plain,
             target: self,
-            action: Selector("didTapProfileButton:")
+            action: #selector(RestaurantListViewController.didTapProfileButton(_:))
         )
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Add restaurant",
             style: .Plain,
             target: self,
-            action: Selector("didTapAddRestaurantButton:")
+            action: #selector(RestaurantListViewController.didTapAddRestaurantButton(_:))
         )
     }
 

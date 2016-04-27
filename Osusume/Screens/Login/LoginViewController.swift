@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
         loginButton.backgroundColor = UIColor.grayColor()
         loginButton.addTarget(
             self,
-            action: Selector("didTapLoginButton:"),
+            action: #selector(LoginViewController.didTapLoginButton(_:)),
             forControlEvents: .TouchUpInside
         )
     }

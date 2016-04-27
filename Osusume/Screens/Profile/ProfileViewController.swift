@@ -94,13 +94,13 @@ class ProfileViewController: UIViewController {
         logoutButton.setTitle("Logout", forState: .Normal)
         logoutButton.addTarget(
             self,
-            action: Selector("didTapLogoutButton:"),
+            action: #selector(ProfileViewController.didTapLogoutButton(_:)),
             forControlEvents: .TouchUpInside
         )
 
         myContentSegmentedControl.addTarget(
             self,
-            action: Selector("didChangeSelectedSegment:"),
+            action: #selector(ProfileViewController.didChangeSelectedSegment(_:)),
             forControlEvents: .ValueChanged
         )
         myContentSegmentedControl.selectedSegmentIndex = 0

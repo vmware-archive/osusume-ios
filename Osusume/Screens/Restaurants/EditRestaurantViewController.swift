@@ -55,7 +55,7 @@ class EditRestaurantViewController: UIViewController {
             title: "Update",
             style: UIBarButtonItemStyle.Plain,
             target: self,
-            action: Selector("didTapUpdateButton:")
+            action: #selector(EditRestaurantViewController.didTapUpdateButton(_:))
         )
     }
 

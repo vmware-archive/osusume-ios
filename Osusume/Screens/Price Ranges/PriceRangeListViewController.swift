@@ -54,7 +54,7 @@ class PriceRangeListViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .Cancel,
             target: self,
-            action: Selector("didTapCancelButton:")
+            action: #selector(PriceRangeListViewController.didTapCancelButton(_:))
         )
     }
 
