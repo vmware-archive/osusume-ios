@@ -1,7 +1,12 @@
+# 2.3.0
+* Initialize PhotosViewController AFTER we have permission to access photos.
+* Buttons are now public vars.
+* Fixed Swift 2.2 deprecation warnings
+
 # 2.2.0
-* Set default selection [AnthonyMDev]
-* Special case when max allowed selections is 1 [taberrr]
-* UI Test fix [barrault01]
+* Set default selection (by [AnthonyMDev])
+* Special case when max allowed selections is 1 (by [taberrr])
+* UI Test fix (by [barrault01])
 * Carthage support
 
 # 2.1.0
