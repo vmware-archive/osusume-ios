@@ -59,8 +59,8 @@
 		AE73E02D1CA11BC200738787 /* RestaurantListRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE73E02C1CA11BC200738787 /* RestaurantListRepo.swift */; };
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE877D621C7C079C00471040 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE877D611C7C079C00471040 /* RestaurantDetailTableViewCell.swift */; };
-		AE9007E81CD04924008AB773 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; };
-		AE9007EA1CD049D9008AB773 /* Nimble.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AE9007EB1CD086AB008AB773 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; };
+		AE9007EC1CD086C2008AB773 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE9E6F3E1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6F3D1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift */; };
 		AE9F01E41C9BE50300163045 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB77B1C6194CE0096DD93 /* AWSCognito.framework */; };
 		AE9F01E51C9BE51600163045 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
@@ -184,22 +184,12 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		AE9007E41CD045E6008AB773 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstPath = ./Frameworks;
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-		AE9007E91CD049CD008AB773 /* Copy Files */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AE9007EA1CD049D9008AB773 /* Nimble.framework in Copy Files */,
+				AE9007EC1CD086C2008AB773 /* Nimble.framework in CopyFiles */,
 			);
-			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -385,7 +375,6 @@
 				AEC471D61C7439FA001B8C56 /* BSImagePicker.framework in Frameworks */,
 				AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */,
 				AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */,
-				AE9007E81CD04924008AB773 /* Nimble.framework in Frameworks */,
 				AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */,
 				AE39E61F1CA0D70A008DBD18 /* Result.framework in Frameworks */,
 				AEC471D81C743A00001B8C56 /* UIImageViewModeScaleAspect.framework in Frameworks */,
@@ -400,6 +389,7 @@
 				AE3ED1761C842EDF0097DC10 /* AWSCognito.framework in Frameworks */,
 				AE3ED1751C842ECE0097DC10 /* AWSCore.framework in Frameworks */,
 				AE3ED1741C842EB60097DC10 /* AWSS3.framework in Frameworks */,
+				AE9007EB1CD086AB008AB773 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,7 +977,6 @@
 				AECA9B4C1C0EC90E00C30BA4 /* Frameworks */,
 				AECA9B4D1C0EC90E00C30BA4 /* Resources */,
 				AE2978131C10159200751DD3 /* ShellScript */,
-				AE9007E91CD049CD008AB773 /* Copy Files */,
 			);
 			buildRules = (
 			);
