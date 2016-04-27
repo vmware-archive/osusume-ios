@@ -45,6 +45,8 @@
 		AE45881A1CCF28D1007863CC /* RestaurantDetailTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4588191CCF28D1007863CC /* RestaurantDetailTableViewCellDelegate.swift */; };
 		AE4865DE1C9A75AB00154D50 /* FakeCuisineRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4865DD1C9A75AB00154D50 /* FakeCuisineRepo.swift */; };
 		AE51C6321C98FD680068EF0D /* CuisineListParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */; };
+		AE5465921CD095F100B87773 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AE5465931CD095F700B87773 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; };
 		AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */; };
 		AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */; };
 		AE559A421C8EA4FF001D45A1 /* NetworkUserRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE559A411C8EA4FF001D45A1 /* NetworkUserRepoTest.swift */; };
@@ -182,6 +184,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		AE5465911CD095EA00B87773 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AE5465921CD095F100B87773 /* Nimble.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AE9007E41CD045E6008AB773 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -359,6 +371,7 @@
 				AE9F01E51C9BE51600163045 /* AWSCore.framework in Frameworks */,
 				AE9F01E61C9BE53000163045 /* AWSS3.framework in Frameworks */,
 				AEC1B68D1CA0D641005E6F7A /* BrightFutures.framework in Frameworks */,
+				AE5465931CD095F700B87773 /* Nimble.framework in Frameworks */,
 				AEC1B68F1CA0D641005E6F7A /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -958,6 +971,7 @@
 				AE19A9FD1C9BDEAF00D8CBAC /* Frameworks */,
 				AE19A9FE1C9BDEAF00D8CBAC /* Resources */,
 				AEEBA4BB1CA0D86F003E136F /* ShellScript */,
+				AE5465911CD095EA00B87773 /* CopyFiles */,
 			);
 			buildRules = (
 			);
