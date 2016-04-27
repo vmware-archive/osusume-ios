@@ -1,7 +1,7 @@
 import Result
 
 protocol DataListParser {
-    typealias ParsedObject
+    associatedtype ParsedObject
 
     func parse(json: [[String: AnyObject]]) -> Result<ParsedObject, ParseError>
 }
