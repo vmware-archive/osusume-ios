@@ -87,7 +87,7 @@ class NewRestaurantViewController: UIViewController {
         imageCollectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         imageCollectionView.registerClass(
             UICollectionViewCell.self,
-            forCellWithReuseIdentifier: "photoCell"
+            forCellWithReuseIdentifier: String(UICollectionViewCell)
         )
         imageCollectionView.backgroundColor = UIColor.lightGrayColor()
 
@@ -207,7 +207,10 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
         cellForItemAtIndexPath indexPath: NSIndexPath
         ) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            String(UICollectionViewCell),
+            forIndexPath: indexPath
+        )
 
         cell.backgroundView = UIImageView(image: images[indexPath.row])
 

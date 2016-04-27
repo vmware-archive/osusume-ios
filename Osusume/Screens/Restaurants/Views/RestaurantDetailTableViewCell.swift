@@ -71,7 +71,10 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
     private func configureSubviews() {
         imageCollectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-        imageCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
+        imageCollectionView.registerClass(
+            UICollectionViewCell.self,
+            forCellWithReuseIdentifier: String(UICollectionViewCell)
+        )
         imageCollectionView.backgroundColor = UIColor.lightGrayColor()
         imageCollectionView.dataSource = self
         imageCollectionView.delegate = self
@@ -192,7 +195,7 @@ extension RestaurantDetailTableViewCell: UICollectionViewDataSource {
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            "photoCell",
+            String(UICollectionViewCell),
             forIndexPath: indexPath
         )
 
