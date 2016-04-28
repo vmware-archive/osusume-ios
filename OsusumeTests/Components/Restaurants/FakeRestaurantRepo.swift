@@ -3,7 +3,6 @@ import BrightFutures
 @testable import Osusume
 
 class FakeRestaurantRepo: RestaurantRepo {
-    var createdRestaurant: Restaurant? = nil
     var allRestaurants: [Restaurant] = []
 
     var getAll_wasCalled = false
@@ -24,10 +23,9 @@ class FakeRestaurantRepo: RestaurantRepo {
         return promise.future
     }
 
-    var restaurantPromise = Promise<Restaurant, RepoError>()
+    var getOne_returnValue = Future<Restaurant, RepoError>()
     func getOne(id: Int) -> Future<Restaurant, RepoError> {
-        restaurantPromise.success(createdRestaurant!)
-        return restaurantPromise.future
+        return getOne_returnValue
     }
 
     var update_params: [String: AnyObject] = [:]

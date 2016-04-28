@@ -1,4 +1,5 @@
 import XCTest
+import BrightFutures
 
 @testable import Osusume
 
@@ -10,7 +11,10 @@ class NetworkRestaurantRepoTest: XCTestCase {
     override func setUp() {
         fakeSessionRepo.tokenValue = "some-session-token"
 
-        let restaurantListRepo = NetworkRestaurantListRepo(http: fakeHttp, parser: RestaurantParser())
+        let restaurantListRepo = NetworkRestaurantListRepo(
+            http: fakeHttp,
+            parser: RestaurantParser()
+        )
 
         networkRestaurantRepo = NetworkRestaurantRepo(
             http: fakeHttp,
@@ -18,14 +22,16 @@ class NetworkRestaurantRepoTest: XCTestCase {
         )
     }
 
-    func test_getAll() {
+    func test_getAll_hitsExpectedEndpoint() {
         networkRestaurantRepo.getAll()
+
 
         XCTAssertEqual("/restaurants", fakeHttp.get_args.path)
     }
 
-    func test_getOne() {
+    func test_getOne_hitsExpectedEndpoint() {
         networkRestaurantRepo.getOne(999)
+
 
         XCTAssertEqual("/restaurants/999", fakeHttp.get_args.path)
     }

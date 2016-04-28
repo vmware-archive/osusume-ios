@@ -8,8 +8,8 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     let fakeRouter = FakeRouter()
     let fakeRestaurantRepo = FakeRestaurantRepo()
     let fakeLikeRepo = FakeLikeRepo()
-    let fakeReloader = FakeReloader()
-    let restaurantId = 1
+    let restaurantRepoPromise = Promise<Restaurant, RepoError>()
+    var restaurant: Restaurant!
 
     var restaurantDetailVC: RestaurantDetailViewController!
     let today = NSDate()
@@ -18,30 +18,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     override func setUp() {
-        restaurantDetailVC = RestaurantDetailViewController(
-            router: fakeRouter,
-            reloader: fakeReloader,
-            restaurantRepo: fakeRestaurantRepo,
-            likeRepo: fakeLikeRepo,
-            restaurantId: restaurantId
-        )
-
-        fakeRestaurantRepo.createdRestaurant = Restaurant(
-            id: 1,
-            name: "My Restaurant",
-            address: "Roppongi",
-            cuisineType: "Sushi",
-            cuisine: Cuisine(id: 1, name: "Pizza"),
-            offersEnglishMenu: true,
-            walkInsOk: false,
-            acceptsCreditCards: true,
-            notes: "This place is great",
-            author: "Danny",
-            liked: false,
-            numberOfLikes: 0,
-            priceRange: "",
-            createdAt: NSDate(timeIntervalSince1970: 0),
-            photoUrls: [NSURL(string: "my-awesome-url")!],
+        restaurant = RestaurantFixtures.newRestaurant(
             comments: [
                 PersistedComment(
                     id: 1,
@@ -55,64 +32,51 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     func test_onViewWillAppear_showsComments() {
-        restaurantDetailVC.view.setNeedsLayout()
-        restaurantDetailVC.viewWillAppear(false)
+        setupViewControllerWithReloader()
+
 
         let commentSectionIndex = 1
         let actualRowCount = self.restaurantDetailVC.tableView
             .numberOfRowsInSection(commentSectionIndex)
-
         expect(actualRowCount).to(equal(1))
 
         let firstCommentCell = restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
             cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
         )
-
         expect(firstCommentCell.textLabel!.text).to(equal("first comment"))
         expect(firstCommentCell.detailTextLabel!.text)
             .to(equal("Danny - \(DateConverter.formattedDate(today))"))
-
     }
 
     func test_onViewWillAppear_reloadsTableViewData() {
-        restaurantDetailVC.view.setNeedsLayout()
-        restaurantDetailVC.viewWillAppear(false)
+        let fakeReloader = FakeReloader()
+        setupViewControllerWithReloader(fakeReloader)
 
-        expect(self.fakeReloader.reload_wasCalled).to(equal(true))
+
+        expect(fakeReloader.reload_wasCalled).to(equal(true))
     }
 
     func test_tappingTheEditButton_showsTheEditScreen() {
-        restaurantDetailVC.view.setNeedsLayout()
-        restaurantDetailVC.viewWillAppear(false)
+        setupViewControllerWithReloader()
 
         expect(self.restaurantDetailVC.navigationItem.rightBarButtonItem?.title)
             .to(equal("Edit"))
 
+
         let updateButton = restaurantDetailVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(updateButton)
+
 
         expect(self.fakeRouter.editRestaurantScreenIsShowing).to(equal(true))
     }
 
     func test_tappingTheAddCommentButton_showsTheNewCommentScreen() {
-        restaurantDetailVC = RestaurantDetailViewController(
-            router: fakeRouter,
-            reloader: DefaultReloader(),
-            restaurantRepo: fakeRestaurantRepo,
-            likeRepo: FakeLikeRepo(),
-            restaurantId: 1
-        )
-
-        restaurantDetailVC.view.setNeedsLayout()
-        restaurantDetailVC.viewWillAppear(false)
-
-        let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
-        let restaurantDetailCell = restaurantDetailVC.tableView
-            .cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
+        setupViewControllerWithReloader()
 
 
-        restaurantDetailCell.addCommentButton.sendActionsForControlEvents(.TouchUpInside)
+        let restaurantDetailCell = getRestaurantDetailCell()
+        tapButton(restaurantDetailCell.addCommentButton)
 
 
         expect(self.fakeRouter.newCommentScreenIsShowing).to(equal(true))
@@ -120,39 +84,57 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     func test_tappingTheLikeButton_callsTheController() {
+        setupViewControllerWithReloader()
+
+
+        let restaurantDetailCell = getRestaurantDetailCell()
+        tapButton(restaurantDetailCell.likeButton)
+
+
+        expect(self.fakeLikeRepo.like_wasCalled).to(beTrue())
+        expect(self.fakeLikeRepo.like_arg).to(equal(restaurant.id))
+    }
+
+    func test_tappingTheLikeButton_togglesTheColorOfTheButton() {
+        setupViewControllerWithReloader()
+
+        let promise = Promise<Like, LikeRepoError>()
+        fakeLikeRepo.like_returnValue = promise.future
+
+
+        let restaurantDetailCell = getRestaurantDetailCell()
+        tapButton(restaurantDetailCell.likeButton)
+
+
+        promise.success(Like())
+
+        expect(restaurantDetailCell.likeButton.backgroundColor)
+            .toEventually(equal(UIColor.redColor()))
+        expect(restaurantDetailCell.likeButton.titleColorForState(.Normal))
+            .toEventually(equal(UIColor.blueColor()))
+    }
+
+    // MARK: - Private Methods
+    private func setupViewControllerWithReloader(reloader: Reloader = DefaultReloader()) {
+        fakeRestaurantRepo.getOne_returnValue = restaurantRepoPromise.future
+
         restaurantDetailVC = RestaurantDetailViewController(
             router: fakeRouter,
-            reloader: DefaultReloader(),
+            reloader: reloader,
             restaurantRepo: fakeRestaurantRepo,
             likeRepo: fakeLikeRepo,
-            restaurantId: 1
+            restaurantId: restaurant.id
         )
 
         restaurantDetailVC.view.setNeedsLayout()
         restaurantDetailVC.viewWillAppear(false)
-
-        let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
-        let restaurantDetailCell = restaurantDetailVC.tableView
-            .cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
-
-
-        restaurantDetailCell.likeButton.sendActionsForControlEvents(.TouchUpInside)
-
-
-        expect(self.fakeLikeRepo.like_wasCalled).to(beTrue())
-        expect(self.fakeLikeRepo.like_arg).to(equal(restaurantId))
+        restaurantRepoPromise.success(restaurant)
+        NSRunLoop.osu_advance()
     }
 
-    func test_tappingTheLikeButton_togglesTheColorOfTheButton() {
-        let likeButton = UIButton()
-        let promise = Promise<Like, LikeRepoError>()
-        fakeLikeRepo.like_returnValue = promise.future
-
-        restaurantDetailVC.didTapLikeButton(likeButton)
-
-        promise.success(Like())
-
-        expect(likeButton.backgroundColor).toEventually(equal(UIColor.redColor()))
-        expect(likeButton.titleColorForState(.Normal)).toEventually(equal(UIColor.blueColor()))
+    private func getRestaurantDetailCell() -> RestaurantDetailTableViewCell {
+        let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
+        return restaurantDetailVC.tableView
+            .cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
     }
 }

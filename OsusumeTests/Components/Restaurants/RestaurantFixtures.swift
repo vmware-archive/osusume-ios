@@ -13,7 +13,8 @@ struct RestaurantFixtures {
         liked: Bool = true,
         numberOfLikes: Int = 0,
         photoUrl: String = "http://www.example.com/cat.jpg",
-        cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
+        cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified"),
+        comments: [PersistedComment] = []
         ) -> Restaurant
     {
         return Restaurant(
@@ -34,7 +35,7 @@ struct RestaurantFixtures {
             photoUrls: [
                 NSURL(string: photoUrl)!
             ],
-            comments: []
+            comments: comments
         )
     }
 }

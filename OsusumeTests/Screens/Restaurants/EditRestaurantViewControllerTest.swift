@@ -1,34 +1,28 @@
-import Foundation
 import XCTest
 import Nimble
-import BrightFutures
-import Result
-
 @testable import Osusume
 
 class EditRestaurantViewControllerTest: XCTestCase {
-
     var editRestaurantViewController: EditRestaurantViewController!
-    var router: FakeRouter!
-    var repo: FakeRestaurantRepo!
+    var fakeRouter: FakeRouter!
+    var fakeRestaurantRepo: FakeRestaurantRepo!
 
     override func setUp() {
-        UIView.setAnimationsEnabled(false)
-        router = FakeRouter()
-        repo = FakeRestaurantRepo()
+        fakeRouter = FakeRouter()
+        fakeRestaurantRepo = FakeRestaurantRepo()
     }
 
     private func instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine) {
-        repo.createdRestaurant = RestaurantFixtures.newRestaurant(
+        let restaurant = RestaurantFixtures.newRestaurant(
             name: "Original Restaurant Name",
             liked: false,
             cuisine: cuisine
         )
 
         editRestaurantViewController = EditRestaurantViewController(
-            router: router,
-            repo: repo,
-            restaurant: repo.createdRestaurant!
+            router: fakeRouter,
+            repo: fakeRestaurantRepo,
+            restaurant: restaurant
         )
 
         editRestaurantViewController.view.setNeedsLayout()
@@ -70,7 +64,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         tapNavBarButton(updateButton)
 
 
-        let actualParams = repo.update_params
+        let actualParams = fakeRestaurantRepo.update_params
         expect(actualParams["name"] as? String).to(equal("Updated Restaurant Name"))
         expect(actualParams["address"] as? String).to(equal("Original Address"))
         expect(actualParams["cuisine_type"] as? String).to(equal("Pizza"))
