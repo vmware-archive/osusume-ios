@@ -3,10 +3,10 @@ tests: sort units
 ci: bootstrap tests integration
 
 units:
-	@xctool -project Osusume.xcodeproj -scheme "Osusume" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.3,name=iPhone 6" test -parallelize -logicTestBucketSize 20
+	@xcodebuild -project Osusume.xcodeproj -scheme "Osusume" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.3,name=iPhone 6" test
 
 integration:
-	@xctool -project Osusume.xcodeproj -scheme "Osusume-Staging" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.3,name=iPhone 6" test -parallelize -logicTestBucketSize 20
+	@xcodebuild -project Osusume.xcodeproj -scheme "Osusume-Staging" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.3,name=iPhone 6" test
 
 bootstrap:
 	@carthage bootstrap --platform iOS
