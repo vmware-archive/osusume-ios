@@ -19,59 +19,72 @@ class MyRestaurantListViewControllerTest: XCTestCase {
         )
     }
 
+    func test_viewDidLoad_callsGetRestaurants() {
+        myRestaurantListVC.view.setNeedsLayout()
+
+
+        expect(self.getRestaurants_wasCalled).to(equal(true))
+    }
+
+    func test_viewDidLoad_registersTableViewCellClass() {
+        myRestaurantListVC.view.setNeedsLayout()
+
+
+        let cell = myRestaurantListVC.tableView.dequeueReusableCellWithIdentifier(
+            String(RestaurantTableViewCell.self)
+        )
+
+
+        expect(cell).toNot(beNil())
+    }
+
+    func test_viewDidLoad_configuresTableViewDataSourceAndDelegate() {
+        myRestaurantListVC.view.setNeedsLayout()
+
+
+        expect(self.myRestaurantListVC.tableView.dataSource === self.myRestaurantListVC.restaurantListDataSource).to(beTrue())
+        expect(self.myRestaurantListVC.tableView.delegate === self.myRestaurantListVC).to(beTrue())
+    }
+
     func test_viewDidLoad_fetchsUsersPosts() {
         let promise = Promise<[Restaurant], RepoError>()
         getRestaurants_returnValue = promise.future
         myRestaurantListVC.view.setNeedsLayout()
 
-        expect(self.getRestaurants_wasCalled).to(equal(true))
+
         let expectedRestaurant = RestaurantFixtures.newRestaurant(name: "Miya's Café")
         promise.success([expectedRestaurant])
-
         waitForFutureToComplete(promise.future)
 
-        expect(self.myRestaurantListVC.restaurantListDataSource.myPosts).to(equal([expectedRestaurant]))
+
+        expect(self.myRestaurantListVC.restaurantListDataSource.restaurants)
+            .to(equal([expectedRestaurant]))
+    }
+
+    func test_viewDidLoad_reloadsData_onGetRestaurantsSuccess() {
+        let promise = Promise<[Restaurant], RepoError>()
+        getRestaurants_returnValue = promise.future
+        myRestaurantListVC.view.setNeedsLayout()
+
+
+        promise.success([])
+        waitForFutureToComplete(promise.future)
+
+
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))
     }
 
-    func test_tableView_configuresCellCount() {
-        let restaurants = [RestaurantFixtures.newRestaurant()]
-        myRestaurantListVC.restaurantListDataSource.updateRestaurants(restaurants)
-
-        let numberOfRows = myRestaurantListVC.restaurantListDataSource.tableView(
-            UITableView(),
-            numberOfRowsInSection: 0
-        )
-
-        expect(numberOfRows).to(equal(restaurants.count))
-    }
-
-    func test_tableView_loadsImageFromPhotoUrl() {
-        let restaurants = [RestaurantFixtures.newRestaurant()]
-        myRestaurantListVC.restaurantListDataSource.updateRestaurants(restaurants)
+    func test_viewDidLoad_doesNotReloadData_onGetRestaurantsFailure() {
+        let promise = Promise<[Restaurant], RepoError>()
+        getRestaurants_returnValue = promise.future
         myRestaurantListVC.view.setNeedsLayout()
 
-        let promise = Promise<UIImage, RepoError>()
-        fakePhotoRepo.loadImageFromUrl_returnValue = promise.future
 
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = myRestaurantListVC.restaurantListDataSource.tableView(
-            myRestaurantListVC.tableView,
-            cellForRowAtIndexPath: indexPath
-            ) as? RestaurantTableViewCell
-
-        let placeholderImage = UIImage(named: "TableCellPlaceholder")!
-        expect(cell?.photoImageView.image).to(equal(placeholderImage))
-
-        expect(self.fakePhotoRepo.loadImageFromUrl_wasCalled).to(equal(true))
-        expect(self.fakePhotoRepo.loadImageFromUrl_args)
-            .to(equal(NSURL(string: "http://www.example.com/cat.jpg")!))
-
-        let apple = testImage(named: "appleLogo", imageExtension: "png")
-        promise.success(apple)
+        promise.failure(RepoError.GetFailed)
         waitForFutureToComplete(promise.future)
 
-        expect(cell?.photoImageView.image).to(equal(apple))
+
+        expect(self.fakeReloader.reload_wasCalled).to(equal(false))
     }
 
     // MARK: Fake Methods

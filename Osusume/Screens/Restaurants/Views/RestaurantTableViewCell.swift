@@ -3,11 +3,11 @@ import UIKit
 class RestaurantTableViewCell: UITableViewCell {
     // MARK: - View Elements
     let photoImageView: UIImageView
-    private let textContentView: UIView
-    private let nameLabel: UILabel
-    private let cuisineTypeLabel: UILabel
-    private let authorLabel: UILabel
-    private let createdAtLabel: UILabel
+    let textContentView: UIView
+    let nameLabel: UILabel
+    let cuisineTypeLabel: UILabel
+    let authorLabel: UILabel
+    let createdAtLabel: UILabel
 
     // MARK: - Initializers
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

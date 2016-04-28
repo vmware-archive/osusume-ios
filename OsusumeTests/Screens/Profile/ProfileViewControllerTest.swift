@@ -84,5 +84,4 @@ class ProfileViewControllerTest: XCTestCase {
         expect(self.fakeSessionRepo.deleteTokenWasCalled).to(beTrue())
         expect(self.fakeRouter.loginScreenIsShowing).to(beTrue())
     }
-
 }

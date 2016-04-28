@@ -107,7 +107,7 @@ extension RestaurantListViewController: UITableViewDelegate {
         tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let id = restaurantListDataSource.myPosts[indexPath.row].id
+        let id = restaurantListDataSource.restaurants[indexPath.row].id
         router.showRestaurantDetailScreen(id)
     }
 }

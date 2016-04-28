@@ -59,7 +59,6 @@ class RestaurantListViewControllerTest: XCTestCase {
         expect(cell?.photoImageView.image).to(equal(apple))
     }
 
-
     // MARK: View Lifecycle
     func test_viewDidLoad_showsProfileButton() {
         restaurantListVC.view.setNeedsLayout()
@@ -72,10 +71,39 @@ class RestaurantListViewControllerTest: XCTestCase {
     func test_viewDidLoad_reloadsTableData() {
         restaurantListVC.view.setNeedsLayout()
 
-        let actualTableView = fakeReloader.reload_args as? UITableView
 
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))
+
+
+        let actualTableView = fakeReloader.reload_args as? UITableView
         expect(actualTableView === self.restaurantListVC.tableView).to(equal(true))
+    }
+
+    func test_viewDidLoad_retrievesRestaurants() {
+        restaurantListVC.view.setNeedsLayout()
+
+
+        expect(self.fakeRestaurantRepo.getAll_wasCalled).to(beTrue())
+    }
+
+    func test_viewDidLoad_registersTableViewCellClass() {
+        restaurantListVC.view.setNeedsLayout()
+
+
+        let cell = restaurantListVC.tableView.dequeueReusableCellWithIdentifier(
+            String(RestaurantTableViewCell.self)
+        )
+
+
+        expect(cell).toNot(beNil())
+    }
+
+    func test_viewDidLoad_configuresTableViewDataSourceAndDelegate() {
+        restaurantListVC.view.setNeedsLayout()
+
+
+        expect(self.restaurantListVC.tableView.dataSource === self.restaurantListVC.restaurantListDataSource).to(beTrue())
+        expect(self.restaurantListVC.tableView.delegate === self.restaurantListVC).to(beTrue())
     }
 
     // MARK: Actions
@@ -110,5 +138,4 @@ class RestaurantListViewControllerTest: XCTestCase {
 
         expect(self.fakeRouter.profileScreenIsShowing).to(beTrue())
     }
-
 }
