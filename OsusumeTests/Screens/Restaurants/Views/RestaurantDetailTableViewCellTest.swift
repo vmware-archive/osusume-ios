@@ -91,6 +91,8 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
             .toEventually(equal(UIColor.redColor()))
         expect(self.restaurantDetailCell.likeButton.titleColorForState(.Normal))
             .toEventually(equal(UIColor.blueColor()))
+        expect(self.restaurantDetailCell.likeButton.enabled)
+            .toEventually(beFalse())
     }
 
     func test_configureView_reloadsCollectionViewData() {
@@ -114,6 +116,8 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
             .toEventually(equal(UIColor.blueColor()))
         expect(self.restaurantDetailCell.likeButton.titleColorForState(.Normal))
             .toEventually(equal(UIColor.redColor()))
+        expect(self.restaurantDetailCell.likeButton.enabled)
+            .toEventually(beTrue())
     }
 
     func test_tappingAnImage_showsAFullScreenImage() {

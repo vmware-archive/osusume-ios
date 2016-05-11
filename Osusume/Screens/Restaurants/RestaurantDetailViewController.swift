@@ -190,6 +190,7 @@ extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate 
             .onSuccess { _ in
                 sender.backgroundColor = UIColor.redColor()
                 sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
+                sender.enabled = false
         }
     }
 }
