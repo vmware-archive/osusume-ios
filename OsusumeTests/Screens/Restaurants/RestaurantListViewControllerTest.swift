@@ -68,24 +68,6 @@ class RestaurantListViewControllerTest: XCTestCase {
         expect(leftBarButtonItem?.title).to(equal("Profile"))
     }
 
-    func test_viewDidLoad_reloadsTableData() {
-        restaurantListVC.view.setNeedsLayout()
-
-
-        expect(self.fakeReloader.reload_wasCalled).to(equal(true))
-
-
-        let actualTableView = fakeReloader.reload_args as? UITableView
-        expect(actualTableView === self.restaurantListVC.tableView).to(equal(true))
-    }
-
-    func test_viewDidLoad_retrievesRestaurants() {
-        restaurantListVC.view.setNeedsLayout()
-
-
-        expect(self.fakeRestaurantRepo.getAll_wasCalled).to(beTrue())
-    }
-
     func test_viewDidLoad_registersTableViewCellClass() {
         restaurantListVC.view.setNeedsLayout()
 
@@ -104,6 +86,26 @@ class RestaurantListViewControllerTest: XCTestCase {
 
         expect(self.restaurantListVC.tableView.dataSource === self.restaurantListVC.restaurantListDataSource).to(beTrue())
         expect(self.restaurantListVC.tableView.delegate === self.restaurantListVC).to(beTrue())
+    }
+
+    func test_viewDidAppear_reloadsTableData() {
+        restaurantListVC.view.setNeedsLayout()
+        restaurantListVC.viewWillAppear(false)
+
+
+        expect(self.fakeReloader.reload_wasCalled).to(equal(true))
+
+
+        let actualTableView = fakeReloader.reload_args as? UITableView
+        expect(actualTableView === self.restaurantListVC.tableView).to(equal(true))
+    }
+
+    func test_viewDidAppear_retrievesRestaurants() {
+        restaurantListVC.view.setNeedsLayout()
+        restaurantListVC.viewWillAppear(false)
+
+
+        expect(self.fakeRestaurantRepo.getAll_wasCalled).to(beTrue())
     }
 
     // MARK: Actions

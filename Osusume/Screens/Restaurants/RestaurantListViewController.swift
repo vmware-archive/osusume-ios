@@ -42,6 +42,10 @@ class RestaurantListViewController: UIViewController {
         addSubviews()
         configureSubviews()
         addConstraints()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
 
         repo.getAll()
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurants in
