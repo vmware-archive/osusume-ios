@@ -60,6 +60,8 @@ class RestaurantTableViewCellTest: XCTestCase {
 
         expect(self.cell.nameLabel.text).toNot(beNil())
         expect(self.cell.cuisineTypeLabel.text).toNot(beNil())
+        expect(self.cell.priceRangeLabel.text).toNot(beNil())
+        expect(self.cell.numberOfLikesLabel.text).toNot(beNil())
         expect(self.cell.authorLabel.text).toNot(beNil())
         expect(self.cell.createdAtLabel.text).toNot(beNil())
     }

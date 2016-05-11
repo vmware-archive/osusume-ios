@@ -4,6 +4,14 @@ import Nimble
 
 class RestaurantDetailPresenterTest: XCTestCase {
 
+    func test_formatsPriceRange() {
+        let restaurant = RestaurantFixtures.newRestaurant(priceRange: "¥1000~1999")
+        let presenter = RestaurantDetailPresenter(restaurant: restaurant)
+
+
+        expect(presenter.priceRange).to(equal("Price Range: ¥1000~1999"))
+    }
+
     func test_numberOfLikes_displaysSinglePersonLike() {
         let restaurant = RestaurantFixtures.newRestaurant(numberOfLikes: 1)
         let presenter = RestaurantDetailPresenter(restaurant: restaurant)

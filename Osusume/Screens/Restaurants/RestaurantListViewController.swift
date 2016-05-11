@@ -100,7 +100,7 @@ extension RestaurantListViewController: UITableViewDelegate {
         tableView: UITableView,
         heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        return 100.0
+        return 150.0
     }
 
     func tableView(

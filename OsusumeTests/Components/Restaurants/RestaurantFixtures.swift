@@ -14,6 +14,7 @@ struct RestaurantFixtures {
         numberOfLikes: Int = 0,
         photoUrl: String = "http://www.example.com/cat.jpg",
         cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified"),
+        priceRange: String = "",
         comments: [PersistedComment] = []
         ) -> Restaurant
     {
@@ -30,7 +31,7 @@ struct RestaurantFixtures {
             author: "",
             liked: liked,
             numberOfLikes: numberOfLikes,
-            priceRange: "",
+            priceRange: priceRange,
             createdAt: NSDate(),
             photoUrls: [
                 NSURL(string: photoUrl)!
