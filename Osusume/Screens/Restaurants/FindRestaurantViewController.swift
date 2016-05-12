@@ -4,10 +4,11 @@ class FindRestaurantViewController: UIViewController {
     // MARK: - Constants
 
     // MARK: - View Elements
+    let restaurantNameTextField: UITextField
 
     // MARK: - Initializers
     init() {
-        // Initialization
+        restaurantNameTextField = UITextField.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -20,6 +21,9 @@ class FindRestaurantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Find a restaurant"
+        view.backgroundColor = UIColor.whiteColor()
+
         configureNavigationBar()
         addSubviews()
         configureSubviews()
@@ -31,12 +35,22 @@ class FindRestaurantViewController: UIViewController {
     }
 
     private func addSubviews() {
+        view.addSubview(restaurantNameTextField)
     }
 
     private func configureSubviews() {
+        restaurantNameTextField.borderStyle = .Line
+        restaurantNameTextField.autocapitalizationType = .None
+        restaurantNameTextField.autocorrectionType = .No
+        restaurantNameTextField.placeholder = "Restaurant name"
+        restaurantNameTextField.backgroundColor = UIColor.lightGrayColor()
     }
 
     private func addConstraints() {
+        restaurantNameTextField.autoPinToTopLayoutGuideOfViewController(self, withInset: 10.0)
+        restaurantNameTextField.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
+        restaurantNameTextField.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
+        restaurantNameTextField.autoSetDimension(.Height, toSize: 40.0)
     }
 
     // MARK: - Actions
