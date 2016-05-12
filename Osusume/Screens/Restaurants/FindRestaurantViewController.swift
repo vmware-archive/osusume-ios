@@ -30,6 +30,12 @@ class FindRestaurantViewController: UIViewController {
         addConstraints()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        restaurantNameTextField.becomeFirstResponder()
+    }
+
     // MARK: - View Setup
     private func configureNavigationBar() {
     }
