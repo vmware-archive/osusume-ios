@@ -1,4 +1,3 @@
-import Foundation
 import BrightFutures
 @testable import Osusume
 

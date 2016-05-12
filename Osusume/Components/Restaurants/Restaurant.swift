@@ -1,5 +1,3 @@
-import Foundation
-
 struct Restaurant {
     var id: Int
     var name: String

@@ -1,4 +1,3 @@
-import Foundation
 import Result
 
 struct CommentParser: DataParser {

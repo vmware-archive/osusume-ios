@@ -1,4 +1,3 @@
-import Foundation
 import BrightFutures
 import XCTest
 import Nimble

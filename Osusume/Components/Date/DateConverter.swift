@@ -1,5 +1,3 @@
-import Foundation
-
 struct DateConverter {
 
     static func formattedDate(date: NSDate?) -> String {
