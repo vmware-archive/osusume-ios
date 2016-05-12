@@ -1,4 +1,3 @@
-import PureLayout
 import BrightFutures
 import BSImagePicker
 import Photos

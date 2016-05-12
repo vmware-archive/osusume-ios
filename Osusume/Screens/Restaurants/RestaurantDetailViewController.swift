@@ -1,4 +1,3 @@
-import PureLayout
 import BrightFutures
 
 class RestaurantDetailViewController: UIViewController {
