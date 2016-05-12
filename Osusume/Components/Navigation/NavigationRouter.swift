@@ -163,7 +163,21 @@ class NavigationRouter: Router {
         )
     }
 
-    func showFindRestaurantScreen() {}
+    func showFindRestaurantScreen() {
+        let findRestaurantViewController = FindRestaurantViewController()
+
+        let findRestaurantNavController = UINavigationController()
+        findRestaurantNavController.setViewControllers(
+            [findRestaurantViewController],
+            animated: true
+        )
+
+        navigationController.presentViewController(
+            findRestaurantNavController,
+            animated: true,
+            completion: nil
+        )
+    }
 
     func dismissPresentedNavigationController() {
         if let presentedVC = navigationController.presentedViewController as? UINavigationController {

@@ -184,6 +184,25 @@ class NavigationRouterTest: XCTestCase {
         expect(priceRangeNavController?.topViewController).to(beAKindOf(PriceRangeListViewController))
     }
 
+    func test_showingFindRestaurantScreen() {
+        configureUIWindowWithRootNavController()
+
+        let newRestaurantVC = NewRestaurantViewController(
+            router: FakeRouter(),
+            restaurantRepo: FakeRestaurantRepo(),
+            photoRepo: FakePhotoRepo()
+        )
+        rootNavController.pushViewController(newRestaurantVC, animated: false)
+
+
+        navigationRouter.showFindRestaurantScreen()
+
+
+        let findRestaurantNavController = rootNavController.presentedViewController as? UINavigationController
+        expect(findRestaurantNavController).to(beAKindOf(UINavigationController))
+        expect(findRestaurantNavController?.topViewController).to(beAKindOf(FindRestaurantViewController))
+    }
+
     // MARK: - Private Methods
     func configureUIWindowWithRootNavController() {
         var window: UIWindow?
