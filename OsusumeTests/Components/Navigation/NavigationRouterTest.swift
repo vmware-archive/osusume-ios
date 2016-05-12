@@ -104,10 +104,7 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_showingCuisineListScreen() {
-        var window: UIWindow?
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = rootNavController
-        window!.makeKeyAndVisible()
+        configureUIWindowWithRootNavController()
 
         let newRestaurantVC = NewRestaurantViewController(
             router: FakeRouter(),
@@ -126,10 +123,7 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_dismissPresentedNavigationController_dismissesPresentedNavigationController() {
-        var window: UIWindow?
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = rootNavController
-        window!.makeKeyAndVisible()
+        configureUIWindowWithRootNavController()
         rootNavController.pushViewController(UIViewController(), animated: false)
 
         let modalNavController = UINavigationController(rootViewController: UIViewController())
@@ -151,10 +145,7 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_dismissPresentedNavigationController_doesNotDismissPresentedViewController() {
-        var window: UIWindow?
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = rootNavController
-        window!.makeKeyAndVisible()
+        configureUIWindowWithRootNavController()
         rootNavController.pushViewController(UIViewController(), animated: false)
 
         rootNavController.presentViewController(
@@ -175,10 +166,7 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_showingPriceRangeListScreen() {
-        var window: UIWindow?
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = rootNavController
-        window!.makeKeyAndVisible()
+        configureUIWindowWithRootNavController()
 
         let newRestaurantVC = NewRestaurantViewController(
             router: FakeRouter(),
@@ -194,5 +182,13 @@ class NavigationRouterTest: XCTestCase {
         let priceRangeNavController = rootNavController.presentedViewController as? UINavigationController
         expect(priceRangeNavController).to(beAKindOf(UINavigationController))
         expect(priceRangeNavController?.topViewController).to(beAKindOf(PriceRangeListViewController))
+    }
+
+    // MARK: - Private Methods
+    func configureUIWindowWithRootNavController() {
+        var window: UIWindow?
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window!.rootViewController = rootNavController
+        window!.makeKeyAndVisible()
     }
 }
