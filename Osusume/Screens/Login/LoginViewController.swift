@@ -1,4 +1,3 @@
-import UIKit
 import BrightFutures
 
 class LoginViewController: UIViewController {

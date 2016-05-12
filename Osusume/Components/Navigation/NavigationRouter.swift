@@ -1,5 +1,3 @@
-import UIKit
-
 class NavigationRouter: Router {
     let navigationController : UINavigationController
     let sessionRepo: SessionRepo

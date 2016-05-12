@@ -1,5 +1,3 @@
-import UIKit
-
 class NewCommentViewController: UIViewController {
     // MARK: - Properties
     private unowned let router: Router

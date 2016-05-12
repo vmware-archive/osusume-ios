@@ -1,4 +1,3 @@
-import UIKit
 import Nimble
 import XCTest
 import BrightFutures

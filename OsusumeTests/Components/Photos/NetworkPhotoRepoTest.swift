@@ -1,6 +1,5 @@
 import XCTest
 import Nimble
-import UIKit
 import BrightFutures
 @testable import Osusume
 

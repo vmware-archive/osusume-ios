@@ -1,5 +1,3 @@
-import UIKit
-
 class EditRestaurantFormView: UIView {
     // MARK: - View Elements
     let nameHeaderLabel: UILabel

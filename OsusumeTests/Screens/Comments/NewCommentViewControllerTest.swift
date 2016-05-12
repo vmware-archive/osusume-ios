@@ -1,5 +1,4 @@
 import XCTest
-import UIKit
 import BrightFutures
 
 @testable import Osusume

@@ -1,5 +1,1 @@
-import UIKit
-
-class DefaultSearchDelegate: NSObject, UISearchBarDelegate {
-
-}
+class DefaultSearchDelegate: NSObject, UISearchBarDelegate {}

@@ -1,5 +1,3 @@
-import UIKit
-
 class NullAppDelegate: UIResponder, UIApplicationDelegate {}
 
 if NSClassFromString("XCTestCase") != nil {

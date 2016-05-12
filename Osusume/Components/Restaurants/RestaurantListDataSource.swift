@@ -1,5 +1,3 @@
-import UIKit
-
 class RestaurantListDataSource: NSObject {
     private(set) var restaurants: [Restaurant]
     private let photoRepo: PhotoRepo

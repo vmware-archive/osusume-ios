@@ -1,5 +1,3 @@
-import UIKit
-
 class RestaurantTableViewCell: UITableViewCell {
     // MARK: - View Elements
     let photoImageView: UIImageView

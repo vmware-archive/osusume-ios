@@ -1,5 +1,3 @@
-import UIKit
-
 class NewRestaurantFormView: UIView {
     // MARK: - Properties
     private(set) var selectedCuisine: Cuisine = Cuisine(id: 0, name: "Not Specified")
