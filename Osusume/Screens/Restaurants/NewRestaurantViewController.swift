@@ -229,6 +229,10 @@ extension NewRestaurantViewController: NewRestaurantViewControllerPresenterProto
         router.showFindCuisineScreen()
     }
 
+    func showFindRestaurantScreen() {
+        router.showFindRestaurantScreen()
+    }
+
     func showPriceRangeScreen() {
         router.showPriceRangeListScreen()
     }

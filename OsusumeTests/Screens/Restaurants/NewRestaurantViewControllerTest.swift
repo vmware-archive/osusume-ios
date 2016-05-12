@@ -51,14 +51,21 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.newRestaurantVC.formView.priceRangeButton).to(beAKindOf(UIButton))
     }
 
-    func test_viewDidLoad_showsFindRestaurantButton() {
-        expect(self.newRestaurantVC.formView.findRestaurantButton).to(beAKindOf(UIButton))
-    }
-
     func test_tappingPriceRange_showsPriceRangeListScreen() {
         tapButton(newRestaurantVC.formView.priceRangeButton)
 
         expect(self.fakeRouter.showPriceRangeListScreen_wasCalled).to(beTrue())
+    }
+
+    func test_viewDidLoad_showsFindRestaurantButton() {
+        expect(self.newRestaurantVC.formView.findRestaurantButton).to(beAKindOf(UIButton))
+    }
+
+    func test_tappingFindRestaurantButton_showsFindRestaurantScreen() {
+        tapButton(newRestaurantVC.formView.findRestaurantButton)
+
+
+        expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beTrue())
     }
 
     func test_selectPriceRange_populatesPriceRangeTextfield() {

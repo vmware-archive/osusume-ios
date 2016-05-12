@@ -64,4 +64,9 @@ class FakeRouter : Router {
     func showPriceRangeListScreen() {
         showPriceRangeListScreen_wasCalled = true
     }
+
+    var showFindRestaurantScreen_wasCalled = false
+    func showFindRestaurantScreen() {
+        showFindRestaurantScreen_wasCalled = true
+    }
 }

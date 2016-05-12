@@ -163,6 +163,8 @@ class NavigationRouter: Router {
         )
     }
 
+    func showFindRestaurantScreen() {}
+
     func dismissPresentedNavigationController() {
         if let presentedVC = navigationController.presentedViewController as? UINavigationController {
             presentedVC.dismissViewControllerAnimated(true, completion: nil)

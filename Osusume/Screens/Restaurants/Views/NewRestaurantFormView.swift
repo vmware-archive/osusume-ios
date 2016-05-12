@@ -116,6 +116,11 @@ class NewRestaurantFormView: UIView {
         findRestaurantButton.setTitle("Find Restaurant", forState: .Normal)
         findRestaurantButton.setTitleColor(findRestaurantButton.tintColor, forState: .Normal)
         findRestaurantButton.backgroundColor = UIColor.clearColor()
+        findRestaurantButton.addTarget(
+            self,
+            action: #selector(NewRestaurantFormView.didTapFindRestaurantButton(_:)),
+            forControlEvents: .TouchUpInside
+        )
 
         cuisineTypeHeaderLabel.text = "Cuisine Type"
         findCuisineButton.translatesAutoresizingMaskIntoConstraints = false
@@ -250,6 +255,10 @@ class NewRestaurantFormView: UIView {
 
     @objc private func didTapPriceRangeButton(sender: UIButton) {
         delegate?.showPriceRangeScreen()
+    }
+
+    @objc private func didTapFindRestaurantButton(sender: UIButton) {
+        delegate?.showFindRestaurantScreen()
     }
 }
 
