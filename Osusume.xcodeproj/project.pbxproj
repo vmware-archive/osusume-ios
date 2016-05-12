@@ -27,6 +27,7 @@
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE2C8DAB1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2C8DAA1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift */; };
 		AE31192C1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */; };
+		AE3119301CE47816006E46B6 /* CustomMatchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31192F1CE47816006E46B6 /* CustomMatchers.swift */; };
 		AE37F6041C7FD7EB0005CB29 /* FakeReloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37F6031C7FD7EB0005CB29 /* FakeReloader.swift */; };
 		AE39E61F1CA0D70A008DBD18 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
 		AE3ECDEE1C76E947002D70B4 /* appleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3ECDED1C76E947002D70B4 /* appleLogo.png */; };
@@ -233,6 +234,7 @@
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AE2C8DAA1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
+		AE31192F1CE47816006E46B6 /* CustomMatchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMatchers.swift; sourceTree = "<group>"; };
 		AE37F6031C7FD7EB0005CB29 /* FakeReloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeReloader.swift; sourceTree = "<group>"; };
 		AE3ECDED1C76E947002D70B4 /* appleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appleLogo.png; sourceTree = "<group>"; };
 		AE3ECDF11C7AEAA0002D70B4 /* truck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = truck.png; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 				DE99CEC4E18A5CABB3860FCE /* Components */,
 				AE3ECDEB1C76E947002D70B4 /* Resources */,
 				DE99CF05F4A7BB5B048FC5BB /* Screens */,
+				AE31192F1CE47816006E46B6 /* CustomMatchers.swift */,
 				AEAEF4971C7315EC004ECC89 /* ExtensionsForTest.swift */,
 				AECA9B691C0EC90E00C30BA4 /* Info.plist */,
 			);
@@ -1279,6 +1282,7 @@
 				DE99C3D734C5387B790D9FEC /* CuisineListViewControllerTest.swift in Sources */,
 				AE0120D51C9BCAB200D5E7BA /* CuisineParserTest.swift in Sources */,
 				AEACDB7B1C991EC80092AEF6 /* CuisineRepoTest.swift in Sources */,
+				AE3119301CE47816006E46B6 /* CustomMatchers.swift in Sources */,
 				DE99C758C4362943C1232D75 /* DateConverterTest.swift in Sources */,
 				AE0CBF661CA224B80060FA02 /* DefaultTextSearchTest.swift in Sources */,
 				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,

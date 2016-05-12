@@ -4,12 +4,20 @@ import Nimble
 
 class FindRestaurantViewControllerTest: XCTestCase {
 
-    func test_viewDidLoad_showsRestaurantNameTextField() {
+    func test_viewDidLoad_initializesSubviews() {
         let findRestaurantViewController = FindRestaurantViewController()
         findRestaurantViewController.view.setNeedsLayout()
 
 
         expect(findRestaurantViewController.restaurantNameTextField).to(beAKindOf(UITextField))
+    }
+
+    func test_viewDidLoad_addsSubviews() {
+        let findRestaurantViewController = FindRestaurantViewController()
+        findRestaurantViewController.view.setNeedsLayout()
+
+
+        expect(findRestaurantViewController.view).to(containSubview(findRestaurantViewController.restaurantNameTextField))
     }
 
     func test_viewDidAppear_setsRestaurantNameTextFieldAsFirstResponder() {
