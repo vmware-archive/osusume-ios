@@ -11,6 +11,8 @@ class NewRestaurantFormView: UIView {
     let addressHeaderLabel: UILabel
     let addressTextField: UITextField
 
+    let findRestaurantButton: UIButton
+
     let cuisineTypeHeaderLabel: UILabel
     let cuisineTypeValueLabel: UILabel
     let findCuisineButton: UIButton
@@ -38,6 +40,8 @@ class NewRestaurantFormView: UIView {
 
         addressHeaderLabel = UILabel.newAutoLayoutView()
         addressTextField = UITextField.newAutoLayoutView()
+
+        findRestaurantButton = UIButton(type: .System)
 
         cuisineTypeHeaderLabel = UILabel.newAutoLayoutView()
         cuisineTypeValueLabel = UILabel.newAutoLayoutView()
@@ -78,6 +82,8 @@ class NewRestaurantFormView: UIView {
         self.addSubview(addressHeaderLabel)
         self.addSubview(addressTextField)
 
+        self.addSubview(findRestaurantButton)
+
         self.addSubview(cuisineTypeHeaderLabel)
         self.addSubview(cuisineTypeValueLabel)
         self.addSubview(findCuisineButton)
@@ -105,6 +111,11 @@ class NewRestaurantFormView: UIView {
 
         addressHeaderLabel.text = "Address"
         addressTextField.borderStyle = .Line
+
+        findRestaurantButton.translatesAutoresizingMaskIntoConstraints = false
+        findRestaurantButton.setTitle("Find Restaurant", forState: .Normal)
+        findRestaurantButton.setTitleColor(findRestaurantButton.tintColor, forState: .Normal)
+        findRestaurantButton.backgroundColor = UIColor.clearColor()
 
         cuisineTypeHeaderLabel.text = "Cuisine Type"
         findCuisineButton.translatesAutoresizingMaskIntoConstraints = false
@@ -152,9 +163,12 @@ class NewRestaurantFormView: UIView {
         addressTextField.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameHeaderLabel)
         addressTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressHeaderLabel)
 
+        findRestaurantButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressTextField)
+        findRestaurantButton.autoAlignAxisToSuperviewAxis(.Vertical)
+
+        cuisineTypeHeaderLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: findRestaurantButton)
         cuisineTypeHeaderLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameHeaderLabel)
         cuisineTypeHeaderLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameHeaderLabel)
-        cuisineTypeHeaderLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressTextField)
         cuisineTypeValueLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameHeaderLabel)
         cuisineTypeValueLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameHeaderLabel)
         cuisineTypeValueLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeHeaderLabel)
