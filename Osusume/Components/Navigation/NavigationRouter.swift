@@ -164,12 +164,14 @@ class NavigationRouter: Router {
     }
 
     func showFindRestaurantScreen() {
-        let findRestaurantViewController = FindRestaurantViewController()
+        let findRestaurantViewController = FindRestaurantViewController(
+            router: self
+        )
 
         let findRestaurantNavController = UINavigationController()
         findRestaurantNavController.setViewControllers(
             [findRestaurantViewController],
-            animated: true
+            animated: false
         )
 
         navigationController.presentViewController(

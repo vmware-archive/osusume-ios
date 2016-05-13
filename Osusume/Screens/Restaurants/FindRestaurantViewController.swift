@@ -1,5 +1,6 @@
 class FindRestaurantViewController: UIViewController {
     // MARK: - Properties
+    private let router: Router
 
     // MARK: - Constants
 
@@ -7,7 +8,9 @@ class FindRestaurantViewController: UIViewController {
     let restaurantNameTextField: UITextField
 
     // MARK: - Initializers
-    init() {
+    init(router: Router) {
+        self.router = router
+
         restaurantNameTextField = UITextField.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
@@ -38,6 +41,12 @@ class FindRestaurantViewController: UIViewController {
 
     // MARK: - View Setup
     private func configureNavigationBar() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: .Plain,
+            target: self,
+            action: #selector(FindRestaurantViewController.didTapCancelButton(_:))
+        )
     }
 
     private func addSubviews() {
@@ -60,5 +69,10 @@ class FindRestaurantViewController: UIViewController {
     }
 
     // MARK: - Actions
+    @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
+        router.dismissPresentedNavigationController()
+    }
+
     // MARK: - Private Methods
+
 }

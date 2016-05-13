@@ -4,9 +4,12 @@ import Nimble
 
 class FindRestaurantViewControllerTest: XCTestCase {
     var findRestaurantViewController: FindRestaurantViewController!
+    let fakeRouter = FakeRouter()
 
     override func setUp() {
-        findRestaurantViewController = FindRestaurantViewController()
+        findRestaurantViewController = FindRestaurantViewController(
+            router: fakeRouter
+        )
         findRestaurantViewController.view.setNeedsLayout()
     }
 
@@ -33,5 +36,20 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
         expect(self.findRestaurantViewController.restaurantNameTextField.isFirstResponder())
             .to(beTrue())
+    }
+
+    func test_configureNavigationBar_addsBackButton() {
+        expect(self.findRestaurantViewController.navigationItem.leftBarButtonItem?.title)
+            .to(equal("Cancel"))
+    }
+
+    func test_tappingCancelButton_dismissesFindRestaurantVC() {
+        let cancelButton = findRestaurantViewController.navigationItem.leftBarButtonItem!
+
+
+        tapNavBarButton(cancelButton)
+
+
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 }
