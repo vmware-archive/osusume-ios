@@ -20,3 +20,5 @@ bump:
 update:
 	@carthage update --platform iOS
 
+installcodesnippets:
+	@cp Code\ Snippets/* $$HOME/Library/Developer/Xcode/UserData/CodeSnippets
