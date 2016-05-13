@@ -150,17 +150,7 @@ class NavigationRouter: Router {
             delegate: newRestaurantVC!.formView
         )
 
-        let cuisineNavController = UINavigationController()
-        cuisineNavController.setViewControllers(
-            [findCuisineTableViewController],
-            animated: true
-        )
-
-        navigationController.presentViewController(
-            cuisineNavController,
-            animated: true,
-            completion: nil
-        )
+        presentViewControllerModallyWithinNavController(findCuisineTableViewController)
     }
 
     func showFindRestaurantScreen() {
@@ -168,17 +158,7 @@ class NavigationRouter: Router {
             router: self
         )
 
-        let findRestaurantNavController = UINavigationController()
-        findRestaurantNavController.setViewControllers(
-            [findRestaurantViewController],
-            animated: false
-        )
-
-        navigationController.presentViewController(
-            findRestaurantNavController,
-            animated: true,
-            completion: nil
-        )
+        presentViewControllerModallyWithinNavController(findRestaurantViewController)
     }
 
     func dismissPresentedNavigationController() {
@@ -197,14 +177,21 @@ class NavigationRouter: Router {
             priceRangeSelection: newRestaurantVC!.formView
         )
 
-        let priceRangeNavController = UINavigationController()
-        priceRangeNavController.setViewControllers(
-            [priceRangeListViewController],
+        presentViewControllerModallyWithinNavController(priceRangeListViewController)
+    }
+
+    // MARK: - Private Methods
+    func presentViewControllerModallyWithinNavController(
+        viewController: UIViewController)
+    {
+        let containerNavigationController = UINavigationController()
+        containerNavigationController.setViewControllers(
+            [viewController],
             animated: false
         )
 
         navigationController.presentViewController(
-            priceRangeNavController,
+            containerNavigationController,
             animated: true,
             completion: nil
         )
