@@ -4,31 +4,32 @@ import BrightFutures
 @testable import Osusume
 
 class NewCommentViewControllerTest: XCTestCase {
+    var fakeRouter: FakeRouter!
+    var fakeCommentRepo: FakeCommentRepo!
+    var promise: Promise<PersistedComment, RepoError>!
+    var newCommentVC: NewCommentViewController!
     let fakeRestaurantId = 0
 
-    func test_view_showsTitleInNavigationBar() {
-        let fakeCommentRepo = FakeCommentRepo()
+    override func setUp() {
+        fakeRouter = FakeRouter()
+        fakeCommentRepo = FakeCommentRepo()
 
-        let newCommentVC = NewCommentViewController(
-            router: FakeRouter(),
+        promise = Promise<PersistedComment, RepoError>()
+        fakeCommentRepo.persist_returnValue = promise.future
+
+        newCommentVC = NewCommentViewController(
+            router: fakeRouter,
             commentRepo: fakeCommentRepo,
             restaurantId: fakeRestaurantId
         )
         newCommentVC.view.setNeedsLayout()
+    }
 
+    func test_view_showsTitleInNavigationBar() {
         XCTAssertEqual("Add a comment", newCommentVC.title)
     }
 
     func test_displayingPlaceholderText() {
-        let fakeCommentRepo = FakeCommentRepo()
-
-        let newCommentVC = NewCommentViewController(
-            router: FakeRouter(),
-            commentRepo: fakeCommentRepo,
-            restaurantId: fakeRestaurantId
-        )
-        newCommentVC.view.setNeedsLayout()
-
         XCTAssertEqual(
             newCommentVC.hash,
             newCommentVC.commentTextView.delegate?.hash
@@ -49,15 +50,6 @@ class NewCommentViewControllerTest: XCTestCase {
     }
 
     func test_tappingSave_persistsComment() {
-        let fakeCommentRepo = FakeCommentRepo()
-
-        let newCommentVC = NewCommentViewController(
-            router: FakeRouter(),
-            commentRepo: fakeCommentRepo,
-            restaurantId: fakeRestaurantId
-        )
-        newCommentVC.view.setNeedsLayout()
-
         newCommentVC.commentTextView.text = "No parking in Harvard Yard"
 
         let saveButton = newCommentVC.navigationItem.rightBarButtonItem
@@ -73,19 +65,6 @@ class NewCommentViewControllerTest: XCTestCase {
     }
 
     func test_tappingSave_transitionsBackToDetailView() {
-        let fakeRouter = FakeRouter()
-        let fakeCommentRepo = FakeCommentRepo()
-
-        let promise = Promise<PersistedComment, RepoError>()
-        fakeCommentRepo.persist_returnValue = promise.future
-
-        let newCommentVC = NewCommentViewController(
-            router: fakeRouter,
-            commentRepo: fakeCommentRepo,
-            restaurantId: fakeRestaurantId
-        )
-        newCommentVC.view.setNeedsLayout()
-
         let saveButton = newCommentVC.navigationItem.rightBarButtonItem
         tapNavBarButton(saveButton!)
 
