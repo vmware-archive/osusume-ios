@@ -1,4 +1,5 @@
 import XCTest
+import Nimble
 import BrightFutures
 
 @testable import Osusume
@@ -25,8 +26,23 @@ class NewCommentViewControllerTest: XCTestCase {
         newCommentVC.view.setNeedsLayout()
     }
 
-    func test_view_showsTitleInNavigationBar() {
+    func test_viewDidLoad_initializesSubviews() {
+        expect(self.newCommentVC.commentTextView)
+            .to(beAKindOf(UITextView))
+    }
+
+    func test_viewDidLoad_addsSubviews() {
+        expect(self.newCommentVC.view)
+            .to(containSubview(newCommentVC.commentTextView))
+    }
+
+    func test_viewDidLoad_showsTitleInNavigationBar() {
         XCTAssertEqual("Add a comment", newCommentVC.title)
+    }
+
+    func test_configureNavigationBar_addsSaveButton() {
+        expect(self.newCommentVC.navigationItem.rightBarButtonItem?.title)
+            .to(equal("Save"))
     }
 
     func test_displayingPlaceholderText() {
