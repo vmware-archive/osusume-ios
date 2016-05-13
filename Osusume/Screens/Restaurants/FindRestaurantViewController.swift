@@ -6,10 +6,12 @@ class FindRestaurantViewController: UIViewController {
 
     // MARK: - View Elements
     let restaurantNameTextField: UITextField
+    let restaurantSearchResultTableView: UITableView
 
     // MARK: - Initializers
     init(router: Router) {
         self.router = router
+        self.restaurantSearchResultTableView = UITableView()
 
         restaurantNameTextField = UITextField.newAutoLayoutView()
 
@@ -51,6 +53,7 @@ class FindRestaurantViewController: UIViewController {
 
     private func addSubviews() {
         view.addSubview(restaurantNameTextField)
+        view.addSubview(restaurantSearchResultTableView)
     }
 
     private func configureSubviews() {
@@ -66,6 +69,16 @@ class FindRestaurantViewController: UIViewController {
         restaurantNameTextField.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
         restaurantNameTextField.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
         restaurantNameTextField.autoSetDimension(.Height, toSize: 40.0)
+
+        restaurantSearchResultTableView.autoPinEdge(
+            .Top,
+            toEdge: .Bottom,
+            ofView: restaurantNameTextField,
+            withOffset: 10.0
+        )
+        restaurantSearchResultTableView.autoPinEdgeToSuperviewEdge(.Left)
+        restaurantSearchResultTableView.autoPinEdgeToSuperviewEdge(.Right)
+        restaurantSearchResultTableView.autoPinEdgeToSuperviewEdge(.Bottom)
     }
 
     // MARK: - Actions

@@ -16,11 +16,15 @@ class FindRestaurantViewControllerTest: XCTestCase {
     func test_viewDidLoad_initializesSubviews() {
         expect(self.findRestaurantViewController.restaurantNameTextField)
             .to(beAKindOf(UITextField))
+        expect(self.findRestaurantViewController.restaurantSearchResultTableView)
+            .to(beAKindOf(UITableView))
     }
 
     func test_viewDidLoad_addsSubviews() {
         expect(self.findRestaurantViewController.view)
             .to(containSubview(findRestaurantViewController.restaurantNameTextField))
+        expect(self.findRestaurantViewController.view)
+            .to(containSubview(findRestaurantViewController.restaurantSearchResultTableView))
     }
 
     func test_viewDidAppear_setsRestaurantNameTextFieldAsFirstResponder() {
