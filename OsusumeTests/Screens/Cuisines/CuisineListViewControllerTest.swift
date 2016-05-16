@@ -45,6 +45,15 @@ class CuisineListViewControllerTest: XCTestCase {
         expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 
+    func test_viewDidLoad_registersCellClass() {
+        cuisineListVC.view.setNeedsLayout()
+        let cell: UITableViewCell? = cuisineListVC.tableView
+            .dequeueReusableCellWithIdentifier(String(UITableViewCell))
+
+
+        expect(cell).toNot(beNil())
+    }
+
     func test_tableView_configuresCuisineCells() {
         let promise = Promise<[Cuisine], RepoError>()
         fakeCuisineRepo.getAll_returnValue = promise.future

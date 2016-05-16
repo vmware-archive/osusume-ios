@@ -83,6 +83,13 @@ class FindRestaurantViewControllerTest: XCTestCase {
         expect(self.findRestaurantViewController.restaurantSearchResultTableView.dataSource === self.findRestaurantViewController).to(beTrue())
     }
 
+    func test_viewDidLoad_registersCellClass() {
+        let cell: UITableViewCell? = findRestaurantViewController.restaurantSearchResultTableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
+
+
+        expect(cell).toNot(beNil())
+    }
+
     func test_tableView_containsExpectedNumberOfSections() {
         expect(self.findRestaurantViewController.numberOfSectionsInTableView(
             self.findRestaurantViewController.restaurantSearchResultTableView

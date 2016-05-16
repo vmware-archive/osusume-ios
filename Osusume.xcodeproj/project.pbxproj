@@ -440,9 +440,9 @@
 		AE19AA011C9BDEAF00D8CBAC /* OsusumeIntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
+				AEA75B9C1CE99CE900856127 /* GurunaviIntegrationTest.swift */,
 				AE19AA041C9BDEAF00D8CBAC /* Info.plist */,
 				AE19AA021C9BDEAF00D8CBAC /* S3StorageIntegrationTests.swift */,
-				AEA75B9C1CE99CE900856127 /* GurunaviIntegrationTest.swift */,
 			);
 			path = OsusumeIntegrationTests;
 			sourceTree = "<group>";
@@ -1210,8 +1210,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE19AA031C9BDEAF00D8CBAC /* S3StorageIntegrationTests.swift in Sources */,
 				AEA75B9D1CE99CE900856127 /* GurunaviIntegrationTest.swift in Sources */,
+				AE19AA031C9BDEAF00D8CBAC /* S3StorageIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

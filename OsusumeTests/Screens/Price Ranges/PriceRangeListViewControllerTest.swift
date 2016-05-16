@@ -42,6 +42,12 @@ class PriceRangeListViewControllerTest: XCTestCase {
         priceRangeListVC.view.setNeedsLayout()
     }
 
+    func test_viewDidLoad_registersCellClass() {
+        let cell: UITableViewCell? = priceRangeListVC.tableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
+
+        expect(cell).toNot(beNil())
+    }
+
     func test_viewDidLoad_callsGetAllOnPriceRangeRepo() {
         expect(self.fakePriceRangeRepo.getAll_wasCalled).to(beTrue())
     }

@@ -57,6 +57,23 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         expect(fakeReloader.reload_wasCalled).to(equal(true))
     }
 
+    func test_viewDidLoad_registersRestaurantDetailCellClass() {
+        setupViewControllerWithReloader()
+        let cell: UITableViewCell? = restaurantDetailVC.tableView.dequeueReusableCellWithIdentifier(String(RestaurantDetailTableViewCell))
+
+
+        expect(cell).toNot(beNil())
+    }
+
+    func test_viewDidLoad_registersCommentCellClass() {
+        setupViewControllerWithReloader()
+        let cell: UITableViewCell? = restaurantDetailVC.tableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
+
+
+        expect(cell).toNot(beNil())
+    }
+
+
     func test_tappingTheEditButton_showsTheEditScreen() {
         setupViewControllerWithReloader()
 
