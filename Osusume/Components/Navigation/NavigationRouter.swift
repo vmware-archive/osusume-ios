@@ -8,6 +8,7 @@ class NavigationRouter: Router {
     let cuisineRepo: CuisineRepo
     let likeRepo: LikeRepo
     let priceRangeRepo: PriceRangeRepo
+    let restaurantSearchRepo: RestaurantSearchRepo
 
     init(
         navigationController: UINavigationController,
@@ -18,7 +19,8 @@ class NavigationRouter: Router {
         commentRepo: CommentRepo,
         cuisineRepo: CuisineRepo,
         likeRepo: LikeRepo,
-        priceRangeRepo: PriceRangeRepo)
+        priceRangeRepo: PriceRangeRepo,
+        restaurantSearchRepo: RestaurantSearchRepo)
     {
         self.navigationController = navigationController
         self.sessionRepo = sessionRepo
@@ -29,6 +31,7 @@ class NavigationRouter: Router {
         self.cuisineRepo = cuisineRepo
         self.likeRepo = likeRepo
         self.priceRangeRepo = priceRangeRepo
+        self.restaurantSearchRepo = restaurantSearchRepo
     }
 
     func showNewRestaurantScreen() {
@@ -155,7 +158,8 @@ class NavigationRouter: Router {
 
     func showFindRestaurantScreen() {
         let findRestaurantViewController = FindRestaurantViewController(
-            router: self
+            router: self,
+            restaurantSearchRepo: restaurantSearchRepo
         )
 
         presentViewControllerModallyWithinNavController(findRestaurantViewController)

@@ -52,6 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             http: sessionHttp,
             parser: PriceRangeListParser()
         )
+        let restaurantSearchRepo = GNaviRestaurantSearchRepo(
+            http: DefaultHttp(basePath: ""),
+            parser: GNaviRestaurantListParser()
+        )
 
         let router: NavigationRouter = NavigationRouter(
             navigationController: navController,
@@ -62,7 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             commentRepo: commentRepo,
             cuisineRepo: cuisineRepo,
             likeRepo: likeRepo,
-            priceRangeRepo: priceRangeRepo
+            priceRangeRepo: priceRangeRepo,
+            restaurantSearchRepo: restaurantSearchRepo
         )
 
         self.init(

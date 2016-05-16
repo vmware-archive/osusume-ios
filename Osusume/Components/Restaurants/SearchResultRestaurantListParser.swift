@@ -1,5 +1,5 @@
 import Result
 
-protocol SearchResultRestaurantListParser: DataListParser {
-    func parse(json: [[String : AnyObject]])-> Result<[SearchResultRestaurant], ParseError>
+protocol SearchResultRestaurantListParser {
+    func parseGNaviResponse(json: [String : AnyObject]) -> Result<[SearchResultRestaurant], ParseError>
 }

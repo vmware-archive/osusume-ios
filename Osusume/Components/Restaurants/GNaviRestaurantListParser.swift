@@ -1,15 +1,13 @@
 import Result
 
 struct GNaviRestaurantListParser: SearchResultRestaurantListParser {
-    typealias ParsedObject = [SearchResultRestaurant]
-
     func parseGNaviResponse(json: [String : AnyObject])
         -> Result<[SearchResultRestaurant], ParseError> {
             let restaurantList = json["rest"] as? [[String : AnyObject]]
             return parse(restaurantList!)
     }
 
-    func parse(json: [[String : AnyObject]])-> Result<[SearchResultRestaurant], ParseError> {
+    private func parse(json: [[String : AnyObject]])-> Result<[SearchResultRestaurant], ParseError> {
 
         var resultArray: [SearchResultRestaurant] = []
 

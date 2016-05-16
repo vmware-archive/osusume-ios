@@ -4,12 +4,10 @@ import XCTest
 import Nimble
 @testable import Osusume
 
-class FakeRestaurantSearchListParser: DataListParser {
-    typealias ParsedObject = [SearchResultRestaurant]
-
-    var parse_arg: [[String : AnyObject]]!
+class FakeRestaurantSearchListParser: SearchResultRestaurantListParser {
+    var parse_arg: [String : AnyObject]!
     var parse_returnValue = Result<[SearchResultRestaurant], ParseError>(value: [])
-    func parse(json: [[String : AnyObject]])
+    func parseGNaviResponse(json: [String : AnyObject])
         -> Result<[SearchResultRestaurant], ParseError> {
         parse_arg = json
         return parse_returnValue
@@ -20,7 +18,7 @@ class GNaviRestaurantSearchRepoTest: XCTestCase {
     var fakeHttp: FakeHttp!
     var fakeRestaurantSearchListParser = FakeRestaurantSearchListParser()
     let searchResultJsonPromise = Promise<AnyObject, RepoError>()
-    var restaurantSearchRepo: GNaviRestaurantSearchRepo<FakeRestaurantSearchListParser>!
+    var restaurantSearchRepo: GNaviRestaurantSearchRepo!
 
     override func setUp() {
         fakeHttp = FakeHttp()
@@ -45,7 +43,7 @@ class GNaviRestaurantSearchRepoTest: XCTestCase {
 
 
         expect(self.fakeHttp.get_args.path)
-            .to(contain("?keyid=deb049ee1e0f97fa5d9ff3899e77ab54"))
+            .to(contain("?keyid=c174f342a2294ea4419083ad100a8131"))
     }
 
      func test_getForSearchTerm_addsSearchTermAsNameParameter() {
@@ -66,13 +64,14 @@ class GNaviRestaurantSearchRepoTest: XCTestCase {
 
     func test_getForSearchTerm_parsesHttpOutputJson() {
         restaurantSearchRepo.getForSearchTerm("")
-        searchResultJsonPromise.success([["SearchResult" : "Json"]])
+        searchResultJsonPromise.success(["SearchResult" : "Json"])
 
 
         NSRunLoop.osu_advance()
 
-        expect(self.fakeRestaurantSearchListParser.parse_arg)
-            .to(equal([["SearchResult" : "Json"]]))
+        expect(NSDictionary(dictionary: self.fakeRestaurantSearchListParser.parse_arg)
+            .isEqualToDictionary(["SearchResult" : "Json"]))
+            .to(beTrue())
     }
 
     func test_getForSearchTerm_returnsParsedSearchResultList() {
@@ -80,7 +79,7 @@ class GNaviRestaurantSearchRepoTest: XCTestCase {
         fakeRestaurantSearchListParser.parse_returnValue = Result.Success(
             [SearchResultRestaurant(id: "1", name: "afuri", address: "roppongi")]
         )
-        searchResultJsonPromise.success([[:]])
+        searchResultJsonPromise.success([:])
 
 
         NSRunLoop.osu_advance()

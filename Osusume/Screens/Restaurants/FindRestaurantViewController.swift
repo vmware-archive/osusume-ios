@@ -1,6 +1,8 @@
 class FindRestaurantViewController: UIViewController {
     // MARK: - Properties
     private let router: Router
+    private let restaurantSearchRepo: RestaurantSearchRepo
+    private var restaurantResults: [SearchResultRestaurant]
 
     // MARK: - Constants
 
@@ -9,8 +11,11 @@ class FindRestaurantViewController: UIViewController {
     let restaurantSearchResultTableView: UITableView
 
     // MARK: - Initializers
-    init(router: Router) {
+    init(router: Router,
+         restaurantSearchRepo: RestaurantSearchRepo) {
         self.router = router
+        self.restaurantSearchRepo = restaurantSearchRepo
+        restaurantResults = []
         self.restaurantSearchResultTableView = UITableView()
 
         restaurantNameTextField = UITextField.newAutoLayoutView()
@@ -62,6 +67,13 @@ class FindRestaurantViewController: UIViewController {
         restaurantNameTextField.autocorrectionType = .No
         restaurantNameTextField.placeholder = "Restaurant name"
         restaurantNameTextField.backgroundColor = UIColor.lightGrayColor()
+        restaurantNameTextField.delegate = self
+
+        restaurantSearchResultTableView.dataSource = self
+        self.restaurantSearchResultTableView.registerClass(
+            UITableViewCell.self,
+            forCellReuseIdentifier: String(UITableViewCell)
+        )
     }
 
     private func addConstraints() {
@@ -87,5 +99,47 @@ class FindRestaurantViewController: UIViewController {
     }
 
     // MARK: - Private Methods
+}
 
+// MARK: - UITextFieldDelegate
+extension FindRestaurantViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        restaurantSearchRepo.getForSearchTerm(textField.text!)
+            .onSuccess { results in
+                self.restaurantResults = results
+                self.restaurantSearchResultTableView.reloadData()
+            }
+        return true
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension FindRestaurantViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.restaurantResults.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->  UITableViewCell {
+        var cell: UITableViewCell? =
+            restaurantSearchResultTableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
+        if (cell != nil)
+        {
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
+                                   reuseIdentifier: String(UITableViewCell))
+        }
+
+        guard let resultCell = cell else {
+            return UITableViewCell()
+        }
+
+        resultCell.textLabel?.text = restaurantResults[indexPath.row].name
+        resultCell.detailTextLabel?.text = restaurantResults[indexPath.row].address
+
+        return resultCell
+    }
 }
