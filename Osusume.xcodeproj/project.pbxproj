@@ -80,6 +80,7 @@
 		AE9F01E51C9BE51600163045 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7791C6192020096DD93 /* AWSCore.framework */; };
 		AE9F01E61C9BE53000163045 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEFCB7771C6191FB0096DD93 /* AWSS3.framework */; };
 		AEA712481C4F59B300862B02 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA712471C4F59B300862B02 /* KeychainAccess.framework */; };
+		AEA75B9D1CE99CE900856127 /* GurunaviIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA75B9C1CE99CE900856127 /* GurunaviIntegrationTest.swift */; };
 		AEACDB751C98FDF90092AEF6 /* CuisineListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB741C98FDF90092AEF6 /* CuisineListParser.swift */; };
 		AEACDB791C9900020092AEF6 /* Cuisine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB781C9900020092AEF6 /* Cuisine.swift */; };
 		AEACDB7B1C991EC80092AEF6 /* CuisineRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB7A1C991EC80092AEF6 /* CuisineRepoTest.swift */; };
@@ -285,6 +286,7 @@
 		AE9007E71CD04924008AB773 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		AE9E6F3D1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeSelectionProtocol.swift; sourceTree = "<group>"; };
 		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
+		AEA75B9C1CE99CE900856127 /* GurunaviIntegrationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GurunaviIntegrationTest.swift; sourceTree = "<group>"; };
 		AEACDB741C98FDF90092AEF6 /* CuisineListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListParser.swift; sourceTree = "<group>"; };
 		AEACDB781C9900020092AEF6 /* Cuisine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cuisine.swift; sourceTree = "<group>"; };
 		AEACDB7A1C991EC80092AEF6 /* CuisineRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineRepoTest.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 			children = (
 				AE19AA041C9BDEAF00D8CBAC /* Info.plist */,
 				AE19AA021C9BDEAF00D8CBAC /* S3StorageIntegrationTests.swift */,
+				AEA75B9C1CE99CE900856127 /* GurunaviIntegrationTest.swift */,
 			);
 			path = OsusumeIntegrationTests;
 			sourceTree = "<group>";
@@ -1208,6 +1211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE19AA031C9BDEAF00D8CBAC /* S3StorageIntegrationTests.swift in Sources */,
+				AEA75B9D1CE99CE900856127 /* GurunaviIntegrationTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
