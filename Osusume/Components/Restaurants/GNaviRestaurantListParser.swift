@@ -3,8 +3,12 @@ import Result
 struct GNaviRestaurantListParser: SearchResultRestaurantListParser {
     func parseGNaviResponse(json: [String : AnyObject])
         -> Result<[SearchResultRestaurant], ParseError> {
-            let restaurantList = json["rest"] as? [[String : AnyObject]]
-            return parse(restaurantList!)
+            guard
+                let restaurantList = json["rest"] as? [[String : AnyObject]] else
+            {
+                return Result.Success([])
+            }
+            return parse(restaurantList)
     }
 
     private func parse(json: [[String : AnyObject]])-> Result<[SearchResultRestaurant], ParseError> {

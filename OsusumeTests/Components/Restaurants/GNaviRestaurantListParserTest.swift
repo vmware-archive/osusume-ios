@@ -93,4 +93,13 @@ class GNaviRestaurantListParserTest: XCTestCase {
         expect(restaurantList.first?.address).to(equal("Address of Fuji Soba"))
     }
 
+    func test_parseEmptyResult_returnsEmptyList() {
+        let json: [String : AnyObject] = [:]
+
+
+        let restaurantSearchResult = parser.parseGNaviResponse(json)
+
+
+        expect(restaurantSearchResult.value?.count).to(equal(0))
+    }
 }
