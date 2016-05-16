@@ -7,6 +7,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
     var findRestaurantViewController: FindRestaurantViewController!
     let fakeRouter = FakeRouter()
     let fakeRestaurantSearchRepo = FakeRestaurantSearchRepo()
+    let fakeReloader = FakeReloader()
     var restaurantSearchRepoResultPromise: Promise<[SearchResultRestaurant], RepoError>!
 
     override func setUp() {
@@ -15,7 +16,8 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
         findRestaurantViewController = FindRestaurantViewController(
             router: fakeRouter,
-            restaurantSearchRepo: fakeRestaurantSearchRepo
+            restaurantSearchRepo: fakeRestaurantSearchRepo,
+            reloader: fakeReloader
         )
         findRestaurantViewController.view.setNeedsLayout()
     }
@@ -126,5 +128,16 @@ class FindRestaurantViewControllerTest: XCTestCase {
         )
         expect(cell.textLabel?.text).to(equal("Afuri"))
         expect(cell.detailTextLabel?.text).to(equal("Roppongi"))
+    }
+
+    func test_executingSearch_reloadsTableViewData() {
+        findRestaurantViewController.textFieldShouldReturn(
+            findRestaurantViewController.restaurantNameTextField
+        )
+        restaurantSearchRepoResultPromise.success([])
+        NSRunLoop.osu_advance()
+
+
+        expect(self.fakeReloader.reload_wasCalled).to(beTrue())
     }
 }

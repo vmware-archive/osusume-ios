@@ -1,6 +1,7 @@
 class FindRestaurantViewController: UIViewController {
     // MARK: - Properties
     private let router: Router
+    private let reloader: Reloader
     private let restaurantSearchRepo: RestaurantSearchRepo
     private var restaurantResults: [SearchResultRestaurant]
 
@@ -12,9 +13,12 @@ class FindRestaurantViewController: UIViewController {
 
     // MARK: - Initializers
     init(router: Router,
-         restaurantSearchRepo: RestaurantSearchRepo) {
+         restaurantSearchRepo: RestaurantSearchRepo,
+         reloader: Reloader
+    ) {
         self.router = router
         self.restaurantSearchRepo = restaurantSearchRepo
+        self.reloader = reloader
         restaurantResults = []
         self.restaurantSearchResultTableView = UITableView()
 
@@ -108,7 +112,7 @@ extension FindRestaurantViewController: UITextFieldDelegate {
         restaurantSearchRepo.getForSearchTerm(textField.text!)
             .onSuccess { results in
                 self.restaurantResults = results
-                self.restaurantSearchResultTableView.reloadData()
+                self.reloader.reload(self.restaurantSearchResultTableView)
             }
         return true
     }

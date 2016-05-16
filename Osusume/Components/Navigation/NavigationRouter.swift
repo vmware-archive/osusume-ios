@@ -159,7 +159,8 @@ class NavigationRouter: Router {
     func showFindRestaurantScreen() {
         let findRestaurantViewController = FindRestaurantViewController(
             router: self,
-            restaurantSearchRepo: restaurantSearchRepo
+            restaurantSearchRepo: restaurantSearchRepo,
+            reloader: DefaultReloader()
         )
 
         presentViewControllerModallyWithinNavController(findRestaurantViewController)
