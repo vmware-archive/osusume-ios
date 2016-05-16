@@ -46,12 +46,20 @@ class GNaviRestaurantSearchRepoTest: XCTestCase {
             .to(contain("?keyid=c174f342a2294ea4419083ad100a8131"))
     }
 
-     func test_getForSearchTerm_addsSearchTermAsNameParameter() {
+    func test_getForSearchTerm_addsSearchTermAsNameParameter() {
         restaurantSearchRepo.getForSearchTerm("search-term")
 
 
         expect(self.fakeHttp.get_args.path)
             .to(contain("&name=search-term"))
+    }
+
+    func test_getForSearchTerm_encodesSearchTerm() {
+        restaurantSearchRepo.getForSearchTerm("検索項目")
+
+
+        expect(self.fakeHttp.get_args.path)
+            .to(contain("&name=%E6%A4%9C%E7%B4%A2%E9%A0%85%E7%9B%AE"))
     }
 
     func test_getForSearchTerm_asksForSearchResultsAsJson() {

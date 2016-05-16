@@ -8,7 +8,8 @@ struct GNaviRestaurantSearchRepo: RestaurantSearchRepo {
     let formatParam = "&format=json"
 
     func getForSearchTerm(term: String) -> Future<[SearchResultRestaurant], RepoError> {
-        let path = "\(basePath)\(keyId)\(formatParam)&name=\(term)"
+        let encodedString = term.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        let path = "\(basePath)\(keyId)\(formatParam)&name=\(encodedString!)"
         return http.get(path, headers:[:])
         .flatMap { json in
             return self.parser
