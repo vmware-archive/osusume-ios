@@ -1,4 +1,4 @@
-class NavigationRouter: Router {
+struct NavigationRouter: Router {
     let navigationController : UINavigationController
     let sessionRepo: SessionRepo
     let restaurantRepo: RestaurantRepo

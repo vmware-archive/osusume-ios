@@ -1,6 +1,6 @@
 import BrightFutures
 
-class DefaultImageLoader: ImageLoader {
+struct DefaultImageLoader: ImageLoader {
 
     func load(url: NSURL) -> Future<UIImage, ImageLoadingError> {
 

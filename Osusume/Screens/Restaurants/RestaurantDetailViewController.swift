@@ -2,7 +2,7 @@ import BrightFutures
 
 class RestaurantDetailViewController: UIViewController {
     // MARK: - Properties
-    private unowned let router: Router
+    private let router: Router
     private let reloader: Reloader
     private let restaurantRepo: RestaurantRepo
     private let likeRepo: LikeRepo

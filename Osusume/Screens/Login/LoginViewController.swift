@@ -2,7 +2,7 @@ import BrightFutures
 
 class LoginViewController: UIViewController {
     // MARK: - Properties
-    private unowned let router: Router
+    private let router: Router
     private let userRepo: UserRepo
     let sessionRepo: SessionRepo
 

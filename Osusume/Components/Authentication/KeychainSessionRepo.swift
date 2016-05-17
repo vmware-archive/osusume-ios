@@ -1,6 +1,6 @@
 import KeychainAccess
 
-class KeychainSessionRepo: SessionRepo {
+struct KeychainSessionRepo: SessionRepo {
     static let StoreServiceName: String = "osusume-token-store"
 
     private let httpTokenKeyName: String = "http-token"

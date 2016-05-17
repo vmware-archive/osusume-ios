@@ -1,6 +1,6 @@
 import BrightFutures
 
-class ImageLoaderHandler {
+struct ImageLoaderHandler {
     func callback(promise: Promise<UIImage, ImageLoadingError>) -> (UIImage!, NSError!, SDImageCacheType, Bool, NSURL!) -> () {
         return {(
             image: UIImage!,

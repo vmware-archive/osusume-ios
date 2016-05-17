@@ -1,6 +1,6 @@
 class RestaurantDetailTableViewCell: UITableViewCell {
     // MARK: - Properties
-    private weak var router: Router?
+    private var router: Router?
     weak var delegate: RestaurantDetailTableViewCellDelegate?
     private(set) var photoUrls: [NSURL]
 

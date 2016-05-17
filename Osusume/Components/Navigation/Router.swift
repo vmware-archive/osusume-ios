@@ -1,4 +1,4 @@
-protocol Router: class {
+protocol Router {
     func showNewRestaurantScreen()
     func showRestaurantListScreen()
     func showRestaurantDetailScreen(id: Int)

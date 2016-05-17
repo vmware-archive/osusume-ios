@@ -2,7 +2,7 @@ import BrightFutures
 
 class EditRestaurantViewController: UIViewController {
     // MARK: - Properties
-    private unowned let router: Router
+    private let router: Router
     private let repo: RestaurantRepo
     private let restaurant: Restaurant
     private let id: Int

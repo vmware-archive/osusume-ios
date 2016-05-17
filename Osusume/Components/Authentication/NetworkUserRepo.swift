@@ -1,6 +1,6 @@
 import BrightFutures
 
-class NetworkUserRepo: UserRepo {
+struct NetworkUserRepo: UserRepo {
     let http: Http
     private let restaurantListRepo: RestaurantListRepo
 

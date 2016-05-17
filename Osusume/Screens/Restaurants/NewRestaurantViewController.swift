@@ -4,7 +4,7 @@ import Photos
 
 class NewRestaurantViewController: UIViewController {
     // MARK: - Properties
-    private unowned let router: Router
+    private let router: Router
     private let restaurantRepo: RestaurantRepo
     private let photoRepo: PhotoRepo
     private(set) var images: [UIImage]

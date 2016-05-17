@@ -1,6 +1,6 @@
 class NewCommentViewController: UIViewController {
     // MARK: - Properties
-    private unowned let router: Router
+    private let router: Router
     private let commentRepo: CommentRepo
     private let restaurantId: Int
 

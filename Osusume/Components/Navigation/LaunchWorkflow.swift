@@ -1,4 +1,4 @@
-class LaunchWorkflow {
+struct LaunchWorkflow {
     let router: Router
     let sessionRepo: SessionRepo
     let photoRepo: PhotoRepo
