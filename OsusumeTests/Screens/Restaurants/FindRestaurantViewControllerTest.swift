@@ -36,6 +36,13 @@ class FindRestaurantViewControllerTest: XCTestCase {
             .to(containSubview(findRestaurantViewController.restaurantSearchResultTableView))
     }
 
+    func test_viewDidLoad_addsConstraints() {
+        expect(self.findRestaurantViewController.restaurantNameTextField)
+            .to(haveConstraints())
+        expect(self.findRestaurantViewController.restaurantSearchResultTableView)
+            .to(haveConstraints())
+    }
+
     func test_viewDidAppear_setsRestaurantNameTextFieldAsFirstResponder() {
         var window: UIWindow?
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
