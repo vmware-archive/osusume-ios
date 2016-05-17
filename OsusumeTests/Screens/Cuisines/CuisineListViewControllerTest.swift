@@ -25,17 +25,15 @@ class CuisineListViewControllerTest: XCTestCase {
             reloader: fakeReloader,
             delegate: fakeCuisineSelection
         )
+
+        cuisineListVC.view.setNeedsLayout()
     }
 
     func test_addCuisineTitle_isShown() {
-        cuisineListVC.view.setNeedsLayout()
-
         expect(self.cuisineListVC.title).to(equal("Find Cuisine"))
     }
 
     func test_tapCancelButton_navigatesBackToPreviousScreen() {
-        cuisineListVC.view.setNeedsLayout()
-
         let cancelButton = cuisineListVC.navigationItem.leftBarButtonItem! as UIBarButtonItem
 
 
@@ -46,7 +44,6 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_viewDidLoad_registersCellClass() {
-        cuisineListVC.view.setNeedsLayout()
         let cell: UITableViewCell? = cuisineListVC.tableView
             .dequeueReusableCellWithIdentifier(String(UITableViewCell))
 
@@ -55,12 +52,7 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_tableView_configuresCuisineCells() {
-        let promise = Promise<[Cuisine], RepoError>()
-        fakeCuisineRepo.getAll_returnValue = promise.future
-
-
-        cuisineListVC.view.setNeedsLayout()
-        promise.success([Cuisine(id: 0, name: "Soba!")])
+        cuisinePromise.success([Cuisine(id: 0, name: "Soba!")])
         NSRunLoop.osu_advance()
 
 
@@ -76,9 +68,6 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_tableView_configuresAnAddCuisineCell() {
-        cuisineListVC.view.setNeedsLayout()
-
-
         let addCuisineCell = cuisineListVC.tableView(
             cuisineListVC.tableView,
             cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
@@ -105,8 +94,6 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_viewDidLoad_fetchesFullCuisineList() {
-        cuisineListVC.view.setNeedsLayout()
-
         expect(self.cuisineListVC.fullCuisineList)
             .to(equal([]))
 
@@ -117,19 +104,13 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_initialization_assignsTheControllerAsSearchBarDelegate() {
-        cuisineListVC.view.setNeedsLayout()
-
         let expectedDelegate = cuisineListVC as UISearchBarDelegate
 
         XCTAssert(cuisineListVC.searchBar.delegate! === expectedDelegate)
     }
 
     func test_search_delegatesToTheTextSearch() {
-        let promise = Promise<[Cuisine], RepoError>()
-        fakeCuisineRepo.getAll_returnValue = promise.future
-
-        cuisineListVC.view.setNeedsLayout()
-        promise.success(fullCuisineList)
+        cuisinePromise.success(fullCuisineList)
         NSRunLoop.osu_advance()
 
 
@@ -207,20 +188,13 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_tableView_hasAConfiguredDelegate() {
-        cuisineListVC.view.setNeedsLayout()
-
         let expectedDelegate = self.cuisineListVC.tableView.delegate as! CuisineListViewController
 
         XCTAssert(self.cuisineListVC === expectedDelegate)
     }
 
     func test_tappingCuisineCell_callsCuisineDelegate() {
-        let promise = Promise<[Cuisine], RepoError>()
-        fakeCuisineRepo.getAll_returnValue = promise.future
-
-        cuisineListVC.view.setNeedsLayout()
-
-        promise.success([Cuisine(id: 0, name: "Soba!")])
+        cuisinePromise.success([Cuisine(id: 0, name: "Soba!")])
         NSRunLoop.osu_advance()
 
 
@@ -251,8 +225,8 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_tappingAddCuisineCell_uponSuccessfulCuisineCreation() {
-        let promise = Promise<Cuisine, RepoError>()
-        fakeCuisineRepo.create_returnValue = promise.future
+        let createCuisinePromise = Promise<Cuisine, RepoError>()
+        fakeCuisineRepo.create_returnValue = createCuisinePromise.future
         cuisineListVC.searchBar.text = "Pie"
 
 
@@ -262,7 +236,7 @@ class CuisineListViewControllerTest: XCTestCase {
         )
 
         let expectedCuisine = Cuisine(id: 1, name: "Pie")
-        promise.success(expectedCuisine)
+        createCuisinePromise.success(expectedCuisine)
         NSRunLoop.osu_advance()
 
         expect(self.fakeCuisineSelection.cuisineSelected_returnValue).to(equal(expectedCuisine))
@@ -270,9 +244,6 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_cuisineRepoGetAllSuccess_reloadsTableView() {
-        cuisineListVC.view.setNeedsLayout()
-
-
         cuisinePromise.success(fullCuisineList)
         NSRunLoop.osu_advance()
 
@@ -282,9 +253,6 @@ class CuisineListViewControllerTest: XCTestCase {
     }
 
     func test_searchBarDelegateMethod_reloadsTableView() {
-        cuisineListVC.view.setNeedsLayout()
-
-
         cuisineListVC.searchBar(UISearchBar(), textDidChange: "text")
 
 
