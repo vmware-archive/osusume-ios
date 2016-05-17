@@ -74,10 +74,6 @@ class FindRestaurantViewController: UIViewController {
         restaurantNameTextField.delegate = self
 
         restaurantSearchResultTableView.dataSource = self
-        self.restaurantSearchResultTableView.registerClass(
-            UITableViewCell.self,
-            forCellReuseIdentifier: String(UITableViewCell)
-        )
     }
 
     private func addConstraints() {
@@ -128,13 +124,18 @@ extension FindRestaurantViewController: UITableViewDataSource {
         return self.restaurantResults.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->  UITableViewCell {
+    func tableView(
+        tableView: UITableView,
+        cellForRowAtIndexPath indexPath: NSIndexPath) ->  UITableViewCell
+    {
         var cell: UITableViewCell? =
             restaurantSearchResultTableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
-        if (cell != nil)
-        {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
-                                   reuseIdentifier: String(UITableViewCell))
+
+        if (cell == nil) {
+            cell = UITableViewCell(
+                style: UITableViewCellStyle.Subtitle,
+                reuseIdentifier: String(UITableViewCell)
+            )
         }
 
         guard let resultCell = cell else {

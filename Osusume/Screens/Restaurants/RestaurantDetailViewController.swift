@@ -78,10 +78,6 @@ class RestaurantDetailViewController: UIViewController {
             RestaurantDetailTableViewCell.self,
             forCellReuseIdentifier: String(RestaurantDetailTableViewCell)
         )
-        tableView.registerClass(
-            UITableViewCell.self,
-            forCellReuseIdentifier: String(UITableViewCell)
-        )
     }
 
     private func addConstraints() {
@@ -143,10 +139,19 @@ extension RestaurantDetailViewController: UITableViewDataSource {
                         return UITableViewCell()
                 }
 
-                let cell = UITableViewCell(
-                    style: .Subtitle,
-                    reuseIdentifier: String(UITableViewCell)
-                )
+                var maybeCell: UITableViewCell? =
+                    tableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
+
+                if (maybeCell == nil) {
+                    maybeCell = UITableViewCell(
+                        style: .Subtitle,
+                        reuseIdentifier: String(UITableViewCell)
+                    )
+                }
+
+                guard let cell = maybeCell else {
+                    return UITableViewCell()
+                }
                 cell.backgroundColor = UIColor.greenColor()
                 cell.selectionStyle = .None
 
