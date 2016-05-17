@@ -20,8 +20,6 @@ class RestaurantListViewControllerTest: XCTestCase {
         fakeReloader = FakeReloader()
         fakePhotoRepo = FakePhotoRepo()
 
-        fakeRestaurantRepo.allRestaurants = [RestaurantFixtures.newRestaurant()]
-
         restaurantListVC = RestaurantListViewController(
             router: fakeRouter,
             repo: fakeRestaurantRepo,
@@ -89,8 +87,13 @@ class RestaurantListViewControllerTest: XCTestCase {
     }
 
     func test_viewDidAppear_reloadsTableData() {
+        let restaurantsPromise = Promise<[Restaurant], RepoError>()
+        fakeRestaurantRepo.getAll_returnValue = restaurantsPromise.future
+
         restaurantListVC.view.setNeedsLayout()
         restaurantListVC.viewWillAppear(false)
+        restaurantsPromise.success([RestaurantFixtures.newRestaurant()])
+        NSRunLoop.osu_advance()
 
 
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))

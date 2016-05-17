@@ -2,14 +2,11 @@ import BrightFutures
 @testable import Osusume
 
 class FakeRestaurantRepo: RestaurantRepo {
-    var allRestaurants: [Restaurant] = []
-
     var getAll_wasCalled = false
-    var restaurantsPromise = Promise<[Restaurant], RepoError>()
+    var getAll_returnValue = Future<[Restaurant], RepoError>()
     func getAll() -> Future<[Restaurant], RepoError> {
         getAll_wasCalled = true
-        restaurantsPromise.success(allRestaurants)
-        return restaurantsPromise.future
+        return getAll_returnValue
     }
 
     var create_args : NewRestaurant!
