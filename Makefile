@@ -3,10 +3,10 @@ tests: sort units
 ci: bootstrap tests integration
 
 units:
-	@xcodebuild -project Osusume.xcodeproj -scheme "Osusume" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.3,name=iPhone 6" clean test
+	@xcodebuild -project Osusume.xcodeproj -scheme "Osusume" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.3,name=iPhone 6" clean build test
 
 integration:
-	@xcodebuild -project Osusume.xcodeproj -scheme "Osusume-Staging" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.3,name=iPhone 6" clean test
+	@xcodebuild -project Osusume.xcodeproj -scheme "Osusume-Staging" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=9.3,name=iPhone 6" clean build test
 
 bootstrap:
 	@carthage bootstrap --platform iOS
