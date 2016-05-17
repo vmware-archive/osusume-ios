@@ -116,7 +116,7 @@ class RestaurantListViewControllerTest: XCTestCase {
         expect(self.fakeRestaurantRepo.getAll_wasCalled).to(beTrue())
     }
 
-    // MARK: Actions
+    // MARK: - Actions
     func test_tappingNewRestaraunt_showsNewRestaurantScreen() {
         restaurantListVC.view.setNeedsLayout()
 

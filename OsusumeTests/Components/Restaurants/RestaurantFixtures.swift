@@ -8,7 +8,7 @@ struct RestaurantFixtures {
         offersEnglishMenu: Bool = true,
         acceptsCreditCards: Bool = true,
         notes: String = "This place is great",
-        liked: Bool = true,
+        liked: Bool = false,
         numberOfLikes: Int = 0,
         photoUrl: String = "http://www.example.com/cat.jpg",
         cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified"),
