@@ -57,7 +57,12 @@ class RestaurantListViewControllerTest: XCTestCase {
         expect(cell?.photoImageView.image).to(equal(apple))
     }
 
-    // MARK: View Lifecycle
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
+        restaurantListVC.view.setNeedsLayout()
+        expect(self.restaurantListVC.title).to(equal("Osusume"))
+    }
+
     func test_viewDidLoad_showsProfileButton() {
         restaurantListVC.view.setNeedsLayout()
 

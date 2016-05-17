@@ -22,6 +22,8 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Photo"
+
         configureNavigationBar()
         addSubviews()
         configureSubviews()

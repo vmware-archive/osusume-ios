@@ -12,20 +12,12 @@ class EditRestaurantViewControllerTest: XCTestCase {
         fakeRestaurantRepo = FakeRestaurantRepo()
     }
 
-    private func instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine) {
-        let restaurant = RestaurantFixtures.newRestaurant(
-            name: "Original Restaurant Name",
-            liked: false,
-            cuisine: cuisine
-        )
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
 
-        editRestaurantViewController = EditRestaurantViewController(
-            router: fakeRouter,
-            repo: fakeRestaurantRepo,
-            restaurant: restaurant
-        )
 
-        editRestaurantViewController.view.setNeedsLayout()
+        expect(self.editRestaurantViewController.title).to(equal("Edit Restaurant"))
     }
 
     func test_populatesRestaurantDetailsInFields() {
@@ -73,5 +65,22 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(actualParams["walk_ins_ok"] as? Bool).to(equal(true))
         expect(actualParams["accepts_credit_cards"] as? Bool).to(equal(true))
         expect(actualParams["notes"] as? String).to(equal("Try the vegetables!"))
+    }
+
+    // MARK: - Private Methods
+    private func instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine) {
+        let restaurant = RestaurantFixtures.newRestaurant(
+            name: "Original Restaurant Name",
+            liked: false,
+            cuisine: cuisine
+        )
+
+        editRestaurantViewController = EditRestaurantViewController(
+            router: fakeRouter,
+            repo: fakeRestaurantRepo,
+            restaurant: restaurant
+        )
+
+        editRestaurantViewController.view.setNeedsLayout()
     }
 }

@@ -19,6 +19,7 @@ class MyRestaurantListViewControllerTest: XCTestCase {
         )
     }
 
+    // MARK: - View Controller Lifecycle
     func test_viewDidLoad_callsGetRestaurants() {
         myRestaurantListVC.view.setNeedsLayout()
 

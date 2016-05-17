@@ -42,6 +42,11 @@ class PriceRangeListViewControllerTest: XCTestCase {
         priceRangeListVC.view.setNeedsLayout()
     }
 
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
+        expect(self.priceRangeListVC.title).to(equal("Select Price Range"))
+    }
+
     func test_viewDidLoad_registersCellClass() {
         let cell: UITableViewCell? = priceRangeListVC.tableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
 

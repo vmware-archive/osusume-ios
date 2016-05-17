@@ -31,6 +31,12 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         )
     }
 
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
+        setupViewControllerWithReloader()
+        expect(self.restaurantDetailVC.title).to(equal("Restaurant Details"))
+    }
+
     func test_onViewWillAppear_showsComments() {
         setupViewControllerWithReloader()
 

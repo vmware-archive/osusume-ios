@@ -28,6 +28,11 @@ class NewRestaurantViewControllerTest: XCTestCase {
         newRestaurantVC.view.setNeedsLayout()
     }
 
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
+        expect(self.newRestaurantVC.title).to(equal("Add Restaurant"))
+    }
+
     func test_tappingDoneButton_returnsToListScreen() {
         let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
         tapNavBarButton(doneButton)

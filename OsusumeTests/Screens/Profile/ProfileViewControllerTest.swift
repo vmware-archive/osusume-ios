@@ -25,27 +25,27 @@ class ProfileViewControllerTest: XCTestCase {
             photoRepo: fakePhotoRepo,
             reloader: fakeReloader
         )
+
+        profileVC.view.setNeedsLayout()
     }
 
-    // MARK: View Lifecycle
-    func test_viewDidLoad_displaysUsername() {
-        profileVC.view.setNeedsLayout()
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
+        expect(self.profileVC.title).to(equal("My Profile"))
+    }
 
+    func test_viewDidLoad_displaysUsername() {
         fakeUserRepo.stringPromise.success("A")
         NSRunLoop.osu_advance()
         expect(self.profileVC.userNameLabel.text).to(equal("A"))
     }
 
     func test_viewDidLoad_showsLogoutButton() {
-        profileVC.view.setNeedsLayout()
-
         expect(self.profileVC.logoutButton).toNot(beNil())
         expect(self.profileVC.logoutButton.titleLabel?.text).to(equal("Logout"))
     }
 
     func test_viewDidLoad_showsSegmentedControl() {
-        profileVC.view.setNeedsLayout()
-
         let segmentedControl = profileVC.myContentSegmentedControl
 
         expect(segmentedControl.selectedSegmentIndex).to(equal(0))
@@ -54,7 +54,6 @@ class ProfileViewControllerTest: XCTestCase {
     }
 
     func test_viewDidLoad_defaultsToMyPostTableViewController() {
-        profileVC.view.setNeedsDisplay()
         let pageViewController = profileVC.pageViewController
 
         expect(self.profileVC.currentPage).to(equal(0))
@@ -63,8 +62,6 @@ class ProfileViewControllerTest: XCTestCase {
     }
 
     func test_tappingSegmentedControl_selectsCurrentPage() {
-        profileVC.view.setNeedsLayout()
-
         let segmentedControl = profileVC.myContentSegmentedControl
         segmentedControl.selectedSegmentIndex = 1
         segmentedControl.sendActionsForControlEvents(.ValueChanged)
@@ -78,8 +75,6 @@ class ProfileViewControllerTest: XCTestCase {
 
     // MARK: Actions
     func test_tapLogout_logsOutUser() {
-        profileVC.view.setNeedsLayout()
-
         profileVC.logoutButton.sendActionsForControlEvents(.TouchUpInside)
         expect(self.fakeSessionRepo.deleteTokenWasCalled).to(beTrue())
         expect(self.fakeRouter.loginScreenIsShowing).to(beTrue())

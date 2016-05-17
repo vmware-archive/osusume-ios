@@ -32,6 +32,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Osusume"
         view.backgroundColor = UIColor.whiteColor()
 
         configureNavigationBar()

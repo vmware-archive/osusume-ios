@@ -26,6 +26,11 @@ class NewCommentViewControllerTest: XCTestCase {
         newCommentVC.view.setNeedsLayout()
     }
 
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
+        expect(self.newCommentVC.title).to(equal("Add a comment"))
+    }
+
     func test_viewDidLoad_initializesSubviews() {
         expect(self.newCommentVC.commentTextView)
             .to(beAKindOf(UITextView))

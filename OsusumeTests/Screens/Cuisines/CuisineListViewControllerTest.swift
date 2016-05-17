@@ -29,7 +29,8 @@ class CuisineListViewControllerTest: XCTestCase {
         cuisineListVC.view.setNeedsLayout()
     }
 
-    func test_addCuisineTitle_isShown() {
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
         expect(self.cuisineListVC.title).to(equal("Find Cuisine"))
     }
 

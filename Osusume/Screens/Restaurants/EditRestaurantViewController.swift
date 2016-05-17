@@ -40,6 +40,8 @@ class EditRestaurantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Edit Restaurant"
+
         configureNavigationBar()
         addSubviews()
         configureSubviews()

@@ -24,6 +24,11 @@ class LoginViewControllerTest: XCTestCase {
         loginVC.view.setNeedsLayout()
     }
 
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
+        expect(self.loginVC.title).to(equal("Osusume"))
+    }
+
     func test_logsInWithEmailAndPassword() {
         UIView.setAnimationsEnabled(false)
 

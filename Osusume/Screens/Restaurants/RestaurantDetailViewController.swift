@@ -39,6 +39,8 @@ class RestaurantDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Restaurant Details"
+
         configureNavigationBar()
         addSubviews()
         configureSubviews()

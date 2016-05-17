@@ -22,6 +22,11 @@ class FindRestaurantViewControllerTest: XCTestCase {
         findRestaurantViewController.view.setNeedsLayout()
     }
 
+    // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_setsTitle() {
+        expect(self.findRestaurantViewController.title).to(equal("Find a restaurant"))
+    }
+
     func test_viewDidLoad_initializesSubviews() {
         expect(self.findRestaurantViewController.restaurantNameTextField)
             .to(beAKindOf(UITextField))
@@ -43,6 +48,11 @@ class FindRestaurantViewControllerTest: XCTestCase {
             .to(haveConstraints())
     }
 
+    func test_configureNavigationBar_addsCancelButton() {
+        expect(self.findRestaurantViewController.navigationItem.leftBarButtonItem?.title)
+            .to(equal("Cancel"))
+    }
+
     func test_viewDidAppear_setsRestaurantNameTextFieldAsFirstResponder() {
         var window: UIWindow?
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -56,11 +66,6 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
         expect(self.findRestaurantViewController.restaurantNameTextField.isFirstResponder())
             .to(beTrue())
-    }
-
-    func test_configureNavigationBar_addsBackButton() {
-        expect(self.findRestaurantViewController.navigationItem.leftBarButtonItem?.title)
-            .to(equal("Cancel"))
     }
 
     func test_tappingCancelButton_dismissesFindRestaurantVC() {

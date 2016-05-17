@@ -35,6 +35,8 @@ class RestaurantListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Osusume"
+
         configureNavigationBar()
         addSubviews()
         configureSubviews()

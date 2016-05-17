@@ -51,6 +51,8 @@ class NewRestaurantViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Add Restaurant"
+
         configureNavigationBar()
         addSubviews()
         configureSubviews()
