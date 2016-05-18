@@ -73,6 +73,12 @@ class ProfileViewControllerTest: XCTestCase {
         expect(self.fakeUserRepo.getMyLikes_wasCalled).to(beTrue())
     }
 
+    func test_restaurantSelection_showsRestaurantDetailScreen() {
+        profileVC.myRestaurantSelected(RestaurantFixtures.newRestaurant())
+
+        expect(self.fakeRouter.restaurantDetailScreenIsShowing).to(equal(true))
+    }
+
     // MARK: Actions
     func test_tapLogout_logsOutUser() {
         profileVC.logoutButton.sendActionsForControlEvents(.TouchUpInside)

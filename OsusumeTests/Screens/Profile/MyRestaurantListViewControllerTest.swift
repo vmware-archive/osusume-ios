@@ -3,18 +3,28 @@ import Nimble
 import BrightFutures
 @testable import Osusume
 
+class FakeMyRestaurantSelectionDelegate: MyRestaurantSelectionDelegate {
+    var myRestaurantSelected_arg = RestaurantFixtures.newRestaurant(id: -1)
+    func myRestaurantSelected(myRestaurant: Restaurant) {
+        myRestaurantSelected_arg = myRestaurant
+    }
+}
+
 class MyRestaurantListViewControllerTest: XCTestCase {
     var fakeReloader: FakeReloader!
     var fakePhotoRepo: FakePhotoRepo!
     var myRestaurantListVC: MyRestaurantListViewController!
+    var fakeMyRestaurantSelectionDelegate: FakeMyRestaurantSelectionDelegate!
 
     override func setUp() {
         fakeReloader = FakeReloader()
         fakePhotoRepo = FakePhotoRepo()
+        fakeMyRestaurantSelectionDelegate = FakeMyRestaurantSelectionDelegate()
 
         myRestaurantListVC = MyRestaurantListViewController(
             reloader: fakeReloader,
             photoRepo: fakePhotoRepo,
+            myRestaurantSelectionDelegate: fakeMyRestaurantSelectionDelegate,
             getRestaurants: getRestaurants
         )
     }
@@ -86,6 +96,30 @@ class MyRestaurantListViewControllerTest: XCTestCase {
 
 
         expect(self.fakeReloader.reload_wasCalled).to(equal(false))
+    }
+
+    func test_tableView_tappingRestaurant_callsRestaurantSelectDelegate() {
+        let restaurantPromise = Promise<[Restaurant], RepoError>()
+        getRestaurants_returnValue = restaurantPromise.future
+
+        let restaurantsResult = [
+            RestaurantFixtures.newRestaurant(id: 1)
+        ]
+
+        myRestaurantListVC.view.setNeedsLayout()
+        restaurantPromise.success(restaurantsResult)
+
+        waitForFutureToComplete(getRestaurants_returnValue)
+
+
+        myRestaurantListVC.tableView(
+            myRestaurantListVC.tableView,
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+
+        expect(self.fakeMyRestaurantSelectionDelegate.myRestaurantSelected_arg)
+            .to(equal(restaurantsResult[0]))
     }
 
     // MARK: Fake Methods

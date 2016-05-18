@@ -55,6 +55,7 @@
 		AE45881A1CCF28D1007863CC /* RestaurantDetailTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4588191CCF28D1007863CC /* RestaurantDetailTableViewCellDelegate.swift */; };
 		AE4865DE1C9A75AB00154D50 /* FakeCuisineRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4865DD1C9A75AB00154D50 /* FakeCuisineRepo.swift */; };
 		AE4ABF5C1CEBF51400CDE3CD /* SearchResultRestaurantSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4ABF5B1CEBF51400CDE3CD /* SearchResultRestaurantSelectionDelegate.swift */; };
+		AE4ABF5E1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4ABF5D1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift */; };
 		AE51C6321C98FD680068EF0D /* CuisineListParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */; };
 		AE5465921CD095F100B87773 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE5465931CD095F700B87773 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; };
@@ -268,6 +269,7 @@
 		AE4588191CCF28D1007863CC /* RestaurantDetailTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		AE4865DD1C9A75AB00154D50 /* FakeCuisineRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeCuisineRepo.swift; sourceTree = "<group>"; };
 		AE4ABF5B1CEBF51400CDE3CD /* SearchResultRestaurantSelectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultRestaurantSelectionDelegate.swift; sourceTree = "<group>"; };
+		AE4ABF5D1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantSelectionDelegate.swift; sourceTree = "<group>"; };
 		AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListParserTest.swift; sourceTree = "<group>"; };
 		AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTest.swift; sourceTree = "<group>"; };
@@ -947,6 +949,7 @@
 				AE3FF5271C9A781500DB4F6C /* Like.swift */,
 				AECF517B1CA36EBE0045C42B /* LikedRestaurantRepo.swift */,
 				AE3FF5231C9A5A7700DB4F6C /* LikeRepo.swift */,
+				AE4ABF5D1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift */,
 				AE3FF5251C9A5A8E00DB4F6C /* NetworkLikeRepo.swift */,
 				AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */,
 				DE99CB21B6B5AF4521A2A1A1 /* NetworkRestaurantRepo.swift */,
@@ -1257,6 +1260,7 @@
 				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
 				DE99C2FBE2CDA0C6D59583BD /* main.swift in Sources */,
 				AEE6968C1CA36C8F003A2927 /* MyRestaurantListViewController.swift in Sources */,
+				AE4ABF5E1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift in Sources */,
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
 				DE99C575936B3E8619D06F8D /* NetworkCommentRepo.swift in Sources */,
 				DE99CD5C28BC35FE5BE81CC8 /* NetworkCuisineRepo.swift in Sources */,

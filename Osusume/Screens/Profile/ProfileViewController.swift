@@ -30,13 +30,7 @@ class ProfileViewController: UIViewController {
         self.photoRepo = photoRepo
         self.reloader = reloader
         currentPage = 0
-        viewControllers = [
-            MyRestaurantListViewController(
-                reloader: self.reloader,
-                photoRepo: self.photoRepo,
-                getRestaurants: self.userRepo.getMyPosts
-            )
-        ]
+        viewControllers = []
 
         userInfoView = UIView.newAutoLayoutView()
         userNameLabel = UILabel.newAutoLayoutView()
@@ -52,6 +46,15 @@ class ProfileViewController: UIViewController {
         )
 
         super.init(nibName: nil, bundle: nil)
+
+        viewControllers = [
+            MyRestaurantListViewController(
+                reloader: self.reloader,
+                photoRepo: self.photoRepo,
+                myRestaurantSelectionDelegate: self,
+                getRestaurants: self.userRepo.getMyPosts
+            )
+        ]
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -159,6 +162,7 @@ class ProfileViewController: UIViewController {
         let viewController = MyRestaurantListViewController(
             reloader: reloader,
             photoRepo: photoRepo,
+            myRestaurantSelectionDelegate: self,
             getRestaurants: getRestaurants
         )
 
@@ -168,5 +172,11 @@ class ProfileViewController: UIViewController {
             animated: false,
             completion: nil
         )
+    }
+}
+
+extension ProfileViewController: MyRestaurantSelectionDelegate {
+    func myRestaurantSelected(myRestaurant: Restaurant) {
+        router.showRestaurantDetailScreen(myRestaurant.id)
     }
 }

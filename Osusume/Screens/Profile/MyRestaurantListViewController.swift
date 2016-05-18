@@ -3,6 +3,7 @@ import BrightFutures
 class MyRestaurantListViewController: UIViewController {
     // MARK: - Properties
     private let reloader: Reloader
+    private let myRestaurantSelectionDelegate: MyRestaurantSelectionDelegate
     private let getRestaurants: () -> Future<[Restaurant], RepoError>
     let restaurantListDataSource: RestaurantListDataSource
 
@@ -13,10 +14,12 @@ class MyRestaurantListViewController: UIViewController {
     init(
         reloader: Reloader,
         photoRepo: PhotoRepo,
+        myRestaurantSelectionDelegate: MyRestaurantSelectionDelegate,
         getRestaurants: () -> Future<[Restaurant], RepoError>)
     {
         self.reloader = reloader
         self.restaurantListDataSource = RestaurantListDataSource(photoRepo: photoRepo)
+        self.myRestaurantSelectionDelegate = myRestaurantSelectionDelegate
         self.getRestaurants = getRestaurants
 
         self.tableView = UITableView.newAutoLayoutView()
@@ -67,6 +70,11 @@ class MyRestaurantListViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 extension MyRestaurantListViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedRestaurant = restaurantListDataSource.restaurants[indexPath.row]
+        myRestaurantSelectionDelegate.myRestaurantSelected(selectedRestaurant)
+    }
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 150.0
     }
