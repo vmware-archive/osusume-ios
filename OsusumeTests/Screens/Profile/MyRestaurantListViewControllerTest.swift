@@ -3,13 +3,6 @@ import Nimble
 import BrightFutures
 @testable import Osusume
 
-class FakeMyRestaurantSelectionDelegate: MyRestaurantSelectionDelegate {
-    var myRestaurantSelected_arg = RestaurantFixtures.newRestaurant(id: -1)
-    func myRestaurantSelected(myRestaurant: Restaurant) {
-        myRestaurantSelected_arg = myRestaurant
-    }
-}
-
 class MyRestaurantListViewControllerTest: XCTestCase {
     var fakeReloader: FakeReloader!
     var fakePhotoRepo: FakePhotoRepo!

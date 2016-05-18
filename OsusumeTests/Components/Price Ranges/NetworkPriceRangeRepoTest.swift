@@ -4,17 +4,6 @@ import Result
 import Nimble
 @testable import Osusume
 
-class FakePriceRangeListParser: DataListParser {
-    typealias ParsedObject = [PriceRange]
-
-    var parse_arg: [[String : AnyObject]]!
-    var parse_returnValue = Result<[PriceRange], ParseError>(value: [])
-    func parse(json: [[String : AnyObject]]) -> Result<[PriceRange], ParseError> {
-        parse_arg = json
-        return parse_returnValue
-    }
-}
-
 class NetworkPriceRangeRepoTest: XCTestCase {
     var fakeHttp: FakeHttp!
     var fakePriceRangeListParser: FakePriceRangeListParser!

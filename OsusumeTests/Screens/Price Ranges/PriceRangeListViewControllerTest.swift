@@ -3,22 +3,6 @@ import XCTest
 import Nimble
 @testable import Osusume
 
-class FakePriceRangeSelectionDelegate: PriceRangeSelectionDelegate {
-    var priceRangeSelected_arg = PriceRange(id: -1, range: "")
-    func priceRangeSelected(priceRange: PriceRange) {
-        priceRangeSelected_arg = priceRange
-    }
-}
-
-class FakePriceRangeRepo: PriceRangeRepo {
-    var getAll_wasCalled = false
-    var getAll_returnValue = Future<[PriceRange], RepoError>()
-    func getAll() -> Future<[PriceRange], RepoError> {
-        getAll_wasCalled = true
-        return getAll_returnValue
-    }
-}
-
 class PriceRangeListViewControllerTest: XCTestCase {
     let fakeReloader = FakeReloader()
     let fakeRouter = FakeRouter()
