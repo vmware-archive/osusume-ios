@@ -14,7 +14,9 @@ class RestaurantTableViewCellTest: XCTestCase {
             reuseIdentifier: String(RestaurantTableViewCell)
         )
 
-        let restaurantWithPhotos = RestaurantFixtures.newRestaurant(photoUrl: "photo-url")
+        let restaurantWithPhotos = RestaurantFixtures.newRestaurant(
+            photoUrls: [NSURL(string: "photo-url")!]
+        )
         detailPresenter = RestaurantDetailPresenter(restaurant: restaurantWithPhotos)
     }
 

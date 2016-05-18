@@ -63,7 +63,7 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
 
     func test_configureView_displaysRestaurantImage() {
         restaurantDetailCell.configureView(
-            RestaurantFixtures.newRestaurant(photoUrl: "my-awesome-url"),
+            RestaurantFixtures.newRestaurant(photoUrls: [NSURL(string: "my-awesome-url")!]),
             reloader: FakeReloader(),
             router: FakeRouter()
         )
@@ -123,7 +123,7 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
     func test_tappingAnImage_showsAFullScreenImage() {
         restaurantDetailCell.configureView(
             RestaurantFixtures.newRestaurant(
-                photoUrl: "http://www.example.com/cat.jpg"
+                photoUrls: [NSURL(string: "http://www.example.com/cat.jpg")!]
             ),
             reloader: fakeReloader,
             router: fakeRouter

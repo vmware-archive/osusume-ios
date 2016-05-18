@@ -6,11 +6,14 @@ struct RestaurantFixtures {
         name: String = "Danny's Diner",
         address: String = "Original Address",
         offersEnglishMenu: Bool = true,
+        walkInsOk: Bool = false,
         acceptsCreditCards: Bool = true,
         notes: String = "This place is great",
+        createdAt: NSDate = NSDate(),
+        author: String = "danny",
         liked: Bool = false,
         numberOfLikes: Int = 0,
-        photoUrl: String = "http://www.example.com/cat.jpg",
+        photoUrls: [NSURL] = [],
         cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified"),
         priceRange: String = "",
         comments: [PersistedComment] = []
@@ -23,17 +26,15 @@ struct RestaurantFixtures {
             cuisineType: "",
             cuisine: cuisine,
             offersEnglishMenu: offersEnglishMenu,
-            walkInsOk: false,
+            walkInsOk: walkInsOk,
             acceptsCreditCards: acceptsCreditCards,
             notes: notes,
-            author: "",
+            author: author,
             liked: liked,
             numberOfLikes: numberOfLikes,
             priceRange: priceRange,
-            createdAt: NSDate(),
-            photoUrls: [
-                NSURL(string: photoUrl)!
-            ],
+            createdAt: createdAt,
+            photoUrls: photoUrls,
             comments: comments
         )
     }
