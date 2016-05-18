@@ -74,6 +74,14 @@ struct DefaultHttp: Http {
         return promise.future
     }
 
+    func delete(path: String, headers: [String : String], parameters: [String : AnyObject]) -> Future<[String : AnyObject], RepoError> {
+        let promise = Promise<[String: AnyObject], RepoError>()
+
+        promise.success([:])
+
+        return promise.future
+    }
+
     // MARK: - Private Methods
     private func request(
         httpMethod: String,

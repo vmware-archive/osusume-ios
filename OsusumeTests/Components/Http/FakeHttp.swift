@@ -3,11 +3,11 @@ import BrightFutures
 @testable import Osusume
 
 class FakeHttp: Http {
-    var get_args = (path: "", headers: [String: String]())
+    var get_args = (path: "", headers: [String : String]())
     var get_returnValue = Future<AnyObject, RepoError>()
     func get(
         path: String,
-        headers: [String: String]
+        headers: [String : String]
         ) -> Future<AnyObject, RepoError>
     {
         get_args = (path: path, headers: headers)
@@ -17,15 +17,15 @@ class FakeHttp: Http {
 
     var post_args = (
         path: "",
-        headers: [String: String](),
-        parameters: [String: AnyObject]()
+        headers: [String : String](),
+        parameters: [String : AnyObject]()
     )
-    var post_returnValue = Future<[String: AnyObject], RepoError>()
+    var post_returnValue = Future<[String : AnyObject], RepoError>()
     func post(
         path: String,
         headers: [String: String],
-        parameters: [String: AnyObject]
-        ) -> Future<[String: AnyObject], RepoError>
+        parameters: [String : AnyObject]
+        ) -> Future<[String : AnyObject], RepoError>
     {
         post_args = (path: path, headers: headers, parameters: parameters)
 
@@ -34,19 +34,36 @@ class FakeHttp: Http {
 
     var patch_args = (
         path: "",
-        headers: [String: String](),
-        parameters: [String: AnyObject]()
+        headers: [String : String](),
+        parameters: [String : AnyObject]()
     )
-    var patch_returnValue = Future<[String: AnyObject], RepoError>()
+    var patch_returnValue = Future<[String : AnyObject], RepoError>()
     func patch(
         path: String,
-        headers: [String: String],
-        parameters: [String: AnyObject]
-        ) -> Future<[String: AnyObject], RepoError>
+        headers: [String : String],
+        parameters: [String : AnyObject]
+        ) -> Future<[String : AnyObject], RepoError>
     {
         patch_args = (path: path, headers: headers, parameters: parameters)
 
         return patch_returnValue
+    }
+
+    var delete_args = (
+        path: "",
+        headers: [String : String](),
+        parameters: [String : AnyObject]()
+    )
+    var delete_returnValue = Future<[String : AnyObject], RepoError>()
+    func delete(
+        path: String,
+        headers: [String : String],
+        parameters: [String : AnyObject]
+        ) -> Future<[String : AnyObject], RepoError>
+    {
+        delete_args = (path: path, headers: headers, parameters: parameters)
+
+        return delete_returnValue
     }
 }
 

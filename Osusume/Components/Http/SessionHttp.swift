@@ -35,6 +35,11 @@ struct SessionHttp: Http {
         return http.patch(path, headers: addAuthToken(headers), parameters: parameters)
     }
 
+    func delete(path: String, headers: [String : String], parameters: [String : AnyObject]) -> Future<[String : AnyObject], RepoError> {
+        return Future<[String : AnyObject], RepoError>()
+    }
+
+    // MARK: - Private Methods
     private func addAuthToken(
         headers: [String : String]
         ) -> [String : String]
