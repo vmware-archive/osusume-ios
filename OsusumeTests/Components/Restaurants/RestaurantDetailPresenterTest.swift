@@ -4,6 +4,14 @@ import Nimble
 
 class RestaurantDetailPresenterTest: XCTestCase {
 
+    func test_formats_cuisineType() {
+        let restaurant = RestaurantFixtures
+            .newRestaurant(cuisine: Cuisine(id: 0, name: "Not Specified"))
+        let presenter = RestaurantDetailPresenter(restaurant: restaurant)
+
+        expect(presenter.cuisineType).to(equal("Cuisine: Not Specified"))
+    }
+
     func test_formatsPriceRange() {
         let restaurant = RestaurantFixtures.newRestaurant(priceRange: "¥1000~1999")
         let presenter = RestaurantDetailPresenter(restaurant: restaurant)

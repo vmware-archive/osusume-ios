@@ -10,7 +10,7 @@ struct RestaurantDetailPresenter {
     }
 
     var cuisineType: String {
-        return restaurant.cuisine.id == 0 ? "" : restaurant.cuisine.name
+        return "Cuisine: \(restaurant.cuisine.name)"
     }
 
     var offersEnglishMenu: String {
