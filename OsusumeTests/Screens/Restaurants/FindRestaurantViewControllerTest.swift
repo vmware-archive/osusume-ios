@@ -3,11 +3,19 @@ import Nimble
 import BrightFutures
 @testable import Osusume
 
+class FakeSearchResultRestaurantSelectionDelegate: SearchResultRestaurantSelectionDelegate {
+    var restaurantSelected_arg = SearchResultRestaurant(id: "-1", name: "", address: "")
+    func searchResultRestaurantSelected(searchResultRestaurant: SearchResultRestaurant) {
+        restaurantSelected_arg = searchResultRestaurant
+    }
+}
+
 class FindRestaurantViewControllerTest: XCTestCase {
     var findRestaurantViewController: FindRestaurantViewController!
     let fakeRouter = FakeRouter()
     let fakeRestaurantSearchRepo = FakeRestaurantSearchRepo()
     let fakeReloader = FakeReloader()
+    let fakeSearchResultRestaurantSelectionDelegate = FakeSearchResultRestaurantSelectionDelegate()
     var restaurantSearchRepoResultPromise: Promise<[SearchResultRestaurant], RepoError>!
 
     override func setUp() {
@@ -17,7 +25,8 @@ class FindRestaurantViewControllerTest: XCTestCase {
         findRestaurantViewController = FindRestaurantViewController(
             router: fakeRouter,
             restaurantSearchRepo: fakeRestaurantSearchRepo,
-            reloader: fakeReloader
+            reloader: fakeReloader,
+            searchResultRestaurantSelectionDelegate: fakeSearchResultRestaurantSelectionDelegate
         )
         findRestaurantViewController.view.setNeedsLayout()
     }
@@ -95,6 +104,10 @@ class FindRestaurantViewControllerTest: XCTestCase {
         expect(self.findRestaurantViewController.restaurantSearchResultTableView.dataSource === self.findRestaurantViewController).to(beTrue())
     }
 
+    func test_viewDidLoad_setsTableViewDelegate() {
+        expect(self.findRestaurantViewController.restaurantSearchResultTableView.delegate === self.findRestaurantViewController).to(beTrue())
+    }
+
     func test_tableView_containsExpectedNumberOfSections() {
         expect(self.findRestaurantViewController.numberOfSectionsInTableView(
             self.findRestaurantViewController.restaurantSearchResultTableView
@@ -151,5 +164,48 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
 
         expect(self.fakeReloader.reload_wasCalled).to(beTrue())
+    }
+
+    func test_tappingSearchResultCell_callsDismissPresentedViewControllerOnRouter() {
+        let searchResults = [
+            SearchResultRestaurant(id: "0", name: "Afuri", address: "Roppongi")
+        ]
+
+        findRestaurantViewController.textFieldShouldReturn(
+            findRestaurantViewController.restaurantNameTextField
+        )
+        restaurantSearchRepoResultPromise.success(searchResults)
+        NSRunLoop.osu_advance()
+
+
+        findRestaurantViewController.tableView(
+            findRestaurantViewController.restaurantSearchResultTableView,
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
+    }
+
+    func test_tappingSearchResultCell_passesSelectedRestaurantsInformationToDelegate() {
+        let searchResults = [
+            SearchResultRestaurant(id: "0", name: "Afuri", address: "Roppongi")
+        ]
+
+        findRestaurantViewController.textFieldShouldReturn(
+            findRestaurantViewController.restaurantNameTextField
+        )
+        restaurantSearchRepoResultPromise.success(searchResults)
+        NSRunLoop.osu_advance()
+
+
+        findRestaurantViewController.tableView(
+            findRestaurantViewController.restaurantSearchResultTableView,
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+
+        expect(self.fakeSearchResultRestaurantSelectionDelegate.restaurantSelected_arg)
+            .to(equal(searchResults[0]))
     }
 }

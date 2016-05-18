@@ -157,10 +157,13 @@ struct NavigationRouter: Router {
     }
 
     func showFindRestaurantScreen() {
+        let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController
+
         let findRestaurantViewController = FindRestaurantViewController(
             router: self,
             restaurantSearchRepo: restaurantSearchRepo,
-            reloader: DefaultReloader()
+            reloader: DefaultReloader(),
+            searchResultRestaurantSelectionDelegate: newRestaurantVC!.formView
         )
 
         presentViewControllerModallyWithinNavController(findRestaurantViewController)

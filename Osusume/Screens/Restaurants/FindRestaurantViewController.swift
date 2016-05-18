@@ -4,6 +4,7 @@ class FindRestaurantViewController: UIViewController {
     private let reloader: Reloader
     private let restaurantSearchRepo: RestaurantSearchRepo
     private var restaurantResults: [SearchResultRestaurant]
+    private let searchResultRestaurantSelectionDelegate: SearchResultRestaurantSelectionDelegate
 
     // MARK: - Constants
 
@@ -14,12 +15,14 @@ class FindRestaurantViewController: UIViewController {
     // MARK: - Initializers
     init(router: Router,
          restaurantSearchRepo: RestaurantSearchRepo,
-         reloader: Reloader
+         reloader: Reloader,
+         searchResultRestaurantSelectionDelegate: SearchResultRestaurantSelectionDelegate
     ) {
         self.router = router
         self.restaurantSearchRepo = restaurantSearchRepo
         self.reloader = reloader
         restaurantResults = []
+        self.searchResultRestaurantSelectionDelegate = searchResultRestaurantSelectionDelegate
         self.restaurantSearchResultTableView = UITableView()
 
         restaurantNameTextField = UITextField.newAutoLayoutView()
@@ -74,6 +77,7 @@ class FindRestaurantViewController: UIViewController {
         restaurantNameTextField.delegate = self
 
         restaurantSearchResultTableView.dataSource = self
+        restaurantSearchResultTableView.delegate = self
     }
 
     private func addConstraints() {
@@ -146,5 +150,17 @@ extension FindRestaurantViewController: UITableViewDataSource {
         resultCell.detailTextLabel?.text = restaurantResults[indexPath.row].address
 
         return resultCell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension FindRestaurantViewController: UITableViewDelegate {
+    func tableView(
+        tableView: UITableView,
+        didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        searchResultRestaurantSelectionDelegate
+            .searchResultRestaurantSelected(restaurantResults[indexPath.row])
+        router.dismissPresentedNavigationController()
     }
 }

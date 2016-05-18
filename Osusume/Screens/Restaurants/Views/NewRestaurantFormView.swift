@@ -277,3 +277,10 @@ extension NewRestaurantFormView: PriceRangeSelectionDelegate {
         self.selectedPriceRange = priceRange
     }
 }
+
+extension NewRestaurantFormView: SearchResultRestaurantSelectionDelegate {
+    func searchResultRestaurantSelected(searchResultRestaurant: SearchResultRestaurant) {
+        nameTextField.text = searchResultRestaurant.name
+        addressTextField.text = searchResultRestaurant.address
+    }
+}

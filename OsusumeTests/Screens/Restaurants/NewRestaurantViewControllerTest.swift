@@ -135,4 +135,19 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.newRestaurantVC.formView.selectedCuisine).to(equal(selectedCuisine))
     }
 
+    func test_selectSearchResultRestaurant_populatesNameAndAddressTextfields() {
+        let selectedSearchResultRestaurant = SearchResultRestaurant(
+            id: "1",
+            name: "Afuri",
+            address: "Roppongi Hills 5-2-1"
+        )
+
+
+        newRestaurantVC.formView.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+
+
+        expect(self.newRestaurantVC.formView.nameTextField.text).to(equal("Afuri"))
+        expect(self.newRestaurantVC.formView.addressTextField.text).to(equal("Roppongi Hills 5-2-1"))
+    }
+
 }
