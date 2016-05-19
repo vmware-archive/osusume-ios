@@ -13,23 +13,29 @@ struct NetworkUserRepo: UserRepo {
         self.restaurantListRepo = restaurantListRepo
     }
 
-    func login(email: String, password: String) -> Future<String, RepoError> {
+    func login(email: String, password: String) -> Future<AuthenticatedUser, RepoError> {
         return http
             .post(
                 "/session",
                 headers: [:],
                 parameters: ["email": email, "password": password]
             )
-            .flatMap({ (json: [String : AnyObject]) -> Future<String, RepoError> in
+            .flatMap({ (json: [String : AnyObject]) -> Future<AuthenticatedUser, RepoError> in
                 if let _ = json["error"] {
                     return Future(error: RepoError.PostFailed)
                 }
 
-                guard let token = json["token"] as? String else {
+                guard
+                    let token = json["token"] as? String,
+                    let email = json["email"] as? String,
+                    let id = json["id"] as? Int
+                else {
                     return Future(error: RepoError.PostFailed)
                 }
 
-                return Future(value: token)
+                return Future(
+                    value: AuthenticatedUser(id: id, email: email, token: token)
+                )
             })
     }
 

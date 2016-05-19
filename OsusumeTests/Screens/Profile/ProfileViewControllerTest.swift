@@ -10,6 +10,8 @@ class ProfileViewControllerTest: XCTestCase {
     var fakePhotoRepo: FakePhotoRepo!
     var fakeReloader: FakeReloader!
     var profileVC: ProfileViewController!
+    var fetchCurrentUserNamePromise = Promise<String, RepoError>()
+    let fetchLikesPromise = Promise<[Restaurant], RepoError>()
 
     override func setUp() {
         fakeUserRepo = FakeUserRepo()
@@ -26,6 +28,7 @@ class ProfileViewControllerTest: XCTestCase {
             reloader: fakeReloader
         )
 
+        fakeUserRepo.fetchCurrentUserName_returnValue = fetchCurrentUserNamePromise.future
         profileVC.view.setNeedsLayout()
     }
 
@@ -35,8 +38,10 @@ class ProfileViewControllerTest: XCTestCase {
     }
 
     func test_viewDidLoad_displaysUsername() {
-        fakeUserRepo.stringPromise.success("A")
-        NSRunLoop.osu_advance()
+        fetchCurrentUserNamePromise.success("A")
+
+
+        waitForFutureToComplete(fetchCurrentUserNamePromise.future)
         expect(self.profileVC.userNameLabel.text).to(equal("A"))
     }
 
@@ -56,21 +61,48 @@ class ProfileViewControllerTest: XCTestCase {
     func test_viewDidLoad_defaultsToMyPostTableViewController() {
         let pageViewController = profileVC.pageViewController
 
+
         expect(self.profileVC.currentPage).to(equal(0))
         expect(pageViewController.viewControllers?.first).to(beAKindOf(MyRestaurantListViewController))
-        expect(self.fakeUserRepo.getMyPosts_wasCalled).to(beTrue())
+    }
+
+    func test_viewDidLoad_retrievesMyPostedRestaurants() {
+        let likedRestaurantListVC =
+            profileVC.pageViewController.viewControllers?.first
+                as! MyRestaurantListViewController
+
+        
+        expect(likedRestaurantListVC.getRestaurants())
+            .to(beIdenticalTo(fakeUserRepo.getMyPosts_returnValue))
     }
 
     func test_tappingSegmentedControl_selectsCurrentPage() {
         let segmentedControl = profileVC.myContentSegmentedControl
         segmentedControl.selectedSegmentIndex = 1
+
+
         segmentedControl.sendActionsForControlEvents(.ValueChanged)
 
         let pageViewController = profileVC.pageViewController
         expect(pageViewController.viewControllers?.first)
             .to(beAKindOf(MyRestaurantListViewController))
         expect(self.profileVC.currentPage).to(equal(1))
-        expect(self.fakeUserRepo.getMyLikes_wasCalled).to(beTrue())
+    }
+
+    func test_tappingLikeSegmentedControlButton_retrievesLikedRestaurants() {
+        let segmentedControl = profileVC.myContentSegmentedControl
+        segmentedControl.selectedSegmentIndex = 1
+
+
+        segmentedControl.sendActionsForControlEvents(.ValueChanged)
+
+
+        let likedRestaurantListVC =
+            profileVC.pageViewController.viewControllers?.first
+                as! MyRestaurantListViewController
+
+        expect(likedRestaurantListVC.getRestaurants())
+            .to(beIdenticalTo(fakeUserRepo.getMyLikes_returnValue))
     }
 
     func test_restaurantSelection_showsRestaurantDetailScreen() {
@@ -82,7 +114,9 @@ class ProfileViewControllerTest: XCTestCase {
     // MARK: Actions
     func test_tapLogout_logsOutUser() {
         profileVC.logoutButton.sendActionsForControlEvents(.TouchUpInside)
-        expect(self.fakeSessionRepo.deleteTokenWasCalled).to(beTrue())
+
+
+        expect(self.fakeSessionRepo.deleteAuthenticatedUser_wasCalled).to(beTrue())
         expect(self.fakeRouter.loginScreenIsShowing).to(beTrue())
     }
 }

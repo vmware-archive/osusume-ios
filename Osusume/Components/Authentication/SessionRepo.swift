@@ -1,5 +1,5 @@
 protocol SessionRepo {
-    func setToken(token: String)
-    func getToken() -> String?
-    func deleteToken()
+    func setAuthenticatedUser(authenticatedUser: AuthenticatedUser)
+    func getAuthenticatedUser() -> AuthenticatedUser?
+    func deleteAuthenticatedUser()
 }

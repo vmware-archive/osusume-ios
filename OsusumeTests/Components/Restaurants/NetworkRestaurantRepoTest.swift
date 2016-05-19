@@ -9,8 +9,6 @@ class NetworkRestaurantRepoTest: XCTestCase {
     var networkRestaurantRepo: NetworkRestaurantRepo!
 
     override func setUp() {
-        fakeSessionRepo.tokenValue = "some-session-token"
-
         let restaurantListRepo = NetworkRestaurantListRepo(
             http: fakeHttp,
             parser: RestaurantParser()

@@ -6,8 +6,6 @@ class NetworkLikeRepoTest: XCTestCase {
 
     func test_like_passesCorrectPathToHttp() {
         let fakeHttp = FakeHttp()
-        let fakeSessionRepo = FakeSessionRepo()
-        fakeSessionRepo.tokenValue = "Valid Token"
         let repo = NetworkLikeRepo(http: fakeHttp)
 
 

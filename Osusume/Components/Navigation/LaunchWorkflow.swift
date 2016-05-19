@@ -10,7 +10,7 @@ struct LaunchWorkflow {
     }
 
     func startWorkflow() {
-        if let _ = sessionRepo.getToken() {
+        if let _ = sessionRepo.getAuthenticatedUser() {
             router.showRestaurantListScreen()
         } else {
             router.showLoginScreen()

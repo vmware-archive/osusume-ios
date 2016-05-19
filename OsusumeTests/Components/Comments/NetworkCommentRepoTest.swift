@@ -11,8 +11,6 @@ class NetworkCommentRepoTest: XCTestCase {
     let fakeCommentParser = FakeCommentParser()
 
     override func setUp() {
-        fakeSessionRepo.tokenValue = "some-session-token"
-
         networkCommentRepo = NetworkCommentRepo(
             http: fakeHttp,
             parser: fakeCommentParser

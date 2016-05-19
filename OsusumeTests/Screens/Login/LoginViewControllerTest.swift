@@ -1,5 +1,6 @@
 import XCTest
 import Nimble
+import BrightFutures
 
 @testable import Osusume
 
@@ -8,6 +9,7 @@ class LoginViewControllerTest: XCTestCase {
     let fakeRouter = FakeRouter()
     let fakeUserRepo = FakeUserRepo()
     let fakeSessionRepo = FakeSessionRepo()
+    let loginPromise = Promise<AuthenticatedUser, RepoError>()
 
     override func setUp() {
         loginVC = LoginViewController(
@@ -31,19 +33,47 @@ class LoginViewControllerTest: XCTestCase {
 
     func test_logsInWithEmailAndPassword() {
         UIView.setAnimationsEnabled(false)
+        fakeUserRepo.login_returnValue = loginPromise.future
+
 
         loginVC.emailTextField.text = "test@email.com"
         loginVC.passwordTextField.text = "secret"
+        tapButton(loginVC.loginButton)
 
-        expect(self.fakeUserRepo.submittedEmail).to(beNil())
-        expect(self.fakeUserRepo.submittedPassword).to(beNil())
+
+        loginPromise.success(AuthenticatedUser(id: 1, email: "email", token: "token"))
+        waitForFutureToComplete(fakeUserRepo.login_returnValue)
+
+        expect(self.fakeUserRepo.login_args.email).to(equal("test@email.com"))
+        expect(self.fakeUserRepo.login_args.password).to(equal("secret"))
+    }
+
+    func test_tappingLoginButton_callsSetAuthenticatedUser() {
+        UIView.setAnimationsEnabled(false)
+        fakeUserRepo.login_returnValue = loginPromise.future
+
 
         tapButton(loginVC.loginButton)
 
-        expect(self.fakeUserRepo.submittedEmail).to(equal("test@email.com"))
-        expect(self.fakeUserRepo.submittedPassword).to(equal("secret"))
 
-        expect(self.fakeSessionRepo.getToken()).to(equal("token-value"))
+        let authenticatedUser = AuthenticatedUser(id: 1, email: "email", token: "token")
+        loginPromise.success(authenticatedUser)
+        waitForFutureToComplete(fakeUserRepo.login_returnValue)
+
+        expect(self.fakeSessionRepo.setAuthenticatedUser_arg).to(equal(authenticatedUser))
+    }
+
+    func test_tappingLoginButton_showsRestaurantListWhenLoginSuccess() {
+        UIView.setAnimationsEnabled(false)
+        fakeUserRepo.login_returnValue = loginPromise.future
+
+
+        tapButton(loginVC.loginButton)
+
+        loginPromise.success(AuthenticatedUser(id: 1, email: "email", token: "token"))
+        waitForFutureToComplete(fakeUserRepo.login_returnValue)
+
+
         expect(self.fakeRouter.restaurantListScreenIsShowing).to(beTrue())
     }
 

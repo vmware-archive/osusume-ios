@@ -4,7 +4,7 @@ class MyRestaurantListViewController: UIViewController {
     // MARK: - Properties
     private let reloader: Reloader
     private let myRestaurantSelectionDelegate: MyRestaurantSelectionDelegate
-    private let getRestaurants: () -> Future<[Restaurant], RepoError>
+    let getRestaurants: () -> Future<[Restaurant], RepoError>
     let restaurantListDataSource: RestaurantListDataSource
 
     // MARK: - View Elements

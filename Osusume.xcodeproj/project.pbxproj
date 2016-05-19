@@ -64,6 +64,7 @@
 		AE4ABF6A1CEC346000CDE3CD /* FakeRestaurantSearchListParserFakeRestaurantSearchListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4ABF691CEC346000CDE3CD /* FakeRestaurantSearchListParserFakeRestaurantSearchListParser.swift */; };
 		AE4ABF6C1CEC34BA00CDE3CD /* FakeCommentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4ABF6B1CEC34BA00CDE3CD /* FakeCommentParser.swift */; };
 		AE4ABF6E1CEC354A00CDE3CD /* FakePriceRangeListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4ABF6D1CEC354A00CDE3CD /* FakePriceRangeListParser.swift */; };
+		AE4ABF721CEC644400CDE3CD /* AuthenticatedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4ABF711CEC644400CDE3CD /* AuthenticatedUser.swift */; };
 		AE51C6321C98FD680068EF0D /* CuisineListParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */; };
 		AE5465921CD095F100B87773 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE5465931CD095F700B87773 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; };
@@ -286,6 +287,7 @@
 		AE4ABF691CEC346000CDE3CD /* FakeRestaurantSearchListParserFakeRestaurantSearchListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeRestaurantSearchListParserFakeRestaurantSearchListParser.swift; sourceTree = "<group>"; };
 		AE4ABF6B1CEC34BA00CDE3CD /* FakeCommentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeCommentParser.swift; sourceTree = "<group>"; };
 		AE4ABF6D1CEC354A00CDE3CD /* FakePriceRangeListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePriceRangeListParser.swift; sourceTree = "<group>"; };
+		AE4ABF711CEC644400CDE3CD /* AuthenticatedUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUser.swift; sourceTree = "<group>"; };
 		AE51C6311C98FD680068EF0D /* CuisineListParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListParserTest.swift; sourceTree = "<group>"; };
 		AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTest.swift; sourceTree = "<group>"; };
@@ -799,6 +801,7 @@
 		DE99C512F3845333439F2047 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				AE4ABF711CEC644400CDE3CD /* AuthenticatedUser.swift */,
 				DE99C447806B234A82B79597 /* KeychainSessionRepo.swift */,
 				DE99C2C797A66285E2844A01 /* NetworkUserRepo.swift */,
 				DE99CC16807EC3A0D1F1E4FD /* SessionRepo.swift */,
@@ -1250,6 +1253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE99CB6B84CBE284E0588C86 /* AppDelegate.swift in Sources */,
+				AE4ABF721CEC644400CDE3CD /* AuthenticatedUser.swift in Sources */,
 				DE99C5EDA17366E088607BC1 /* CommentParser.swift in Sources */,
 				AECF517A1CA36E890045C42B /* CommentRepo.swift in Sources */,
 				AEACDB791C9900020092AEF6 /* Cuisine.swift in Sources */,

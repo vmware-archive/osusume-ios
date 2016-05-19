@@ -144,7 +144,7 @@ class ProfileViewController: UIViewController {
 
     // MARK: - Actions
     @objc private func didTapLogoutButton(sender: UIButton?) {
-        sessionRepo.deleteToken()
+        sessionRepo.deleteAuthenticatedUser()
         router.showLoginScreen()
     }
 

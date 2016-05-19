@@ -1,24 +1,18 @@
 @testable import Osusume
 
 class FakeSessionRepo: SessionRepo {
-    var tokenValue: String? = nil
-
-    var setTokenWasCalled = false
-    func setToken(token: String) {
-        setTokenWasCalled = true
-        tokenValue = token
+    var setAuthenticatedUser_arg = AuthenticatedUser(id: -1, email: "", token: "")
+    func setAuthenticatedUser(authenticatedUser: AuthenticatedUser) {
+        setAuthenticatedUser_arg = authenticatedUser
     }
 
-    var getTokenWasCalled = false
-    func getToken() -> String? {
-        getTokenWasCalled = true
-        return tokenValue
+    var getAuthenticatedUser_returnValue: AuthenticatedUser? = nil
+    func getAuthenticatedUser() -> AuthenticatedUser? {
+        return getAuthenticatedUser_returnValue
     }
 
-    var deleteTokenWasCalled = false
-    func deleteToken() {
-        deleteTokenWasCalled = true
-        tokenValue = nil
+    var deleteAuthenticatedUser_wasCalled = false
+    func deleteAuthenticatedUser() {
+        deleteAuthenticatedUser_wasCalled = true
     }
-
 }

@@ -1,21 +1,39 @@
 import KeychainAccess
 
 struct KeychainSessionRepo: SessionRepo {
-    static let StoreServiceName: String = "osusume-token-store"
+    static let StoreServiceName = "osusume-store"
 
-    private let httpTokenKeyName: String = "http-token"
+    private let httpTokenKeyName = "http-token"
+    private let httpAuthIdKeyName = "http-auth_id"
+    private let httpAuthEmailKeyName = "http-auth-email"
 
     let keychain = Keychain(service: StoreServiceName)
 
-    func setToken(token: String) {
-        keychain[httpTokenKeyName] = token
+    func setAuthenticatedUser(authenticatedUser: AuthenticatedUser) {
+        keychain[httpAuthIdKeyName] = "\(authenticatedUser.id)"
+        keychain[httpTokenKeyName] = authenticatedUser.token
+        keychain[httpAuthEmailKeyName] = authenticatedUser.email
     }
 
-    func getToken() -> String? {
-        return keychain[httpTokenKeyName]
+    func getAuthenticatedUser() -> AuthenticatedUser? {
+        guard
+            let idString = keychain[httpAuthIdKeyName],
+            let idInt = Int(idString),
+            let email = keychain[httpAuthEmailKeyName],
+            let token = keychain[httpTokenKeyName] else {
+                return nil
+        }
+
+        return AuthenticatedUser(
+            id: idInt,
+            email: email,
+            token: token
+        )
     }
 
-    func deleteToken() {
+    func deleteAuthenticatedUser() {
+        keychain[httpAuthIdKeyName] = nil
         keychain[httpTokenKeyName] = nil
+        keychain[httpAuthEmailKeyName] = nil
     }
 }

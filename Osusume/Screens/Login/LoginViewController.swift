@@ -98,8 +98,8 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
     @objc private func didTapLoginButton(button: UIButton) {
         userRepo.login(emailTextField.text!, password: passwordTextField.text!)
-            .onSuccess(ImmediateExecutionContext) { [unowned self] token in
-                self.sessionRepo.setToken(token)
+            .onSuccess(ImmediateExecutionContext) { [unowned self] authenticatedUser in
+                self.sessionRepo.setAuthenticatedUser(authenticatedUser)
                 self.router.showRestaurantListScreen()
         }
     }

@@ -39,14 +39,18 @@ class LaunchWorkflowTest: XCTestCase {
     func test_showsLoginScreen_whenASessionExists() {
         launchWorkflow.startWorkflow()
 
+        
         expect(self.navController.topViewController)
             .to(beAKindOf(LoginViewController))
     }
 
     func test_showsRestaurantListView_whenASessionExists() {
-        fakeSessionRepo.setToken("some-token")
+        fakeSessionRepo.getAuthenticatedUser_returnValue =
+            AuthenticatedUser(id: 1, email: "email", token: "some-token")
 
+        
         launchWorkflow.startWorkflow()
+
 
         expect(self.navController.topViewController)
             .to(beAKindOf(RestaurantListViewController))

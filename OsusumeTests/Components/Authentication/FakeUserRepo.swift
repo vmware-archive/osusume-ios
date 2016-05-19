@@ -2,35 +2,31 @@ import BrightFutures
 @testable import Osusume
 
 class FakeUserRepo : UserRepo {
-    var submittedEmail : String? = nil
-    var submittedPassword : String? = nil
-
-    var stringPromise = Promise<String, RepoError>()
-
-    func login(email : String, password: String) -> Future<String, RepoError> {
-        stringPromise.success("token-value")
-
-        self.submittedEmail = email
-        self.submittedPassword = password
-
-        return stringPromise.future
+    var login_returnValue = Future<AuthenticatedUser, RepoError>()
+    var login_args = (email: "", password: "")
+    func login(email : String, password: String) -> Future<AuthenticatedUser, RepoError> {
+        login_args.email = email
+        login_args.password = password
+        return login_returnValue
     }
 
+    var fetchCurrentUserName_returnValue = Future<String, RepoError>()
     func fetchCurrentUserName() -> Future<String, RepoError> {
-        return stringPromise.future
+        return fetchCurrentUserName_returnValue
     }
 
-    var getMyPosts_wasCalled = false
+    var fetchCurrentUserId_returnValue = Future<Int, RepoError>()
+    func fetchCurrentUserId() -> Future<Int, RepoError> {
+        return fetchCurrentUserId_returnValue
+    }
+
     var getMyPosts_returnValue = Future<[Restaurant], RepoError>()
     func getMyPosts() -> Future<[Restaurant], RepoError> {
-        getMyPosts_wasCalled = true
         return getMyPosts_returnValue
     }
 
-    var getMyLikes_wasCalled = false
     var getMyLikes_returnValue = Future<[Restaurant], RepoError>()
     func getMyLikes() -> Future<[Restaurant], RepoError> {
-        getMyLikes_wasCalled = true
         return getMyLikes_returnValue
     }
 }
