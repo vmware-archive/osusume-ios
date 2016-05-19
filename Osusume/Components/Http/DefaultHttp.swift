@@ -9,7 +9,7 @@ struct DefaultHttp: Http {
 
     func get(
         path: String,
-        headers: [String: String]
+        headers: [String : String]
         ) -> Future<AnyObject, RepoError>
     {
         let promise = Promise<AnyObject, RepoError>()
@@ -32,11 +32,11 @@ struct DefaultHttp: Http {
 
     func post(
         path: String,
-        headers: [String: String],
-        parameters: [String: AnyObject]
-        ) -> Future<[String: AnyObject], RepoError>
+        headers: [String : String],
+        parameters: [String : AnyObject]
+        ) -> Future<[String : AnyObject], RepoError>
     {
-        let promise = Promise<[String: AnyObject], RepoError>()
+        let promise = Promise<[String : AnyObject], RepoError>()
 
         request("POST", path: path, headers: headers, parameters: parameters).responseJSON { result in
             switch result {
@@ -56,16 +56,16 @@ struct DefaultHttp: Http {
 
     func patch(
         path: String,
-        headers: [String: String],
-        parameters: [String: AnyObject]
-        ) -> Future<[String: AnyObject], RepoError>
+        headers: [String : String],
+        parameters: [String : AnyObject]
+        ) -> Future<[String : AnyObject], RepoError>
     {
         let promise = Promise<[String: AnyObject], RepoError>()
 
         request("PATCH", path: path, headers: headers, parameters: parameters).responseJSON { result in
             switch result {
                 case .Success:
-                    promise.success(["status": "OK"])
+                    promise.success(["status" : "OK"])
                 case .Failure(_):
                     promise.failure(RepoError.PatchFailed)
             }
@@ -74,10 +74,22 @@ struct DefaultHttp: Http {
         return promise.future
     }
 
-    func delete(path: String, headers: [String : String], parameters: [String : AnyObject]) -> Future<[String : AnyObject], RepoError> {
+    func delete(
+        path: String,
+        headers: [String : String],
+        parameters: [String : AnyObject]
+        ) -> Future<[String : AnyObject], RepoError>
+    {
         let promise = Promise<[String: AnyObject], RepoError>()
 
-        promise.success([:])
+        request("DELETE", path: path, headers: headers).responseJSON { result in
+            switch result {
+            case .Success:
+                promise.success(["status" : "OK"])
+            case .Failure:
+                promise.failure(RepoError.DeleteFailed)
+            }
+        }
 
         return promise.future
     }
@@ -86,8 +98,8 @@ struct DefaultHttp: Http {
     private func request(
         httpMethod: String,
         path: String,
-        headers: [String: String],
-        parameters: [String: AnyObject] = [:]
+        headers: [String : String],
+        parameters: [String : AnyObject] = [:]
         ) -> NSURLRequest
     {
         let URL = NSURL(string: "\(basePath)\(path)")!
