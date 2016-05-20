@@ -24,5 +24,9 @@ struct NetworkCommentRepo <P: DataParser where P.ParsedObject == PersistedCommen
     }
 
     func delete(commentId: Int) {
+        http.delete("/comments/\(commentId)",
+                    headers: [:],
+                    parameters: [:]
+        )
     }
 }

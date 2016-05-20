@@ -110,4 +110,10 @@ class NetworkCommentRepoTest: XCTestCase {
         self.waitForExpectationsWithTimeout(2.0, handler: nil)
     }
 
+    func test_delete_passesIdToHttp() {
+        networkCommentRepo.delete(1)
+
+        XCTAssertEqual("/comments/1", fakeHttp.delete_args.path)
+    }
+
 }
