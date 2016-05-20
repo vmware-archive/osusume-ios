@@ -55,6 +55,18 @@ class FindRestaurantViewControllerTest: XCTestCase {
             .to(equal("Cancel"))
     }
 
+    func test_viewDidAppear_setsRestaurantNameTextFieldAsFirstResponder() {
+        configureUIWindowWithRootViewController(findRestaurantViewController)
+
+
+        findRestaurantViewController.view.setNeedsLayout()
+        NSRunLoop.osu_advance()
+
+
+        expect(self.findRestaurantViewController.restaurantNameTextField.isFirstResponder())
+            .to(beTrue())
+    }
+
     func test_tappingCancelButton_dismissesFindRestaurantVC() {
         let cancelButton = findRestaurantViewController.navigationItem.leftBarButtonItem!
 

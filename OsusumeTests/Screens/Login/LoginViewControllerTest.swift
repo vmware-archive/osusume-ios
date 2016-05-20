@@ -18,6 +18,7 @@ class LoginViewControllerTest: XCTestCase {
             sessionRepo: fakeSessionRepo
         )
 
+        configureUIWindowWithRootViewController(loginVC)
         loginVC.view.setNeedsLayout()
     }
 
@@ -70,5 +71,10 @@ class LoginViewControllerTest: XCTestCase {
 
 
         expect(self.fakeRouter.restaurantListScreenIsShowing).to(beTrue())
+    }
+
+    func test_emailTextField_isFirstResponder() {
+        NSRunLoop.osu_advance()
+        expect(self.loginVC.emailTextField.isFirstResponder()).to(beTrue())
     }
 }

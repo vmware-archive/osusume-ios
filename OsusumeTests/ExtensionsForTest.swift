@@ -1,5 +1,6 @@
 import BrightFutures
 import Nimble
+@testable import Osusume
 
 private let oneHundredthOfASecond: NSTimeInterval = 0.01
 
@@ -36,4 +37,11 @@ func waitForFutureToComplete<T, E>(future: Future<T, E>) {
         while !future.isCompleted {}
         done()
     }
+}
+
+func configureUIWindowWithRootViewController(viewController: UIViewController) {
+    let appDelegate = UIApplication.sharedApplication().delegate as! TestingAppDelegate
+    let window: UIWindow! = appDelegate.window
+    window.rootViewController = viewController
+    window.makeKeyAndVisible()
 }
