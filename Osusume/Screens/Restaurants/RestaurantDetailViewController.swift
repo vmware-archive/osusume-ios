@@ -6,8 +6,11 @@ class RestaurantDetailViewController: UIViewController {
     private let reloader: Reloader
     private let restaurantRepo: RestaurantRepo
     private let likeRepo: LikeRepo
+    private let sessionRepo: SessionRepo
+    private let commentRepo: CommentRepo
     private let restaurantId: Int
-    private var restaurant: Restaurant?
+    private(set) var restaurant: Restaurant?
+    let currentUserId: Int?
 
     // MARK: - View Elements
     let tableView: UITableView
@@ -18,13 +21,18 @@ class RestaurantDetailViewController: UIViewController {
         reloader: Reloader,
         restaurantRepo: RestaurantRepo,
         likeRepo: LikeRepo,
+        sessionRepo: SessionRepo,
+        commentRepo: CommentRepo,
         restaurantId: Int)
     {
         self.router = router
         self.reloader = reloader
         self.restaurantRepo = restaurantRepo
         self.likeRepo = likeRepo
+        self.sessionRepo = sessionRepo
+        self.commentRepo = commentRepo
         self.restaurantId = restaurantId
+        self.currentUserId = sessionRepo.getAuthenticatedUser()?.id
 
         tableView = UITableView.newAutoLayoutView()
 
@@ -180,6 +188,48 @@ extension RestaurantDetailViewController: UITableViewDelegate {
         ) -> CGFloat
     {
         return UITableViewAutomaticDimension
+    }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        return isCommentPostedByCurrentUser(indexPath)
+    }
+
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        if ( isCommentPostedByCurrentUser(indexPath) ) {
+            let del = UITableViewRowAction(style: .Default, title: "Delete") {_,_ in }
+            del.backgroundColor = UIColor.redColor()
+
+            return [del]
+        }
+        return []
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        guard
+            indexPath.section == 1 && restaurant != nil
+            else {
+                return
+        }
+        let comment = restaurant!.comments[indexPath.row]
+
+        self.commentRepo.delete(comment.id)
+
+        restaurant!.comments.removeAtIndex(indexPath.row)
+        reloader.reloadSection(1, reloadable: tableView)
+    }
+
+    // MARK: - Private Methods
+    private func isCommentPostedByCurrentUser(indexPath: NSIndexPath) -> Bool
+    {
+        guard
+            indexPath.section == 1,
+            let currentRestaurant = restaurant,
+            let userId = currentUserId
+            else {
+                return false
+        }
+        return userId == currentRestaurant.comments[indexPath.row].userId
     }
 }
 

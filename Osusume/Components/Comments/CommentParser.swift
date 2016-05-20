@@ -11,6 +11,7 @@ struct CommentParser: DataParser {
             let createdDate = DateConverter.formattedDateFromString(createdDateString),
             let restaurantId = json["restaurant_id"] as? Int,
             let userJson = json["user"] as? [String: AnyObject],
+            let userId = userJson["id"] as? Int,
             let userName = userJson["name"] as? String else
         {
             return Result.Failure(.CommentParseError)
@@ -21,6 +22,7 @@ struct CommentParser: DataParser {
             text: text,
             createdDate: createdDate,
             restaurantId: restaurantId,
+            userId: userId,
             userName: userName
         )
 

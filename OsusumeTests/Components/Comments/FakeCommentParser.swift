@@ -11,6 +11,7 @@ class FakeCommentParser: DataParser {
             text: "this is a comment",
             createdDate: NSDate(),
             restaurantId: 99,
+            userId: 0,
             userName: ""
         )
     )

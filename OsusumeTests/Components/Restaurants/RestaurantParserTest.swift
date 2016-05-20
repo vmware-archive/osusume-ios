@@ -98,6 +98,7 @@ class RestaurantParserTest: XCTestCase {
                     "created_at": "2016-02-29T06:07:55.000Z",
                     "restaurant_id": 1232,
                     "user": [
+                        "id": 100,
                         "name": "Witta"
                     ]
                 ],
@@ -107,6 +108,7 @@ class RestaurantParserTest: XCTestCase {
                     "created_at": "2016-02-29T06:07:59.000Z",
                     "restaurant_id": 1232,
                     "user": [
+                        "id": 200,
                         "name": "Danny"
                     ]
                 ]
@@ -119,6 +121,7 @@ class RestaurantParserTest: XCTestCase {
             text: "first comment",
             createdDate: NSDate(timeIntervalSince1970: 1456726075),
             restaurantId: 1232,
+            userId: 100,
             userName: "Witta"
         )
         expect(restaurant.comments[0]).to(equal(expectedFirstComment))
@@ -128,6 +131,7 @@ class RestaurantParserTest: XCTestCase {
             text: "second comment",
             createdDate: NSDate(timeIntervalSince1970: 1456726079),
             restaurantId: 1232,
+            userId: 200,
             userName: "Danny"
         )
         expect(restaurant.comments[1]).to(equal(expectedSecondComment))
@@ -275,6 +279,7 @@ class RestaurantParserTest: XCTestCase {
                     "created_at": "2016-02-29T06:07:55.000Z",
                     "restaurant_id": 9,
                     "user": [
+                        "id": 100,
                         "name": "Witta"
                     ]
                 ],
@@ -284,6 +289,7 @@ class RestaurantParserTest: XCTestCase {
                     "created_at": "2016-02-29T06:07:55.000Z",
                     "restaurant_id": 9,
                     "user": [
+                        "id": 100,
                         "name": "Witta"
                     ]
                 ],

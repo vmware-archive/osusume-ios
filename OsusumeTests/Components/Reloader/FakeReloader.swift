@@ -7,4 +7,9 @@ class FakeReloader: Reloader {
         reload_wasCalled = true
         reload_args = reloadable
     }
+
+    var reloadSection_args: (section: Int, reloadable: Reloadable)!
+    func reloadSection(section: Int, reloadable: Reloadable) {
+        reloadSection_args = (section, reloadable)
+    }
 }

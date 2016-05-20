@@ -16,4 +16,9 @@ class FakeCommentRepo: CommentRepo {
 
         return persist_returnValue
     }
+
+    var delete_arg = -1
+    func delete(commentId: Int) {
+        delete_arg = commentId
+    }
 }

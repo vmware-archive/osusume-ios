@@ -95,6 +95,7 @@ class NewCommentViewControllerTest: XCTestCase {
                 text: "Saved comment",
                 createdDate: NSDate(),
                 restaurantId: fakeRestaurantId,
+                userId: 0,
                 userName: ""
             )
         )

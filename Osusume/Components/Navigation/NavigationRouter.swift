@@ -67,6 +67,8 @@ struct NavigationRouter: Router {
             reloader: DefaultReloader(),
             restaurantRepo: restaurantRepo,
             likeRepo: likeRepo,
+            sessionRepo: sessionRepo,
+            commentRepo: commentRepo,
             restaurantId: id
         )
 

@@ -20,7 +20,8 @@ class CommentParserTest: XCTestCase {
             "created_at": "2016-02-29T06:07:55.000Z",
             "restaurant_id": 99,
             "user": [
-                "name": "Witta"
+                "name": "Witta",
+                "id": 100
             ]
         ]
 
@@ -31,6 +32,7 @@ class CommentParserTest: XCTestCase {
             text: "hello this is a comment!",
             createdDate: NSDate(timeIntervalSince1970: 1456726075),
             restaurantId: 99,
+            userId: 100,
             userName: "Witta"
         )
 
@@ -44,7 +46,8 @@ class CommentParserTest: XCTestCase {
             "created_at": "invalid timestamp string",
             "restaurant_id": 99,
             "user": [
-                "name": "Witta"
+                "name": "Witta",
+                "id": 100
             ]
         ]
 

@@ -22,4 +22,7 @@ struct NetworkCommentRepo <P: DataParser where P.ParsedObject == PersistedCommen
                     .mapError { _ in return RepoError.ParsingFailed }
             }
     }
+
+    func delete(commentId: Int) {
+    }
 }

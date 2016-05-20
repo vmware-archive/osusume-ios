@@ -3,6 +3,7 @@ struct PersistedComment {
     let text: String
     let createdDate: NSDate
     let restaurantId: Int
+    let userId: Int
     let userName: String
 }
 
@@ -13,5 +14,6 @@ func ==(lhs: PersistedComment, rhs: PersistedComment) -> Bool {
         lhs.text == rhs.text &&
         lhs.createdDate == rhs.createdDate &&
         lhs.restaurantId == rhs.restaurantId &&
+        lhs.userId == rhs.userId &&
         lhs.userName == rhs.userName
 }

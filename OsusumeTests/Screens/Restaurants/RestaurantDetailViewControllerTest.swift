@@ -7,15 +7,19 @@ import Nimble
 class RestaurantDetailViewControllerTest: XCTestCase {
     let fakeRouter = FakeRouter()
     let fakeRestaurantRepo = FakeRestaurantRepo()
+    let fakeSessionRepo = FakeSessionRepo()
     let fakeLikeRepo = FakeLikeRepo()
+    let fakeCommentRepo = FakeCommentRepo()
     let restaurantRepoPromise = Promise<Restaurant, RepoError>()
     var restaurant: Restaurant!
-
     var restaurantDetailVC: RestaurantDetailViewController!
+
+    let commentSectionIndex = 1
     let today = NSDate()
     var tomorrow: NSDate {
         return NSDate(timeInterval: 60*60*24, sinceDate: today)
     }
+    let authenticatedDanny = AuthenticatedUser(id: 100, email: "danny-email", token: "token")
 
     override func setUp() {
         restaurant = RestaurantFixtures.newRestaurant(
@@ -25,10 +29,27 @@ class RestaurantDetailViewControllerTest: XCTestCase {
                     text: "first comment",
                     createdDate: today,
                     restaurantId: 1,
+                    userId: 100,
                     userName: "Danny"
+                ),
+                PersistedComment(
+                    id: 2,
+                    text: "second comment",
+                    createdDate: today,
+                    restaurantId: 1,
+                    userId: 2,
+                    userName: "Jeana"
                 )
             ]
         )
+    }
+
+    // MARK: - Initialization
+    func test_init_retrievesCurrentUserId() {
+        setupViewControllerWithReloader()
+
+
+        expect(self.restaurantDetailVC.currentUserId!).to(equal(authenticatedDanny.id))
     }
 
     // MARK: - View Controller Lifecycle
@@ -41,18 +62,24 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         setupViewControllerWithReloader()
 
 
-        let commentSectionIndex = 1
         let actualRowCount = self.restaurantDetailVC.tableView
             .numberOfRowsInSection(commentSectionIndex)
-        expect(actualRowCount).to(equal(1))
+        expect(actualRowCount).to(equal(2))
 
         let firstCommentCell = restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
             cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
         )
+        let secondCommentCell = restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentSectionIndex)
+        )
         expect(firstCommentCell.textLabel!.text).to(equal("first comment"))
         expect(firstCommentCell.detailTextLabel!.text)
             .to(equal("Danny - \(DateConverter.formattedDate(today))"))
+        expect(secondCommentCell.textLabel!.text).to(equal("second comment"))
+        expect(secondCommentCell.detailTextLabel!.text)
+            .to(equal("Jeana - \(DateConverter.formattedDate(today))"))
     }
 
     func test_onViewWillAppear_reloadsTableViewData() {
@@ -128,15 +155,119 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             .toEventually(equal(UIColor.blueColor()))
     }
 
+    // MARK: - UITableViewDelegate
+    func test_canEdit_commentsPostedByCurrentUser() {
+        setupViewControllerWithReloader()
+
+
+        let canEditOwnComment = restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            canEditRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+        )
+
+
+        expect(canEditOwnComment).to(beTrue())
+    }
+
+    func test_cannotEdit_commentsPostedByADifferentUser() {
+        setupViewControllerWithReloader()
+
+
+        let canEditOwnComment = restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            canEditRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentSectionIndex)
+        )
+
+
+        expect(canEditOwnComment).to(beFalse())
+    }
+
+    func test_editActions_containsDeleteForCommentsPostedByCurrentUser() {
+        setupViewControllerWithReloader()
+
+
+        let editActions = restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            editActionsForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+        )
+
+
+        expect(editActions?.count).to(equal(1))
+        expect(editActions?.first?.title).to(equal("Delete"))
+    }
+
+    func test_editActions_isEmptyForCommentsPostedByADifferentUser() {
+        setupViewControllerWithReloader()
+
+
+        let editActions = restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            editActionsForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentSectionIndex)
+        )
+
+
+        expect(editActions?.count).to(equal(0))
+    }
+
+    func test_commitingCommentDelete_reloadsTableView() {
+        let fakeReloader = FakeReloader()
+        setupViewControllerWithReloader(fakeReloader)
+
+
+        restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            commitEditingStyle: .Delete,
+            forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+        )
+
+
+        expect(fakeReloader.reloadSection_args.section).to(be(commentSectionIndex))
+        let reloadedTableView = fakeReloader.reloadSection_args.reloadable as! UITableView
+        expect(reloadedTableView).to(be(restaurantDetailVC.tableView))
+    }
+
+    func test_commitingCommentDelete_deletesCommentFromRestaurantCommentsArray() {
+        setupViewControllerWithReloader()
+
+
+        restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            commitEditingStyle: .Delete,
+            forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+        )
+
+
+        expect(self.restaurantDetailVC.restaurant!.comments.count).to(equal(1))
+        expect(self.restaurantDetailVC.restaurant!.comments.first?.userName).to(equal("Jeana"))
+    }
+
+    func test_commitingCommentDelete_deletesCommentWithRepo() {
+        let currentUsersCommentId = 1
+        setupViewControllerWithReloader()
+
+
+        restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            commitEditingStyle: .Delete,
+            forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+        )
+
+
+        expect(self.fakeCommentRepo.delete_arg).to(equal(currentUsersCommentId))
+    }
+
     // MARK: - Private Methods
     private func setupViewControllerWithReloader(reloader: Reloader = DefaultReloader()) {
         fakeRestaurantRepo.getOne_returnValue = restaurantRepoPromise.future
+        fakeSessionRepo.getAuthenticatedUser_returnValue = authenticatedDanny
 
         restaurantDetailVC = RestaurantDetailViewController(
             router: fakeRouter,
             reloader: reloader,
             restaurantRepo: fakeRestaurantRepo,
             likeRepo: fakeLikeRepo,
+            sessionRepo: fakeSessionRepo,
+            commentRepo: fakeCommentRepo,
             restaurantId: restaurant.id
         )
 
