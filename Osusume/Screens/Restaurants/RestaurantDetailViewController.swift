@@ -200,7 +200,12 @@ extension RestaurantDetailViewController: UITableViewDelegate {
         commitEditingStyle editingStyle: UITableViewCellEditingStyle,
         forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            let comment = restaurant!.comments[indexPath.row]
+            guard
+                let currentRestaurant = restaurant
+            else {
+                    return
+            }
+            let comment = currentRestaurant.comments[indexPath.row]
             restaurant!.comments.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             self.commentRepo.delete(comment.id)
