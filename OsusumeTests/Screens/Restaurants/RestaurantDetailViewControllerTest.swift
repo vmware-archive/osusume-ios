@@ -124,7 +124,8 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         expect(self.fakeRouter.showNewCommentScreen_args).to(equal(1))
     }
 
-    func test_tappingTheLikeButton_callsTheController() {
+    // MARK: - Like Button
+    func test_tappingTheLikeButtonToLike_callsTheLikeRepo() {
         setupViewControllerWithReloader()
 
 
@@ -132,27 +133,87 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         tapButton(restaurantDetailCell.likeButton)
 
 
-        expect(self.fakeLikeRepo.like_wasCalled).to(beTrue())
-        expect(self.fakeLikeRepo.like_arg).to(equal(restaurant.id))
+        expect(self.fakeLikeRepo.setRestaurantLiked_wasCalled)
+            .to(beTrue())
+        expect(self.fakeLikeRepo.setRestaurantLiked_args.restaurantId)
+            .to(equal(restaurant.id))
+        expect(self.fakeLikeRepo.setRestaurantLiked_args.liked)
+            .to(beTrue())
     }
 
-    func test_tappingTheLikeButton_togglesTheColorOfTheButton() {
+    func test_tappingTheLikeButtonToLike_togglesTheColorOfTheButton() {
         setupViewControllerWithReloader()
-
-        let promise = Promise<Like, LikeRepoError>()
-        fakeLikeRepo.like_returnValue = promise.future
 
 
         let restaurantDetailCell = getRestaurantDetailCell()
         tapButton(restaurantDetailCell.likeButton)
+        let updatedRestaurantDetailCell = getRestaurantDetailCell()
 
 
-        promise.success(Like())
+        expect(updatedRestaurantDetailCell.likeButton.backgroundColor)
+            .to(equal(UIColor.redColor()))
+        expect(updatedRestaurantDetailCell.likeButton.titleColorForState(.Normal))
+            .to(equal(UIColor.blueColor()))
+    }
 
-        expect(restaurantDetailCell.likeButton.backgroundColor)
-            .toEventually(equal(UIColor.redColor()))
-        expect(restaurantDetailCell.likeButton.titleColorForState(.Normal))
-            .toEventually(equal(UIColor.blueColor()))
+    func test_tappingTheLikeButtonToUnlike_togglesTheColorOfTheButton() {
+        restaurant = RestaurantFixtures.newRestaurant(
+            liked: true,
+            numberOfLikes: 1
+        )
+        setupViewControllerWithReloader()
+
+
+        let restaurantDetailCell = getRestaurantDetailCell()
+        tapButton(restaurantDetailCell.likeButton)
+        let updatedRestaurantDetailCell = getRestaurantDetailCell()
+
+
+        expect(updatedRestaurantDetailCell.likeButton.backgroundColor)
+            .to(equal(UIColor.blueColor()))
+        expect(updatedRestaurantDetailCell.likeButton.titleColorForState(.Normal))
+            .to(equal(UIColor.redColor()))
+    }
+
+    func test_tappingTheLikeButton_reloadsTableView() {
+        let fakeReloader = FakeReloader()
+        setupViewControllerWithReloader(fakeReloader)
+
+
+        restaurantDetailVC.tableView.reloadData()
+        let restaurantDetailCell = getRestaurantDetailCell()
+        tapButton(restaurantDetailCell.likeButton)
+
+
+        expect(fakeReloader.reload_calledNumberOfTimes).to(equal(2))
+    }
+
+    func test_tappingTheLikeButtonToLike_increasesNumberOfLikes() {
+        setupViewControllerWithReloader()
+
+
+        let restaurantDetailCell = getRestaurantDetailCell()
+        tapButton(restaurantDetailCell.likeButton)
+        let updatedRestaurantDetailCell = getRestaurantDetailCell()
+
+
+        expect(updatedRestaurantDetailCell.numberOfLikesLabel.text).to(equal("1 person liked"))
+    }
+
+    func test_tappingTheLikeButtonToUnlike_decreasesNumberOfLikes() {
+        restaurant = RestaurantFixtures.newRestaurant(
+            liked: true,
+            numberOfLikes: 1
+        )
+        setupViewControllerWithReloader()
+
+
+        let restaurantDetailCell = getRestaurantDetailCell()
+        tapButton(restaurantDetailCell.likeButton)
+        let updatedRestaurantDetailCell = getRestaurantDetailCell()
+
+
+        expect(updatedRestaurantDetailCell.numberOfLikesLabel.text).to(equal("0 people liked"))
     }
 
     // MARK: - UITableViewDelegate

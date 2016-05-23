@@ -1,19 +1,19 @@
 struct Restaurant {
-    var id: Int
-    var name: String
-    var address: String
-    var cuisineType: String
-    var cuisine: Cuisine
-    var offersEnglishMenu: Bool
-    var walkInsOk: Bool
-    var acceptsCreditCards: Bool
-    var notes: String
-    var author: String
-    var liked: Bool
-    var numberOfLikes: Int
-    var priceRange: String
-    var createdAt: NSDate?
-    var photoUrls: [NSURL]
+    let id: Int
+    let name: String
+    let address: String
+    let cuisineType: String
+    let cuisine: Cuisine
+    let offersEnglishMenu: Bool
+    let walkInsOk: Bool
+    let acceptsCreditCards: Bool
+    let notes: String
+    let author: String
+    let liked: Bool
+    let numberOfLikes: Int
+    let priceRange: String
+    let createdAt: NSDate?
+    let photoUrls: [NSURL]
     var comments: [PersistedComment]
 
     init(
@@ -51,6 +51,37 @@ struct Restaurant {
             self.createdAt = createdAt
             self.photoUrls = photoUrls
             self.comments = comments
+    }
+
+    func newRetaurantWithLikeToggled() -> Restaurant {
+
+        let updatedLikeStatus = !liked
+        var updatedNumberOfLikes = numberOfLikes
+
+        if updatedLikeStatus {
+            updatedNumberOfLikes += 1
+        } else {
+            updatedNumberOfLikes -= 1
+        }
+
+        return Restaurant(
+            id: self.id,
+            name: self.name,
+            address: self.address,
+            cuisineType: self.cuisineType,
+            cuisine: self.cuisine,
+            offersEnglishMenu: self.offersEnglishMenu,
+            walkInsOk: self.walkInsOk,
+            acceptsCreditCards: self.acceptsCreditCards,
+            notes: self.notes,
+            author: self.author,
+            liked: updatedLikeStatus,
+            numberOfLikes: updatedNumberOfLikes,
+            priceRange: self.priceRange,
+            createdAt: self.createdAt,
+            photoUrls: self.photoUrls,
+            comments: self.comments
+        )
     }
 }
 

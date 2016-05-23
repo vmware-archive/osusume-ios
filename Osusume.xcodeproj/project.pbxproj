@@ -32,6 +32,7 @@
 		AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1D420A1C8423960048DF66 /* ImageViewControllerTest.swift */; };
 		AE28A9601C9939B600816CEB /* RestaurantListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE28A95F1C9939B600816CEB /* RestaurantListDataSource.swift */; };
 		AE295AC81CEEB4730007EC32 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE295AC71CEEB4730007EC32 /* TestingAppDelegate.swift */; };
+		AE295AC61CED90B90007EC32 /* RestaurantTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE295AC51CED90B90007EC32 /* RestaurantTest.swift */; };
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
 		AE2C8DAB1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2C8DAA1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift */; };
 		AE31192C1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */; };
@@ -260,6 +261,7 @@
 		AE1D420A1C8423960048DF66 /* ImageViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewControllerTest.swift; sourceTree = "<group>"; };
 		AE28A95F1C9939B600816CEB /* RestaurantListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListDataSource.swift; sourceTree = "<group>"; };
 		AE295AC71CEEB4730007EC32 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
+		AE295AC51CED90B90007EC32 /* RestaurantTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTest.swift; sourceTree = "<group>"; };
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
 		AE2C8DAA1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
@@ -897,6 +899,7 @@
 				DE99CA5899A1AF4CA0FFE8A5 /* RestaurantFixtures.swift */,
 				AE143AB11CD1B535006473C8 /* RestaurantListDataSourceTest.swift */,
 				DE99CDC0C40C710F1ABC1C51 /* RestaurantParserTest.swift */,
+				AE295AC51CED90B90007EC32 /* RestaurantTest.swift */,
 			);
 			path = Restaurants;
 			sourceTree = "<group>";
@@ -1414,6 +1417,7 @@
 				AEB243901C71666300959434 /* RestaurantListViewControllerTest.swift in Sources */,
 				DE99C45D7BD67361E4B3AFB7 /* RestaurantParserTest.swift in Sources */,
 				AEBF44B41CD1D28D00D86971 /* RestaurantTableViewCellTest.swift in Sources */,
+				AE295AC61CED90B90007EC32 /* RestaurantTest.swift in Sources */,
 				AE19A9F91C9BC85B00D8CBAC /* SessionHttpTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

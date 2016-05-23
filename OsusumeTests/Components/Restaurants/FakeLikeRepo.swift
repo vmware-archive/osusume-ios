@@ -2,12 +2,12 @@ import BrightFutures
 @testable import Osusume
 
 class FakeLikeRepo: LikeRepo {
-    var like_wasCalled = false
-    var like_arg = 0
-    var like_returnValue = Future<Like, LikeRepoError>()
-    func like(id: Int) -> Future<Like, LikeRepoError> {
-        like_wasCalled = true
-        like_arg = id
-        return like_returnValue
+    private(set) var setRestaurantLiked_wasCalled = false
+    private(set) var setRestaurantLiked_args = (restaurantId: 0, liked: false)
+    var setRestaurantLiked_returnValue = Future<Like, LikeRepoError>()
+    func setRestaurantLiked(restaurantId: Int, liked: Bool) -> Future<Like, LikeRepoError> {
+        setRestaurantLiked_wasCalled = true
+        setRestaurantLiked_args = (restaurantId: restaurantId, liked: liked)
+        return setRestaurantLiked_returnValue
     }
 }

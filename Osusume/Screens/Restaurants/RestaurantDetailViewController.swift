@@ -253,11 +253,10 @@ extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate 
     }
 
     @objc func didTapLikeButton(sender: UIButton) {
-        likeRepo.like(restaurantId)
-            .onSuccess { _ in
-                sender.backgroundColor = UIColor.redColor()
-                sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
-                sender.enabled = false
-        }
+        restaurant = restaurant?.newRetaurantWithLikeToggled()
+
+        likeRepo.setRestaurantLiked(restaurantId, liked: (restaurant?.liked)!)
+
+        reloader.reload(tableView)
     }
 }

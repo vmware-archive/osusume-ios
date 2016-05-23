@@ -5,5 +5,5 @@ enum LikeRepoError: ErrorType {
 }
 
 protocol LikeRepo {
-    func like(id: Int) -> Future<Like, LikeRepoError>
+    func setRestaurantLiked(restaurantId: Int, liked: Bool) -> Future<Like, LikeRepoError>
 }
