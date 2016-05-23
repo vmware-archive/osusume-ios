@@ -92,4 +92,15 @@ class SessionHttpTest: XCTestCase {
         expect(self.fakeHttp.patch_args.path).to(equal("/my-dawg"))
         expect(self.fakeHttp.patch_args.headers).to(equal(expectedHeaders))
     }
+
+    func test_delete_addsAuthorizationToken() {
+        sessionHttp.delete("/comment", headers: [:])
+
+
+        let expectedHeaders = [
+            "Authorization": "Bearer FakeToken"
+        ]
+        expect(self.fakeHttp.delete_args.path).to(equal("/comment"))
+        expect(self.fakeHttp.delete_args.headers).to(equal(expectedHeaders))
+    }
 }

@@ -76,8 +76,7 @@ struct DefaultHttp: Http {
 
     func delete(
         path: String,
-        headers: [String : String],
-        parameters: [String : AnyObject]
+        headers: [String : String]
         ) -> Future<[String : AnyObject], RepoError>
     {
         let promise = Promise<[String: AnyObject], RepoError>()

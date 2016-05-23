@@ -182,63 +182,18 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         expect(canEditOwnComment).to(beFalse())
     }
 
-    func test_editActions_containsDeleteForCommentsPostedByCurrentUser() {
-        setupViewControllerWithReloader()
-
-
-        let editActions = restaurantDetailVC.tableView(
-            restaurantDetailVC.tableView,
-            editActionsForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
-        )
-
-
-        expect(editActions?.count).to(equal(1))
-        expect(editActions?.first?.title).to(equal("Delete"))
-    }
-
-    func test_editActions_isEmptyForCommentsPostedByADifferentUser() {
-        setupViewControllerWithReloader()
-
-
-        let editActions = restaurantDetailVC.tableView(
-            restaurantDetailVC.tableView,
-            editActionsForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentSectionIndex)
-        )
-
-
-        expect(editActions?.count).to(equal(0))
-    }
-
-    func test_commitingCommentDelete_reloadsTableView() {
-        let fakeReloader = FakeReloader()
-        setupViewControllerWithReloader(fakeReloader)
-
-
-        restaurantDetailVC.tableView(
-            restaurantDetailVC.tableView,
-            commitEditingStyle: .Delete,
-            forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
-        )
-
-
-        expect(fakeReloader.reloadSection_args.section).to(be(commentSectionIndex))
-        let reloadedTableView = fakeReloader.reloadSection_args.reloadable as! UITableView
-        expect(reloadedTableView).to(be(restaurantDetailVC.tableView))
-    }
-
     func test_commitingCommentDelete_deletesCommentFromRestaurantCommentsArray() {
         setupViewControllerWithReloader()
 
 
         restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
-            commitEditingStyle: .Delete,
-            forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
-        )
+            commitEditingStyle : UITableViewCellEditingStyle.Delete,
+            forRowAtIndexPath : NSIndexPath(forRow: 0, inSection: commentSectionIndex))
+
 
 
         expect(self.restaurantDetailVC.restaurant!.comments.count).to(equal(1))
-        expect(self.restaurantDetailVC.restaurant!.comments.first?.userName).to(equal("Jeana"))
     }
 
     func test_commitingCommentDelete_deletesCommentWithRepo() {

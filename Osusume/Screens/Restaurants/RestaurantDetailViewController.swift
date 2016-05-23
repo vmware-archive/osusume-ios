@@ -195,29 +195,18 @@ extension RestaurantDetailViewController: UITableViewDelegate {
         return isCommentPostedByCurrentUser(indexPath)
     }
 
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        if ( isCommentPostedByCurrentUser(indexPath) ) {
-            let del = UITableViewRowAction(style: .Default, title: "Delete") {_,_ in }
-            del.backgroundColor = UIColor.redColor()
-
-            return [del]
+    func tableView(
+        tableView: UITableView,
+        commitEditingStyle editingStyle: UITableViewCellEditingStyle,
+        forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let comment = restaurant!.comments[indexPath.row]
+            restaurant!.comments.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            self.commentRepo.delete(comment.id)
         }
-        return []
     }
 
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        guard
-            indexPath.section == 1 && restaurant != nil
-            else {
-                return
-        }
-        let comment = restaurant!.comments[indexPath.row]
-
-        self.commentRepo.delete(comment.id)
-
-        restaurant!.comments.removeAtIndex(indexPath.row)
-        reloader.reloadSection(1, reloadable: tableView)
-    }
 
     // MARK: - Private Methods
     private func isCommentPostedByCurrentUser(indexPath: NSIndexPath) -> Bool
@@ -230,6 +219,25 @@ extension RestaurantDetailViewController: UITableViewDelegate {
                 return false
         }
         return userId == currentRestaurant.comments[indexPath.row].userId
+    }
+
+    private func deleteCommentAtIndexPath(indexPath: NSIndexPath) {
+        guard
+            indexPath.section == 1 && restaurant != nil
+        else {
+            return
+        }
+
+        let comment = restaurant!.comments[indexPath.row]
+
+        self.commentRepo.delete(comment.id)
+
+        restaurant!.comments.removeAtIndex(indexPath.row)
+
+        tableView.deleteRowsAtIndexPaths(
+            [indexPath],
+            withRowAnimation: .None
+        )
     }
 }
 

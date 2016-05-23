@@ -17,6 +17,5 @@ protocol Http {
 
     func delete(
         path: String,
-        headers: [String: String],
-        parameters: [String: AnyObject]) -> Future<[String: AnyObject], RepoError>
+        headers: [String: String]) -> Future<[String: AnyObject], RepoError>
 }
