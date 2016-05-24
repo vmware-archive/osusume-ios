@@ -2,6 +2,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     // MARK: - Properties
     private var router: Router?
     weak var delegate: RestaurantDetailTableViewCellDelegate?
+    private var photoUrlDataSource: PhotoUrlsCollectionViewDataSource?
     private(set) var photoUrls: [NSURL]
 
     // MARK: - View Elements
@@ -76,7 +77,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
             forCellWithReuseIdentifier: String(UICollectionViewCell)
         )
         imageCollectionView.backgroundColor = UIColor.lightGrayColor()
-        imageCollectionView.dataSource = self
         imageCollectionView.delegate = self
 
         notesLabel.numberOfLines = 0
@@ -144,10 +144,12 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         addCommentButton.autoPinEdgeToSuperviewMargin(.Bottom)
     }
 
-    // MARK: Public Methods
+    // MARK: - Public Methods
     func configureView(restaurant: Restaurant, reloader: Reloader, router: Router) {
         self.router = router
         photoUrls = restaurant.photoUrls
+        photoUrlDataSource = PhotoUrlsCollectionViewDataSource(photoUrls: photoUrls)
+        imageCollectionView.dataSource = photoUrlDataSource
 
         reloader.reload(imageCollectionView)
 
@@ -178,32 +180,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         layout.itemSize = CGSizeMake(100, 100)
         layout.scrollDirection = .Horizontal
         return layout
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension RestaurantDetailTableViewCell: UICollectionViewDataSource {
-    func collectionView(
-        collectionView: UICollectionView,
-        numberOfItemsInSection section: Int) -> Int
-    {
-        return photoUrls.count
-    }
-
-    func collectionView(
-        collectionView: UICollectionView,
-        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
-    {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            String(UICollectionViewCell),
-            forIndexPath: indexPath
-        )
-
-        let imageView = UIImageView()
-        imageView.sd_setImageWithURL(photoUrls[indexPath.row])
-        cell.backgroundView = imageView
-
-        return cell
     }
 }
 

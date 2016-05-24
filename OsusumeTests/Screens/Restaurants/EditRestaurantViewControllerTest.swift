@@ -20,6 +20,73 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(self.editRestaurantViewController.title).to(equal("Edit Restaurant"))
     }
 
+    func test_viewDidLoad_initializesSubviews() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+
+        expect(self.editRestaurantViewController.scrollView)
+            .to(beAKindOf(UIScrollView))
+        expect(self.editRestaurantViewController.scrollViewContentView)
+            .to(beAKindOf(UIView))
+        expect(self.editRestaurantViewController.formViewContainer)
+            .to(beAKindOf(UIView))
+        expect(self.editRestaurantViewController.formView)
+            .to(beAKindOf(EditRestaurantFormView))
+        expect(self.editRestaurantViewController.imageCollectionView)
+            .to(beAKindOf(UICollectionView))
+    }
+
+    func test_viewDidLoad_addsSubviews() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+
+        expect(self.editRestaurantViewController.view)
+            .to(containSubview(editRestaurantViewController.scrollView))
+        expect(self.editRestaurantViewController.view)
+            .to(containSubview(editRestaurantViewController.scrollViewContentView))
+        expect(self.editRestaurantViewController.view)
+            .to(containSubview(editRestaurantViewController.formViewContainer))
+        expect(self.editRestaurantViewController.view)
+            .to(containSubview(editRestaurantViewController.formView))
+        expect(self.editRestaurantViewController.view)
+            .to(containSubview(editRestaurantViewController.imageCollectionView))
+    }
+
+    func test_viewDidLoad_addsConstraints() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+
+        expect(self.editRestaurantViewController.scrollView)
+            .to(haveConstraints())
+        expect(self.editRestaurantViewController.scrollViewContentView)
+            .to(haveConstraints())
+        expect(self.editRestaurantViewController.formViewContainer)
+            .to(haveConstraints())
+        expect(self.editRestaurantViewController.formView)
+            .to(haveConstraints())
+        expect(self.editRestaurantViewController.imageCollectionView)
+            .to(haveConstraints())
+    }
+
+    func test_viewDidLoad_setsImageCollectionViewDataSource() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+
+
+        expect(self.editRestaurantViewController.imageCollectionView.dataSource)
+            .toNot(beNil())
+        expect(self.editRestaurantViewController.imageCollectionView.dataSource is PhotoUrlsCollectionViewDataSource).to(beTrue())
+    }
+
+    func test_viewDidLoad_registersCollectionViewCellClass() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+
+
+        let cell = editRestaurantViewController.imageCollectionView.dequeueReusableCellWithReuseIdentifier(
+            String(UICollectionViewCell),
+            forIndexPath: NSIndexPath(forItem: 0, inSection: 0)
+        )
+
+
+        expect(cell).toNot(beNil())
+    }
+
     func test_populatesRestaurantDetailsInFields() {
         instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
 
@@ -44,6 +111,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(self.editRestaurantViewController.formView.notesTextView.text).to(equal("This place is great"))
     }
 
+    // MARK: - Navigation Bar
     func test_tappingUpdateButton_invokesUpdateWithChangedValues() {
         instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
 
@@ -72,7 +140,8 @@ class EditRestaurantViewControllerTest: XCTestCase {
         let restaurant = RestaurantFixtures.newRestaurant(
             name: "Original Restaurant Name",
             liked: false,
-            cuisine: cuisine
+            cuisine: cuisine,
+            photoUrls: [NSURL(string: "url")!]
         )
 
         editRestaurantViewController = EditRestaurantViewController(

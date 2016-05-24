@@ -61,25 +61,6 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
         expect(self.restaurantDetailCell.photoUrls.count).to(equal(1))
     }
 
-    func test_configureView_displaysRestaurantImage() {
-        restaurantDetailCell.configureView(
-            RestaurantFixtures.newRestaurant(photoUrls: [NSURL(string: "my-awesome-url")!]),
-            reloader: FakeReloader(),
-            router: FakeRouter()
-        )
-
-        let firstImageCell = restaurantDetailCell
-            .collectionView(
-                restaurantDetailCell.imageCollectionView,
-                cellForItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
-        )
-
-
-        let firstImageView = firstImageCell.backgroundView as? UIImageView
-        expect(firstImageView?.sd_imageURL())
-            .to(equal(NSURL(string: "my-awesome-url")!))
-    }
-
     func test_configureView_displaysLikedState_whenLiked() {
         restaurantDetailCell.configureView(
             RestaurantFixtures.newRestaurant(liked: true),
@@ -138,5 +119,18 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
         expect(self.fakeRouter.imageScreenIsShowing).to(equal(true))
         expect(self.fakeRouter.showImageScreen_args)
             .to(equal(NSURL(string: "http://www.example.com/cat.jpg")))
+    }
+
+    func test_configureView_setsPhotosDataSource() {
+        restaurantDetailCell.configureView(
+            RestaurantFixtures.newRestaurant(photoUrls: [NSURL(string: "my-awesome-url")!]),
+            reloader: FakeReloader(),
+            router: FakeRouter()
+        )
+
+
+        expect(self.restaurantDetailCell.imageCollectionView.dataSource)
+            .toNot(beNil())
+        expect(self.restaurantDetailCell.imageCollectionView.dataSource is PhotoUrlsCollectionViewDataSource).to(beTrue())
     }
 }

@@ -6,10 +6,12 @@ class EditRestaurantViewController: UIViewController {
     private let repo: RestaurantRepo
     private let restaurant: Restaurant
     private let id: Int
+    private let photoUrlDataSource: PhotoUrlsCollectionViewDataSource?
 
     // MARK: - View Elements
+    let imageCollectionView: UICollectionView
     let scrollView: UIScrollView
-    let contentInScrollView: UIView
+    let scrollViewContentView: UIView
     let formViewContainer: UIView
     let formView: EditRestaurantFormView
 
@@ -23,11 +25,16 @@ class EditRestaurantViewController: UIViewController {
         self.repo = repo
         self.restaurant = restaurant
         self.id = restaurant.id
+        self.photoUrlDataSource = PhotoUrlsCollectionViewDataSource(photoUrls: restaurant.photoUrls)
 
         scrollView = UIScrollView.newAutoLayoutView()
-        contentInScrollView = UIView.newAutoLayoutView()
+        scrollViewContentView = UIView.newAutoLayoutView()
         formViewContainer = UIView.newAutoLayoutView()
         formView = EditRestaurantFormView(restaurant: restaurant)
+        imageCollectionView = UICollectionView(
+            frame: CGRectZero,
+            collectionViewLayout: EditRestaurantViewController.imageCollectionViewLayout()
+        )
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -60,23 +67,46 @@ class EditRestaurantViewController: UIViewController {
 
     private func addSubviews() {
         formViewContainer.addSubview(formView)
-        contentInScrollView.addSubview(formViewContainer)
-        scrollView.addSubview(contentInScrollView)
+        scrollViewContentView.addSubview(imageCollectionView)
+        scrollViewContentView.addSubview(formViewContainer)
+        scrollView.addSubview(scrollViewContentView)
         view.addSubview(scrollView)
     }
 
     private func configureSubviews() {
         scrollView.backgroundColor = UIColor.whiteColor()
+
+        imageCollectionView.contentInset = UIEdgeInsets(
+            top: 10.0, left: 10.0, bottom: 10.0, right: 10.0
+        )
+        imageCollectionView.registerClass(
+            UICollectionViewCell.self,
+            forCellWithReuseIdentifier: String(UICollectionViewCell)
+        )
+        imageCollectionView.backgroundColor = UIColor.lightGrayColor()
+        imageCollectionView.dataSource = photoUrlDataSource
     }
 
     private func addConstraints() {
         scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
 
-        contentInScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-        contentInScrollView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
-        contentInScrollView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
+        scrollViewContentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        scrollViewContentView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
+        scrollViewContentView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
 
-        formViewContainer.autoPinEdgeToSuperviewEdge(.Top)
+        imageCollectionView.autoPinEdgeToSuperviewEdge(.Top)
+        imageCollectionView.autoSetDimension(.Height, toSize: 120.0)
+        imageCollectionView.autoAlignAxis(
+            .Vertical,
+            toSameAxisOfView: scrollViewContentView
+        )
+        imageCollectionView.autoMatchDimension(
+            .Width,
+            toDimension:.Width,
+            ofView: scrollViewContentView
+        )
+
+        formViewContainer.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageCollectionView)
         formViewContainer.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
         formViewContainer.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
 
@@ -101,5 +131,13 @@ class EditRestaurantViewController: UIViewController {
                     self.router.showRestaurantListScreen()
                 }
         }
+    }
+
+    // MARK: - Private Methods
+    private static func imageCollectionViewLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSizeMake(100, 100)
+        layout.scrollDirection = .Horizontal
+        return layout
     }
 }
