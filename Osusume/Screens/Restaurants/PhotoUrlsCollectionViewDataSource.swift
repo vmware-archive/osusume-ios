@@ -19,7 +19,7 @@ extension PhotoUrlsCollectionViewDataSource: UICollectionViewDataSource {
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            String(UICollectionViewCell),
+            String(PhotoCollectionViewCell),
             forIndexPath: indexPath
         )
 

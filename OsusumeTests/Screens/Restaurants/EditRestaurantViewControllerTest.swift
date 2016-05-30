@@ -79,7 +79,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
 
         let cell = editRestaurantViewController.imageCollectionView.dequeueReusableCellWithReuseIdentifier(
-            String(UICollectionViewCell),
+            String(PhotoCollectionViewCell),
             forIndexPath: NSIndexPath(forItem: 0, inSection: 0)
         )
 

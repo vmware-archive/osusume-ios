@@ -31,8 +31,8 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         collectionView.registerClass(
-            UICollectionViewCell.self,
-            forCellWithReuseIdentifier: String(UICollectionViewCell)
+            PhotoCollectionViewCell.self,
+            forCellWithReuseIdentifier: String(PhotoCollectionViewCell)
         )
         let photoUrls = [
             NSURL(string: "url")!

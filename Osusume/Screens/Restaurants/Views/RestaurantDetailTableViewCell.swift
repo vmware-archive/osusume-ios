@@ -73,8 +73,8 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     private func configureSubviews() {
         imageCollectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
         imageCollectionView.registerClass(
-            UICollectionViewCell.self,
-            forCellWithReuseIdentifier: String(UICollectionViewCell)
+            PhotoCollectionViewCell.self,
+            forCellWithReuseIdentifier: String(PhotoCollectionViewCell)
         )
         imageCollectionView.backgroundColor = UIColor.lightGrayColor()
         imageCollectionView.delegate = self
