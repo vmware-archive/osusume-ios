@@ -55,12 +55,6 @@ class FindRestaurantViewController: UIViewController {
 
     // MARK: - View Setup
     private func configureNavigationBar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: "Cancel",
-            style: .Plain,
-            target: self,
-            action: #selector(FindRestaurantViewController.didTapCancelButton(_:))
-        )
     }
 
     private func addSubviews() {
@@ -98,9 +92,6 @@ class FindRestaurantViewController: UIViewController {
     }
 
     // MARK: - Actions
-    @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
-        router.dismissPresentedNavigationController()
-    }
 
     // MARK: - Private Methods
 }
@@ -161,6 +152,6 @@ extension FindRestaurantViewController: UITableViewDelegate {
     {
         searchResultRestaurantSelectionDelegate
             .searchResultRestaurantSelected(restaurantResults[indexPath.row])
-        router.dismissPresentedNavigationController()
+        router.popViewControllerOffStack(true)
     }
 }

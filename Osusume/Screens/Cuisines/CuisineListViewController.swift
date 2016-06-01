@@ -60,13 +60,7 @@ class CuisineListViewController: UIViewController {
     }
 
     // MARK: - View Setup
-    private func configureNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: UIBarButtonSystemItem.Cancel,
-            target: self,
-            action: #selector(CuisineListViewController.didTapCancelButton(_:))
-        )
-    }
+    private func configureNavigationBar() {}
 
     private func addSubviews() {
         view.addSubview(searchBar)
@@ -93,11 +87,6 @@ class CuisineListViewController: UIViewController {
         tableView.autoPinEdgeToSuperviewEdge(.Left)
         tableView.autoPinEdgeToSuperviewEdge(.Right)
         tableView.autoPinEdgeToSuperviewEdge(.Bottom)
-    }
-
-    // MARK: - Actions
-    @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
-        router.dismissPresentedNavigationController()
     }
 }
 
@@ -176,11 +165,11 @@ extension CuisineListViewController: UITableViewDelegate {
             cuisineRepo.create(NewCuisine(name: searchBar.text!))
                 .onSuccess { [unowned self] savedCuisine in
                     self.cuisineSelectionDelegate.cuisineSelected(savedCuisine)
-                    self.router.dismissPresentedNavigationController()
+                    self.router.popViewControllerOffStack(true)
                 }
         } else {
             cuisineSelectionDelegate.cuisineSelected(filteredCuisineList[indexPath.row])
-            router.dismissPresentedNavigationController()
+            router.popViewControllerOffStack(true)
         }
     }
 }

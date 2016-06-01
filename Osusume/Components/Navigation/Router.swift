@@ -9,9 +9,10 @@ protocol Router {
     func showImageScreen(url: NSURL)
     func showProfileScreen()
 
-    func showFindCuisineScreen()
-    func showFindRestaurantScreen()
-    func showPriceRangeListScreen()
+    func showFindCuisineScreen(animated: Bool)
+    func showFindRestaurantScreen(animated: Bool)
+    func showPriceRangeListScreen(animated: Bool)
 
     func dismissPresentedNavigationController()
+    func popViewControllerOffStack(animated: Bool)
 }

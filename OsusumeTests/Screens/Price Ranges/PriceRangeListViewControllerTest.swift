@@ -97,16 +97,6 @@ class PriceRangeListViewControllerTest: XCTestCase {
         expect(cell.textLabel?.text).to(equal("price-range-1"))
     }
 
-    func test_tappingCancelBarButtonItem_callsDismissPresentedViewControllerOnRouter() {
-        let cancelBarButtonItem = priceRangeListVC.navigationItem.leftBarButtonItem!
-
-
-        tapNavBarButton(cancelBarButtonItem)
-
-
-        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
-    }
-
     func test_tappingPriceRangeCell_passesSelectedPriceRangeToDelegate() {
         let priceRangeList = [PriceRange(id: 0, range: "0~999")]
         returnPriceRangeListPromise.success(priceRangeList)
@@ -121,5 +111,20 @@ class PriceRangeListViewControllerTest: XCTestCase {
 
         expect(self.fakePriceRangeSelectionDelegate.priceRangeSelected_arg)
             .to(equal(priceRangeList[0]))
+    }
+
+    func test_tappingPriceRangeCell_popsViewControllerOffStack() {
+        let priceRangeList = [PriceRange(id: 0, range: "0~999")]
+        returnPriceRangeListPromise.success(priceRangeList)
+        waitForFutureToComplete(returnPriceRangeListPromise.future)
+
+
+        priceRangeListVC.tableView(
+            priceRangeListVC.tableView,
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+
+        expect(self.fakeRouter.popViewControllerOffStack_wasCalled).to(beTrue())
     }
 }

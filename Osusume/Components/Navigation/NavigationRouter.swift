@@ -40,11 +40,7 @@ struct NavigationRouter: Router {
             restaurantRepo: restaurantRepo,
             photoRepo: photoRepo
         )
-
-        navigationController.pushViewController(
-            newRestaurantController,
-            animated: true
-        )
+        presentViewControllerModallyWithinNavController(newRestaurantController)
     }
 
     func showRestaurantListScreen() {
@@ -145,8 +141,9 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showFindCuisineScreen() {
-        let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController
+    func showFindCuisineScreen(animated: Bool) {
+        let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
+        let newRestaurantVC = newRestaurantNavVC!.topViewController as? NewRestaurantViewController
         let findCuisineTableViewController = CuisineListViewController(
             router: self,
             cuisineRepo: cuisineRepo,
@@ -155,12 +152,15 @@ struct NavigationRouter: Router {
             delegate: newRestaurantVC!.formView
         )
 
-        presentViewControllerModallyWithinNavController(findCuisineTableViewController)
+        newRestaurantNavVC!.pushViewController(
+            findCuisineTableViewController,
+            animated: animated
+        )
     }
 
-    func showFindRestaurantScreen() {
-        let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController
-
+    func showFindRestaurantScreen(animated: Bool) {
+        let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
+        let newRestaurantVC = newRestaurantNavVC!.topViewController as? NewRestaurantViewController
         let findRestaurantViewController = FindRestaurantViewController(
             router: self,
             restaurantSearchRepo: restaurantSearchRepo,
@@ -168,7 +168,10 @@ struct NavigationRouter: Router {
             searchResultRestaurantSelectionDelegate: newRestaurantVC!.formView
         )
 
-        presentViewControllerModallyWithinNavController(findRestaurantViewController)
+        newRestaurantNavVC!.pushViewController(
+            findRestaurantViewController,
+            animated: animated
+        )
     }
 
     func dismissPresentedNavigationController() {
@@ -177,9 +180,17 @@ struct NavigationRouter: Router {
         }
     }
 
-    func showPriceRangeListScreen() {
-        let newRestaurantVC = navigationController.topViewController as? NewRestaurantViewController
+    func popViewControllerOffStack(animated: Bool) {
+        if let presentedNavVC = navigationController.presentedViewController as? UINavigationController {
+            presentedNavVC.popViewControllerAnimated(animated)
+        } else {
+            navigationController.popViewControllerAnimated(animated)
+        }
+    }
 
+    func showPriceRangeListScreen(animated: Bool) {
+        let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
+        let newRestaurantVC = newRestaurantNavVC!.topViewController as? NewRestaurantViewController
         let priceRangeListViewController = PriceRangeListViewController(
             priceRangeRepo: priceRangeRepo,
             reloader: DefaultReloader(),
@@ -187,7 +198,10 @@ struct NavigationRouter: Router {
             priceRangeSelection: newRestaurantVC!.formView
         )
 
-        presentViewControllerModallyWithinNavController(priceRangeListViewController)
+        newRestaurantNavVC!.pushViewController(
+            priceRangeListViewController,
+            animated: animated
+        )
     }
 
     // MARK: - Private Methods

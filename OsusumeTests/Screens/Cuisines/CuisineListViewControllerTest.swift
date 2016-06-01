@@ -34,16 +34,6 @@ class CuisineListViewControllerTest: XCTestCase {
         expect(self.cuisineListVC.title).to(equal("Find Cuisine"))
     }
 
-    func test_tapCancelButton_navigatesBackToPreviousScreen() {
-        let cancelButton = cuisineListVC.navigationItem.leftBarButtonItem! as UIBarButtonItem
-
-
-        tapNavBarButton(cancelButton)
-
-
-        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
-    }
-
     func test_viewDidLoad_registersCellClass() {
         let cell: UITableViewCell? = cuisineListVC.tableView
             .dequeueReusableCellWithIdentifier(String(UITableViewCell))
@@ -206,9 +196,22 @@ class CuisineListViewControllerTest: XCTestCase {
 
 
         expect(self.fakeCuisineSelection.cuisineSelected_returnValue).to(equal(Cuisine(id: 0, name: "Soba!")))
-        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 
+    func test_tappingCuisineCell_popsCuisineListViewController() {
+        cuisinePromise.success([Cuisine(id: 0, name: "Soba!")])
+        NSRunLoop.osu_advance()
+
+
+        cuisineListVC.tableView(
+            cuisineListVC.tableView,
+            didSelectRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 1)
+        )
+
+
+        expect(self.fakeRouter.popViewControllerOffStack_wasCalled).to(beTrue())
+    }
+    
     func test_tappingAddCuisineCell_callsAddCuisineOnCuisineRepo() {
         cuisineListVC.searchBar.text = "Pie"
 
@@ -222,7 +225,7 @@ class CuisineListViewControllerTest: XCTestCase {
         expect(self.fakeCuisineRepo.create_wasCalled).to(equal(true))
         expect(self.fakeCuisineRepo.create_arg).to(equal(NewCuisine(name: "Pie")))
         expect(self.fakeCuisineSelection.cuisineSelected_wasCalled).to(equal(false))
-        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(equal(false))
+        expect(self.fakeRouter.popViewControllerOffStack_wasCalled).to(equal(false))
     }
 
     func test_tappingAddCuisineCell_uponSuccessfulCuisineCreation() {
@@ -241,7 +244,7 @@ class CuisineListViewControllerTest: XCTestCase {
         NSRunLoop.osu_advance()
 
         expect(self.fakeCuisineSelection.cuisineSelected_returnValue).to(equal(expectedCuisine))
-        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(equal(true))
+        expect(self.fakeRouter.popViewControllerOffStack_wasCalled).to(equal(true))
     }
 
     func test_cuisineRepoGetAllSuccess_reloadsTableView() {

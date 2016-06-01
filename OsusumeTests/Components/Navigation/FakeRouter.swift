@@ -51,7 +51,7 @@ class FakeRouter : Router {
     }
 
     var showFindCuisineScreen_wasCalled = false
-    func showFindCuisineScreen() {
+    func showFindCuisineScreen(animated: Bool) {
         showFindCuisineScreen_wasCalled = true
     }
 
@@ -60,13 +60,18 @@ class FakeRouter : Router {
         dismissPresentedNavigationController_wasCalled = true
     }
 
+    var popViewControllerOffStack_wasCalled = false
+    func popViewControllerOffStack(animated: Bool) {
+        popViewControllerOffStack_wasCalled = true
+    }
+
     var showPriceRangeListScreen_wasCalled = false
-    func showPriceRangeListScreen() {
+    func showPriceRangeListScreen(animated: Bool) {
         showPriceRangeListScreen_wasCalled = true
     }
 
     var showFindRestaurantScreen_wasCalled = false
-    func showFindRestaurantScreen() {
+    func showFindRestaurantScreen(animated: Bool) {
         showFindRestaurantScreen_wasCalled = true
     }
 }

@@ -67,6 +67,12 @@ class NewRestaurantViewController: UIViewController {
             target: self,
             action: #selector(NewRestaurantViewController.didTapDoneButton(_:))
         )
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: #selector(NewRestaurantViewController.didTapCancelButton(_:))
+        )
     }
 
     private func addSubviews() {
@@ -146,9 +152,13 @@ class NewRestaurantViewController: UIViewController {
         restaurantRepo.create(newRestaurant)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.router.showRestaurantListScreen()
+                    self.router.dismissPresentedNavigationController()
                 }
         }
+    }
+
+    @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
+        self.router.dismissPresentedNavigationController()
     }
 
     @objc private func didTapAddPhotoButton(sender: UIButton?) {
@@ -228,14 +238,14 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
 // MARK: - NewRestaurantViewControllerPresenterProtocol
 extension NewRestaurantViewController: NewRestaurantViewControllerPresenterProtocol {
     func showFindCuisineScreen() {
-        router.showFindCuisineScreen()
+        router.showFindCuisineScreen(true)
     }
 
     func showFindRestaurantScreen() {
-        router.showFindRestaurantScreen()
+        router.showFindRestaurantScreen(true)
     }
 
     func showPriceRangeScreen() {
-        router.showPriceRangeListScreen()
+        router.showPriceRangeListScreen(true)
     }
 }

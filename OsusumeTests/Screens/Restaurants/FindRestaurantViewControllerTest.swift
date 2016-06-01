@@ -50,11 +50,6 @@ class FindRestaurantViewControllerTest: XCTestCase {
             .to(haveConstraints())
     }
 
-    func test_configureNavigationBar_addsCancelButton() {
-        expect(self.findRestaurantViewController.navigationItem.leftBarButtonItem?.title)
-            .to(equal("Cancel"))
-    }
-
     func test_viewDidAppear_setsRestaurantNameTextFieldAsFirstResponder() {
         configureUIWindowWithRootViewController(findRestaurantViewController)
 
@@ -65,16 +60,6 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
         expect(self.findRestaurantViewController.restaurantNameTextField.isFirstResponder())
             .to(beTrue())
-    }
-
-    func test_tappingCancelButton_dismissesFindRestaurantVC() {
-        let cancelButton = findRestaurantViewController.navigationItem.leftBarButtonItem!
-
-
-        tapNavBarButton(cancelButton)
-
-
-        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 
     func test_viewDidLoad_setsTextFieldDelegate() {
@@ -156,7 +141,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeReloader.reload_wasCalled).to(beTrue())
     }
 
-    func test_tappingSearchResultCell_callsDismissPresentedViewControllerOnRouter() {
+    func test_tappingSearchResultCell_popsViewController() {
         let searchResults = [
             SearchResultRestaurant(id: "0", name: "Afuri", address: "Roppongi")
         ]
@@ -174,7 +159,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
         )
 
 
-        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
+        expect(self.fakeRouter.popViewControllerOffStack_wasCalled).to(beTrue())
     }
 
     func test_tappingSearchResultCell_passesSelectedRestaurantsInformationToDelegate() {

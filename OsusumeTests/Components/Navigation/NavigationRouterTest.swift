@@ -29,14 +29,27 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_showingNewRestaurantScreen() {
+        configureUIWindowWithRootViewController(rootNavController)
+
+        let restaurantListVC = RestaurantListViewController(
+            router: navigationRouter,
+            repo: FakeRestaurantRepo(),
+            reloader: FakeReloader(),
+            photoRepo: FakePhotoRepo()
+        )
+        rootNavController.pushViewController(restaurantListVC, animated: false)
+
+
         navigationRouter.showNewRestaurantScreen()
 
-        expect(self.rootNavController.topViewController).to(beAKindOf(NewRestaurantViewController))
+
+        let newRestaurantNavController = rootNavController.presentedViewController as? UINavigationController
+        expect(newRestaurantNavController).to(beAKindOf(UINavigationController))
+        expect(newRestaurantNavController?.topViewController).to(beAKindOf(NewRestaurantViewController))
     }
 
     func test_showingRestaurantListScreen() {
         navigationRouter.showRestaurantListScreen()
-
         expect(self.rootNavController.topViewController).to(beAKindOf(RestaurantListViewController))
     }
 
@@ -105,21 +118,31 @@ class NavigationRouterTest: XCTestCase {
 
     func test_showingCuisineListScreen() {
         configureUIWindowWithRootViewController(rootNavController)
+        rootNavController.setViewControllers(
+            [UIViewController()],
+            animated: false
+        )
 
         let newRestaurantVC = NewRestaurantViewController(
-            router: FakeRouter(),
+            router: navigationRouter,
             restaurantRepo: FakeRestaurantRepo(),
             photoRepo: FakePhotoRepo()
         )
-        rootNavController.pushViewController(newRestaurantVC, animated: false)
+        let newRestaurantNavVC = UINavigationController(
+            rootViewController: newRestaurantVC
+        )
+
+        rootNavController.presentViewController(
+            newRestaurantNavVC,
+            animated: false,
+            completion: nil
+        )
 
 
-        navigationRouter.showFindCuisineScreen()
+        navigationRouter.showFindCuisineScreen(false)
 
 
-        let cuisineNavController = rootNavController.presentedViewController as? UINavigationController
-        expect(cuisineNavController).to(beAKindOf(UINavigationController))
-        expect(cuisineNavController?.topViewController).to(beAKindOf(CuisineListViewController))
+        expect(newRestaurantNavVC.topViewController).to(beAKindOf(CuisineListViewController))
     }
 
     func test_dismissPresentedNavigationController_dismissesPresentedNavigationController() {
@@ -167,39 +190,100 @@ class NavigationRouterTest: XCTestCase {
 
     func test_showingPriceRangeListScreen() {
         configureUIWindowWithRootViewController(rootNavController)
+        rootNavController.setViewControllers(
+            [UIViewController()],
+            animated: false
+        )
 
         let newRestaurantVC = NewRestaurantViewController(
-            router: FakeRouter(),
+            router: navigationRouter,
             restaurantRepo: FakeRestaurantRepo(),
             photoRepo: FakePhotoRepo()
         )
-        rootNavController.pushViewController(newRestaurantVC, animated: false)
+        let newRestaurantNavVC = UINavigationController(
+            rootViewController: newRestaurantVC
+        )
+
+        rootNavController.presentViewController(
+            newRestaurantNavVC,
+            animated: false,
+            completion: nil
+        )
 
 
-        navigationRouter.showPriceRangeListScreen()
+        navigationRouter.showPriceRangeListScreen(false)
 
 
-        let priceRangeNavController = rootNavController.presentedViewController as? UINavigationController
-        expect(priceRangeNavController).to(beAKindOf(UINavigationController))
-        expect(priceRangeNavController?.topViewController).to(beAKindOf(PriceRangeListViewController))
+        expect(newRestaurantNavVC.topViewController).to(beAKindOf(PriceRangeListViewController))
     }
 
     func test_showingFindRestaurantScreen() {
         configureUIWindowWithRootViewController(rootNavController)
-
+        rootNavController.setViewControllers(
+            [UIViewController()],
+            animated: false
+        )
         let newRestaurantVC = NewRestaurantViewController(
             router: FakeRouter(),
             restaurantRepo: FakeRestaurantRepo(),
             photoRepo: FakePhotoRepo()
         )
-        rootNavController.pushViewController(newRestaurantVC, animated: false)
+        let newRestaurantNavVC = UINavigationController(
+            rootViewController: newRestaurantVC
+        )
+
+        rootNavController.presentViewController(
+            newRestaurantNavVC,
+            animated: false,
+            completion: nil
+        )
 
 
-        navigationRouter.showFindRestaurantScreen()
+        navigationRouter.showFindRestaurantScreen(false)
 
 
-        let findRestaurantNavController = rootNavController.presentedViewController as? UINavigationController
-        expect(findRestaurantNavController).to(beAKindOf(UINavigationController))
-        expect(findRestaurantNavController?.topViewController).to(beAKindOf(FindRestaurantViewController))
+        expect(newRestaurantNavVC.topViewController).to(beAKindOf(FindRestaurantViewController))
+    }
+
+    func test_popViewControllerOffStack_popsViewControllerOffOfRootVC() {
+        let vc1 = UIViewController()
+        let vc2 = UIViewController()
+        rootNavController.setViewControllers(
+            [vc1, vc2],
+            animated: false
+        )
+
+
+        navigationRouter.popViewControllerOffStack(false)
+
+
+        expect(self.rootNavController.topViewController === vc1).to(beTrue())
+    }
+
+    func test_popViewControllerOffStack_popsViewControllerOffOfPresentedVC() {
+        configureUIWindowWithRootViewController(rootNavController)
+        rootNavController.setViewControllers(
+            [UIViewController()],
+            animated: false
+        )
+
+        let vc1 = UIViewController()
+        let vc2 = UIViewController()
+        let presentedNavController = UINavigationController()
+        presentedNavController.setViewControllers(
+            [vc1, vc2],
+            animated: false
+        )
+        rootNavController.presentViewController(
+            presentedNavController,
+            animated: false,
+            completion: nil
+        )
+
+
+        navigationRouter.popViewControllerOffStack(false)
+
+
+        expect(presentedNavController.topViewController === vc1).to(beTrue())
     }
 }

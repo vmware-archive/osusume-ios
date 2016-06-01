@@ -33,13 +33,15 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.newRestaurantVC.title).to(equal("Add Restaurant"))
     }
 
-    func test_tappingDoneButton_returnsToListScreen() {
-        let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
-        tapNavBarButton(doneButton)
+    func test_tappingCancelButton_dismissesToListScreen() {
+        let cancelButton = newRestaurantVC.navigationItem.leftBarButtonItem!
 
+
+        tapNavBarButton(cancelButton)
         NSRunLoop.osu_advance()
 
-        expect(self.fakeRouter.restaurantListScreenIsShowing).to(equal(true))
+
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 
     func test_viewDidLoad_showsFindCuisineButton() {
@@ -113,6 +115,17 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(newRestaurant.acceptsCreditCards).to(equal(false))
         expect(newRestaurant.notes).to(equal("Notes"))
         expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]));
+    }
+
+    func test_tappingDoneButton_returnsToListScreen() {
+        let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
+
+
+        tapNavBarButton(doneButton)
+        NSRunLoop.osu_advance()
+
+
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 
     func test_selectCuisine_populatesCuisineTextfield() {

@@ -50,13 +50,7 @@ class PriceRangeListViewController: UIViewController {
     }
 
     // MARK: - View Setup
-    private func configureNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .Cancel,
-            target: self,
-            action: #selector(PriceRangeListViewController.didTapCancelButton(_:))
-        )
-    }
+    private func configureNavigationBar() {}
 
     private func addSubviews() {
         view.addSubview(tableView)
@@ -76,9 +70,6 @@ class PriceRangeListViewController: UIViewController {
     }
 
     // MARK: - Actions
-    @objc private func didTapCancelButton(sender: UIBarButtonItem) {
-        router.dismissPresentedNavigationController()
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -103,8 +94,12 @@ extension PriceRangeListViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension PriceRangeListViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(
+        tableView: UITableView,
+        didSelectRowAtIndexPath indexPath: NSIndexPath
+        )
+    {
         priceRangeSelection.priceRangeSelected(priceRanges[indexPath.row])
-        router.dismissPresentedNavigationController()
+        router.popViewControllerOffStack(true)
     }
 }
