@@ -151,9 +151,7 @@ class NewRestaurantViewController: UIViewController {
 
         restaurantRepo.create(newRestaurant)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.router.dismissPresentedNavigationController()
-                }
+                self.router.dismissPresentedNavigationController()
         }
     }
 
