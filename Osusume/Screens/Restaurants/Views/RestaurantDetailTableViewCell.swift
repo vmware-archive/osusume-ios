@@ -148,7 +148,12 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     func configureView(restaurant: Restaurant, reloader: Reloader, router: Router) {
         self.router = router
         photoUrls = restaurant.photoUrls
-        photoUrlDataSource = PhotoUrlsCollectionViewDataSource(photoUrls: photoUrls)
+        photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
+            photoUrls: photoUrls,
+            editMode: false,
+            deletePhotoClosure: nil
+        )
+
         imageCollectionView.dataSource = photoUrlDataSource
 
         reloader.reload(imageCollectionView)

@@ -19,6 +19,11 @@ struct NetworkPhotoRepo: PhotoRepo {
         return photos.map { photo in uploadPhoto(photo) }
     }
 
+    func deletePhoto(url: NSURL) {
+
+    }
+
+    // MARK - Private Method
     private func uploadPhoto(photo: UIImage) -> String {
         let fileName = uuidProvider.uuidKey()
 

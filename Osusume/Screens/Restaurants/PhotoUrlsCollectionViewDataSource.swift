@@ -1,8 +1,16 @@
 class PhotoUrlsCollectionViewDataSource: NSObject {
     private let photoUrls: [NSURL]
+    private let editMode: Bool
+    private let deletePhotoClosure: ((url: NSURL) -> Void)?
 
-    init (photoUrls: [NSURL]) {
+    init (
+        photoUrls: [NSURL],
+        editMode: Bool,
+        deletePhotoClosure: ((url: NSURL) -> Void)?
+    ) {
         self.photoUrls = photoUrls
+        self.editMode = editMode
+        self.deletePhotoClosure = deletePhotoClosure
     }
 }
 
@@ -21,11 +29,13 @@ extension PhotoUrlsCollectionViewDataSource: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             String(PhotoCollectionViewCell),
             forIndexPath: indexPath
-        )
+        ) as! PhotoCollectionViewCell
 
-        let imageView = UIImageView()
-        imageView.sd_setImageWithURL(photoUrls[indexPath.row])
-        cell.backgroundView = imageView
+        cell.configureCell(
+            photoUrls[indexPath.row],
+            isEditMode: editMode,
+            deletePhotoClosure: deletePhotoClosure
+        )
 
         return cell
     }

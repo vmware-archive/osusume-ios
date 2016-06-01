@@ -78,6 +78,7 @@ struct NavigationRouter: Router {
         let editRestaurantViewController = EditRestaurantViewController(
             router: self,
             repo: restaurantRepo,
+            photoRepo: photoRepo,
             restaurant: restaurant
         )
 

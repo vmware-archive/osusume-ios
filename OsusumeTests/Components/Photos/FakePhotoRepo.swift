@@ -17,4 +17,9 @@ class FakePhotoRepo: PhotoRepo {
         uploadPhotos_arg = photos
         return uploadPhotos_returnValue
     }
+
+    var deletePhoto_wasCalled = false
+    func deletePhoto(url: NSURL) {
+        deletePhoto_wasCalled = true
+    }
 }

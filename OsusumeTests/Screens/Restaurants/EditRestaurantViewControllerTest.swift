@@ -6,10 +6,12 @@ class EditRestaurantViewControllerTest: XCTestCase {
     var editRestaurantViewController: EditRestaurantViewController!
     var fakeRouter: FakeRouter!
     var fakeRestaurantRepo: FakeRestaurantRepo!
+    var fakePhotoRepo: FakePhotoRepo!
 
     override func setUp() {
         fakeRouter = FakeRouter()
         fakeRestaurantRepo = FakeRestaurantRepo()
+        fakePhotoRepo = FakePhotoRepo()
     }
 
     // MARK: - View Controller Lifecycle
@@ -48,6 +50,21 @@ class EditRestaurantViewControllerTest: XCTestCase {
             .to(containSubview(editRestaurantViewController.formView))
         expect(self.editRestaurantViewController.view)
             .to(containSubview(editRestaurantViewController.imageCollectionView))
+    }
+
+    func test_tappingDeleteButton_callsIntoPhotoRepo() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+        let cell = self.editRestaurantViewController.imageCollectionView
+            .dataSource?.collectionView(
+                self.editRestaurantViewController.imageCollectionView,
+                cellForItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+            ) as! PhotoCollectionViewCell
+
+
+        tapButton(cell.deleteButton)
+
+
+        expect(self.fakePhotoRepo.deletePhoto_wasCalled).to(beTrue())
     }
 
     func test_viewDidLoad_addsConstraints() {
@@ -147,6 +164,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         editRestaurantViewController = EditRestaurantViewController(
             router: fakeRouter,
             repo: fakeRestaurantRepo,
+            photoRepo: fakePhotoRepo,
             restaurant: restaurant
         )
 

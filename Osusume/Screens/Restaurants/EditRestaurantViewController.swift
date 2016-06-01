@@ -19,13 +19,20 @@ class EditRestaurantViewController: UIViewController {
     init(
         router: Router,
         repo: RestaurantRepo,
+        photoRepo: PhotoRepo,
         restaurant: Restaurant)
     {
         self.router = router
         self.repo = repo
         self.restaurant = restaurant
         self.id = restaurant.id
-        self.photoUrlDataSource = PhotoUrlsCollectionViewDataSource(photoUrls: restaurant.photoUrls)
+        self.photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
+            photoUrls: restaurant.photoUrls,
+            editMode: true,
+            deletePhotoClosure: { url in
+                photoRepo.deletePhoto(url)
+            }
+        )
 
         scrollView = UIScrollView.newAutoLayoutView()
         scrollViewContentView = UIView.newAutoLayoutView()
