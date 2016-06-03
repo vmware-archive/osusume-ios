@@ -34,16 +34,19 @@ struct NavigationRouter: Router {
         self.restaurantSearchRepo = restaurantSearchRepo
     }
 
-    func showNewRestaurantScreen() {
+    func showNewRestaurantScreen(animated: Bool) {
         let newRestaurantController = NewRestaurantViewController(
             router: self,
             restaurantRepo: restaurantRepo,
             photoRepo: photoRepo
         )
-        presentViewControllerModallyWithinNavController(newRestaurantController)
+        presentViewControllerModallyWithinNavController(
+            newRestaurantController,
+            animated: animated
+        )
     }
 
-    func showRestaurantListScreen() {
+    func showRestaurantListScreen(animated: Bool) {
         let restaurantListViewController = RestaurantListViewController(
             router: self,
             repo: restaurantRepo,
@@ -53,11 +56,11 @@ struct NavigationRouter: Router {
 
         navigationController.setViewControllers(
             [restaurantListViewController],
-            animated: true
+            animated: animated
         )
     }
 
-    func showRestaurantDetailScreen(id: Int) {
+    func showRestaurantDetailScreen(id: Int, animated: Bool) {
         let restaurantDetailViewController = RestaurantDetailViewController(
             router: self,
             reloader: DefaultReloader(),
@@ -70,11 +73,11 @@ struct NavigationRouter: Router {
 
         navigationController.pushViewController(
             restaurantDetailViewController,
-            animated: true
+            animated: animated
         )
     }
 
-    func showEditRestaurantScreen(restaurant: Restaurant) {
+    func showEditRestaurantScreen(restaurant: Restaurant, animated: Bool) {
         let editRestaurantViewController = EditRestaurantViewController(
             router: self,
             repo: restaurantRepo,
@@ -84,11 +87,11 @@ struct NavigationRouter: Router {
 
         navigationController.pushViewController(
             editRestaurantViewController,
-            animated: true
+            animated: animated
         )
     }
 
-    func showLoginScreen() {
+    func showLoginScreen(animated: Bool) {
         let loginViewController = LoginViewController(
             router: self,
             repo: userRepo,
@@ -97,11 +100,11 @@ struct NavigationRouter: Router {
 
         navigationController.setViewControllers(
             [loginViewController],
-            animated: true
+            animated: animated
         )
     }
 
-    func showNewCommentScreen(restaurantId: Int) {
+    func showNewCommentScreen(restaurantId: Int, animated: Bool) {
         let newCommentViewController = NewCommentViewController(
             router: self,
             commentRepo: commentRepo,
@@ -110,7 +113,7 @@ struct NavigationRouter: Router {
 
         navigationController.pushViewController(
             newCommentViewController,
-            animated: true
+            animated: animated
         )
     }
 
@@ -118,16 +121,16 @@ struct NavigationRouter: Router {
         navigationController.popViewControllerAnimated(animated)
     }
 
-    func showImageScreen(url: NSURL) {
+    func showImageScreen(url: NSURL, animated: Bool) {
         let imageViewController = ImageViewController(url: url)
 
         navigationController.pushViewController(
             imageViewController,
-            animated: true
+            animated: animated
         )
     }
 
-    func showProfileScreen() {
+    func showProfileScreen(animated: Bool) {
         let profileViewController = ProfileViewController(
             router: self,
             userRepo: userRepo,
@@ -138,7 +141,7 @@ struct NavigationRouter: Router {
 
         navigationController.pushViewController(
             profileViewController,
-            animated: true
+            animated: animated
         )
     }
 
@@ -175,9 +178,9 @@ struct NavigationRouter: Router {
         )
     }
 
-    func dismissPresentedNavigationController() {
+    func dismissPresentedNavigationController(animated: Bool) {
         if let presentedVC = navigationController.presentedViewController as? UINavigationController {
-            presentedVC.dismissViewControllerAnimated(true, completion: nil)
+            presentedVC.dismissViewControllerAnimated(animated, completion: nil)
         }
     }
 
@@ -207,17 +210,17 @@ struct NavigationRouter: Router {
 
     // MARK: - Private Methods
     func presentViewControllerModallyWithinNavController(
-        viewController: UIViewController)
+        viewController: UIViewController, animated: Bool)
     {
         let containerNavigationController = UINavigationController()
         containerNavigationController.setViewControllers(
             [viewController],
-            animated: false
+            animated: animated
         )
 
         navigationController.presentViewController(
             containerNavigationController,
-            animated: true,
+            animated: animated,
             completion: nil
         )
     }

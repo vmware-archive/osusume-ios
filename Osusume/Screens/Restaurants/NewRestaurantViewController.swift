@@ -151,12 +151,12 @@ class NewRestaurantViewController: UIViewController {
 
         restaurantRepo.create(newRestaurant)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
-                self.router.dismissPresentedNavigationController()
+                self.router.dismissPresentedNavigationController(true)
         }
     }
 
     @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
-        self.router.dismissPresentedNavigationController()
+        self.router.dismissPresentedNavigationController(true)
     }
 
     @objc private func didTapAddPhotoButton(sender: UIButton?) {

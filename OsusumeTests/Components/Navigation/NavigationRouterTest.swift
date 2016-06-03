@@ -40,7 +40,7 @@ class NavigationRouterTest: XCTestCase {
         rootNavController.pushViewController(restaurantListVC, animated: false)
 
 
-        navigationRouter.showNewRestaurantScreen()
+        navigationRouter.showNewRestaurantScreen(false)
 
 
         let newRestaurantNavController = rootNavController.presentedViewController as? UINavigationController
@@ -49,31 +49,31 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_showingRestaurantListScreen() {
-        navigationRouter.showRestaurantListScreen()
+        navigationRouter.showRestaurantListScreen(false)
         expect(self.rootNavController.topViewController).to(beAKindOf(RestaurantListViewController))
     }
 
     func test_showingRestaurantDetailScreen() {
-        navigationRouter.showRestaurantDetailScreen(1)
+        navigationRouter.showRestaurantDetailScreen(1, animated: false)
 
         expect(self.rootNavController.topViewController).to(beAKindOf(RestaurantDetailViewController))
     }
 
     func test_showingEditRestaurantScreen() {
         let restaurant = RestaurantFixtures.newRestaurant()
-        navigationRouter.showEditRestaurantScreen(restaurant)
+        navigationRouter.showEditRestaurantScreen(restaurant, animated: false)
 
         expect(self.rootNavController.topViewController).to(beAKindOf(EditRestaurantViewController))
     }
 
     func test_showingLoginScreen() {
-        navigationRouter.showLoginScreen()
+        navigationRouter.showLoginScreen(false)
 
         expect(self.rootNavController.topViewController).to(beAKindOf(LoginViewController))
     }
 
     func test_passesSessionRepo_toTheLoginScreen() {
-        navigationRouter.showLoginScreen()
+        navigationRouter.showLoginScreen(false)
 
         let loginVC = rootNavController.topViewController as! LoginViewController
         let loginSessionRepo = loginVC.sessionRepo as! FakeSessionRepo
@@ -82,7 +82,7 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_showingNewCommentScreen() {
-        navigationRouter.showNewCommentScreen(1)
+        navigationRouter.showNewCommentScreen(1, animated: false)
 
         expect(self.rootNavController.topViewController).to(beAKindOf(NewCommentViewController))
     }
@@ -109,7 +109,7 @@ class NavigationRouterTest: XCTestCase {
 
     func test_showingImageScreen() {
         let url = NSURL(string: "my-awesome-url")!
-        navigationRouter.showImageScreen(url)
+        navigationRouter.showImageScreen(url, animated: false)
 
         expect(self.rootNavController.topViewController).to(beAKindOf(ImageViewController))
         expect((self.rootNavController.topViewController as! ImageViewController).url)
@@ -160,7 +160,7 @@ class NavigationRouterTest: XCTestCase {
         expect(presentedNavController?.topViewController).toNot(beNil())
 
 
-        navigationRouter.dismissPresentedNavigationController()
+        navigationRouter.dismissPresentedNavigationController(false)
 
 
         NSRunLoop.osu_advance(by: 1)
@@ -181,7 +181,7 @@ class NavigationRouterTest: XCTestCase {
         expect(presentedViewController).toNot(beNil())
 
 
-        navigationRouter.dismissPresentedNavigationController()
+        navigationRouter.dismissPresentedNavigationController(false)
 
 
         NSRunLoop.osu_advance(by: 1)

@@ -97,7 +97,7 @@ class RestaurantDetailViewController: UIViewController {
     // MARK: - Actions
     @objc private func didTapEditRestaurantButton(sender: UIBarButtonItem) {
         if let currentRestaurant = self.restaurant {
-            router.showEditRestaurantScreen(currentRestaurant)
+            router.showEditRestaurantScreen(currentRestaurant, animated: true)
         }
     }
 }
@@ -249,7 +249,7 @@ extension RestaurantDetailViewController: UITableViewDelegate {
 // MARK: - RestaurantDetailTableViewCellDelegate
 extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate {
     @objc func displayAddCommentScreen(sender: UIButton) {
-        router.showNewCommentScreen(self.restaurant!.id)
+        router.showNewCommentScreen(self.restaurant!.id, animated: true)
     }
 
     @objc func didTapLikeButton(sender: UIButton) {
