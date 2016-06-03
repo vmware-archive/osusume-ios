@@ -145,7 +145,7 @@ class ProfileViewController: UIViewController {
     // MARK: - Actions
     @objc private func didTapLogoutButton(sender: UIButton?) {
         sessionRepo.deleteAuthenticatedUser()
-        router.showLoginScreen(true)
+        router.showLoginScreen()
     }
 
     @objc private func didChangeSelectedSegment(sender: UISegmentedControl) {
@@ -177,6 +177,6 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: MyRestaurantSelectionDelegate {
     func myRestaurantSelected(myRestaurant: Restaurant) {
-        router.showRestaurantDetailScreen(myRestaurant.id, animated: true)
+        router.showRestaurantDetailScreen(myRestaurant.id)
     }
 }

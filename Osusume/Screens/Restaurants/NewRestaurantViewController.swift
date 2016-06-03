@@ -151,12 +151,12 @@ class NewRestaurantViewController: UIViewController {
 
         restaurantRepo.create(newRestaurant)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
-                self.router.dismissPresentedNavigationController(true)
+                self.router.dismissPresentedNavigationController()
         }
     }
 
     @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
-        self.router.dismissPresentedNavigationController(true)
+        self.router.dismissPresentedNavigationController()
     }
 
     @objc private func didTapAddPhotoButton(sender: UIButton?) {
@@ -236,14 +236,14 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
 // MARK: - NewRestaurantViewControllerPresenterProtocol
 extension NewRestaurantViewController: NewRestaurantViewControllerPresenterProtocol {
     func showFindCuisineScreen() {
-        router.showFindCuisineScreen(true)
+        router.showFindCuisineScreen()
     }
 
     func showFindRestaurantScreen() {
-        router.showFindRestaurantScreen(true)
+        router.showFindRestaurantScreen()
     }
 
     func showPriceRangeScreen() {
-        router.showPriceRangeListScreen(true)
+        router.showPriceRangeListScreen()
     }
 }

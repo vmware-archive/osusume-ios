@@ -152,6 +152,6 @@ extension FindRestaurantViewController: UITableViewDelegate {
     {
         searchResultRestaurantSelectionDelegate
             .searchResultRestaurantSelected(restaurantResults[indexPath.row])
-        router.popViewControllerOffStack(true)
+        router.popViewControllerOffStack()
     }
 }

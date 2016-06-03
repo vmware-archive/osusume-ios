@@ -100,7 +100,7 @@ class LoginViewController: UIViewController {
         userRepo.login(emailTextField.text!, password: passwordTextField.text!)
             .onSuccess(ImmediateExecutionContext) { [unowned self] authenticatedUser in
                 self.sessionRepo.setAuthenticatedUser(authenticatedUser)
-                self.router.showRestaurantListScreen(true)
+                self.router.showRestaurantListScreen()
         }
     }
 }

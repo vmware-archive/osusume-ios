@@ -67,7 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             cuisineRepo: cuisineRepo,
             likeRepo: likeRepo,
             priceRangeRepo: priceRangeRepo,
-            restaurantSearchRepo: restaurantSearchRepo
+            restaurantSearchRepo: restaurantSearchRepo,
+            animated: true
         )
 
         self.init(

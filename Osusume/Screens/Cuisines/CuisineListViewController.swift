@@ -165,11 +165,11 @@ extension CuisineListViewController: UITableViewDelegate {
             cuisineRepo.create(NewCuisine(name: searchBar.text!))
                 .onSuccess { [unowned self] savedCuisine in
                     self.cuisineSelectionDelegate.cuisineSelected(savedCuisine)
-                    self.router.popViewControllerOffStack(true)
+                    self.router.popViewControllerOffStack()
                 }
         } else {
             cuisineSelectionDelegate.cuisineSelected(filteredCuisineList[indexPath.row])
-            router.popViewControllerOffStack(true)
+            router.popViewControllerOffStack()
         }
     }
 }

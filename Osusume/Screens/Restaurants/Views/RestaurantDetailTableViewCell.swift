@@ -194,6 +194,6 @@ extension RestaurantDetailTableViewCell: UICollectionViewDelegate {
         collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        self.router?.showImageScreen(photoUrls[indexPath.row], animated: true)
+        self.router?.showImageScreen(photoUrls[indexPath.row])
     }
 }

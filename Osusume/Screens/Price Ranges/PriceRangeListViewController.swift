@@ -100,6 +100,6 @@ extension PriceRangeListViewController: UITableViewDelegate {
         )
     {
         priceRangeSelection.priceRangeSelected(priceRanges[indexPath.row])
-        router.popViewControllerOffStack(true)
+        router.popViewControllerOffStack()
     }
 }

@@ -89,11 +89,11 @@ class RestaurantListViewController: UIViewController {
 
     // MARK: - Actions
     @objc private func didTapProfileButton(sender: UIBarButtonItem) {
-        router.showProfileScreen(true)
+        router.showProfileScreen()
     }
 
     @objc private func didTapAddRestaurantButton(sender: UIBarButtonItem) {
-        router.showNewRestaurantScreen(true)
+        router.showNewRestaurantScreen()
     }
 }
 
@@ -111,6 +111,6 @@ extension RestaurantListViewController: UITableViewDelegate {
         didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         let id = restaurantListDataSource.restaurants[indexPath.row].id
-        router.showRestaurantDetailScreen(id, animated: true)
+        router.showRestaurantDetailScreen(id)
     }
 }

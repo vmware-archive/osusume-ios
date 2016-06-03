@@ -9,6 +9,7 @@ struct NavigationRouter: Router {
     let likeRepo: LikeRepo
     let priceRangeRepo: PriceRangeRepo
     let restaurantSearchRepo: RestaurantSearchRepo
+    let animated: Bool
 
     init(
         navigationController: UINavigationController,
@@ -20,8 +21,9 @@ struct NavigationRouter: Router {
         cuisineRepo: CuisineRepo,
         likeRepo: LikeRepo,
         priceRangeRepo: PriceRangeRepo,
-        restaurantSearchRepo: RestaurantSearchRepo)
-    {
+        restaurantSearchRepo: RestaurantSearchRepo,
+        animated: Bool
+    ) {
         self.navigationController = navigationController
         self.sessionRepo = sessionRepo
         self.restaurantRepo = restaurantRepo
@@ -32,21 +34,19 @@ struct NavigationRouter: Router {
         self.likeRepo = likeRepo
         self.priceRangeRepo = priceRangeRepo
         self.restaurantSearchRepo = restaurantSearchRepo
+        self.animated = animated
     }
 
-    func showNewRestaurantScreen(animated: Bool) {
+    func showNewRestaurantScreen() {
         let newRestaurantController = NewRestaurantViewController(
             router: self,
             restaurantRepo: restaurantRepo,
             photoRepo: photoRepo
         )
-        presentViewControllerModallyWithinNavController(
-            newRestaurantController,
-            animated: animated
-        )
+        presentViewControllerModallyWithinNavController(newRestaurantController)
     }
 
-    func showRestaurantListScreen(animated: Bool) {
+    func showRestaurantListScreen() {
         let restaurantListViewController = RestaurantListViewController(
             router: self,
             repo: restaurantRepo,
@@ -60,7 +60,7 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showRestaurantDetailScreen(id: Int, animated: Bool) {
+    func showRestaurantDetailScreen(id: Int) {
         let restaurantDetailViewController = RestaurantDetailViewController(
             router: self,
             reloader: DefaultReloader(),
@@ -77,7 +77,7 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showEditRestaurantScreen(restaurant: Restaurant, animated: Bool) {
+    func showEditRestaurantScreen(restaurant: Restaurant) {
         let editRestaurantViewController = EditRestaurantViewController(
             router: self,
             repo: restaurantRepo,
@@ -91,7 +91,7 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showLoginScreen(animated: Bool) {
+    func showLoginScreen() {
         let loginViewController = LoginViewController(
             router: self,
             repo: userRepo,
@@ -104,7 +104,7 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showNewCommentScreen(restaurantId: Int, animated: Bool) {
+    func showNewCommentScreen(restaurantId: Int) {
         let newCommentViewController = NewCommentViewController(
             router: self,
             commentRepo: commentRepo,
@@ -117,11 +117,11 @@ struct NavigationRouter: Router {
         )
     }
 
-    func dismissNewCommentScreen(animated: Bool) {
+    func dismissNewCommentScreen() {
         navigationController.popViewControllerAnimated(animated)
     }
 
-    func showImageScreen(url: NSURL, animated: Bool) {
+    func showImageScreen(url: NSURL) {
         let imageViewController = ImageViewController(url: url)
 
         navigationController.pushViewController(
@@ -130,7 +130,7 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showProfileScreen(animated: Bool) {
+    func showProfileScreen() {
         let profileViewController = ProfileViewController(
             router: self,
             userRepo: userRepo,
@@ -145,7 +145,7 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showFindCuisineScreen(animated: Bool) {
+    func showFindCuisineScreen() {
         let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
         let newRestaurantVC = newRestaurantNavVC!.topViewController as? NewRestaurantViewController
         let findCuisineTableViewController = CuisineListViewController(
@@ -162,7 +162,7 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showFindRestaurantScreen(animated: Bool) {
+    func showFindRestaurantScreen() {
         let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
         let newRestaurantVC = newRestaurantNavVC!.topViewController as? NewRestaurantViewController
         let findRestaurantViewController = FindRestaurantViewController(
@@ -178,13 +178,13 @@ struct NavigationRouter: Router {
         )
     }
 
-    func dismissPresentedNavigationController(animated: Bool) {
+    func dismissPresentedNavigationController() {
         if let presentedVC = navigationController.presentedViewController as? UINavigationController {
             presentedVC.dismissViewControllerAnimated(animated, completion: nil)
         }
     }
 
-    func popViewControllerOffStack(animated: Bool) {
+    func popViewControllerOffStack() {
         if let presentedNavVC = navigationController.presentedViewController as? UINavigationController {
             presentedNavVC.popViewControllerAnimated(animated)
         } else {
@@ -192,7 +192,7 @@ struct NavigationRouter: Router {
         }
     }
 
-    func showPriceRangeListScreen(animated: Bool) {
+    func showPriceRangeListScreen() {
         let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
         let newRestaurantVC = newRestaurantNavVC!.topViewController as? NewRestaurantViewController
         let priceRangeListViewController = PriceRangeListViewController(
@@ -210,7 +210,7 @@ struct NavigationRouter: Router {
 
     // MARK: - Private Methods
     func presentViewControllerModallyWithinNavController(
-        viewController: UIViewController, animated: Bool)
+        viewController: UIViewController)
     {
         let containerNavigationController = UINavigationController()
         containerNavigationController.setViewControllers(

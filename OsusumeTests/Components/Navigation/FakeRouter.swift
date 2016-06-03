@@ -2,76 +2,76 @@
 
 class FakeRouter : Router {
     var newRestaurantScreenIsShowing = false
-    func showNewRestaurantScreen(animated: Bool) {
+    func showNewRestaurantScreen() {
         newRestaurantScreenIsShowing = true
     }
 
     var restaurantListScreenIsShowing = false
-    func showRestaurantListScreen(animated: Bool) {
+    func showRestaurantListScreen() {
         restaurantListScreenIsShowing = true
     }
 
     var restaurantDetailScreenIsShowing = false
-    func showRestaurantDetailScreen(id: Int, animated: Bool) {
+    func showRestaurantDetailScreen(id: Int) {
         restaurantDetailScreenIsShowing = true
     }
 
     var editRestaurantScreenIsShowing = false
-    func showEditRestaurantScreen(restaurant: Restaurant, animated: Bool) {
+    func showEditRestaurantScreen(restaurant: Restaurant) {
         editRestaurantScreenIsShowing = true
     }
 
     var loginScreenIsShowing = false
-    func showLoginScreen(animated: Bool) {
+    func showLoginScreen() {
         loginScreenIsShowing = true
     }
 
     var newCommentScreenIsShowing = false
     var showNewCommentScreen_args = 0
-    func showNewCommentScreen(id: Int, animated: Bool) {
+    func showNewCommentScreen(id: Int) {
         newCommentScreenIsShowing = true
         showNewCommentScreen_args = id
     }
 
     var dismissNewCommentScreen_wasCalled = false
-    func dismissNewCommentScreen(animated: Bool) {
+    func dismissNewCommentScreen() {
         dismissNewCommentScreen_wasCalled = true
     }
 
     var imageScreenIsShowing = false
     var showImageScreen_args = NSURL()
-    func showImageScreen(url: NSURL, animated: Bool) {
+    func showImageScreen(url: NSURL) {
         imageScreenIsShowing = true
         showImageScreen_args = url
     }
 
     var profileScreenIsShowing = false
-    func showProfileScreen(animated: Bool) {
+    func showProfileScreen() {
         profileScreenIsShowing = true
     }
 
     var showFindCuisineScreen_wasCalled = false
-    func showFindCuisineScreen(animated: Bool) {
+    func showFindCuisineScreen() {
         showFindCuisineScreen_wasCalled = true
     }
 
     var dismissPresentedNavigationController_wasCalled = false
-    func dismissPresentedNavigationController(animated: Bool) {
+    func dismissPresentedNavigationController() {
         dismissPresentedNavigationController_wasCalled = true
     }
 
     var popViewControllerOffStack_wasCalled = false
-    func popViewControllerOffStack(animated: Bool) {
+    func popViewControllerOffStack() {
         popViewControllerOffStack_wasCalled = true
     }
 
     var showPriceRangeListScreen_wasCalled = false
-    func showPriceRangeListScreen(animated: Bool) {
+    func showPriceRangeListScreen() {
         showPriceRangeListScreen_wasCalled = true
     }
 
     var showFindRestaurantScreen_wasCalled = false
-    func showFindRestaurantScreen(animated: Bool) {
+    func showFindRestaurantScreen() {
         showFindRestaurantScreen_wasCalled = true
     }
 }
