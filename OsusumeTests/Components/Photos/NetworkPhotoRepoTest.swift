@@ -9,18 +9,21 @@ class NetworkPhotoRepoTest: XCTestCase {
     var networkPhotoRepo: NetworkPhotoRepo!
     var fakeLocalStorage: FakeLocalStorage!
     var fakeImageLoader: FakeImageLoader!
+    var fakeHttp: FakeHttp!
 
     override func setUp() {
         fakeRemoteStorage = FakeRemoteStorage()
         fakeLocalStorage = FakeLocalStorage()
         fakeUuidProvider = FakeUUIDProvider()
         fakeImageLoader = FakeImageLoader()
+        fakeHttp = FakeHttp()
 
         networkPhotoRepo = NetworkPhotoRepo(
             remoteStorage: fakeRemoteStorage,
             uuidProvider: fakeUuidProvider,
             localStorage: fakeLocalStorage,
-            imageLoader: fakeImageLoader
+            imageLoader: fakeImageLoader,
+            http: fakeHttp
         )
     }
 
@@ -127,5 +130,11 @@ class NetworkPhotoRepoTest: XCTestCase {
 
         expect(self.fakeLocalStorage.writeToDisk_calls.count).to(equal(2))
         expect(self.fakeRemoteStorage.uploadFile_calls.count).to(equal(2))
+    }
+
+    func test_deletePhoto_passesIdToHttp() {
+        networkPhotoRepo.deletePhoto(10, photoUrlId: 20)
+
+        XCTAssertEqual("/restaurants/10/photoUrls/20", fakeHttp.delete_args.path)
     }
 }

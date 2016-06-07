@@ -5,6 +5,7 @@ struct NetworkPhotoRepo: PhotoRepo {
     let uuidProvider: UUIDProvider
     let localStorage: LocalStorage
     let imageLoader: ImageLoader
+    let http: Http
 
     func loadImageFromUrl(url: NSURL?) -> Future<UIImage, RepoError> {
         if let url = url {
@@ -20,7 +21,8 @@ struct NetworkPhotoRepo: PhotoRepo {
     }
 
     func deletePhoto(restaurantId: Int, photoUrlId: Int) {
-
+        let path = "/restaurants/\(restaurantId)/photoUrls/\(photoUrlId)"
+        http.delete(path, headers: [:])
     }
 
     // MARK - Private Method

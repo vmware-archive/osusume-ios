@@ -13,15 +13,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     convenience override init() {
         let navController = UINavigationController()
         let sessionRepo = KeychainSessionRepo()
+
+        let http = DefaultHttp(basePath: AppDelegate.basePath)
+        let sessionHttp = SessionHttp(http: http, sessionRepo: sessionRepo)
+
         let photoRepo = NetworkPhotoRepo(
             remoteStorage: S3Storage(),
             uuidProvider: RandomUUIDProvider(),
             localStorage: DiskStorage(),
-            imageLoader: DefaultImageLoader()
+            imageLoader: DefaultImageLoader(),
+            http: http
         )
-
-        let http = DefaultHttp(basePath: AppDelegate.basePath)
-        let sessionHttp = SessionHttp(http: http, sessionRepo: sessionRepo)
 
         let networkRestaurantListRepo = NetworkRestaurantListRepo(
             http: sessionHttp,
