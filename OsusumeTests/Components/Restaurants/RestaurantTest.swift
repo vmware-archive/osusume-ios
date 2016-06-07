@@ -32,6 +32,18 @@ class RestaurantTest: XCTestCase {
         expect(updatedRestaurant.numberOfLikes).to(equal(0))
     }
 
+    func test_deletePhotoUrl_returnsRestaurant() {
+        let restaurant = RestaurantFixtures.newRestaurant(
+            photoUrls: [NSURL(string: "http://hoge/image.jpg")!]
+        )
+
+
+        let updatedRestaurant = restaurant.restaurantByDeletingPhotoUrl("http://hoge/image.jpg")
+
+
+        expect(updatedRestaurant.photoUrls.count).to(equal(0))
+    }
+
     func test_createdByCurrentUser_returnsTrue_whenCurrentUserCreated() {
         let restaurant = RestaurantFixtures.newRestaurant(
             createdByUser: (id: 10, name: "Danny", email: "danny@email.com")

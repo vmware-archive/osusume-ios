@@ -84,6 +84,31 @@ struct Restaurant {
         )
     }
 
+    func restaurantByDeletingPhotoUrl(photoUrlToDelete: String) -> Restaurant {
+        let updatedPhotoUrls = photoUrls.filter { url in
+            return url.absoluteString != photoUrlToDelete
+        }
+
+        return Restaurant(
+            id: self.id,
+            name: self.name,
+            address: self.address,
+            cuisineType: self.cuisineType,
+            cuisine: self.cuisine,
+            offersEnglishMenu: self.offersEnglishMenu,
+            walkInsOk: self.walkInsOk,
+            acceptsCreditCards: self.acceptsCreditCards,
+            notes: self.notes,
+            liked: self.liked,
+            numberOfLikes: self.numberOfLikes,
+            priceRange: self.priceRange,
+            createdAt: self.createdAt,
+            photoUrls: updatedPhotoUrls,
+            createdByUser: self.createdByUser,
+            comments: self.comments
+        )
+    }
+
     func createdByCurrentUser(maybeAuthenticatedUser: AuthenticatedUser?) -> Bool {
         guard let authenticatedUser = maybeAuthenticatedUser else {
             return false
