@@ -83,6 +83,7 @@ struct NavigationRouter: Router {
             repo: restaurantRepo,
             photoRepo: photoRepo,
             sessionRepo: sessionRepo,
+            reloader: DefaultReloader(),
             restaurant: restaurant
         )
 

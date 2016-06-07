@@ -149,7 +149,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         self.router = router
         photoUrls = restaurant.photoUrls
         photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
-            photoUrls: photoUrls,
+            photoUrlsDataSource: self,
             editMode: false,
             deletePhotoClosure: nil
         )
@@ -195,5 +195,12 @@ extension RestaurantDetailTableViewCell: UICollectionViewDelegate {
         didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         self.router?.showImageScreen(photoUrls[indexPath.row])
+    }
+}
+
+// MARK: - PhotoUrlsDataSource
+extension RestaurantDetailTableViewCell: PhotoUrlsDataSource {
+    func getPhotoUrls() -> [NSURL] {
+        return self.photoUrls
     }
 }

@@ -5,9 +5,9 @@ class EditRestaurantViewController: UIViewController {
     private let router: Router
     private let repo: RestaurantRepo
     private let sessionRepo: SessionRepo
-    private let restaurant: Restaurant
+    private(set) var restaurant: Restaurant
     private let id: Int
-    private let photoUrlDataSource: PhotoUrlsCollectionViewDataSource?
+    private var photoUrlDataSource: PhotoUrlsCollectionViewDataSource?
 
     // MARK: - View Elements
     let imageCollectionView: UICollectionView
@@ -22,6 +22,7 @@ class EditRestaurantViewController: UIViewController {
         repo: RestaurantRepo,
         photoRepo: PhotoRepo,
         sessionRepo: SessionRepo,
+        reloader: Reloader,
         restaurant: Restaurant)
     {
         self.router = router
@@ -29,13 +30,6 @@ class EditRestaurantViewController: UIViewController {
         self.sessionRepo = sessionRepo
         self.restaurant = restaurant
         self.id = restaurant.id
-        self.photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
-            photoUrls: restaurant.photoUrls,
-            editMode: restaurant.createdByCurrentUser(sessionRepo.getAuthenticatedUser()),
-            deletePhotoClosure: { url in
-                photoRepo.deletePhoto(url)
-            }
-        )
 
         scrollView = UIScrollView.newAutoLayoutView()
         scrollViewContentView = UIView.newAutoLayoutView()
@@ -47,6 +41,17 @@ class EditRestaurantViewController: UIViewController {
         )
 
         super.init(nibName: nil, bundle: nil)
+
+        self.photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
+            photoUrlsDataSource: self,
+            editMode: restaurant.createdByCurrentUser(sessionRepo.getAuthenticatedUser()),
+            deletePhotoClosure: { [unowned self] url in
+                self.restaurant = self.restaurant.restaurantByDeletingPhotoUrl(url.absoluteString)
+                reloader.reload(self.imageCollectionView)
+
+                photoRepo.deletePhoto(url)
+            }
+        )
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -149,5 +154,12 @@ class EditRestaurantViewController: UIViewController {
         layout.itemSize = CGSizeMake(100, 100)
         layout.scrollDirection = .Horizontal
         return layout
+    }
+}
+
+// MARK: - PhotoUrlsDataSource
+extension EditRestaurantViewController: PhotoUrlsDataSource {
+    func getPhotoUrls() -> [NSURL] {
+        return restaurant.photoUrls
     }
 }

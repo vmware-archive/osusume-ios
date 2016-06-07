@@ -8,12 +8,15 @@ class EditRestaurantViewControllerTest: XCTestCase {
     var fakeRestaurantRepo: FakeRestaurantRepo!
     var fakePhotoRepo: FakePhotoRepo!
     var fakeSessionRepo: FakeSessionRepo!
+    var fakeReloader: FakeReloader!
+
 
     override func setUp() {
         fakeRouter = FakeRouter()
         fakeRestaurantRepo = FakeRestaurantRepo()
         fakePhotoRepo = FakePhotoRepo()
         fakeSessionRepo = FakeSessionRepo()
+        fakeReloader = FakeReloader()
     }
 
     // MARK: - View Controller Lifecycle
@@ -67,6 +70,36 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
 
         expect(self.fakePhotoRepo.deletePhoto_wasCalled).to(beTrue())
+    }
+
+    func test_tappingDeleteButton_deletePhotoUrlFromRestaurant() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+        let cell = self.editRestaurantViewController.imageCollectionView
+            .dataSource?.collectionView(
+                self.editRestaurantViewController.imageCollectionView,
+                cellForItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+            ) as! PhotoCollectionViewCell
+
+
+        tapButton(cell.deleteButton)
+
+
+        expect(self.editRestaurantViewController.restaurant.photoUrls.count).to(equal(0))
+    }
+
+    func test_tappingDeleteButton_reloadsCollectionView() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
+        let cell = self.editRestaurantViewController.imageCollectionView
+            .dataSource?.collectionView(
+                self.editRestaurantViewController.imageCollectionView,
+                cellForItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+            ) as! PhotoCollectionViewCell
+
+
+        tapButton(cell.deleteButton)
+
+
+        expect(self.fakeReloader.reload_wasCalled).to(beTrue())
     }
 
     func test_viewDidLoad_addsConstraints() {
@@ -187,6 +220,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
             repo: fakeRestaurantRepo,
             photoRepo: fakePhotoRepo,
             sessionRepo: fakeSessionRepo,
+            reloader: fakeReloader,
             restaurant: restaurant
         )
 

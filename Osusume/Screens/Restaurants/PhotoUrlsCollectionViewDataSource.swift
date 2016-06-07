@@ -1,14 +1,18 @@
+protocol PhotoUrlsDataSource {
+    func getPhotoUrls() -> [NSURL]
+}
+
 class PhotoUrlsCollectionViewDataSource: NSObject {
-    private let photoUrls: [NSURL]
+    private let photoUrlsDataSource: PhotoUrlsDataSource!
     private let editMode: Bool
     private let deletePhotoClosure: ((url: NSURL) -> Void)?
 
     init (
-        photoUrls: [NSURL],
+        photoUrlsDataSource: PhotoUrlsDataSource,
         editMode: Bool,
         deletePhotoClosure: ((url: NSURL) -> Void)?
     ) {
-        self.photoUrls = photoUrls
+        self.photoUrlsDataSource = photoUrlsDataSource
         self.editMode = editMode
         self.deletePhotoClosure = deletePhotoClosure
     }
@@ -19,7 +23,7 @@ extension PhotoUrlsCollectionViewDataSource: UICollectionViewDataSource {
         collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int
     {
-        return photoUrls.count
+        return photoUrlsDataSource.getPhotoUrls().count
     }
 
     func collectionView(
@@ -32,7 +36,7 @@ extension PhotoUrlsCollectionViewDataSource: UICollectionViewDataSource {
         ) as! PhotoCollectionViewCell
 
         cell.configureCell(
-            photoUrls[indexPath.row],
+            photoUrlsDataSource.getPhotoUrls()[indexPath.row],
             isEditMode: editMode,
             deletePhotoClosure: deletePhotoClosure
         )
