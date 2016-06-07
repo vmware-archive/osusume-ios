@@ -4,6 +4,7 @@ class EditRestaurantViewController: UIViewController {
     // MARK: - Properties
     private let router: Router
     private let repo: RestaurantRepo
+    private let sessionRepo: SessionRepo
     private let restaurant: Restaurant
     private let id: Int
     private let photoUrlDataSource: PhotoUrlsCollectionViewDataSource?
@@ -20,15 +21,17 @@ class EditRestaurantViewController: UIViewController {
         router: Router,
         repo: RestaurantRepo,
         photoRepo: PhotoRepo,
+        sessionRepo: SessionRepo,
         restaurant: Restaurant)
     {
         self.router = router
         self.repo = repo
+        self.sessionRepo = sessionRepo
         self.restaurant = restaurant
         self.id = restaurant.id
         self.photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
             photoUrls: restaurant.photoUrls,
-            editMode: true,
+            editMode: restaurant.createdByCurrentUser(sessionRepo.getAuthenticatedUser()),
             deletePhotoClosure: { url in
                 photoRepo.deletePhoto(url)
             }

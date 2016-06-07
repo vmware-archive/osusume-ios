@@ -83,6 +83,13 @@ struct Restaurant {
             comments: self.comments
         )
     }
+
+    func createdByCurrentUser(maybeAuthenticatedUser: AuthenticatedUser?) -> Bool {
+        guard let authenticatedUser = maybeAuthenticatedUser else {
+            return false
+        }
+        return authenticatedUser.id == createdByUser.id
+    }
 }
 
 extension Restaurant: Equatable {}

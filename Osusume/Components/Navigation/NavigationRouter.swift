@@ -82,6 +82,7 @@ struct NavigationRouter: Router {
             router: self,
             repo: restaurantRepo,
             photoRepo: photoRepo,
+            sessionRepo: sessionRepo,
             restaurant: restaurant
         )
 

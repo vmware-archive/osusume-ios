@@ -31,4 +31,23 @@ class RestaurantTest: XCTestCase {
         expect(updatedRestaurant.liked).to(beFalse())
         expect(updatedRestaurant.numberOfLikes).to(equal(0))
     }
+
+    func test_createdByCurrentUser_returnsTrue_whenCurrentUserCreated() {
+        let restaurant = RestaurantFixtures.newRestaurant(
+            createdByUser: (id: 10, name: "Danny", email: "danny@email.com")
+        )
+        let currentUser = AuthenticatedUser(id: 10, email: "danny@email.com", token: "token-string")
+
+
+        expect(restaurant.createdByCurrentUser(currentUser)).to(beTrue())
+    }
+
+    func test_createdByCurrentUser_returnsFalse_whenCurrentUserIsNil() {
+        let restaurant = RestaurantFixtures.newRestaurant(
+            createdByUser: (id: 10, name: "Danny", email: "danny@email.com")
+        )
+
+
+        expect(restaurant.createdByCurrentUser(nil)).to(beFalse())
+    }
 }

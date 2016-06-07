@@ -7,11 +7,13 @@ class EditRestaurantViewControllerTest: XCTestCase {
     var fakeRouter: FakeRouter!
     var fakeRestaurantRepo: FakeRestaurantRepo!
     var fakePhotoRepo: FakePhotoRepo!
+    var fakeSessionRepo: FakeSessionRepo!
 
     override func setUp() {
         fakeRouter = FakeRouter()
         fakeRestaurantRepo = FakeRestaurantRepo()
         fakePhotoRepo = FakePhotoRepo()
+        fakeSessionRepo = FakeSessionRepo()
     }
 
     // MARK: - View Controller Lifecycle
@@ -128,6 +130,24 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(self.editRestaurantViewController.formView.notesTextView.text).to(equal("This place is great"))
     }
 
+    func test_cannotDeletePhoto_whenRestaurantNotCreatedByCurrentUser() {
+        fakeSessionRepo.getAuthenticatedUser_returnValue = AuthenticatedUser(
+            id: 10, email: "danny@pivotal", token: "token-string"
+        )
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 0, name: "Not Specified"))
+
+
+        let cell = editRestaurantViewController.imageCollectionView
+            .dataSource?
+            .collectionView(
+                editRestaurantViewController.imageCollectionView,
+                cellForItemAtIndexPath: NSIndexPath(forItem: 0, inSection: 0)
+        ) as? PhotoCollectionViewCell
+
+
+        expect(cell!.deleteButton.hidden).to(beTrue())
+    }
+
     // MARK: - Navigation Bar
     func test_tappingUpdateButton_invokesUpdateWithChangedValues() {
         instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
@@ -158,6 +178,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
             name: "Original Restaurant Name",
             liked: false,
             cuisine: cuisine,
+            createdByUser: (id: 99, name: "Witta", email: "witta@pivotal"),
             photoUrls: [NSURL(string: "url")!]
         )
 
@@ -165,6 +186,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
             router: fakeRouter,
             repo: fakeRestaurantRepo,
             photoRepo: fakePhotoRepo,
+            sessionRepo: fakeSessionRepo,
             restaurant: restaurant
         )
 
