@@ -10,12 +10,12 @@ struct RestaurantFixtures {
         acceptsCreditCards: Bool = true,
         notes: String = "This place is great",
         createdAt: NSDate = NSDate(),
-        author: String = "danny",
         liked: Bool = false,
         numberOfLikes: Int = 0,
         photoUrls: [NSURL] = [],
         cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified"),
         priceRange: String = "",
+        createdByUser: (id: Int, name: String, email: String) = (id: 99, name: "Danny", email: "danny@pivotal"),
         comments: [PersistedComment] = []
         ) -> Restaurant
     {
@@ -29,12 +29,12 @@ struct RestaurantFixtures {
             walkInsOk: walkInsOk,
             acceptsCreditCards: acceptsCreditCards,
             notes: notes,
-            author: author,
             liked: liked,
             numberOfLikes: numberOfLikes,
             priceRange: priceRange,
             createdAt: createdAt,
             photoUrls: photoUrls,
+            createdByUser: createdByUser,
             comments: comments
         )
     }

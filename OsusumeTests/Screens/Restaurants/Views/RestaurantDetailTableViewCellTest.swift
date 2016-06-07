@@ -26,12 +26,12 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
                 walkInsOk: false,
                 acceptsCreditCards: true,
                 notes: "This place is great",
-                author: "Danny",
                 liked: true,
                 numberOfLikes: 2,
                 priceRange: "0~999",
                 createdAt: NSDate(timeIntervalSince1970: 0),
                 photoUrls: [NSURL(string: "my-awesome-url")!],
+                createdByUser: (id: 99, name: "Danny", email: "danny@pivotal"),
                 comments: []
             ),
             reloader: FakeReloader(),

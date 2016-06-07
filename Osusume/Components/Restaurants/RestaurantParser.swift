@@ -52,8 +52,19 @@ struct RestaurantParser {
         let maybeNotes = json["notes"] as? String
         let notes = maybeNotes ?? ""
 
-        let maybeUserName = json["created_by_user_name"] as? String
-        let userName = maybeUserName ?? ""
+        let userId: Int
+        let userName: String
+        let userEmail: String
+        if let createdByUser = json["user"] as? [String: AnyObject]
+        {
+            userId = createdByUser["id"] as? Int ?? 0
+            userName = createdByUser["name"] as? String ?? ""
+            userEmail = createdByUser["email"] as? String ?? ""
+        } else {
+            userId = 0
+            userName = ""
+            userEmail = ""
+        }
 
         let maybeLiked = json["liked"] as? Bool
         let liked = maybeLiked ?? false
@@ -90,12 +101,12 @@ struct RestaurantParser {
             walkInsOk: walkInsOk,
             acceptsCreditCards: acceptCreditCard,
             notes: notes,
-            author: userName,
             liked: liked,
             numberOfLikes: numberOfLikes,
             priceRange: priceRange,
             createdAt: createdAt,
             photoUrls: urls,
+            createdByUser: (id: userId, name: userName, email: userEmail),
             comments: comments
         )
     }

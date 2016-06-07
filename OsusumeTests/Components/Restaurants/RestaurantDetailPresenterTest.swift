@@ -97,21 +97,26 @@ class RestaurantDetailPresenterTest: XCTestCase {
     func test_formats_creationInfo() {
         let date = NSDate()
         let restaurant = RestaurantFixtures
-            .newRestaurant(author: "danny", createdAt: date)
+            .newRestaurant(
+                createdByUser: (id: 99, name: "Danny", email: "danny@pivotal"),
+                createdAt: date
+            )
         let presenter = RestaurantDetailPresenter(restaurant: restaurant)
         let formattedDate = DateConverter.formattedDate(date)
 
 
-        expect(presenter.creationInfo).to(equal("Added by danny on \(formattedDate)"))
+        expect(presenter.creationInfo).to(equal("Added by Danny on \(formattedDate)"))
     }
 
     func test_formats_author() {
         let restaurant = RestaurantFixtures
-            .newRestaurant(author: "danny")
+            .newRestaurant(
+                createdByUser: (id: 99, name: "Danny", email: "danny@pivotal")
+        )
         let presenter = RestaurantDetailPresenter(restaurant: restaurant)
 
 
-        expect(presenter.author).to(equal("Added by danny"))
+        expect(presenter.author).to(equal("Added by Danny"))
     }
 
     func test_formats_creationDate() {

@@ -183,6 +183,28 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.liked).to(equal(false))
     }
 
+    func test_parse_handlesCreatedByUser() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "id": 1232,
+            "name": "Any restaurant",
+            "user" : [
+                "id": 100,
+                "name": "Danny",
+                "email": "danny@pivotal.io"
+            ]
+        ]
+
+
+        let restaurant = restaurantParser.parseSingle(json).value!
+
+
+        expect(restaurant.createdByUser.id).to(equal(100))
+        expect(restaurant.createdByUser.name).to(equal("Danny"))
+        expect(restaurant.createdByUser.email).to(equal("danny@pivotal.io"))
+    }
+
     func test_parse_handlesCuisine() {
         let restaurantParser = RestaurantParser()
 
@@ -248,7 +270,6 @@ class RestaurantParserTest: XCTestCase {
             "walk_ins_ok": false,
             "accepts_credit_cards": false,
             "created_at": "2016-02-03T06:18:40.000Z",
-            "created_by_user_name": "Bambi",
             "photo_urls": [
                 ["url": "http://www.example.com"],
                 ["url": "my-awesome-url"]
@@ -260,7 +281,6 @@ class RestaurantParserTest: XCTestCase {
         let restaurant = restaurantParser.parseSingle(json).value!
         expect(restaurant.name).to(equal("first restaurant"))
         expect(restaurant.createdAt!).to(equal(NSDate(timeIntervalSince1970: 1454480320)))
-        expect(restaurant.author).to(equal("Bambi"))
         expect(restaurant.photoUrls[0].absoluteString).to(equal("http://www.example.com"))
         expect(restaurant.photoUrls[1].absoluteString).to(equal("my-awesome-url"))
         expect(restaurant.comments.count).to(equal(0))
