@@ -80,8 +80,11 @@ struct RestaurantParser {
 
         let maybePhotoUrlsJson = json["photo_urls"] as? [[String: AnyObject]]
         let photoUrls = maybePhotoUrlsJson ?? []
-        let urls: [NSURL] = photoUrls.flatMap { photoUrlJson in
-            return NSURL(string: photoUrlJson["url"] as? String ?? "")
+        let urls: [PhotoUrl] = photoUrls.flatMap { photoUrlJson in
+            return PhotoUrl(
+                id: photoUrlJson["id"] as? Int ?? -1,
+                url: NSURL(string: photoUrlJson["url"] as? String ?? "")!
+            )
         }
 
         let maybeCommentsJson = json["comments"] as? [[String: AnyObject]]

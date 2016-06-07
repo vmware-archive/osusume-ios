@@ -54,8 +54,8 @@ struct RestaurantDetailPresenter {
     }
 
     var photoUrl: NSURL {
-        if let url = self.restaurant.photoUrls.first {
-            return url
+        if let photoUrl = self.restaurant.photoUrls.first {
+            return photoUrl.url
         }
 
         return NSURL(string: "")!

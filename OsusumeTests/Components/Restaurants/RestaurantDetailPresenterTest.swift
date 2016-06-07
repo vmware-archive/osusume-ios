@@ -132,7 +132,10 @@ class RestaurantDetailPresenterTest: XCTestCase {
 
     func test_formats_photoUrl_whenThereIsAPhoto() {
         let restaurant = RestaurantFixtures
-            .newRestaurant(photoUrls: [NSURL(string: "photoUrl.com")!])
+            .newRestaurant(photoUrls: [
+                PhotoUrl(id: 10, url: NSURL(string: "photoUrl.com")!)
+                ]
+            )
         let presenter = RestaurantDetailPresenter(restaurant: restaurant)
 
 

@@ -212,7 +212,9 @@ class EditRestaurantViewControllerTest: XCTestCase {
             liked: false,
             cuisine: cuisine,
             createdByUser: (id: 99, name: "Witta", email: "witta@pivotal"),
-            photoUrls: [NSURL(string: "url")!]
+            photoUrls: [
+                PhotoUrl(id: 10, url: NSURL(string: "url")!)
+            ]
         )
 
         editRestaurantViewController = EditRestaurantViewController(

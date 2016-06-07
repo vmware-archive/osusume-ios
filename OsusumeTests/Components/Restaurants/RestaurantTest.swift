@@ -34,7 +34,10 @@ class RestaurantTest: XCTestCase {
 
     func test_deletePhotoUrl_returnsRestaurant() {
         let restaurant = RestaurantFixtures.newRestaurant(
-            photoUrls: [NSURL(string: "http://hoge/image.jpg")!]
+            photoUrls: [PhotoUrl(
+                id: 10,
+                url: NSURL(string: "http://hoge/image.jpg")!
+            )]
         )
 
 

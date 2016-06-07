@@ -12,7 +12,7 @@ struct Restaurant {
     let numberOfLikes: Int
     let priceRange: String
     let createdAt: NSDate?
-    let photoUrls: [NSURL]
+    let photoUrls: [PhotoUrl]
     let createdByUser: (id: Int, name: String, email: String)
     var comments: [PersistedComment]
 
@@ -30,7 +30,7 @@ struct Restaurant {
         numberOfLikes: Int,
         priceRange: String,
         createdAt: NSDate?,
-        photoUrls: [NSURL],
+        photoUrls: [PhotoUrl],
         createdByUser: (id: Int, name: String, email: String),
         comments: [PersistedComment]
         )
@@ -85,8 +85,8 @@ struct Restaurant {
     }
 
     func restaurantByDeletingPhotoUrl(photoUrlToDelete: String) -> Restaurant {
-        let updatedPhotoUrls = photoUrls.filter { url in
-            return url.absoluteString != photoUrlToDelete
+        let updatedPhotoUrls = photoUrls.filter { photoUrl in
+            return photoUrl.url.absoluteString != photoUrlToDelete
         }
 
         return Restaurant(

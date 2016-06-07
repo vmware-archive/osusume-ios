@@ -83,6 +83,7 @@
 		AE5D1A971CC0D0E200553A95 /* NetworkPriceRangeRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D1A961CC0D0E200553A95 /* NetworkPriceRangeRepo.swift */; };
 		AE6091071CC5C1C20016CD6A /* CuisineSelectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6091061CC5C1C20016CD6A /* CuisineSelectionProtocol.swift */; };
 		AE6091091CC5F29B0016CD6A /* NSUrlRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6091081CC5F29B0016CD6A /* NSUrlRequestExtension.swift */; };
+		AE62512F1D0698F700863DB1 /* PhotoUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE62512E1D0698F700863DB1 /* PhotoUrl.swift */; };
 		AE6AECA51CC0C871000171A3 /* PriceRangeListParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AECA41CC0C871000171A3 /* PriceRangeListParserTest.swift */; };
 		AE6AECA81CC0C8FD000171A3 /* PriceRangeListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AECA71CC0C8FD000171A3 /* PriceRangeListParser.swift */; };
 		AE6C3DDD1CFD65B100432DB9 /* PhotoCollectionViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6C3DDC1CFD65B100432DB9 /* PhotoCollectionViewCellTest.swift */; };
@@ -310,6 +311,7 @@
 		AE5D1A961CC0D0E200553A95 /* NetworkPriceRangeRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkPriceRangeRepo.swift; sourceTree = "<group>"; };
 		AE6091061CC5C1C20016CD6A /* CuisineSelectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineSelectionProtocol.swift; sourceTree = "<group>"; };
 		AE6091081CC5F29B0016CD6A /* NSUrlRequestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUrlRequestExtension.swift; sourceTree = "<group>"; };
+		AE62512E1D0698F700863DB1 /* PhotoUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoUrl.swift; sourceTree = "<group>"; };
 		AE6AECA41CC0C871000171A3 /* PriceRangeListParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeListParserTest.swift; sourceTree = "<group>"; };
 		AE6AECA71CC0C8FD000171A3 /* PriceRangeListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeListParser.swift; sourceTree = "<group>"; };
 		AE6C3DDC1CFD65B100432DB9 /* PhotoCollectionViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCellTest.swift; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 				AE559A451C8EC98B001D45A1 /* ImageLoaderHandler.swift */,
 				DE99CA2F1013C067383EDCAD /* NetworkPhotoRepo.swift */,
 				DE99C23AE564F64ADA1FA252 /* PhotoRepo.swift */,
+				AE62512E1D0698F700863DB1 /* PhotoUrl.swift */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
@@ -1328,6 +1331,7 @@
 				DE99C436E360442260128A3B /* PersistedComment.swift in Sources */,
 				AE0505131CF834DE004A4948 /* PhotoCollectionViewCell.swift in Sources */,
 				DE99C6D52B330617543375A2 /* PhotoRepo.swift in Sources */,
+				AE62512F1D0698F700863DB1 /* PhotoUrl.swift in Sources */,
 				AE435A521CF2F83C00060AAF /* PhotoUrlsCollectionViewDataSource.swift in Sources */,
 				AE6AECA81CC0C8FD000171A3 /* PriceRangeListParser.swift in Sources */,
 				AEC821191CC479DC00C9B864 /* PriceRangeListViewController.swift in Sources */,

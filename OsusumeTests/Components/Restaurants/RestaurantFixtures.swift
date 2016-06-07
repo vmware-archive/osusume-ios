@@ -12,7 +12,7 @@ struct RestaurantFixtures {
         createdAt: NSDate = NSDate(),
         liked: Bool = false,
         numberOfLikes: Int = 0,
-        photoUrls: [NSURL] = [],
+        photoUrls: [PhotoUrl] = [],
         cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified"),
         priceRange: String = "",
         createdByUser: (id: Int, name: String, email: String) = (id: 99, name: "Danny", email: "danny@pivotal"),

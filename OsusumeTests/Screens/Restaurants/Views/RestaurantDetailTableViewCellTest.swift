@@ -30,7 +30,9 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
                 numberOfLikes: 2,
                 priceRange: "0~999",
                 createdAt: NSDate(timeIntervalSince1970: 0),
-                photoUrls: [NSURL(string: "my-awesome-url")!],
+                photoUrls: [
+                    PhotoUrl(id: 1, url: NSURL(string: "my-awesome-url")!)
+                ],
                 createdByUser: (id: 99, name: "Danny", email: "danny@pivotal"),
                 comments: []
             ),
@@ -102,7 +104,9 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
     func test_tappingAnImage_showsAFullScreenImage() {
         restaurantDetailCell.configureView(
             RestaurantFixtures.newRestaurant(
-                photoUrls: [NSURL(string: "http://www.example.com/cat.jpg")!]
+                photoUrls: [
+                    PhotoUrl(id: 10, url: NSURL(string: "http://www.example.com/cat.jpg")!)
+                ]
             ),
             reloader: fakeReloader,
             router: fakeRouter
@@ -123,7 +127,10 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
 
     func test_configureView_setsPhotosDataSource() {
         restaurantDetailCell.configureView(
-            RestaurantFixtures.newRestaurant(photoUrls: [NSURL(string: "my-awesome-url")!]),
+            RestaurantFixtures.newRestaurant(
+            photoUrls: [
+                PhotoUrl(id: 10, url: NSURL(string: "my-awesome-url")!)
+            ]),
             reloader: FakeReloader(),
             router: FakeRouter()
         )

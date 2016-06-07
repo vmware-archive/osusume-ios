@@ -1,5 +1,5 @@
 protocol PhotoUrlsDataSource {
-    func getPhotoUrls() -> [NSURL]
+    func getPhotoUrls() -> [PhotoUrl]
 }
 
 class PhotoUrlsCollectionViewDataSource: NSObject {
@@ -36,7 +36,7 @@ extension PhotoUrlsCollectionViewDataSource: UICollectionViewDataSource {
         ) as! PhotoCollectionViewCell
 
         cell.configureCell(
-            photoUrlsDataSource.getPhotoUrls()[indexPath.row],
+            photoUrlsDataSource.getPhotoUrls()[indexPath.row].url,
             isEditMode: editMode,
             deletePhotoClosure: deletePhotoClosure
         )

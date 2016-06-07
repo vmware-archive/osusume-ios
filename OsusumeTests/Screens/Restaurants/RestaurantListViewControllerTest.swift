@@ -35,7 +35,9 @@ class RestaurantListViewControllerTest: XCTestCase {
         restaurantListVC.restaurantListDataSource.updateRestaurants(
             [
                 RestaurantFixtures.newRestaurant(
-                    photoUrls: [NSURL(string: "http://www.example.com/cat.jpg")!]
+                    photoUrls: [
+                        PhotoUrl(id: 10, url: NSURL(string: "http://www.example.com/cat.jpg")!)
+                    ]
                 )
             ]
         )

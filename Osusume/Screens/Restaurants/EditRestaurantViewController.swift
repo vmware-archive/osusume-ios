@@ -159,7 +159,7 @@ class EditRestaurantViewController: UIViewController {
 
 // MARK: - PhotoUrlsDataSource
 extension EditRestaurantViewController: PhotoUrlsDataSource {
-    func getPhotoUrls() -> [NSURL] {
+    func getPhotoUrls() -> [PhotoUrl] {
         return restaurant.photoUrls
     }
 }

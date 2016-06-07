@@ -15,7 +15,9 @@ class RestaurantTableViewCellTest: XCTestCase {
         )
 
         let restaurantWithPhotos = RestaurantFixtures.newRestaurant(
-            photoUrls: [NSURL(string: "photo-url")!]
+            photoUrls: [
+                PhotoUrl(id: 10, url: NSURL(string: "photo-url")!)
+            ]
         )
         detailPresenter = RestaurantDetailPresenter(restaurant: restaurantWithPhotos)
     }

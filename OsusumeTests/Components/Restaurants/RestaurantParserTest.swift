@@ -22,7 +22,7 @@ class RestaurantParserTest: XCTestCase {
                 "created_at": "2016-02-29T06:07:55.000Z",
                 "user": ["name": "Bambi"],
                 "photo_urls": [
-                    ["url": "http://www.example.com"]
+                    ["id": 10, "url": "http://www.example.com"]
                 ]
             ],
             [
@@ -37,7 +37,7 @@ class RestaurantParserTest: XCTestCase {
                 "created_at": "2016-02-29T06:07:55.000Z",
                 "user": ["name": "Bambi"],
                 "photo_urls": [
-                    ["url": "http://www.example.com"]
+                    ["id": 20, "url": "http://www.example.com"]
                 ]
             ]
         ]
@@ -271,8 +271,8 @@ class RestaurantParserTest: XCTestCase {
             "accepts_credit_cards": false,
             "created_at": "2016-02-03T06:18:40.000Z",
             "photo_urls": [
-                ["url": "http://www.example.com"],
-                ["url": "my-awesome-url"]
+                ["id": 10, "url": "http://www.example.com"],
+                ["id": 11, "url": "my-awesome-url"]
             ],
             "comments": [
             ]
@@ -281,8 +281,8 @@ class RestaurantParserTest: XCTestCase {
         let restaurant = restaurantParser.parseSingle(json).value!
         expect(restaurant.name).to(equal("first restaurant"))
         expect(restaurant.createdAt!).to(equal(NSDate(timeIntervalSince1970: 1454480320)))
-        expect(restaurant.photoUrls[0].absoluteString).to(equal("http://www.example.com"))
-        expect(restaurant.photoUrls[1].absoluteString).to(equal("my-awesome-url"))
+        expect(restaurant.photoUrls[0].url.absoluteString).to(equal("http://www.example.com"))
+        expect(restaurant.photoUrls[1].url.absoluteString).to(equal("my-awesome-url"))
         expect(restaurant.comments.count).to(equal(0))
     }
 
@@ -339,6 +339,25 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.address).to(equal(""))
         expect(restaurant.walkInsOk).to(equal(false))
         expect(restaurant.createdAt).to(beNil())
+    }
+
+    func test_parsingASingleRestaurant_withPhotoUrls() {
+        let restaurantParser = RestaurantParser()
+
+        let json: [String: AnyObject] = [
+            "id": -1,
+            "name": "Name",
+            "photo_urls": [
+                ["id": 123, "url": "http://www.example.com"],
+                ["id": 234, "url": "my-awesome-url"]
+            ]
+        ]
+
+        let restaurant = restaurantParser.parseSingle(json).value!
+        expect(restaurant.photoUrls[0].id).to(equal(123))
+        expect(restaurant.photoUrls[0].url.absoluteString).to(equal("http://www.example.com"))
+        expect(restaurant.photoUrls[1].id).to(equal(234))
+        expect(restaurant.photoUrls[1].url.absoluteString).to(equal("my-awesome-url"))
     }
 
 }

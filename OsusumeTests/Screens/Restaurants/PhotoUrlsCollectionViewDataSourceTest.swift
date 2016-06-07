@@ -4,7 +4,7 @@ import Nimble
 
 class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
 
-    var photoUrls: [NSURL] = []
+    var photoUrls: [PhotoUrl] = []
 
     func test_dataSource_configuresNumberOfRowsPerSection() {
         let collectionView = UICollectionView(
@@ -12,8 +12,8 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         photoUrls = [
-            NSURL(string: "url1")!,
-            NSURL(string: "url2")!
+            PhotoUrl(id: 1, url: NSURL(string: "url1")!),
+            PhotoUrl(id: 2, url: NSURL(string: "url2")!)
         ]
         let dataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
@@ -34,7 +34,7 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
     func test_dataSource_configuresCellWithImageView() {
         let collectionView = initializeImageCollectionView()
         photoUrls = [
-            NSURL(string: "url")!
+            PhotoUrl(id: 1, url: NSURL(string: "url")!)
         ]
         let dataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
@@ -58,7 +58,7 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
     func test_dataSource_configureCellWithDeleteButtonHidden() {
         let collectionView = initializeImageCollectionView()
         photoUrls = [
-            NSURL(string: "url")!
+            PhotoUrl(id: 1, url: NSURL(string: "url")!)
         ]
 
 
@@ -80,7 +80,7 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
     func test_dataSource_configureCellWithDeleteButtonDisplayed() {
         let collectionView = initializeImageCollectionView()
         photoUrls = [
-            NSURL(string: "url")!
+            PhotoUrl(id: 1, url: NSURL(string: "url")!)
         ]
 
 
@@ -102,7 +102,7 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
     func test_tappingDeletePhotoButton_invokesDeleteOnPhotoRepo() {
         let collectionView = initializeImageCollectionView()
         photoUrls = [
-            NSURL(string: "url")!
+            PhotoUrl(id: 1, url: NSURL(string: "url")!)
         ]
         var deletePhotoClosureWasCalled = false
 
@@ -143,7 +143,7 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
 }
 
 extension PhotoUrlsCollectionViewDataSourceTest: PhotoUrlsDataSource {
-    func getPhotoUrls() -> [NSURL] {
+    func getPhotoUrls() -> [PhotoUrl] {
         return photoUrls
     }
 }
