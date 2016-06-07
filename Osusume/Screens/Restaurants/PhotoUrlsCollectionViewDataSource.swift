@@ -5,12 +5,12 @@ protocol PhotoUrlsDataSource {
 class PhotoUrlsCollectionViewDataSource: NSObject {
     private let photoUrlsDataSource: PhotoUrlsDataSource!
     private let editMode: Bool
-    private let deletePhotoClosure: ((url: NSURL) -> Void)?
+    private let deletePhotoClosure: ((photoUrlId: Int) -> Void)?
 
     init (
         photoUrlsDataSource: PhotoUrlsDataSource,
         editMode: Bool,
-        deletePhotoClosure: ((url: NSURL) -> Void)?
+        deletePhotoClosure: ((photoUrlId: Int) -> Void)?
     ) {
         self.photoUrlsDataSource = photoUrlsDataSource
         self.editMode = editMode
@@ -36,7 +36,7 @@ extension PhotoUrlsCollectionViewDataSource: UICollectionViewDataSource {
         ) as! PhotoCollectionViewCell
 
         cell.configureCell(
-            photoUrlsDataSource.getPhotoUrls()[indexPath.row].url,
+            photoUrlsDataSource.getPhotoUrls()[indexPath.row],
             isEditMode: editMode,
             deletePhotoClosure: deletePhotoClosure
         )

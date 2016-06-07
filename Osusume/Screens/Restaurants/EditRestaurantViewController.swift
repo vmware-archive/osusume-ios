@@ -45,11 +45,11 @@ class EditRestaurantViewController: UIViewController {
         self.photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
             editMode: restaurant.createdByCurrentUser(sessionRepo.getAuthenticatedUser()),
-            deletePhotoClosure: { [unowned self] url in
-                self.restaurant = self.restaurant.restaurantByDeletingPhotoUrl(url.absoluteString)
+            deletePhotoClosure: { [unowned self] photoUrlId in
+                self.restaurant = self.restaurant.restaurantByDeletingPhotoUrl(photoUrlId)
                 reloader.reload(self.imageCollectionView)
 
-                photoRepo.deletePhoto(url)
+                photoRepo.deletePhoto(self.restaurant.id, photoUrlId: photoUrlId)
             }
         )
     }

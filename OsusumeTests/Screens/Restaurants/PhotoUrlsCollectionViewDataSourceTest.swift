@@ -109,7 +109,7 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
         let dataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
             editMode: true,
-            deletePhotoClosure: { url in
+            deletePhotoClosure: { photoUrlId in
                 deletePhotoClosureWasCalled = true
             }
         )

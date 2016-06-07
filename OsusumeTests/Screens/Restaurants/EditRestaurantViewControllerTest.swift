@@ -70,6 +70,8 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
 
         expect(self.fakePhotoRepo.deletePhoto_wasCalled).to(beTrue())
+        expect(self.fakePhotoRepo.deletePhoto_args.restaurantId).to(equal(5))
+        expect(self.fakePhotoRepo.deletePhoto_args.photoUrlId).to(equal(10))
     }
 
     func test_tappingDeleteButton_deletePhotoUrlFromRestaurant() {
@@ -208,6 +210,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
     // MARK: - Private Methods
     private func instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine) {
         let restaurant = RestaurantFixtures.newRestaurant(
+            id: 5,
             name: "Original Restaurant Name",
             liked: false,
             cuisine: cuisine,

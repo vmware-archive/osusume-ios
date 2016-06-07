@@ -19,7 +19,7 @@ struct NetworkPhotoRepo: PhotoRepo {
         return photos.map { photo in uploadPhoto(photo) }
     }
 
-    func deletePhoto(url: NSURL) {
+    func deletePhoto(restaurantId: Int, photoUrlId: Int) {
 
     }
 

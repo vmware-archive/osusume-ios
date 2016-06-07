@@ -41,7 +41,7 @@ class RestaurantTest: XCTestCase {
         )
 
 
-        let updatedRestaurant = restaurant.restaurantByDeletingPhotoUrl("http://hoge/image.jpg")
+        let updatedRestaurant = restaurant.restaurantByDeletingPhotoUrl(10)
 
 
         expect(updatedRestaurant.photoUrls.count).to(equal(0))

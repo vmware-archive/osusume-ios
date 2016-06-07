@@ -19,7 +19,9 @@ class FakePhotoRepo: PhotoRepo {
     }
 
     var deletePhoto_wasCalled = false
-    func deletePhoto(url: NSURL) {
+    var deletePhoto_args: (restaurantId: Int, photoUrlId: Int) = (restaurantId: -1, photoUrlId: -1)
+    func deletePhoto(restaurantId: Int, photoUrlId: Int) {
         deletePhoto_wasCalled = true
+        deletePhoto_args = (restaurantId: restaurantId, photoUrlId: photoUrlId)
     }
 }

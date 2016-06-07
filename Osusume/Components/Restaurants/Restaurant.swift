@@ -84,9 +84,9 @@ struct Restaurant {
         )
     }
 
-    func restaurantByDeletingPhotoUrl(photoUrlToDelete: String) -> Restaurant {
+    func restaurantByDeletingPhotoUrl(photoUrlIdToDelete: Int) -> Restaurant {
         let updatedPhotoUrls = photoUrls.filter { photoUrl in
-            return photoUrl.url.absoluteString != photoUrlToDelete
+            return photoUrl.id != photoUrlIdToDelete
         }
 
         return Restaurant(

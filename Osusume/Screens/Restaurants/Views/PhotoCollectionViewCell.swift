@@ -1,8 +1,8 @@
 class PhotoCollectionViewCell: UICollectionViewCell {
     let deleteButton: UIButton
-    private var url: NSURL?
+    private var photoUrl: PhotoUrl?
     private var isEditMode: Bool
-    private var deletePhotoClosure: ((url: NSURL) -> Void)?
+    private var deletePhotoClosure: ((photoUrlId: Int) -> Void)?
 
     override init(frame: CGRect) {
         deleteButton = UIButton()
@@ -36,16 +36,16 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
 
     // MARK: Public Methods
-    func configureCell(url: NSURL,
+    func configureCell(photoUrl: PhotoUrl,
                        isEditMode: Bool,
-                       deletePhotoClosure: ((url: NSURL) -> Void)?
+                       deletePhotoClosure: ((photoUrlId: Int) -> Void)?
     ) {
-        self.url = url
+        self.photoUrl = photoUrl
         self.isEditMode = isEditMode
         self.deletePhotoClosure = deletePhotoClosure
 
         let imageView = UIImageView()
-        imageView.sd_setImageWithURL(url)
+        imageView.sd_setImageWithURL(photoUrl.url)
         backgroundView = imageView
 
         deleteButton.hidden = !isEditMode
@@ -58,6 +58,6 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Actions
     @objc private func deletePhoto() {
-        self.deletePhotoClosure?(url: url!)
+        self.deletePhotoClosure?(photoUrlId: (photoUrl?.id)!)
     }
 }
