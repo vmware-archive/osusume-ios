@@ -5,7 +5,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     private var deletePhotoClosure: ((photoUrlId: Int) -> Void)?
 
     override init(frame: CGRect) {
-        deleteButton = UIButton()
+        deleteButton = UIButton(type: .System)
         isEditMode = false
         deletePhotoClosure = { _ in }
         super.init(frame: frame)
@@ -25,6 +25,15 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureSubviews() {
+        let font = UIFont(name: "Avenir-Heavy", size: 26.0)
+        let attributedTitle = NSAttributedString(
+            string: "X",
+            attributes: [
+                NSForegroundColorAttributeName : UIColor.whiteColor(),
+                NSFontAttributeName : font!
+            ]
+        )
+        self.deleteButton.setAttributedTitle(attributedTitle, forState: .Normal)
         self.deleteButton.backgroundColor = UIColor.redColor()
     }
 
