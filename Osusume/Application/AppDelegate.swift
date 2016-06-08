@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             uuidProvider: RandomUUIDProvider(),
             localStorage: DiskStorage(),
             imageLoader: DefaultImageLoader(),
-            http: http
+            http: sessionHttp
         )
 
         let networkRestaurantListRepo = NetworkRestaurantListRepo(
