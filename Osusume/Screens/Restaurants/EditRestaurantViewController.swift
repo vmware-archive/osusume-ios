@@ -78,6 +78,12 @@ class EditRestaurantViewController: UIViewController {
             target: self,
             action: #selector(EditRestaurantViewController.didTapUpdateButton(_:))
         )
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: #selector(EditRestaurantViewController.didTapCancelButton(_:))
+        )
     }
 
     private func addSubviews() {
@@ -143,9 +149,13 @@ class EditRestaurantViewController: UIViewController {
         repo.update(self.id, params: params)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.router.showRestaurantListScreen()
+                    self.router.dismissPresentedNavigationController()
                 }
         }
+    }
+
+    @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
+        self.router.dismissPresentedNavigationController()
     }
 
     // MARK: - Private Methods

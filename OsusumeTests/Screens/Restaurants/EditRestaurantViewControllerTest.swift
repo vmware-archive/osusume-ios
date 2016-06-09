@@ -184,6 +184,19 @@ class EditRestaurantViewControllerTest: XCTestCase {
     }
 
     // MARK: - Navigation Bar
+    func test_tappingCancelButton_dismissesToDetailScreen() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 0, name: "Not Specified"))
+
+        let cancelButton = editRestaurantViewController.navigationItem.leftBarButtonItem!
+
+
+        tapNavBarButton(cancelButton)
+        NSRunLoop.osu_advance()
+
+
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
+    }
+
     func test_tappingUpdateButton_invokesUpdateWithChangedValues() {
         instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
 
@@ -205,6 +218,18 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(actualParams["walk_ins_ok"] as? Bool).to(equal(true))
         expect(actualParams["accepts_credit_cards"] as? Bool).to(equal(true))
         expect(actualParams["notes"] as? String).to(equal("Try the vegetables!"))
+    }
+
+    func test_tappingUpdateButton_returnsToDetailScreen() {
+        instantiateEditRestaurantVCWithCuisine(Cuisine(id: 0, name: "Not Specified"))
+        let updateButton = editRestaurantViewController.navigationItem.rightBarButtonItem!
+
+
+        tapNavBarButton(updateButton)
+        NSRunLoop.osu_advance()
+
+
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 
     // MARK: - Private Methods

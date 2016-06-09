@@ -86,11 +86,7 @@ struct NavigationRouter: Router {
             reloader: DefaultReloader(),
             restaurant: restaurant
         )
-
-        navigationController.pushViewController(
-            editRestaurantViewController,
-            animated: animated
-        )
+        presentViewControllerModallyWithinNavController(editRestaurantViewController)
     }
 
     func showLoginScreen() {
