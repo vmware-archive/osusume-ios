@@ -29,72 +29,18 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     // MARK: - View Controller Lifecycle
+    func test_viewDidLoad_initializesSubviews() {
+        expect(self.newRestaurantVC.formView.findRestaurantButton).to(beAKindOf(UIButton))
+        expect(self.newRestaurantVC.formView.findCuisineButton).to(beAKindOf(UIButton))
+        expect(self.newRestaurantVC.formView.priceRangeButton).to(beAKindOf(UIButton))
+    }
+
+    // MARK: - Navigation Bar
     func test_viewDidLoad_setsTitle() {
         expect(self.newRestaurantVC.title).to(equal("Add Restaurant"))
     }
 
-    func test_tappingCancelButton_dismissesToListScreen() {
-        let cancelButton = newRestaurantVC.navigationItem.leftBarButtonItem!
-
-
-        tapNavBarButton(cancelButton)
-        NSRunLoop.osu_advance()
-
-
-        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
-    }
-
-    func test_viewDidLoad_showsFindCuisineButton() {
-        expect(self.newRestaurantVC.formView.findCuisineButton).to(beAKindOf(UIButton))
-    }
-
-    func test_tappingFindCuisine_showsFindCuisineScreen() {
-        tapButton(newRestaurantVC.formView.findCuisineButton)
-
-        expect(self.fakeRouter.showFindCuisineScreen_wasCalled).to(beTrue())
-    }
-
-    func test_viewDidLoad_showsPriceRangeButton() {
-        expect(self.newRestaurantVC.formView.priceRangeButton).to(beAKindOf(UIButton))
-    }
-
-    func test_tappingPriceRange_showsPriceRangeListScreen() {
-        tapButton(newRestaurantVC.formView.priceRangeButton)
-
-        expect(self.fakeRouter.showPriceRangeListScreen_wasCalled).to(beTrue())
-    }
-
-    func test_viewDidLoad_showsFindRestaurantButton() {
-        expect(self.newRestaurantVC.formView.findRestaurantButton).to(beAKindOf(UIButton))
-    }
-
-    func test_tappingFindRestaurantButton_showsFindRestaurantScreen() {
-        tapButton(newRestaurantVC.formView.findRestaurantButton)
-
-
-        expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beTrue())
-    }
-
-    func test_selectPriceRange_populatesPriceRangeTextfield() {
-        let selectedPriceRange = PriceRange(id: 1, range: "0~999")
-
-
-        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange)
-
-
-        expect(self.newRestaurantVC.formView.priceRangeValueLabel.text).to(equal("0~999"))
-    }
-
-    func test_selectPriceRange_setsSelectedPriceRangePropertyValue() {
-        let selectedPriceRange = PriceRange(id: 1, range: "0~999")
-
-
-        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange)
-
-
-        expect(self.newRestaurantVC.formView.selectedPriceRange).to(equal(selectedPriceRange))
-    }
-
+    // MARK: - Actions
     func test_tappingDoneButton_savesRestaurant() {
         newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
         newRestaurantVC.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"
@@ -128,6 +74,55 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 
+    func test_tappingCancelButton_dismissesToListScreen() {
+        let cancelButton = newRestaurantVC.navigationItem.leftBarButtonItem!
+
+
+        tapNavBarButton(cancelButton)
+        NSRunLoop.osu_advance()
+
+
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
+    }
+
+    func test_tappingFindRestaurantButton_showsFindRestaurantScreen() {
+        tapButton(newRestaurantVC.formView.findRestaurantButton)
+
+
+        expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beTrue())
+    }
+
+    func test_tappingFindCuisine_showsFindCuisineScreen() {
+        tapButton(newRestaurantVC.formView.findCuisineButton)
+
+
+        expect(self.fakeRouter.showFindCuisineScreen_wasCalled).to(beTrue())
+    }
+
+    func test_tappingPriceRange_showsPriceRangeListScreen() {
+        tapButton(newRestaurantVC.formView.priceRangeButton)
+
+
+        expect(self.fakeRouter.showPriceRangeListScreen_wasCalled).to(beTrue())
+    }
+
+    // MARK: - Find Restaurant
+    func test_selectSearchResultRestaurant_populatesNameAndAddressTextfields() {
+        let selectedSearchResultRestaurant = SearchResultRestaurant(
+            id: "1",
+            name: "Afuri",
+            address: "Roppongi Hills 5-2-1"
+        )
+
+
+        newRestaurantVC.formView.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+
+
+        expect(self.newRestaurantVC.formView.nameTextField.text).to(equal("Afuri"))
+        expect(self.newRestaurantVC.formView.addressTextField.text).to(equal("Roppongi Hills 5-2-1"))
+    }
+
+    // MARK: - Select Cuisine
     func test_selectCuisine_populatesCuisineTextfield() {
         let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
 
@@ -148,19 +143,24 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.newRestaurantVC.formView.selectedCuisine).to(equal(selectedCuisine))
     }
 
-    func test_selectSearchResultRestaurant_populatesNameAndAddressTextfields() {
-        let selectedSearchResultRestaurant = SearchResultRestaurant(
-            id: "1",
-            name: "Afuri",
-            address: "Roppongi Hills 5-2-1"
-        )
+    // MARK: - Price Range
+    func test_selectPriceRange_populatesPriceRangeTextfield() {
+        let selectedPriceRange = PriceRange(id: 1, range: "0~999")
 
 
-        newRestaurantVC.formView.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange)
 
 
-        expect(self.newRestaurantVC.formView.nameTextField.text).to(equal("Afuri"))
-        expect(self.newRestaurantVC.formView.addressTextField.text).to(equal("Roppongi Hills 5-2-1"))
+        expect(self.newRestaurantVC.formView.priceRangeValueLabel.text).to(equal("0~999"))
     }
 
+    func test_selectPriceRange_setsSelectedPriceRangePropertyValue() {
+        let selectedPriceRange = PriceRange(id: 1, range: "0~999")
+
+
+        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange)
+
+
+        expect(self.newRestaurantVC.formView.selectedPriceRange).to(equal(selectedPriceRange))
+    }
 }
