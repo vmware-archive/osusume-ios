@@ -7,12 +7,10 @@ class NavigationRouterTest: XCTestCase {
     var navigationRouter: NavigationRouter!
     var rootNavController: UINavigationController!
     var fakeSessionRepo: FakeSessionRepo!
-    var fakeCuisineRepo: FakeCuisineRepo!
 
     override func setUp() {
         rootNavController = UINavigationController()
         fakeSessionRepo = FakeSessionRepo()
-        fakeCuisineRepo = FakeCuisineRepo()
 
         navigationRouter = NavigationRouter(
             navigationController: rootNavController,
@@ -21,7 +19,7 @@ class NavigationRouterTest: XCTestCase {
             photoRepo: FakePhotoRepo(),
             userRepo: FakeUserRepo(),
             commentRepo: FakeCommentRepo(),
-            cuisineRepo: fakeCuisineRepo,
+            cuisineRepo: FakeCuisineRepo(),
             likeRepo: FakeLikeRepo(),
             priceRangeRepo: FakePriceRangeRepo(),
             restaurantSearchRepo: FakeRestaurantSearchRepo(),
