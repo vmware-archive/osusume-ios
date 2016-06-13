@@ -2,45 +2,70 @@ import BrightFutures
 import BSImagePicker
 import Photos
 
+enum NewRestuarantTableViewRow: Int {
+    case AddPhotosCell = 0
+    case FormDetailsCell
+    case Count
+
+    static var count: Int {
+        get {
+            return NewRestuarantTableViewRow.Count.rawValue
+        }
+    }
+}
+
 class NewRestaurantViewController: UIViewController {
     // MARK: - Properties
     private let router: Router
     private let restaurantRepo: RestaurantRepo
     private let photoRepo: PhotoRepo
+    private var imagePicker: ImagePicker?
+
     private(set) var images: [UIImage]
-    private let imagePicker: BSImagePickerViewController
+    private let imagePickerViewController: BSImagePickerViewController
+
+    let addRestaurantPhotosTableViewCell: AddRestaurantPhotosTableViewCell
+    let addRestaurantFormTableViewCell: AddRestaurantFormTableViewCell
 
     // MARK: - View Elements
-    let scrollView: UIScrollView
-    let scrollViewContentView: UIView
-    let imageCollectionView: UICollectionView
-    let addPhotoButton: UIButton
-    let formViewContainer: UIView
-    let formView: NewRestaurantFormView
+    let tableView: UITableView
 
     // MARK: - Initializers
     init(
         router: Router,
         restaurantRepo: RestaurantRepo,
-        photoRepo: PhotoRepo)
+        photoRepo: PhotoRepo,
+        imagePicker: ImagePicker?)
     {
         self.router = router
         self.restaurantRepo = restaurantRepo
         self.photoRepo = photoRepo
-        images = [UIImage]()
-        imagePicker = BSImagePickerViewController()
+        self.imagePicker = imagePicker
 
-        scrollView = UIScrollView.newAutoLayoutView()
-        scrollViewContentView = UIView.newAutoLayoutView()
-        imageCollectionView = UICollectionView(
-            frame: CGRectZero,
-            collectionViewLayout: NewRestaurantViewController.imageCollectionViewLayout()
-        )
-        addPhotoButton = UIButton(type: UIButtonType.System)
-        formViewContainer = UIView.newAutoLayoutView()
-        formView = NewRestaurantFormView()
+        images = [UIImage]()
+        imagePickerViewController = BSImagePickerViewController()
+
+        tableView = UITableView.newAutoLayoutView()
+
+        addRestaurantPhotosTableViewCell = AddRestaurantPhotosTableViewCell()
+        addRestaurantFormTableViewCell = AddRestaurantFormTableViewCell()
 
         super.init(nibName: nil, bundle: nil)
+    }
+
+    convenience init(
+        router: Router,
+        restaurantRepo: RestaurantRepo,
+        photoRepo: PhotoRepo)
+    {
+        self.init(
+            router: router,
+            restaurantRepo: restaurantRepo,
+            photoRepo: photoRepo,
+            imagePicker: nil
+        )
+
+        self.imagePicker = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -76,82 +101,60 @@ class NewRestaurantViewController: UIViewController {
     }
 
     private func addSubviews() {
-        formViewContainer.addSubview(formView)
-
-        scrollViewContentView.addSubview(imageCollectionView)
-        scrollViewContentView.addSubview(addPhotoButton)
-        scrollViewContentView.addSubview(formViewContainer)
-        scrollView.addSubview(scrollViewContentView)
-        view.addSubview(scrollView)
+        view.addSubview(tableView)
     }
 
     private func configureSubviews() {
-        scrollView.backgroundColor = UIColor.whiteColor()
+        tableView.allowsSelection = false
+        tableView.dataSource = self
 
-        imageCollectionView.dataSource = self
-        imageCollectionView.contentInset = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
-        imageCollectionView.registerClass(
-            UICollectionViewCell.self,
-            forCellWithReuseIdentifier: String(UICollectionViewCell)
-        )
-        imageCollectionView.backgroundColor = UIColor.lightGrayColor()
-
-        addPhotoButton.translatesAutoresizingMaskIntoConstraints = false
-        addPhotoButton.setTitle("Add photos", forState: .Normal)
-        addPhotoButton.addTarget(
+        addRestaurantPhotosTableViewCell.configureCell(
             self,
-            action: #selector(NewRestaurantViewController.didTapAddPhotoButton(_:)),
-            forControlEvents: .TouchUpInside
+            dataSource: self,
+            reloader: DefaultReloader()
         )
 
-        formView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44.0
     }
 
     private func addConstraints() {
-        scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-
-        scrollViewContentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-        scrollViewContentView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
-        scrollViewContentView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
-
-        imageCollectionView.autoPinEdgeToSuperviewEdge(.Top, withInset: 20.0)
-        imageCollectionView.autoAlignAxisToSuperviewAxis(.Vertical)
-        imageCollectionView.autoSetDimension(.Height, toSize: 120.0)
-        imageCollectionView.autoMatchDimension(.Width, toDimension:.Width, ofView: scrollViewContentView)
-
-        addPhotoButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageCollectionView)
-        addPhotoButton.autoAlignAxis(.Vertical, toSameAxisOfView: imageCollectionView)
-        addPhotoButton.autoSetDimension(.Height, toSize: 25.0)
-        addPhotoButton.autoSetDimension(.Width, toSize: 100.0)
-
-        formViewContainer.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
-        formViewContainer.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-        formViewContainer.autoPinEdge(.Top, toEdge: .Bottom, ofView: addPhotoButton, withOffset: 20.0)
-        formViewContainer.autoAlignAxis(.Vertical, toSameAxisOfView: formViewContainer)
-
-        formView.autoPinEdgesToSuperviewEdges()
+        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
 
     // MARK: - Actions
     @objc private func didTapDoneButton(sender: UIBarButtonItem?) {
-        let photoUrls = photoRepo.uploadPhotos(self.images)
+        let photoUrls = photoRepo.uploadPhotos(images)
 
-        let newRestaurant = NewRestaurant(
-            name: formView.getNameText()!,
-            address: formView.getAddressText()!,
-            cuisineType: formView.getCuisineTypeText() ?? "",
-            cuisineId: formView.selectedCuisine.id,
-            priceRangeId: formView.selectedPriceRange.id,
-            offersEnglishMenu: formView.getOffersEnglishMenuState()!,
-            walkInsOk: formView.getWalkInsOkState()!,
-            acceptsCreditCards: formView.getAcceptsCreditCardsState()!,
-            notes: formView.getNotesText()!,
-            photoUrls: photoUrls
+        let restaurantTableViewCellIndexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.FormDetailsCell.rawValue,
+            inSection: 0
         )
+        let maybeCell = tableView.dataSource?.tableView(
+            tableView,
+            cellForRowAtIndexPath: restaurantTableViewCellIndexPath
+        ) as? AddRestaurantFormTableViewCell
 
-        restaurantRepo.create(newRestaurant)
-            .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
-                self.router.dismissPresentedNavigationController()
+        if let cell = maybeCell {
+            let formView = cell.formView
+
+            let newRestaurant = NewRestaurant(
+                name: formView.getNameText()!,
+                address: formView.getAddressText()!,
+                cuisineType: formView.getCuisineTypeText() ?? "",
+                cuisineId: formView.selectedCuisine.id,
+                priceRangeId: formView.selectedPriceRange.id,
+                offersEnglishMenu: formView.getOffersEnglishMenuState()!,
+                walkInsOk: formView.getWalkInsOkState()!,
+                acceptsCreditCards: formView.getAcceptsCreditCardsState()!,
+                notes: formView.getNotesText()!,
+                photoUrls: photoUrls
+            )
+
+            restaurantRepo.create(newRestaurant)
+                .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
+                    self.router.dismissPresentedNavigationController()
+            }
         }
     }
 
@@ -159,9 +162,9 @@ class NewRestaurantViewController: UIViewController {
         self.router.dismissPresentedNavigationController()
     }
 
-    @objc private func didTapAddPhotoButton(sender: UIButton?) {
-        bs_presentImagePickerController(
-            imagePicker,
+    @objc func didTapAddPhotoButton(sender: UIButton?) {
+        imagePicker?.bs_presentImagePickerController(
+            imagePickerViewController,
             animated: true,
             select: nil,
             deselect: nil,
@@ -172,13 +175,6 @@ class NewRestaurantViewController: UIViewController {
     }
 
     // MARK: - Private Methods
-    private static func imageCollectionViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake(100, 100)
-        layout.scrollDirection = .Horizontal
-        return layout
-    }
-
     private func gatherImageAssets(assets: [PHAsset]) {
         images.removeAll()
 
@@ -194,21 +190,64 @@ class NewRestaurantViewController: UIViewController {
         }
     }
 
-    private func addImageToCollectionView(image: UIImage?, info: [NSObject: AnyObject]?) {
-        guard let i = image else {
+    private func addImageToCollectionView(maybeImage: UIImage?, info: [NSObject: AnyObject]?) {
+        guard let image = maybeImage else {
             return
         }
 
-        images.append(i)
-        imageCollectionView.reloadData()
+        images.append(image)
+        tableView.reloadData()
     }
 }
 
-// MARK: - UINavigationControllerDelegate
-extension NewRestaurantViewController: UINavigationControllerDelegate {}
+// MARK: - UITableViewDataSource
+extension NewRestaurantViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(
+        tableView: UITableView,
+        numberOfRowsInSection section: Int
+        ) -> Int
+    {
+        return NewRestuarantTableViewRow.count
+    }
+
+    func tableView(
+        tableView: UITableView,
+        cellForRowAtIndexPath indexPath: NSIndexPath
+        ) -> UITableViewCell
+    {
+        switch indexPath.row {
+        case NewRestuarantTableViewRow.AddPhotosCell.rawValue:
+            addRestaurantPhotosTableViewCell.configureCell(
+                self,
+                dataSource: self,
+                reloader: DefaultReloader()
+            )
+            return addRestaurantPhotosTableViewCell
+
+        case NewRestuarantTableViewRow.FormDetailsCell.rawValue:
+            addRestaurantFormTableViewCell.configureCell(self)
+            return addRestaurantFormTableViewCell
+
+        default:
+            return UITableViewCell()
+        }
+    }
+}
 
 // MARK: - UICollectionViewDataSource
 extension NewRestaurantViewController: UICollectionViewDataSource {
+    func collectionView(
+        collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+        ) -> Int
+    {
+        return images.count
+    }
+
     func collectionView(
         collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath
@@ -222,14 +261,6 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
         cell.backgroundView = UIImageView(image: images[indexPath.row])
 
         return cell
-    }
-
-    func collectionView(
-        collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
-        ) -> Int
-    {
-        return images.count
     }
 }
 

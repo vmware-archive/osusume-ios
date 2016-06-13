@@ -151,7 +151,7 @@ struct NavigationRouter: Router {
             cuisineRepo: cuisineRepo,
             textSearch: DefaultTextSearch(),
             reloader: DefaultReloader(),
-            delegate: newRestaurantVC!.formView
+            delegate: newRestaurantVC!.addRestaurantFormTableViewCell.formView
         )
 
         newRestaurantNavVC!.pushViewController(
@@ -167,7 +167,7 @@ struct NavigationRouter: Router {
             router: self,
             restaurantSearchRepo: restaurantSearchRepo,
             reloader: DefaultReloader(),
-            searchResultRestaurantSelectionDelegate: newRestaurantVC!.formView
+            searchResultRestaurantSelectionDelegate: newRestaurantVC!.addRestaurantFormTableViewCell.formView
         )
 
         newRestaurantNavVC!.pushViewController(
@@ -197,7 +197,7 @@ struct NavigationRouter: Router {
             priceRangeRepo: priceRangeRepo,
             reloader: DefaultReloader(),
             router: self,
-            priceRangeSelection: newRestaurantVC!.formView
+            priceRangeSelection: newRestaurantVC!.addRestaurantFormTableViewCell.formView
         )
 
         newRestaurantNavVC!.pushViewController(

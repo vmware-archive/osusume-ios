@@ -2,8 +2,6 @@ import XCTest
 import Nimble
 import BrightFutures
 import Result
-import BSImagePicker
-import Photos
 
 @testable import Osusume
 
@@ -12,6 +10,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
     var fakeRouter: FakeRouter!
     var fakeRestaurantRepo: FakeRestaurantRepo!
     var fakePhotoRepo: FakePhotoRepo!
+    var fakeImagePicker: FakeImagePicker!
 
     override func setUp() {
         UIView.setAnimationsEnabled(false)
@@ -19,10 +18,13 @@ class NewRestaurantViewControllerTest: XCTestCase {
         fakeRouter = FakeRouter()
         fakeRestaurantRepo = FakeRestaurantRepo()
         fakePhotoRepo = FakePhotoRepo()
+        fakeImagePicker = FakeImagePicker()
+
         newRestaurantVC = NewRestaurantViewController(
             router: fakeRouter,
             restaurantRepo: fakeRestaurantRepo,
-            photoRepo: fakePhotoRepo
+            photoRepo: fakePhotoRepo,
+            imagePicker: fakeImagePicker
         )
 
         newRestaurantVC.view.setNeedsLayout()
@@ -30,9 +32,64 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
     // MARK: - View Controller Lifecycle
     func test_viewDidLoad_initializesSubviews() {
-        expect(self.newRestaurantVC.formView.findRestaurantButton).to(beAKindOf(UIButton))
-        expect(self.newRestaurantVC.formView.findCuisineButton).to(beAKindOf(UIButton))
-        expect(self.newRestaurantVC.formView.priceRangeButton).to(beAKindOf(UIButton))
+        expect(self.newRestaurantVC.tableView).to(beAKindOf(UITableView))
+        let cell = getAddRestaurantFormTableViewCell()
+
+        expect(cell.formView.findRestaurantButton).to(beAKindOf(UIButton))
+        expect(cell.formView.findCuisineButton).to(beAKindOf(UIButton))
+        expect(cell.formView.priceRangeButton).to(beAKindOf(UIButton))
+    }
+
+    func test_viewDidLoad_addsSubviews() {
+        expect(self.newRestaurantVC.view)
+            .to(containSubview(newRestaurantVC.tableView))
+    }
+
+    func test_viewDidLoad_addsConstraints() {
+        expect(self.newRestaurantVC.tableView)
+            .to(haveConstraints())
+    }
+
+    // MARK: - Tableview
+    func test_tableView_setsDatasource() {
+        expect(self.newRestaurantVC.tableView.dataSource === self.newRestaurantVC).to(beTrue())
+    }
+
+    func test_tableView_containsSingleSection() {
+        let numberOfSections = newRestaurantVC.tableView.numberOfSections
+
+
+        expect(numberOfSections).to(equal(1))
+    }
+
+    func test_tableView_containsTwoRowsForRestaurantDetails() {
+        let numberOfRows = newRestaurantVC.tableView.dataSource?.tableView(
+            newRestaurantVC.tableView,
+            numberOfRowsInSection: 0
+        )
+
+
+        expect(numberOfRows).to(equal(2))
+    }
+
+    func test_tableView_doesNotAllowSelection() {
+        expect(self.newRestaurantVC.tableView.allowsSelection).to(beFalse())
+    }
+
+    func test_tableView_returnsAddRestaurantPhotoTableViewCell() {
+        let cell = getAddRestaurantPhotosTableViewCell()
+
+
+        expect(cell).toNot(beNil())
+        expect(cell).to(beAKindOf(AddRestaurantPhotosTableViewCell))
+    }
+
+    func test_tableView_returnsAddRestaurantFormTableViewCell() {
+        let cell = getAddRestaurantFormTableViewCell()
+
+
+        expect(cell).toNot(beNil())
+        expect(cell).to(beAKindOf(AddRestaurantFormTableViewCell))
     }
 
     // MARK: - Navigation Bar
@@ -42,9 +99,10 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
     // MARK: - Actions
     func test_tappingDoneButton_savesRestaurant() {
-        newRestaurantVC.formView.nameTextField.text = "Some Restaurant"
-        newRestaurantVC.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"
-        newRestaurantVC.formView.notesTextField.text = "Notes"
+        let cell = getAddRestaurantFormTableViewCell()
+        cell.formView.nameTextField.text = "Some Restaurant"
+        cell.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"
+        cell.formView.notesTextField.text = "Notes"
         fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
 
 
@@ -85,22 +143,33 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 
+    func test_tappingAddPhotoButton_showsPhotoPicker() {
+        let cell = getAddRestaurantPhotosTableViewCell()
+        tapButton(cell.addPhotoButton)
+
+
+        expect(self.fakeImagePicker.bs_presentImagePickerController_wasCalled).to(beTrue())
+    }
+
     func test_tappingFindRestaurantButton_showsFindRestaurantScreen() {
-        tapButton(newRestaurantVC.formView.findRestaurantButton)
+        let cell = getAddRestaurantFormTableViewCell()
+        tapButton(cell.formView.findRestaurantButton)
 
 
         expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beTrue())
     }
 
     func test_tappingFindCuisine_showsFindCuisineScreen() {
-        tapButton(newRestaurantVC.formView.findCuisineButton)
+        let cell = getAddRestaurantFormTableViewCell()
+        tapButton(cell.formView.findCuisineButton)
 
 
         expect(self.fakeRouter.showFindCuisineScreen_wasCalled).to(beTrue())
     }
 
     func test_tappingPriceRange_showsPriceRangeListScreen() {
-        tapButton(newRestaurantVC.formView.priceRangeButton)
+        let cell = getAddRestaurantFormTableViewCell()
+        tapButton(cell.formView.priceRangeButton)
 
 
         expect(self.fakeRouter.showPriceRangeListScreen_wasCalled).to(beTrue())
@@ -115,11 +184,12 @@ class NewRestaurantViewControllerTest: XCTestCase {
         )
 
 
-        newRestaurantVC.formView.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+        let cell = getAddRestaurantFormTableViewCell()
+        cell.formView.searchResultRestaurantSelected(selectedSearchResultRestaurant)
 
 
-        expect(self.newRestaurantVC.formView.nameTextField.text).to(equal("Afuri"))
-        expect(self.newRestaurantVC.formView.addressTextField.text).to(equal("Roppongi Hills 5-2-1"))
+        expect(cell.formView.nameTextField.text).to(equal("Afuri"))
+        expect(cell.formView.addressTextField.text).to(equal("Roppongi Hills 5-2-1"))
     }
 
     // MARK: - Select Cuisine
@@ -127,20 +197,22 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
 
 
-        newRestaurantVC.formView.cuisineSelected(selectedCuisine)
+        let cell = getAddRestaurantFormTableViewCell()
+        cell.formView.cuisineSelected(selectedCuisine)
 
 
-        expect(self.newRestaurantVC.formView.cuisineTypeValueLabel.text).to(equal("Hamburger"))
+        expect(cell.formView.cuisineTypeValueLabel.text).to(equal("Hamburger"))
     }
 
     func test_selectCuisine_setsSelectedCuisinePropertyValue() {
         let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
 
 
-        newRestaurantVC.formView.cuisineSelected(selectedCuisine)
+        let cell = getAddRestaurantFormTableViewCell()
+        cell.formView.cuisineSelected(selectedCuisine)
 
 
-        expect(self.newRestaurantVC.formView.selectedCuisine).to(equal(selectedCuisine))
+        expect(cell.formView.selectedCuisine).to(equal(selectedCuisine))
     }
 
     // MARK: - Price Range
@@ -148,19 +220,46 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let selectedPriceRange = PriceRange(id: 1, range: "0~999")
 
 
-        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange)
+        let cell = getAddRestaurantFormTableViewCell()
+        cell.formView.priceRangeSelected(selectedPriceRange)
 
 
-        expect(self.newRestaurantVC.formView.priceRangeValueLabel.text).to(equal("0~999"))
+        expect(cell.formView.priceRangeValueLabel.text).to(equal("0~999"))
     }
 
     func test_selectPriceRange_setsSelectedPriceRangePropertyValue() {
         let selectedPriceRange = PriceRange(id: 1, range: "0~999")
 
 
-        newRestaurantVC.formView.priceRangeSelected(selectedPriceRange)
+        let cell = getAddRestaurantFormTableViewCell()
+        cell.formView.priceRangeSelected(selectedPriceRange)
 
 
-        expect(self.newRestaurantVC.formView.selectedPriceRange).to(equal(selectedPriceRange))
+        expect(cell.formView.selectedPriceRange).to(equal(selectedPriceRange))
+    }
+
+    // MARK: - Private Methods
+    func getAddRestaurantPhotosTableViewCell() -> AddRestaurantPhotosTableViewCell {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.AddPhotosCell.rawValue,
+            inSection: 0
+        )
+
+        return newRestaurantVC.tableView(
+            newRestaurantVC.tableView,
+            cellForRowAtIndexPath: indexPath
+            ) as! AddRestaurantPhotosTableViewCell
+    }
+
+    func getAddRestaurantFormTableViewCell() -> AddRestaurantFormTableViewCell {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.FormDetailsCell.rawValue,
+            inSection: 0
+        )
+
+        return newRestaurantVC.tableView(
+            newRestaurantVC.tableView,
+            cellForRowAtIndexPath: indexPath
+            ) as! AddRestaurantFormTableViewCell
     }
 }

@@ -36,6 +36,25 @@ internal func haveConstraints() -> NonNilMatcherFunc<UIView> {
     }
 }
 
+internal func hasConstraintsToSuperview() -> NonNilMatcherFunc<UIView> {
+    return NonNilMatcherFunc { expression, failureMessage in
+        guard let viewToCheck = try expression.evaluate() else {
+            return false
+        }
+
+        if let superView = viewToCheck.superview {
+            for constraint in superView.constraints {
+                if (constraint.firstItem === viewToCheck ||
+                    constraint.secondItem === viewToCheck) {
+                    return true
+                }
+            }
+        }
+
+        return false
+    }
+}
+
 // MARK: - Private Methods
 private func viewContainsSubview(superView: UIView, containedView: UIView) -> Bool {
     for subView in superView.subviews {
