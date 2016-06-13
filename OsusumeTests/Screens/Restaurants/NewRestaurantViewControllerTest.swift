@@ -47,7 +47,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
     func test_viewDidLoad_addsConstraints() {
         expect(self.newRestaurantVC.tableView)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
     }
 
     // MARK: - Tableview

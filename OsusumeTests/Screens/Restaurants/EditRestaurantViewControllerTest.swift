@@ -108,15 +108,15 @@ class EditRestaurantViewControllerTest: XCTestCase {
         instantiateEditRestaurantVCWithCuisine(Cuisine(id: 1, name: "Pizza"))
 
         expect(self.editRestaurantViewController.scrollView)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
         expect(self.editRestaurantViewController.scrollViewContentView)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
         expect(self.editRestaurantViewController.formViewContainer)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
         expect(self.editRestaurantViewController.formView)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
         expect(self.editRestaurantViewController.imageCollectionView)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
     }
 
     func test_viewDidLoad_setsImageCollectionViewDataSource() {

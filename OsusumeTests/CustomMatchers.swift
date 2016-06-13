@@ -15,7 +15,7 @@ internal func containSubview(containedView: UIView) -> NonNilMatcherFunc<UIView>
     }
 }
 
-internal func haveConstraints() -> NonNilMatcherFunc<UIView> {
+internal func hasConstraintsToSuperviewOrSelf() -> NonNilMatcherFunc<UIView> {
     return NonNilMatcherFunc { expression, failureMessage in
         guard let viewToCheck = try expression.evaluate() else {
             return false

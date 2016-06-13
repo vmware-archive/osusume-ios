@@ -19,7 +19,7 @@ class PhotoCollectionViewCellTest: XCTestCase {
     func test_deleteButton_hasConstraints() {
         let cell = PhotoCollectionViewCell()
 
-        expect(cell.deleteButton).to(haveConstraints())
+        expect(cell.deleteButton).to(hasConstraintsToSuperviewOrSelf())
     }
 
 }

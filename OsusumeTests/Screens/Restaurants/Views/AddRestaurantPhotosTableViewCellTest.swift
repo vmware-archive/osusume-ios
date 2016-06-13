@@ -27,9 +27,9 @@ class AddRestaurantPhotosTableViewCellTest: XCTestCase {
 
     func test_viewDidLoad_addsConstraints() {
         expect(self.addRestaurantPhotosTVC.imageCollectionView)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
         expect(self.addRestaurantPhotosTVC.addPhotoButton)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
     }
 
     // MARK: - Photo Collection View

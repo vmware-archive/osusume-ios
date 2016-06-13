@@ -45,9 +45,9 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_viewDidLoad_addsConstraints() {
         expect(self.findRestaurantViewController.restaurantNameTextField)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
         expect(self.findRestaurantViewController.restaurantSearchResultTableView)
-            .to(haveConstraints())
+            .to(hasConstraintsToSuperviewOrSelf())
     }
 
     func test_viewDidAppear_setsRestaurantNameTextFieldAsFirstResponder() {
