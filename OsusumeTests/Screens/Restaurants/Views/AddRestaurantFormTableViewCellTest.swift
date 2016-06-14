@@ -25,4 +25,8 @@ class AddRestaurantFormTableViewCellTest: XCTestCase {
         expect(self.addRestaurantFormTVC.formView)
             .to(hasConstraintsToSuperview())
     }
+
+    func test_cellDoesNotAppearSelected() {
+        expect(self.addRestaurantFormTVC.selectionStyle == .None).to(beTrue())
+    }
 }

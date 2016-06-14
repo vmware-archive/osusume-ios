@@ -4,6 +4,7 @@ import Photos
 
 enum NewRestuarantTableViewRow: Int {
     case AddPhotosCell = 0
+    case FindRestaurantCell
     case FormDetailsCell
     case Count
 
@@ -20,11 +21,14 @@ class NewRestaurantViewController: UIViewController {
     private let restaurantRepo: RestaurantRepo
     private let photoRepo: PhotoRepo
     private var imagePicker: ImagePicker?
+    private let reloader: Reloader
 
     private(set) var images: [UIImage]
     private let imagePickerViewController: BSImagePickerViewController
 
     let addRestaurantPhotosTableViewCell: AddRestaurantPhotosTableViewCell
+    var maybeFindRestaurantTableViewCell: FindRestaurantTableViewCell?
+    var maybePopulatedRestaurantTableViewCell: PopulatedRestaurantTableViewCell?
     let addRestaurantFormTableViewCell: AddRestaurantFormTableViewCell
 
     // MARK: - View Elements
@@ -35,12 +39,14 @@ class NewRestaurantViewController: UIViewController {
         router: Router,
         restaurantRepo: RestaurantRepo,
         photoRepo: PhotoRepo,
-        imagePicker: ImagePicker?)
+        imagePicker: ImagePicker?,
+        reloader: Reloader)
     {
         self.router = router
         self.restaurantRepo = restaurantRepo
         self.photoRepo = photoRepo
         self.imagePicker = imagePicker
+        self.reloader = reloader
 
         images = [UIImage]()
         imagePickerViewController = BSImagePickerViewController()
@@ -48,6 +54,7 @@ class NewRestaurantViewController: UIViewController {
         tableView = UITableView.newAutoLayoutView()
 
         addRestaurantPhotosTableViewCell = AddRestaurantPhotosTableViewCell()
+        maybeFindRestaurantTableViewCell = FindRestaurantTableViewCell()
         addRestaurantFormTableViewCell = AddRestaurantFormTableViewCell()
 
         super.init(nibName: nil, bundle: nil)
@@ -56,13 +63,15 @@ class NewRestaurantViewController: UIViewController {
     convenience init(
         router: Router,
         restaurantRepo: RestaurantRepo,
-        photoRepo: PhotoRepo)
+        photoRepo: PhotoRepo,
+        reloader: Reloader)
     {
         self.init(
             router: router,
             restaurantRepo: restaurantRepo,
             photoRepo: photoRepo,
-            imagePicker: nil
+            imagePicker: nil,
+            reloader: reloader
         )
 
         self.imagePicker = self
@@ -105,8 +114,8 @@ class NewRestaurantViewController: UIViewController {
     }
 
     private func configureSubviews() {
-        tableView.allowsSelection = false
         tableView.dataSource = self
+        tableView.delegate = self
 
         addRestaurantPhotosTableViewCell.configureCell(
             self,
@@ -138,9 +147,12 @@ class NewRestaurantViewController: UIViewController {
         if let cell = maybeCell {
             let formView = cell.formView
 
+            let restaurantName = maybePopulatedRestaurantTableViewCell?.textLabel?.text ?? ""
+            let restaurantAddress = maybePopulatedRestaurantTableViewCell?.detailTextLabel?.text ?? ""
+
             let newRestaurant = NewRestaurant(
-                name: formView.getNameText()!,
-                address: formView.getAddressText()!,
+                name: restaurantName,
+                address: restaurantAddress,
                 cuisineType: formView.getCuisineTypeText() ?? "",
                 cuisineId: formView.selectedCuisine.id,
                 priceRangeId: formView.selectedPriceRange.id,
@@ -220,20 +232,37 @@ extension NewRestaurantViewController: UITableViewDataSource {
         ) -> UITableViewCell
     {
         switch indexPath.row {
-        case NewRestuarantTableViewRow.AddPhotosCell.rawValue:
-            addRestaurantPhotosTableViewCell.configureCell(
-                self,
-                dataSource: self,
-                reloader: DefaultReloader()
-            )
-            return addRestaurantPhotosTableViewCell
+            case NewRestuarantTableViewRow.AddPhotosCell.rawValue:
+                addRestaurantPhotosTableViewCell.configureCell(
+                    self,
+                    dataSource: self,
+                    reloader: DefaultReloader()
+                )
+                return addRestaurantPhotosTableViewCell
 
-        case NewRestuarantTableViewRow.FormDetailsCell.rawValue:
-            addRestaurantFormTableViewCell.configureCell(self)
-            return addRestaurantFormTableViewCell
+            case NewRestuarantTableViewRow.FindRestaurantCell.rawValue:
+                return maybeFindRestaurantTableViewCell ??
+                    maybePopulatedRestaurantTableViewCell ??
+                    UITableViewCell()
 
-        default:
-            return UITableViewCell()
+            case NewRestuarantTableViewRow.FormDetailsCell.rawValue:
+                addRestaurantFormTableViewCell.configureCell(self)
+                return addRestaurantFormTableViewCell
+
+            default:
+                return UITableViewCell()
+        }
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension NewRestaurantViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.row {
+            case NewRestuarantTableViewRow.FindRestaurantCell.rawValue:
+                router.showFindRestaurantScreen()
+            default:
+                break
         }
     }
 }
@@ -276,5 +305,21 @@ extension NewRestaurantViewController: NewRestaurantViewControllerPresenterProto
 
     func showPriceRangeScreen() {
         router.showPriceRangeListScreen()
+    }
+}
+
+// MARK: - SearchResultRestaurantSelectionDelegate
+extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
+    func searchResultRestaurantSelected(searchResultRestaurant: SearchResultRestaurant) {
+        if (maybePopulatedRestaurantTableViewCell == nil) {
+            maybePopulatedRestaurantTableViewCell = PopulatedRestaurantTableViewCell()
+        }
+
+        maybePopulatedRestaurantTableViewCell?.textLabel?.text = searchResultRestaurant.name
+        maybePopulatedRestaurantTableViewCell?.detailTextLabel?.text = searchResultRestaurant.address
+
+        maybeFindRestaurantTableViewCell = nil
+
+        reloader.reload(tableView)
     }
 }

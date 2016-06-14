@@ -11,6 +11,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
     var fakeRestaurantRepo: FakeRestaurantRepo!
     var fakePhotoRepo: FakePhotoRepo!
     var fakeImagePicker: FakeImagePicker!
+    var fakeReloader: FakeReloader!
 
     override func setUp() {
         UIView.setAnimationsEnabled(false)
@@ -19,12 +20,14 @@ class NewRestaurantViewControllerTest: XCTestCase {
         fakeRestaurantRepo = FakeRestaurantRepo()
         fakePhotoRepo = FakePhotoRepo()
         fakeImagePicker = FakeImagePicker()
+        fakeReloader = FakeReloader()
 
         newRestaurantVC = NewRestaurantViewController(
             router: fakeRouter,
             restaurantRepo: fakeRestaurantRepo,
             photoRepo: fakePhotoRepo,
-            imagePicker: fakeImagePicker
+            imagePicker: fakeImagePicker,
+            reloader: fakeReloader
         )
 
         newRestaurantVC.view.setNeedsLayout()
@@ -35,7 +38,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.newRestaurantVC.tableView).to(beAKindOf(UITableView))
         let cell = getAddRestaurantFormTableViewCell()
 
-        expect(cell.formView.findRestaurantButton).to(beAKindOf(UIButton))
         expect(cell.formView.findCuisineButton).to(beAKindOf(UIButton))
         expect(cell.formView.priceRangeButton).to(beAKindOf(UIButton))
     }
@@ -55,6 +57,10 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.newRestaurantVC.tableView.dataSource === self.newRestaurantVC).to(beTrue())
     }
 
+    func test_tableView_setsDelegate() {
+        expect(self.newRestaurantVC.tableView.delegate === self.newRestaurantVC).to(beTrue())
+    }
+
     func test_tableView_containsSingleSection() {
         let numberOfSections = newRestaurantVC.tableView.numberOfSections
 
@@ -62,18 +68,14 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(numberOfSections).to(equal(1))
     }
 
-    func test_tableView_containsTwoRowsForRestaurantDetails() {
+    func test_tableView_containsThreeRowsForRestaurantDetails() {
         let numberOfRows = newRestaurantVC.tableView.dataSource?.tableView(
             newRestaurantVC.tableView,
             numberOfRowsInSection: 0
         )
 
 
-        expect(numberOfRows).to(equal(2))
-    }
-
-    func test_tableView_doesNotAllowSelection() {
-        expect(self.newRestaurantVC.tableView.allowsSelection).to(beFalse())
+        expect(numberOfRows).to(equal(3))
     }
 
     func test_tableView_returnsAddRestaurantPhotoTableViewCell() {
@@ -92,6 +94,57 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(cell).to(beAKindOf(AddRestaurantFormTableViewCell))
     }
 
+    func test_tableView_returnsFindRestaurantTableViewCell() {
+        let cell = getFindRestaurantTableViewCell()
+
+
+        expect(cell).toNot(beNil())
+        expect(cell).to(beAKindOf(FindRestaurantTableViewCell))
+    }
+
+    func test_tappingAddRestaurantPhotosCell_doesNotAllowSelection() {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.AddPhotosCell.rawValue,
+            inSection: 0
+        )
+        newRestaurantVC.tableView.delegate?.tableView!(
+            newRestaurantVC.tableView,
+            didSelectRowAtIndexPath: indexPath
+        )
+
+
+        expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beFalse())
+    }
+
+    func test_tappingFindRestaurantCell_showsFindRestaurantScreen() {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.FindRestaurantCell.rawValue,
+            inSection: 0
+        )
+        newRestaurantVC.tableView.delegate?.tableView!(
+            newRestaurantVC.tableView,
+            didSelectRowAtIndexPath: indexPath
+        )
+
+
+        expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beTrue())
+    }
+
+    func test_tappingRestaurantFormCell_doesNotAllowSelection() {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.FormDetailsCell.rawValue,
+            inSection: 0
+        )
+        newRestaurantVC.tableView.delegate?.tableView!(
+            newRestaurantVC.tableView,
+            didSelectRowAtIndexPath: indexPath
+        )
+
+
+        expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beFalse())
+    }
+    
+
     // MARK: - Navigation Bar
     func test_viewDidLoad_setsTitle() {
         expect(self.newRestaurantVC.title).to(equal("Add Restaurant"))
@@ -99,8 +152,13 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
     // MARK: - Actions
     func test_tappingDoneButton_savesRestaurant() {
+        newRestaurantVC.searchResultRestaurantSelected(SearchResultRestaurant(
+            id: "",
+            name: "Some Restaurant",
+            address: ""
+        ))
+
         let cell = getAddRestaurantFormTableViewCell()
-        cell.formView.nameTextField.text = "Some Restaurant"
         cell.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"
         cell.formView.notesTextField.text = "Notes"
         fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
@@ -151,14 +209,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeImagePicker.bs_presentImagePickerController_wasCalled).to(beTrue())
     }
 
-    func test_tappingFindRestaurantButton_showsFindRestaurantScreen() {
-        let cell = getAddRestaurantFormTableViewCell()
-        tapButton(cell.formView.findRestaurantButton)
-
-
-        expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beTrue())
-    }
-
     func test_tappingFindCuisine_showsFindCuisineScreen() {
         let cell = getAddRestaurantFormTableViewCell()
         tapButton(cell.formView.findCuisineButton)
@@ -184,12 +234,37 @@ class NewRestaurantViewControllerTest: XCTestCase {
         )
 
 
-        let cell = getAddRestaurantFormTableViewCell()
-        cell.formView.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+        newRestaurantVC.searchResultRestaurantSelected(selectedSearchResultRestaurant)
 
 
-        expect(cell.formView.nameTextField.text).to(equal("Afuri"))
-        expect(cell.formView.addressTextField.text).to(equal("Roppongi Hills 5-2-1"))
+        expect(self.newRestaurantVC.maybePopulatedRestaurantTableViewCell?.textLabel?.text)
+            .to(equal("Afuri"))
+        expect(self.newRestaurantVC.maybePopulatedRestaurantTableViewCell?.detailTextLabel?.text)
+            .to(equal("Roppongi Hills 5-2-1"))
+    }
+
+    func test_selectSearchResultRestaurant_changesFindRestaurantCellTypeToPopulated() {
+        let selectedSearchResultRestaurant = SearchResultRestaurant(
+            id: "1",
+            name: "Afuri",
+            address: "Roppongi Hills 5-2-1"
+        )
+
+
+        newRestaurantVC.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+
+
+        expect(self.getPopulatedRestaurantTableViewCell()).toNot(beNil())
+    }
+
+    func test_selectSearchResultRestaurant_reloadsTableView() {
+        let selectedSearchResultRestaurant = SearchResultRestaurant(
+            id: "", name: "", address: ""
+        )
+
+        newRestaurantVC.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+
+        expect(self.fakeReloader.reload_wasCalled).to(beTrue())
     }
 
     // MARK: - Select Cuisine
@@ -239,7 +314,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     // MARK: - Private Methods
-    func getAddRestaurantPhotosTableViewCell() -> AddRestaurantPhotosTableViewCell {
+    private func getAddRestaurantPhotosTableViewCell() -> AddRestaurantPhotosTableViewCell {
         let indexPath = NSIndexPath(
             forRow: NewRestuarantTableViewRow.AddPhotosCell.rawValue,
             inSection: 0
@@ -251,7 +326,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
             ) as! AddRestaurantPhotosTableViewCell
     }
 
-    func getAddRestaurantFormTableViewCell() -> AddRestaurantFormTableViewCell {
+    private func getAddRestaurantFormTableViewCell() -> AddRestaurantFormTableViewCell {
         let indexPath = NSIndexPath(
             forRow: NewRestuarantTableViewRow.FormDetailsCell.rawValue,
             inSection: 0
@@ -261,5 +336,29 @@ class NewRestaurantViewControllerTest: XCTestCase {
             newRestaurantVC.tableView,
             cellForRowAtIndexPath: indexPath
             ) as! AddRestaurantFormTableViewCell
+    }
+
+    private func getFindRestaurantTableViewCell() -> FindRestaurantTableViewCell {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.FindRestaurantCell.rawValue,
+            inSection: 0
+        )
+
+        return newRestaurantVC.tableView(
+            newRestaurantVC.tableView,
+            cellForRowAtIndexPath: indexPath
+            ) as! FindRestaurantTableViewCell
+    }
+
+    private func getPopulatedRestaurantTableViewCell() -> PopulatedRestaurantTableViewCell? {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.FindRestaurantCell.rawValue,
+            inSection: 0
+        )
+
+        return newRestaurantVC.tableView(
+            newRestaurantVC.tableView,
+            cellForRowAtIndexPath: indexPath
+            ) as? PopulatedRestaurantTableViewCell
     }
 }

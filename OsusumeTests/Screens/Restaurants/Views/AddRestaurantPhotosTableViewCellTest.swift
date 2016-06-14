@@ -32,12 +32,17 @@ class AddRestaurantPhotosTableViewCellTest: XCTestCase {
             .to(hasConstraintsToSuperviewOrSelf())
     }
 
+    func test_cellDoesNotAppearSelected() {
+        expect(self.addRestaurantPhotosTVC.selectionStyle == .None).to(beTrue())
+    }
+
     // MARK: - Photo Collection View
     func test_imageCollectionView_setsDatasource() {
         let parentViewController = NewRestaurantViewController(
             router: FakeRouter(),
             restaurantRepo: FakeRestaurantRepo(),
-            photoRepo: FakePhotoRepo()
+            photoRepo: FakePhotoRepo(),
+            reloader: FakeReloader()
         )
 
 
@@ -55,7 +60,8 @@ class AddRestaurantPhotosTableViewCellTest: XCTestCase {
         let parentViewController = NewRestaurantViewController(
             router: FakeRouter(),
             restaurantRepo: FakeRestaurantRepo(),
-            photoRepo: FakePhotoRepo()
+            photoRepo: FakePhotoRepo(),
+            reloader: FakeReloader()
         )
         let fakeReloader = FakeReloader()
 
@@ -73,7 +79,8 @@ class AddRestaurantPhotosTableViewCellTest: XCTestCase {
         let parentViewController = NewRestaurantViewController(
             router: FakeRouter(),
             restaurantRepo: FakeRestaurantRepo(),
-            photoRepo: FakePhotoRepo()
+            photoRepo: FakePhotoRepo(),
+            reloader: FakeReloader()
         )
         addRestaurantPhotosTVC.configureCell(
             parentViewController,

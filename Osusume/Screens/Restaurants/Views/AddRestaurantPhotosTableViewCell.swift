@@ -14,6 +14,7 @@ class AddRestaurantPhotosTableViewCell: UITableViewCell {
         addPhotoButton = UIButton(type: UIButtonType.System)
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .None
 
         addSubviews()
         configureSubviews()

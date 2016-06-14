@@ -11,6 +11,8 @@ class AddRestaurantFormTableViewCell: UITableViewCell {
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        selectionStyle = .None
+
         addSubviews()
         configureSubviews()
         addConstraints()

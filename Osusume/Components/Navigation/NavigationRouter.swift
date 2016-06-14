@@ -41,7 +41,8 @@ struct NavigationRouter: Router {
         let newRestaurantController = NewRestaurantViewController(
             router: self,
             restaurantRepo: restaurantRepo,
-            photoRepo: photoRepo
+            photoRepo: photoRepo,
+            reloader: DefaultReloader()
         )
         presentViewControllerModallyWithinNavController(newRestaurantController)
     }
@@ -167,7 +168,7 @@ struct NavigationRouter: Router {
             router: self,
             restaurantSearchRepo: restaurantSearchRepo,
             reloader: DefaultReloader(),
-            searchResultRestaurantSelectionDelegate: newRestaurantVC!.addRestaurantFormTableViewCell.formView
+            searchResultRestaurantSelectionDelegate: newRestaurantVC!
         )
 
         newRestaurantNavVC!.pushViewController(

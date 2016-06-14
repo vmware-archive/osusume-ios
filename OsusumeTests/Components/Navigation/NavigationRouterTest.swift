@@ -132,7 +132,8 @@ class NavigationRouterTest: XCTestCase {
         let newRestaurantVC = NewRestaurantViewController(
             router: navigationRouter,
             restaurantRepo: FakeRestaurantRepo(),
-            photoRepo: FakePhotoRepo()
+            photoRepo: FakePhotoRepo(),
+            reloader: FakeReloader()
         )
         let newRestaurantNavVC = UINavigationController(
             rootViewController: newRestaurantVC
@@ -204,7 +205,8 @@ class NavigationRouterTest: XCTestCase {
         let newRestaurantVC = NewRestaurantViewController(
             router: navigationRouter,
             restaurantRepo: FakeRestaurantRepo(),
-            photoRepo: FakePhotoRepo()
+            photoRepo: FakePhotoRepo(),
+            reloader: FakeReloader()
         )
         let newRestaurantNavVC = UINavigationController(
             rootViewController: newRestaurantVC
@@ -232,7 +234,8 @@ class NavigationRouterTest: XCTestCase {
         let newRestaurantVC = NewRestaurantViewController(
             router: FakeRouter(),
             restaurantRepo: FakeRestaurantRepo(),
-            photoRepo: FakePhotoRepo()
+            photoRepo: FakePhotoRepo(),
+            reloader: FakeReloader()
         )
         let newRestaurantNavVC = UINavigationController(
             rootViewController: newRestaurantVC

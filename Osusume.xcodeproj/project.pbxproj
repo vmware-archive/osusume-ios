@@ -87,6 +87,8 @@
 		AE6AECA51CC0C871000171A3 /* PriceRangeListParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AECA41CC0C871000171A3 /* PriceRangeListParserTest.swift */; };
 		AE6AECA81CC0C8FD000171A3 /* PriceRangeListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6AECA71CC0C8FD000171A3 /* PriceRangeListParser.swift */; };
 		AE6C3DDD1CFD65B100432DB9 /* PhotoCollectionViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6C3DDC1CFD65B100432DB9 /* PhotoCollectionViewCellTest.swift */; };
+		AE6E779E1D0FAB5E00F07124 /* PopulatedRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6E779D1D0FAB5E00F07124 /* PopulatedRestaurantTableViewCell.swift */; };
+		AE6E77A01D0FAD9700F07124 /* PopulatedRestaurantTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6E779F1D0FAD9700F07124 /* PopulatedRestaurantTableViewCellTest.swift */; };
 		AE73E02D1CA11BC200738787 /* RestaurantListRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE73E02C1CA11BC200738787 /* RestaurantListRepo.swift */; };
 		AE7CDA561C69835300A2D6B3 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7CDA551C69835300A2D6B3 /* WebImage.framework */; };
 		AE8047F31CE5963000DE8113 /* GNaviRestaurantSearchRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8047F21CE5963000DE8113 /* GNaviRestaurantSearchRepoTest.swift */; };
@@ -94,6 +96,8 @@
 		AE8B54E91D0E5E1500EC8CC3 /* AddRestaurantFormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8B54E81D0E5E1500EC8CC3 /* AddRestaurantFormTableViewCell.swift */; };
 		AE8B54EB1D0E7E1600EC8CC3 /* AddRestaurantFormTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8B54EA1D0E7E1600EC8CC3 /* AddRestaurantFormTableViewCellTest.swift */; };
 		AE8B54EE1D0EA1D400EC8CC3 /* FakeImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8B54ED1D0EA1D400EC8CC3 /* FakeImagePicker.swift */; };
+		AE8B54F11D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8B54F01D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift */; };
+		AE8B54F41D0F968200EC8CC3 /* FindRestaurantTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8B54F31D0F968200EC8CC3 /* FindRestaurantTableViewCellTest.swift */; };
 		AE9007EB1CD086AB008AB773 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; };
 		AE9007EC1CD086C2008AB773 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AE9007E71CD04924008AB773 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE9E6F3E1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9E6F3D1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift */; };
@@ -322,6 +326,8 @@
 		AE6AECA41CC0C871000171A3 /* PriceRangeListParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeListParserTest.swift; sourceTree = "<group>"; };
 		AE6AECA71CC0C8FD000171A3 /* PriceRangeListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeListParser.swift; sourceTree = "<group>"; };
 		AE6C3DDC1CFD65B100432DB9 /* PhotoCollectionViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCellTest.swift; sourceTree = "<group>"; };
+		AE6E779D1D0FAB5E00F07124 /* PopulatedRestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopulatedRestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		AE6E779F1D0FAD9700F07124 /* PopulatedRestaurantTableViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopulatedRestaurantTableViewCellTest.swift; sourceTree = "<group>"; };
 		AE73E02C1CA11BC200738787 /* RestaurantListRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListRepo.swift; sourceTree = "<group>"; };
 		AE7CDA551C69835300A2D6B3 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		AE8047F21CE5963000DE8113 /* GNaviRestaurantSearchRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GNaviRestaurantSearchRepoTest.swift; sourceTree = "<group>"; };
@@ -329,6 +335,8 @@
 		AE8B54E81D0E5E1500EC8CC3 /* AddRestaurantFormTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantFormTableViewCell.swift; sourceTree = "<group>"; };
 		AE8B54EA1D0E7E1600EC8CC3 /* AddRestaurantFormTableViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantFormTableViewCellTest.swift; sourceTree = "<group>"; };
 		AE8B54ED1D0EA1D400EC8CC3 /* FakeImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeImagePicker.swift; sourceTree = "<group>"; };
+		AE8B54F01D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindRestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		AE8B54F31D0F968200EC8CC3 /* FindRestaurantTableViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindRestaurantTableViewCellTest.swift; sourceTree = "<group>"; };
 		AE9007E71CD04924008AB773 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		AE9E6F3D1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeSelectionProtocol.swift; sourceTree = "<group>"; };
 		AEA712471C4F59B300862B02 /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
@@ -630,6 +638,24 @@
 			path = ImagePicker;
 			sourceTree = "<group>";
 		};
+		AE8B54EF1D0F8D6200EC8CC3 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				AE8B54F01D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift */,
+				AE6E779D1D0FAB5E00F07124 /* PopulatedRestaurantTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		AE8B54F21D0F967200EC8CC3 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				AE8B54F31D0F968200EC8CC3 /* FindRestaurantTableViewCellTest.swift */,
+				AE6E779F1D0FAD9700F07124 /* PopulatedRestaurantTableViewCellTest.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		AEACDB731C98FDEB0092AEF6 /* Cuisines */ = {
 			isa = PBXGroup;
 			children = (
@@ -817,6 +843,7 @@
 		DE99C27815A58B229380223E /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				AE8B54F21D0F967200EC8CC3 /* TableViewCells */,
 				DE99CE81502116C4694176DA /* Views */,
 				AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */,
 				AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */,
@@ -863,6 +890,7 @@
 		DE99C54688E7F01FE6A3777D /* Restaurants */ = {
 			isa = PBXGroup;
 			children = (
+				AE8B54EF1D0F8D6200EC8CC3 /* TableViewCells */,
 				AE877D601C7C078400471040 /* Views */,
 				AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */,
 				AE5A8BBC1CE44BC000B828C4 /* FindRestaurantViewController.swift */,
@@ -1334,6 +1362,7 @@
 				AEDD1B841C8975740024B29E /* DiskStorage.swift in Sources */,
 				AEED39E21CA21FAD00B57BCB /* EditRestaurantFormView.swift in Sources */,
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
+				AE8B54F11D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift in Sources */,
 				AE5A8BBD1CE44BC000B828C4 /* FindRestaurantViewController.swift in Sources */,
 				AE15E1371CE5C3AA0099D880 /* GNaviRestaurantListParser.swift in Sources */,
 				AE15E12F1CE5982A0099D880 /* GNaviRestaurantSearchRepo.swift in Sources */,
@@ -1374,6 +1403,7 @@
 				DE99C6D52B330617543375A2 /* PhotoRepo.swift in Sources */,
 				AE62512F1D0698F700863DB1 /* PhotoUrl.swift in Sources */,
 				AE435A521CF2F83C00060AAF /* PhotoUrlsCollectionViewDataSource.swift in Sources */,
+				AE6E779E1D0FAB5E00F07124 /* PopulatedRestaurantTableViewCell.swift in Sources */,
 				AE6AECA81CC0C8FD000171A3 /* PriceRangeListParser.swift in Sources */,
 				AEC821191CC479DC00C9B864 /* PriceRangeListViewController.swift in Sources */,
 				AE9E6F3E1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift in Sources */,
@@ -1450,6 +1480,7 @@
 				AE0CBF681CA22F360060FA02 /* FakeTextSearch.swift in Sources */,
 				DE99C650E795C8E9946EAFD8 /* FakeUserRepo.swift in Sources */,
 				DE99C26900A3406AA1C154CF /* FakeUUIDProvider.swift in Sources */,
+				AE8B54F41D0F968200EC8CC3 /* FindRestaurantTableViewCellTest.swift in Sources */,
 				AE31192C1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift in Sources */,
 				AE15E1331CE5B4770099D880 /* GNaviRestaurantListParserTest.swift in Sources */,
 				AE8047F31CE5963000DE8113 /* GNaviRestaurantSearchRepoTest.swift in Sources */,
@@ -1470,6 +1501,7 @@
 				AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */,
 				AE6C3DDD1CFD65B100432DB9 /* PhotoCollectionViewCellTest.swift in Sources */,
 				AE435A501CF2F75200060AAF /* PhotoUrlsCollectionViewDataSourceTest.swift in Sources */,
+				AE6E77A01D0FAD9700F07124 /* PopulatedRestaurantTableViewCellTest.swift in Sources */,
 				AE6AECA51CC0C871000171A3 /* PriceRangeListParserTest.swift in Sources */,
 				AEC821161CC4775300C9B864 /* PriceRangeListViewControllerTest.swift in Sources */,
 				AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */,
