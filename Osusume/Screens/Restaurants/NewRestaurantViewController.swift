@@ -25,10 +25,11 @@ class NewRestaurantViewController: UIViewController {
 
     private(set) var images: [UIImage]
     private let imagePickerViewController: BSImagePickerViewController
+    var restaurantSearchResult: (name: String, address: String)?
 
-    let addRestaurantPhotosTableViewCell: AddRestaurantPhotosTableViewCell
-    var maybeFindRestaurantTableViewCell: FindRestaurantTableViewCell?
-    var maybePopulatedRestaurantTableViewCell: PopulatedRestaurantTableViewCell?
+    private let addRestaurantPhotosTableViewCell: AddRestaurantPhotosTableViewCell
+    private var maybeFindRestaurantTableViewCell: FindRestaurantTableViewCell
+    private lazy var maybePopulatedRestaurantTableViewCell = PopulatedRestaurantTableViewCell()
     let addRestaurantFormTableViewCell: AddRestaurantFormTableViewCell
 
     // MARK: - View Elements
@@ -147,8 +148,8 @@ class NewRestaurantViewController: UIViewController {
         if let cell = maybeCell {
             let formView = cell.formView
 
-            let restaurantName = maybePopulatedRestaurantTableViewCell?.textLabel?.text ?? ""
-            let restaurantAddress = maybePopulatedRestaurantTableViewCell?.detailTextLabel?.text ?? ""
+            let restaurantName = restaurantSearchResult?.name ?? ""
+            let restaurantAddress = restaurantSearchResult?.address ?? ""
 
             let newRestaurant = NewRestaurant(
                 name: restaurantName,
@@ -241,9 +242,13 @@ extension NewRestaurantViewController: UITableViewDataSource {
                 return addRestaurantPhotosTableViewCell
 
             case NewRestuarantTableViewRow.FindRestaurantCell.rawValue:
-                return maybeFindRestaurantTableViewCell ??
-                    maybePopulatedRestaurantTableViewCell ??
-                    UITableViewCell()
+                if (restaurantSearchResult != nil) {
+                    maybePopulatedRestaurantTableViewCell.textLabel?.text = restaurantSearchResult?.name
+                    maybePopulatedRestaurantTableViewCell.detailTextLabel?.text = restaurantSearchResult?.address
+                    return maybePopulatedRestaurantTableViewCell
+                } else {
+                    return maybeFindRestaurantTableViewCell
+                }
 
             case NewRestuarantTableViewRow.FormDetailsCell.rawValue:
                 addRestaurantFormTableViewCell.configureCell(self)
@@ -311,14 +316,10 @@ extension NewRestaurantViewController: NewRestaurantViewControllerPresenterProto
 // MARK: - SearchResultRestaurantSelectionDelegate
 extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
     func searchResultRestaurantSelected(searchResultRestaurant: SearchResultRestaurant) {
-        if (maybePopulatedRestaurantTableViewCell == nil) {
-            maybePopulatedRestaurantTableViewCell = PopulatedRestaurantTableViewCell()
-        }
-
-        maybePopulatedRestaurantTableViewCell?.textLabel?.text = searchResultRestaurant.name
-        maybePopulatedRestaurantTableViewCell?.detailTextLabel?.text = searchResultRestaurant.address
-
-        maybeFindRestaurantTableViewCell = nil
+        restaurantSearchResult = (
+            name: searchResultRestaurant.name,
+            address: searchResultRestaurant.address
+        )
 
         reloader.reload(tableView)
     }

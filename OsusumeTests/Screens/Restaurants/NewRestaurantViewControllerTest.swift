@@ -152,11 +152,10 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
     // MARK: - Actions
     func test_tappingDoneButton_savesRestaurant() {
-        newRestaurantVC.searchResultRestaurantSelected(SearchResultRestaurant(
-            id: "",
+        newRestaurantVC.restaurantSearchResult = (
             name: "Some Restaurant",
             address: ""
-        ))
+        )
 
         let cell = getAddRestaurantFormTableViewCell()
         cell.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"
@@ -237,9 +236,10 @@ class NewRestaurantViewControllerTest: XCTestCase {
         newRestaurantVC.searchResultRestaurantSelected(selectedSearchResultRestaurant)
 
 
-        expect(self.newRestaurantVC.maybePopulatedRestaurantTableViewCell?.textLabel?.text)
+        let populatedCell = getPopulatedRestaurantTableViewCell()
+        expect(populatedCell?.textLabel?.text)
             .to(equal("Afuri"))
-        expect(self.newRestaurantVC.maybePopulatedRestaurantTableViewCell?.detailTextLabel?.text)
+        expect(populatedCell?.detailTextLabel?.text)
             .to(equal("Roppongi Hills 5-2-1"))
     }
 
