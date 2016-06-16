@@ -36,9 +36,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
     // MARK: - View Controller Lifecycle
     func test_viewDidLoad_initializesSubviews() {
         expect(self.newRestaurantVC.tableView).to(beAKindOf(UITableView))
-        let cell = getAddRestaurantFormTableViewCell()
-
-        expect(cell.formView.priceRangeButton).to(beAKindOf(UIButton))
     }
 
     func test_viewDidLoad_addsSubviews() {
@@ -67,14 +64,14 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(numberOfSections).to(equal(1))
     }
 
-    func test_tableView_containsFourRowsForRestaurantDetails() {
+    func test_tableView_containsFiveRowsForRestaurantDetails() {
         let numberOfRows = newRestaurantVC.tableView.dataSource?.tableView(
             newRestaurantVC.tableView,
             numberOfRowsInSection: 0
         )
 
 
-        expect(numberOfRows).to(equal(4))
+        expect(numberOfRows).to(equal(5))
     }
 
     // MARK: - Tableview Cell
@@ -82,7 +79,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let cell = getAddRestaurantPhotosTableViewCell()
 
 
-        expect(cell).toNot(beNil())
         expect(cell).to(beAKindOf(AddRestaurantPhotosTableViewCell))
     }
 
@@ -90,7 +86,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let cell = getAddRestaurantFormTableViewCell()
 
 
-        expect(cell).toNot(beNil())
         expect(cell).to(beAKindOf(AddRestaurantFormTableViewCell))
     }
 
@@ -98,15 +93,21 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let cell = getFindRestaurantTableViewCell()
 
 
-        expect(cell).toNot(beNil())
         expect(cell).to(beAKindOf(FindRestaurantTableViewCell))
     }
 
     func test_tableView_returnsCuisineTableViewCell() {
         let cell = getCuisineTableViewCell()
 
-        expect(cell).toNot(beNil())
+
         expect(cell).to(beAKindOf(CuisineTableViewCell))
+    }
+
+    func test_tableView_returnsPriceRangeTableViewCell() {
+        let cell = getPriceRangeTableViewCell()
+
+
+        expect(cell).to(beAKindOf(PriceRangeTableViewCell))
     }
 
     // MARK: - Tapping Cells
@@ -166,6 +167,20 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeRouter.showFindCuisineScreen_wasCalled).to(beTrue())
     }
 
+    func test_tappingPriceRangeCell_showPriceRangeViewController() {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.PriceRangeCell.rawValue,
+            inSection: 0
+        )
+        newRestaurantVC.tableView.delegate?.tableView!(
+            newRestaurantVC.tableView,
+            didSelectRowAtIndexPath: indexPath
+        )
+
+
+        expect(self.fakeRouter.showPriceRangeListScreen_wasCalled).to(beTrue())
+    }
+
     // MARK: - Navigation Bar
     func test_viewDidLoad_setsTitle() {
         expect(self.newRestaurantVC.title).to(equal("Add Restaurant"))
@@ -178,6 +193,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
             address: ""
         )
         newRestaurantVC.selectedCuisine = Cuisine(id: 1, name: "Restaurant Cuisine Type")
+        newRestaurantVC.selectedPriceRange = PriceRange(id: 1, range: "Selected Price Range")
 
         let cell = getAddRestaurantFormTableViewCell()
         cell.formView.notesTextField.text = "Notes"
@@ -192,6 +208,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(newRestaurant.name).to(equal("Some Restaurant"))
         expect(newRestaurant.address).to(equal(""))
         expect(newRestaurant.cuisineType).to(equal("Restaurant Cuisine Type"))
+        expect(newRestaurant.priceRangeId).to(equal(1))
         expect(newRestaurant.offersEnglishMenu).to(equal(false))
         expect(newRestaurant.walkInsOk).to(equal(false))
         expect(newRestaurant.acceptsCreditCards).to(equal(false))
@@ -227,14 +244,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
 
         expect(self.fakeImagePicker.bs_presentImagePickerController_wasCalled).to(beTrue())
-    }
-
-    func test_tappingPriceRange_showsPriceRangeListScreen() {
-        let cell = getAddRestaurantFormTableViewCell()
-        tapButton(cell.formView.priceRangeButton)
-
-
-        expect(self.fakeRouter.showPriceRangeListScreen_wasCalled).to(beTrue())
     }
 
     // MARK: - Find Restaurant
@@ -294,7 +303,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(cuisineCell.textLabel?.text).to(equal("Hamburger"))
     }
 
-    func test_selectCUisine_reloadsTableView() {
+    func test_selectCuisine_reloadsTableView() {
         let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
 
         newRestaurantVC.cuisineSelected(selectedCuisine)
@@ -307,23 +316,22 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let selectedPriceRange = PriceRange(id: 1, range: "0~999")
 
 
-        let cell = getAddRestaurantFormTableViewCell()
-        cell.formView.priceRangeSelected(selectedPriceRange)
+        newRestaurantVC.priceRangeSelected(selectedPriceRange)
 
 
-        expect(cell.formView.priceRangeValueLabel.text).to(equal("0~999"))
+        let priceRangeCell = getPriceRangeTableViewCell()
+        expect(priceRangeCell.textLabel?.text).to(equal("0~999"))
     }
 
-    func test_selectPriceRange_setsSelectedPriceRangePropertyValue() {
+    func test_selectPriceRange_reloadsTableView() {
         let selectedPriceRange = PriceRange(id: 1, range: "0~999")
 
 
-        let cell = getAddRestaurantFormTableViewCell()
-        cell.formView.priceRangeSelected(selectedPriceRange)
+        newRestaurantVC.priceRangeSelected(selectedPriceRange)
 
-
-        expect(cell.formView.selectedPriceRange).to(equal(selectedPriceRange))
+        expect(self.fakeReloader.reload_wasCalled).to(beTrue())
     }
+
 
     // MARK: - Private Methods
     private func getAddRestaurantPhotosTableViewCell() -> AddRestaurantPhotosTableViewCell {
@@ -384,5 +392,17 @@ class NewRestaurantViewControllerTest: XCTestCase {
             newRestaurantVC.tableView,
             cellForRowAtIndexPath: indexPath
         ) as! CuisineTableViewCell
+    }
+
+    private func getPriceRangeTableViewCell() -> PriceRangeTableViewCell {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.PriceRangeCell.rawValue,
+            inSection: 0
+        )
+
+        return newRestaurantVC.tableView(
+            newRestaurantVC.tableView,
+            cellForRowAtIndexPath: indexPath
+        ) as! PriceRangeTableViewCell
     }
 }

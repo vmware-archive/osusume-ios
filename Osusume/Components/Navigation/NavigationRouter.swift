@@ -198,7 +198,7 @@ struct NavigationRouter: Router {
             priceRangeRepo: priceRangeRepo,
             reloader: DefaultReloader(),
             router: self,
-            priceRangeSelection: newRestaurantVC!.addRestaurantFormTableViewCell.formView
+            priceRangeSelection: newRestaurantVC!
         )
 
         newRestaurantNavVC!.pushViewController(

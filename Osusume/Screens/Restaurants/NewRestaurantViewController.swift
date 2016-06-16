@@ -6,6 +6,7 @@ enum NewRestuarantTableViewRow: Int {
     case AddPhotosCell = 0
     case FindRestaurantCell
     case CuisineCell
+    case PriceRangeCell
     case FormDetailsCell
     case Count
 
@@ -28,11 +29,13 @@ class NewRestaurantViewController: UIViewController {
     private let imagePickerViewController: BSImagePickerViewController
     var restaurantSearchResult: (name: String, address: String)?
     var selectedCuisine: Cuisine?
+    var selectedPriceRange: PriceRange?
 
     private let addRestaurantPhotosTableViewCell: AddRestaurantPhotosTableViewCell
     private var maybeFindRestaurantTableViewCell: FindRestaurantTableViewCell
     private lazy var maybePopulatedRestaurantTableViewCell = PopulatedRestaurantTableViewCell()
     private let cuisineTableViewCell: CuisineTableViewCell
+    private let priceRangeTableViewCell: PriceRangeTableViewCell
     let addRestaurantFormTableViewCell: AddRestaurantFormTableViewCell
 
     // MARK: - View Elements
@@ -60,6 +63,7 @@ class NewRestaurantViewController: UIViewController {
         addRestaurantPhotosTableViewCell = AddRestaurantPhotosTableViewCell()
         maybeFindRestaurantTableViewCell = FindRestaurantTableViewCell()
         cuisineTableViewCell = CuisineTableViewCell()
+        priceRangeTableViewCell = PriceRangeTableViewCell()
         addRestaurantFormTableViewCell = AddRestaurantFormTableViewCell()
 
         super.init(nibName: nil, bundle: nil)
@@ -160,7 +164,7 @@ class NewRestaurantViewController: UIViewController {
                 address: restaurantAddress,
                 cuisineType: selectedCuisine?.name ?? "",
                 cuisineId: selectedCuisine?.id ?? 0,
-                priceRangeId: formView.selectedPriceRange.id,
+                priceRangeId: selectedPriceRange?.id ?? 0,
                 offersEnglishMenu: formView.getOffersEnglishMenuState()!,
                 walkInsOk: formView.getWalkInsOkState()!,
                 acceptsCreditCards: formView.getAcceptsCreditCardsState()!,
@@ -260,6 +264,12 @@ extension NewRestaurantViewController: UITableViewDataSource {
                 }
                 return cuisineTableViewCell
 
+            case NewRestuarantTableViewRow.PriceRangeCell.rawValue:
+                if (selectedPriceRange != nil) {
+                    priceRangeTableViewCell.textLabel?.text = selectedPriceRange?.range
+                }
+                return priceRangeTableViewCell
+
             case NewRestuarantTableViewRow.FormDetailsCell.rawValue:
                 addRestaurantFormTableViewCell.configureCell(self)
                 return addRestaurantFormTableViewCell
@@ -278,6 +288,8 @@ extension NewRestaurantViewController: UITableViewDelegate {
                 router.showFindRestaurantScreen()
             case NewRestuarantTableViewRow.CuisineCell.rawValue:
                 router.showFindCuisineScreen()
+            case NewRestuarantTableViewRow.PriceRangeCell.rawValue:
+                router.showPriceRangeListScreen()
             default:
                 break
         }
@@ -341,6 +353,14 @@ extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
 extension NewRestaurantViewController: CuisineSelectionDelegate {
     func cuisineSelected(cuisine: Cuisine) {
         selectedCuisine = cuisine
+        reloader.reload(tableView)
+    }
+}
+
+// MARK: - PriceRangeSelectionDelegate
+extension NewRestaurantViewController: PriceRangeSelectionDelegate {
+    func priceRangeSelected(priceRange: PriceRange) {
+        selectedPriceRange = priceRange
         reloader.reload(tableView)
     }
 }

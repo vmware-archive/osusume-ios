@@ -33,6 +33,7 @@
 		AE2C8DAB1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2C8DAA1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift */; };
 		AE31192C1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */; };
 		AE3119301CE47816006E46B6 /* CustomMatchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31192F1CE47816006E46B6 /* CustomMatchers.swift */; };
+		AE36996F1D126D450015D6D9 /* PriceRangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE36996E1D126D450015D6D9 /* PriceRangeTableViewCell.swift */; };
 		AE37F6041C7FD7EB0005CB29 /* FakeReloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE37F6031C7FD7EB0005CB29 /* FakeReloader.swift */; };
 		AE39E61F1CA0D70A008DBD18 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDE88C21C1FA57700AF8DA1 /* Result.framework */; };
 		AE3ECDEE1C76E947002D70B4 /* appleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3ECDED1C76E947002D70B4 /* appleLogo.png */; };
@@ -279,6 +280,7 @@
 		AE2C8DAA1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AE31192F1CE47816006E46B6 /* CustomMatchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMatchers.swift; sourceTree = "<group>"; };
+		AE36996E1D126D450015D6D9 /* PriceRangeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeTableViewCell.swift; sourceTree = "<group>"; };
 		AE37F6031C7FD7EB0005CB29 /* FakeReloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeReloader.swift; sourceTree = "<group>"; };
 		AE3ECDED1C76E947002D70B4 /* appleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appleLogo.png; sourceTree = "<group>"; };
 		AE3ECDF11C7AEAA0002D70B4 /* truck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = truck.png; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 				AE5BEBE41D1244D80048316B /* CuisineTableViewCell.swift */,
 				AE8B54F01D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift */,
 				AE6E779D1D0FAB5E00F07124 /* PopulatedRestaurantTableViewCell.swift */,
+				AE36996E1D126D450015D6D9 /* PriceRangeTableViewCell.swift */,
 				DE99C5028AF3D79E18D7443C /* RestaurantDetailTableViewCell.swift */,
 				DE99C3EDAAA83EF3B6AB248F /* RestaurantDetailTableViewCellDelegate.swift */,
 				DE99C71E17E86A56C799143B /* RestaurantTableViewCell.swift */,
@@ -1435,6 +1438,7 @@
 				AE6AECA81CC0C8FD000171A3 /* PriceRangeListParser.swift in Sources */,
 				AEC821191CC479DC00C9B864 /* PriceRangeListViewController.swift in Sources */,
 				AE9E6F3E1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift in Sources */,
+				AE36996F1D126D450015D6D9 /* PriceRangeTableViewCell.swift in Sources */,
 				AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */,
 				DE99C09C8D59A4023CBD6A14 /* RandomUUIDProvider.swift in Sources */,
 				AE3ED1851C850EF20097DC10 /* Reloadable.swift in Sources */,
