@@ -152,7 +152,7 @@ struct NavigationRouter: Router {
             cuisineRepo: cuisineRepo,
             textSearch: DefaultTextSearch(),
             reloader: DefaultReloader(),
-            delegate: newRestaurantVC!.addRestaurantFormTableViewCell.formView
+            delegate: newRestaurantVC!
         )
 
         newRestaurantNavVC!.pushViewController(

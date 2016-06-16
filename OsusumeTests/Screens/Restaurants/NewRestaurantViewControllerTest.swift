@@ -38,7 +38,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.newRestaurantVC.tableView).to(beAKindOf(UITableView))
         let cell = getAddRestaurantFormTableViewCell()
 
-        expect(cell.formView.findCuisineButton).to(beAKindOf(UIButton))
         expect(cell.formView.priceRangeButton).to(beAKindOf(UIButton))
     }
 
@@ -68,16 +67,17 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(numberOfSections).to(equal(1))
     }
 
-    func test_tableView_containsThreeRowsForRestaurantDetails() {
+    func test_tableView_containsFourRowsForRestaurantDetails() {
         let numberOfRows = newRestaurantVC.tableView.dataSource?.tableView(
             newRestaurantVC.tableView,
             numberOfRowsInSection: 0
         )
 
 
-        expect(numberOfRows).to(equal(3))
+        expect(numberOfRows).to(equal(4))
     }
 
+    // MARK: - Tableview Cell
     func test_tableView_returnsAddRestaurantPhotoTableViewCell() {
         let cell = getAddRestaurantPhotosTableViewCell()
 
@@ -102,6 +102,14 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(cell).to(beAKindOf(FindRestaurantTableViewCell))
     }
 
+    func test_tableView_returnsCuisineTableViewCell() {
+        let cell = getCuisineTableViewCell()
+
+        expect(cell).toNot(beNil())
+        expect(cell).to(beAKindOf(CuisineTableViewCell))
+    }
+
+    // MARK: - Tapping Cells
     func test_tappingAddRestaurantPhotosCell_doesNotAllowSelection() {
         let indexPath = NSIndexPath(
             forRow: NewRestuarantTableViewRow.AddPhotosCell.rawValue,
@@ -143,7 +151,20 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
         expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beFalse())
     }
-    
+
+    func test_tappingCuisineCell_showsCuisineListViewController() {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.CuisineCell.rawValue,
+            inSection: 0
+        )
+        newRestaurantVC.tableView.delegate?.tableView!(
+            newRestaurantVC.tableView,
+            didSelectRowAtIndexPath: indexPath
+        )
+
+
+        expect(self.fakeRouter.showFindCuisineScreen_wasCalled).to(beTrue())
+    }
 
     // MARK: - Navigation Bar
     func test_viewDidLoad_setsTitle() {
@@ -156,9 +177,9 @@ class NewRestaurantViewControllerTest: XCTestCase {
             name: "Some Restaurant",
             address: ""
         )
+        newRestaurantVC.selectedCuisine = Cuisine(id: 1, name: "Restaurant Cuisine Type")
 
         let cell = getAddRestaurantFormTableViewCell()
-        cell.formView.cuisineTypeValueLabel.text = "Restaurant Cuisine Type"
         cell.formView.notesTextField.text = "Notes"
         fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
 
@@ -208,14 +229,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeImagePicker.bs_presentImagePickerController_wasCalled).to(beTrue())
     }
 
-    func test_tappingFindCuisine_showsFindCuisineScreen() {
-        let cell = getAddRestaurantFormTableViewCell()
-        tapButton(cell.formView.findCuisineButton)
-
-
-        expect(self.fakeRouter.showFindCuisineScreen_wasCalled).to(beTrue())
-    }
-
     func test_tappingPriceRange_showsPriceRangeListScreen() {
         let cell = getAddRestaurantFormTableViewCell()
         tapButton(cell.formView.priceRangeButton)
@@ -262,7 +275,9 @@ class NewRestaurantViewControllerTest: XCTestCase {
             id: "", name: "", address: ""
         )
 
+
         newRestaurantVC.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+
 
         expect(self.fakeReloader.reload_wasCalled).to(beTrue())
     }
@@ -272,22 +287,19 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
 
 
-        let cell = getAddRestaurantFormTableViewCell()
-        cell.formView.cuisineSelected(selectedCuisine)
+        newRestaurantVC.cuisineSelected(selectedCuisine)
 
 
-        expect(cell.formView.cuisineTypeValueLabel.text).to(equal("Hamburger"))
+        let cuisineCell = getCuisineTableViewCell()
+        expect(cuisineCell.textLabel?.text).to(equal("Hamburger"))
     }
 
-    func test_selectCuisine_setsSelectedCuisinePropertyValue() {
+    func test_selectCUisine_reloadsTableView() {
         let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
 
+        newRestaurantVC.cuisineSelected(selectedCuisine)
 
-        let cell = getAddRestaurantFormTableViewCell()
-        cell.formView.cuisineSelected(selectedCuisine)
-
-
-        expect(cell.formView.selectedCuisine).to(equal(selectedCuisine))
+        expect(self.fakeReloader.reload_wasCalled).to(beTrue())
     }
 
     // MARK: - Price Range
@@ -360,5 +372,17 @@ class NewRestaurantViewControllerTest: XCTestCase {
             newRestaurantVC.tableView,
             cellForRowAtIndexPath: indexPath
             ) as? PopulatedRestaurantTableViewCell
+    }
+
+    private func getCuisineTableViewCell() -> CuisineTableViewCell {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.CuisineCell.rawValue,
+            inSection: 0
+        )
+
+        return newRestaurantVC.tableView(
+            newRestaurantVC.tableView,
+            cellForRowAtIndexPath: indexPath
+        ) as! CuisineTableViewCell
     }
 }

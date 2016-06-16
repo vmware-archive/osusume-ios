@@ -5,6 +5,7 @@ import Photos
 enum NewRestuarantTableViewRow: Int {
     case AddPhotosCell = 0
     case FindRestaurantCell
+    case CuisineCell
     case FormDetailsCell
     case Count
 
@@ -26,10 +27,12 @@ class NewRestaurantViewController: UIViewController {
     private(set) var images: [UIImage]
     private let imagePickerViewController: BSImagePickerViewController
     var restaurantSearchResult: (name: String, address: String)?
+    var selectedCuisine: Cuisine?
 
     private let addRestaurantPhotosTableViewCell: AddRestaurantPhotosTableViewCell
     private var maybeFindRestaurantTableViewCell: FindRestaurantTableViewCell
     private lazy var maybePopulatedRestaurantTableViewCell = PopulatedRestaurantTableViewCell()
+    private let cuisineTableViewCell: CuisineTableViewCell
     let addRestaurantFormTableViewCell: AddRestaurantFormTableViewCell
 
     // MARK: - View Elements
@@ -56,6 +59,7 @@ class NewRestaurantViewController: UIViewController {
 
         addRestaurantPhotosTableViewCell = AddRestaurantPhotosTableViewCell()
         maybeFindRestaurantTableViewCell = FindRestaurantTableViewCell()
+        cuisineTableViewCell = CuisineTableViewCell()
         addRestaurantFormTableViewCell = AddRestaurantFormTableViewCell()
 
         super.init(nibName: nil, bundle: nil)
@@ -154,8 +158,8 @@ class NewRestaurantViewController: UIViewController {
             let newRestaurant = NewRestaurant(
                 name: restaurantName,
                 address: restaurantAddress,
-                cuisineType: formView.getCuisineTypeText() ?? "",
-                cuisineId: formView.selectedCuisine.id,
+                cuisineType: selectedCuisine?.name ?? "",
+                cuisineId: selectedCuisine?.id ?? 0,
                 priceRangeId: formView.selectedPriceRange.id,
                 offersEnglishMenu: formView.getOffersEnglishMenuState()!,
                 walkInsOk: formView.getWalkInsOkState()!,
@@ -250,6 +254,12 @@ extension NewRestaurantViewController: UITableViewDataSource {
                     return maybeFindRestaurantTableViewCell
                 }
 
+            case NewRestuarantTableViewRow.CuisineCell.rawValue:
+                if (selectedCuisine != nil) {
+                    cuisineTableViewCell.textLabel?.text = selectedCuisine?.name
+                }
+                return cuisineTableViewCell
+
             case NewRestuarantTableViewRow.FormDetailsCell.rawValue:
                 addRestaurantFormTableViewCell.configureCell(self)
                 return addRestaurantFormTableViewCell
@@ -266,6 +276,8 @@ extension NewRestaurantViewController: UITableViewDelegate {
         switch indexPath.row {
             case NewRestuarantTableViewRow.FindRestaurantCell.rawValue:
                 router.showFindRestaurantScreen()
+            case NewRestuarantTableViewRow.CuisineCell.rawValue:
+                router.showFindCuisineScreen()
             default:
                 break
         }
@@ -321,6 +333,14 @@ extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
             address: searchResultRestaurant.address
         )
 
+        reloader.reload(tableView)
+    }
+}
+
+// MARK: - CuisineSelectionDelegate
+extension NewRestaurantViewController: CuisineSelectionDelegate {
+    func cuisineSelected(cuisine: Cuisine) {
+        selectedCuisine = cuisine
         reloader.reload(tableView)
     }
 }
