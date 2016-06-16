@@ -58,19 +58,6 @@ class NetworkUserRepoTest: XCTestCase {
         expect(loginResultFuture.error).to(equal(RepoError.PostFailed));
     }
 
-    func test_fetchCurrentUser_returnsUserName() {
-        let promise = Promise<AnyObject, RepoError>()
-        fakeHttp.get_returnValue = promise.future
-
-        let userName = userRepo.fetchCurrentUserName()
-
-        promise.success(["name": "awesome-user-name"])
-        NSRunLoop.osu_advance()
-
-        expect(self.fakeHttp.get_args.path).to(equal("/profile"))
-        expect(userName.value).to(equal("awesome-user-name"))
-    }
-
     func test_getMyPosts_delegatesToRestaurantRepo() {
         userRepo.getMyPosts()
 

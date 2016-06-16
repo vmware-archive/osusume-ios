@@ -10,7 +10,6 @@ class ProfileViewControllerTest: XCTestCase {
     var fakePhotoRepo: FakePhotoRepo!
     var fakeReloader: FakeReloader!
     var profileVC: ProfileViewController!
-    var fetchCurrentUserNamePromise = Promise<String, RepoError>()
     let fetchLikesPromise = Promise<[Restaurant], RepoError>()
 
     override func setUp() {
@@ -20,6 +19,10 @@ class ProfileViewControllerTest: XCTestCase {
         fakePhotoRepo = FakePhotoRepo()
         fakeReloader = FakeReloader()
 
+        fakeSessionRepo.getAuthenticatedUser_returnValue = AuthenticatedUser(
+            id: 1, email: "danny@gmail.com", token: "some-token-value", name: "Danny"
+        )
+
         profileVC = ProfileViewController(
             router: fakeRouter,
             userRepo: fakeUserRepo,
@@ -28,7 +31,6 @@ class ProfileViewControllerTest: XCTestCase {
             reloader: fakeReloader
         )
 
-        fakeUserRepo.fetchCurrentUserName_returnValue = fetchCurrentUserNamePromise.future
         profileVC.view.setNeedsLayout()
     }
 
@@ -38,11 +40,7 @@ class ProfileViewControllerTest: XCTestCase {
     }
 
     func test_viewDidLoad_displaysUsername() {
-        fetchCurrentUserNamePromise.success("A")
-
-
-        waitForFutureToComplete(fetchCurrentUserNamePromise.future)
-        expect(self.profileVC.userNameLabel.text).to(equal("A"))
+        expect(self.profileVC.userNameLabel.text).to(equal("Danny"))
     }
 
     func test_viewDidLoad_showsLogoutButton() {

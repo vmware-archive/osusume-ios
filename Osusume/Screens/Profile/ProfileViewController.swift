@@ -73,10 +73,7 @@ class ProfileViewController: UIViewController {
         configureSubviews()
         addConstraints()
 
-        userRepo.fetchCurrentUserName()
-            .onSuccess { [unowned self] userName in
-                self.userNameLabel.text = userName
-            }
+        self.userNameLabel.text = sessionRepo.getAuthenticatedUser()?.name
     }
 
     // MARK: - View Setup

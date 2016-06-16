@@ -40,14 +40,6 @@ struct NetworkUserRepo: UserRepo {
             })
     }
 
-    func fetchCurrentUserName() -> Future<String, RepoError> {
-        return http
-            .get("/profile", headers: [:])
-            .map { value in
-                value["name"] as! String
-            }
-    }
-
     func getMyPosts() -> Future<[Restaurant], RepoError> {
         return restaurantListRepo.getAll("/profile/posts")
     }
