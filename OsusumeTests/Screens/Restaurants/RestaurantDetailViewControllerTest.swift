@@ -19,7 +19,12 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     var tomorrow: NSDate {
         return NSDate(timeInterval: 60*60*24, sinceDate: today)
     }
-    let authenticatedDanny = AuthenticatedUser(id: 100, email: "danny-email", token: "token")
+    let authenticatedDanny = AuthenticatedUser(
+        id: 100,
+        email: "danny-email",
+        token: "token",
+        name: "Danny"
+    )
 
     override func setUp() {
         restaurant = RestaurantFixtures.newRestaurant(

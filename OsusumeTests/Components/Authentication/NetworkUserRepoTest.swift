@@ -28,11 +28,19 @@ class NetworkUserRepoTest: XCTestCase {
         expect(self.fakeHttp.post_args.parameters["password"] as? String).to(equal("my-password"))
 
 
-        promise.success(["email" : "my-email", "id" : 1, "token" : "my-token"])
+        promise.success([
+            "email" : "my-email",
+            "id" : 1,
+            "token" : "my-token",
+            "name": "Danny"]
+        )
         NSRunLoop.osu_advance()
+
+
         expect(authenticatedUser.value!.token).to(equal("my-token"))
         expect(authenticatedUser.value!.id).to(equal(1))
         expect(authenticatedUser.value!.email).to(equal("my-email"))
+        expect(authenticatedUser.value!.name).to(equal("Danny"))
     }
 
     func test_login_returnsPostFailedErrorWhenLoginTokenIsAbsent() {

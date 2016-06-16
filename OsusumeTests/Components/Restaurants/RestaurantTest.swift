@@ -51,7 +51,12 @@ class RestaurantTest: XCTestCase {
         let restaurant = RestaurantFixtures.newRestaurant(
             createdByUser: (id: 10, name: "Danny", email: "danny@email.com")
         )
-        let currentUser = AuthenticatedUser(id: 10, email: "danny@email.com", token: "token-string")
+        let currentUser = AuthenticatedUser(
+            id: 10,
+            email: "danny@email.com",
+            token: "token-string",
+            name: "Danny"
+        )
 
 
         expect(restaurant.createdByCurrentUser(currentUser)).to(beTrue())

@@ -28,13 +28,14 @@ struct NetworkUserRepo: UserRepo {
                 guard
                     let token = json["token"] as? String,
                     let email = json["email"] as? String,
-                    let id = json["id"] as? Int
+                    let id = json["id"] as? Int,
+                    let name = json["name"] as? String
                 else {
                     return Future(error: RepoError.PostFailed)
                 }
 
                 return Future(
-                    value: AuthenticatedUser(id: id, email: email, token: token)
+                    value: AuthenticatedUser(id: id, email: email, token: token, name: name)
                 )
             })
     }

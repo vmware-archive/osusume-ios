@@ -1,7 +1,7 @@
 @testable import Osusume
 
 class FakeSessionRepo: SessionRepo {
-    var setAuthenticatedUser_arg = AuthenticatedUser(id: -1, email: "", token: "")
+    var setAuthenticatedUser_arg = AuthenticatedUser(id: -1, email: "", token: "", name: "")
     func setAuthenticatedUser(authenticatedUser: AuthenticatedUser) {
         setAuthenticatedUser_arg = authenticatedUser
     }

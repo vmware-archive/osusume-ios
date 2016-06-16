@@ -37,7 +37,9 @@ class LoginViewControllerTest: XCTestCase {
         tapButton(loginVC.loginButton)
 
 
-        loginPromise.success(AuthenticatedUser(id: 1, email: "email", token: "token"))
+        loginPromise.success(
+            AuthenticatedUser(id: 1, email: "email", token: "token", name: "Danny")
+        )
         waitForFutureToComplete(fakeUserRepo.login_returnValue)
 
         expect(self.fakeUserRepo.login_args.email).to(equal("test@email.com"))
@@ -52,7 +54,7 @@ class LoginViewControllerTest: XCTestCase {
         tapButton(loginVC.loginButton)
 
 
-        let authenticatedUser = AuthenticatedUser(id: 1, email: "email", token: "token")
+        let authenticatedUser = AuthenticatedUser(id: 1, email: "email", token: "token", name: "Danny")
         loginPromise.success(authenticatedUser)
         waitForFutureToComplete(fakeUserRepo.login_returnValue)
 
@@ -66,7 +68,9 @@ class LoginViewControllerTest: XCTestCase {
 
         tapButton(loginVC.loginButton)
 
-        loginPromise.success(AuthenticatedUser(id: 1, email: "email", token: "token"))
+        loginPromise.success(
+            AuthenticatedUser(id: 1, email: "email", token: "token", name: "Danny")
+        )
         waitForFutureToComplete(fakeUserRepo.login_returnValue)
 
 

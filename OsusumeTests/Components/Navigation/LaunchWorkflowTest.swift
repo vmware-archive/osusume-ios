@@ -47,7 +47,7 @@ class LaunchWorkflowTest: XCTestCase {
 
     func test_showsRestaurantListView_whenASessionExists() {
         fakeSessionRepo.getAuthenticatedUser_returnValue =
-            AuthenticatedUser(id: 1, email: "email", token: "some-token")
+            AuthenticatedUser(id: 1, email: "email", token: "some-token", name: "Danny")
 
         
         launchWorkflow.startWorkflow()

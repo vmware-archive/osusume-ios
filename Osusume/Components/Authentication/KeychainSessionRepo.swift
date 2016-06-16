@@ -6,6 +6,7 @@ struct KeychainSessionRepo: SessionRepo {
     private let httpTokenKeyName = "http-token"
     private let httpAuthIdKeyName = "http-auth_id"
     private let httpAuthEmailKeyName = "http-auth-email"
+    private let httpNameKeyName = "http-name"
 
     let keychain = Keychain(service: StoreServiceName)
 
@@ -13,6 +14,8 @@ struct KeychainSessionRepo: SessionRepo {
         keychain[httpAuthIdKeyName] = "\(authenticatedUser.id)"
         keychain[httpTokenKeyName] = authenticatedUser.token
         keychain[httpAuthEmailKeyName] = authenticatedUser.email
+        keychain[httpNameKeyName] = authenticatedUser.name
+
     }
 
     func getAuthenticatedUser() -> AuthenticatedUser? {
@@ -20,14 +23,16 @@ struct KeychainSessionRepo: SessionRepo {
             let idString = keychain[httpAuthIdKeyName],
             let idInt = Int(idString),
             let email = keychain[httpAuthEmailKeyName],
-            let token = keychain[httpTokenKeyName] else {
+            let token = keychain[httpTokenKeyName],
+            let name = keychain[httpNameKeyName] else {
                 return nil
         }
 
         return AuthenticatedUser(
             id: idInt,
             email: email,
-            token: token
+            token: token,
+            name: name
         )
     }
 
@@ -35,5 +40,6 @@ struct KeychainSessionRepo: SessionRepo {
         keychain[httpAuthIdKeyName] = nil
         keychain[httpTokenKeyName] = nil
         keychain[httpAuthEmailKeyName] = nil
+        keychain[httpNameKeyName] = nil
     }
 }

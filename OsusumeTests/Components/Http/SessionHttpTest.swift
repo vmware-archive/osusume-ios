@@ -9,7 +9,7 @@ class SessionHttpTest: XCTestCase {
 
     override func setUp() {
         fakeSessionRepo.getAuthenticatedUser_returnValue =
-            AuthenticatedUser(id: 1, email: "email", token: "FakeToken")
+            AuthenticatedUser(id: 1, email: "email", token: "FakeToken", name: "Danny")
         sessionHttp = SessionHttp(
             http: fakeHttp,
             sessionRepo: fakeSessionRepo

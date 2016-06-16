@@ -167,7 +167,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
     func test_cannotDeletePhoto_whenRestaurantNotCreatedByCurrentUser() {
         fakeSessionRepo.getAuthenticatedUser_returnValue = AuthenticatedUser(
-            id: 10, email: "danny@pivotal", token: "token-string"
+            id: 10, email: "danny@pivotal", token: "token-string", name: "Danny"
         )
         instantiateEditRestaurantVCWithCuisine(Cuisine(id: 0, name: "Not Specified"))
 
