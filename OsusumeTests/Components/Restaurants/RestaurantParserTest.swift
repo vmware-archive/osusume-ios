@@ -94,7 +94,7 @@ class RestaurantParserTest: XCTestCase {
             "comments": [
                 [
                     "id": 1,
-                    "content": "first comment",
+                    "comment": "first comment",
                     "created_at": "2016-02-29T06:07:55.000Z",
                     "restaurant_id": 1232,
                     "user": [
@@ -104,7 +104,7 @@ class RestaurantParserTest: XCTestCase {
                 ],
                 [
                     "id": 2,
-                    "content": "second comment",
+                    "comment": "second comment",
                     "created_at": "2016-02-29T06:07:59.000Z",
                     "restaurant_id": 1232,
                     "user": [
@@ -295,7 +295,7 @@ class RestaurantParserTest: XCTestCase {
             "comments": [
                 [
                     "id": 1,
-                    "content": "first comment",
+                    "comment": "first comment",
                     "created_at": "2016-02-29T06:07:55.000Z",
                     "restaurant_id": 9,
                     "user": [
@@ -305,7 +305,7 @@ class RestaurantParserTest: XCTestCase {
                 ],
                 [
                     "id": 2,
-                    "content": "second comment",
+                    "comment": "second comment",
                     "created_at": "2016-02-29T06:07:55.000Z",
                     "restaurant_id": 9,
                     "user": [

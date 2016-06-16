@@ -6,7 +6,7 @@ struct CommentParser: DataParser {
     func parse(json: [String: AnyObject]) -> Result<PersistedComment, ParseError> {
         guard
             let id = json["id"] as? Int,
-            let text = json["content"] as? String,
+            let text = json["comment"] as? String,
             let createdDateString = json["created_at"] as? String,
             let createdDate = DateConverter.formattedDateFromString(createdDateString),
             let restaurantId = json["restaurant_id"] as? Int,

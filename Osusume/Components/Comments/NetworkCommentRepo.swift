@@ -11,7 +11,7 @@ struct NetworkCommentRepo <P: DataParser where P.ParsedObject == PersistedCommen
             .post(
                 path,
                 headers: [:],
-                parameters: ["comment": ["content": comment.text]]
+                parameters: ["comment": comment.text]
             )
             .mapError { _ in
                 return RepoError.PostFailed

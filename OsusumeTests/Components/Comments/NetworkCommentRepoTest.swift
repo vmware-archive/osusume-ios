@@ -17,24 +17,27 @@ class NetworkCommentRepoTest: XCTestCase {
         )
     }
 
-    func test_persist_passesDataToHttp() {
+    func test_persist_hitsExpectedEndpoing() {
         let comment = NewComment(text: "I loved the tonkatsu!", restaurantId: 1)
+
+
         networkCommentRepo.persist(comment)
 
+
         XCTAssertEqual("/restaurants/\(comment.restaurantId)/comments", fakeHttp.post_args.path)
+    }
 
-        let expectedParams: [String: AnyObject] = ["comment": ["content": comment.text]]
+    func test_persist_passesParametersToHttp() {
+        let comment = NewComment(text: "I loved the tonkatsu!", restaurantId: 1)
 
-        if
-            let contentParamDict = expectedParams["comment"] as? [String: String],
-            let contentCommentText = contentParamDict["content"]
-        {
-            let actualParamDict = fakeHttp.post_args.parameters["comment"]!
-            let actualCommentText = actualParamDict["content"]
-            XCTAssertEqual(contentCommentText, actualCommentText)
-        } else {
-            XCTFail()
-        }
+
+        networkCommentRepo.persist(comment)
+
+
+        let expectedCommentText = comment.text
+        let actualCommentText = fakeHttp.post_args.parameters["comment"] as? String
+
+        XCTAssertEqual(expectedCommentText, actualCommentText)
     }
 
     func test_persist_failsWhenHttpFails() {
@@ -49,7 +52,7 @@ class NetworkCommentRepoTest: XCTestCase {
     func test_persist_passesJsonToParser() {
         let expectedPostResponseJson: [String: AnyObject] = [
             "id": 3,
-            "content": "hello this is a comment!",
+            "comment": "hello this is a comment!",
             "restaurant_id": 99
         ]
 
@@ -63,11 +66,11 @@ class NetworkCommentRepoTest: XCTestCase {
         result.onSuccess { _ in
             if
                 let expectedId = expectedPostResponseJson["id"] as? Int,
-                let expectedContent = expectedPostResponseJson["content"] as? String,
+                let expectedContent = expectedPostResponseJson["comment"] as? String,
                 let expectedRestaurantId = expectedPostResponseJson["restaurant_id"] as? Int
             {
                 let actualId = self.fakeCommentParser.parse_arg!["id"] as! Int
-                let actualContent = self.fakeCommentParser.parse_arg!["content"] as! String
+                let actualContent = self.fakeCommentParser.parse_arg!["comment"] as! String
                 let actualRestaurantId = self.fakeCommentParser.parse_arg!["restaurant_id"] as! Int
 
                 expect(actualId).to(equal(expectedId))
@@ -86,7 +89,7 @@ class NetworkCommentRepoTest: XCTestCase {
     func test_persist_handlesParsingError() {
         let expectedPostResponseJson: [String: AnyObject] = [
             "id": "three",
-            "content": "hello this is a comment!",
+            "comment": "hello this is a comment!",
             "restaurant_id": 99
         ]
 

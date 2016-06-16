@@ -16,7 +16,7 @@ class CommentParserTest: XCTestCase {
     func test_validJson_returnsPersistedComment() {
         let inputHttpJson: [String: AnyObject] = [
             "id": 3,
-            "content": "hello this is a comment!",
+            "comment": "hello this is a comment!",
             "created_at": "2016-02-29T06:07:55.000Z",
             "restaurant_id": 99,
             "user": [
@@ -42,7 +42,7 @@ class CommentParserTest: XCTestCase {
     func test_invalidDateTimeStampFormat_returnsParseError() {
         let inputHttpJson: [String: AnyObject] = [
             "id": 3,
-            "content": "hello this is a comment!",
+            "comment": "hello this is a comment!",
             "created_at": "invalid timestamp string",
             "restaurant_id": 99,
             "user": [
@@ -58,7 +58,7 @@ class CommentParserTest: XCTestCase {
 
     func test_missingInputField_returnsParseError() {
         let inputHttpJson: [String: AnyObject] = [
-            "content": "hello this is a comment!",
+            "comment": "hello this is a comment!",
             "restaurant_id": 99
         ]
 
@@ -70,7 +70,7 @@ class CommentParserTest: XCTestCase {
     func test_invalidInputValue_returnsParseError() {
         let inputHttpJson: [String: AnyObject] = [
             "id": "three",
-            "content": "hello this is a comment!",
+            "comment": "hello this is a comment!",
             "restaurant_id": 99
         ]
 
