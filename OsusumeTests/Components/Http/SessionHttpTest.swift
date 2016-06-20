@@ -94,7 +94,7 @@ class SessionHttpTest: XCTestCase {
     }
 
     func test_delete_addsAuthorizationToken() {
-        sessionHttp.delete("/comment", headers: [:])
+        sessionHttp.delete("/comment", headers: [:], parameters: [:])
 
 
         let expectedHeaders = [

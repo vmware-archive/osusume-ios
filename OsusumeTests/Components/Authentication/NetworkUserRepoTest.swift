@@ -5,6 +5,7 @@ import BrightFutures
 
 class NetworkUserRepoTest: XCTestCase {
     let fakeHttp = FakeHttp()
+    let fakeSessionRepo = FakeSessionRepo()
     var userRepo: UserRepo!
 
     override func setUp() {
@@ -13,7 +14,8 @@ class NetworkUserRepoTest: XCTestCase {
             restaurantListRepo: NetworkRestaurantListRepo(
                 http: fakeHttp,
                 parser: RestaurantParser()
-            )
+            ),
+            sessionRepo: fakeSessionRepo
         )
     }
 
@@ -56,6 +58,28 @@ class NetworkUserRepoTest: XCTestCase {
         promise.success(["error": "Invalid email or password."])
         NSRunLoop.osu_advance()
         expect(loginResultFuture.error).to(equal(RepoError.PostFailed));
+    }
+
+    func test_logout_callsDeleteWithUserToken() {
+        fakeSessionRepo.getAuthenticatedUser_returnValue = AuthenticatedUser(
+            id: 1,
+            email: "some-email",
+            token: "some-token",
+            name: "name"
+        )
+
+
+        userRepo.logout()
+
+
+        expect(self.fakeHttp.delete_args.path).to(equal("/session"))
+        expect(self.fakeHttp.delete_args.parameters["token"] as? String).to(equal("some-token"))
+    }
+
+    func test_logout_sessionIsOnlyDeletedIfThereIsAValidAuthenticatedUser() {
+        userRepo.logout()
+
+        expect(self.fakeHttp.delete_wasCalled).to(equal(false))
     }
 
     func test_getMyPosts_delegatesToRestaurantRepo() {

@@ -3,14 +3,17 @@ import BrightFutures
 struct NetworkUserRepo: UserRepo {
     let http: Http
     private let restaurantListRepo: RestaurantListRepo
+    private let sessionRepo: SessionRepo
 
     init(
         http: Http,
-        restaurantListRepo: RestaurantListRepo
+        restaurantListRepo: RestaurantListRepo,
+        sessionRepo: SessionRepo
         )
     {
         self.http = http
         self.restaurantListRepo = restaurantListRepo
+        self.sessionRepo = sessionRepo
     }
 
     func login(email: String, password: String) -> Future<AuthenticatedUser, RepoError> {
@@ -38,6 +41,16 @@ struct NetworkUserRepo: UserRepo {
                     value: AuthenticatedUser(id: id, email: email, token: token, name: name)
                 )
             })
+    }
+
+    func logout() {
+        guard let token = sessionRepo.getAuthenticatedUser()?.token else { return }
+
+        http.delete(
+            "/session",
+            headers: [:],
+            parameters: ["token": token]
+        )
     }
 
     func getMyPosts() -> Future<[Restaurant], RepoError> {

@@ -51,15 +51,19 @@ class FakeHttp: Http {
 
     var delete_args = (
         path: "",
-        headers: [String : String]()
+        headers: [String : String](),
+        parameters: [String : AnyObject]()
     )
     var delete_returnValue = Future<[String : AnyObject], RepoError>()
+    var delete_wasCalled = false
     func delete(
         path: String,
-        headers: [String : String]
+        headers: [String : String],
+        parameters: [String : AnyObject]
         ) -> Future<[String : AnyObject], RepoError>
     {
-        delete_args = (path: path, headers: headers)
+        delete_wasCalled = true
+        delete_args = (path: path, headers: headers, parameters: parameters)
 
         return delete_returnValue
     }

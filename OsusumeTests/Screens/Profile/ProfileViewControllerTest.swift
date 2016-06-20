@@ -115,6 +115,7 @@ class ProfileViewControllerTest: XCTestCase {
 
 
         expect(self.fakeSessionRepo.deleteAuthenticatedUser_wasCalled).to(beTrue())
+        expect(self.fakeUserRepo.logout_wasCalled).to(beTrue())
         expect(self.fakeRouter.loginScreenIsShowing).to(beTrue())
     }
 }

@@ -76,12 +76,13 @@ struct DefaultHttp: Http {
 
     func delete(
         path: String,
-        headers: [String : String]
+        headers: [String : String],
+        parameters: [String : AnyObject]
         ) -> Future<[String : AnyObject], RepoError>
     {
         let promise = Promise<[String: AnyObject], RepoError>()
 
-        request("DELETE", path: path, headers: headers).responseJSON { result in
+        request("DELETE", path: path, headers: headers, parameters: parameters).responseJSON { result in
             switch result {
             case .Success:
                 promise.success(["status" : "OK"])
@@ -109,7 +110,7 @@ struct DefaultHttp: Http {
             mutableURLRequest.setValue(bearerToken, forHTTPHeaderField: "Authorization")
         }
 
-        if (httpMethod == "POST" || httpMethod == "PATCH") {
+        if (httpMethod == "POST" || httpMethod == "PATCH" || httpMethod == "DELETE") {
             if let body = try? NSJSONSerialization.dataWithJSONObject(
                 parameters,
                 options: NSJSONWritingOptions())

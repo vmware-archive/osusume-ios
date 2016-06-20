@@ -10,6 +10,11 @@ class FakeUserRepo : UserRepo {
         return login_returnValue
     }
 
+    var logout_wasCalled = false
+    func logout() {
+        logout_wasCalled = true
+    }
+
     var fetchCurrentUserId_returnValue = Future<Int, RepoError>()
     func fetchCurrentUserId() -> Future<Int, RepoError> {
         return fetchCurrentUserId_returnValue

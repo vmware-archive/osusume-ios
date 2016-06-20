@@ -36,8 +36,10 @@ struct SessionHttp: Http {
     }
 
     func delete(path: String,
-                headers: [String : String]) -> Future<[String : AnyObject], RepoError> {
-        return http.delete(path, headers: addAuthToken(headers))
+                headers: [String : String],
+                parameters: [String : AnyObject]
+                ) -> Future<[String : AnyObject], RepoError> {
+        return http.delete(path, headers: addAuthToken(headers), parameters: parameters)
     }
 
     // MARK: - Private Methods

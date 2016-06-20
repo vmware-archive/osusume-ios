@@ -27,7 +27,8 @@ struct NetworkLikeRepo: LikeRepo {
         let path = buildPath(restaurantId)
         return http.delete(
             path,
-            headers: [:]
+            headers: [:],
+            parameters: [:]
         )
             .mapError { _ in LikeRepoError.LikeFailed }
             .map { _ in Like() }

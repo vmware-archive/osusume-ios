@@ -22,7 +22,7 @@ struct NetworkPhotoRepo: PhotoRepo {
 
     func deletePhoto(restaurantId: Int, photoUrlId: Int) {
         let path = "/restaurants/\(restaurantId)/photoUrls/\(photoUrlId)"
-        http.delete(path, headers: [:])
+        http.delete(path, headers: [:], parameters: [:])
     }
 
     // MARK - Private Method
