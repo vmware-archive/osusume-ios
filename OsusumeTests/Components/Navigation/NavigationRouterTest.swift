@@ -52,15 +52,14 @@ class NavigationRouterTest: XCTestCase {
 
     func test_showingEditRestaurantScreen() {
         configureUIWindowWithRootViewController(rootNavController)
+        rootNavController.pushViewController(UIViewController(), animated: false)
 
-        let restaurantDetailVC = UIViewController()
-        rootNavController.pushViewController(restaurantDetailVC, animated: false)
 
         let restaurant = RestaurantFixtures.newRestaurant()
         navigationRouter.showEditRestaurantScreen(restaurant)
 
+
         let editRestaurantNavController = rootNavController.presentedViewController as? UINavigationController
-        expect(editRestaurantNavController).to(beAKindOf(UINavigationController))
         expect(editRestaurantNavController?.topViewController).to(beAKindOf(EditRestaurantViewController))
     }
 
