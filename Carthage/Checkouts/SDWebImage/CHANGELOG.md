@@ -1,3 +1,27 @@
+## [3.8.1 Patch release for 3.8.0 on Jun 7th, 2016](https://github.com/rs/SDWebImage/releases/tag/3.8.1)
+
+#### Fixes:
+
+- SDWebImage 3.8.0 get wrong image #1589 - the issue was caused by the changes in 3.8.0 (Removed the URL query params from the filename (key) fb0cdb6d 1bf62d4 #1584 - fixes #1433 #1553 #1583 #1585) - Reverted. 
+- Note: The solution for those issues (i.e. #1433 #1553) is to set the `SDWebImageManager` `cacheKeyFilter` block and do their own calculations there.
+
+## [3.8.0 Minor release - Replaces NSURLConnection (deprecated) with NSURLSession - on Jun 6th, 2016](https://github.com/rs/SDWebImage/releases/tag/3.8.0)
+
+#### Infrastructure:
+
+- Had to update the iOS deployment target to 7.0 from 5 - 6545a3a
+
+#### Features:
+
+- Replace deprecated `NSURLConnection` with `NSURLSession` #1578 #1586 - fixes #1291 #1318 #823 #1566 #1515
+- Allow to customise cache and image downloader instances used with `SDWebImageManager` 86fc47bf7b - fixes #1398 #870
+
+#### Fixes:
+
+- Removed the URL query params from the filename (key) fb0cdb6d 1bf62d4 #1584 - fixes #1433 #1553 #1583 #1585
+- Fixed the WebP build with the official 1.0.0 CocoaPods release f1a471e - fixes #1444
+- Updated doc: `removeImageForKey:` not synchronous e6e5c51 - fixes #1379 #1415
+
 ## [3.7.6 Patch release for 3.7.0 on May 8th, 2016](https://github.com/rs/SDWebImage/releases/tag/3.7.6)
 
 #### Infrastructure:
