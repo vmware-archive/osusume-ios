@@ -29,21 +29,13 @@ class NavigationRouterTest: XCTestCase {
 
     func test_showingNewRestaurantScreen() {
         configureUIWindowWithRootViewController(rootNavController)
-
-        let restaurantListVC = RestaurantListViewController(
-            router: navigationRouter,
-            repo: FakeRestaurantRepo(),
-            reloader: FakeReloader(),
-            photoRepo: FakePhotoRepo()
-        )
-        rootNavController.pushViewController(restaurantListVC, animated: false)
+        rootNavController.pushViewController(UIViewController(), animated: false)
 
 
         navigationRouter.showNewRestaurantScreen()
 
 
         let newRestaurantNavController = rootNavController.presentedViewController as? UINavigationController
-        expect(newRestaurantNavController).to(beAKindOf(UINavigationController))
         expect(newRestaurantNavController?.topViewController).to(beAKindOf(NewRestaurantViewController))
     }
 
