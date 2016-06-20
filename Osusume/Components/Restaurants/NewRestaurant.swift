@@ -4,9 +4,6 @@ struct NewRestaurant {
     let cuisineType: String
     let cuisineId: Int
     let priceRangeId: Int
-    let offersEnglishMenu: Bool
-    let walkInsOk: Bool
-    let acceptsCreditCards: Bool
     let notes: String
     let photoUrls: [String]
 }

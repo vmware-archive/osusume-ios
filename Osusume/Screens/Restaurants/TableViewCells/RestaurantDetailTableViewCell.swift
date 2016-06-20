@@ -12,9 +12,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     let cuisineTypeLabel: UILabel
     let priceRangeLabel: UILabel
     let numberOfLikesLabel: UILabel
-    let offersEnglishMenuLabel: UILabel
-    let walkInsOkLabel: UILabel
-    let acceptsCreditCardsLabel: UILabel
     let notesLabel: UILabel
     let creationInfoLabel: UILabel
     let likeButton: UIButton
@@ -34,9 +31,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         cuisineTypeLabel = UILabel.newAutoLayoutView()
         priceRangeLabel = UILabel.newAutoLayoutView()
         numberOfLikesLabel = UILabel.newAutoLayoutView()
-        offersEnglishMenuLabel = UILabel.newAutoLayoutView()
-        walkInsOkLabel = UILabel.newAutoLayoutView()
-        acceptsCreditCardsLabel = UILabel.newAutoLayoutView()
         notesLabel = UILabel.newAutoLayoutView()
         creationInfoLabel = UILabel.newAutoLayoutView()
         likeButton = UIButton.newAutoLayoutView()
@@ -61,9 +55,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         contentView.addSubview(cuisineTypeLabel)
         contentView.addSubview(priceRangeLabel)
         contentView.addSubview(numberOfLikesLabel)
-        contentView.addSubview(offersEnglishMenuLabel)
-        contentView.addSubview(walkInsOkLabel)
-        contentView.addSubview(acceptsCreditCardsLabel)
         contentView.addSubview(notesLabel)
         contentView.addSubview(creationInfoLabel)
         contentView.addSubview(likeButton)
@@ -118,18 +109,9 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         numberOfLikesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         numberOfLikesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
 
-        offersEnglishMenuLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        offersEnglishMenuLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: numberOfLikesLabel)
-
-        walkInsOkLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        walkInsOkLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuLabel)
-
-        acceptsCreditCardsLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        acceptsCreditCardsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkLabel)
-
         notesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         notesLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-        notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsLabel)
+        notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: numberOfLikesLabel)
 
         creationInfoLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         creationInfoLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
@@ -163,9 +145,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         addressLabel.text = restaurantDetailPresenter.address
         cuisineTypeLabel.text = restaurantDetailPresenter.cuisineType
         numberOfLikesLabel.text = restaurantDetailPresenter.numberOfLikes
-        offersEnglishMenuLabel.text = restaurantDetailPresenter.offersEnglishMenu
-        walkInsOkLabel.text = restaurantDetailPresenter.walkInsOk
-        acceptsCreditCardsLabel.text = restaurantDetailPresenter.creditCardsOk
         notesLabel.text = restaurantDetailPresenter.notes
         creationInfoLabel.text = restaurantDetailPresenter.creationInfo
         priceRangeLabel.text = restaurantDetailPresenter.priceRange

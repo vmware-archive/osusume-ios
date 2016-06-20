@@ -15,9 +15,6 @@ class RestaurantParserTest: XCTestCase {
                 "id": 1,
                 "address": "",
                 "cuisine_type": "",
-                "offers_english_menu": false,
-                "walk_ins_ok": false,
-                "accepts_credit_cards": false,
                 "notes": "notes",
                 "created_at": "2016-02-29T06:07:55.000Z",
                 "user": ["name": "Bambi"],
@@ -30,9 +27,6 @@ class RestaurantParserTest: XCTestCase {
                 "id": 2,
                 "address": "",
                 "cuisine_type": "",
-                "offers_english_menu": false,
-                "walk_ins_ok": false,
-                "accepts_credit_cards": false,
                 "notes": "notes",
                 "created_at": "2016-02-29T06:07:55.000Z",
                 "user": ["name": "Bambi"],
@@ -266,9 +260,6 @@ class RestaurantParserTest: XCTestCase {
             "id": 1232,
             "address": "",
             "cuisine_type": "",
-            "offers_english_menu": false,
-            "walk_ins_ok": false,
-            "accepts_credit_cards": false,
             "created_at": "2016-02-03T06:18:40.000Z",
             "photo_urls": [
                 ["id": 10, "url": "http://www.example.com"],
@@ -337,7 +328,6 @@ class RestaurantParserTest: XCTestCase {
 
         let restaurant = restaurantParser.parseSingle(json).value!
         expect(restaurant.address).to(equal(""))
-        expect(restaurant.walkInsOk).to(equal(false))
         expect(restaurant.createdAt).to(beNil())
     }
 

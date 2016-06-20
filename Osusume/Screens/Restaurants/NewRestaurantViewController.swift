@@ -165,9 +165,6 @@ class NewRestaurantViewController: UIViewController {
                 cuisineType: selectedCuisine?.name ?? "",
                 cuisineId: selectedCuisine?.id ?? 0,
                 priceRangeId: selectedPriceRange?.id ?? 0,
-                offersEnglishMenu: formView.getOffersEnglishMenuState()!,
-                walkInsOk: formView.getWalkInsOkState()!,
-                acceptsCreditCards: formView.getAcceptsCreditCardsState()!,
                 notes: formView.getNotesText()!,
                 photoUrls: photoUrls
             )

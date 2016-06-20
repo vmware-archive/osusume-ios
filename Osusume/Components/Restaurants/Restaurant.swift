@@ -4,9 +4,6 @@ struct Restaurant {
     let address: String
     let cuisineType: String
     let cuisine: Cuisine
-    let offersEnglishMenu: Bool
-    let walkInsOk: Bool
-    let acceptsCreditCards: Bool
     let notes: String
     let liked: Bool
     let numberOfLikes: Int
@@ -22,9 +19,6 @@ struct Restaurant {
         address: String,
         cuisineType: String,
         cuisine: Cuisine,
-        offersEnglishMenu: Bool,
-        walkInsOk: Bool,
-        acceptsCreditCards: Bool,
         notes: String,
         liked: Bool,
         numberOfLikes: Int,
@@ -40,9 +34,6 @@ struct Restaurant {
         self.address = address
         self.cuisineType = cuisineType
         self.cuisine = cuisine
-        self.offersEnglishMenu = offersEnglishMenu
-        self.walkInsOk = walkInsOk
-        self.acceptsCreditCards = acceptsCreditCards
         self.notes = notes
         self.liked = liked
         self.numberOfLikes = numberOfLikes
@@ -70,9 +61,6 @@ struct Restaurant {
             address: self.address,
             cuisineType: self.cuisineType,
             cuisine: self.cuisine,
-            offersEnglishMenu: self.offersEnglishMenu,
-            walkInsOk: self.walkInsOk,
-            acceptsCreditCards: self.acceptsCreditCards,
             notes: self.notes,
             liked: updatedLikeStatus,
             numberOfLikes: updatedNumberOfLikes,
@@ -95,9 +83,6 @@ struct Restaurant {
             address: self.address,
             cuisineType: self.cuisineType,
             cuisine: self.cuisine,
-            offersEnglishMenu: self.offersEnglishMenu,
-            walkInsOk: self.walkInsOk,
-            acceptsCreditCards: self.acceptsCreditCards,
             notes: self.notes,
             liked: self.liked,
             numberOfLikes: self.numberOfLikes,
@@ -125,9 +110,6 @@ func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
         lhs.address == rhs.address &&
         lhs.cuisineType == rhs.cuisineType &&
         lhs.cuisine == rhs.cuisine &&
-        lhs.offersEnglishMenu == rhs.offersEnglishMenu &&
-        lhs.walkInsOk  == rhs.walkInsOk &&
-        lhs.acceptsCreditCards == rhs.acceptsCreditCards &&
         lhs.notes == rhs.notes &&
         lhs.liked == rhs.liked &&
         lhs.numberOfLikes == rhs.numberOfLikes &&

@@ -9,15 +9,6 @@ class EditRestaurantFormView: UIView {
     let cuisineHeaderLabel: UILabel
     let cuisineValueLabel: UILabel
 
-    let offersEnglishMenuHeaderLabel: UILabel
-    let offersEnglishMenuSwitch: UISwitch
-
-    let walkInsOkHeaderLabel: UILabel
-    let walkInsOkSwitch: UISwitch
-
-    let acceptsCreditCardsHeaderLabel: UILabel
-    let acceptsCreditCardsSwitch: UISwitch
-
     let notesHeaderLabel: UILabel
     let notesTextView: UITextView
 
@@ -29,12 +20,6 @@ class EditRestaurantFormView: UIView {
         addressTextField = UITextField.newAutoLayoutView()
         cuisineHeaderLabel = UILabel.newAutoLayoutView()
         cuisineValueLabel = UILabel.newAutoLayoutView()
-        offersEnglishMenuHeaderLabel = UILabel.newAutoLayoutView()
-        offersEnglishMenuSwitch = UISwitch.newAutoLayoutView()
-        walkInsOkHeaderLabel = UILabel.newAutoLayoutView()
-        walkInsOkSwitch = UISwitch.newAutoLayoutView()
-        acceptsCreditCardsHeaderLabel = UILabel.newAutoLayoutView()
-        acceptsCreditCardsSwitch = UISwitch.newAutoLayoutView()
         notesHeaderLabel = UILabel.newAutoLayoutView()
         notesTextView = UITextView.newAutoLayoutView()
 
@@ -59,12 +44,6 @@ class EditRestaurantFormView: UIView {
         self.addSubview(addressTextField)
         self.addSubview(cuisineHeaderLabel)
         self.addSubview(cuisineValueLabel)
-        self.addSubview(offersEnglishMenuHeaderLabel)
-        self.addSubview(offersEnglishMenuSwitch)
-        self.addSubview(walkInsOkHeaderLabel)
-        self.addSubview(walkInsOkSwitch)
-        self.addSubview(acceptsCreditCardsHeaderLabel)
-        self.addSubview(acceptsCreditCardsSwitch)
         self.addSubview(notesHeaderLabel)
         self.addSubview(notesTextView)
     }
@@ -75,9 +54,6 @@ class EditRestaurantFormView: UIView {
         addressHeaderLabel.text = "Address"
         addressTextField.borderStyle = .Line
         cuisineHeaderLabel.text = "Cuisine Type"
-        offersEnglishMenuHeaderLabel.text = "Offers English Menu"
-        walkInsOkHeaderLabel.text = "Walk-ins Ok"
-        acceptsCreditCardsHeaderLabel.text = "Accepts Credit Cards"
         notesHeaderLabel.text = "Notes"
         notesTextView.layer.borderWidth = 1.0
         notesTextView.layer.borderColor = UIColor.darkGrayColor().CGColor
@@ -106,24 +82,9 @@ class EditRestaurantFormView: UIView {
         cuisineValueLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineHeaderLabel)
         cuisineValueLabel.autoSetDimension(.Height, toSize: 25.0)
 
-        offersEnglishMenuHeaderLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameHeaderLabel)
-        offersEnglishMenuHeaderLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: offersEnglishMenuSwitch)
-        offersEnglishMenuSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineValueLabel, withOffset: 8.0)
-        offersEnglishMenuSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameHeaderLabel)
-
-        walkInsOkHeaderLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameHeaderLabel)
-        walkInsOkHeaderLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: walkInsOkSwitch)
-        walkInsOkSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameHeaderLabel)
-        walkInsOkSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: offersEnglishMenuSwitch, withOffset: 8.0)
-
-        acceptsCreditCardsHeaderLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameHeaderLabel)
-        acceptsCreditCardsHeaderLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: acceptsCreditCardsSwitch)
-        acceptsCreditCardsSwitch.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameHeaderLabel)
-        acceptsCreditCardsSwitch.autoPinEdge(.Top, toEdge: .Bottom, ofView: walkInsOkSwitch, withOffset: 8.0)
-
         notesHeaderLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameHeaderLabel)
         notesHeaderLabel.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameHeaderLabel)
-        notesHeaderLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: acceptsCreditCardsSwitch)
+        notesHeaderLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineValueLabel)
 
         notesTextView.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameHeaderLabel)
         notesTextView.autoPinEdge(.Trailing, toEdge: .Trailing, ofView: nameHeaderLabel)
@@ -142,18 +103,6 @@ class EditRestaurantFormView: UIView {
         return addressTextField.text
     }
 
-    func getOffersEnglishMenuState() -> Bool? {
-        return offersEnglishMenuSwitch.on
-    }
-
-    func getWalkInsOkState() -> Bool? {
-        return walkInsOkSwitch.on
-    }
-
-    func getAcceptsCreditCardsState() -> Bool? {
-        return acceptsCreditCardsSwitch.on
-    }
-
     func getNotesText() -> String? {
         return notesTextView.text
     }
@@ -163,9 +112,6 @@ class EditRestaurantFormView: UIView {
         nameTextField.text = restaurant.name
         addressTextField.text = restaurant.address
         cuisineValueLabel.text = restaurant.cuisine.id == 0 ? "" : restaurant.cuisine.name
-        offersEnglishMenuSwitch.on = restaurant.offersEnglishMenu
-        walkInsOkSwitch.on = restaurant.walkInsOk
-        acceptsCreditCardsSwitch.on = restaurant.acceptsCreditCards
         notesTextView.text = restaurant.notes
     }
 }

@@ -209,9 +209,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(newRestaurant.address).to(equal(""))
         expect(newRestaurant.cuisineType).to(equal("Restaurant Cuisine Type"))
         expect(newRestaurant.priceRangeId).to(equal(1))
-        expect(newRestaurant.offersEnglishMenu).to(equal(false))
-        expect(newRestaurant.walkInsOk).to(equal(false))
-        expect(newRestaurant.acceptsCreditCards).to(equal(false))
         expect(newRestaurant.notes).to(equal("Notes"))
         expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]));
     }

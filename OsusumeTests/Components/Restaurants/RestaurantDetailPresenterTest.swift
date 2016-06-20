@@ -31,60 +31,6 @@ class RestaurantDetailPresenterTest: XCTestCase {
         expect(presenter.cuisineType).to(equal("Cuisine: Not Specified"))
     }
 
-    func test_formats_offersEnglishMenu_whenTrue() {
-        let restaurant = RestaurantFixtures
-            .newRestaurant(offersEnglishMenu: true)
-        let presenter = RestaurantDetailPresenter(restaurant: restaurant)
-
-
-        expect(presenter.offersEnglishMenu).to(equal("Offers English menu"))
-    }
-
-    func test_formats_offersEnglishMenu_whenFalse() {
-        let restaurant = RestaurantFixtures
-            .newRestaurant(offersEnglishMenu: false)
-        let presenter = RestaurantDetailPresenter(restaurant: restaurant)
-
-
-        expect(presenter.offersEnglishMenu).to(equal("Does not offer English menu"))
-    }
-
-    func test_formats_walkInsOk_whenTrue() {
-        let restaurant = RestaurantFixtures
-            .newRestaurant(walkInsOk: true)
-        let presenter = RestaurantDetailPresenter(restaurant: restaurant)
-
-
-        expect(presenter.walkInsOk).to(equal("Walk-ins ok"))
-    }
-
-    func test_formats_walkInsOk_whenFalse() {
-        let restaurant = RestaurantFixtures
-            .newRestaurant(walkInsOk: false)
-        let presenter = RestaurantDetailPresenter(restaurant: restaurant)
-
-
-        expect(presenter.walkInsOk).to(equal("Walk-ins not recommended"))
-    }
-
-    func test_formats_creditCardsOk_whenTrue() {
-        let restaurant = RestaurantFixtures
-            .newRestaurant(acceptsCreditCards: true)
-        let presenter = RestaurantDetailPresenter(restaurant: restaurant)
-
-
-        expect(presenter.creditCardsOk).to(equal("Accepts credit cards"))
-    }
-
-    func test_formats_creditCardsOk_whenFalse() {
-        let restaurant = RestaurantFixtures
-            .newRestaurant(acceptsCreditCards: false)
-        let presenter = RestaurantDetailPresenter(restaurant: restaurant)
-
-
-        expect(presenter.creditCardsOk).to(equal("Does not accept credit cards"))
-    }
-
     func test_formats_notes() {
         let restaurant = RestaurantFixtures
             .newRestaurant(notes: "Notes")

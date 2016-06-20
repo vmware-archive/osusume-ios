@@ -141,9 +141,6 @@ class EditRestaurantViewController: UIViewController {
             "address": formView.getAddressText()!,
             "cuisine_type": restaurant.cuisine.name,
             "cuisine_id": restaurant.cuisine.id,
-            "offers_english_menu": formView.getOffersEnglishMenuState()!,
-            "walk_ins_ok": formView.getWalkInsOkState()!,
-            "accepts_credit_cards": formView.getAcceptsCreditCardsState()!,
             "notes": formView.getNotesText()!
         ]
         repo.update(self.id, params: params)

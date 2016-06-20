@@ -42,9 +42,6 @@ class NetworkRestaurantRepoTest: XCTestCase {
                 cuisineType: "Creole",
                 cuisineId: 9,
                 priceRangeId: 1,
-                offersEnglishMenu: true,
-                walkInsOk: true,
-                acceptsCreditCards: true,
                 notes: "So good",
                 photoUrls: ["my-cool-url", "my-awesome-url"]
             )
@@ -58,9 +55,6 @@ class NetworkRestaurantRepoTest: XCTestCase {
         XCTAssertEqual("Creole", actualRestaurantParams["cuisine_type"])
         XCTAssertEqual(9, actualRestaurantParams["cuisine_id"])
         XCTAssertEqual(1, actualRestaurantParams["price_range_id"])
-        XCTAssertEqual(true, actualRestaurantParams["offers_english_menu"])
-        XCTAssertEqual(true, actualRestaurantParams["walk_ins_ok"])
-        XCTAssertEqual(true, actualRestaurantParams["accepts_credit_cards"])
         XCTAssertEqual("So good", actualRestaurantParams["notes"])
         XCTAssertEqual([["url": "my-cool-url"], ["url": "my-awesome-url"]], actualRestaurantParams["photo_urls"])
     }

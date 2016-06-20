@@ -13,30 +13,6 @@ struct RestaurantDetailPresenter {
         return "Cuisine: \(restaurant.cuisine.name)"
     }
 
-    var offersEnglishMenu: String {
-        if restaurant.offersEnglishMenu {
-            return "Offers English menu"
-        }
-
-        return "Does not offer English menu"
-    }
-
-    var walkInsOk: String {
-        if restaurant.walkInsOk {
-            return "Walk-ins ok"
-        }
-
-        return "Walk-ins not recommended"
-    }
-
-    var creditCardsOk: String {
-        if restaurant.acceptsCreditCards {
-            return "Accepts credit cards"
-        }
-
-        return "Does not accept credit cards"
-    }
-
     var notes: String {
         return self.restaurant.notes
     }
