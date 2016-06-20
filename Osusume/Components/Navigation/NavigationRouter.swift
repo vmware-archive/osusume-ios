@@ -110,14 +110,7 @@ struct NavigationRouter: Router {
             restaurantId: restaurantId
         )
 
-        navigationController.pushViewController(
-            newCommentViewController,
-            animated: animated
-        )
-    }
-
-    func dismissNewCommentScreen() {
-        navigationController.popViewControllerAnimated(animated)
+        presentViewControllerModallyWithinNavController(newCommentViewController)
     }
 
     func showImageScreen(url: NSURL) {

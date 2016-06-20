@@ -50,6 +50,11 @@ class NewCommentViewControllerTest: XCTestCase {
             .to(equal("Save"))
     }
 
+    func test_configureNavigationBar_addsCancelButton() {
+        expect(self.newCommentVC.navigationItem.leftBarButtonItem?.title)
+            .to(equal("Cancel"))
+    }
+
     func test_displayingPlaceholderText() {
         XCTAssertEqual(
             newCommentVC.hash,
@@ -87,7 +92,10 @@ class NewCommentViewControllerTest: XCTestCase {
 
     func test_tappingSave_transitionsBackToDetailView() {
         let saveButton = newCommentVC.navigationItem.rightBarButtonItem
+
+
         tapNavBarButton(saveButton!)
+
 
         promise.success(
             PersistedComment(
@@ -99,9 +107,16 @@ class NewCommentViewControllerTest: XCTestCase {
                 userName: ""
             )
         )
-
         NSRunLoop.osu_advance()
 
-        XCTAssertTrue(fakeRouter.dismissNewCommentScreen_wasCalled)
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
+    }
+
+    func test_tappingCancel_dismissesNewCommentScreen() {
+        let cancelButton = newCommentVC.navigationItem.leftBarButtonItem
+        tapNavBarButton(cancelButton!)
+
+
+        expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }
 }

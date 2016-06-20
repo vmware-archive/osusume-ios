@@ -5,7 +5,6 @@ protocol Router {
     func showEditRestaurantScreen(restaurant: Restaurant)
     func showLoginScreen()
     func showNewCommentScreen(id: Int)
-    func dismissNewCommentScreen()
     func showImageScreen(url: NSURL)
     func showProfileScreen()
 

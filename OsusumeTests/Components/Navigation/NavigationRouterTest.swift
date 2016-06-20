@@ -79,29 +79,15 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_showingNewCommentScreen() {
+        configureUIWindowWithRootViewController(rootNavController)
+        rootNavController.pushViewController(UIViewController(), animated: false)
+
+
         navigationRouter.showNewCommentScreen(1)
 
-        expect(self.rootNavController.topViewController).to(beAKindOf(NewCommentViewController))
-    }
 
-    func test_dismissesNewCommentScreen() {
-        let fakeRestaurantId = 0
-
-        navigationRouter.navigationController.setViewControllers(
-            [
-                UIViewController(),
-                NewCommentViewController(
-                    router: FakeRouter(),
-                    commentRepo: FakeCommentRepo(),
-                    restaurantId: fakeRestaurantId
-                )
-            ],
-            animated: false
-        )
-        navigationRouter.dismissNewCommentScreen()
-
-        expect(self.rootNavController.topViewController).toNot(beAKindOf(NewCommentViewController))
-        expect(self.rootNavController.viewControllers.count).to(equal(1))
+        let newCommentNavController = rootNavController.presentedViewController as? UINavigationController
+        expect(newCommentNavController?.topViewController).to(beAKindOf(NewCommentViewController))
     }
 
     func test_showingImageScreen() {

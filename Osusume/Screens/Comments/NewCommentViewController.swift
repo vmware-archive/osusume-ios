@@ -41,12 +41,17 @@ class NewCommentViewController: UIViewController {
 
     // MARK: - View Setup
     private func configureNavigationBar() {
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(
-                title: "Save",
-                style: .Plain,
-                target: self,
-                action: #selector(NewCommentViewController.didTapSaveButton(_:))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Save",
+            style: .Plain,
+            target: self,
+            action: #selector(NewCommentViewController.didTapSaveButton(_:))
+        )
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: #selector(NewCommentViewController.didTapCancelButton(_:))
         )
     }
 
@@ -78,8 +83,12 @@ class NewCommentViewController: UIViewController {
                 )
             )
             .onSuccess { [unowned self] _ in
-                self.router.dismissNewCommentScreen()
+                self.router.dismissPresentedNavigationController()
             }
+    }
+
+    @objc private func didTapCancelButton(sender: UIBarButtonItem) {
+        router.dismissPresentedNavigationController()
     }
 }
 

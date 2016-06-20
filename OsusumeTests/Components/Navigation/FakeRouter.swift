@@ -33,11 +33,6 @@ class FakeRouter : Router {
         showNewCommentScreen_args = id
     }
 
-    var dismissNewCommentScreen_wasCalled = false
-    func dismissNewCommentScreen() {
-        dismissNewCommentScreen_wasCalled = true
-    }
-
     var imageScreenIsShowing = false
     var showImageScreen_args = NSURL()
     func showImageScreen(url: NSURL) {
