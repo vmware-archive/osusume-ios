@@ -165,11 +165,11 @@ extension EditRestaurantViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
         case EditRestaurantTableViewRow.FindRestaurantCell.rawValue:
-            router.showFindRestaurantScreen(self)
+            showFindRestaurantScreen(self)
         case EditRestaurantTableViewRow.CuisineCell.rawValue:
-            router.showFindCuisineScreen(self)
+            showFindCuisineScreen(self)
         case EditRestaurantTableViewRow.PriceRangeCell.rawValue:
-            router.showPriceRangeListScreen(self)
+            showPriceRangeScreen(self)
         default:
             break
         }
@@ -228,6 +228,21 @@ extension EditRestaurantViewController: UITableViewDataSource {
         default:
             return UITableViewCell()
         }
+    }
+}
+
+// MARK: - RestaurantViewControllerPresenterProtocol
+extension EditRestaurantViewController: RestaurantViewControllerPresenterProtocol {
+    func showFindCuisineScreen(delegate: CuisineSelectionDelegate) {
+        router.showFindCuisineScreen(delegate)
+    }
+
+    func showFindRestaurantScreen(delegate: SearchResultRestaurantSelectionDelegate) {
+        router.showFindRestaurantScreen(delegate)
+    }
+
+    func showPriceRangeScreen(delegate: PriceRangeSelectionDelegate) {
+        router.showPriceRangeListScreen(delegate)
     }
 }
 

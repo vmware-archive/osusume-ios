@@ -1,7 +1,7 @@
 class NewRestaurantFormView: UIView {
     // MARK: - Properties
     private(set) var selectedPriceRange: PriceRange = PriceRange(id: 0, range: "Not Specified")
-    var delegate: NewRestaurantViewControllerPresenterProtocol?
+    var delegate: RestaurantViewControllerPresenterProtocol?
 
     // MARK: - View Elements
     let notesHeaderLabel: UILabel

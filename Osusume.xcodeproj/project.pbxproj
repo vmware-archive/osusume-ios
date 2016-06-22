@@ -30,7 +30,7 @@
 		AE295AC61CED90B90007EC32 /* RestaurantTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE295AC51CED90B90007EC32 /* RestaurantTest.swift */; };
 		AE295AC81CEEB4730007EC32 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE295AC71CEEB4730007EC32 /* TestingAppDelegate.swift */; };
 		AE2978121C1012B400751DD3 /* PureLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2978111C1012B400751DD3 /* PureLayout.framework */; };
-		AE2C8DAB1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2C8DAA1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift */; };
+		AE2C8DAB1CC8769100D2BB5A /* RestaurantViewControllerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2C8DAA1CC8769100D2BB5A /* RestaurantViewControllerPresenterProtocol.swift */; };
 		AE31192C1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */; };
 		AE3119301CE47816006E46B6 /* CustomMatchers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE31192F1CE47816006E46B6 /* CustomMatchers.swift */; };
 		AE36996F1D126D450015D6D9 /* PriceRangeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE36996E1D126D450015D6D9 /* PriceRangeTableViewCell.swift */; };
@@ -281,7 +281,7 @@
 		AE295AC51CED90B90007EC32 /* RestaurantTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTest.swift; sourceTree = "<group>"; };
 		AE295AC71CEEB4730007EC32 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
 		AE2978111C1012B400751DD3 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = Carthage/Build/iOS/PureLayout.framework; sourceTree = "<group>"; };
-		AE2C8DAA1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
+		AE2C8DAA1CC8769100D2BB5A /* RestaurantViewControllerPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantViewControllerPresenterProtocol.swift; sourceTree = "<group>"; };
 		AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AE31192F1CE47816006E46B6 /* CustomMatchers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMatchers.swift; sourceTree = "<group>"; };
 		AE36996E1D126D450015D6D9 /* PriceRangeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeTableViewCell.swift; sourceTree = "<group>"; };
@@ -917,10 +917,10 @@
 				AE5A8BBC1CE44BC000B828C4 /* FindRestaurantViewController.swift */,
 				AE1D42081C8420350048DF66 /* ImageViewController.swift */,
 				DE99CFD1D44DEE333A4B91FC /* NewRestaurantViewController.swift */,
-				AE2C8DAA1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift */,
 				AE435A511CF2F83C00060AAF /* PhotoUrlsCollectionViewDataSource.swift */,
 				2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */,
 				DE99CF23833B1E11CEDEBB5E /* RestaurantListViewController.swift */,
+				AE2C8DAA1CC8769100D2BB5A /* RestaurantViewControllerPresenterProtocol.swift */,
 				AE4ABF5B1CEBF51400CDE3CD /* SearchResultRestaurantSelectionDelegate.swift */,
 			);
 			path = Restaurants;
@@ -1438,7 +1438,6 @@
 				DE99C68D935DBB25693915E9 /* NewRestaurant.swift in Sources */,
 				AE0CBF591CA113F60060FA02 /* NewRestaurantFormView.swift in Sources */,
 				DE99CAAB65BC8243F5B84D01 /* NewRestaurantViewController.swift in Sources */,
-				AE2C8DAB1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift in Sources */,
 				DE99C56778FFDE1A3D968AF5 /* NotesTableViewCell.swift in Sources */,
 				AE6091091CC5F29B0016CD6A /* NSUrlRequestExtension.swift in Sources */,
 				DE99C150101FB8E0A3656E6A /* ParseError.swift in Sources */,
@@ -1470,6 +1469,7 @@
 				DE99C04ADB4E9A522E2E2FE4 /* RestaurantRepo.swift in Sources */,
 				DE99C1279E58B93D871BF8DF /* RestaurantSearchRepo.swift in Sources */,
 				DE99CB3CFFA6622A53CB5E04 /* RestaurantTableViewCell.swift in Sources */,
+				AE2C8DAB1CC8769100D2BB5A /* RestaurantViewControllerPresenterProtocol.swift in Sources */,
 				DE99C1CA5DAC520F149CCD7F /* Router.swift in Sources */,
 				DE99C5E76677BB3EC661EEFF /* S3Storage.swift in Sources */,
 				DE99C89F9A3EC9C6308FC886 /* SearchResultRestaurant.swift in Sources */,
@@ -1505,7 +1505,6 @@
 				AE4ABF661CEC337F00CDE3CD /* FakeCuisineListParser.swift in Sources */,
 				AE4865DE1C9A75AB00154D50 /* FakeCuisineRepo.swift in Sources */,
 				AE0CBF6A1CA22F620060FA02 /* FakeCuisineSelection.swift in Sources */,
-				AECC47711D1A6E460021BFEC /* PriceRangeParserTest.swift in Sources */,
 				DE99C928BE0115E1B7591775 /* FakeHttp.swift in Sources */,
 				AEBCAB5D1C8D5F37005FBA11 /* FakeImageLoader.swift in Sources */,
 				AE8B54EE1D0EA1D400EC8CC3 /* FakeImagePicker.swift in Sources */,
@@ -1552,6 +1551,7 @@
 				AE6E77A01D0FAD9700F07124 /* PopulatedRestaurantTableViewCellTest.swift in Sources */,
 				AE6AECA51CC0C871000171A3 /* PriceRangeListParserTest.swift in Sources */,
 				AEC821161CC4775300C9B864 /* PriceRangeListViewControllerTest.swift in Sources */,
+				AECC47711D1A6E460021BFEC /* PriceRangeParserTest.swift in Sources */,
 				AE559A401C8E74AB001D45A1 /* ProfileViewControllerTest.swift in Sources */,
 				AEBB1C521CC07E2A00FA5884 /* RestaurantDetailPresenterTest.swift in Sources */,
 				DE99CD454319AAB32AB1D1E0 /* RestaurantDetailTableViewCellTest.swift in Sources */,
