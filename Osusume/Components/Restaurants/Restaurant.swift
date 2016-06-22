@@ -7,7 +7,7 @@ struct Restaurant {
     let notes: String
     let liked: Bool
     let numberOfLikes: Int
-    let priceRange: String
+    let priceRange: PriceRange
     let createdAt: NSDate?
     let photoUrls: [PhotoUrl]
     let createdByUser: (id: Int, name: String, email: String)
@@ -22,7 +22,7 @@ struct Restaurant {
         notes: String,
         liked: Bool,
         numberOfLikes: Int,
-        priceRange: String,
+        priceRange: PriceRange,
         createdAt: NSDate?,
         photoUrls: [PhotoUrl],
         createdByUser: (id: Int, name: String, email: String),

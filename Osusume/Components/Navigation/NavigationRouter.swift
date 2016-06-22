@@ -137,15 +137,14 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showFindCuisineScreen() {
+    func showFindCuisineScreen(delegate: CuisineSelectionDelegate) {
         let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
-        let newRestaurantVC = newRestaurantNavVC!.topViewController as? NewRestaurantViewController
         let findCuisineTableViewController = CuisineListViewController(
             router: self,
             cuisineRepo: cuisineRepo,
             textSearch: DefaultTextSearch(),
             reloader: DefaultReloader(),
-            delegate: newRestaurantVC!
+            delegate: delegate
         )
 
         newRestaurantNavVC!.pushViewController(
@@ -154,14 +153,14 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showFindRestaurantScreen() {
+    func showFindRestaurantScreen(delegate: SearchResultRestaurantSelectionDelegate) {
         let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
-        let newRestaurantVC = newRestaurantNavVC!.topViewController as? NewRestaurantViewController
+
         let findRestaurantViewController = FindRestaurantViewController(
             router: self,
             restaurantSearchRepo: restaurantSearchRepo,
             reloader: DefaultReloader(),
-            searchResultRestaurantSelectionDelegate: newRestaurantVC!
+            searchResultRestaurantSelectionDelegate: delegate
         )
 
         newRestaurantNavVC!.pushViewController(
@@ -184,14 +183,13 @@ struct NavigationRouter: Router {
         }
     }
 
-    func showPriceRangeListScreen() {
+    func showPriceRangeListScreen(delegate: PriceRangeSelectionDelegate) {
         let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
-        let newRestaurantVC = newRestaurantNavVC!.topViewController as? NewRestaurantViewController
         let priceRangeListViewController = PriceRangeListViewController(
             priceRangeRepo: priceRangeRepo,
             reloader: DefaultReloader(),
             router: self,
-            priceRangeSelection: newRestaurantVC!
+            priceRangeSelection: delegate
         )
 
         newRestaurantNavVC!.pushViewController(

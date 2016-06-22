@@ -102,6 +102,8 @@
 		AEACDB7D1C991FB30092AEF6 /* CuisineRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACDB7C1C991FB30092AEF6 /* CuisineRepo.swift */; };
 		AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAEF4971C7315EC004ECC89 /* ExtensionsForTest.swift */; };
 		AEB243901C71666300959434 /* RestaurantListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB2438F1C71666300959434 /* RestaurantListViewControllerTest.swift */; };
+		AEB4F79E1D17E3470031004C /* EditRestaurantPhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB4F79D1D17E3470031004C /* EditRestaurantPhotosTableViewCell.swift */; };
+		AEB4F7A01D18D4D70031004C /* EditRestaurantPhotosTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB4F79F1D18D4D70031004C /* EditRestaurantPhotosTableViewCellTest.swift */; };
 		AEBB1C521CC07E2A00FA5884 /* RestaurantDetailPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB1C511CC07E2A00FA5884 /* RestaurantDetailPresenterTest.swift */; };
 		AEBCAB5D1C8D5F37005FBA11 /* FakeImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCAB5C1C8D5F37005FBA11 /* FakeImageLoader.swift */; };
 		AEBF44B41CD1D28D00D86971 /* RestaurantTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBF44B31CD1D28D00D86971 /* RestaurantTableViewCellTest.swift */; };
@@ -113,6 +115,8 @@
 		AEC821161CC4775300C9B864 /* PriceRangeListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC821151CC4775300C9B864 /* PriceRangeListViewControllerTest.swift */; };
 		AEC821191CC479DC00C9B864 /* PriceRangeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC821181CC479DC00C9B864 /* PriceRangeListViewController.swift */; };
 		AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC877671C7300090005BEA1 /* NewCommentViewControllerTest.swift */; };
+		AECC476F1D1A65E70021BFEC /* PriceRangeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC476E1D1A65E70021BFEC /* PriceRangeParser.swift */; };
+		AECC47711D1A6E460021BFEC /* PriceRangeParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC47701D1A6E460021BFEC /* PriceRangeParserTest.swift */; };
 		AECF51761CA279A40045C42B /* NewCuisine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51751CA279A40045C42B /* NewCuisine.swift */; };
 		AECF51781CA36E290045C42B /* NetworkRestaurantListRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */; };
 		AECF517A1CA36E890045C42B /* CommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51791CA36E890045C42B /* CommentRepo.swift */; };
@@ -158,7 +162,7 @@
 		DE99C47B5157D6F86DCAE43E /* NetworkPhotoRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CA2F1013C067383EDCAD /* NetworkPhotoRepo.swift */; };
 		DE99C4A2FA6B0FDFA78F2DB0 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C122588ACDEFAB769AB7 /* NewCommentViewController.swift */; };
 		DE99C51CD1DB54246958051D /* FakeRemoteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C2FB37E6CF002B3E0E9F /* FakeRemoteStorage.swift */; };
-		DE99C56778FFDE1A3D968AF5 /* AddRestaurantFormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C59D237F17C8BA2348C5 /* AddRestaurantFormTableViewCell.swift */; };
+		DE99C56778FFDE1A3D968AF5 /* NotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C59D237F17C8BA2348C5 /* NotesTableViewCell.swift */; };
 		DE99C575936B3E8619D06F8D /* NetworkCommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CE5AAB306FC0D7331522 /* NetworkCommentRepo.swift */; };
 		DE99C599EE21237384D5904E /* NewComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C555461433F145ED0F5C /* NewComment.swift */; };
 		DE99C59BFF937289716301E5 /* RestaurantDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C5028AF3D79E18D7443C /* RestaurantDetailTableViewCell.swift */; };
@@ -195,7 +199,7 @@
 		DE99CBC2E6E4DCF9DEFA9449 /* DefaultHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C0E75B8B1D39EA5588DB /* DefaultHttp.swift */; };
 		DE99CBEFC4994FC7AAD23892 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE99C8F88DD1B34A37725E2B /* Assets.xcassets */; };
 		DE99CC7C2EB019C02B7866BA /* NetworkPhotoRepoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C40014BC36486F0794C3 /* NetworkPhotoRepoTest.swift */; };
-		DE99CC7D06C926F769D7A4A9 /* AddRestaurantFormTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CC87592659CC0A294C4F /* AddRestaurantFormTableViewCellTest.swift */; };
+		DE99CC7D06C926F769D7A4A9 /* NotesTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CC87592659CC0A294C4F /* NotesTableViewCellTest.swift */; };
 		DE99CCF19E10CB0C5E8CC4DC /* FakeSessionRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CE8BD6AEB8146575F4DB /* FakeSessionRepo.swift */; };
 		DE99CCF718E82C82888029DF /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CAA54E70E66E08AAF60A /* Http.swift */; };
 		DE99CD454319AAB32AB1D1E0 /* RestaurantDetailTableViewCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99C7BE71C44FFFA7C2E0AB /* RestaurantDetailTableViewCellTest.swift */; };
@@ -339,6 +343,8 @@
 		AEACDB7C1C991FB30092AEF6 /* CuisineRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineRepo.swift; sourceTree = "<group>"; };
 		AEAEF4971C7315EC004ECC89 /* ExtensionsForTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsForTest.swift; sourceTree = "<group>"; };
 		AEB2438F1C71666300959434 /* RestaurantListViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListViewControllerTest.swift; sourceTree = "<group>"; };
+		AEB4F79D1D17E3470031004C /* EditRestaurantPhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantPhotosTableViewCell.swift; sourceTree = "<group>"; };
+		AEB4F79F1D18D4D70031004C /* EditRestaurantPhotosTableViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantPhotosTableViewCellTest.swift; sourceTree = "<group>"; };
 		AEBB1C511CC07E2A00FA5884 /* RestaurantDetailPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailPresenterTest.swift; sourceTree = "<group>"; };
 		AEBCAB5C1C8D5F37005FBA11 /* FakeImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeImageLoader.swift; sourceTree = "<group>"; };
 		AEBF44B31CD1D28D00D86971 /* RestaurantTableViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCellTest.swift; sourceTree = "<group>"; };
@@ -351,6 +357,8 @@
 		AECA9B4F1C0EC90E00C30BA4 /* Osusume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osusume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECA9B631C0EC90E00C30BA4 /* OsusumeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OsusumeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECA9B691C0EC90E00C30BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AECC476E1D1A65E70021BFEC /* PriceRangeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeParser.swift; sourceTree = "<group>"; };
+		AECC47701D1A6E460021BFEC /* PriceRangeParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceRangeParserTest.swift; sourceTree = "<group>"; };
 		AECF51751CA279A40045C42B /* NewCuisine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCuisine.swift; sourceTree = "<group>"; };
 		AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRestaurantListRepo.swift; sourceTree = "<group>"; };
 		AECF51791CA36E890045C42B /* CommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRepo.swift; sourceTree = "<group>"; };
@@ -397,7 +405,7 @@
 		DE99C5028AF3D79E18D7443C /* RestaurantDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTableViewCell.swift; sourceTree = "<group>"; };
 		DE99C51E328463B174013D14 /* NetworkRestaurantRepoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRestaurantRepoTest.swift; sourceTree = "<group>"; };
 		DE99C555461433F145ED0F5C /* NewComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewComment.swift; sourceTree = "<group>"; };
-		DE99C59D237F17C8BA2348C5 /* AddRestaurantFormTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantFormTableViewCell.swift; sourceTree = "<group>"; };
+		DE99C59D237F17C8BA2348C5 /* NotesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableViewCell.swift; sourceTree = "<group>"; };
 		DE99C5C7AEBD8A0841E022B1 /* CuisineListViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineListViewControllerTest.swift; sourceTree = "<group>"; };
 		DE99C5F9CF7919916FDFB5B9 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		DE99C627302A4EFE9A12C212 /* UserRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
@@ -436,7 +444,7 @@
 		DE99CBF290E1AAC7F9D12596 /* AddRestaurantPhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantPhotosTableViewCell.swift; sourceTree = "<group>"; };
 		DE99CC16807EC3A0D1F1E4FD /* SessionRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionRepo.swift; sourceTree = "<group>"; };
 		DE99CC6F8C68D1331736A562 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		DE99CC87592659CC0A294C4F /* AddRestaurantFormTableViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantFormTableViewCellTest.swift; sourceTree = "<group>"; };
+		DE99CC87592659CC0A294C4F /* NotesTableViewCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesTableViewCellTest.swift; sourceTree = "<group>"; };
 		DE99CD139AFE883A32C66459 /* NetworkCuisineRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCuisineRepo.swift; sourceTree = "<group>"; };
 		DE99CD1CFF05F8457F3FF5A1 /* EditRestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantFormView.swift; sourceTree = "<group>"; };
 		DE99CD7CA952D78127F0ED9F /* RandomUUIDProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomUUIDProvider.swift; sourceTree = "<group>"; };
@@ -598,6 +606,7 @@
 				AE4ABF611CEC325500CDE3CD /* FakePriceRangeSelectionDelegate.swift */,
 				AE5D1A941CC0CF0D00553A95 /* NetworkPriceRangeRepoTest.swift */,
 				AE6AECA41CC0C871000171A3 /* PriceRangeListParserTest.swift */,
+				AECC47701D1A6E460021BFEC /* PriceRangeParserTest.swift */,
 			);
 			path = "Price Ranges";
 			sourceTree = "<group>";
@@ -607,6 +616,7 @@
 			children = (
 				AE5D1A961CC0D0E200553A95 /* NetworkPriceRangeRepo.swift */,
 				AE6AECA71CC0C8FD000171A3 /* PriceRangeListParser.swift */,
+				AECC476E1D1A65E70021BFEC /* PriceRangeParser.swift */,
 			);
 			path = "Price Ranges";
 			sourceTree = "<group>";
@@ -640,10 +650,11 @@
 		AE8B54EF1D0F8D6200EC8CC3 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				DE99C59D237F17C8BA2348C5 /* AddRestaurantFormTableViewCell.swift */,
 				DE99CBF290E1AAC7F9D12596 /* AddRestaurantPhotosTableViewCell.swift */,
 				AE5BEBE41D1244D80048316B /* CuisineTableViewCell.swift */,
+				AEB4F79D1D17E3470031004C /* EditRestaurantPhotosTableViewCell.swift */,
 				AE8B54F01D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift */,
+				DE99C59D237F17C8BA2348C5 /* NotesTableViewCell.swift */,
 				AE6E779D1D0FAB5E00F07124 /* PopulatedRestaurantTableViewCell.swift */,
 				AE36996E1D126D450015D6D9 /* PriceRangeTableViewCell.swift */,
 				DE99C5028AF3D79E18D7443C /* RestaurantDetailTableViewCell.swift */,
@@ -656,9 +667,10 @@
 		AE8B54F21D0F967200EC8CC3 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				DE99CC87592659CC0A294C4F /* AddRestaurantFormTableViewCellTest.swift */,
 				DE99C88344C89FAA9F79D0CB /* AddRestaurantPhotosTableViewCellTest.swift */,
+				AEB4F79F1D18D4D70031004C /* EditRestaurantPhotosTableViewCellTest.swift */,
 				AE8B54F31D0F968200EC8CC3 /* FindRestaurantTableViewCellTest.swift */,
+				DE99CC87592659CC0A294C4F /* NotesTableViewCellTest.swift */,
 				AE6E779F1D0FAD9700F07124 /* PopulatedRestaurantTableViewCellTest.swift */,
 				DE99C7BE71C44FFFA7C2E0AB /* RestaurantDetailTableViewCellTest.swift */,
 			);
@@ -1368,7 +1380,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE99C56778FFDE1A3D968AF5 /* AddRestaurantFormTableViewCell.swift in Sources */,
 				DE99CA8DA690FEAE6088CEBE /* AddRestaurantPhotosTableViewCell.swift in Sources */,
 				DE99CB6B84CBE284E0588C86 /* AppDelegate.swift in Sources */,
 				AE4ABF721CEC644400CDE3CD /* AuthenticatedUser.swift in Sources */,
@@ -1392,6 +1403,7 @@
 				AE0CBF631CA13FBD0060FA02 /* DefaultTextSearch.swift in Sources */,
 				AEDD1B841C8975740024B29E /* DiskStorage.swift in Sources */,
 				AEED39E21CA21FAD00B57BCB /* EditRestaurantFormView.swift in Sources */,
+				AEB4F79E1D17E3470031004C /* EditRestaurantPhotosTableViewCell.swift in Sources */,
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
 				AE8B54F11D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift in Sources */,
 				AE5A8BBD1CE44BC000B828C4 /* FindRestaurantViewController.swift in Sources */,
@@ -1427,6 +1439,7 @@
 				AE0CBF591CA113F60060FA02 /* NewRestaurantFormView.swift in Sources */,
 				DE99CAAB65BC8243F5B84D01 /* NewRestaurantViewController.swift in Sources */,
 				AE2C8DAB1CC8769100D2BB5A /* NewRestaurantViewControllerPresenterProtocol.swift in Sources */,
+				DE99C56778FFDE1A3D968AF5 /* NotesTableViewCell.swift in Sources */,
 				AE6091091CC5F29B0016CD6A /* NSUrlRequestExtension.swift in Sources */,
 				DE99C150101FB8E0A3656E6A /* ParseError.swift in Sources */,
 				DE99C436E360442260128A3B /* PersistedComment.swift in Sources */,
@@ -1437,6 +1450,7 @@
 				AE6E779E1D0FAB5E00F07124 /* PopulatedRestaurantTableViewCell.swift in Sources */,
 				AE6AECA81CC0C8FD000171A3 /* PriceRangeListParser.swift in Sources */,
 				AEC821191CC479DC00C9B864 /* PriceRangeListViewController.swift in Sources */,
+				AECC476F1D1A65E70021BFEC /* PriceRangeParser.swift in Sources */,
 				AE9E6F3E1CCDF14E0077255D /* PriceRangeSelectionProtocol.swift in Sources */,
 				AE36996F1D126D450015D6D9 /* PriceRangeTableViewCell.swift in Sources */,
 				AE559A3D1C8E7021001D45A1 /* ProfileViewController.swift in Sources */,
@@ -1474,7 +1488,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE99CC7D06C926F769D7A4A9 /* AddRestaurantFormTableViewCellTest.swift in Sources */,
 				DE99C208245F9497B8FBF63C /* AddRestaurantPhotosTableViewCellTest.swift in Sources */,
 				DE99CDFE2542C59DFFE64112 /* CommentParserTest.swift in Sources */,
 				AE51C6321C98FD680068EF0D /* CuisineListParserTest.swift in Sources */,
@@ -1484,6 +1497,7 @@
 				AE3119301CE47816006E46B6 /* CustomMatchers.swift in Sources */,
 				DE99C758C4362943C1232D75 /* DateConverterTest.swift in Sources */,
 				AE0CBF661CA224B80060FA02 /* DefaultTextSearchTest.swift in Sources */,
+				AEB4F7A01D18D4D70031004C /* EditRestaurantPhotosTableViewCellTest.swift in Sources */,
 				AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */,
 				AEAEF4981C7315EC004ECC89 /* ExtensionsForTest.swift in Sources */,
 				AE4ABF6C1CEC34BA00CDE3CD /* FakeCommentParser.swift in Sources */,
@@ -1491,6 +1505,7 @@
 				AE4ABF661CEC337F00CDE3CD /* FakeCuisineListParser.swift in Sources */,
 				AE4865DE1C9A75AB00154D50 /* FakeCuisineRepo.swift in Sources */,
 				AE0CBF6A1CA22F620060FA02 /* FakeCuisineSelection.swift in Sources */,
+				AECC47711D1A6E460021BFEC /* PriceRangeParserTest.swift in Sources */,
 				DE99C928BE0115E1B7591775 /* FakeHttp.swift in Sources */,
 				AEBCAB5D1C8D5F37005FBA11 /* FakeImageLoader.swift in Sources */,
 				AE8B54EE1D0EA1D400EC8CC3 /* FakeImagePicker.swift in Sources */,
@@ -1531,6 +1546,7 @@
 				AE559A421C8EA4FF001D45A1 /* NetworkUserRepoTest.swift in Sources */,
 				AEC877681C7300090005BEA1 /* NewCommentViewControllerTest.swift in Sources */,
 				AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */,
+				DE99CC7D06C926F769D7A4A9 /* NotesTableViewCellTest.swift in Sources */,
 				AE6C3DDD1CFD65B100432DB9 /* PhotoCollectionViewCellTest.swift in Sources */,
 				AE435A501CF2F75200060AAF /* PhotoUrlsCollectionViewDataSourceTest.swift in Sources */,
 				AE6E77A01D0FAD9700F07124 /* PopulatedRestaurantTableViewCellTest.swift in Sources */,

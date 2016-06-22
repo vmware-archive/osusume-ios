@@ -1,4 +1,4 @@
-class AddRestaurantFormTableViewCell: UITableViewCell {
+class NotesTableViewCell: UITableViewCell {
     // MARK: - Properties
 
     // MARK: - View Elements

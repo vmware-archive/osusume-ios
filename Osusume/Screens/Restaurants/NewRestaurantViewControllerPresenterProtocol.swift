@@ -1,5 +1,5 @@
 protocol NewRestaurantViewControllerPresenterProtocol {
-    func showFindCuisineScreen()
-    func showFindRestaurantScreen()
-    func showPriceRangeScreen()
+    func showFindCuisineScreen(delegate: CuisineSelectionDelegate)
+    func showFindRestaurantScreen(delegate: SearchResultRestaurantSelectionDelegate)
+    func showPriceRangeScreen(delegate: PriceRangeSelectionDelegate)
 }

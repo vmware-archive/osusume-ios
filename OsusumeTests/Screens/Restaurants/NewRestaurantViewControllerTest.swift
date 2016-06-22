@@ -43,6 +43,11 @@ class NewRestaurantViewControllerTest: XCTestCase {
             .to(containSubview(newRestaurantVC.tableView))
     }
 
+    func test_viewDidLoad_configuresSubviews() {
+        expect(self.newRestaurantVC.addRestaurantPhotosTableViewCell.imageCollectionView.dataSource === self.newRestaurantVC).to(beTrue())
+    }
+    
+    
     func test_viewDidLoad_addsConstraints() {
         expect(self.newRestaurantVC.tableView)
             .to(hasConstraintsToSuperviewOrSelf())
@@ -82,11 +87,11 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(cell).to(beAKindOf(AddRestaurantPhotosTableViewCell))
     }
 
-    func test_tableView_returnsAddRestaurantFormTableViewCell() {
-        let cell = getAddRestaurantFormTableViewCell()
+    func test_tableView_returnsNotesTableViewCell() {
+        let cell = getNotesTableViewCell()
 
 
-        expect(cell).to(beAKindOf(AddRestaurantFormTableViewCell))
+        expect(cell).to(beAKindOf(NotesTableViewCell))
     }
 
     func test_tableView_returnsFindRestaurantTableViewCell() {
@@ -141,7 +146,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
     func test_tappingRestaurantFormCell_doesNotAllowSelection() {
         let indexPath = NSIndexPath(
-            forRow: NewRestuarantTableViewRow.FormDetailsCell.rawValue,
+            forRow: NewRestuarantTableViewRow.NotesCell.rawValue,
             inSection: 0
         )
         newRestaurantVC.tableView.delegate?.tableView!(
@@ -195,7 +200,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
         newRestaurantVC.selectedCuisine = Cuisine(id: 1, name: "Restaurant Cuisine Type")
         newRestaurantVC.selectedPriceRange = PriceRange(id: 1, range: "Selected Price Range")
 
-        let cell = getAddRestaurantFormTableViewCell()
+        let cell = getNotesTableViewCell()
         cell.formView.notesTextField.text = "Notes"
         fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
 
@@ -343,16 +348,16 @@ class NewRestaurantViewControllerTest: XCTestCase {
             ) as! AddRestaurantPhotosTableViewCell
     }
 
-    private func getAddRestaurantFormTableViewCell() -> AddRestaurantFormTableViewCell {
+    private func getNotesTableViewCell() -> NotesTableViewCell {
         let indexPath = NSIndexPath(
-            forRow: NewRestuarantTableViewRow.FormDetailsCell.rawValue,
+            forRow: NewRestuarantTableViewRow.NotesCell.rawValue,
             inSection: 0
         )
 
         return newRestaurantVC.tableView(
             newRestaurantVC.tableView,
             cellForRowAtIndexPath: indexPath
-            ) as! AddRestaurantFormTableViewCell
+            ) as! NotesTableViewCell
     }
 
     private func getFindRestaurantTableViewCell() -> FindRestaurantTableViewCell {

@@ -123,7 +123,7 @@ class NavigationRouterTest: XCTestCase {
         )
 
 
-        navigationRouter.showFindCuisineScreen()
+        navigationRouter.showFindCuisineScreen(newRestaurantVC)
 
 
         expect(newRestaurantNavVC.topViewController).to(beAKindOf(CuisineListViewController))
@@ -196,13 +196,13 @@ class NavigationRouterTest: XCTestCase {
         )
 
 
-        navigationRouter.showPriceRangeListScreen()
+        navigationRouter.showPriceRangeListScreen(newRestaurantVC)
 
 
         expect(newRestaurantNavVC.topViewController).to(beAKindOf(PriceRangeListViewController))
     }
 
-    func test_showingFindRestaurantScreen() {
+    func test_showingFindRestaurantScreen_withNewViewController_isOK() {
         configureUIWindowWithRootViewController(rootNavController)
         rootNavController.setViewControllers(
             [UIViewController()],
@@ -225,12 +225,58 @@ class NavigationRouterTest: XCTestCase {
         )
 
 
-        navigationRouter.showFindRestaurantScreen()
+        navigationRouter.showFindRestaurantScreen(newRestaurantVC)
 
 
         expect(newRestaurantNavVC.topViewController).to(beAKindOf(FindRestaurantViewController))
     }
+    
+    
+    func test_showingFindRestaurantScreen_withEditViewController_isOK() {
+        configureUIWindowWithRootViewController(rootNavController)
+        rootNavController.setViewControllers(
+            [UIViewController()],
+            animated: false
+        )
+        let restaurant = RestaurantFixtures.newRestaurant(
+            id: 5,
+            name: "Pizzakaya",
+            liked: false,
+            cuisine: Cuisine(id: 1, name: "American"),
+            notes: "The best pizza in Tokyo",
+            createdByUser: (id: 99, name: "Witta", email: "witta@pivotal"),
+            priceRange: PriceRange(id: 1, range: "Reasonable"),
+            photoUrls: [
+                PhotoUrl(id: 10, url: NSURL(string: "url")!)
+            ]
+        )
+        let editRestaurantVC = EditRestaurantViewController(
+            router: FakeRouter(),
+            repo: FakeRestaurantRepo(),
+            photoRepo: FakePhotoRepo(),
+            sessionRepo: fakeSessionRepo,
+            reloader: FakeReloader(),
+            restaurant: restaurant
+        )
+        let editRestaurantNavVC = UINavigationController(
+            rootViewController: editRestaurantVC
+        )
+        
+        rootNavController.presentViewController(
+            editRestaurantNavVC,
+            animated: false,
+            completion: nil
+        )
+        
+        
+        navigationRouter.showFindRestaurantScreen(editRestaurantVC)
+        
+        
+        expect(editRestaurantNavVC.topViewController).to(beAKindOf(FindRestaurantViewController))
+    }
 
+    
+    
     func test_popViewControllerOffStack_popsViewControllerOffOfRootVC() {
         let vc1 = UIViewController()
         let vc2 = UIViewController()

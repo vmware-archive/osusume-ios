@@ -46,6 +46,6 @@ struct RestaurantDetailPresenter {
     }
 
     var priceRange: String {
-        return "Price Range: \(restaurant.priceRange)"
+        return "Price Range: \(restaurant.priceRange.range)"
     }
 }

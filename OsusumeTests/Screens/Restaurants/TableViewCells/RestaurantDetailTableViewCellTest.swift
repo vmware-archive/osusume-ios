@@ -25,7 +25,7 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
                 notes: "This place is great",
                 liked: true,
                 numberOfLikes: 2,
-                priceRange: "0~999",
+                priceRange: PriceRange(id: 1, range: "0~999"),
                 createdAt: NSDate(timeIntervalSince1970: 0),
                 photoUrls: [
                     PhotoUrl(id: 1, url: NSURL(string: "my-awesome-url")!)

@@ -7,7 +7,7 @@ enum NewRestuarantTableViewRow: Int {
     case FindRestaurantCell
     case CuisineCell
     case PriceRangeCell
-    case FormDetailsCell
+    case NotesCell
     case Count
 
     static var count: Int {
@@ -31,12 +31,12 @@ class NewRestaurantViewController: UIViewController {
     var selectedCuisine: Cuisine?
     var selectedPriceRange: PriceRange?
 
-    private let addRestaurantPhotosTableViewCell: AddRestaurantPhotosTableViewCell
+    let addRestaurantPhotosTableViewCell: AddRestaurantPhotosTableViewCell
     private var maybeFindRestaurantTableViewCell: FindRestaurantTableViewCell
     private lazy var maybePopulatedRestaurantTableViewCell = PopulatedRestaurantTableViewCell()
     private let cuisineTableViewCell: CuisineTableViewCell
     private let priceRangeTableViewCell: PriceRangeTableViewCell
-    let addRestaurantFormTableViewCell: AddRestaurantFormTableViewCell
+    let notesTableViewCell: NotesTableViewCell
 
     // MARK: - View Elements
     let tableView: UITableView
@@ -64,7 +64,7 @@ class NewRestaurantViewController: UIViewController {
         maybeFindRestaurantTableViewCell = FindRestaurantTableViewCell()
         cuisineTableViewCell = CuisineTableViewCell()
         priceRangeTableViewCell = PriceRangeTableViewCell()
-        addRestaurantFormTableViewCell = AddRestaurantFormTableViewCell()
+        notesTableViewCell = NotesTableViewCell()
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -145,13 +145,13 @@ class NewRestaurantViewController: UIViewController {
         let photoUrls = photoRepo.uploadPhotos(images)
 
         let restaurantTableViewCellIndexPath = NSIndexPath(
-            forRow: NewRestuarantTableViewRow.FormDetailsCell.rawValue,
+            forRow: NewRestuarantTableViewRow.NotesCell.rawValue,
             inSection: 0
         )
         let maybeCell = tableView.dataSource?.tableView(
             tableView,
             cellForRowAtIndexPath: restaurantTableViewCellIndexPath
-        ) as? AddRestaurantFormTableViewCell
+        ) as? NotesTableViewCell
 
         if let cell = maybeCell {
             let formView = cell.formView
@@ -267,9 +267,9 @@ extension NewRestaurantViewController: UITableViewDataSource {
                 }
                 return priceRangeTableViewCell
 
-            case NewRestuarantTableViewRow.FormDetailsCell.rawValue:
-                addRestaurantFormTableViewCell.configureCell(self)
-                return addRestaurantFormTableViewCell
+            case NewRestuarantTableViewRow.NotesCell.rawValue:
+                notesTableViewCell.configureCell(self)
+                return notesTableViewCell
 
             default:
                 return UITableViewCell()
@@ -282,11 +282,11 @@ extension NewRestaurantViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
             case NewRestuarantTableViewRow.FindRestaurantCell.rawValue:
-                router.showFindRestaurantScreen()
+                router.showFindRestaurantScreen(self)
             case NewRestuarantTableViewRow.CuisineCell.rawValue:
-                router.showFindCuisineScreen()
+                router.showFindCuisineScreen(self)
             case NewRestuarantTableViewRow.PriceRangeCell.rawValue:
-                router.showPriceRangeListScreen()
+                router.showPriceRangeListScreen(self)
             default:
                 break
         }
@@ -321,16 +321,16 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
 
 // MARK: - NewRestaurantViewControllerPresenterProtocol
 extension NewRestaurantViewController: NewRestaurantViewControllerPresenterProtocol {
-    func showFindCuisineScreen() {
-        router.showFindCuisineScreen()
+    func showFindCuisineScreen(delegate: CuisineSelectionDelegate) {
+        router.showFindCuisineScreen(delegate)
     }
 
-    func showFindRestaurantScreen() {
-        router.showFindRestaurantScreen()
+    func showFindRestaurantScreen(delegate: SearchResultRestaurantSelectionDelegate) {
+        router.showFindRestaurantScreen(delegate)
     }
 
-    func showPriceRangeScreen() {
-        router.showPriceRangeListScreen()
+    func showPriceRangeScreen(delegate: PriceRangeSelectionDelegate) {
+        router.showPriceRangeListScreen(delegate)
     }
 }
 

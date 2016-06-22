@@ -11,7 +11,7 @@ struct RestaurantFixtures {
         numberOfLikes: Int = 0,
         photoUrls: [PhotoUrl] = [],
         cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified"),
-        priceRange: String = "",
+        priceRange: PriceRange = PriceRange(id: 0, range: "Not Specified"),
         createdByUser: (id: Int, name: String, email: String) = (id: 99, name: "Danny", email: "danny@pivotal"),
         comments: [PersistedComment] = []
         ) -> Restaurant

@@ -114,7 +114,7 @@ class RestaurantDetailPresenterTest: XCTestCase {
     }
 
     func test_formatsPriceRange() {
-        let restaurant = RestaurantFixtures.newRestaurant(priceRange: "¥1000~1999")
+        let restaurant = RestaurantFixtures.newRestaurant(priceRange: PriceRange(id: 1, range: "¥1000~1999"))
         let presenter = RestaurantDetailPresenter(restaurant: restaurant)
 
 
