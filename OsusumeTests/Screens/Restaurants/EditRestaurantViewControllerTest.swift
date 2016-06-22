@@ -389,7 +389,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         let priceRangeCell = getPriceRangeTableViewCell()
         let notesCell = getEditRestaurantNotesTableViewCell()
         
-        expect(restaurantDetailCell.textLabel?.text).to(equal("Find restaurant (required)"))
+        expect(restaurantDetailCell.textLabel?.text).to(equal("Find restaurant (Required)"))
         expect(cuisineCell.textLabel?.text).to(equal("Select cuisine (Required)"))
         expect(priceRangeCell.textLabel?.text).to(equal("Select price range (Required)"))
         expect(notesCell.formView.notesTextField.text).to(equal(""))
