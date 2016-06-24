@@ -91,8 +91,8 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tableView_containsExpectedNumberOfRows() {
         let searchResults = [
-            SearchResultRestaurant(id: "0", name: "Afuri", address: "Roppongi"),
-            SearchResultRestaurant(id: "1", name: "Savoy", address: "Azabu")
+            SearchResultRestaurant(name: "Afuri", address: "Roppongi"),
+            SearchResultRestaurant(name: "Savoy", address: "Azabu")
         ]
 
 
@@ -110,7 +110,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tableView_cellDisplaysSearchResult() {
         let searchResults = [
-            SearchResultRestaurant(id: "0", name: "Afuri", address: "Roppongi")
+            SearchResultRestaurant(name: "Afuri", address: "Roppongi")
         ]
 
 
@@ -143,7 +143,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tappingSearchResultCell_popsViewController() {
         let searchResults = [
-            SearchResultRestaurant(id: "0", name: "Afuri", address: "Roppongi")
+            SearchResultRestaurant(name: "Afuri", address: "Roppongi")
         ]
 
         findRestaurantViewController.textFieldShouldReturn(
@@ -164,7 +164,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tappingSearchResultCell_passesSelectedRestaurantsInformationToDelegate() {
         let searchResults = [
-            SearchResultRestaurant(id: "0", name: "Afuri", address: "Roppongi")
+            SearchResultRestaurant(name: "Afuri", address: "Roppongi")
         ]
 
         findRestaurantViewController.textFieldShouldReturn(

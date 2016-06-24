@@ -168,7 +168,6 @@ class EditRestaurantViewControllerTest: XCTestCase {
     func test_selectSearchResultRestaurant_populatesNameAndAddressTextfields() {
         instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
         let selectedSearchResultRestaurant = SearchResultRestaurant(
-            id: "1",
             name: "Afuri",
             address: "Roppongi Hills 5-2-1"
         )
@@ -185,7 +184,6 @@ class EditRestaurantViewControllerTest: XCTestCase {
     func test_selectSearchResultRestaurant_changesFindRestaurantCellTypeToPopulated() {
         instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
         let selectedSearchResultRestaurant = SearchResultRestaurant(
-            id: "1",
             name: "Afuri",
             address: "Roppongi Hills 5-2-1"
         )
@@ -199,7 +197,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
     func test_selectSearchResultRestaurant_reloadsTableView() {
         instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
-        let selectedSearchResultRestaurant = SearchResultRestaurant(id: "", name: "", address: "")
+        let selectedSearchResultRestaurant = SearchResultRestaurant(name: "", address: "")
         
         
         editRestaurantViewController.searchResultRestaurantSelected(selectedSearchResultRestaurant)

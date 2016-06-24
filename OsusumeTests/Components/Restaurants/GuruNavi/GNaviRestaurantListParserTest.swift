@@ -13,12 +13,10 @@ class GNaviRestaurantListParserTest: XCTestCase {
         let json: [String: AnyObject] = [
             "rest": [
                 [
-                    "id": "1",
                     "name": "Afuri",
                     "address": "Address of Afuri"
                 ],
                 [
-                    "id": "2",
                     "name": "Fuji Soba",
                     "address": "Address of Fuji Soba"
                 ]
@@ -31,10 +29,8 @@ class GNaviRestaurantListParserTest: XCTestCase {
 
         let restaurantList = restaurantSearchResult.value!
         expect(restaurantList.count).to(equal(2))
-        expect(restaurantList.first?.id).to(equal("1"))
         expect(restaurantList.first?.name).to(equal("Afuri"))
         expect(restaurantList.first?.address).to(equal("Address of Afuri"))
-        expect(restaurantList.last?.id).to(equal("2"))
         expect(restaurantList.last?.name).to(equal("Fuji Soba"))
         expect(restaurantList.last?.address).to(equal("Address of Fuji Soba"))
     }
@@ -43,12 +39,10 @@ class GNaviRestaurantListParserTest: XCTestCase {
         let json: [String: AnyObject] = [
             "rest": [
                 [
-                    "id": "1",
                     "name": "Afuri",
                     "address": ""
                 ],
                 [
-                    "id": "2",
                     "name": "Fuji Soba",
                     "address": "Address of Fuji Soba"
                 ]
@@ -61,7 +55,6 @@ class GNaviRestaurantListParserTest: XCTestCase {
 
         let restaurantList = restaurantSearchResult.value!
         expect(restaurantList.count).to(equal(1))
-        expect(restaurantList.first?.id).to(equal("2"))
         expect(restaurantList.first?.name).to(equal("Fuji Soba"))
         expect(restaurantList.first?.address).to(equal("Address of Fuji Soba"))
     }
@@ -70,12 +63,10 @@ class GNaviRestaurantListParserTest: XCTestCase {
         let json: [String: AnyObject] = [
             "rest": [
                 [
-                    "id": "1",
                     "name": "",
                     "address": "Address of Afuri"
                 ],
                 [
-                    "id": "2",
                     "name": "Fuji Soba",
                     "address": "Address of Fuji Soba"
                 ]
@@ -88,7 +79,6 @@ class GNaviRestaurantListParserTest: XCTestCase {
 
         let restaurantList = restaurantSearchResult.value!
         expect(restaurantList.count).to(equal(1))
-        expect(restaurantList.first?.id).to(equal("2"))
         expect(restaurantList.first?.name).to(equal("Fuji Soba"))
         expect(restaurantList.first?.address).to(equal("Address of Fuji Soba"))
     }

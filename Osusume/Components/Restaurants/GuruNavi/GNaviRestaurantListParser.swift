@@ -17,14 +17,13 @@ struct GNaviRestaurantListParser: SearchResultRestaurantListParser {
 
         for resultJson in json {
             guard
-                let id = resultJson["id"] as? String,
                 let name = resultJson["name"] as? String where name != "" ,
                 let address = resultJson["address"] as? String where address != "" else
             {
                 continue
             }
 
-            let searchResultRestaurant = SearchResultRestaurant(id: id, name: name, address: address)
+            let searchResultRestaurant = SearchResultRestaurant(name: name, address: address)
             resultArray.append(searchResultRestaurant)
         }
 

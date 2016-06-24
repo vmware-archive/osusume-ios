@@ -75,7 +75,7 @@ class GNaviRestaurantSearchRepoTest: XCTestCase {
     func test_getForSearchTerm_returnsParsedSearchResultList() {
         let getSearchResultFuture = restaurantSearchRepo.getForSearchTerm("")
         fakeRestaurantSearchListParser.parse_returnValue = Result.Success(
-            [SearchResultRestaurant(id: "1", name: "afuri", address: "roppongi")]
+            [SearchResultRestaurant(name: "afuri", address: "roppongi")]
         )
         searchResultJsonPromise.success([:])
 
@@ -83,7 +83,7 @@ class GNaviRestaurantSearchRepoTest: XCTestCase {
         NSRunLoop.osu_advance()
 
         let expectedSearchResultListArray = [
-            SearchResultRestaurant(id: "1", name: "afuri", address: "roppongi")]
+            SearchResultRestaurant(name: "afuri", address: "roppongi")]
         expect(getSearchResultFuture.value).to(equal(expectedSearchResultListArray))
     }
 }
