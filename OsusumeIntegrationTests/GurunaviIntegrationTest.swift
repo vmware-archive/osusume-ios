@@ -18,7 +18,6 @@ class GurunaviIntegrationTest: XCTestCase {
 
         let restaurant: SearchResultRestaurant? = result.value?.first
         expect(restaurant?.name).to(contain("すしざんまい"))
-        expect(restaurant?.id).toNot(beNil())
         expect(restaurant?.address).toNot(beNil())
     }
 
