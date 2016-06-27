@@ -3,7 +3,7 @@ import Result
 struct CommentParser: DataParser {
     typealias ParsedObject = PersistedComment
 
-    func parse(json: [String: AnyObject]) -> Result<PersistedComment, ParseError> {
+    func parse(json: AnyObject) -> Result<PersistedComment, ParseError> {
         guard
             let id = json["id"] as? Int,
             let text = json["comment"] as? String,

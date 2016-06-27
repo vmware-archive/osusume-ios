@@ -41,7 +41,7 @@ class NetworkCommentRepoTest: XCTestCase {
     }
 
     func test_persist_failsWhenHttpFails() {
-        fakeHttp.post_returnValue = Future<[String: AnyObject], RepoError>(error: RepoError.PostFailed)
+        fakeHttp.post_returnValue = Future<AnyObject, RepoError>(error: RepoError.PostFailed)
 
         let comment = NewComment(text: "I loved the tonkatsu!", restaurantId: 1)
         let result = networkCommentRepo.persist(comment)
@@ -50,40 +50,22 @@ class NetworkCommentRepoTest: XCTestCase {
     }
 
     func test_persist_passesJsonToParser() {
-        let expectedPostResponseJson: [String: AnyObject] = [
-            "id": 3,
-            "comment": "hello this is a comment!",
-            "restaurant_id": 99
-        ]
+        let promise = Promise<AnyObject, RepoError>()
+        fakeHttp.post_returnValue = promise.future
 
-        fakeHttp.post_returnValue = Future<[String: AnyObject], RepoError>(value: expectedPostResponseJson)
-
-        let e = self.expectationWithDescription("no description")
 
         let comment = NewComment(text: "hello this is a comment!", restaurantId: 99)
-        let result = networkCommentRepo.persist(comment)
+        networkCommentRepo.persist(comment)
 
-        result.onSuccess { _ in
-            if
-                let expectedId = expectedPostResponseJson["id"] as? Int,
-                let expectedContent = expectedPostResponseJson["comment"] as? String,
-                let expectedRestaurantId = expectedPostResponseJson["restaurant_id"] as? Int
-            {
-                let actualId = self.fakeCommentParser.parse_arg!["id"] as! Int
-                let actualContent = self.fakeCommentParser.parse_arg!["comment"] as! String
-                let actualRestaurantId = self.fakeCommentParser.parse_arg!["restaurant_id"] as! Int
 
-                expect(actualId).to(equal(expectedId))
-                expect(expectedContent).to(equal(actualContent))
-                expect(expectedRestaurantId).to(equal(actualRestaurantId))
-            } else {
-                XCTFail()
-            }
+        let expectedPostResponseJson = "response-json"
+        promise.success(expectedPostResponseJson)
+        NSRunLoop.osu_advance()
 
-            e.fulfill()
-        }
+        let expectedPostResponseDictionary = expectedPostResponseJson
+        let actualPostResponseDictionary = self.fakeCommentParser.parse_arg as? String
 
-        self.waitForExpectationsWithTimeout(2.0, handler: nil)
+        expect(expectedPostResponseDictionary).to(equal(actualPostResponseDictionary))
     }
 
     func test_persist_handlesParsingError() {
@@ -93,7 +75,7 @@ class NetworkCommentRepoTest: XCTestCase {
             "restaurant_id": 99
         ]
 
-        fakeHttp.post_returnValue = Future<[String: AnyObject], RepoError>(value: expectedPostResponseJson)
+        fakeHttp.post_returnValue = Future<AnyObject, RepoError>(value: expectedPostResponseJson)
 
         fakeCommentParser.parse_returnValue = Result<PersistedComment, ParseError>(
             error: ParseError.CommentParseError

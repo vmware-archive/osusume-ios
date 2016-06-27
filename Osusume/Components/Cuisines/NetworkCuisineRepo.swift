@@ -23,7 +23,7 @@ struct NetworkCuisineRepo<P: DataListParser where P.ParsedObject == [Cuisine]>: 
                 headers: [:],
                 parameters: ["name" : cuisine.name]
         )
-        .flatMap { (json: [String: AnyObject]) -> Result<Cuisine, RepoError> in
+        .flatMap { json in
             return CuisineParser().parse(json)
             .mapError { _ in RepoError.PostFailed }
         }

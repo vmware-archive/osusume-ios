@@ -23,11 +23,7 @@ struct NetworkUserRepo: UserRepo {
                 headers: [:],
                 parameters: ["email": email, "password": password]
             )
-            .flatMap({ (json: [String : AnyObject]) -> Future<AuthenticatedUser, RepoError> in
-                if let _ = json["error"] {
-                    return Future(error: RepoError.PostFailed)
-                }
-
+            .flatMap { (json: AnyObject) -> Future<AuthenticatedUser, RepoError> in
                 guard
                     let token = json["token"] as? String,
                     let email = json["email"] as? String,
@@ -40,7 +36,7 @@ struct NetworkUserRepo: UserRepo {
                 return Future(
                     value: AuthenticatedUser(id: id, email: email, token: token, name: name)
                 )
-            })
+            }
     }
 
     func logout() {

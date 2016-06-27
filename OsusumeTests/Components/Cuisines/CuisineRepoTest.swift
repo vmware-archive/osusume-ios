@@ -28,7 +28,7 @@ class CuisineRepoTest: XCTestCase {
     }
 
     func test_create_parsesCuisineFromReponse() {
-        let promise = Promise<[String: AnyObject], RepoError>()
+        let promise = Promise<AnyObject, RepoError>()
         fakeHttp.post_returnValue = promise.future
 
         var actualCuisine = Cuisine(id: 0, name: "")

@@ -20,12 +20,12 @@ class FakeHttp: Http {
         headers: [String : String](),
         parameters: [String : AnyObject]()
     )
-    var post_returnValue = Future<[String : AnyObject], RepoError>()
+    var post_returnValue = Future<AnyObject, RepoError>()
     func post(
         path: String,
-        headers: [String: String],
+        headers: [String : String],
         parameters: [String : AnyObject]
-        ) -> Future<[String : AnyObject], RepoError>
+        ) -> Future<AnyObject, RepoError>
     {
         post_args = (path: path, headers: headers, parameters: parameters)
 

@@ -30,7 +30,7 @@ struct NetworkRestaurantRepo: RestaurantRepo {
 
     // MARK: - POST Functions
 
-    func create(newRestaurant: NewRestaurant) -> Future<[String: AnyObject], RepoError> {
+    func create(newRestaurant: NewRestaurant) -> Future<AnyObject, RepoError> {
         return http
             .post(
                 path,

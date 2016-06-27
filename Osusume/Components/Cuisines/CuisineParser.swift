@@ -3,7 +3,7 @@ import Result
 struct CuisineParser: DataParser {
     typealias ParsedObject = Cuisine
 
-    func parse(json: [String : AnyObject]) -> Result<Cuisine, ParseError> {
+    func parse(json: AnyObject) -> Result<Cuisine, ParseError> {
         guard
             let id = json["id"] as? Int,
             let name = json["name"] as? String else

@@ -8,7 +8,7 @@ protocol Http {
     func post(
         path: String,
         headers: [String: String],
-        parameters: [String: AnyObject]) -> Future<[String: AnyObject], RepoError>
+        parameters: [String: AnyObject]) -> Future<AnyObject, RepoError>
 
     func patch(
         path: String,

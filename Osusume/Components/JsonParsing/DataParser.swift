@@ -4,5 +4,5 @@ protocol DataParser {
     associatedtype ParsedObject
     associatedtype ParseError: ErrorType
 
-    func parse(json: [String: AnyObject]) -> Result<ParsedObject, ParseError>
+    func parse(json: AnyObject) -> Result<ParsedObject, ParseError>
 }

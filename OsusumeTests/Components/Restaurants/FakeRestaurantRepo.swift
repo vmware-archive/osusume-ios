@@ -10,9 +10,9 @@ class FakeRestaurantRepo: RestaurantRepo {
     }
 
     var create_args : NewRestaurant!
-    func create(newRestaurant: NewRestaurant) -> Future<[String: AnyObject], RepoError> {
-        let promise = Promise<[String: AnyObject], RepoError>()
-        promise.success([String: AnyObject]())
+    func create(newRestaurant: NewRestaurant) -> Future<AnyObject, RepoError> {
+        let promise = Promise<AnyObject, RepoError>()
+        promise.success([])
 
         create_args = newRestaurant
 

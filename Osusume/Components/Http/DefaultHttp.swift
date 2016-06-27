@@ -34,20 +34,20 @@ struct DefaultHttp: Http {
         path: String,
         headers: [String : String],
         parameters: [String : AnyObject]
-        ) -> Future<[String : AnyObject], RepoError>
+        ) -> Future<AnyObject, RepoError>
     {
-        let promise = Promise<[String : AnyObject], RepoError>()
+        let promise = Promise<AnyObject, RepoError>()
 
         request("POST", path: path, headers: headers, parameters: parameters).responseJSON { result in
             switch result {
-                case .Success:
-                    if let value = result.value as? [String: AnyObject] {
-                        promise.success(value)
-                    } else {
-                        promise.failure(RepoError.PostFailed)
-                    }
-                case .Failure(_):
+            case .Success:
+                if let value = result.value {
+                    promise.success(value)
+                } else {
                     promise.failure(RepoError.PostFailed)
+                }
+            case .Failure(_):
+                promise.failure(RepoError.PostFailed)
             }
         }
 

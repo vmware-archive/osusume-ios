@@ -3,7 +3,7 @@ import Result
 struct PriceRangeParser: DataParser {
     typealias ParsedObject = PriceRange
     
-    func parse(json: [String : AnyObject]) -> Result<PriceRange, ParseError> {
+    func parse(json: AnyObject) -> Result<PriceRange, ParseError> {
         guard
             let id = json["id"] as? Int,
             let range = json["range"] as? String else

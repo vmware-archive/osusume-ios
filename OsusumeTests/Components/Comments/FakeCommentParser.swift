@@ -4,7 +4,7 @@ import Result
 class FakeCommentParser: DataParser {
     typealias ParsedObject = PersistedComment
 
-    var parse_arg: [String: AnyObject]?
+    var parse_arg: AnyObject?
     var parse_returnValue = Result<PersistedComment, ParseError>(
         value: PersistedComment(
             id: 99,
@@ -15,7 +15,7 @@ class FakeCommentParser: DataParser {
             userName: ""
         )
     )
-    func parse(json: [String: AnyObject]) -> Result<PersistedComment, ParseError> {
+    func parse(json: AnyObject) -> Result<PersistedComment, ParseError> {
         parse_arg = json
         return parse_returnValue
     }

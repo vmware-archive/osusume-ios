@@ -21,7 +21,7 @@ struct SessionHttp: Http {
         path: String,
         headers: [String : String],
         parameters: [String : AnyObject]
-        ) -> Future<[String : AnyObject], RepoError>
+        ) -> Future<AnyObject, RepoError>
     {
         return http.post(path, headers: addAuthToken(headers), parameters: parameters)
     }

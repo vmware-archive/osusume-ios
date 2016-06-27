@@ -5,7 +5,7 @@ protocol RestaurantRepo {
 
     func getOne(id: Int) -> Future<Restaurant, RepoError>
 
-    func create(restaurantForm: NewRestaurant) -> Future<[String: AnyObject], RepoError>
+    func create(restaurantForm: NewRestaurant) -> Future<AnyObject, RepoError>
 
     func update(id: Int, params: [String: AnyObject]) -> Future<[String: AnyObject], RepoError>
 }

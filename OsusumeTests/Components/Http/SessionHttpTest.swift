@@ -1,5 +1,6 @@
 import XCTest
 import Nimble
+import BrightFutures
 @testable import Osusume
 
 class SessionHttpTest: XCTestCase {
