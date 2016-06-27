@@ -22,4 +22,13 @@ class PhotoCollectionViewCellTest: XCTestCase {
         expect(cell.deleteButton).to(hasConstraintsToSuperviewOrSelf())
     }
 
+    func test_configureCell_withImage_hidesDeleteButton() {
+        let cell = PhotoCollectionViewCell()
+
+
+        cell.configureCell(UIImage())
+
+
+        expect(cell.deleteButton.hidden).to(beTrue())
+    }
 }

@@ -8,6 +8,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
     var fakeRestaurantRepo: FakeRestaurantRepo!
     var fakePhotoRepo: FakePhotoRepo!
     var fakeSessionRepo: FakeSessionRepo!
+    var fakeImagePicker: FakeImagePicker!
     var fakeReloader: FakeReloader!
 
 
@@ -16,6 +17,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         fakeRestaurantRepo = FakeRestaurantRepo()
         fakePhotoRepo = FakePhotoRepo()
         fakeSessionRepo = FakeSessionRepo()
+        fakeImagePicker = FakeImagePicker()
         fakeReloader = FakeReloader()
     }
 
@@ -304,7 +306,10 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
     // MARK: Delete button
     func test_tappingDeleteButton_callsIntoPhotoRepo() {
-        instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
+        instantiateEditRestaurantVCWithCuisine(
+            cuisine: Cuisine(id: 1, name: "Pizza"),
+            photoUrls: [PhotoUrl(id: 10, url: NSURL(string: "url")!)]
+        )
         let imageCollectionView = getEditRestaurantPhotosTableViewCell().imageCollectionView
 
         let cell = imageCollectionView.dataSource?.collectionView(
@@ -321,7 +326,10 @@ class EditRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_tappingDeleteButton_deletePhotoUrlFromRestaurant() {
-        instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
+        instantiateEditRestaurantVCWithCuisine(
+            cuisine: Cuisine(id: 1, name: "Pizza"),
+            photoUrls: [PhotoUrl(id: 10, url: NSURL(string: "url")!)]
+        )
 
         let imageCollectionView = getEditRestaurantPhotosTableViewCell().imageCollectionView
 
@@ -338,7 +346,10 @@ class EditRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_tappingDeleteButton_reloadsCollectionView() {
-        instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
+        instantiateEditRestaurantVCWithCuisine(
+            cuisine: Cuisine(id: 1, name: "Pizza"),
+            photoUrls: [PhotoUrl(id: 10, url: NSURL(string: "url")!)]
+        )
 
         let imageCollectionView = getEditRestaurantPhotosTableViewCell().imageCollectionView
         
@@ -397,7 +408,10 @@ class EditRestaurantViewControllerTest: XCTestCase {
         fakeSessionRepo.getAuthenticatedUser_returnValue = AuthenticatedUser(
             id: 10, email: "danny@pivotal", token: "token-string", name: "Danny"
         )
-        instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 0, name: "Not Specified"))
+        instantiateEditRestaurantVCWithCuisine(
+            cuisine: Cuisine(id: 0, name: "Not Specified"),
+            photoUrls: [PhotoUrl(id: 10, url: NSURL(string: "url")!)]
+        )
 
 
         let imageCollectionView = getEditRestaurantPhotosTableViewCell().imageCollectionView
@@ -409,6 +423,18 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
 
         expect(cell!.deleteButton.hidden).to(beTrue())
+    }
+
+    // MARK: - Add Photo
+    func test_tappingAddPhotoButton_showsPhotoPicker() {
+        instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 0, name: "Not Specified"))
+        let cell = getEditRestaurantPhotosTableViewCell()
+
+
+        tapButton(cell.addPhotoButton)
+
+
+        expect(self.fakeImagePicker.bs_presentImagePickerController_wasCalled).to(beTrue())
     }
 
     // MARK: - Navigation Bar
@@ -432,10 +458,12 @@ class EditRestaurantViewControllerTest: XCTestCase {
         restaurantDetailCell.textLabel?.text = "Updated Restaurant Name"
         editRestaurantViewController.restaurantEditResult.cuisine = Cuisine(id: 2, name: "Beer")
         editRestaurantViewController.restaurantEditResult.priceRange = PriceRange(id: 1, range: "0-1000")
+
         let cuisineCell = getCuisineTableViewCell()
         cuisineCell.textLabel?.text = "Beer"
         let notesCell = getEditRestaurantNotesTableViewCell()
         notesCell.formView.notesTextField.text = "Try the vegetables!"
+        fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
         
         let updateButton = editRestaurantViewController.navigationItem.rightBarButtonItem!
         tapNavBarButton(updateButton)
@@ -448,6 +476,35 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(actualParams["cuisine_id"] as? Int).to(equal(2))
         expect(actualParams["price_range_id"] as? Int).to(equal(1))
         expect(actualParams["notes"] as? String).to(equal("Try the vegetables!"))
+    }
+
+    func test_tappingUpdateButton_withAddedPhotos_invokesUpdateAddedPhotos() {
+        instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
+
+        fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
+
+        let updateButton = editRestaurantViewController.navigationItem.rightBarButtonItem!
+        tapNavBarButton(updateButton)
+
+
+        let actualParams = fakeRestaurantRepo.update_params
+        expect(actualParams["photo_urls"] as? [String]).to(equal(["apple", "truck"]))
+    }
+
+    func test_tappingUpdateButton_withAddedPhotosAndExistingPhotos_invokesUpdateWithAllPhotos() {
+        instantiateEditRestaurantVCWithCuisine(
+            cuisine: Cuisine(id: 1, name: "Pizza"),
+            photoUrls: [PhotoUrl(id: 1, url: NSURL(string: "orange")!)]
+        )
+
+        fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
+
+        let updateButton = editRestaurantViewController.navigationItem.rightBarButtonItem!
+        tapNavBarButton(updateButton)
+
+
+        let actualParams = fakeRestaurantRepo.update_params
+        expect(actualParams["photo_urls"] as? [String]).to(equal(["orange", "apple", "truck"]))
     }
 
     func test_tappingUpdateButton_returnsToDetailScreen() {
@@ -467,7 +524,8 @@ class EditRestaurantViewControllerTest: XCTestCase {
         name: String = "Original Restaurant Name",
         cuisine: Cuisine,
         priceRange: PriceRange = PriceRange(id: 1, range: "Cheap"),
-        notes: String = "This place is great")
+        notes: String = "This place is great",
+        photoUrls: [PhotoUrl] = [PhotoUrl]())
     {
         let restaurant = RestaurantFixtures.newRestaurant(
             id: 5,
@@ -477,9 +535,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
             notes: notes,
             createdByUser: (id: 99, name: "Witta", email: "witta@pivotal"),
             priceRange: priceRange,
-            photoUrls: [
-                PhotoUrl(id: 10, url: NSURL(string: "url")!)
-            ]
+            photoUrls: photoUrls
         )
 
         editRestaurantViewController = EditRestaurantViewController(
@@ -487,6 +543,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
             repo: fakeRestaurantRepo,
             photoRepo: fakePhotoRepo,
             sessionRepo: fakeSessionRepo,
+            imagePicker: fakeImagePicker,
             reloader: fakeReloader,
             restaurant: restaurant
         )

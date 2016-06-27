@@ -4,6 +4,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     weak var delegate: RestaurantDetailTableViewCellDelegate?
     private var photoUrlDataSource: PhotoUrlsCollectionViewDataSource?
     private(set) var photoUrls: [PhotoUrl]
+    private(set) var addedPhotos: [UIImage]
 
     // MARK: - View Elements
     let imageCollectionView: UICollectionView
@@ -20,6 +21,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     // MARK: - Initializers
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         photoUrls = [PhotoUrl]()
+        addedPhotos = [UIImage]()
 
         imageCollectionView = UICollectionView(
             frame: CGRectZero,
@@ -132,6 +134,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         photoUrls = restaurant.photoUrls
         photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
+            addedPhotosDataSource: self,
             editMode: false,
             deletePhotoClosure: nil
         )
@@ -181,5 +184,12 @@ extension RestaurantDetailTableViewCell: UICollectionViewDelegate {
 extension RestaurantDetailTableViewCell: PhotoUrlsDataSource {
     func getPhotoUrls() -> [PhotoUrl] {
         return self.photoUrls
+    }
+}
+
+// MARK: - AddedPhotosDataSource
+extension RestaurantDetailTableViewCell: AddedPhotosDataSource {
+    func getAddedPhotos() -> [UIImage] {
+        return self.addedPhotos
     }
 }

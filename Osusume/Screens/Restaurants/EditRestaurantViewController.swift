@@ -1,4 +1,7 @@
 import BrightFutures
+import BSImagePicker
+import Photos
+
 
 enum EditRestaurantTableViewRow: Int {
     case EditPhotosCell = 0
@@ -19,13 +22,18 @@ class EditRestaurantViewController: UIViewController {
     // MARK: - Properties
     private let router: Router
     private let repo: RestaurantRepo
+    private let photoRepo: PhotoRepo
     private let sessionRepo: SessionRepo
+    private var imagePicker: ImagePicker?
     private let reloader: Reloader
+
+    private let imagePickerViewController: BSImagePickerViewController
     private(set) var restaurant: Restaurant
     var restaurantEditResult: (name: String, address: String, cuisine: Cuisine, priceRange: PriceRange)
     private let id: Int
     private(set) var photoUrlDataSource: PhotoUrlsCollectionViewDataSource?
-    
+    private var addedPhotos: [UIImage]
+
     let editRestaurantPhotosTableViewCell: EditRestaurantPhotosTableViewCell
     private var maybeFindRestaurantTableViewCell: FindRestaurantTableViewCell
     private lazy var maybePopulatedRestaurantTableViewCell = PopulatedRestaurantTableViewCell()
@@ -42,12 +50,14 @@ class EditRestaurantViewController: UIViewController {
         repo: RestaurantRepo,
         photoRepo: PhotoRepo,
         sessionRepo: SessionRepo,
+        imagePicker: ImagePicker?,
         reloader: Reloader,
         restaurant: Restaurant)
     {
         self.router = router
         self.repo = repo
         self.sessionRepo = sessionRepo
+        self.imagePicker = imagePicker
         self.reloader = reloader
         self.restaurant = restaurant
         self.id = restaurant.id
@@ -58,6 +68,9 @@ class EditRestaurantViewController: UIViewController {
             priceRange: restaurant.priceRange
         )
 
+        imagePickerViewController = BSImagePickerViewController()
+        self.photoRepo = photoRepo
+        addedPhotos = [UIImage]()
 
         tableView = UITableView.newAutoLayoutView()
         
@@ -71,6 +84,7 @@ class EditRestaurantViewController: UIViewController {
 
         self.photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
+            addedPhotosDataSource: self,
             editMode: restaurant.createdByCurrentUser(sessionRepo.getAuthenticatedUser()),
             deletePhotoClosure: { [unowned self] photoUrlId in
                 self.restaurant = self.restaurant.restaurantByDeletingPhotoUrl(photoUrlId)
@@ -79,6 +93,27 @@ class EditRestaurantViewController: UIViewController {
                 photoRepo.deletePhoto(self.restaurant.id, photoUrlId: photoUrlId)
             }
         )
+    }
+
+    convenience init(
+        router: Router,
+        repo: RestaurantRepo,
+        photoRepo: PhotoRepo,
+        sessionRepo: SessionRepo,
+        reloader: Reloader,
+        restaurant: Restaurant)
+    {
+        self.init(
+            router: router,
+            repo: repo,
+            photoRepo: photoRepo,
+            sessionRepo: sessionRepo,
+            imagePicker: nil,
+            reloader: reloader,
+            restaurant: restaurant
+        )
+
+        self.imagePicker = self
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -131,13 +166,17 @@ class EditRestaurantViewController: UIViewController {
 
     // MARK: - Actions
     @objc private func didTapUpdateButton(sender: UIBarButtonItem?) {
+        let addedPhotoUrls = photoRepo.uploadPhotos(addedPhotos)
+        let existingAndAddedPhotos = restaurant.photoUrls.map({photoUrl in photoUrl.url.absoluteString}) + addedPhotoUrls
+
         let params: [String: AnyObject] = [
             "name":  maybePopulatedRestaurantTableViewCell.textLabel?.text ?? "",
             "address":  maybePopulatedRestaurantTableViewCell.detailTextLabel?.text ?? "",
             "cuisine_type":  restaurantEditResult.cuisine.name,
             "cuisine_id": restaurantEditResult.cuisine.id,
             "price_range_id" : restaurantEditResult.priceRange.id,
-            "notes": notesTableViewCell.formView.getNotesText() ?? ""
+            "notes": notesTableViewCell.formView.getNotesText() ?? "",
+            "photo_urls":  existingAndAddedPhotos
         ]
         repo.update(self.id, params: params)
             .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
@@ -145,11 +184,46 @@ class EditRestaurantViewController: UIViewController {
                     self.router.dismissPresentedNavigationController()
                 }
         }
-        router.dismissPresentedNavigationController()
     }
 
     @objc private func didTapCancelButton(sender: UIBarButtonItem?) {
         self.router.dismissPresentedNavigationController()
+    }
+
+    @objc func didTapAddPhotoButton(sender: UIButton?) {
+        imagePicker?.bs_presentImagePickerController(
+            imagePickerViewController,
+            animated: true,
+            select: nil,
+            deselect: nil,
+            cancel: nil,
+            finish: gatherImageAssets,
+            completion: nil
+        )
+    }
+
+    // MARK: - Private Methods
+    private func gatherImageAssets(assets: [PHAsset]) {
+        addedPhotos.removeAll()
+        let imageManager = PHImageManager.defaultManager()
+        for asset in assets {
+            imageManager.requestImageForAsset(
+                asset,
+                targetSize: PHImageManagerMaximumSize,
+                contentMode: .Default,
+                options: nil,
+                resultHandler: addImageToCollectionView
+            )
+        }
+    }
+
+    private func addImageToCollectionView(maybeImage: UIImage?, info: [NSObject: AnyObject]?) {
+        guard let image = maybeImage else {
+            return
+        }
+
+        addedPhotos.append(image)
+        tableView.reloadData()
     }
 }
 
@@ -157,6 +231,13 @@ class EditRestaurantViewController: UIViewController {
 extension EditRestaurantViewController: PhotoUrlsDataSource {
     func getPhotoUrls() -> [PhotoUrl] {
         return restaurant.photoUrls
+    }
+}
+
+// MARK: - AddedPhotosDataSource
+extension EditRestaurantViewController: AddedPhotosDataSource {
+    func getAddedPhotos() -> [UIImage] {
+        return addedPhotos
     }
 }
 
@@ -191,7 +272,8 @@ extension EditRestaurantViewController: UITableViewDataSource {
         switch indexPath.row {
         case EditRestaurantTableViewRow.EditPhotosCell.rawValue:
             editRestaurantPhotosTableViewCell.configureCell(
-                photoUrlDataSource!,
+                self,
+                dataSource: photoUrlDataSource!,
                 reloader: reloader
             )
             return editRestaurantPhotosTableViewCell

@@ -52,11 +52,28 @@ struct NetworkRestaurantRepo: RestaurantRepo {
     // MARK: - PATCH Functions
 
     func update(id: Int, params: [String: AnyObject]) -> Future<[String: AnyObject], RepoError> {
+        let name = params["name"] as! String
+        let address = params["address"] as! String
+        let cuisine_type = params["cuisine_type"] as? String ?? ""
+        let cuisine_id = params["cuisine_id"] as? Int ?? 0
+        let price_range_id = params["price_range_id"] as? Int ?? 0
+        let notes = params["notes"] as! String
+        let photos = params["photo_urls"] as? [AnyObject] ?? []
+        let photo_urls = photos.map { url in ["url": url] }
+        let updatedParams = ["restaurant": [
+            "name": name,
+            "address": address,
+            "cuisine_type": cuisine_type,
+            "cuisine_id": cuisine_id,
+            "price_range_id": price_range_id,
+            "notes": notes,
+            "photo_urls": photo_urls
+        ]]
         return http
             .patch(
                 "\(path)/\(id)",
                 headers: [:],
-                parameters: ["restaurant": params]
+                parameters: updatedParams
             )
     }
 }

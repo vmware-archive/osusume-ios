@@ -5,6 +5,26 @@ import Nimble
 class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
 
     var photoUrls: [PhotoUrl] = []
+    var addedPhotos: [UIImage] = []
+
+    func test_dataSource_hasTwoSections() {
+        let collectionView = UICollectionView(
+            frame: CGRectZero,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
+        let dataSource = PhotoUrlsCollectionViewDataSource(
+            photoUrlsDataSource: self,
+            addedPhotosDataSource: self,
+            editMode: false,
+            deletePhotoClosure: nil
+        )
+
+
+        let numberOfSections = dataSource.numberOfSectionsInCollectionView(collectionView)
+
+
+        expect(numberOfSections).to(equal(2))
+    }
 
     func test_dataSource_configuresNumberOfRowsPerSection() {
         let collectionView = UICollectionView(
@@ -15,29 +35,40 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
             PhotoUrl(id: 1, url: NSURL(string: "url1")!),
             PhotoUrl(id: 2, url: NSURL(string: "url2")!)
         ]
+        addedPhotos = [
+            UIImage(), UIImage(), UIImage()
+        ]
         let dataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
+            addedPhotosDataSource: self,
             editMode: false,
             deletePhotoClosure: nil
         )
 
 
-        let numberOfItems = dataSource.collectionView(
+        let numberOfItemsInSectionZero = dataSource.collectionView(
             collectionView,
             numberOfItemsInSection: 0
         )
 
+        let numberOfItemsInSectionOne = dataSource.collectionView(
+            collectionView,
+            numberOfItemsInSection: 1
+        )
 
-        expect(numberOfItems).to(equal(2))
+
+        expect(numberOfItemsInSectionZero).to(equal(2))
+        expect(numberOfItemsInSectionOne).to(equal(3))
     }
 
-    func test_dataSource_configuresCellWithImageView() {
+    func test_dataSource_configuresCellWithImageView_whenPhotoURL() {
         let collectionView = initializeImageCollectionView()
         photoUrls = [
             PhotoUrl(id: 1, url: NSURL(string: "url")!)
         ]
         let dataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
+            addedPhotosDataSource: self,
             editMode: false,
             deletePhotoClosure: nil
         )
@@ -55,6 +86,29 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
             .to(equal(NSURL(string: "url")!))
     }
 
+    func test_dataSource_configuresCellWithImageView_whenAddedPhoto() {
+        let collectionView = initializeImageCollectionView()
+        let image = UIImage()
+        addedPhotos = [image]
+        let dataSource = PhotoUrlsCollectionViewDataSource(
+            photoUrlsDataSource: self,
+            addedPhotosDataSource: self,
+            editMode: false,
+            deletePhotoClosure: nil
+        )
+        collectionView.dataSource = dataSource
+
+
+        let firstImageCell = dataSource.collectionView(
+            collectionView,
+            cellForItemAtIndexPath: NSIndexPath(forItem: 0, inSection: 1)
+        )
+
+
+        let firstImageView = firstImageCell.backgroundView as? UIImageView
+        expect(firstImageView?.image).to(equal(image))
+    }
+
     func test_dataSource_configureCellWithDeleteButtonHidden() {
         let collectionView = initializeImageCollectionView()
         photoUrls = [
@@ -64,6 +118,7 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
 
         let dataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
+            addedPhotosDataSource: self,
             editMode: false,
             deletePhotoClosure: nil
         )
@@ -86,6 +141,7 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
 
         let dataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
+            addedPhotosDataSource: self,
             editMode: true,
             deletePhotoClosure: nil
         )
@@ -108,6 +164,7 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
 
         let dataSource = PhotoUrlsCollectionViewDataSource(
             photoUrlsDataSource: self,
+            addedPhotosDataSource: self,
             editMode: true,
             deletePhotoClosure: { photoUrlId in
                 deletePhotoClosureWasCalled = true
@@ -145,5 +202,11 @@ class PhotoUrlsCollectionViewDataSourceTest: XCTestCase {
 extension PhotoUrlsCollectionViewDataSourceTest: PhotoUrlsDataSource {
     func getPhotoUrls() -> [PhotoUrl] {
         return photoUrls
+    }
+}
+
+extension PhotoUrlsCollectionViewDataSourceTest: AddedPhotosDataSource {
+    func getAddedPhotos() -> [UIImage] {
+        return addedPhotos
     }
 }

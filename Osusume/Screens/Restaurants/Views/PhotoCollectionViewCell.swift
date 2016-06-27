@@ -65,6 +65,12 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         )
     }
 
+    func configureCell(photo: UIImage) {
+        self.isEditMode = false
+        deleteButton.hidden = !isEditMode
+        backgroundView = UIImageView(image: photo)
+    }
+
     // MARK: - Actions
     @objc private func deletePhoto() {
         self.deletePhotoClosure?(photoUrlId: (photoUrl?.id)!)

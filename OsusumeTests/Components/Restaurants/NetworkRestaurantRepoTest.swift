@@ -59,9 +59,28 @@ class NetworkRestaurantRepoTest: XCTestCase {
         XCTAssertEqual([["url": "my-cool-url"], ["url": "my-awesome-url"]], actualRestaurantParams["photo_urls"])
     }
 
-    func test_update() {
-        networkRestaurantRepo.update(999, params: ["paramName" : "paramValue"])
+    func test_update_formatsBodyWithRestaurantData() {
+        networkRestaurantRepo.update(
+            999,
+            params: [
+                "name":  "Danny's Diner",
+                "address":  "123 Main Street",
+                "cuisine_type":  "Creole",
+                "cuisine_id": 9,
+                "price_range_id" : 1,
+                "notes": "So good",
+                "photo_urls": ["my-cool-url", "my-awesome-url"] as [String]
+            ]
+        )
 
+        let actualRestaurantParams = fakeHttp.patch_args.parameters["restaurant"]!
         XCTAssertEqual("/restaurants/999", fakeHttp.patch_args.path)
+        XCTAssertEqual("Danny's Diner", actualRestaurantParams["name"])
+        XCTAssertEqual("123 Main Street", actualRestaurantParams["address"])
+        XCTAssertEqual("Creole", actualRestaurantParams["cuisine_type"])
+        XCTAssertEqual(9, actualRestaurantParams["cuisine_id"])
+        XCTAssertEqual(1, actualRestaurantParams["price_range_id"])
+        XCTAssertEqual("So good", actualRestaurantParams["notes"])
+        XCTAssertEqual([["url": "my-cool-url"], ["url": "my-awesome-url"]], actualRestaurantParams["photo_urls"])
     }
 }
