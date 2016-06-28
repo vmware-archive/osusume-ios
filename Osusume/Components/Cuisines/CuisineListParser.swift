@@ -3,11 +3,14 @@ import Result
 struct CuisineListParser: DataListParser {
     typealias ParsedObject = [Cuisine]
 
-    func parse(json: [[String: AnyObject]]) -> Result<[Cuisine], ParseError> {
+    func parse(json: AnyObject) -> Result<[Cuisine], ParseError> {
+        guard let cuisineList = json as? [[String : AnyObject]] else {
+            return Result.Success([])
+        }
 
         var cuisineArray: [Cuisine] = []
 
-        for cuisineJson in json {
+        for cuisineJson in cuisineList {
             guard
                 let id = cuisineJson["id"] as? Int,
                 let name = cuisineJson["name"] as? String else

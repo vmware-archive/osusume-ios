@@ -10,7 +10,7 @@ struct NetworkCuisineRepo<P: DataListParser where P.ParsedObject == [Cuisine]>: 
         .get("/cuisines", headers: [:])
         .flatMap { json in
             return self.parser
-            .parse(json as! [[String : AnyObject]])
+            .parse(json)
             .mapError {
                 _ in return RepoError.GetFailed
             }

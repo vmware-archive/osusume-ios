@@ -48,12 +48,12 @@ class CuisineRepoTest: XCTestCase {
 
     func test_getAll_parsesHttpOutputJson() {
         cuisineRepo.getAll()
-        cuisineJsonPromise.success([["Cuisine" : "Json"]])
+        cuisineJsonPromise.success("response-json")
 
 
         NSRunLoop.osu_advance()
 
-        expect(self.fakeCuisineListParser.parse_arg).to(equal([["Cuisine" : "Json"]]))
+        expect(self.fakeCuisineListParser.parse_arg as? String).to(equal("response-json"))
     }
 
     func test_getAll_returnsParsedCuisineListResult() {

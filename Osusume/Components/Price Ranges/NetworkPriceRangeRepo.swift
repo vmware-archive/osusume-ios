@@ -16,7 +16,7 @@ struct NetworkPriceRangeRepo<P: DataListParser where P.ParsedObject == [PriceRan
             }
             .flatMap { httpJson in
                 return self.parser
-                    .parse(httpJson as! [[String : AnyObject]])
+                    .parse(httpJson)
                     .mapError { _ in
                         return RepoError.ParsingFailed
                 }

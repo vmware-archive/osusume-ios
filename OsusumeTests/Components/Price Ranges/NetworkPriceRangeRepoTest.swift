@@ -33,11 +33,11 @@ class NetworkPriceRangeRepoTest: XCTestCase {
         priceRangeRepo.getAll()
 
 
-        let httpReturnValue = [["id" : 1,"range" : "Price Range #1"]]
+        let httpReturnValue = "response-json"
         httpPromise.success(httpReturnValue)
         NSRunLoop.osu_advance(by: 2)
 
-        expect(self.fakePriceRangeListParser.parse_arg).to(equal(httpReturnValue))
+        expect(self.fakePriceRangeListParser.parse_arg as? String).to(equal(httpReturnValue))
     }
 
     func test_getAll_returnsParsedPriceRangeResult() {
