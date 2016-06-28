@@ -1,9 +1,9 @@
 import Result
 import BrightFutures
 
-struct NetworkRestaurantSearchRepo: RestaurantSearchRepo {
+struct NetworkRestaurantSearchRepo <P: DataParser where P.ParsedObject == [RestaurantSuggestion]>: RestaurantSearchRepo {
     let http: Http
-    let parser: RestaurantSuggestionListParser
+    let parser: P
 
     func getForSearchTerm(term: String) -> Future<[RestaurantSuggestion], RepoError> {
         let path = "/restaurant_suggestions"
@@ -15,7 +15,7 @@ struct NetworkRestaurantSearchRepo: RestaurantSearchRepo {
             )
             .flatMap { json in
                 return self.parser
-                    .parseGNaviResponse(json)
+                    .parse(json)
                     .mapError {
                         _ in return RepoError.PostFailed
                     }

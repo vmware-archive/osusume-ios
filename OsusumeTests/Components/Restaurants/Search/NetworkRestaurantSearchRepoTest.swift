@@ -7,7 +7,7 @@ import BrightFutures
 
 class NetworkRestaurantSearchRepoTest: XCTestCase {
     let fakeHttp = FakeHttp()
-    var networkRestaurantSearchRepo: NetworkRestaurantSearchRepo!
+    var networkRestaurantSearchRepo: NetworkRestaurantSearchRepo<FakeRestaurantSearchListParser>!
     let fakeRestaurantSearchListParser = FakeRestaurantSearchListParser()
     let searchResultJsonPromise = Promise<AnyObject, RepoError>()
 

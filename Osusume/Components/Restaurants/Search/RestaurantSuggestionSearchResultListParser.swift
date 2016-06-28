@@ -1,14 +1,14 @@
 import Result
 
-struct RestaurantSuggestionSearchResultListParser: RestaurantSuggestionListParser {
-    func parseGNaviResponse(json: AnyObject)
-        -> Result<[RestaurantSuggestion], ParseError> {
-            guard
-                let restaurantList = json as? [[String : AnyObject]] else
-            {
-                return Result.Success([])
-            }
-            return parse(restaurantList)
+struct RestaurantSuggestionSearchResultListParser: DataParser {
+    typealias ParsedObject = [RestaurantSuggestion]
+
+    func parse(json: AnyObject) -> Result<[RestaurantSuggestion], ParseError> {
+        guard let restaurantList = json as? [[String : AnyObject]] else {
+            return Result.Success([])
+        }
+
+        return parse(restaurantList)
     }
 
     private func parse(json: [[String : AnyObject]]) -> Result<[RestaurantSuggestion], ParseError> {

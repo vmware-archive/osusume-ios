@@ -22,7 +22,7 @@ class RestaurantSuggestionSearchResultListParserTest: XCTestCase {
         ]
 
         
-        let restaurantSearchResult = parser.parseGNaviResponse(json)
+        let restaurantSearchResult = parser.parse(json)
 
 
         let restaurantList = restaurantSearchResult.value!
@@ -46,7 +46,7 @@ class RestaurantSuggestionSearchResultListParserTest: XCTestCase {
         ]
 
 
-        let restaurantSearchResult = parser.parseGNaviResponse(json)
+        let restaurantSearchResult = parser.parse(json)
 
 
         let restaurantList = restaurantSearchResult.value!
@@ -68,7 +68,7 @@ class RestaurantSuggestionSearchResultListParserTest: XCTestCase {
         ]
 
 
-        let restaurantSearchResult = parser.parseGNaviResponse(json)
+        let restaurantSearchResult = parser.parse(json)
 
 
         let restaurantList = restaurantSearchResult.value!
@@ -81,7 +81,7 @@ class RestaurantSuggestionSearchResultListParserTest: XCTestCase {
         let json: [String : AnyObject] = [:]
 
 
-        let restaurantSearchResult = parser.parseGNaviResponse(json)
+        let restaurantSearchResult = parser.parse(json)
 
 
         expect(restaurantSearchResult.value?.count).to(equal(0))
