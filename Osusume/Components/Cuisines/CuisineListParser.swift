@@ -1,6 +1,6 @@
 import Result
 
-struct CuisineListParser: DataListParser {
+struct CuisineListParser: DataParser {
     typealias ParsedObject = [Cuisine]
 
     func parse(json: AnyObject) -> Result<[Cuisine], ParseError> {

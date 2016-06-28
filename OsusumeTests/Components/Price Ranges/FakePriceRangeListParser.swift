@@ -1,7 +1,7 @@
 @testable import Osusume
 import Result
 
-class FakePriceRangeListParser: DataListParser {
+class FakePriceRangeListParser: DataParser {
     typealias ParsedObject = [PriceRange]
 
     var parse_arg: AnyObject!

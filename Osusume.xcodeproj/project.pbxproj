@@ -126,7 +126,6 @@
 		AEE6968C1CA36C8F003A2927 /* MyRestaurantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6968B1CA36C8F003A2927 /* MyRestaurantListViewController.swift */; };
 		AEE6968E1CA36CC9003A2927 /* MyRestaurantListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE6968D1CA36CC9003A2927 /* MyRestaurantListViewControllerTest.swift */; };
 		AEED39E21CA21FAD00B57BCB /* EditRestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE99CD1CFF05F8457F3FF5A1 /* EditRestaurantFormView.swift */; };
-		AEF0E1171C9948BF0002CA1B /* DataListParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF0E1161C9948BF0002CA1B /* DataListParser.swift */; };
 		AEF8BF901C61C263000677EB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF8BF8F1C61C263000677EB /* libz.tbd */; };
 		AEFB65A81D0A6B2B00F36CF9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB65A71D0A6B2B00F36CF9 /* ImagePicker.swift */; };
 		AEFB65AA1D0A6B6900F36CF9 /* BSImagePickerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB65A91D0A6B6900F36CF9 /* BSImagePickerExtensions.swift */; };
@@ -368,7 +367,6 @@
 		AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewController.swift; sourceTree = "<group>"; };
 		AEE6968B1CA36C8F003A2927 /* MyRestaurantListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantListViewController.swift; sourceTree = "<group>"; };
 		AEE6968D1CA36CC9003A2927 /* MyRestaurantListViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantListViewControllerTest.swift; sourceTree = "<group>"; };
-		AEF0E1161C9948BF0002CA1B /* DataListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataListParser.swift; sourceTree = "<group>"; };
 		AEF8BF8F1C61C263000677EB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		AEFB65A71D0A6B2B00F36CF9 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		AEFB65A91D0A6B6900F36CF9 /* BSImagePickerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BSImagePickerExtensions.swift; sourceTree = "<group>"; };
@@ -814,7 +812,6 @@
 		DE99C05A3B00F28311CF7DF9 /* JsonParsing */ = {
 			isa = PBXGroup;
 			children = (
-				AEF0E1161C9948BF0002CA1B /* DataListParser.swift */,
 				DE99C85298E7CF65D37C73F9 /* DataParser.swift */,
 				DE99CBA30FB1C089E096822D /* ParseError.swift */,
 			);
@@ -1392,7 +1389,6 @@
 				AEACDB7D1C991FB30092AEF6 /* CuisineRepo.swift in Sources */,
 				AE6091071CC5C1C20016CD6A /* CuisineSelectionProtocol.swift in Sources */,
 				AE5BEBE51D1244D80048316B /* CuisineTableViewCell.swift in Sources */,
-				AEF0E1171C9948BF0002CA1B /* DataListParser.swift in Sources */,
 				DE99CE89810E79B5C6F3AADD /* DataParser.swift in Sources */,
 				DE99CF768727260E8FCC3250 /* DateConverter.swift in Sources */,
 				DE99CBC2E6E4DCF9DEFA9449 /* DefaultHttp.swift in Sources */,

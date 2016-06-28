@@ -1,7 +1,7 @@
 import BrightFutures
 import Result
 
-struct NetworkCuisineRepo<P: DataListParser where P.ParsedObject == [Cuisine]>: CuisineRepo {
+struct NetworkCuisineRepo<P: DataParser where P.ParsedObject == [Cuisine]>: CuisineRepo {
     let http: Http
     let parser: P
 

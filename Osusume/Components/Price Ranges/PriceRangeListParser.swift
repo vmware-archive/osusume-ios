@@ -1,6 +1,6 @@
 import Result
 
-struct PriceRangeListParser: DataListParser {
+struct PriceRangeListParser: DataParser {
     typealias ParsedObject = [PriceRange]
 
     func parse(json: AnyObject) -> Result<[PriceRange], ParseError> {

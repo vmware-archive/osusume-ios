@@ -4,7 +4,7 @@ protocol PriceRangeRepo {
     func getAll() -> Future<[PriceRange], RepoError>
 }
 
-struct NetworkPriceRangeRepo<P: DataListParser where P.ParsedObject == [PriceRange]>: PriceRangeRepo {
+struct NetworkPriceRangeRepo<P: DataParser where P.ParsedObject == [PriceRange]>: PriceRangeRepo {
     let http: Http
     let parser: P
 

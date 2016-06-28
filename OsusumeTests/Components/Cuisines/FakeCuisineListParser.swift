@@ -1,7 +1,7 @@
 @testable import Osusume
 import Result
 
-class FakeCuisineListParser: DataListParser {
+class FakeCuisineListParser: DataParser {
     typealias ParsedObject = [Cuisine]
 
     var parse_arg: AnyObject!
