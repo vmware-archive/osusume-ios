@@ -250,7 +250,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
     // MARK: - Find Restaurant
     func test_selectSearchResultRestaurant_populatesNameAndAddressTextfields() {
-        let selectedSearchResultRestaurant = SearchResultRestaurant(
+        let selectedSearchResultRestaurant = RestaurantSuggestion(
             name: "Afuri",
             address: "Roppongi Hills 5-2-1"
         )
@@ -267,7 +267,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_selectSearchResultRestaurant_changesFindRestaurantCellTypeToPopulated() {
-        let selectedSearchResultRestaurant = SearchResultRestaurant(
+        let selectedSearchResultRestaurant = RestaurantSuggestion(
             name: "Afuri",
             address: "Roppongi Hills 5-2-1"
         )
@@ -280,7 +280,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     func test_selectSearchResultRestaurant_reloadsTableView() {
-        let selectedSearchResultRestaurant = SearchResultRestaurant(
+        let selectedSearchResultRestaurant = RestaurantSuggestion(
             name: "", address: ""
         )
 

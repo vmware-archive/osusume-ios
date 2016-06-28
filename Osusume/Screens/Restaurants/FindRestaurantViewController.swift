@@ -3,7 +3,7 @@ class FindRestaurantViewController: UIViewController {
     private let router: Router
     private let reloader: Reloader
     private let restaurantSearchRepo: RestaurantSearchRepo
-    private var restaurantResults: [SearchResultRestaurant]
+    private var restaurantSuggestions: [RestaurantSuggestion]
     private let searchResultRestaurantSelectionDelegate: SearchResultRestaurantSelectionDelegate
 
     // MARK: - Constants
@@ -21,7 +21,7 @@ class FindRestaurantViewController: UIViewController {
         self.router = router
         self.restaurantSearchRepo = restaurantSearchRepo
         self.reloader = reloader
-        restaurantResults = []
+        restaurantSuggestions = []
         self.searchResultRestaurantSelectionDelegate = searchResultRestaurantSelectionDelegate
         self.restaurantSearchResultTableView = UITableView()
 
@@ -102,7 +102,7 @@ extension FindRestaurantViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         restaurantSearchRepo.getForSearchTerm(textField.text!)
             .onSuccess { results in
-                self.restaurantResults = results
+                self.restaurantSuggestions = results
                 self.reloader.reload(self.restaurantSearchResultTableView)
             }
         return true
@@ -116,7 +116,7 @@ extension FindRestaurantViewController: UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.restaurantResults.count
+        return self.restaurantSuggestions.count
     }
 
     func tableView(
@@ -137,8 +137,8 @@ extension FindRestaurantViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        resultCell.textLabel?.text = restaurantResults[indexPath.row].name
-        resultCell.detailTextLabel?.text = restaurantResults[indexPath.row].address
+        resultCell.textLabel?.text = restaurantSuggestions[indexPath.row].name
+        resultCell.detailTextLabel?.text = restaurantSuggestions[indexPath.row].address
 
         return resultCell
     }
@@ -151,7 +151,7 @@ extension FindRestaurantViewController: UITableViewDelegate {
         didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         searchResultRestaurantSelectionDelegate
-            .searchResultRestaurantSelected(restaurantResults[indexPath.row])
+            .searchResultRestaurantSelected(restaurantSuggestions[indexPath.row])
         router.popViewControllerOffStack()
     }
 }

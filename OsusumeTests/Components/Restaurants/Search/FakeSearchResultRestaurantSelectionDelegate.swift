@@ -1,8 +1,8 @@
 @testable import Osusume
 
 class FakeSearchResultRestaurantSelectionDelegate: SearchResultRestaurantSelectionDelegate {
-    var restaurantSelected_arg = SearchResultRestaurant(name: "", address: "")
-    func searchResultRestaurantSelected(searchResultRestaurant: SearchResultRestaurant) {
-        restaurantSelected_arg = searchResultRestaurant
+    var restaurantSelected_arg = RestaurantSuggestion(name: "", address: "")
+    func searchResultRestaurantSelected(restaurantSuggestion: RestaurantSuggestion) {
+        restaurantSelected_arg = restaurantSuggestion
     }
 }

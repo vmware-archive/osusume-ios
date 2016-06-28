@@ -167,15 +167,15 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(self.fakeRouter.showFindRestaurantScreen_wasCalled).to(beTrue())
     }
  
-    func test_selectSearchResultRestaurant_populatesNameAndAddressTextfields() {
+    func test_selectRestaurantSuggestion_populatesNameAndAddressTextfields() {
         instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
-        let selectedSearchResultRestaurant = SearchResultRestaurant(
+        let selectedRestaurantSuggestion = RestaurantSuggestion(
             name: "Afuri",
             address: "Roppongi Hills 5-2-1"
         )
         
         
-        editRestaurantViewController.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+        editRestaurantViewController.searchResultRestaurantSelected(selectedRestaurantSuggestion)
         
         
         let populatedCell = getPopulatedRestaurantTableViewCell()
@@ -185,7 +185,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
     
     func test_selectSearchResultRestaurant_changesFindRestaurantCellTypeToPopulated() {
         instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
-        let selectedSearchResultRestaurant = SearchResultRestaurant(
+        let selectedSearchResultRestaurant = RestaurantSuggestion(
             name: "Afuri",
             address: "Roppongi Hills 5-2-1"
         )
@@ -199,7 +199,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
     func test_selectSearchResultRestaurant_reloadsTableView() {
         instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
-        let selectedSearchResultRestaurant = SearchResultRestaurant(name: "", address: "")
+        let selectedSearchResultRestaurant = RestaurantSuggestion(name: "", address: "")
         
         
         editRestaurantViewController.searchResultRestaurantSelected(selectedSearchResultRestaurant)

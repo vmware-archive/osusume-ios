@@ -1,13 +1,13 @@
 import Foundation
 
-struct SearchResultRestaurant {
+struct RestaurantSuggestion {
     let name: String
     let address: String
 }
 
-extension SearchResultRestaurant: Equatable {}
+extension RestaurantSuggestion: Equatable {}
 
-func ==(lhs: SearchResultRestaurant, rhs: SearchResultRestaurant) -> Bool {
+func ==(lhs: RestaurantSuggestion, rhs: RestaurantSuggestion) -> Bool {
     return lhs.name == rhs.name &&
         lhs.address == rhs.address
 }

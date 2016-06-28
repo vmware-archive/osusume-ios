@@ -2,24 +2,22 @@ import XCTest
 import Nimble
 @testable import Osusume
 
-class GNaviRestaurantListParserTest: XCTestCase {
-    var parser: GNaviRestaurantListParser!
+class RestaurantSuggestionSearchResultListParserTest: XCTestCase {
+    var parser: RestaurantSuggestionSearchResultListParser!
 
     override func setUp() {
-        parser = GNaviRestaurantListParser()
+        parser = RestaurantSuggestionSearchResultListParser()
     }
 
     func test_parse_parsesListOfSearchResultRestaurants() {
-        let json: [String: AnyObject] = [
-            "rest": [
-                [
-                    "name": "Afuri",
-                    "address": "Address of Afuri"
-                ],
-                [
-                    "name": "Fuji Soba",
-                    "address": "Address of Fuji Soba"
-                ]
+        let json: [AnyObject] = [
+            [
+                "name": "Afuri",
+                "address": "Address of Afuri"
+            ],
+            [
+                "name": "Fuji Soba",
+                "address": "Address of Fuji Soba"
             ]
         ]
 
@@ -36,16 +34,14 @@ class GNaviRestaurantListParserTest: XCTestCase {
     }
 
     func test_parsesEmptyAddressJson_excludesIncompleteResultList() {
-        let json: [String: AnyObject] = [
-            "rest": [
-                [
-                    "name": "Afuri",
-                    "address": ""
-                ],
-                [
-                    "name": "Fuji Soba",
-                    "address": "Address of Fuji Soba"
-                ]
+        let json: [AnyObject] = [
+            [
+                "name": "Afuri",
+                "address": ""
+            ],
+            [
+                "name": "Fuji Soba",
+                "address": "Address of Fuji Soba"
             ]
         ]
 
@@ -60,16 +56,14 @@ class GNaviRestaurantListParserTest: XCTestCase {
     }
 
     func test_parseEmptyNameJson_excludesIncompleteResultList() {
-        let json: [String: AnyObject] = [
-            "rest": [
-                [
-                    "name": "",
-                    "address": "Address of Afuri"
-                ],
-                [
-                    "name": "Fuji Soba",
-                    "address": "Address of Fuji Soba"
-                ]
+        let json: [AnyObject] = [
+            [
+                "name": "",
+                "address": "Address of Afuri"
+            ],
+            [
+                "name": "Fuji Soba",
+                "address": "Address of Fuji Soba"
             ]
         ]
 

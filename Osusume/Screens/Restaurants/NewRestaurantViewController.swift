@@ -336,10 +336,10 @@ extension NewRestaurantViewController: RestaurantViewControllerPresenterProtocol
 
 // MARK: - SearchResultRestaurantSelectionDelegate
 extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
-    func searchResultRestaurantSelected(searchResultRestaurant: SearchResultRestaurant) {
+    func searchResultRestaurantSelected(restaurantSuggestion: RestaurantSuggestion) {
         restaurantSearchResult = (
-            name: searchResultRestaurant.name,
-            address: searchResultRestaurant.address
+            name: restaurantSuggestion.name,
+            address: restaurantSuggestion.address
         )
 
         reloader.reload(tableView)

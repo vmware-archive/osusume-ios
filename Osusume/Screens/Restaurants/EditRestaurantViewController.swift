@@ -330,9 +330,9 @@ extension EditRestaurantViewController: RestaurantViewControllerPresenterProtoco
 
 // MARK: - SearchResultRestaurantSelectionDelegate
 extension EditRestaurantViewController: SearchResultRestaurantSelectionDelegate {
-    func searchResultRestaurantSelected(searchResultRestaurant: SearchResultRestaurant) {
-        restaurantEditResult.name = searchResultRestaurant.name
-        restaurantEditResult.address = searchResultRestaurant.address
+    func searchResultRestaurantSelected(restaurantSuggestion: RestaurantSuggestion) {
+        restaurantEditResult.name = restaurantSuggestion.name
+        restaurantEditResult.address = restaurantSuggestion.address
         
         reloader.reload(tableView)
     }

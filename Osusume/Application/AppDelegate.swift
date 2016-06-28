@@ -55,9 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             http: sessionHttp,
             parser: PriceRangeListParser()
         )
-        let restaurantSearchRepo = GNaviRestaurantSearchRepo(
-            http: DefaultHttp(basePath: ""),
-            parser: GNaviRestaurantListParser()
+
+        let restaurantSearchRepo = NetworkRestaurantSearchRepo(
+            http: sessionHttp,
+            parser: RestaurantSuggestionSearchResultListParser()
         )
 
         let router: NavigationRouter = NavigationRouter(

@@ -9,10 +9,10 @@ class FindRestaurantViewControllerTest: XCTestCase {
     let fakeRestaurantSearchRepo = FakeRestaurantSearchRepo()
     let fakeReloader = FakeReloader()
     let fakeSearchResultRestaurantSelectionDelegate = FakeSearchResultRestaurantSelectionDelegate()
-    var restaurantSearchRepoResultPromise: Promise<[SearchResultRestaurant], RepoError>!
+    var restaurantSearchRepoResultPromise: Promise<[RestaurantSuggestion], RepoError>!
 
     override func setUp() {
-        restaurantSearchRepoResultPromise = Promise<[SearchResultRestaurant], RepoError>()
+        restaurantSearchRepoResultPromise = Promise<[RestaurantSuggestion], RepoError>()
         fakeRestaurantSearchRepo.getForSearchTerm_returnValue = restaurantSearchRepoResultPromise.future
 
         findRestaurantViewController = FindRestaurantViewController(
@@ -91,8 +91,8 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tableView_containsExpectedNumberOfRows() {
         let searchResults = [
-            SearchResultRestaurant(name: "Afuri", address: "Roppongi"),
-            SearchResultRestaurant(name: "Savoy", address: "Azabu")
+            RestaurantSuggestion(name: "Afuri", address: "Roppongi"),
+            RestaurantSuggestion(name: "Savoy", address: "Azabu")
         ]
 
 
@@ -110,7 +110,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tableView_cellDisplaysSearchResult() {
         let searchResults = [
-            SearchResultRestaurant(name: "Afuri", address: "Roppongi")
+            RestaurantSuggestion(name: "Afuri", address: "Roppongi")
         ]
 
 
@@ -143,7 +143,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tappingSearchResultCell_popsViewController() {
         let searchResults = [
-            SearchResultRestaurant(name: "Afuri", address: "Roppongi")
+            RestaurantSuggestion(name: "Afuri", address: "Roppongi")
         ]
 
         findRestaurantViewController.textFieldShouldReturn(
@@ -164,7 +164,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tappingSearchResultCell_passesSelectedRestaurantsInformationToDelegate() {
         let searchResults = [
-            SearchResultRestaurant(name: "Afuri", address: "Roppongi")
+            RestaurantSuggestion(name: "Afuri", address: "Roppongi")
         ]
 
         findRestaurantViewController.textFieldShouldReturn(

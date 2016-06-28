@@ -1,19 +1,19 @@
 import Result
 
-struct GNaviRestaurantListParser: SearchResultRestaurantListParser {
-    func parseGNaviResponse(json: [String : AnyObject])
-        -> Result<[SearchResultRestaurant], ParseError> {
+struct RestaurantSuggestionSearchResultListParser: RestaurantSuggestionListParser {
+    func parseGNaviResponse(json: AnyObject)
+        -> Result<[RestaurantSuggestion], ParseError> {
             guard
-                let restaurantList = json["rest"] as? [[String : AnyObject]] else
+                let restaurantList = json as? [[String : AnyObject]] else
             {
                 return Result.Success([])
             }
             return parse(restaurantList)
     }
 
-    private func parse(json: [[String : AnyObject]])-> Result<[SearchResultRestaurant], ParseError> {
+    private func parse(json: [[String : AnyObject]]) -> Result<[RestaurantSuggestion], ParseError> {
 
-        var resultArray: [SearchResultRestaurant] = []
+        var resultArray: [RestaurantSuggestion] = []
 
         for resultJson in json {
             guard
@@ -23,7 +23,7 @@ struct GNaviRestaurantListParser: SearchResultRestaurantListParser {
                 continue
             }
 
-            let searchResultRestaurant = SearchResultRestaurant(name: name, address: address)
+            let searchResultRestaurant = RestaurantSuggestion(name: name, address: address)
             resultArray.append(searchResultRestaurant)
         }
 

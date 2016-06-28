@@ -62,10 +62,7 @@ class NetworkCommentRepoTest: XCTestCase {
         promise.success(expectedPostResponseJson)
         NSRunLoop.osu_advance()
 
-        let expectedPostResponseDictionary = expectedPostResponseJson
-        let actualPostResponseDictionary = self.fakeCommentParser.parse_arg as? String
-
-        expect(expectedPostResponseDictionary).to(equal(actualPostResponseDictionary))
+        expect(self.fakeCommentParser.parse_arg as? String).to(equal(expectedPostResponseJson))
     }
 
     func test_persist_handlesParsingError() {

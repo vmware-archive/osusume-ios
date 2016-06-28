@@ -3,8 +3,8 @@ import BrightFutures
 
 class FakeRestaurantSearchRepo: RestaurantSearchRepo {
     var getForSearchTerm_wasCalled = false
-    var getForSearchTerm_returnValue = Future<[SearchResultRestaurant], RepoError>()
-    func getForSearchTerm(term: String) -> Future<[SearchResultRestaurant], RepoError> {
+    var getForSearchTerm_returnValue = Future<[RestaurantSuggestion], RepoError>()
+    func getForSearchTerm(term: String) -> Future<[RestaurantSuggestion], RepoError> {
         getForSearchTerm_wasCalled = true
         return getForSearchTerm_returnValue
     }
