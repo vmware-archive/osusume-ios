@@ -1,8 +1,8 @@
 struct NewRestaurant {
-    let name: String
-    let address: String
-    let cuisine: Cuisine?
-    let priceRange: PriceRange?
-    let notes: String
-    let photoUrls: [String]
+    var name: String?
+    var address: String?
+    var cuisine: Cuisine?
+    var priceRange: PriceRange?
+    var notes: String = ""
+    var photoUrls: [String] = []
 }

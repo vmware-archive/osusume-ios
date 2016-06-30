@@ -49,7 +49,7 @@ class NewRestaurantFormView: UIView {
     }
 
     // MARK: - Getters
-    func getNotesText() -> String? {
+    func getNotesText() -> String {
         return notesTextField.text
     }
 }

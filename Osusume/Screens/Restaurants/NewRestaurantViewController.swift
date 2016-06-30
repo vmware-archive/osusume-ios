@@ -28,9 +28,7 @@ class NewRestaurantViewController: UIViewController {
     private(set) var images: [UIImage]
     private let imagePickerViewController: BSImagePickerViewController
 
-    var restaurantSearchResult: (name: String, address: String)?
-    var selectedCuisine: Cuisine?
-    var selectedPriceRange: PriceRange?
+    var newRestaurant = NewRestaurant()
 
     let addRestaurantPhotosTableViewCell: AddRestaurantPhotosTableViewCell
     private var maybeFindRestaurantTableViewCell: FindRestaurantTableViewCell
@@ -109,7 +107,7 @@ class NewRestaurantViewController: UIViewController {
             title: "Save",
             style: UIBarButtonItemStyle.Plain,
             target: self,
-            action: #selector(NewRestaurantViewController.didTapDoneButton(_:))
+            action: #selector(NewRestaurantViewController.didTapSaveButton(_:))
         )
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             title: "Cancel",
@@ -142,7 +140,7 @@ class NewRestaurantViewController: UIViewController {
     }
 
     // MARK: - Actions
-    @objc private func didTapDoneButton(sender: UIBarButtonItem?) {
+    @objc private func didTapSaveButton(sender: UIBarButtonItem?) {
         let photoUrls = photoRepo.uploadPhotos(images)
 
         let restaurantTableViewCellIndexPath = NSIndexPath(
@@ -156,18 +154,8 @@ class NewRestaurantViewController: UIViewController {
 
         if let cell = maybeCell {
             let formView = cell.formView
-
-            let restaurantName = restaurantSearchResult?.name ?? ""
-            let restaurantAddress = restaurantSearchResult?.address ?? ""
-
-            let newRestaurant = NewRestaurant(
-                name: restaurantName,
-                address: restaurantAddress,
-                cuisine: selectedCuisine,
-                priceRange: selectedPriceRange,
-                notes: formView.getNotesText()!,
-                photoUrls: photoUrls
-            )
+            newRestaurant.notes = formView.getNotesText()
+            newRestaurant.photoUrls = photoUrls
 
             restaurantRepo.create(newRestaurant)
                 .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
@@ -247,23 +235,25 @@ extension NewRestaurantViewController: UITableViewDataSource {
                 return addRestaurantPhotosTableViewCell
 
             case NewRestuarantTableViewRow.FindRestaurantCell.rawValue:
-                if (restaurantSearchResult != nil) {
-                    maybePopulatedRestaurantTableViewCell.textLabel?.text = restaurantSearchResult?.name
-                    maybePopulatedRestaurantTableViewCell.detailTextLabel?.text = restaurantSearchResult?.address
+                if let restaurantName = newRestaurant.name,
+                    restaurantAddress = newRestaurant.address
+                {
+                    maybePopulatedRestaurantTableViewCell.textLabel?.text = restaurantName
+                    maybePopulatedRestaurantTableViewCell.detailTextLabel?.text = restaurantAddress
                     return maybePopulatedRestaurantTableViewCell
                 } else {
                     return maybeFindRestaurantTableViewCell
                 }
 
             case NewRestuarantTableViewRow.CuisineCell.rawValue:
-                if (selectedCuisine != nil) {
-                    cuisineTableViewCell.textLabel?.text = selectedCuisine?.name
+                if let cuisine = newRestaurant.cuisine {
+                    cuisineTableViewCell.textLabel?.text = cuisine.name
                 }
                 return cuisineTableViewCell
 
             case NewRestuarantTableViewRow.PriceRangeCell.rawValue:
-                if (selectedPriceRange != nil) {
-                    priceRangeTableViewCell.textLabel?.text = selectedPriceRange?.range
+                if let priceRange = newRestaurant.priceRange {
+                    priceRangeTableViewCell.textLabel?.text = priceRange.range
                 }
                 return priceRangeTableViewCell
 
@@ -337,10 +327,8 @@ extension NewRestaurantViewController: RestaurantViewControllerPresenterProtocol
 // MARK: - SearchResultRestaurantSelectionDelegate
 extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
     func searchResultRestaurantSelected(restaurantSuggestion: RestaurantSuggestion) {
-        restaurantSearchResult = (
-            name: restaurantSuggestion.name,
-            address: restaurantSuggestion.address
-        )
+        newRestaurant.name = restaurantSuggestion.name
+        newRestaurant.address = restaurantSuggestion.address
 
         reloader.reload(tableView)
     }
@@ -349,7 +337,7 @@ extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
 // MARK: - CuisineSelectionDelegate
 extension NewRestaurantViewController: CuisineSelectionDelegate {
     func cuisineSelected(cuisine: Cuisine) {
-        selectedCuisine = cuisine
+        newRestaurant.cuisine = cuisine
         reloader.reload(tableView)
     }
 }
@@ -357,7 +345,7 @@ extension NewRestaurantViewController: CuisineSelectionDelegate {
 // MARK: - PriceRangeSelectionDelegate
 extension NewRestaurantViewController: PriceRangeSelectionDelegate {
     func priceRangeSelected(priceRange: PriceRange) {
-        selectedPriceRange = priceRange
+        newRestaurant.priceRange = priceRange
         reloader.reload(tableView)
     }
 }

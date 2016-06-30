@@ -192,12 +192,14 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
     // MARK: - Actions
     func test_tappingSaveButton_savesRestaurant() {
-        newRestaurantVC.restaurantSearchResult = (
+        newRestaurantVC.newRestaurant = NewRestaurant(
             name: "Some Restaurant",
-            address: ""
+            address: "Address",
+            cuisine: Cuisine(id: 1, name: "Cuisine Type"),
+            priceRange: PriceRange(id: 1, range: "Price Range"),
+            notes: "",
+            photoUrls: []
         )
-        newRestaurantVC.selectedCuisine = Cuisine(id: 1, name: "Restaurant Cuisine Type")
-        newRestaurantVC.selectedPriceRange = PriceRange(id: 1, range: "Selected Price Range")
 
         let cell = getNotesTableViewCell()
         cell.formView.notesTextField.text = "Notes"
@@ -210,9 +212,10 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
         let newRestaurant = fakeRestaurantRepo.create_args
         expect(newRestaurant.name).to(equal("Some Restaurant"))
-        expect(newRestaurant.address).to(equal(""))
-        expect(newRestaurant.cuisine?.name).to(equal("Restaurant Cuisine Type"))
+        expect(newRestaurant.address).to(equal("Address"))
+        expect(newRestaurant.cuisine?.name).to(equal("Cuisine Type"))
         expect(newRestaurant.priceRange?.id).to(equal(1))
+        expect(newRestaurant.priceRange?.range).to(equal("Price Range"))
         expect(newRestaurant.notes).to(equal("Notes"))
         expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]));
     }

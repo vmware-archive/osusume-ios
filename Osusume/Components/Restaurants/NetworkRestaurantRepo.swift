@@ -37,8 +37,8 @@ struct NetworkRestaurantRepo: RestaurantRepo {
                 headers: [:],
                 parameters: [
                     "restaurant": [
-                        "name": newRestaurant.name,
-                        "address": newRestaurant.address,
+                        "name": newRestaurant.name!,
+                        "address": newRestaurant.address!,
                         "cuisine_type": newRestaurant.cuisine?.name ?? "",
                         "cuisine_id": newRestaurant.cuisine?.id ?? 0,
                         "price_range_id": newRestaurant.priceRange?.id ?? 0,
