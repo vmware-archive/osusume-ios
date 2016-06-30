@@ -99,6 +99,12 @@ class NavigationRouterTest: XCTestCase {
             .to(equal(url))
     }
 
+    func test_showingMapScreen_presentsMapViewController() {
+        navigationRouter.showMapScreen()
+
+        expect(self.rootNavController.topViewController).to(beAKindOf(MapViewController))
+    }
+
     func test_showingCuisineListScreen() {
         configureUIWindowWithRootViewController(rootNavController)
         rootNavController.setViewControllers(

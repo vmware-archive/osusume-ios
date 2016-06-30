@@ -259,4 +259,12 @@ extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate 
 
         reloader.reload(tableView)
     }
+
+    @objc func displayMapScreen(sender: UIButton) {
+        router.showMapScreen()
+    }
+
+    @objc func displayImageScreen(url: NSURL) {
+        router.showImageScreen(url)
+    }
 }

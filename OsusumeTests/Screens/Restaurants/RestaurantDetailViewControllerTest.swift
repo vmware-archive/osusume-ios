@@ -221,6 +221,35 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         expect(updatedRestaurantDetailCell.numberOfLikesLabel.text).to(equal("0 people liked"))
     }
 
+    // MARK: - RestaurantDetailTableViewCellDelegate
+    func test_detailTableViewCell_hasViewControllerAsDelegate() {
+        setupViewControllerWithReloader()
+        let restaurantDetailCell = getRestaurantDetailCell()
+        expect(restaurantDetailCell.delegate === self.restaurantDetailVC).to(beTrue())
+    }
+
+    func test_callingTheShowImageDelegateMethod_showsTheFullScreenImageScreen() {
+        setupViewControllerWithReloader()
+        let url = NSURL(string: "url")!
+
+
+        restaurantDetailVC.displayImageScreen(url)
+
+
+        expect(self.fakeRouter.imageScreenIsShowing).to(beTrue())
+        expect(self.fakeRouter.showImageScreen_args).to(equal(url))
+    }
+
+    func test_callingTheDisplayMapsScreenMethod_displaysTheMapScreen() {
+        setupViewControllerWithReloader()
+
+
+        restaurantDetailVC.displayMapScreen(UIButton())
+
+
+        expect(self.fakeRouter.mapScreenIsShowing).to(beTrue())
+    }
+
     // MARK: - UITableViewDelegate
     func test_canEdit_commentsPostedByCurrentUser() {
         setupViewControllerWithReloader()

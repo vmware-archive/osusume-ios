@@ -69,4 +69,9 @@ class FakeRouter : Router {
     func showFindRestaurantScreen(delegate: SearchResultRestaurantSelectionDelegate) {
         showFindRestaurantScreen_wasCalled = true
     }
+
+    var mapScreenIsShowing = false
+    func showMapScreen() {
+        mapScreenIsShowing = true
+    }
 }

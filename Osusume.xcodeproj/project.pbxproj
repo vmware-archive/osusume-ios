@@ -114,6 +114,8 @@
 		AECF51761CA279A40045C42B /* NewCuisine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51751CA279A40045C42B /* NewCuisine.swift */; };
 		AECF51781CA36E290045C42B /* NetworkRestaurantListRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */; };
 		AECF517A1CA36E890045C42B /* CommentRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF51791CA36E890045C42B /* CommentRepo.swift */; };
+		AED9D1671D24B0C8008033A8 /* MapViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED9D1661D24B0C8008033A8 /* MapViewContoller.swift */; };
+		AED9D1691D24B187008033A8 /* MapViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED9D1681D24B187008033A8 /* MapViewControllerTest.swift */; };
 		AEDB5C221C75692F0050D002 /* EditRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */; };
 		AEDB5C241C756B2B0050D002 /* NewRestaurantViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */; };
 		AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */; };
@@ -355,6 +357,8 @@
 		AECF51751CA279A40045C42B /* NewCuisine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCuisine.swift; sourceTree = "<group>"; };
 		AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRestaurantListRepo.swift; sourceTree = "<group>"; };
 		AECF51791CA36E890045C42B /* CommentRepo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentRepo.swift; sourceTree = "<group>"; };
+		AED9D1661D24B0C8008033A8 /* MapViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewContoller.swift; sourceTree = "<group>"; };
+		AED9D1681D24B187008033A8 /* MapViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantViewControllerTest.swift; sourceTree = "<group>"; };
 		AEDB5C251C75A0620050D002 /* LoginViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTest.swift; sourceTree = "<group>"; };
@@ -871,6 +875,7 @@
 				AEDB5C211C75692F0050D002 /* EditRestaurantViewControllerTest.swift */,
 				AE31192B1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift */,
 				AE1D420A1C8423960048DF66 /* ImageViewControllerTest.swift */,
+				AED9D1681D24B187008033A8 /* MapViewControllerTest.swift */,
 				AEDB5C231C756B2B0050D002 /* NewRestaurantViewControllerTest.swift */,
 				AE435A4F1CF2F75200060AAF /* PhotoUrlsCollectionViewDataSourceTest.swift */,
 				AEDEDC5A1C71B9E500E1A031 /* RestaurantDetailViewControllerTest.swift */,
@@ -918,6 +923,7 @@
 				AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */,
 				AE5A8BBC1CE44BC000B828C4 /* FindRestaurantViewController.swift */,
 				AE1D42081C8420350048DF66 /* ImageViewController.swift */,
+				AED9D1661D24B0C8008033A8 /* MapViewContoller.swift */,
 				DE99CFD1D44DEE333A4B91FC /* NewRestaurantViewController.swift */,
 				AE435A511CF2F83C00060AAF /* PhotoUrlsCollectionViewDataSource.swift */,
 				2482439F1C2D2B6400D52D01 /* RestaurantDetailViewController.swift */,
@@ -1414,6 +1420,7 @@
 				DE99CF21473B269253040D0E /* LikeRepo.swift in Sources */,
 				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
 				DE99C2FBE2CDA0C6D59583BD /* main.swift in Sources */,
+				AED9D1671D24B0C8008033A8 /* MapViewContoller.swift in Sources */,
 				AEE6968C1CA36C8F003A2927 /* MyRestaurantListViewController.swift in Sources */,
 				AE4ABF5E1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift in Sources */,
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
@@ -1529,6 +1536,7 @@
 				DE99C39FB88F303DF4869148 /* KeychainSessionRepoTest.swift in Sources */,
 				DE99CED00AC7F1E1202E9B1F /* LaunchWorkflowTest.swift in Sources */,
 				AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */,
+				AED9D1691D24B187008033A8 /* MapViewControllerTest.swift in Sources */,
 				AEE6968E1CA36CC9003A2927 /* MyRestaurantListViewControllerTest.swift in Sources */,
 				DE99C3A75F3D574B68C6D653 /* NavigationRouterTest.swift in Sources */,
 				DE99CDD1C1EF4FD00A5D80BF /* NetworkCommentRepoTest.swift in Sources */,

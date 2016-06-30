@@ -10,6 +10,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     let imageCollectionView: UICollectionView
     let nameLabel: UILabel
     let addressLabel: UILabel
+    let viewMapButton: UIButton
     let cuisineTypeLabel: UILabel
     let priceRangeLabel: UILabel
     let numberOfLikesLabel: UILabel
@@ -30,6 +31,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
         nameLabel = UILabel.newAutoLayoutView()
         addressLabel = UILabel.newAutoLayoutView()
+        viewMapButton = UIButton(type: UIButtonType.System)
         cuisineTypeLabel = UILabel.newAutoLayoutView()
         priceRangeLabel = UILabel.newAutoLayoutView()
         numberOfLikesLabel = UILabel.newAutoLayoutView()
@@ -54,6 +56,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         contentView.addSubview(imageCollectionView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(addressLabel)
+        contentView.addSubview(viewMapButton)
         contentView.addSubview(cuisineTypeLabel)
         contentView.addSubview(priceRangeLabel)
         contentView.addSubview(numberOfLikesLabel)
@@ -72,20 +75,12 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         imageCollectionView.backgroundColor = UIColor.lightGrayColor()
         imageCollectionView.delegate = self
 
+        viewMapButton.setTitle("view in map", forState: .Normal)
+
         notesLabel.numberOfLines = 0
 
-        likeButton.addTarget(
-            self.delegate,
-            action: #selector(RestaurantDetailViewController.didTapLikeButton(_:)),
-            forControlEvents: .TouchUpInside
-        )
         likeButton.setTitle("Like", forState: .Normal)
 
-        addCommentButton.addTarget(
-            self.delegate,
-            action: #selector(RestaurantDetailViewController.displayAddCommentScreen(_:)),
-            forControlEvents: .TouchUpInside
-        )
         addCommentButton.setTitle("Add comment", forState: .Normal)
         addCommentButton.backgroundColor = UIColor.grayColor()
     }
@@ -100,7 +95,11 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         nameLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
 
         addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        addressLabel.autoPinEdge(.Trailing, toEdge: .Leading, ofView: viewMapButton)
         addressLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
+        viewMapButton.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
+        viewMapButton.autoSetDimension(.Width, toSize: 100.0)
+        viewMapButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLabel)
 
         priceRangeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         priceRangeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressLabel)
@@ -143,6 +142,24 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
         reloader.reload(imageCollectionView)
 
+        viewMapButton.addTarget(
+            self.delegate,
+            action: #selector(RestaurantDetailTableViewCellDelegate.displayMapScreen(_:)),
+            forControlEvents: .TouchUpInside
+        )
+
+        likeButton.addTarget(
+            self.delegate,
+            action: #selector(RestaurantDetailTableViewCellDelegate.didTapLikeButton(_:)),
+            forControlEvents: .TouchUpInside
+        )
+
+        addCommentButton.addTarget(
+            self.delegate,
+            action: #selector(RestaurantDetailTableViewCellDelegate.displayAddCommentScreen(_:)),
+            forControlEvents: .TouchUpInside
+        )
+
         let restaurantDetailPresenter = RestaurantDetailPresenter(restaurant: restaurant)
         nameLabel.text = restaurantDetailPresenter.name
         addressLabel.text = restaurantDetailPresenter.address
@@ -176,7 +193,7 @@ extension RestaurantDetailTableViewCell: UICollectionViewDelegate {
         collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        self.router?.showImageScreen(photoUrls[indexPath.row].url)
+        self.delegate?.displayImageScreen(photoUrls[indexPath.row].url)
     }
 }
 

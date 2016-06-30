@@ -137,6 +137,15 @@ struct NavigationRouter: Router {
         )
     }
 
+    func showMapScreen() {
+        let mapViewController = MapViewController()
+
+        navigationController.pushViewController(
+            mapViewController,
+            animated: animated
+        )
+    }
+
     func showFindCuisineScreen(delegate: CuisineSelectionDelegate) {
         let newRestaurantNavVC = navigationController.presentedViewController as? UINavigationController
         let findCuisineTableViewController = CuisineListViewController(
