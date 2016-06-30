@@ -105,7 +105,7 @@ class NewRestaurantViewController: UIViewController {
     // MARK: - View Setup
     private func configureNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Done",
+            title: "Save",
             style: UIBarButtonItemStyle.Plain,
             target: self,
             action: #selector(NewRestaurantViewController.didTapDoneButton(_:))

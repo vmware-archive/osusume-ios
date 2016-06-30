@@ -192,7 +192,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
     }
 
     // MARK: - Actions
-    func test_tappingDoneButton_savesRestaurant() {
+    func test_tappingSaveButton_savesRestaurant() {
         newRestaurantVC.restaurantSearchResult = (
             name: "Some Restaurant",
             address: ""
@@ -205,8 +205,8 @@ class NewRestaurantViewControllerTest: XCTestCase {
         fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
 
 
-        let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
-        tapNavBarButton(doneButton)
+        let saveButton = newRestaurantVC.navigationItem.rightBarButtonItem!
+        tapNavBarButton(saveButton)
 
 
         let newRestaurant = fakeRestaurantRepo.create_args
@@ -218,11 +218,11 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]));
     }
 
-    func test_tappingDoneButton_returnsToListScreen() {
-        let doneButton = newRestaurantVC.navigationItem.rightBarButtonItem!
+    func test_tappingSaveButton_returnsToListScreen() {
+        let saveButton = newRestaurantVC.navigationItem.rightBarButtonItem!
 
 
-        tapNavBarButton(doneButton)
+        tapNavBarButton(saveButton)
         NSRunLoop.osu_advance()
 
 
