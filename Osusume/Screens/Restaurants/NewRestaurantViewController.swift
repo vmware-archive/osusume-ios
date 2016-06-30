@@ -27,6 +27,7 @@ class NewRestaurantViewController: UIViewController {
 
     private(set) var images: [UIImage]
     private let imagePickerViewController: BSImagePickerViewController
+
     var restaurantSearchResult: (name: String, address: String)?
     var selectedCuisine: Cuisine?
     var selectedPriceRange: PriceRange?
@@ -162,9 +163,8 @@ class NewRestaurantViewController: UIViewController {
             let newRestaurant = NewRestaurant(
                 name: restaurantName,
                 address: restaurantAddress,
-                cuisineType: selectedCuisine?.name ?? "",
-                cuisineId: selectedCuisine?.id ?? 0,
-                priceRangeId: selectedPriceRange?.id ?? 0,
+                cuisine: selectedCuisine,
+                priceRange: selectedPriceRange,
                 notes: formView.getNotesText()!,
                 photoUrls: photoUrls
             )

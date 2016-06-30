@@ -46,8 +46,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
     func test_viewDidLoad_configuresSubviews() {
         expect(self.newRestaurantVC.addRestaurantPhotosTableViewCell.imageCollectionView.dataSource === self.newRestaurantVC).to(beTrue())
     }
-    
-    
+
     func test_viewDidLoad_addsConstraints() {
         expect(self.newRestaurantVC.tableView)
             .to(hasConstraintsToSuperviewOrSelf())
@@ -212,8 +211,8 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let newRestaurant = fakeRestaurantRepo.create_args
         expect(newRestaurant.name).to(equal("Some Restaurant"))
         expect(newRestaurant.address).to(equal(""))
-        expect(newRestaurant.cuisineType).to(equal("Restaurant Cuisine Type"))
-        expect(newRestaurant.priceRangeId).to(equal(1))
+        expect(newRestaurant.cuisine?.name).to(equal("Restaurant Cuisine Type"))
+        expect(newRestaurant.priceRange?.id).to(equal(1))
         expect(newRestaurant.notes).to(equal("Notes"))
         expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]));
     }

@@ -39,9 +39,8 @@ class NetworkRestaurantRepoTest: XCTestCase {
             NewRestaurant(
                 name: "Danny's Diner",
                 address: "123 Main Street",
-                cuisineType: "Creole",
-                cuisineId: 9,
-                priceRangeId: 1,
+                cuisine: Cuisine(id: 9, name: "Creole"),
+                priceRange: PriceRange(id: 1, range: "Range"),
                 notes: "So good",
                 photoUrls: ["my-cool-url", "my-awesome-url"]
             )
