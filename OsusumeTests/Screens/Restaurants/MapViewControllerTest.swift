@@ -7,6 +7,7 @@ class MapViewControllerTest: XCTestCase {
 
     override func setUp() {
         self.mapVC = MapViewController()
+        self.mapVC.view.setNeedsLayout()
     }
 
     func test_viewDidLoad_initializesSubviews() {
@@ -19,5 +20,9 @@ class MapViewControllerTest: XCTestCase {
 
     func test_viewDidLoad_addsConstraints() {
         expect(self.mapVC.mapView).to(hasConstraintsToSuperviewOrSelf())
+    }
+
+    func test_viewDidLoad_setsTitle() {
+        expect(self.mapVC.title).to(equal("Location"))
     }
 }
