@@ -12,13 +12,21 @@ struct RestaurantSuggestionSearchResultListParser: DataParser {
 
         for restaurantSuggestionJson in restaurantSuggestionList {
             guard
-                let name = restaurantSuggestionJson["name"] as? String where name != "" ,
-                let address = restaurantSuggestionJson["address"] as? String where address != "" else
+                let name = restaurantSuggestionJson["name"] as? String where name != "",
+                let address = restaurantSuggestionJson["address"] as? String where address != "",
+                let placeId = restaurantSuggestionJson["place_id"] as? String where placeId != "",
+                let latitude = restaurantSuggestionJson["latitude"] as? Double,
+                let longitude = restaurantSuggestionJson["longitude"] as? Double else
             {
                 continue
             }
 
-            let restaurantSuggestion = RestaurantSuggestion(name: name, address: address)
+            let restaurantSuggestion = RestaurantSuggestion(
+                name: name,
+                address: address,
+                placeId: placeId,
+                latitude: latitude,
+                longitude: longitude)
             resultArray.append(restaurantSuggestion)
         }
 

@@ -91,8 +91,8 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tableView_containsExpectedNumberOfRows() {
         let searchResults = [
-            RestaurantSuggestion(name: "Afuri", address: "Roppongi"),
-            RestaurantSuggestion(name: "Savoy", address: "Azabu")
+            RestaurantSuggestion(name: "Afuri", address: "Roppongi", placeId: "", latitude: 0.0, longitude: 0.0),
+            RestaurantSuggestion(name: "Savoy", address: "Azabu", placeId: "", latitude: 0.0, longitude: 0.0)
         ]
 
 
@@ -110,7 +110,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tableView_cellDisplaysSearchResult() {
         let searchResults = [
-            RestaurantSuggestion(name: "Afuri", address: "Roppongi")
+            RestaurantSuggestion(name: "Afuri", address: "Roppongi", placeId: "", latitude: 0.0, longitude: 0.0)
         ]
 
 
@@ -143,7 +143,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tappingSearchResultCell_popsViewController() {
         let searchResults = [
-            RestaurantSuggestion(name: "Afuri", address: "Roppongi")
+            RestaurantSuggestion(name: "Afuri", address: "Roppongi", placeId: "", latitude: 0.0, longitude: 0.0)
         ]
 
         findRestaurantViewController.textFieldShouldReturn(
@@ -164,7 +164,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
 
     func test_tappingSearchResultCell_passesSelectedRestaurantsInformationToDelegate() {
         let searchResults = [
-            RestaurantSuggestion(name: "Afuri", address: "Roppongi")
+            RestaurantSuggestion(name: "Afuri", address: "Roppongi", placeId: "ChIJgYtUxUGLGGAR2LLtCdmLFbs", latitude: 35.648355, longitude: 139.710893)
         ]
 
         findRestaurantViewController.textFieldShouldReturn(

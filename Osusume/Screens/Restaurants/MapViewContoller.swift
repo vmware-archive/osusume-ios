@@ -1,15 +1,15 @@
 class MapViewController: UIViewController {
     // MARK: - Properties
-    let mapView: MKMapView
-
-    // MARK: - Constants
-
-    // MARK: - View Elements
+    let mapView: MapView
+    let latitude: Double
+    let longitude: Double
 
     // MARK: - Initializers
-    init() {
+    init(latitude: Double, longitude: Double, mapView: MapView) {
         // Initialization
-        mapView = MKMapView()
+        self.mapView = mapView
+        self.latitude = latitude
+        self.longitude = longitude
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,16 +35,22 @@ class MapViewController: UIViewController {
     }
 
     private func addSubviews() {
-        view.addSubview(mapView)
+        view.addSubview(mapView.mapView)
     }
 
     private func configureSubviews() {
-        mapView.autoPinEdgesToSuperviewEdges()
+        let location = CLLocationCoordinate2DMake(self.latitude, self.longitude)
+
+        let pin = MKPointAnnotation()
+        pin.coordinate = location
+        mapView.addAnnotation(pin)
+
+        let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: false)
     }
 
     private func addConstraints() {
+        mapView.mapView.autoPinEdgesToSuperviewEdges()
     }
-
-    // MARK: - Actions
-    // MARK: - Private Methods
 }

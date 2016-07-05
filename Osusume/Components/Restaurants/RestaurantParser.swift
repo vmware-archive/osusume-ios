@@ -32,6 +32,15 @@ struct RestaurantParser {
         let maybeAddress = json["address"] as? String
         let address = maybeAddress ?? ""
 
+        let maybePlaceId = json["place_id"] as? String
+        let placeId = maybePlaceId ?? ""
+
+        let maybeLatitude = json["latitude"] as? Double
+        let latitude = maybeLatitude ?? 0
+
+        let maybeLongitude = json["longitude"] as? Double
+        let longitude = maybeLongitude ?? 0
+
         let maybeCuisineType = json["cuisine_type"] as? String
         let cuisineType = maybeCuisineType ?? ""
 
@@ -91,6 +100,9 @@ struct RestaurantParser {
             id: id,
             name: name,
             address: address,
+            placeId: placeId,
+            latitude: latitude,
+            longitude: longitude,
             cuisineType: cuisineType,
             cuisine: cuisine,
             notes: notes,

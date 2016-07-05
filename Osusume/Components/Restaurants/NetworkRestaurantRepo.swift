@@ -39,6 +39,9 @@ struct NetworkRestaurantRepo: RestaurantRepo {
                     "restaurant": [
                         "name": newRestaurant.name!,
                         "address": newRestaurant.address!,
+                        "place_id": newRestaurant.placeId!,
+                        "latitude": newRestaurant.latitude!,
+                        "longitude": newRestaurant.longitude!,
                         "cuisine_type": newRestaurant.cuisine?.name ?? "",
                         "cuisine_id": newRestaurant.cuisine?.id ?? 0,
                         "price_range_id": newRestaurant.priceRange?.id ?? 0,
@@ -54,6 +57,9 @@ struct NetworkRestaurantRepo: RestaurantRepo {
     func update(id: Int, params: [String: AnyObject]) -> Future<[String: AnyObject], RepoError> {
         let name = params["name"] as! String
         let address = params["address"] as! String
+        let placeId = params["place_id"] as! String
+        let latitude = params["latitude"] as! Double
+        let longitude = params["longitude"] as! Double
         let cuisine_type = params["cuisine_type"] as? String ?? ""
         let cuisine_id = params["cuisine_id"] as? Int ?? 0
         let price_range_id = params["price_range_id"] as? Int ?? 0
@@ -63,6 +69,9 @@ struct NetworkRestaurantRepo: RestaurantRepo {
         let updatedParams = ["restaurant": [
             "name": name,
             "address": address,
+            "place_id": placeId,
+            "latitude": latitude,
+            "longitude": longitude,
             "cuisine_type": cuisine_type,
             "cuisine_id": cuisine_id,
             "price_range_id": price_range_id,

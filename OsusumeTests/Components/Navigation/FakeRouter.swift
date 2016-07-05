@@ -71,7 +71,7 @@ class FakeRouter : Router {
     }
 
     var mapScreenIsShowing = false
-    func showMapScreen() {
+    func showMapScreen(latitude: Double, longitude: Double) {
         mapScreenIsShowing = true
     }
 }

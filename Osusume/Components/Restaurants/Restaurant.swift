@@ -2,6 +2,9 @@ struct Restaurant {
     let id: Int
     let name: String
     let address: String
+    let placeId: String
+    let latitude: Double
+    let longitude: Double
     let cuisineType: String
     let cuisine: Cuisine
     let notes: String
@@ -17,6 +20,9 @@ struct Restaurant {
         id: Int,
         name: String,
         address: String,
+        placeId: String,
+        latitude: Double,
+        longitude: Double,
         cuisineType: String,
         cuisine: Cuisine,
         notes: String,
@@ -32,6 +38,9 @@ struct Restaurant {
         self.id = id
         self.name = name
         self.address = address
+        self.placeId = placeId
+        self.latitude = latitude
+        self.longitude = longitude
         self.cuisineType = cuisineType
         self.cuisine = cuisine
         self.notes = notes
@@ -59,6 +68,9 @@ struct Restaurant {
             id: self.id,
             name: self.name,
             address: self.address,
+            placeId: self.placeId,
+            latitude: self.latitude,
+            longitude: self.longitude,
             cuisineType: self.cuisineType,
             cuisine: self.cuisine,
             notes: self.notes,
@@ -81,6 +93,9 @@ struct Restaurant {
             id: self.id,
             name: self.name,
             address: self.address,
+            placeId: self.placeId,
+            latitude: self.latitude,
+            longitude: self.longitude,
             cuisineType: self.cuisineType,
             cuisine: self.cuisine,
             notes: self.notes,
@@ -108,6 +123,9 @@ func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
     return lhs.id == rhs.id &&
         lhs.name == rhs.name &&
         lhs.address == rhs.address &&
+        lhs.placeId == rhs.placeId &&
+        lhs.latitude == rhs.latitude &&
+        lhs.longitude == rhs.longitude &&
         lhs.cuisineType == rhs.cuisineType &&
         lhs.cuisine == rhs.cuisine &&
         lhs.notes == rhs.notes &&

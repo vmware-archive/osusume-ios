@@ -39,6 +39,9 @@ class NetworkRestaurantRepoTest: XCTestCase {
             NewRestaurant(
                 name: "Danny's Diner",
                 address: "123 Main Street",
+                placeId: "abcd",
+                latitude: 1.23,
+                longitude: 2.34,
                 cuisine: Cuisine(id: 9, name: "Creole"),
                 priceRange: PriceRange(id: 1, range: "Range"),
                 notes: "So good",
@@ -51,6 +54,9 @@ class NetworkRestaurantRepoTest: XCTestCase {
         XCTAssertEqual("/restaurants", fakeHttp.post_args.path)
         XCTAssertEqual("Danny's Diner", actualRestaurantParams["name"])
         XCTAssertEqual("123 Main Street", actualRestaurantParams["address"])
+        XCTAssertEqual("abcd", actualRestaurantParams["place_id"])
+        XCTAssertEqual(1.23, actualRestaurantParams["latitude"])
+        XCTAssertEqual(2.34, actualRestaurantParams["longitude"])
         XCTAssertEqual("Creole", actualRestaurantParams["cuisine_type"])
         XCTAssertEqual(9, actualRestaurantParams["cuisine_id"])
         XCTAssertEqual(1, actualRestaurantParams["price_range_id"])
@@ -64,6 +70,9 @@ class NetworkRestaurantRepoTest: XCTestCase {
             params: [
                 "name":  "Danny's Diner",
                 "address":  "123 Main Street",
+                "place_id": "abcd",
+                "latitude": 1.23,
+                "longitude": 2.34,
                 "cuisine_type":  "Creole",
                 "cuisine_id": 9,
                 "price_range_id" : 1,
@@ -76,6 +85,9 @@ class NetworkRestaurantRepoTest: XCTestCase {
         XCTAssertEqual("/restaurants/999", fakeHttp.patch_args.path)
         XCTAssertEqual("Danny's Diner", actualRestaurantParams["name"])
         XCTAssertEqual("123 Main Street", actualRestaurantParams["address"])
+        XCTAssertEqual("abcd", actualRestaurantParams["place_id"])
+        XCTAssertEqual(1.23, actualRestaurantParams["latitude"])
+        XCTAssertEqual(2.34, actualRestaurantParams["longitude"])
         XCTAssertEqual("Creole", actualRestaurantParams["cuisine_type"])
         XCTAssertEqual(9, actualRestaurantParams["cuisine_id"])
         XCTAssertEqual(1, actualRestaurantParams["price_range_id"])

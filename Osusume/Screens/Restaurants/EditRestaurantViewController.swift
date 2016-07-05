@@ -29,7 +29,7 @@ class EditRestaurantViewController: UIViewController {
 
     private let imagePickerViewController: BSImagePickerViewController
     private(set) var restaurant: Restaurant
-    var restaurantEditResult: (name: String, address: String, cuisine: Cuisine, priceRange: PriceRange)
+    var restaurantEditResult: (name: String, address: String, placeId: String, latitude: Double, longitude: Double, cuisine: Cuisine, priceRange: PriceRange)
     private let id: Int
     private(set) var photoUrlDataSource: PhotoUrlsCollectionViewDataSource?
     private var addedPhotos: [UIImage]
@@ -64,6 +64,9 @@ class EditRestaurantViewController: UIViewController {
         self.restaurantEditResult = (
             name: restaurant.name,
             address: restaurant.address,
+            placeId: restaurant.placeId,
+            latitude: restaurant.latitude,
+            longitude: restaurant.longitude,
             cuisine: restaurant.cuisine,
             priceRange: restaurant.priceRange
         )
@@ -172,6 +175,9 @@ class EditRestaurantViewController: UIViewController {
         let params: [String: AnyObject] = [
             "name":  maybePopulatedRestaurantTableViewCell.textLabel?.text ?? "",
             "address":  maybePopulatedRestaurantTableViewCell.detailTextLabel?.text ?? "",
+            "place_id": restaurantEditResult.placeId,
+            "latitude": restaurantEditResult.latitude,
+            "longitude": restaurantEditResult.longitude,
             "cuisine_type":  restaurantEditResult.cuisine.name,
             "cuisine_id": restaurantEditResult.cuisine.id,
             "price_range_id" : restaurantEditResult.priceRange.id,
@@ -333,6 +339,9 @@ extension EditRestaurantViewController: SearchResultRestaurantSelectionDelegate 
     func searchResultRestaurantSelected(restaurantSuggestion: RestaurantSuggestion) {
         restaurantEditResult.name = restaurantSuggestion.name
         restaurantEditResult.address = restaurantSuggestion.address
+        restaurantEditResult.placeId = restaurantSuggestion.placeId
+        restaurantEditResult.latitude = restaurantSuggestion.latitude
+        restaurantEditResult.longitude = restaurantSuggestion.longitude
         
         reloader.reload(tableView)
     }

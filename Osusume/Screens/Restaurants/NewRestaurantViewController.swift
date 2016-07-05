@@ -329,6 +329,9 @@ extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
     func searchResultRestaurantSelected(restaurantSuggestion: RestaurantSuggestion) {
         newRestaurant.name = restaurantSuggestion.name
         newRestaurant.address = restaurantSuggestion.address
+        newRestaurant.placeId = restaurantSuggestion.placeId
+        newRestaurant.latitude = restaurantSuggestion.latitude
+        newRestaurant.longitude = restaurantSuggestion.longitude
 
         reloader.reload(tableView)
     }

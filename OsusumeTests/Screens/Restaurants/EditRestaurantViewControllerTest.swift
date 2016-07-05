@@ -171,7 +171,10 @@ class EditRestaurantViewControllerTest: XCTestCase {
         instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
         let selectedRestaurantSuggestion = RestaurantSuggestion(
             name: "Afuri",
-            address: "Roppongi Hills 5-2-1"
+            address: "Roppongi Hills 5-2-1",
+            placeId: "ChIJgYtUxUGLGGAR2LLtCdmLFbs",
+            latitude: 35.648355,
+            longitude: 139.710893
         )
         
         
@@ -181,13 +184,20 @@ class EditRestaurantViewControllerTest: XCTestCase {
         let populatedCell = getPopulatedRestaurantTableViewCell()
         expect(populatedCell.textLabel?.text).to(equal("Afuri"))
         expect(populatedCell.detailTextLabel?.text).to(equal("Roppongi Hills 5-2-1"))
+    expect(self.editRestaurantViewController.restaurantEditResult.placeId).to(equal("ChIJgYtUxUGLGGAR2LLtCdmLFbs"))
+        expect(self.editRestaurantViewController.restaurantEditResult.latitude).to(equal(35.648355))
+        expect(self.editRestaurantViewController.restaurantEditResult.longitude).to(equal(139.710893))
     }
-    
+
+
     func test_selectSearchResultRestaurant_changesFindRestaurantCellTypeToPopulated() {
         instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
         let selectedSearchResultRestaurant = RestaurantSuggestion(
             name: "Afuri",
-            address: "Roppongi Hills 5-2-1"
+            address: "Roppongi Hills 5-2-1",
+            placeId: "",
+            latitude: 0.0,
+            longitude: 0.0
         )
         
         
@@ -199,7 +209,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
     func test_selectSearchResultRestaurant_reloadsTableView() {
         instantiateEditRestaurantVCWithCuisine(cuisine: Cuisine(id: 1, name: "Pizza"))
-        let selectedSearchResultRestaurant = RestaurantSuggestion(name: "", address: "")
+        let selectedSearchResultRestaurant = RestaurantSuggestion(name: "", address: "", placeId: "", latitude: 0.0, longitude: 0.0)
         
         
         editRestaurantViewController.searchResultRestaurantSelected(selectedSearchResultRestaurant)
@@ -456,6 +466,10 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
         let restaurantDetailCell = getPopulatedRestaurantTableViewCell()
         restaurantDetailCell.textLabel?.text = "Updated Restaurant Name"
+        restaurantDetailCell.detailTextLabel?.text = "Updated Restaurant Address"
+        editRestaurantViewController.restaurantEditResult.placeId = "efgh"
+        editRestaurantViewController.restaurantEditResult.latitude = 3.45
+        editRestaurantViewController.restaurantEditResult.longitude = 4.56
         editRestaurantViewController.restaurantEditResult.cuisine = Cuisine(id: 2, name: "Beer")
         editRestaurantViewController.restaurantEditResult.priceRange = PriceRange(id: 1, range: "0-1000")
 
@@ -471,7 +485,10 @@ class EditRestaurantViewControllerTest: XCTestCase {
 
         let actualParams = fakeRestaurantRepo.update_params
         expect(actualParams["name"] as? String).to(equal("Updated Restaurant Name"))
-        expect(actualParams["address"] as? String).to(equal("Original Address"))
+        expect(actualParams["address"] as? String).to(equal("Updated Restaurant Address"))
+        expect(actualParams["place_id"] as? String).to(equal("efgh"))
+        expect(actualParams["latitude"] as? Double).to(equal(3.45))
+        expect(actualParams["longitude"] as? Double).to(equal(4.56))
         expect(actualParams["cuisine_type"] as? String).to(equal("Beer"))
         expect(actualParams["cuisine_id"] as? Int).to(equal(2))
         expect(actualParams["price_range_id"] as? Int).to(equal(1))

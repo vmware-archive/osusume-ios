@@ -7,7 +7,7 @@ protocol Router {
     func showNewCommentScreen(id: Int)
     func showImageScreen(url: NSURL)
     func showProfileScreen()
-    func showMapScreen()
+    func showMapScreen(latitude: Double, longitude: Double)
 
     func showFindCuisineScreen(delegate: CuisineSelectionDelegate)
     func showFindRestaurantScreen(delegate: SearchResultRestaurantSelectionDelegate)

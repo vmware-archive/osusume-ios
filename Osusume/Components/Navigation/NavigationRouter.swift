@@ -137,8 +137,12 @@ struct NavigationRouter: Router {
         )
     }
 
-    func showMapScreen() {
-        let mapViewController = MapViewController()
+    func showMapScreen(latitude: Double, longitude: Double) {
+        let mapViewController = MapViewController(
+            latitude: latitude,
+            longitude: longitude,
+            mapView: MapViewer()
+        )
 
         navigationController.pushViewController(
             mapViewController,

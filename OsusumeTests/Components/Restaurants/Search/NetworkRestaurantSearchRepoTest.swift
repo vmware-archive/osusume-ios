@@ -47,7 +47,7 @@ class NetworkRestaurantSearchRepoTest: XCTestCase {
     func test_getForSearchTerm_returnsParsedSearchResultList() {
         let getSearchResultFuture = networkRestaurantSearchRepo.getForSearchTerm("")
         fakeRestaurantSearchListParser.parse_returnValue = Result.Success(
-            [RestaurantSuggestion(name: "afuri", address: "roppongi")]
+            [RestaurantSuggestion(name: "afuri", address: "roppongi", placeId: "", latitude: 0.0, longitude: 0.0)]
         )
         searchResultJsonPromise.success([:])
 
@@ -55,7 +55,7 @@ class NetworkRestaurantSearchRepoTest: XCTestCase {
         NSRunLoop.osu_advance()
 
         let expectedSearchResultListArray = [
-            RestaurantSuggestion(name: "afuri", address: "roppongi")]
+            RestaurantSuggestion(name: "afuri", address: "roppongi", placeId: "", latitude: 0.0, longitude: 0.0)]
         expect(getSearchResultFuture.value).to(equal(expectedSearchResultListArray))
     }
     

@@ -11,6 +11,9 @@
 		AE0120D31C9BCA0B00D5E7BA /* CuisineParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0120D21C9BCA0B00D5E7BA /* CuisineParser.swift */; };
 		AE0120D51C9BCAB200D5E7BA /* CuisineParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0120D41C9BCAB200D5E7BA /* CuisineParserTest.swift */; };
 		AE0505131CF834DE004A4948 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0505121CF834DE004A4948 /* PhotoCollectionViewCell.swift */; };
+		AE0BFCC51D2B4BFE00F8FB77 /* MapViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0BFCC41D2B4BFE00F8FB77 /* MapViewer.swift */; };
+		AE0BFCC71D2B4C2000F8FB77 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0BFCC61D2B4C2000F8FB77 /* MapView.swift */; };
+		AE0BFCCA1D2B4C9400F8FB77 /* FakeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0BFCC91D2B4C9400F8FB77 /* FakeMapView.swift */; };
 		AE0CBF591CA113F60060FA02 /* NewRestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF581CA113F60060FA02 /* NewRestaurantFormView.swift */; };
 		AE0CBF5B1CA12C7A0060FA02 /* DefaultSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF5A1CA12C7A0060FA02 /* DefaultSearchDelegate.swift */; };
 		AE0CBF631CA13FBD0060FA02 /* DefaultTextSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */; };
@@ -261,6 +264,9 @@
 		AE0120D21C9BCA0B00D5E7BA /* CuisineParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineParser.swift; sourceTree = "<group>"; };
 		AE0120D41C9BCAB200D5E7BA /* CuisineParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CuisineParserTest.swift; sourceTree = "<group>"; };
 		AE0505121CF834DE004A4948 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		AE0BFCC41D2B4BFE00F8FB77 /* MapViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewer.swift; sourceTree = "<group>"; };
+		AE0BFCC61D2B4C2000F8FB77 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		AE0BFCC91D2B4C9400F8FB77 /* FakeMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeMapView.swift; sourceTree = "<group>"; };
 		AE0CBF581CA113F60060FA02 /* NewRestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantFormView.swift; sourceTree = "<group>"; };
 		AE0CBF5A1CA12C7A0060FA02 /* DefaultSearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSearchDelegate.swift; sourceTree = "<group>"; };
 		AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextSearch.swift; sourceTree = "<group>"; };
@@ -509,6 +515,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE0BFCC31D2B4BFE00F8FB77 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				AE0BFCC61D2B4C2000F8FB77 /* MapView.swift */,
+				AE0BFCC41D2B4BFE00F8FB77 /* MapViewer.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
+		AE0BFCC81D2B4C8200F8FB77 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				AE0BFCC91D2B4C9400F8FB77 /* FakeMapView.swift */,
+			);
+			path = Maps;
+			sourceTree = "<group>";
+		};
 		AE19AA011C9BDEAF00D8CBAC /* OsusumeIntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -848,6 +871,7 @@
 				DE99C5704F8E23A0677B3263 /* Comments */,
 				AEFD80631C99541300B4F17C /* Cuisines */,
 				DE99C8E2D4573E447DF678D2 /* Login */,
+				AE0BFCC31D2B4BFE00F8FB77 /* Maps */,
 				AEC821171CC479A500C9B864 /* Price Ranges */,
 				AE559A3B1C8E7015001D45A1 /* Profile */,
 				DE99C54688E7F01FE6A3777D /* Restaurants */,
@@ -1167,6 +1191,7 @@
 				AEC877661C72FFFE0005BEA1 /* Comments */,
 				AE6CE4CE1C9A39420000C31C /* Cuisines */,
 				DE99CB59BBE28BEC558F6267 /* Login */,
+				AE0BFCC81D2B4C8200F8FB77 /* Maps */,
 				AEC821141CC4773900C9B864 /* Price Ranges */,
 				AE559A3E1C8E7492001D45A1 /* Profile */,
 				DE99C27815A58B229380223E /* Restaurants */,
@@ -1420,7 +1445,9 @@
 				DE99CF21473B269253040D0E /* LikeRepo.swift in Sources */,
 				DE99C2F30746E41BE551929B /* LoginViewController.swift in Sources */,
 				DE99C2FBE2CDA0C6D59583BD /* main.swift in Sources */,
+				AE0BFCC71D2B4C2000F8FB77 /* MapView.swift in Sources */,
 				AED9D1671D24B0C8008033A8 /* MapViewContoller.swift in Sources */,
+				AE0BFCC51D2B4BFE00F8FB77 /* MapViewer.swift in Sources */,
 				AEE6968C1CA36C8F003A2927 /* MyRestaurantListViewController.swift in Sources */,
 				AE4ABF5E1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift in Sources */,
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
@@ -1513,6 +1540,7 @@
 				AE8B54EE1D0EA1D400EC8CC3 /* FakeImagePicker.swift in Sources */,
 				DE99CC502A3DCE234CBA092C /* FakeLikeRepo.swift in Sources */,
 				DE99C22361A04CBA99831688 /* FakeLocalStorage.swift in Sources */,
+				AE0BFCCA1D2B4C9400F8FB77 /* FakeMapView.swift in Sources */,
 				AE4ABF681CEC341600CDE3CD /* FakeMyRestaurantSelectionDelegate.swift in Sources */,
 				DE99C17C711158F022FE2AD4 /* FakePhotoRepo.swift in Sources */,
 				AE4ABF6E1CEC354A00CDE3CD /* FakePriceRangeListParser.swift in Sources */,

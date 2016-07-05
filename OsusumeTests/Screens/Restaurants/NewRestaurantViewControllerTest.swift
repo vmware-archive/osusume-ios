@@ -195,6 +195,9 @@ class NewRestaurantViewControllerTest: XCTestCase {
         newRestaurantVC.newRestaurant = NewRestaurant(
             name: "Some Restaurant",
             address: "Address",
+            placeId: "abcd",
+            latitude: 1.23,
+            longitude: 2.34,
             cuisine: Cuisine(id: 1, name: "Cuisine Type"),
             priceRange: PriceRange(id: 1, range: "Price Range"),
             notes: "",
@@ -213,6 +216,9 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let newRestaurant = fakeRestaurantRepo.create_args
         expect(newRestaurant.name).to(equal("Some Restaurant"))
         expect(newRestaurant.address).to(equal("Address"))
+        expect(newRestaurant.placeId).to(equal("abcd"))
+        expect(newRestaurant.latitude).to(equal(1.23))
+        expect(newRestaurant.longitude).to(equal(2.34))
         expect(newRestaurant.cuisine?.name).to(equal("Cuisine Type"))
         expect(newRestaurant.priceRange?.id).to(equal(1))
         expect(newRestaurant.priceRange?.range).to(equal("Price Range"))
@@ -254,7 +260,10 @@ class NewRestaurantViewControllerTest: XCTestCase {
     func test_selectSearchResultRestaurant_populatesNameAndAddressTextfields() {
         let selectedSearchResultRestaurant = RestaurantSuggestion(
             name: "Afuri",
-            address: "Roppongi Hills 5-2-1"
+            address: "Roppongi Hills 5-2-1",
+            placeId: "",
+            latitude: 0.0,
+            longitude: 0.0
         )
 
 
@@ -268,10 +277,32 @@ class NewRestaurantViewControllerTest: XCTestCase {
             .to(equal("Roppongi Hills 5-2-1"))
     }
 
+    func test_selectSearchResultRestaurant_populatesNewRestaurant() {
+        let selectedSearchResultRestaurant = RestaurantSuggestion(
+            name: "Afuri",
+            address: "Roppongi Hills 5-2-1",
+            placeId: "ChIJgYtUxUGLGGAR2LLtCdmLFbs",
+            latitude: 35.648355,
+            longitude: 139.710893
+        )
+
+
+        newRestaurantVC.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+
+        expect(self.newRestaurantVC.newRestaurant.name).to(equal("Afuri"))
+        expect(self.newRestaurantVC.newRestaurant.address).to(equal("Roppongi Hills 5-2-1"))
+        expect(self.newRestaurantVC.newRestaurant.placeId).to(equal("ChIJgYtUxUGLGGAR2LLtCdmLFbs"))
+        expect(self.newRestaurantVC.newRestaurant.latitude).to(equal(35.648355))
+        expect(self.newRestaurantVC.newRestaurant.longitude).to(equal(139.710893))
+    }
+
     func test_selectSearchResultRestaurant_changesFindRestaurantCellTypeToPopulated() {
         let selectedSearchResultRestaurant = RestaurantSuggestion(
             name: "Afuri",
-            address: "Roppongi Hills 5-2-1"
+            address: "Roppongi Hills 5-2-1",
+            placeId: "",
+            latitude: 0.0,
+            longitude: 0.0
         )
 
 
@@ -281,9 +312,10 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.getPopulatedRestaurantTableViewCell()).toNot(beNil())
     }
 
+    
     func test_selectSearchResultRestaurant_reloadsTableView() {
         let selectedSearchResultRestaurant = RestaurantSuggestion(
-            name: "", address: ""
+            name: "", address: "", placeId: "", latitude: 0.0, longitude: 0.0
         )
 
 

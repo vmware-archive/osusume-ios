@@ -261,7 +261,7 @@ extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate 
     }
 
     @objc func displayMapScreen(sender: UIButton) {
-        router.showMapScreen()
+        router.showMapScreen(restaurant?.latitude ?? 0.0, longitude: restaurant?.longitude ?? 0.0)
     }
 
     @objc func displayImageScreen(url: NSURL) {

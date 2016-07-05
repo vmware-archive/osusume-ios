@@ -100,7 +100,7 @@ class NavigationRouterTest: XCTestCase {
     }
 
     func test_showingMapScreen_presentsMapViewController() {
-        navigationRouter.showMapScreen()
+        navigationRouter.showMapScreen(1.23, longitude: 2.34)
 
         expect(self.rootNavController.topViewController).to(beAKindOf(MapViewController))
     }
