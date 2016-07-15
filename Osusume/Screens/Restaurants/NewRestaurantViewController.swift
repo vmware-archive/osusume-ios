@@ -109,6 +109,8 @@ class NewRestaurantViewController: UIViewController {
             target: self,
             action: #selector(NewRestaurantViewController.didTapSaveButton(_:))
         )
+        navigationItem.rightBarButtonItem?.enabled = false
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             title: "Cancel",
             style: UIBarButtonItemStyle.Plain,
@@ -203,6 +205,12 @@ class NewRestaurantViewController: UIViewController {
 
         images.append(image)
         tableView.reloadData()
+    }
+
+    private func updateSaveButtonDisabledState() {
+        if (newRestaurant.allRequiredFieldsArePopulated) {
+            navigationItem.rightBarButtonItem?.enabled = true
+        }
     }
 }
 
@@ -311,12 +319,12 @@ extension NewRestaurantViewController: UICollectionViewDataSource {
 
 // MARK: - RestaurantViewControllerPresenterProtocol
 extension NewRestaurantViewController: RestaurantViewControllerPresenterProtocol {
-    func showFindCuisineScreen(delegate: CuisineSelectionDelegate) {
-        router.showFindCuisineScreen(delegate)
-    }
-
     func showFindRestaurantScreen(delegate: SearchResultRestaurantSelectionDelegate) {
         router.showFindRestaurantScreen(delegate)
+    }
+
+    func showFindCuisineScreen(delegate: CuisineSelectionDelegate) {
+        router.showFindCuisineScreen(delegate)
     }
 
     func showPriceRangeScreen(delegate: PriceRangeSelectionDelegate) {
@@ -333,6 +341,7 @@ extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
         newRestaurant.latitude = restaurantSuggestion.latitude
         newRestaurant.longitude = restaurantSuggestion.longitude
 
+        updateSaveButtonDisabledState()
         reloader.reload(tableView)
     }
 }
@@ -341,6 +350,7 @@ extension NewRestaurantViewController: SearchResultRestaurantSelectionDelegate {
 extension NewRestaurantViewController: CuisineSelectionDelegate {
     func cuisineSelected(cuisine: Cuisine) {
         newRestaurant.cuisine = cuisine
+        updateSaveButtonDisabledState()
         reloader.reload(tableView)
     }
 }
@@ -349,6 +359,7 @@ extension NewRestaurantViewController: CuisineSelectionDelegate {
 extension NewRestaurantViewController: PriceRangeSelectionDelegate {
     func priceRangeSelected(priceRange: PriceRange) {
         newRestaurant.priceRange = priceRange
+        updateSaveButtonDisabledState()
         reloader.reload(tableView)
     }
 }

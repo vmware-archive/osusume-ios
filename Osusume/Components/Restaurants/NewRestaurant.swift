@@ -8,4 +8,12 @@ struct NewRestaurant {
     var priceRange: PriceRange?
     var notes: String = ""
     var photoUrls: [String] = []
+
+    var allRequiredFieldsArePopulated: Bool {
+        return
+            name != nil &&
+            address != nil &&
+            cuisine != nil &&
+            priceRange != nil
+    }
 }

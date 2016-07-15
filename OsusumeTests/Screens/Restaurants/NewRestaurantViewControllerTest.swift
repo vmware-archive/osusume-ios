@@ -190,6 +190,41 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(self.newRestaurantVC.title).to(equal("Add Restaurant"))
     }
 
+    func test_viewDidLoad_initializesTheSaveButtonAsDisabled() {
+        expect(self.newRestaurantVC.navigationItem.rightBarButtonItem!.enabled).to(beFalse())
+    }
+
+    // MARK: - Save Button
+    func test_fillingInAllRequiredFields_enablesSaveButton() {
+        let selectedSearchResultRestaurant = RestaurantSuggestion(
+            name: "name", address: "address", placeId: "", latitude: 0, longitude: 0
+        )
+        let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
+        let selectedPriceRange = PriceRange(id: 1, range: "0~999")
+
+
+        newRestaurantVC.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+        newRestaurantVC.cuisineSelected(selectedCuisine)
+        newRestaurantVC.priceRangeSelected(selectedPriceRange)
+
+
+        expect(self.newRestaurantVC.navigationItem.rightBarButtonItem!.enabled).to(beTrue())
+    }
+
+    func test_fillingSomeRequiredFields_doesNotEnablesSaveButton() {
+        let selectedSearchResultRestaurant = RestaurantSuggestion(
+            name: "name", address: "address", placeId: "", latitude: 0, longitude: 0
+        )
+        let selectedCuisine = Cuisine(id: 1, name: "Hamburger")
+
+
+        newRestaurantVC.searchResultRestaurantSelected(selectedSearchResultRestaurant)
+        newRestaurantVC.cuisineSelected(selectedCuisine)
+
+
+        expect(self.newRestaurantVC.navigationItem.rightBarButtonItem!.enabled).to(beFalse())
+    }
+
     // MARK: - Actions
     func test_tappingSaveButton_savesRestaurant() {
         newRestaurantVC.newRestaurant = NewRestaurant(
