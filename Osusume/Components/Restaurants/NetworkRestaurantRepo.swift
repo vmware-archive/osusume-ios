@@ -45,6 +45,7 @@ struct NetworkRestaurantRepo: RestaurantRepo {
                         "cuisine_type": newRestaurant.cuisine?.name ?? "",
                         "cuisine_id": newRestaurant.cuisine?.id ?? 0,
                         "price_range_id": newRestaurant.priceRange?.id ?? 0,
+                        "nearest_station": newRestaurant.nearestStation ?? "",
                         "notes": newRestaurant.notes,
                         "photo_urls": newRestaurant.photoUrls.map { url in ["url": url] }
                     ]

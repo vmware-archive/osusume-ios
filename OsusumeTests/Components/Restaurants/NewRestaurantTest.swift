@@ -13,6 +13,7 @@ class NewRestaurantTest: XCTestCase {
             longitude: 0,
             cuisine: Cuisine(id: 1, name: "cuisine"),
             priceRange: PriceRange(id: 1, range: "100-1000"),
+            nearestStation: "",
             notes: "",
             photoUrls: []
         )
@@ -29,6 +30,7 @@ class NewRestaurantTest: XCTestCase {
             longitude: 0,
             cuisine: Cuisine(id: 1, name: "cuisine"),
             priceRange: PriceRange(id: 1, range: "100-1000"),
+            nearestStation: "",
             notes: "",
             photoUrls: []
         )
@@ -46,6 +48,7 @@ class NewRestaurantTest: XCTestCase {
             longitude: 0,
             cuisine: Cuisine(id: 1, name: "cuisine"),
             priceRange: PriceRange(id: 1, range: "100-1000"),
+            nearestStation: "",
             notes: "",
             photoUrls: []
         )
@@ -63,6 +66,7 @@ class NewRestaurantTest: XCTestCase {
             longitude: 0,
             cuisine: nil,
             priceRange: PriceRange(id: 1, range: "100-1000"),
+            nearestStation: "",
             notes: "",
             photoUrls: []
         )
@@ -80,10 +84,10 @@ class NewRestaurantTest: XCTestCase {
             longitude: 0,
             cuisine: Cuisine(id: 1, name: "cuisine"),
             priceRange: nil,
+            nearestStation: "",
             notes: "",
             photoUrls: []
         )
-
 
         expect(restaurantWithoutPriceRange.allRequiredFieldsArePopulated).to(beFalse())
     }

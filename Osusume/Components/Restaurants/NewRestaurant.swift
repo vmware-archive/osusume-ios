@@ -6,6 +6,7 @@ struct NewRestaurant {
     var longitude: Double?
     var cuisine: Cuisine?
     var priceRange: PriceRange?
+    var nearestStation: String?
     var notes: String = ""
     var photoUrls: [String] = []
 

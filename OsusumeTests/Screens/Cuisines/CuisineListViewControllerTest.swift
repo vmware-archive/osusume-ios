@@ -249,7 +249,9 @@ class CuisineListViewControllerTest: XCTestCase {
 
     func test_cuisineRepoGetAllSuccess_reloadsTableView() {
         cuisinePromise.success(fullCuisineList)
-        NSRunLoop.osu_advance()
+
+
+        waitForFutureToComplete(fakeCuisineRepo.getAll_returnValue)
 
 
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))

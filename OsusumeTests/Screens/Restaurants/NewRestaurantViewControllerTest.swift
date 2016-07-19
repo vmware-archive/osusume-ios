@@ -68,14 +68,14 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(numberOfSections).to(equal(1))
     }
 
-    func test_tableView_containsFiveRowsForRestaurantDetails() {
+    func test_tableView_containsSixRowsForRestaurantDetails() {
         let numberOfRows = newRestaurantVC.tableView.dataSource?.tableView(
             newRestaurantVC.tableView,
             numberOfRowsInSection: 0
         )
 
 
-        expect(numberOfRows).to(equal(5))
+        expect(numberOfRows).to(equal(6))
     }
 
     // MARK: - Tableview Cell
@@ -84,6 +84,13 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
 
         expect(cell).to(beAKindOf(AddRestaurantPhotosTableViewCell))
+    }
+
+    func test_tableView_returnsNearestStationTableViewCell() {
+        let cell = getNearestStationTableViewCell()
+
+
+        expect(cell).to(beAKindOf(NearestStationTableViewCell))
     }
 
     func test_tableView_returnsNotesTableViewCell() {
@@ -235,12 +242,15 @@ class NewRestaurantViewControllerTest: XCTestCase {
             longitude: 2.34,
             cuisine: Cuisine(id: 1, name: "Cuisine Type"),
             priceRange: PriceRange(id: 1, range: "Price Range"),
+            nearestStation: "",
             notes: "",
             photoUrls: []
         )
 
-        let cell = getNotesTableViewCell()
-        cell.formView.notesTextField.text = "Notes"
+        let nearestStationCell = getNearestStationTableViewCell()
+        nearestStationCell.textField.text = "Roppongi"
+        let notesCell = getNotesTableViewCell()
+        notesCell.formView.notesTextField.text = "Notes"
         fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
 
 
@@ -257,6 +267,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
         expect(newRestaurant.cuisine?.name).to(equal("Cuisine Type"))
         expect(newRestaurant.priceRange?.id).to(equal(1))
         expect(newRestaurant.priceRange?.range).to(equal("Price Range"))
+        expect(newRestaurant.nearestStation).to(equal("Roppongi"))
         expect(newRestaurant.notes).to(equal("Notes"))
         expect(newRestaurant.photoUrls).to(equal(["apple", "truck"]));
     }
@@ -346,7 +357,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
         expect(self.getPopulatedRestaurantTableViewCell()).toNot(beNil())
     }
-
     
     func test_selectSearchResultRestaurant_reloadsTableView() {
         let selectedSearchResultRestaurant = RestaurantSuggestion(
@@ -400,7 +410,6 @@ class NewRestaurantViewControllerTest: XCTestCase {
 
         expect(self.fakeReloader.reload_wasCalled).to(beTrue())
     }
-
 
     // MARK: - Private Methods
     private func getAddRestaurantPhotosTableViewCell() -> AddRestaurantPhotosTableViewCell {
@@ -473,5 +482,17 @@ class NewRestaurantViewControllerTest: XCTestCase {
             newRestaurantVC.tableView,
             cellForRowAtIndexPath: indexPath
         ) as! PriceRangeTableViewCell
+    }
+
+    private func getNearestStationTableViewCell() -> NearestStationTableViewCell {
+        let indexPath = NSIndexPath(
+            forRow: NewRestuarantTableViewRow.NearestStationCell.rawValue,
+            inSection: 0
+        )
+
+        return newRestaurantVC.tableView(
+            newRestaurantVC.tableView,
+            cellForRowAtIndexPath: indexPath
+        ) as! NearestStationTableViewCell
     }
 }

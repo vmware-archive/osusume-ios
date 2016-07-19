@@ -44,6 +44,7 @@ class NetworkRestaurantRepoTest: XCTestCase {
                 longitude: 2.34,
                 cuisine: Cuisine(id: 9, name: "Creole"),
                 priceRange: PriceRange(id: 1, range: "Range"),
+                nearestStation: "Roppongi",
                 notes: "So good",
                 photoUrls: ["my-cool-url", "my-awesome-url"]
             )
@@ -60,6 +61,7 @@ class NetworkRestaurantRepoTest: XCTestCase {
         XCTAssertEqual("Creole", actualRestaurantParams["cuisine_type"])
         XCTAssertEqual(9, actualRestaurantParams["cuisine_id"])
         XCTAssertEqual(1, actualRestaurantParams["price_range_id"])
+        XCTAssertEqual("Roppongi", actualRestaurantParams["nearest_station"])
         XCTAssertEqual("So good", actualRestaurantParams["notes"])
         XCTAssertEqual([["url": "my-cool-url"], ["url": "my-awesome-url"]], actualRestaurantParams["photo_urls"])
     }

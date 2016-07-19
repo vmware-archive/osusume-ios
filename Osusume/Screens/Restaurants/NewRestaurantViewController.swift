@@ -7,6 +7,7 @@ enum NewRestuarantTableViewRow: Int {
     case FindRestaurantCell
     case CuisineCell
     case PriceRangeCell
+    case NearestStationCell
     case NotesCell
     case Count
 
@@ -35,6 +36,7 @@ class NewRestaurantViewController: UIViewController {
     private lazy var maybePopulatedRestaurantTableViewCell = PopulatedRestaurantTableViewCell()
     private let cuisineTableViewCell: CuisineTableViewCell
     private let priceRangeTableViewCell: PriceRangeTableViewCell
+    private let nearestStationTableViewCell: NearestStationTableViewCell
     let notesTableViewCell: NotesTableViewCell
 
     // MARK: - View Elements
@@ -63,6 +65,7 @@ class NewRestaurantViewController: UIViewController {
         maybeFindRestaurantTableViewCell = FindRestaurantTableViewCell()
         cuisineTableViewCell = CuisineTableViewCell()
         priceRangeTableViewCell = PriceRangeTableViewCell()
+        nearestStationTableViewCell = NearestStationTableViewCell()
         notesTableViewCell = NotesTableViewCell()
 
         super.init(nibName: nil, bundle: nil)
@@ -145,24 +148,36 @@ class NewRestaurantViewController: UIViewController {
     @objc private func didTapSaveButton(sender: UIBarButtonItem?) {
         let photoUrls = photoRepo.uploadPhotos(images)
 
-        let restaurantTableViewCellIndexPath = NSIndexPath(
+        let notesCellIndexPath = NSIndexPath(
             forRow: NewRestuarantTableViewRow.NotesCell.rawValue,
             inSection: 0
         )
-        let maybeCell = tableView.dataSource?.tableView(
+        let maybeNotesCell = tableView.dataSource?.tableView(
             tableView,
-            cellForRowAtIndexPath: restaurantTableViewCellIndexPath
+            cellForRowAtIndexPath: notesCellIndexPath
         ) as? NotesTableViewCell
 
-        if let cell = maybeCell {
-            let formView = cell.formView
+        if let notesCell = maybeNotesCell {
+            let formView = notesCell.formView
             newRestaurant.notes = formView.getNotesText()
             newRestaurant.photoUrls = photoUrls
+        }
 
-            restaurantRepo.create(newRestaurant)
-                .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
-                    self.router.dismissPresentedNavigationController()
-            }
+        let nearestStationCellIndexPath = NSIndexPath(
+            forRow:NewRestuarantTableViewRow.NearestStationCell.rawValue,
+            inSection: 0
+        )
+        let maybeNearestStationCell = tableView.dataSource?.tableView(
+            tableView,
+            cellForRowAtIndexPath: nearestStationCellIndexPath
+        ) as? NearestStationTableViewCell
+        if let nearestStationCell = maybeNearestStationCell {
+            newRestaurant.nearestStation = nearestStationCell.textField.text
+        }
+
+        restaurantRepo.create(newRestaurant)
+            .onSuccess(ImmediateExecutionContext) { [unowned self] _ in
+                self.router.dismissPresentedNavigationController()
         }
     }
 
@@ -264,6 +279,9 @@ extension NewRestaurantViewController: UITableViewDataSource {
                     priceRangeTableViewCell.textLabel?.text = priceRange.range
                 }
                 return priceRangeTableViewCell
+
+            case NewRestuarantTableViewRow.NearestStationCell.rawValue:
+                return nearestStationTableViewCell
 
             case NewRestuarantTableViewRow.NotesCell.rawValue:
                 notesTableViewCell.configureCell(self)
