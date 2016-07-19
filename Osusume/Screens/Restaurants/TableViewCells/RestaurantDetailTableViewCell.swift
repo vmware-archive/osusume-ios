@@ -13,6 +13,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     let viewMapButton: UIButton
     let cuisineTypeLabel: UILabel
     let priceRangeLabel: UILabel
+    let nearestStationLabel: UILabel
     let numberOfLikesLabel: UILabel
     let notesLabel: UILabel
     let creationInfoLabel: UILabel
@@ -34,6 +35,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         viewMapButton = UIButton(type: UIButtonType.System)
         cuisineTypeLabel = UILabel.newAutoLayoutView()
         priceRangeLabel = UILabel.newAutoLayoutView()
+        nearestStationLabel = UILabel.newAutoLayoutView()
         numberOfLikesLabel = UILabel.newAutoLayoutView()
         notesLabel = UILabel.newAutoLayoutView()
         creationInfoLabel = UILabel.newAutoLayoutView()
@@ -59,6 +61,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         contentView.addSubview(viewMapButton)
         contentView.addSubview(cuisineTypeLabel)
         contentView.addSubview(priceRangeLabel)
+        contentView.addSubview(nearestStationLabel)
         contentView.addSubview(numberOfLikesLabel)
         contentView.addSubview(notesLabel)
         contentView.addSubview(creationInfoLabel)
@@ -110,9 +113,12 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         numberOfLikesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         numberOfLikesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
 
+        nearestStationLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        nearestStationLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: numberOfLikesLabel)
+
         notesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         notesLabel.autoPinEdgeToSuperviewEdge(.Trailing, withInset: 10.0)
-        notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: numberOfLikesLabel)
+        notesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nearestStationLabel)
 
         creationInfoLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         creationInfoLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: notesLabel)
@@ -165,6 +171,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
         addressLabel.text = restaurantDetailPresenter.address
         cuisineTypeLabel.text = restaurantDetailPresenter.cuisineType
         numberOfLikesLabel.text = restaurantDetailPresenter.numberOfLikes
+        nearestStationLabel.text = restaurantDetailPresenter.nearestStation
         notesLabel.text = restaurantDetailPresenter.notes
         creationInfoLabel.text = restaurantDetailPresenter.creationInfo
         priceRangeLabel.text = restaurantDetailPresenter.priceRange
