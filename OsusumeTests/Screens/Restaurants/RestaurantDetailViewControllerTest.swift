@@ -87,6 +87,17 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             .to(equal("Jeana - \(DateConverter.formattedDate(today))"))
     }
 
+    func test_onViewWillAppear_showsCommentsWithMultipleLines() {
+        setupViewControllerWithReloader()
+
+        let firstCommentCell = restaurantDetailVC.tableView(
+            restaurantDetailVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+        )
+
+        expect(firstCommentCell.textLabel?.numberOfLines).to(equal(0))
+    }
+
     func test_onViewWillAppear_reloadsTableViewData() {
         let fakeReloader = FakeReloader()
         setupViewControllerWithReloader(fakeReloader)
