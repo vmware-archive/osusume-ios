@@ -50,8 +50,7 @@ class CuisineRepoTest: XCTestCase {
         cuisineRepo.getAll()
         cuisineJsonPromise.success("response-json")
 
-
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(cuisineJsonPromise.future)
 
         expect(self.fakeCuisineListParser.parse_arg as? String).to(equal("response-json"))
     }
@@ -63,8 +62,7 @@ class CuisineRepoTest: XCTestCase {
         )
         cuisineJsonPromise.success([[:]])
 
-
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(cuisineJsonPromise.future)
 
         let expectedCuisineListArray = [Cuisine(id: 1, name: "Thai")]
         expect(getAllCuisinesFuture.value).to(equal(expectedCuisineListArray))

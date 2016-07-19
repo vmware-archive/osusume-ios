@@ -48,7 +48,7 @@ class PriceRangeListViewControllerTest: XCTestCase {
 
     func test_retrievalOfPriceRangeData_reloadsTableView() {
         returnPriceRangeListPromise.success([])
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(returnPriceRangeListPromise.future)
 
 
         expect(self.fakeReloader.reload_wasCalled).to(beTrue())
@@ -68,7 +68,7 @@ class PriceRangeListViewControllerTest: XCTestCase {
 
 
         returnPriceRangeListPromise.success(priceRangeList)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(returnPriceRangeListPromise.future)
 
 
         let tableView = priceRangeListVC.tableView
@@ -86,7 +86,7 @@ class PriceRangeListViewControllerTest: XCTestCase {
 
 
         returnPriceRangeListPromise.success(priceRangeList)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(returnPriceRangeListPromise.future)
 
 
         let tableView = priceRangeListVC.tableView

@@ -50,17 +50,18 @@ class NetworkCommentRepoTest: XCTestCase {
     }
 
     func test_persist_passesJsonToParser() {
-        let promise = Promise<AnyObject, RepoError>()
-        fakeHttp.post_returnValue = promise.future
+        let postPromise = Promise<AnyObject, RepoError>()
+        fakeHttp.post_returnValue = postPromise.future
 
 
         let comment = NewComment(text: "hello this is a comment!", restaurantId: 99)
-        networkCommentRepo.persist(comment)
+        let persistFuture = networkCommentRepo.persist(comment)
 
 
         let expectedPostResponseJson = "response-json"
-        promise.success(expectedPostResponseJson)
-        NSRunLoop.osu_advance()
+        postPromise.success(expectedPostResponseJson)
+        waitForFutureToComplete(postPromise.future)
+        waitForFutureToComplete(persistFuture)
 
         expect(self.fakeCommentParser.parse_arg as? String).to(equal(expectedPostResponseJson))
     }

@@ -324,7 +324,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         restaurantDetailVC.view.setNeedsLayout()
         restaurantDetailVC.viewWillAppear(false)
         restaurantRepoPromise.success(restaurant)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(restaurantRepoPromise.future)
     }
 
     private func getRestaurantDetailCell() -> RestaurantDetailTableViewCell {

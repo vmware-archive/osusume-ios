@@ -100,8 +100,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
             findRestaurantViewController.restaurantNameTextField
         )
         restaurantSearchRepoResultPromise.success(searchResults)
-        NSRunLoop.osu_advance()
-
+        waitForFutureToComplete(restaurantSearchRepoResultPromise.future)
 
         expect(self.findRestaurantViewController.tableView(
             self.findRestaurantViewController.restaurantSearchResultTableView
@@ -118,7 +117,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
             findRestaurantViewController.restaurantNameTextField
         )
         restaurantSearchRepoResultPromise.success(searchResults)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(restaurantSearchRepoResultPromise.future)
 
 
         let tableView = findRestaurantViewController.restaurantSearchResultTableView
@@ -135,7 +134,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
             findRestaurantViewController.restaurantNameTextField
         )
         restaurantSearchRepoResultPromise.success([])
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(restaurantSearchRepoResultPromise.future)
 
 
         expect(self.fakeReloader.reload_wasCalled).to(beTrue())
@@ -150,7 +149,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
             findRestaurantViewController.restaurantNameTextField
         )
         restaurantSearchRepoResultPromise.success(searchResults)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(restaurantSearchRepoResultPromise.future)
 
 
         findRestaurantViewController.tableView(
@@ -171,7 +170,7 @@ class FindRestaurantViewControllerTest: XCTestCase {
             findRestaurantViewController.restaurantNameTextField
         )
         restaurantSearchRepoResultPromise.success(searchResults)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(restaurantSearchRepoResultPromise.future)
 
 
         findRestaurantViewController.tableView(

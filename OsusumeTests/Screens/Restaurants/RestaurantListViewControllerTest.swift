@@ -106,8 +106,7 @@ class RestaurantListViewControllerTest: XCTestCase {
         restaurantListVC.view.setNeedsLayout()
         restaurantListVC.viewWillAppear(false)
         restaurantsPromise.success([RestaurantFixtures.newRestaurant()])
-        NSRunLoop.osu_advance()
-
+        waitForFutureToComplete(restaurantsPromise.future)
 
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))
 

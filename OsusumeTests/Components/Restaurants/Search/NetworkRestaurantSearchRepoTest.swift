@@ -35,11 +35,12 @@ class NetworkRestaurantSearchRepoTest: XCTestCase {
     }
 
     func test_getForSearchTerm_parsesHttpOutputJson() {
-        networkRestaurantSearchRepo.getForSearchTerm("Afuri")
+        let getSearchTermFuture = networkRestaurantSearchRepo.getForSearchTerm("Afuri")
 
         let httpReturnValue = "response-json"
         searchResultJsonPromise.success(httpReturnValue)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(searchResultJsonPromise.future)
+        waitForFutureToComplete(getSearchTermFuture)
 
         expect(self.fakeRestaurantSearchListParser.parse_arg as? String).to(equal(httpReturnValue))
     }
@@ -52,7 +53,8 @@ class NetworkRestaurantSearchRepoTest: XCTestCase {
         searchResultJsonPromise.success([:])
 
 
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(searchResultJsonPromise.future)
+        waitForFutureToComplete(getSearchResultFuture)
 
         let expectedSearchResultListArray = [
             RestaurantSuggestion(name: "afuri", address: "roppongi", placeId: "", latitude: 0.0, longitude: 0.0)]

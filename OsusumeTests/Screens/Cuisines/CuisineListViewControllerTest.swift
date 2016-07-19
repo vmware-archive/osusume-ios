@@ -44,8 +44,7 @@ class CuisineListViewControllerTest: XCTestCase {
 
     func test_tableView_configuresCuisineCells() {
         cuisinePromise.success([Cuisine(id: 0, name: "Soba!")])
-        NSRunLoop.osu_advance()
-
+        waitForFutureToComplete(cuisinePromise.future)
 
         let cuisineCell = cuisineListVC.tableView(
             cuisineListVC.tableView,
@@ -89,7 +88,7 @@ class CuisineListViewControllerTest: XCTestCase {
             .to(equal([]))
 
         cuisinePromise.success(fullCuisineList)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(cuisinePromise.future)
 
         expect(self.cuisineListVC.fullCuisineList).to(equal(fullCuisineList))
     }
@@ -102,7 +101,7 @@ class CuisineListViewControllerTest: XCTestCase {
 
     func test_search_delegatesToTheTextSearch() {
         cuisinePromise.success(fullCuisineList)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(cuisinePromise.future)
 
 
         cuisineListVC.searchBar(UISearchBar(), textDidChange: "my search")
@@ -186,7 +185,7 @@ class CuisineListViewControllerTest: XCTestCase {
 
     func test_tappingCuisineCell_callsCuisineDelegate() {
         cuisinePromise.success([Cuisine(id: 0, name: "Soba!")])
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(cuisinePromise.future)
 
 
         cuisineListVC.tableView(
@@ -200,7 +199,7 @@ class CuisineListViewControllerTest: XCTestCase {
 
     func test_tappingCuisineCell_popsCuisineListViewController() {
         cuisinePromise.success([Cuisine(id: 0, name: "Soba!")])
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(cuisinePromise.future)
 
 
         cuisineListVC.tableView(
@@ -241,7 +240,7 @@ class CuisineListViewControllerTest: XCTestCase {
 
         let expectedCuisine = Cuisine(id: 1, name: "Pie")
         createCuisinePromise.success(expectedCuisine)
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(createCuisinePromise.future)
 
         expect(self.fakeCuisineSelection.cuisineSelected_returnValue).to(equal(expectedCuisine))
         expect(self.fakeRouter.popViewControllerOffStack_wasCalled).to(equal(true))

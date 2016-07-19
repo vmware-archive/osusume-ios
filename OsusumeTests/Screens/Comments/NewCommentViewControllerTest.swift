@@ -107,7 +107,7 @@ class NewCommentViewControllerTest: XCTestCase {
                 userName: ""
             )
         )
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(promise.future)
 
         expect(self.fakeRouter.dismissPresentedNavigationController_wasCalled).to(beTrue())
     }

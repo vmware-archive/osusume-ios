@@ -36,7 +36,7 @@ class NetworkUserRepoTest: XCTestCase {
             "token" : "my-token",
             "name": "Danny"]
         )
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(promise.future)
 
 
         expect(authenticatedUser.value?.token).to(equal("my-token"))
@@ -56,7 +56,8 @@ class NetworkUserRepoTest: XCTestCase {
         expect(self.fakeHttp.post_args.parameters["password"] as? String).to(equal("invalid-password"))
 
         promise.success(["error": "Invalid email or password."])
-        NSRunLoop.osu_advance()
+        waitForFutureToComplete(promise.future)
+
         expect(loginResultFuture.error).to(equal(RepoError.PostFailed));
     }
 

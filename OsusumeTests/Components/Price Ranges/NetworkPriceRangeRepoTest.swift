@@ -30,12 +30,12 @@ class NetworkPriceRangeRepoTest: XCTestCase {
     }
 
     func test_getAll_parsesHttpOutputJson() {
-        priceRangeRepo.getAll()
-
+        let getAllFuture = priceRangeRepo.getAll()
 
         let httpReturnValue = "response-json"
         httpPromise.success(httpReturnValue)
-        NSRunLoop.osu_advance(by: 2)
+        waitForFutureToComplete(httpPromise.future)
+        waitForFutureToComplete(getAllFuture)
 
         expect(self.fakePriceRangeListParser.parse_arg as? String).to(equal(httpReturnValue))
     }
@@ -48,10 +48,8 @@ class NetworkPriceRangeRepoTest: XCTestCase {
         ]
         fakePriceRangeListParser.parse_returnValue = Result.Success(expectedPriceRangeList)
         httpPromise.success([[:]])
-
-
-        NSRunLoop.osu_advance()
-
+        waitForFutureToComplete(httpPromise.future)
+        waitForFutureToComplete(getAllPriceRangesFuture)
 
         expect(getAllPriceRangesFuture.value).to(equal(expectedPriceRangeList))
     }
