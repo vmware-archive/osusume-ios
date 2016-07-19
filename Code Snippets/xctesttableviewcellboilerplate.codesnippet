@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>testtvc</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import XCTest
+import Nimble
+@testable import Osusume
+
+class &lt;#CellClassNameTest#&gt;: XCTestCase {
+
+    var &lt;#cellClassNameTVC#&gt;: &lt;#CellClassName#&gt;!
+
+    override func setUp() {
+    }
+
+    // MARK: - Initialize View
+    func test_viewDidLoad_initializesSubviews() {
+    }
+
+    func test_viewDidLoad_addsSubviews() {
+    }
+
+    func test_viewDidLoad_addsConstraints() {
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>D981D32A-A819-4AAD-9ECB-D990996AD4D0</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>XCTest skeleton for a table view cell</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>XCTest Table View Cell</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
