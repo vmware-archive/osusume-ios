@@ -147,6 +147,7 @@ class NewRestaurantViewController: UIViewController {
     // MARK: - Actions
     @objc private func didTapSaveButton(sender: UIBarButtonItem?) {
         let photoUrls = photoRepo.uploadPhotos(images)
+        newRestaurant.photoUrls = photoUrls
 
         let notesCellIndexPath = NSIndexPath(
             forRow: NewRestuarantTableViewRow.NotesCell.rawValue,
@@ -158,9 +159,7 @@ class NewRestaurantViewController: UIViewController {
         ) as? NotesTableViewCell
 
         if let notesCell = maybeNotesCell {
-            let formView = notesCell.formView
-            newRestaurant.notes = formView.getNotesText()
-            newRestaurant.photoUrls = photoUrls
+            newRestaurant.notes = notesCell.getNotesText()
         }
 
         let nearestStationCellIndexPath = NSIndexPath(
@@ -284,7 +283,6 @@ extension NewRestaurantViewController: UITableViewDataSource {
                 return nearestStationTableViewCell
 
             case NewRestuarantTableViewRow.NotesCell.rawValue:
-                notesTableViewCell.configureCell(self)
                 return notesTableViewCell
 
             default:

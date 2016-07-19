@@ -250,7 +250,7 @@ class NewRestaurantViewControllerTest: XCTestCase {
         let nearestStationCell = getNearestStationTableViewCell()
         nearestStationCell.textField.text = "Roppongi"
         let notesCell = getNotesTableViewCell()
-        notesCell.formView.notesTextField.text = "Notes"
+        notesCell.notesTextField.text = "Notes"
         fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
 
 

@@ -397,7 +397,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(restaurantDetailCell.detailTextLabel?.text).to(equal("Original Address"))
         expect(cuisineCell.textLabel?.text).to(equal("Pizza"))
         expect(priceRangeCell.textLabel?.text).to(equal("Cheap"))
-        expect(notesCell.formView.notesTextField.text).to(equal("This place is great"))
+        expect(notesCell.notesTextField.text).to(equal("This place is great"))
     }
 
     func test_setsFindCellText_whenNotSpecified() {
@@ -411,7 +411,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         expect(restaurantDetailCell.textLabel?.text).to(equal("Find restaurant (Required)"))
         expect(cuisineCell.textLabel?.text).to(equal("Select cuisine (Required)"))
         expect(priceRangeCell.textLabel?.text).to(equal("Select price range (Required)"))
-        expect(notesCell.formView.notesTextField.text).to(equal(""))
+        expect(notesCell.notesTextField.text).to(equal(""))
     }
 
     func test_cannotDeletePhoto_whenRestaurantNotCreatedByCurrentUser() {
@@ -476,7 +476,7 @@ class EditRestaurantViewControllerTest: XCTestCase {
         let cuisineCell = getCuisineTableViewCell()
         cuisineCell.textLabel?.text = "Beer"
         let notesCell = getEditRestaurantNotesTableViewCell()
-        notesCell.formView.notesTextField.text = "Try the vegetables!"
+        notesCell.notesTextField.text = "Try the vegetables!"
         fakePhotoRepo.uploadPhotos_returnValue = ["apple", "truck"]
         
         let updateButton = editRestaurantViewController.navigationItem.rightBarButtonItem!

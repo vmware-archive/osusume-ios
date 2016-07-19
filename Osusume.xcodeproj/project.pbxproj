@@ -14,7 +14,6 @@
 		AE0BFCC51D2B4BFE00F8FB77 /* MapViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0BFCC41D2B4BFE00F8FB77 /* MapViewer.swift */; };
 		AE0BFCC71D2B4C2000F8FB77 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0BFCC61D2B4C2000F8FB77 /* MapView.swift */; };
 		AE0BFCCA1D2B4C9400F8FB77 /* FakeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0BFCC91D2B4C9400F8FB77 /* FakeMapView.swift */; };
-		AE0CBF591CA113F60060FA02 /* NewRestaurantFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF581CA113F60060FA02 /* NewRestaurantFormView.swift */; };
 		AE0CBF5B1CA12C7A0060FA02 /* DefaultSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF5A1CA12C7A0060FA02 /* DefaultSearchDelegate.swift */; };
 		AE0CBF631CA13FBD0060FA02 /* DefaultTextSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */; };
 		AE0CBF641CA13FBD0060FA02 /* TextSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF621CA13FBD0060FA02 /* TextSearch.swift */; };
@@ -270,7 +269,6 @@
 		AE0BFCC41D2B4BFE00F8FB77 /* MapViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewer.swift; sourceTree = "<group>"; };
 		AE0BFCC61D2B4C2000F8FB77 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		AE0BFCC91D2B4C9400F8FB77 /* FakeMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeMapView.swift; sourceTree = "<group>"; };
-		AE0CBF581CA113F60060FA02 /* NewRestaurantFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRestaurantFormView.swift; sourceTree = "<group>"; };
 		AE0CBF5A1CA12C7A0060FA02 /* DefaultSearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSearchDelegate.swift; sourceTree = "<group>"; };
 		AE0CBF611CA13FBD0060FA02 /* DefaultTextSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextSearch.swift; sourceTree = "<group>"; };
 		AE0CBF621CA13FBD0060FA02 /* TextSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSearch.swift; sourceTree = "<group>"; };
@@ -664,7 +662,6 @@
 			isa = PBXGroup;
 			children = (
 				DE99CD1CFF05F8457F3FF5A1 /* EditRestaurantFormView.swift */,
-				AE0CBF581CA113F60060FA02 /* NewRestaurantFormView.swift */,
 				AE0505121CF834DE004A4948 /* PhotoCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -1474,7 +1471,6 @@
 				DE99C4A2FA6B0FDFA78F2DB0 /* NewCommentViewController.swift in Sources */,
 				AECF51761CA279A40045C42B /* NewCuisine.swift in Sources */,
 				DE99C68D935DBB25693915E9 /* NewRestaurant.swift in Sources */,
-				AE0CBF591CA113F60060FA02 /* NewRestaurantFormView.swift in Sources */,
 				DE99CAAB65BC8243F5B84D01 /* NewRestaurantViewController.swift in Sources */,
 				DE99C56778FFDE1A3D968AF5 /* NotesTableViewCell.swift in Sources */,
 				AE6091091CC5F29B0016CD6A /* NSUrlRequestExtension.swift in Sources */,

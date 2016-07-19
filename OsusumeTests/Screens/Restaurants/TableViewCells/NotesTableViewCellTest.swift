@@ -12,17 +12,23 @@ class NotesTableViewCellTest: XCTestCase {
 
     // MARK: - Initialize View
     func test_viewDidLoad_initializesSubviews() {
-        expect(self.notesTVC.formView)
-            .to(beAKindOf(NewRestaurantFormView))
+        expect(self.notesTVC.notesHeaderLabel)
+            .to(beAKindOf(UILabel))
+        expect(self.notesTVC.notesTextField)
+            .to(beAKindOf(UITextView))
     }
 
     func test_viewDidLoad_addsSubviews() {
         expect(self.notesTVC.contentView)
-            .to(containSubview(notesTVC.formView))
+            .to(containSubview(notesTVC.notesHeaderLabel))
+        expect(self.notesTVC.contentView)
+            .to(containSubview(notesTVC.notesTextField))
     }
 
     func test_viewDidLoad_addsConstraints() {
-        expect(self.notesTVC.formView)
+        expect(self.notesTVC.notesHeaderLabel)
+            .to(hasConstraintsToSuperview())
+        expect(self.notesTVC.notesTextField)
             .to(hasConstraintsToSuperview())
     }
 

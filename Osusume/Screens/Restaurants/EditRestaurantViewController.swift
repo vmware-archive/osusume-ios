@@ -181,7 +181,7 @@ class EditRestaurantViewController: UIViewController {
             "cuisine_type":  restaurantEditResult.cuisine.name,
             "cuisine_id": restaurantEditResult.cuisine.id,
             "price_range_id" : restaurantEditResult.priceRange.id,
-            "notes": notesTableViewCell.formView.getNotesText() ?? "",
+            "notes": notesTableViewCell.getNotesText() ?? "",
             "photo_urls":  existingAndAddedPhotos
         ]
         repo.update(self.id, params: params)
@@ -310,7 +310,7 @@ extension EditRestaurantViewController: UITableViewDataSource {
             return priceRangeTableViewCell
             
         case EditRestaurantTableViewRow.NotesCell.rawValue:
-            notesTableViewCell.formView.notesTextField.text = restaurant.notes
+            notesTableViewCell.notesTextField.text = restaurant.notes
             return notesTableViewCell
             
         default:
