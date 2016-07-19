@@ -77,6 +77,9 @@ struct RestaurantParser {
         let maybePriceRange = PriceRangeParser().parse(priceRangeJson).value
         let priceRange = maybePriceRange ?? PriceRange(id: 0, range: "Not Specified")
 
+        let maybeNearestStationJson = json["nearest_station"] as? String
+        let nearestStation = maybeNearestStationJson ?? ""
+
         let createdDateString = json["created_at"] as? String
         let createdAt = DateConverter.formattedDateFromString(createdDateString)
 
@@ -109,6 +112,7 @@ struct RestaurantParser {
             liked: liked,
             numberOfLikes: numberOfLikes,
             priceRange: priceRange,
+            nearestStation: nearestStation,
             createdAt: createdAt,
             photoUrls: urls,
             createdByUser: (id: userId, name: userName, email: userEmail),

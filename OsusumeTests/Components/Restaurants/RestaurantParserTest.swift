@@ -79,7 +79,7 @@ class RestaurantParserTest: XCTestCase {
     }
 
     // MARK: parseSingle
-    func test_parsingASingleRestaurant() {
+    func test_parsingASingleRestaurantWithMultipleComments() {
         let restaurantParser = RestaurantParser()
 
         let json: [String: AnyObject] = [
@@ -220,22 +220,6 @@ class RestaurantParserTest: XCTestCase {
         expect(actualCuisine.name).to(equal("Italian"))
     }
 
-    func test_parse_handlesWithoutCuisine() {
-        let restaurantParser = RestaurantParser()
-
-        let json: [String: AnyObject] = [
-            "id": 1232,
-            "name": "liked restaurant"
-        ]
-
-
-        let restaurant = restaurantParser.parseSingle(json).value!
-
-
-        let expectedCuisine = Cuisine(id: 0, name: "Not Specified")
-        expect(restaurant.cuisine).to(equal(expectedCuisine))
-    }
-
     func test_parse_handlesPriceRange() {
         let restaurantParser = RestaurantParser()
 
@@ -256,22 +240,20 @@ class RestaurantParserTest: XCTestCase {
         expect(restaurant.priceRange).to(equal(expectedPriceRange))
     }
 
-    func test_parse_handlesWithoutPriceRange() {
+    func test_parse_handlesNearestStation() {
         let restaurantParser = RestaurantParser()
-        
+
         let json: [String: AnyObject] = [
             "id": 1232,
-            "name": "liked restaurant"
-        ]
-        
-        
+            "name": "liked restaurant",
+            "nearest_station": "Shinjuku"        ]
+
+
         let restaurant = restaurantParser.parseSingle(json).value!
-        
-        
-        let expectedPriceRange = PriceRange(id: 0, range: "Not Specified")
-        expect(restaurant.priceRange).to(equal(expectedPriceRange))
+
+
+        expect(restaurant.nearestStation).to(equal("Shinjuku"))
     }
-    
 
     func test_parsingASingleRestaurant_withoutComments() {
         let restaurantParser = RestaurantParser()

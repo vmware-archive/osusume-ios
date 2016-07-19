@@ -22,6 +22,15 @@ class RestaurantDetailPresenterTest: XCTestCase {
         expect(presenter.address).to(equal("Roppongi Hills 5-2-1"))
     }
 
+    func test_formats_nearestStation() {
+        let restaurant = RestaurantFixtures
+            .newRestaurant(nearestStation: "Shinjuku")
+        let presenter = RestaurantDetailPresenter(restaurant: restaurant)
+
+
+        expect(presenter.nearestStation).to(equal("Shinjuku"))
+    }
+
     func test_formats_cuisineType() {
         let restaurant = RestaurantFixtures
             .newRestaurant(cuisine: Cuisine(id: 0, name: "Not Specified"))

@@ -154,6 +154,7 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
                 liked: true,
                 numberOfLikes: 2,
                 priceRange: PriceRange(id: 1, range: "0~999"),
+                nearestStation: "Roppongi",
                 createdAt: NSDate(timeIntervalSince1970: 0),
                 photoUrls: [
                     PhotoUrl(id: 1, url: NSURL(string: "my-awesome-url")!)

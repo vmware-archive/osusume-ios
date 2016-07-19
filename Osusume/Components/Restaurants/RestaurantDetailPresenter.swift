@@ -9,6 +9,10 @@ struct RestaurantDetailPresenter {
         return restaurant.address
     }
 
+    var nearestStation: String {
+        return restaurant.nearestStation
+    }
+
     var cuisineType: String {
         return "Cuisine: \(restaurant.cuisine.name)"
     }

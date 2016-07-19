@@ -685,13 +685,13 @@
 				AE5BEBE41D1244D80048316B /* CuisineTableViewCell.swift */,
 				AEB4F79D1D17E3470031004C /* EditRestaurantPhotosTableViewCell.swift */,
 				AE8B54F01D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift */,
+				AE4F989A1D3879670048ABFF /* NearestStationTableViewCell.swift */,
 				DE99C59D237F17C8BA2348C5 /* NotesTableViewCell.swift */,
 				AE6E779D1D0FAB5E00F07124 /* PopulatedRestaurantTableViewCell.swift */,
 				AE36996E1D126D450015D6D9 /* PriceRangeTableViewCell.swift */,
 				DE99C5028AF3D79E18D7443C /* RestaurantDetailTableViewCell.swift */,
 				DE99C3EDAAA83EF3B6AB248F /* RestaurantDetailTableViewCellDelegate.swift */,
 				DE99C71E17E86A56C799143B /* RestaurantTableViewCell.swift */,
-				AE4F989A1D3879670048ABFF /* NearestStationTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -702,11 +702,11 @@
 				DE99C88344C89FAA9F79D0CB /* AddRestaurantPhotosTableViewCellTest.swift */,
 				AEB4F79F1D18D4D70031004C /* EditRestaurantPhotosTableViewCellTest.swift */,
 				AE8B54F31D0F968200EC8CC3 /* FindRestaurantTableViewCellTest.swift */,
+				AE4F989C1D387BA60048ABFF /* NearestStationTableViewCellTest.swift */,
 				DE99CC87592659CC0A294C4F /* NotesTableViewCellTest.swift */,
 				AE6E779F1D0FAD9700F07124 /* PopulatedRestaurantTableViewCellTest.swift */,
 				DE99C7BE71C44FFFA7C2E0AB /* RestaurantDetailTableViewCellTest.swift */,
 				DE99C343AE62CB8D87E6F9C7 /* RestaurantTableViewCellTest.swift */,
-				AE4F989C1D387BA60048ABFF /* NearestStationTableViewCellTest.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -1460,6 +1460,7 @@
 				AEE6968C1CA36C8F003A2927 /* MyRestaurantListViewController.swift in Sources */,
 				AE4ABF5E1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift in Sources */,
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
+				AE4F989B1D3879670048ABFF /* NearestStationTableViewCell.swift in Sources */,
 				DE99C575936B3E8619D06F8D /* NetworkCommentRepo.swift in Sources */,
 				DE99CD5C28BC35FE5BE81CC8 /* NetworkCuisineRepo.swift in Sources */,
 				DE99C6ED8339B11B516B3F7A /* NetworkLikeRepo.swift in Sources */,
@@ -1520,7 +1521,6 @@
 				AE0CBF641CA13FBD0060FA02 /* TextSearch.swift in Sources */,
 				AE3ED1871C850EF20097DC10 /* UIKitExtensions.swift in Sources */,
 				DE99C8689FF32EA1A298D0C4 /* UserRepo.swift in Sources */,
-				AE4F989B1D3879670048ABFF /* NearestStationTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1571,13 +1571,13 @@
 				AE31192C1CE4523C006E46B6 /* FindRestaurantViewControllerTest.swift in Sources */,
 				AE559A441C8EC199001D45A1 /* ImageLoaderHandlerTest.swift in Sources */,
 				AE1D420B1C8423960048DF66 /* ImageViewControllerTest.swift in Sources */,
-				AE4F989D1D387BA60048ABFF /* NearestStationTableViewCellTest.swift in Sources */,
 				DE99C39FB88F303DF4869148 /* KeychainSessionRepoTest.swift in Sources */,
 				DE99CED00AC7F1E1202E9B1F /* LaunchWorkflowTest.swift in Sources */,
 				AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */,
 				AED9D1691D24B187008033A8 /* MapViewControllerTest.swift in Sources */,
 				AEE6968E1CA36CC9003A2927 /* MyRestaurantListViewControllerTest.swift in Sources */,
 				DE99C3A75F3D574B68C6D653 /* NavigationRouterTest.swift in Sources */,
+				AE4F989D1D387BA60048ABFF /* NearestStationTableViewCellTest.swift in Sources */,
 				DE99CDD1C1EF4FD00A5D80BF /* NetworkCommentRepoTest.swift in Sources */,
 				DE99C7C299499F86C1CD022A /* NetworkLikeRepoTest.swift in Sources */,
 				DE99CC7C2EB019C02B7866BA /* NetworkPhotoRepoTest.swift in Sources */,

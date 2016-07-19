@@ -11,6 +11,7 @@ struct Restaurant {
     let liked: Bool
     let numberOfLikes: Int
     let priceRange: PriceRange
+    let nearestStation: String
     let createdAt: NSDate?
     let photoUrls: [PhotoUrl]
     let createdByUser: (id: Int, name: String, email: String)
@@ -29,6 +30,7 @@ struct Restaurant {
         liked: Bool,
         numberOfLikes: Int,
         priceRange: PriceRange,
+        nearestStation: String,
         createdAt: NSDate?,
         photoUrls: [PhotoUrl],
         createdByUser: (id: Int, name: String, email: String),
@@ -47,6 +49,7 @@ struct Restaurant {
         self.liked = liked
         self.numberOfLikes = numberOfLikes
         self.priceRange = priceRange
+        self.nearestStation = nearestStation
         self.createdAt = createdAt
         self.photoUrls = photoUrls
         self.createdByUser = createdByUser
@@ -77,6 +80,7 @@ struct Restaurant {
             liked: updatedLikeStatus,
             numberOfLikes: updatedNumberOfLikes,
             priceRange: self.priceRange,
+            nearestStation: self.nearestStation,
             createdAt: self.createdAt,
             photoUrls: self.photoUrls,
             createdByUser: self.createdByUser,
@@ -102,6 +106,7 @@ struct Restaurant {
             liked: self.liked,
             numberOfLikes: self.numberOfLikes,
             priceRange: self.priceRange,
+            nearestStation: self.nearestStation,
             createdAt: self.createdAt,
             photoUrls: updatedPhotoUrls,
             createdByUser: self.createdByUser,
@@ -132,6 +137,7 @@ func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
         lhs.liked == rhs.liked &&
         lhs.numberOfLikes == rhs.numberOfLikes &&
         lhs.priceRange == rhs.priceRange &&
+        lhs.nearestStation == rhs.nearestStation &&
         lhs.createdAt == rhs.createdAt &&
         lhs.photoUrls == rhs.photoUrls &&
         lhs.createdByUser == rhs.createdByUser

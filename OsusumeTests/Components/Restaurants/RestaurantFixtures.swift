@@ -15,6 +15,7 @@ struct RestaurantFixtures {
         photoUrls: [PhotoUrl] = [],
         cuisine: Cuisine = Cuisine(id: 0, name: "Not Specified"),
         priceRange: PriceRange = PriceRange(id: 0, range: "Not Specified"),
+        nearestStation: String = "Roppongi",
         createdByUser: (id: Int, name: String, email: String) = (id: 99, name: "Danny", email: "danny@pivotal"),
         comments: [PersistedComment] = []
         ) -> Restaurant
@@ -32,6 +33,7 @@ struct RestaurantFixtures {
             liked: liked,
             numberOfLikes: numberOfLikes,
             priceRange: priceRange,
+            nearestStation: nearestStation,
             createdAt: createdAt,
             photoUrls: photoUrls,
             createdByUser: createdByUser,

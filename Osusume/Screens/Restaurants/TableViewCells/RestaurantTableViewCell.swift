@@ -5,6 +5,7 @@ class RestaurantTableViewCell: UITableViewCell {
     let nameLabel: UILabel
     let cuisineTypeLabel: UILabel
     let priceRangeLabel: UILabel
+    let nearestStationLabel: UILabel
     let numberOfLikesLabel: UILabel
     let authorLabel: UILabel
     let createdAtLabel: UILabel
@@ -16,6 +17,7 @@ class RestaurantTableViewCell: UITableViewCell {
         nameLabel = UILabel()
         cuisineTypeLabel = UILabel()
         priceRangeLabel = UILabel()
+        nearestStationLabel = UILabel()
         numberOfLikesLabel = UILabel()
         authorLabel = UILabel()
         createdAtLabel = UILabel()
@@ -38,6 +40,7 @@ class RestaurantTableViewCell: UITableViewCell {
         textContentView.addSubview(nameLabel)
         textContentView.addSubview(cuisineTypeLabel)
         textContentView.addSubview(priceRangeLabel)
+        textContentView.addSubview(nearestStationLabel)
         textContentView.addSubview(numberOfLikesLabel)
         textContentView.addSubview(authorLabel)
         textContentView.addSubview(createdAtLabel)
@@ -71,8 +74,11 @@ class RestaurantTableViewCell: UITableViewCell {
         priceRangeLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         priceRangeLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: cuisineTypeLabel)
 
+        nearestStationLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
+        nearestStationLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: priceRangeLabel)
+
         numberOfLikesLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
-        numberOfLikesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: priceRangeLabel)
+        numberOfLikesLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: nearestStationLabel)
 
         authorLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
         authorLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: numberOfLikesLabel)
@@ -94,6 +100,7 @@ class RestaurantTableViewCell: UITableViewCell {
         nameLabel.text = presenter.name
         cuisineTypeLabel.text = presenter.cuisineType
         priceRangeLabel.text = presenter.priceRange
+        nearestStationLabel.text = presenter.nearestStation
         numberOfLikesLabel.text = presenter.numberOfLikes
         authorLabel.text = presenter.author
         createdAtLabel.text = presenter.creationDate
