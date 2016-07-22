@@ -9,12 +9,7 @@ class RestaurantListDataSourceTest: XCTestCase {
     var callToActionCallback_called = false
 
     override func setUp() {
-        restaurantListDataSource = RestaurantListDataSource(
-            photoRepo: fakePhotoRepo,
-            maybeEmptyStateView: MyRestaurantsEmptyStateView(
-                delegate: self
-            )
-        )
+        restaurantListDataSource = RestaurantListDataSource(photoRepo: fakePhotoRepo)
     }
 
     override func tearDown() {
@@ -68,36 +63,5 @@ class RestaurantListDataSourceTest: XCTestCase {
         restaurantListDataSource.tableView(tableView, numberOfRowsInSection: 0)
 
         expect(tableView.backgroundView).to(beNil())
-    }
-
-    func test_tableView_showsEmptyStateView_whenThereIsNoData() {
-        let tableView = UITableView()
-
-        restaurantListDataSource.tableView(tableView, numberOfRowsInSection: 0)
-
-        expect(tableView.backgroundView).to(beAKindOf(MyRestaurantsEmptyStateView))
-    }
-
-    func test_tableView_stopsShowingEmptyStateView_whenTheInitialRestaurantIsAdded() {
-        let tableView = UITableView()
-
-        restaurantListDataSource.tableView(tableView, numberOfRowsInSection: 0)
-
-        expect(tableView.backgroundView).to(beAKindOf(MyRestaurantsEmptyStateView))
-
-        restaurants = [
-            RestaurantFixtures.newRestaurant(name: "Pizzakaya")
-        ]
-        restaurantListDataSource.updateRestaurants(restaurants)
-
-        restaurantListDataSource.tableView(tableView, numberOfRowsInSection: 0)
-
-        expect(tableView.backgroundView).to(beNil())
-    }
-}
-
-extension RestaurantListDataSourceTest: EmptyStateCallToActionDelegate {
-    func callToActionCallback(sender: UIButton) {
-        callToActionCallback_called = true
     }
 }

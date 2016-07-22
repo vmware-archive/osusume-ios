@@ -1,12 +1,10 @@
 class RestaurantListDataSource: NSObject {
     private(set) var restaurants: [Restaurant]
     private let photoRepo: PhotoRepo
-    let maybeEmptyStateView: UIView?
 
-    init(photoRepo: PhotoRepo, maybeEmptyStateView: UIView?) {
+    init(photoRepo: PhotoRepo) {
         self.photoRepo = photoRepo
         self.restaurants = [Restaurant]()
-        self.maybeEmptyStateView = maybeEmptyStateView
     }
 
     func updateRestaurants(restaurants: [Restaurant]) {
@@ -19,14 +17,6 @@ extension RestaurantListDataSource: UITableViewDataSource {
         tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int
     {
-        if let emptyStateView = maybeEmptyStateView where restaurants.count == 0 {
-            tableView.backgroundView = emptyStateView
-            tableView.separatorStyle = .None
-        } else {
-            tableView.backgroundView = nil
-            tableView.separatorStyle = .SingleLine
-        }
-
         return restaurants.count
     }
 

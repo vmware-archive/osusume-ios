@@ -8,6 +8,7 @@ class MyRestaurantListViewControllerTest: XCTestCase {
     var fakePhotoRepo: FakePhotoRepo!
     var myRestaurantListVC: MyRestaurantListViewController!
     var fakeMyRestaurantSelectionDelegate: FakeMyRestaurantSelectionDelegate!
+    var callToActionCallback_wasCalled = false
 
     override func setUp() {
         fakeReloader = FakeReloader()
@@ -18,9 +19,13 @@ class MyRestaurantListViewControllerTest: XCTestCase {
             reloader: fakeReloader,
             photoRepo: fakePhotoRepo,
             myRestaurantSelectionDelegate: fakeMyRestaurantSelectionDelegate,
-            maybeEmptyStateView: nil,
+            maybeEmptyStateView: MyRestaurantsEmptyStateView(delegate: self),
             getRestaurants: getRestaurants
         )
+    }
+
+    override func tearDown() {
+        callToActionCallback_wasCalled = false
     }
 
     // MARK: - View Controller Lifecycle
@@ -57,7 +62,7 @@ class MyRestaurantListViewControllerTest: XCTestCase {
         myRestaurantListVC.view.setNeedsLayout()
 
 
-        let expectedRestaurant = RestaurantFixtures.newRestaurant(name: "Miya's Café")
+        let expectedRestaurant = RestaurantFixtures.newRestaurant(name: "Kyle's Cafée")
         promise.success([expectedRestaurant])
         waitForFutureToComplete(promise.future)
 
@@ -77,6 +82,31 @@ class MyRestaurantListViewControllerTest: XCTestCase {
 
 
         expect(self.fakeReloader.reload_wasCalled).to(equal(true))
+    }
+
+    func test_viewDidLoad_setsBackgroundViewWhenThereAreNoRestaurants() {
+        let promise = Promise<[Restaurant], RepoError>()
+        getRestaurants_returnValue = promise.future
+        myRestaurantListVC.view.setNeedsLayout()
+
+
+        promise.success([])
+        waitForFutureToComplete(promise.future)
+
+
+        expect(self.myRestaurantListVC.tableView.backgroundView)
+            .to(beAKindOf(MyRestaurantsEmptyStateView))
+    }
+
+    func test_viewDidLoad_setsBackgroundViewToNilWhenThereAreRestaurants() {
+        let promise = Promise<[Restaurant], RepoError>()
+        getRestaurants_returnValue = promise.future
+        myRestaurantListVC.view.setNeedsLayout()
+
+        promise.success([RestaurantFixtures.newRestaurant()])
+        waitForFutureToComplete(promise.future)
+
+        expect(self.myRestaurantListVC.tableView.backgroundView).to(beNil())
     }
 
     func test_viewDidLoad_doesNotReloadData_onGetRestaurantsFailure() {
@@ -122,5 +152,11 @@ class MyRestaurantListViewControllerTest: XCTestCase {
     private func getRestaurants() -> Future<[Restaurant], RepoError> {
         getRestaurants_wasCalled = true
         return getRestaurants_returnValue
+    }
+}
+
+extension MyRestaurantListViewControllerTest: EmptyStateCallToActionDelegate {
+    func callToActionCallback(sender: UIButton) {
+        callToActionCallback_wasCalled = true
     }
 }

@@ -99,7 +99,7 @@ class RestaurantListViewControllerTest: XCTestCase {
         expect(self.restaurantListVC.tableView.delegate === self.restaurantListVC).to(beTrue())
     }
 
-    func test_viewDidAppear_reloadsTableData() {
+    func test_viewWillAppear_reloadsTableData() {
         let restaurantsPromise = Promise<[Restaurant], RepoError>()
         fakeRestaurantRepo.getAll_returnValue = restaurantsPromise.future
 
@@ -115,7 +115,7 @@ class RestaurantListViewControllerTest: XCTestCase {
         expect(actualTableView === self.restaurantListVC.tableView).to(equal(true))
     }
 
-    func test_viewDidAppear_retrievesRestaurants() {
+    func test_viewWillAppear_retrievesRestaurants() {
         restaurantListVC.view.setNeedsLayout()
         restaurantListVC.viewWillAppear(false)
 

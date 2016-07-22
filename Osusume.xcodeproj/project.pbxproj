@@ -1149,13 +1149,13 @@
 			children = (
 				DE99CBF74CE1D364D8F6BD1D /* Like */,
 				DE99C8F9397A8122138EA082 /* Search */,
-				AE28A95F1C9939B600816CEB /* RestaurantListDataSource.swift */,
 				AE4ABF5D1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift */,
 				AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */,
 				DE99CB21B6B5AF4521A2A1A1 /* NetworkRestaurantRepo.swift */,
 				DE99CB4E04736BBC8AFF8021 /* NewRestaurant.swift */,
 				DE99CADB47A29D018CAEA0A9 /* Restaurant.swift */,
 				DE99C98F1E0CA5232D37AFEC /* RestaurantDetailPresenter.swift */,
+				AE28A95F1C9939B600816CEB /* RestaurantListDataSource.swift */,
 				AE73E02C1CA11BC200738787 /* RestaurantListRepo.swift */,
 				DE99C1A3787E5EB3046984FF /* RestaurantParser.swift */,
 				DE99C7C7B61E86D663B7640C /* RestaurantRepo.swift */,
@@ -1422,7 +1422,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE28A9601C9939B600816CEB /* RestaurantListDataSource.swift in Sources */,
 				DE99CA8DA690FEAE6088CEBE /* AddRestaurantPhotosTableViewCell.swift in Sources */,
 				DE99CB6B84CBE284E0588C86 /* AppDelegate.swift in Sources */,
 				AE4ABF721CEC644400CDE3CD /* AuthenticatedUser.swift in Sources */,
@@ -1509,6 +1508,7 @@
 				DE99C59BFF937289716301E5 /* RestaurantDetailTableViewCell.swift in Sources */,
 				DE99C5B323DE7F005E000B53 /* RestaurantDetailTableViewCellDelegate.swift in Sources */,
 				248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */,
+				AE28A9601C9939B600816CEB /* RestaurantListDataSource.swift in Sources */,
 				AE73E02D1CA11BC200738787 /* RestaurantListRepo.swift in Sources */,
 				DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */,
 				DE99CF792A576BDCD473A679 /* RestaurantParser.swift in Sources */,

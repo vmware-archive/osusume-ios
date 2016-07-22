@@ -6,6 +6,7 @@ class MyRestaurantListViewController: UIViewController {
     private let myRestaurantSelectionDelegate: MyRestaurantSelectionDelegate
     let getRestaurants: () -> Future<[Restaurant], RepoError>
     let restaurantListDataSource: RestaurantListDataSource
+    let maybeEmptyStateView: UIView?
 
     // MARK: - View Elements
     let tableView: UITableView
@@ -19,13 +20,10 @@ class MyRestaurantListViewController: UIViewController {
         getRestaurants: () -> Future<[Restaurant], RepoError>)
     {
         self.reloader = reloader
-        self.restaurantListDataSource = RestaurantListDataSource(
-            photoRepo: photoRepo,
-            maybeEmptyStateView: maybeEmptyStateView
-        )
+        self.restaurantListDataSource = RestaurantListDataSource(photoRepo: photoRepo)
         self.myRestaurantSelectionDelegate = myRestaurantSelectionDelegate
         self.getRestaurants = getRestaurants
-
+        self.maybeEmptyStateView = maybeEmptyStateView
         self.tableView = UITableView.newAutoLayoutView()
 
         super.init(nibName: nil, bundle: nil)
@@ -46,6 +44,13 @@ class MyRestaurantListViewController: UIViewController {
 
         getRestaurants()
             .onSuccess { [unowned self] restaurants in
+                if (restaurants.count <= 0) {
+                    self.tableView.backgroundView = self.maybeEmptyStateView
+                    self.tableView.separatorStyle = .None
+                } else {
+                    self.tableView.backgroundView = nil
+                    self.tableView.separatorStyle = .SingleLine
+                }
                 self.restaurantListDataSource.updateRestaurants(restaurants)
                 self.reloader.reload(self.tableView)
         }

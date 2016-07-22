@@ -79,24 +79,13 @@ class ProfileViewControllerTest: XCTestCase {
             .to(beIdenticalTo(fakeUserRepo.getMyPosts_returnValue))
     }
 
-    func test_viewDidLoad_setsMyPostsEmptyStateView() {
-        let myPostsRestaurantListVC =
-            profileVC.pageViewController.viewControllers?.first
-                as! MyRestaurantListViewController
-
-
-        expect(myPostsRestaurantListVC.restaurantListDataSource.maybeEmptyStateView)
-            .to(beAKindOf(MyRestaurantsEmptyStateView))
-    }
-
     func test_viewDidLoad_setsSelfAsDelegateForEmptyStateView() {
         let myPostsRestaurantListVC =
             profileVC.pageViewController.viewControllers?.first
                 as! MyRestaurantListViewController
-        let emptyStateView = myPostsRestaurantListVC.restaurantListDataSource.maybeEmptyStateView as! MyRestaurantsEmptyStateView
-        let delegate = emptyStateView.delegate as? ProfileViewController
+        let emptyStateView = myPostsRestaurantListVC.maybeEmptyStateView as? MyRestaurantsEmptyStateView
 
-        expect(delegate).to(beIdenticalTo(profileVC))
+        expect(emptyStateView?.delegate).to(beIdenticalTo(profileVC))
     }
 
     func test_tappingSegmentedControl_selectsCurrentPage() {
@@ -126,23 +115,6 @@ class ProfileViewControllerTest: XCTestCase {
 
         expect(likedRestaurantListVC.getRestaurants())
             .to(beIdenticalTo(fakeUserRepo.getMyLikes_returnValue))
-    }
-
-    func test_tappingLikeSegmentedControlButton_setsNilAsEmptyStateView() {
-        let segmentedControl = profileVC.myContentSegmentedControl
-        segmentedControl.selectedSegmentIndex = 1
-
-
-        segmentedControl.sendActionsForControlEvents(.ValueChanged)
-
-
-        let likedRestaurantListVC =
-            profileVC.pageViewController.viewControllers?.first
-                as! MyRestaurantListViewController
-
-
-        expect(likedRestaurantListVC.restaurantListDataSource.maybeEmptyStateView)
-            .to(beNil())
     }
 
     func test_restaurantSelection_showsRestaurantDetailScreen() {

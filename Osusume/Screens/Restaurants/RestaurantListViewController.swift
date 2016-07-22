@@ -20,10 +20,7 @@ class RestaurantListViewController: UIViewController {
         self.router = router
         self.repo = repo
         self.reloader = reloader
-        self.restaurantListDataSource = RestaurantListDataSource(
-            photoRepo: photoRepo,
-            maybeEmptyStateView: nil
-        )
+        self.restaurantListDataSource = RestaurantListDataSource(photoRepo: photoRepo)
 
         tableView = UITableView.newAutoLayoutView()
 
