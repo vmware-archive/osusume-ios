@@ -52,6 +52,7 @@ class ProfileViewController: UIViewController {
                 reloader: self.reloader,
                 photoRepo: self.photoRepo,
                 myRestaurantSelectionDelegate: self,
+                maybeEmptyStateView: MyRestaurantsEmptyStateView(delegate: self),
                 getRestaurants: self.userRepo.getMyPosts
             )
         ]
@@ -150,17 +151,21 @@ class ProfileViewController: UIViewController {
         currentPage = sender.selectedSegmentIndex
 
         let getRestaurants: () -> Future<[Restaurant], RepoError>
+        let maybeEmptyStateView: UIView?
 
         if (currentPage == 0) {
             getRestaurants = userRepo.getMyPosts
+            maybeEmptyStateView = MyRestaurantsEmptyStateView(delegate: self)
         } else {
             getRestaurants = userRepo.getMyLikes
+            maybeEmptyStateView = nil
         }
 
         let viewController = MyRestaurantListViewController(
             reloader: reloader,
             photoRepo: photoRepo,
             myRestaurantSelectionDelegate: self,
+            maybeEmptyStateView: maybeEmptyStateView,
             getRestaurants: getRestaurants
         )
 
@@ -176,5 +181,11 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: MyRestaurantSelectionDelegate {
     func myRestaurantSelected(myRestaurant: Restaurant) {
         router.showRestaurantDetailScreen(myRestaurant.id)
+    }
+}
+
+extension ProfileViewController: EmptyStateCallToActionDelegate {
+    func callToActionCallback(sender: UIButton) {
+        router.showNewRestaurantScreen()
     }
 }

@@ -20,6 +20,9 @@
 		AE0CBF661CA224B80060FA02 /* DefaultTextSearchTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF651CA224B80060FA02 /* DefaultTextSearchTest.swift */; };
 		AE0CBF681CA22F360060FA02 /* FakeTextSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF671CA22F360060FA02 /* FakeTextSearch.swift */; };
 		AE0CBF6A1CA22F620060FA02 /* FakeCuisineSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0CBF691CA22F620060FA02 /* FakeCuisineSelection.swift */; };
+		AE136A861D3F42E700431AFE /* MyRestaurantsEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE136A851D3F42E700431AFE /* MyRestaurantsEmptyStateView.swift */; };
+		AE136A881D3F438B00431AFE /* MyRestaurantsEmptyStateViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE136A871D3F438B00431AFE /* MyRestaurantsEmptyStateViewTest.swift */; };
+		AE136A8C1D3F65DF00431AFE /* EmptyStateCallToActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE136A8B1D3F65DF00431AFE /* EmptyStateCallToActionDelegate.swift */; };
 		AE143AB21CD1B535006473C8 /* RestaurantListDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE143AB11CD1B535006473C8 /* RestaurantListDataSourceTest.swift */; };
 		AE19A9F91C9BC85B00D8CBAC /* SessionHttpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19A9F81C9BC85B00D8CBAC /* SessionHttpTest.swift */; };
 		AE19A9FB1C9BCA1500D8CBAC /* SessionHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19A9FA1C9BCA1500D8CBAC /* SessionHttp.swift */; };
@@ -275,6 +278,9 @@
 		AE0CBF651CA224B80060FA02 /* DefaultTextSearchTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextSearchTest.swift; sourceTree = "<group>"; };
 		AE0CBF671CA22F360060FA02 /* FakeTextSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeTextSearch.swift; sourceTree = "<group>"; };
 		AE0CBF691CA22F620060FA02 /* FakeCuisineSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeCuisineSelection.swift; sourceTree = "<group>"; };
+		AE136A851D3F42E700431AFE /* MyRestaurantsEmptyStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantsEmptyStateView.swift; sourceTree = "<group>"; };
+		AE136A871D3F438B00431AFE /* MyRestaurantsEmptyStateViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRestaurantsEmptyStateViewTest.swift; sourceTree = "<group>"; };
+		AE136A8B1D3F65DF00431AFE /* EmptyStateCallToActionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStateCallToActionDelegate.swift; sourceTree = "<group>"; };
 		AE143AB11CD1B535006473C8 /* RestaurantListDataSourceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantListDataSourceTest.swift; sourceTree = "<group>"; };
 		AE19A9F81C9BC85B00D8CBAC /* SessionHttpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHttpTest.swift; sourceTree = "<group>"; };
 		AE19A9FA1C9BCA1500D8CBAC /* SessionHttp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHttp.swift; sourceTree = "<group>"; };
@@ -612,6 +618,7 @@
 			isa = PBXGroup;
 			children = (
 				AEE6968B1CA36C8F003A2927 /* MyRestaurantListViewController.swift */,
+				AE136A851D3F42E700431AFE /* MyRestaurantsEmptyStateView.swift */,
 				AE559A3C1C8E7021001D45A1 /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -621,6 +628,7 @@
 			isa = PBXGroup;
 			children = (
 				AEE6968D1CA36CC9003A2927 /* MyRestaurantListViewControllerTest.swift */,
+				AE136A871D3F438B00431AFE /* MyRestaurantsEmptyStateViewTest.swift */,
 				AE559A3F1C8E74AB001D45A1 /* ProfileViewControllerTest.swift */,
 			);
 			path = Profile;
@@ -950,6 +958,7 @@
 				AE8B54EF1D0F8D6200EC8CC3 /* TableViewCells */,
 				AE877D601C7C078400471040 /* Views */,
 				AEE095DC1C44A009008E104B /* EditRestaurantViewController.swift */,
+				AE136A8B1D3F65DF00431AFE /* EmptyStateCallToActionDelegate.swift */,
 				AE5A8BBC1CE44BC000B828C4 /* FindRestaurantViewController.swift */,
 				AE1D42081C8420350048DF66 /* ImageViewController.swift */,
 				AED9D1661D24B0C8008033A8 /* MapViewContoller.swift */,
@@ -1140,13 +1149,13 @@
 			children = (
 				DE99CBF74CE1D364D8F6BD1D /* Like */,
 				DE99C8F9397A8122138EA082 /* Search */,
+				AE28A95F1C9939B600816CEB /* RestaurantListDataSource.swift */,
 				AE4ABF5D1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift */,
 				AECF51771CA36E290045C42B /* NetworkRestaurantListRepo.swift */,
 				DE99CB21B6B5AF4521A2A1A1 /* NetworkRestaurantRepo.swift */,
 				DE99CB4E04736BBC8AFF8021 /* NewRestaurant.swift */,
 				DE99CADB47A29D018CAEA0A9 /* Restaurant.swift */,
 				DE99C98F1E0CA5232D37AFEC /* RestaurantDetailPresenter.swift */,
-				AE28A95F1C9939B600816CEB /* RestaurantListDataSource.swift */,
 				AE73E02C1CA11BC200738787 /* RestaurantListRepo.swift */,
 				DE99C1A3787E5EB3046984FF /* RestaurantParser.swift */,
 				DE99C7C7B61E86D663B7640C /* RestaurantRepo.swift */,
@@ -1413,6 +1422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE28A9601C9939B600816CEB /* RestaurantListDataSource.swift in Sources */,
 				DE99CA8DA690FEAE6088CEBE /* AddRestaurantPhotosTableViewCell.swift in Sources */,
 				DE99CB6B84CBE284E0588C86 /* AppDelegate.swift in Sources */,
 				AE4ABF721CEC644400CDE3CD /* AuthenticatedUser.swift in Sources */,
@@ -1437,6 +1447,7 @@
 				AEED39E21CA21FAD00B57BCB /* EditRestaurantFormView.swift in Sources */,
 				AEB4F79E1D17E3470031004C /* EditRestaurantPhotosTableViewCell.swift in Sources */,
 				AEE095DD1C44A009008E104B /* EditRestaurantViewController.swift in Sources */,
+				AE136A8C1D3F65DF00431AFE /* EmptyStateCallToActionDelegate.swift in Sources */,
 				AE8B54F11D0F8D7400EC8CC3 /* FindRestaurantTableViewCell.swift in Sources */,
 				AE5A8BBD1CE44BC000B828C4 /* FindRestaurantViewController.swift in Sources */,
 				DE99CCF718E82C82888029DF /* Http.swift in Sources */,
@@ -1456,6 +1467,7 @@
 				AE0BFCC51D2B4BFE00F8FB77 /* MapViewer.swift in Sources */,
 				AEE6968C1CA36C8F003A2927 /* MyRestaurantListViewController.swift in Sources */,
 				AE4ABF5E1CEC10EF00CDE3CD /* MyRestaurantSelectionDelegate.swift in Sources */,
+				AE136A861D3F42E700431AFE /* MyRestaurantsEmptyStateView.swift in Sources */,
 				DE99C387BD866B2734C524A7 /* NavigationRouter.swift in Sources */,
 				AE4F989B1D3879670048ABFF /* NearestStationTableViewCell.swift in Sources */,
 				DE99C575936B3E8619D06F8D /* NetworkCommentRepo.swift in Sources */,
@@ -1497,7 +1509,6 @@
 				DE99C59BFF937289716301E5 /* RestaurantDetailTableViewCell.swift in Sources */,
 				DE99C5B323DE7F005E000B53 /* RestaurantDetailTableViewCellDelegate.swift in Sources */,
 				248243A01C2D2B6400D52D01 /* RestaurantDetailViewController.swift in Sources */,
-				AE28A9601C9939B600816CEB /* RestaurantListDataSource.swift in Sources */,
 				AE73E02D1CA11BC200738787 /* RestaurantListRepo.swift in Sources */,
 				DE99C10616C05F8501BCC810 /* RestaurantListViewController.swift in Sources */,
 				DE99CF792A576BDCD473A679 /* RestaurantParser.swift in Sources */,
@@ -1572,6 +1583,7 @@
 				AEDB5C261C75A0620050D002 /* LoginViewControllerTest.swift in Sources */,
 				AED9D1691D24B187008033A8 /* MapViewControllerTest.swift in Sources */,
 				AEE6968E1CA36CC9003A2927 /* MyRestaurantListViewControllerTest.swift in Sources */,
+				AE136A881D3F438B00431AFE /* MyRestaurantsEmptyStateViewTest.swift in Sources */,
 				DE99C3A75F3D574B68C6D653 /* NavigationRouterTest.swift in Sources */,
 				AE4F989D1D387BA60048ABFF /* NearestStationTableViewCellTest.swift in Sources */,
 				DE99CDD1C1EF4FD00A5D80BF /* NetworkCommentRepoTest.swift in Sources */,

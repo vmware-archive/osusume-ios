@@ -11,6 +11,7 @@ class ProfileViewControllerTest: XCTestCase {
     var fakeReloader: FakeReloader!
     var profileVC: ProfileViewController!
     let fetchLikesPromise = Promise<[Restaurant], RepoError>()
+    var callToActionCallback_called = false
 
     override func setUp() {
         fakeUserRepo = FakeUserRepo()
@@ -32,6 +33,10 @@ class ProfileViewControllerTest: XCTestCase {
         )
 
         profileVC.view.setNeedsLayout()
+    }
+
+    override func tearDown() {
+        callToActionCallback_called = false
     }
 
     // MARK: - View Controller Lifecycle
@@ -65,13 +70,33 @@ class ProfileViewControllerTest: XCTestCase {
     }
 
     func test_viewDidLoad_retrievesMyPostedRestaurants() {
-        let likedRestaurantListVC =
+        let myPostsRestaurantListVC =
             profileVC.pageViewController.viewControllers?.first
                 as! MyRestaurantListViewController
 
-        
-        expect(likedRestaurantListVC.getRestaurants())
+
+        expect(myPostsRestaurantListVC.getRestaurants())
             .to(beIdenticalTo(fakeUserRepo.getMyPosts_returnValue))
+    }
+
+    func test_viewDidLoad_setsMyPostsEmptyStateView() {
+        let myPostsRestaurantListVC =
+            profileVC.pageViewController.viewControllers?.first
+                as! MyRestaurantListViewController
+
+
+        expect(myPostsRestaurantListVC.restaurantListDataSource.maybeEmptyStateView)
+            .to(beAKindOf(MyRestaurantsEmptyStateView))
+    }
+
+    func test_viewDidLoad_setsSelfAsDelegateForEmptyStateView() {
+        let myPostsRestaurantListVC =
+            profileVC.pageViewController.viewControllers?.first
+                as! MyRestaurantListViewController
+        let emptyStateView = myPostsRestaurantListVC.restaurantListDataSource.maybeEmptyStateView as! MyRestaurantsEmptyStateView
+        let delegate = emptyStateView.delegate as? ProfileViewController
+
+        expect(delegate).to(beIdenticalTo(profileVC))
     }
 
     func test_tappingSegmentedControl_selectsCurrentPage() {
@@ -103,6 +128,23 @@ class ProfileViewControllerTest: XCTestCase {
             .to(beIdenticalTo(fakeUserRepo.getMyLikes_returnValue))
     }
 
+    func test_tappingLikeSegmentedControlButton_setsNilAsEmptyStateView() {
+        let segmentedControl = profileVC.myContentSegmentedControl
+        segmentedControl.selectedSegmentIndex = 1
+
+
+        segmentedControl.sendActionsForControlEvents(.ValueChanged)
+
+
+        let likedRestaurantListVC =
+            profileVC.pageViewController.viewControllers?.first
+                as! MyRestaurantListViewController
+
+
+        expect(likedRestaurantListVC.restaurantListDataSource.maybeEmptyStateView)
+            .to(beNil())
+    }
+
     func test_restaurantSelection_showsRestaurantDetailScreen() {
         profileVC.myRestaurantSelected(RestaurantFixtures.newRestaurant())
 
@@ -117,5 +159,18 @@ class ProfileViewControllerTest: XCTestCase {
         expect(self.fakeSessionRepo.deleteAuthenticatedUser_wasCalled).to(beTrue())
         expect(self.fakeUserRepo.logout_wasCalled).to(beTrue())
         expect(self.fakeRouter.loginScreenIsShowing).to(beTrue())
+    }
+
+    // MARK: EmptyStateCallToActionDelegate
+    func test_callToActionCallback_displaysAddRestaurantScreen() {
+        profileVC.callToActionCallback(UIButton())
+
+        expect(self.fakeRouter.newRestaurantScreenIsShowing).to(beTrue())
+    }
+}
+
+extension ProfileViewControllerTest: EmptyStateCallToActionDelegate {
+    func callToActionCallback(sender: UIButton) {
+        callToActionCallback_called = true
     }
 }

@@ -15,10 +15,14 @@ class MyRestaurantListViewController: UIViewController {
         reloader: Reloader,
         photoRepo: PhotoRepo,
         myRestaurantSelectionDelegate: MyRestaurantSelectionDelegate,
+        maybeEmptyStateView: UIView?,
         getRestaurants: () -> Future<[Restaurant], RepoError>)
     {
         self.reloader = reloader
-        self.restaurantListDataSource = RestaurantListDataSource(photoRepo: photoRepo)
+        self.restaurantListDataSource = RestaurantListDataSource(
+            photoRepo: photoRepo,
+            maybeEmptyStateView: maybeEmptyStateView
+        )
         self.myRestaurantSelectionDelegate = myRestaurantSelectionDelegate
         self.getRestaurants = getRestaurants
 

@@ -18,6 +18,7 @@ class MyRestaurantListViewControllerTest: XCTestCase {
             reloader: fakeReloader,
             photoRepo: fakePhotoRepo,
             myRestaurantSelectionDelegate: fakeMyRestaurantSelectionDelegate,
+            maybeEmptyStateView: nil,
             getRestaurants: getRestaurants
         )
     }
