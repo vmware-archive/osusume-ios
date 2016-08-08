@@ -83,25 +83,22 @@ class ProfileViewControllerTest: XCTestCase {
         let myPostsRestaurantListVC =
             profileVC.pageViewController.viewControllers?.first
                 as! MyRestaurantListViewController
-        let emptyStateView = myPostsRestaurantListVC.maybeEmptyStateView as? MyRestaurantsEmptyStateView
+        let emptyStateView = myPostsRestaurantListVC.emptyStateView
 
-        expect(emptyStateView?.delegate).to(beIdenticalTo(profileVC))
+        expect(emptyStateView.delegate).to(beIdenticalTo(profileVC))
     }
 
-    func test_tappingSegmentedControl_selectsCurrentPage() {
+    func test_tappingSegmentedControl_updatesThePageViewControllersVCs() {
         let segmentedControl = profileVC.myContentSegmentedControl
         segmentedControl.selectedSegmentIndex = 1
 
 
         segmentedControl.sendActionsForControlEvents(.ValueChanged)
 
-        let pageViewController = profileVC.pageViewController
-        expect(pageViewController.viewControllers?.first)
-            .to(beAKindOf(MyRestaurantListViewController))
         expect(self.profileVC.currentPage).to(equal(1))
     }
 
-    func test_tappingLikeSegmentedControlButton_retrievesLikedRestaurants() {
+    func test_tappingLikeSegmentedControlButton_configuresLikesListVC() {
         let segmentedControl = profileVC.myContentSegmentedControl
         segmentedControl.selectedSegmentIndex = 1
 
@@ -115,6 +112,31 @@ class ProfileViewControllerTest: XCTestCase {
 
         expect(likedRestaurantListVC.getRestaurants())
             .to(beIdenticalTo(fakeUserRepo.getMyLikes_returnValue))
+        expect(likedRestaurantListVC.emptyStateView.callToActionLabel.text)
+            .to(equal("No restaurant yet." +
+                "\nPlease like your favorite restaurant!"))
+        expect(likedRestaurantListVC.emptyStateView.callToActionButton.hidden)
+            .to(equal(true))
+    }
+
+    func test_tappingPostSegmentedControlButton_configuresPostsListVC() {
+        let segmentedControl = profileVC.myContentSegmentedControl
+        segmentedControl.selectedSegmentIndex = 0
+
+
+        segmentedControl.sendActionsForControlEvents(.ValueChanged)
+
+
+        let postsRestaurantListVC =
+            profileVC.pageViewController.viewControllers?.first
+                as! MyRestaurantListViewController
+
+        expect(postsRestaurantListVC.getRestaurants())
+            .to(beIdenticalTo(fakeUserRepo.getMyPosts_returnValue))
+        expect(postsRestaurantListVC.emptyStateView.callToActionLabel.text)
+            .to(equal("No restaurant yet." +
+                "\nPlease share your favorite restaurant " +
+                "\nwith other pivots"))
     }
 
     func test_restaurantSelection_showsRestaurantDetailScreen() {

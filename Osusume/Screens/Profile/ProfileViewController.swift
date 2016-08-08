@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController {
                 reloader: self.reloader,
                 photoRepo: self.photoRepo,
                 myRestaurantSelectionDelegate: self,
-                maybeEmptyStateView: MyRestaurantsEmptyStateView(delegate: self),
+                emptyStateView: MyRestaurantsEmptyStateView(delegate: self),
                 getRestaurants: self.userRepo.getMyPosts
             )
         ]
@@ -150,22 +150,22 @@ class ProfileViewController: UIViewController {
     @objc private func didChangeSelectedSegment(sender: UISegmentedControl) {
         currentPage = sender.selectedSegmentIndex
 
+        let emptyStateView: MyRestaurantsEmptyStateView
         let getRestaurants: () -> Future<[Restaurant], RepoError>
-        let maybeEmptyStateView: UIView?
 
         if (currentPage == 0) {
+            emptyStateView = postsListEmptyStateView()
             getRestaurants = userRepo.getMyPosts
-            maybeEmptyStateView = MyRestaurantsEmptyStateView(delegate: self)
         } else {
+            emptyStateView = likesListEmptyStateView()
             getRestaurants = userRepo.getMyLikes
-            maybeEmptyStateView = nil
         }
 
         let viewController = MyRestaurantListViewController(
             reloader: reloader,
             photoRepo: photoRepo,
             myRestaurantSelectionDelegate: self,
-            maybeEmptyStateView: maybeEmptyStateView,
+            emptyStateView: emptyStateView,
             getRestaurants: getRestaurants
         )
 
@@ -175,6 +175,25 @@ class ProfileViewController: UIViewController {
             animated: false,
             completion: nil
         )
+    }
+
+    // MARK: - Private Methods
+    private func postsListEmptyStateView() -> MyRestaurantsEmptyStateView{
+        let emptyStateView = MyRestaurantsEmptyStateView(delegate: self)
+        emptyStateView.callToActionLabel.text =
+            "No restaurant yet." +
+            "\nPlease share your favorite restaurant " +
+            "\nwith other pivots"
+        return emptyStateView
+    }
+
+    private func likesListEmptyStateView() -> MyRestaurantsEmptyStateView {
+        let emptyStateView = MyRestaurantsEmptyStateView(delegate: self)
+        emptyStateView.callToActionLabel.text =
+            "No restaurant yet." +
+            "\nPlease like your favorite restaurant!"
+        emptyStateView.callToActionButton.hidden = true
+        return emptyStateView
     }
 }
 

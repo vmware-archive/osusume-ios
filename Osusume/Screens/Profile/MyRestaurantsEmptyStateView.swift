@@ -1,5 +1,5 @@
 class MyRestaurantsEmptyStateView: UIView {
-    // MA@objc @objc RK: - View Elements
+    // MARK: - View Elements
     let callToActionLabel: UILabel
     let callToActionButton: UIButton
     let delegate: EmptyStateCallToActionDelegate
@@ -30,9 +30,6 @@ class MyRestaurantsEmptyStateView: UIView {
     private func configureSubviews() {
         callToActionLabel.numberOfLines = 3
         callToActionLabel.textAlignment = .Center
-        callToActionLabel.text = "No restaurant yet." +
-            "\nPlease share your favorite restaurant " +
-            "\nwith other pivots"
 
         callToActionButton.setTitle("+ add a restaurant", forState: .Normal)
         callToActionButton.translatesAutoresizingMaskIntoConstraints = false
