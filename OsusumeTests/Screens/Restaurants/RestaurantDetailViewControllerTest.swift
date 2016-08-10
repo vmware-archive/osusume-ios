@@ -6,6 +6,7 @@ import Nimble
 
 class RestaurantDetailViewControllerTest: XCTestCase {
     let fakeRouter = FakeRouter()
+    let fakeReloader = FakeReloader()
     let fakeRestaurantRepo = FakeRestaurantRepo()
     let fakeSessionRepo = FakeSessionRepo()
     let fakeLikeRepo = FakeLikeRepo()
@@ -87,6 +88,42 @@ class RestaurantDetailViewControllerTest: XCTestCase {
             .to(equal("Jeana - \(DateConverter.formattedDate(today))"))
     }
 
+    func test_onViewWillAppear_showsPhotoCollectionViewCellWhenThereArePhotos() {
+        restaurant = RestaurantFixtures.newRestaurant(
+            photoUrls: [PhotoUrl(id: 1, url: NSURL(string: "photo-url")!)]
+        )
+
+        setupViewControllerWithReloader()
+
+
+        let numRowsInSectionZero = self.restaurantDetailVC.tableView.numberOfRowsInSection(0)
+        let photoCollectionViewCell = self.restaurantDetailVC.tableView(
+            self.restaurantDetailVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+        let restaurantDetailTableViewCell = self.restaurantDetailVC.tableView(
+            self.restaurantDetailVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0)
+        )
+
+        expect(numRowsInSectionZero).to(equal(2))
+        expect(photoCollectionViewCell).to(beAKindOf(RestaurantPhotoTableViewCell))
+        expect(restaurantDetailTableViewCell).to(beAKindOf(RestaurantDetailTableViewCell))
+    }
+
+    func test_onViewWillAppear_hidesPhotoCollectionViewCellWhenThereAreNoPhotos() {
+        setupViewControllerWithReloader()
+
+        let numRowsInSectionZero = self.restaurantDetailVC.tableView.numberOfRowsInSection(0)
+        let restaurantDetailTableViewCell = self.restaurantDetailVC.tableView(
+            self.restaurantDetailVC.tableView,
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
+        )
+
+        expect(numRowsInSectionZero).to(equal(1))
+        expect(restaurantDetailTableViewCell).to(beAKindOf(RestaurantDetailTableViewCell))
+    }
+
     func test_onViewWillAppear_showsCommentsWithMultipleLines() {
         setupViewControllerWithReloader()
 
@@ -110,6 +147,13 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         setupViewControllerWithReloader()
         let cell: UITableViewCell? = restaurantDetailVC.tableView.dequeueReusableCellWithIdentifier(String(RestaurantDetailTableViewCell))
 
+
+        expect(cell).toNot(beNil())
+    }
+
+    func test_viewDidLoad_registersRestaurantPhotoTableViewCell() {
+        setupViewControllerWithReloader()
+        let cell: UITableViewCell? = restaurantDetailVC.tableView.dequeueReusableCellWithIdentifier(String(RestaurantPhotoTableViewCell))
 
         expect(cell).toNot(beNil())
     }
@@ -138,6 +182,22 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         expect(self.fakeRouter.newCommentScreenIsShowing).to(equal(true))
         expect(self.fakeRouter.showNewCommentScreen_args).to(equal(1))
+    }
+
+    func test_showingThePhotoTableViewCell_showsPhotosInCollectionView() {
+        let photoUrl = PhotoUrl(id: 1, url: NSURL(string: "photo-url")!)
+        restaurant = RestaurantFixtures.newRestaurant(
+            photoUrls: [photoUrl]
+        )
+
+        setupViewControllerWithReloader()
+
+        let photoCell = getRestaurantPhotoCell()
+        photoCell.imageCollectionView.dataSource
+                as! PhotoUrlsCollectionViewDataSource
+
+        expect(photoCell.dataSourcePhotoUrls.first)
+            .to(equal(photoUrl))
     }
 
     // MARK: - Like Button
@@ -239,6 +299,27 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         expect(restaurantDetailCell.delegate === self.restaurantDetailVC).to(beTrue())
     }
 
+    func test_callingTheDisplayMapsScreenMethod_displaysTheMapScreen() {
+        setupViewControllerWithReloader()
+
+
+        restaurantDetailVC.displayMapScreen(UIButton())
+
+
+        expect(self.fakeRouter.mapScreenIsShowing).to(beTrue())
+    }
+
+    // MARK: - RestaurantPhotoTableViewCellDelegate
+    func test_photoTableViewCell_hasViewControllerAsDelegate() {
+        restaurant = RestaurantFixtures.newRestaurant(
+            photoUrls: [PhotoUrl(id: 1, url: NSURL(string: "photo-url")!)]
+        )
+        setupViewControllerWithReloader()
+
+        let restaurantPhotoCell = getRestaurantPhotoCell()
+        expect(restaurantPhotoCell.delegate === self.restaurantDetailVC).to(beTrue())
+    }
+
     func test_callingTheShowImageDelegateMethod_showsTheFullScreenImageScreen() {
         setupViewControllerWithReloader()
         let url = NSURL(string: "url")!
@@ -249,16 +330,6 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         expect(self.fakeRouter.imageScreenIsShowing).to(beTrue())
         expect(self.fakeRouter.showImageScreen_args).to(equal(url))
-    }
-
-    func test_callingTheDisplayMapsScreenMethod_displaysTheMapScreen() {
-        setupViewControllerWithReloader()
-
-
-        restaurantDetailVC.displayMapScreen(UIButton())
-
-
-        expect(self.fakeRouter.mapScreenIsShowing).to(beTrue())
     }
 
     // MARK: - UITableViewDelegate
@@ -299,7 +370,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
 
 
-        expect(self.restaurantDetailVC.restaurant!.comments.count).to(equal(1))
+        expect(self.restaurantDetailVC.maybeRestaurant!.comments.count).to(equal(1))
     }
 
     func test_commitingCommentDelete_deletesCommentWithRepo() {
@@ -342,5 +413,11 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
         return restaurantDetailVC.tableView
             .cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
+    }
+
+    private func getRestaurantPhotoCell() -> RestaurantPhotoTableViewCell {
+        let indexOfPhotoCell = NSIndexPath(forRow: 0, inSection: 0)
+        return restaurantDetailVC.tableView
+            .cellForRowAtIndexPath(indexOfPhotoCell) as! RestaurantPhotoTableViewCell
     }
 }

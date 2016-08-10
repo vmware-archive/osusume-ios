@@ -1,5 +1,17 @@
 import BrightFutures
 
+enum RestaurantDetailTableViewSections: Int {
+    case DetailsSection = 0
+    case CommentsSection
+    case Count
+
+    static var count: Int {
+        get {
+            return RestaurantDetailTableViewSections.Count.rawValue
+        }
+    }
+}
+
 class RestaurantDetailViewController: UIViewController {
     // MARK: - Properties
     private let router: Router
@@ -9,7 +21,7 @@ class RestaurantDetailViewController: UIViewController {
     private let sessionRepo: SessionRepo
     private let commentRepo: CommentRepo
     private let restaurantId: Int
-    private(set) var restaurant: Restaurant?
+    private(set) var maybeRestaurant: Restaurant?
     let currentUserId: Int?
 
     // MARK: - View Elements
@@ -60,7 +72,7 @@ class RestaurantDetailViewController: UIViewController {
 
         restaurantRepo.getOne(self.restaurantId)
             .onSuccess(ImmediateExecutionContext) { [unowned self] returnedRestaurant in
-                self.restaurant = returnedRestaurant
+                self.maybeRestaurant = returnedRestaurant
                 self.reloader.reload(self.tableView)
         }
     }
@@ -88,6 +100,10 @@ class RestaurantDetailViewController: UIViewController {
             RestaurantDetailTableViewCell.self,
             forCellReuseIdentifier: String(RestaurantDetailTableViewCell)
         )
+        tableView.registerClass(
+            RestaurantPhotoTableViewCell.self,
+            forCellReuseIdentifier: String(RestaurantPhotoTableViewCell)
+        )
     }
 
     private func addConstraints() {
@@ -96,7 +112,7 @@ class RestaurantDetailViewController: UIViewController {
 
     // MARK: - Actions
     @objc private func didTapEditRestaurantButton(sender: UIBarButtonItem) {
-        if let currentRestaurant = self.restaurant {
+        if let currentRestaurant = self.maybeRestaurant {
             router.showEditRestaurantScreen(currentRestaurant)
         }
     }
@@ -105,15 +121,21 @@ class RestaurantDetailViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension RestaurantDetailViewController: UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return RestaurantDetailTableViewSections.Count.rawValue
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let restaurant = maybeRestaurant else {
+            return 0
+        }
+
         switch section {
-            case 0:
-                return restaurant != nil ? 1 : 0
-            case 1:
-                return restaurant?.comments.count ?? 0
+            case RestaurantDetailTableViewSections.DetailsSection.rawValue:
+                return restaurant.photoUrls.count > 0 ? 2 : 1
+
+            case RestaurantDetailTableViewSections.CommentsSection.rawValue:
+                return restaurant.comments.count
+
             default:
                 return 0
         }
@@ -121,63 +143,83 @@ extension RestaurantDetailViewController: UITableViewDataSource {
 
     func tableView(
         tableView: UITableView,
-        cellForRowAtIndexPath indexPath: NSIndexPath
-        ) -> UITableViewCell
-    {
+        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let restaurant = maybeRestaurant!
+
         switch indexPath.section {
-            case 0:
-                guard
-                    let cell = tableView.dequeueReusableCellWithIdentifier(
-                        String(RestaurantDetailTableViewCell),
-                        forIndexPath: indexPath
-                    ) as? RestaurantDetailTableViewCell,
-
-                    let currentRestaurant = restaurant else {
-                        return UITableViewCell()
+            case RestaurantDetailTableViewSections.DetailsSection.rawValue:
+                if indexPath.row == 0 && restaurant.photoUrls.count > 0 {
+                    return initRestaurantPhotoTableViewCell(indexPath)
                 }
 
-                cell.backgroundColor = UIColor.cyanColor()
-                cell.selectionStyle = .None
-                cell.delegate = self
-                cell.configureView(currentRestaurant, reloader: DefaultReloader(), router: router)
+                return initRestaurantDetailTableViewCell(
+                    indexPath,
+                    restaurant: restaurant
+                )
 
-                return cell
+            case RestaurantDetailTableViewSections.CommentsSection.rawValue:
+                let comment = restaurant.comments[indexPath.row]
 
-            case 1:
-                guard
-                    let currentRestaurant = restaurant else {
-                        return UITableViewCell()
-                }
-
-                var maybeCell: UITableViewCell? =
-                    tableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
-
-                if (maybeCell == nil) {
-                    maybeCell = UITableViewCell(
-                        style: .Subtitle,
-                        reuseIdentifier: String(UITableViewCell)
-                    )
-                }
-
-                guard let cell = maybeCell else {
-                    return UITableViewCell()
-                }
-                cell.backgroundColor = UIColor.greenColor()
-                cell.selectionStyle = .None
-
-                let comments = currentRestaurant.comments
-                let currentComment = comments[indexPath.row]
-                let createdDateString = DateConverter.formattedDate(currentComment.createdDate)
-
-                cell.textLabel?.numberOfLines = 0
-                cell.textLabel?.text = currentComment.text
-                cell.detailTextLabel?.text = String("\(currentComment.userName) - \(createdDateString)")
-
-                return cell
+                return initSubtitleTableViewCellForComment(comment)
 
             default:
                 return UITableViewCell()
         }
+    }
+
+    private func initRestaurantDetailTableViewCell(indexPath: NSIndexPath,
+                                                   restaurant: Restaurant) -> RestaurantDetailTableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(
+            String(RestaurantDetailTableViewCell),
+            forIndexPath: indexPath
+        ) as! RestaurantDetailTableViewCell
+
+        cell.backgroundColor = UIColor.cyanColor()
+        cell.selectionStyle = .None
+        cell.delegate = self
+        cell.configureView(restaurant, reloader: reloader, router: router)
+
+        return cell
+    }
+
+    private func initRestaurantPhotoTableViewCell(indexPath: NSIndexPath) -> RestaurantPhotoTableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(
+            String(RestaurantPhotoTableViewCell),
+            forIndexPath: indexPath
+        ) as! RestaurantPhotoTableViewCell
+
+        var photoUrls = [PhotoUrl]()
+        if let restaurant = maybeRestaurant {
+            photoUrls = restaurant.photoUrls
+        }
+
+        cell.delegate = self
+        cell.configureCell(reloader, photoUrls: photoUrls, router: router)
+
+        return cell
+    }
+
+    private func initSubtitleTableViewCellForComment(comment: PersistedComment) -> UITableViewCell {
+        var maybeCell = tableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
+
+        if (maybeCell == nil) {
+            maybeCell = UITableViewCell(
+                style: .Subtitle,
+                reuseIdentifier: String(UITableViewCell)
+            )
+        }
+
+        guard let cell = maybeCell else { return UITableViewCell() }
+
+        let createdDateString = DateConverter.formattedDate(comment.createdDate)
+
+        cell.backgroundColor = UIColor.greenColor()
+        cell.selectionStyle = .None
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = comment.text
+        cell.detailTextLabel?.text = String("\(comment.userName) - \(createdDateString)")
+
+        return cell
     }
 }
 
@@ -185,14 +227,11 @@ extension RestaurantDetailViewController: UITableViewDataSource {
 extension RestaurantDetailViewController: UITableViewDelegate {
     func tableView(
         tableView: UITableView,
-        estimatedHeightForRowAtIndexPath indexPath: NSIndexPath
-        ) -> CGFloat
-    {
+        estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
-    {
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return isCommentPostedByCurrentUser(indexPath)
     }
 
@@ -202,12 +241,12 @@ extension RestaurantDetailViewController: UITableViewDelegate {
         forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             guard
-                let currentRestaurant = restaurant
+                let currentRestaurant = maybeRestaurant
             else {
                     return
             }
             let comment = currentRestaurant.comments[indexPath.row]
-            restaurant!.comments.removeAtIndex(indexPath.row)
+            maybeRestaurant!.comments.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             self.commentRepo.delete(comment.id)
         }
@@ -215,11 +254,10 @@ extension RestaurantDetailViewController: UITableViewDelegate {
 
 
     // MARK: - Private Methods
-    private func isCommentPostedByCurrentUser(indexPath: NSIndexPath) -> Bool
-    {
+    private func isCommentPostedByCurrentUser(indexPath: NSIndexPath) -> Bool {
         guard
             indexPath.section == 1,
-            let currentRestaurant = restaurant,
+            let currentRestaurant = maybeRestaurant,
             let userId = currentUserId
             else {
                 return false
@@ -229,16 +267,16 @@ extension RestaurantDetailViewController: UITableViewDelegate {
 
     private func deleteCommentAtIndexPath(indexPath: NSIndexPath) {
         guard
-            indexPath.section == 1 && restaurant != nil
+            indexPath.section == 1 && maybeRestaurant != nil
         else {
             return
         }
 
-        let comment = restaurant!.comments[indexPath.row]
+        let comment = maybeRestaurant!.comments[indexPath.row]
 
         self.commentRepo.delete(comment.id)
 
-        restaurant!.comments.removeAtIndex(indexPath.row)
+        maybeRestaurant!.comments.removeAtIndex(indexPath.row)
 
         tableView.deleteRowsAtIndexPaths(
             [indexPath],
@@ -250,21 +288,24 @@ extension RestaurantDetailViewController: UITableViewDelegate {
 // MARK: - RestaurantDetailTableViewCellDelegate
 extension RestaurantDetailViewController: RestaurantDetailTableViewCellDelegate {
     @objc func displayAddCommentScreen(sender: UIButton) {
-        router.showNewCommentScreen(self.restaurant!.id)
+        router.showNewCommentScreen(self.maybeRestaurant!.id)
     }
 
     @objc func didTapLikeButton(sender: UIButton) {
-        restaurant = restaurant?.newRetaurantWithLikeToggled()
+        maybeRestaurant = maybeRestaurant?.newRetaurantWithLikeToggled()
 
-        likeRepo.setRestaurantLiked(restaurantId, liked: (restaurant?.liked)!)
+        likeRepo.setRestaurantLiked(restaurantId, liked: (maybeRestaurant?.liked)!)
 
         reloader.reload(tableView)
     }
 
     @objc func displayMapScreen(sender: UIButton) {
-        router.showMapScreen(restaurant?.latitude ?? 0.0, longitude: restaurant?.longitude ?? 0.0)
+        router.showMapScreen(maybeRestaurant?.latitude ?? 0.0, longitude: maybeRestaurant?.longitude ?? 0.0)
     }
+}
 
+// MARK: - RestaurantPhotoTableViewCellDelegate
+extension RestaurantDetailViewController: RestaurantPhotoTableViewCellDelegate {
     @objc func displayImageScreen(url: NSURL) {
         router.showImageScreen(url)
     }

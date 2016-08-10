@@ -2,12 +2,8 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     // MARK: - Properties
     private var router: Router?
     weak var delegate: RestaurantDetailTableViewCellDelegate?
-    private var photoUrlDataSource: PhotoUrlsCollectionViewDataSource?
-    private(set) var photoUrls: [PhotoUrl]
-    private(set) var addedPhotos: [UIImage]
 
     // MARK: - View Elements
-    let imageCollectionView: UICollectionView
     let nameLabel: UILabel
     let addressLabel: UILabel
     let viewMapButton: UIButton
@@ -22,14 +18,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
     // MARK: - Initializers
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        photoUrls = [PhotoUrl]()
-        addedPhotos = [UIImage]()
-
-        imageCollectionView = UICollectionView(
-            frame: CGRectZero,
-            collectionViewLayout: RestaurantDetailTableViewCell.imageCollectionViewLayout()
-        )
-
         nameLabel = UILabel.newAutoLayoutView()
         addressLabel = UILabel.newAutoLayoutView()
         viewMapButton = UIButton(type: UIButtonType.System)
@@ -55,7 +43,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
 
     // MARK: - View Setup
     private func addSubviews() {
-        contentView.addSubview(imageCollectionView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(addressLabel)
         contentView.addSubview(viewMapButton)
@@ -70,14 +57,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     }
 
     private func configureSubviews() {
-        imageCollectionView.contentInset = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-        imageCollectionView.registerClass(
-            PhotoCollectionViewCell.self,
-            forCellWithReuseIdentifier: String(PhotoCollectionViewCell)
-        )
-        imageCollectionView.backgroundColor = UIColor.lightGrayColor()
-        imageCollectionView.delegate = self
-
         viewMapButton.setTitle("view in map", forState: .Normal)
 
         notesLabel.numberOfLines = 0
@@ -89,12 +68,7 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     }
 
     private func addConstraints() {
-        imageCollectionView.autoPinEdgeToSuperviewEdge(.Top)
-        imageCollectionView.autoSetDimension(.Height, toSize: 120.0)
-        imageCollectionView.autoAlignAxis(.Vertical, toSameAxisOfView: contentView)
-        imageCollectionView.autoMatchDimension(.Width, toDimension:.Width, ofView: contentView)
-
-        nameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageCollectionView)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Top)
         nameLabel.autoPinEdgeToSuperviewEdge(.Leading, withInset: 10.0)
 
         addressLabel.autoPinEdge(.Leading, toEdge: .Leading, ofView: nameLabel)
@@ -136,18 +110,6 @@ class RestaurantDetailTableViewCell: UITableViewCell {
     // MARK: - Public Methods
     func configureView(restaurant: Restaurant, reloader: Reloader, router: Router) {
         self.router = router
-        photoUrls = restaurant.photoUrls
-        photoUrlDataSource = PhotoUrlsCollectionViewDataSource(
-            photoUrlsDataSource: self,
-            addedPhotosDataSource: self,
-            editMode: false,
-            deletePhotoClosure: nil
-        )
-
-        imageCollectionView.dataSource = photoUrlDataSource
-
-        reloader.reload(imageCollectionView)
-
         viewMapButton.addTarget(
             self.delegate,
             action: #selector(RestaurantDetailTableViewCellDelegate.displayMapScreen(_:)),
@@ -183,37 +145,5 @@ class RestaurantDetailTableViewCell: UITableViewCell {
             likeButton.backgroundColor = UIColor.blueColor()
             likeButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         }
-    }
-
-    // MARK: - Private Methods
-    private static func imageCollectionViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSizeMake(100, 100)
-        layout.scrollDirection = .Horizontal
-        return layout
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension RestaurantDetailTableViewCell: UICollectionViewDelegate {
-    func collectionView(
-        collectionView: UICollectionView,
-        didSelectItemAtIndexPath indexPath: NSIndexPath)
-    {
-        self.delegate?.displayImageScreen(photoUrls[indexPath.row].url)
-    }
-}
-
-// MARK: - PhotoUrlsDataSource
-extension RestaurantDetailTableViewCell: PhotoUrlsDataSource {
-    func getPhotoUrls() -> [PhotoUrl] {
-        return self.photoUrls
-    }
-}
-
-// MARK: - AddedPhotosDataSource
-extension RestaurantDetailTableViewCell: AddedPhotosDataSource {
-    func getAddedPhotos() -> [UIImage] {
-        return self.addedPhotos
     }
 }

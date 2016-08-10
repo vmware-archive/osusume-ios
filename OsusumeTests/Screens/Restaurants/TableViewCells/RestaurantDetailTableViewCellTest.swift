@@ -20,8 +20,6 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
     }
 
     func test_init_initializesSubviews() {
-        expect(self.restaurantDetailCell.imageCollectionView)
-            .to(beAKindOf(UICollectionView))
         expect(self.restaurantDetailCell.nameLabel)
             .to(beAKindOf(UILabel))
         expect(self.restaurantDetailCell.addressLabel)
@@ -46,8 +44,6 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
 
     func test_init_addsSubviews() {
         expect(self.restaurantDetailCell.contentView)
-            .to(containSubview(restaurantDetailCell.imageCollectionView))
-        expect(self.restaurantDetailCell.contentView)
             .to(containSubview(restaurantDetailCell.nameLabel))
         expect(self.restaurantDetailCell.contentView)
             .to(containSubview(restaurantDetailCell.addressLabel))
@@ -70,8 +66,6 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
     }
 
     func test_viewDidLoad_addsConstraints() {
-        expect(self.restaurantDetailCell.imageCollectionView)
-            .to(hasConstraintsToSuperview())
         expect(self.restaurantDetailCell.nameLabel)
             .to(hasConstraintsToSuperview())
         expect(self.restaurantDetailCell.addressLabel)
@@ -188,7 +182,6 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
             .to(equal("Price Range: 0~999"))	
         expect(self.restaurantDetailCell.creationInfoLabel.text)
             .to(equal("Added by Danny on 1/1/70"))
-        expect(self.restaurantDetailCell.photoUrls.count).to(equal(1))
     }
 
     func test_configureView_displaysLikedState_whenLiked() {
@@ -202,16 +195,6 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
             .toEventually(equal(UIColor.redColor()))
         expect(self.restaurantDetailCell.likeButton.titleColorForState(.Normal))
             .toEventually(equal(UIColor.blueColor()))
-    }
-
-    func test_configureView_reloadsCollectionViewData() {
-        restaurantDetailCell.configureView(
-            RestaurantFixtures.newRestaurant(),
-            reloader: fakeReloader,
-            router: fakeRouter
-        )
-
-        expect(self.fakeReloader.reload_wasCalled).to(beTrue())
     }
 
     func test_configureView_displaysLikedState_whenNotLiked() {
@@ -228,45 +211,6 @@ class RestaurantDetailTableViewCellTest: XCTestCase {
         expect(self.restaurantDetailCell.likeButton.enabled)
             .toEventually(beTrue())
     }
-
-    func test_tappingAnImage_showsAFullScreenImage() {
-        restaurantDetailCell.delegate = self
-        restaurantDetailCell.configureView(
-            RestaurantFixtures.newRestaurant(
-                photoUrls: [
-                    PhotoUrl(id: 10, url: NSURL(string: "http://www.example.com/cat.jpg")!)
-                ]
-            ),
-            reloader: fakeReloader,
-            router: fakeRouter
-        )
-
-        restaurantDetailCell
-            .imageCollectionView
-            .delegate!
-            .collectionView!(
-                restaurantDetailCell.imageCollectionView,
-                didSelectItemAtIndexPath: NSIndexPath(forItem: 0, inSection: 0)
-        )
-
-        expect(self.displayImageScreen_arg).to(equal(NSURL(string: "http://www.example.com/cat.jpg")!))
-    }
-
-    func test_configureView_setsPhotosDataSource() {
-        restaurantDetailCell.configureView(
-            RestaurantFixtures.newRestaurant(
-            photoUrls: [
-                PhotoUrl(id: 10, url: NSURL(string: "my-awesome-url")!)
-            ]),
-            reloader: FakeReloader(),
-            router: FakeRouter()
-        )
-
-
-        expect(self.restaurantDetailCell.imageCollectionView.dataSource)
-            .toNot(beNil())
-        expect(self.restaurantDetailCell.imageCollectionView.dataSource is PhotoUrlsCollectionViewDataSource).to(beTrue())
-    }
 }
 
 extension RestaurantDetailTableViewCellTest: RestaurantDetailTableViewCellDelegate {
@@ -280,9 +224,5 @@ extension RestaurantDetailTableViewCellTest: RestaurantDetailTableViewCellDelega
 
     func displayMapScreen(sender: UIButton) {
         displayMapScreen_wasCalled = true
-    }
-
-    func displayImageScreen(url: NSURL) {
-        displayImageScreen_arg = url
     }
 }
