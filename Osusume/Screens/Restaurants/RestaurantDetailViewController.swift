@@ -1,7 +1,8 @@
 import BrightFutures
 
 enum RestaurantDetailTableViewSections: Int {
-    case DetailsSection = 0
+    case PhotosSection = 0
+    case DetailsSection
     case CommentsSection
     case Count
 
@@ -130,8 +131,11 @@ extension RestaurantDetailViewController: UITableViewDataSource {
         }
 
         switch section {
+            case RestaurantDetailTableViewSections.PhotosSection.rawValue:
+                return restaurant.photoUrls.count > 0 ? 1 : 0
+
             case RestaurantDetailTableViewSections.DetailsSection.rawValue:
-                return restaurant.photoUrls.count > 0 ? 2 : 1
+                return 1
 
             case RestaurantDetailTableViewSections.CommentsSection.rawValue:
                 return restaurant.comments.count
@@ -147,11 +151,10 @@ extension RestaurantDetailViewController: UITableViewDataSource {
         let restaurant = maybeRestaurant!
 
         switch indexPath.section {
-            case RestaurantDetailTableViewSections.DetailsSection.rawValue:
-                if indexPath.row == 0 && restaurant.photoUrls.count > 0 {
-                    return initRestaurantPhotoTableViewCell(indexPath)
-                }
+            case RestaurantDetailTableViewSections.PhotosSection.rawValue:
+                return initRestaurantPhotoTableViewCell(indexPath)
 
+            case RestaurantDetailTableViewSections.DetailsSection.rawValue:
                 return initRestaurantDetailTableViewCell(
                     indexPath,
                     restaurant: restaurant
@@ -256,7 +259,7 @@ extension RestaurantDetailViewController: UITableViewDelegate {
     // MARK: - Private Methods
     private func isCommentPostedByCurrentUser(indexPath: NSIndexPath) -> Bool {
         guard
-            indexPath.section == 1,
+            indexPath.section == RestaurantDetailTableViewSections.CommentsSection.rawValue,
             let currentRestaurant = maybeRestaurant,
             let userId = currentUserId
             else {

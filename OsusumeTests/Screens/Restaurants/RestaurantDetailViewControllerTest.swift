@@ -15,7 +15,9 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     var restaurant: Restaurant!
     var restaurantDetailVC: RestaurantDetailViewController!
 
-    let commentSectionIndex = 1
+    let photosSectionIndex = RestaurantDetailTableViewSections.PhotosSection.rawValue
+    let commentsSectionIndex = RestaurantDetailTableViewSections.CommentsSection.rawValue
+    let detailsSectionIndex = RestaurantDetailTableViewSections.DetailsSection.rawValue
     let today = NSDate()
     var tomorrow: NSDate {
         return NSDate(timeInterval: 60*60*24, sinceDate: today)
@@ -69,16 +71,16 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
 
         let actualRowCount = self.restaurantDetailVC.tableView
-            .numberOfRowsInSection(commentSectionIndex)
+            .numberOfRowsInSection(commentsSectionIndex)
         expect(actualRowCount).to(equal(2))
 
         let firstCommentCell = restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
-            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentsSectionIndex)
         )
         let secondCommentCell = restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
-            cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentSectionIndex)
+            cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentsSectionIndex)
         )
         expect(firstCommentCell.textLabel!.text).to(equal("first comment"))
         expect(firstCommentCell.detailTextLabel!.text)
@@ -96,32 +98,22 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         setupViewControllerWithReloader()
 
 
-        let numRowsInSectionZero = self.restaurantDetailVC.tableView.numberOfRowsInSection(0)
+        let numRowsInPhotosSection = self.restaurantDetailVC.tableView.numberOfRowsInSection(photosSectionIndex)
         let photoCollectionViewCell = self.restaurantDetailVC.tableView(
             self.restaurantDetailVC.tableView,
-            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
-        )
-        let restaurantDetailTableViewCell = self.restaurantDetailVC.tableView(
-            self.restaurantDetailVC.tableView,
-            cellForRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 0)
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: photosSectionIndex)
         )
 
-        expect(numRowsInSectionZero).to(equal(2))
+        expect(numRowsInPhotosSection).to(equal(1))
         expect(photoCollectionViewCell).to(beAKindOf(RestaurantPhotoTableViewCell))
-        expect(restaurantDetailTableViewCell).to(beAKindOf(RestaurantDetailTableViewCell))
     }
 
-    func test_onViewWillAppear_hidesPhotoCollectionViewCellWhenThereAreNoPhotos() {
+    func test_onViewWillAppear_hidesPhotosSectionWhenThereAreNoPhotos() {
         setupViewControllerWithReloader()
 
         let numRowsInSectionZero = self.restaurantDetailVC.tableView.numberOfRowsInSection(0)
-        let restaurantDetailTableViewCell = self.restaurantDetailVC.tableView(
-            self.restaurantDetailVC.tableView,
-            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0)
-        )
 
-        expect(numRowsInSectionZero).to(equal(1))
-        expect(restaurantDetailTableViewCell).to(beAKindOf(RestaurantDetailTableViewCell))
+        expect(numRowsInSectionZero).to(equal(0))
     }
 
     func test_onViewWillAppear_showsCommentsWithMultipleLines() {
@@ -129,7 +121,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         let firstCommentCell = restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
-            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+            cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentsSectionIndex)
         )
 
         expect(firstCommentCell.textLabel?.numberOfLines).to(equal(0))
@@ -339,7 +331,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         let canEditOwnComment = restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
-            canEditRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+            canEditRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentsSectionIndex)
         )
 
 
@@ -352,7 +344,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
 
         let canEditOwnComment = restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
-            canEditRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentSectionIndex)
+            canEditRowAtIndexPath: NSIndexPath(forRow: 1, inSection: commentsSectionIndex)
         )
 
 
@@ -366,7 +358,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
             commitEditingStyle : UITableViewCellEditingStyle.Delete,
-            forRowAtIndexPath : NSIndexPath(forRow: 0, inSection: commentSectionIndex))
+            forRowAtIndexPath : NSIndexPath(forRow: 0, inSection: commentsSectionIndex))
 
 
 
@@ -381,7 +373,7 @@ class RestaurantDetailViewControllerTest: XCTestCase {
         restaurantDetailVC.tableView(
             restaurantDetailVC.tableView,
             commitEditingStyle: .Delete,
-            forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentSectionIndex)
+            forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: commentsSectionIndex)
         )
 
 
@@ -410,13 +402,13 @@ class RestaurantDetailViewControllerTest: XCTestCase {
     }
 
     private func getRestaurantDetailCell() -> RestaurantDetailTableViewCell {
-        let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: 0)
+        let indexOfRestaurantDetailCell = NSIndexPath(forRow: 0, inSection: detailsSectionIndex)
         return restaurantDetailVC.tableView
             .cellForRowAtIndexPath(indexOfRestaurantDetailCell) as! RestaurantDetailTableViewCell
     }
 
     private func getRestaurantPhotoCell() -> RestaurantPhotoTableViewCell {
-        let indexOfPhotoCell = NSIndexPath(forRow: 0, inSection: 0)
+        let indexOfPhotoCell = NSIndexPath(forRow: 0, inSection: photosSectionIndex)
         return restaurantDetailVC.tableView
             .cellForRowAtIndexPath(indexOfPhotoCell) as! RestaurantPhotoTableViewCell
     }
