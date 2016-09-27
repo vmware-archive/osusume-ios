@@ -1,6 +1,7 @@
-github "PureLayout/PureLayout"
-github "Thomvis/BrightFutures"
-github "kishikawakatsumi/KeychainAccess"
-github "rs/SDWebImage"
-github "mikaoj/BSImagePicker"
-github "antitypical/Result"
+github "mikaoj/BSGridCollectionViewLayout"==1.1.1
+github "PureLayout/PureLayout" "v3.0.2"
+github "Thomvis/BrightFutures" == 4.1.1
+github "kishikawakatsumi/KeychainAccess" "v2.3.6"
+github "rs/SDWebImage" "3.8.2"
+github "mikaoj/BSImagePicker"==2.3.1 
+github "antitypical/Result" "2.1.3"

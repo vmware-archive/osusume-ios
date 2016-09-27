@@ -1,5 +1,6 @@
 /build/
 /Carthage/Build/
+/Carthage/Checkouts/
 DerivedData
 *.pbxuser
 !default.pbxuser
